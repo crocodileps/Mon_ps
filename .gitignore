@@ -1,0 +1,41 @@
+# Secrets (CRITIQUE - NE JAMAIS COMMIT)
+.env
+.env.local
+.env.prod
+*.pem
+*.key
+backend/ername=*
+
+# Archives
+*.tar.gz
+*.zip
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.env.local
+
+# Backend
+backend/__pycache__/
+backend/*.pyc
+backend/.pytest_cache/
+venv/
+*.egg-info/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Database backups
+*.sql
+*.dump
