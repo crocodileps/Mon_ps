@@ -3,154 +3,107 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import Navbar from '@/components/Navbar';
-import StatsCard from '@/components/StatsCard';
-import { api } from '@/lib/api';
-import { Bankroll, Opportunity } from '@/types';
-import { WalletIcon, TrendingUpIcon, TargetIcon, PercentIcon } from 'lucide-react';
 
-export default function DashboardPage() {
+interface Opportunity {
+  match_id: string;
+  home_team: string;
+  away_team: string;
+  outcome: string;
+  best_odd: string;
+  spread_pct: number;
+  bookmaker_best: string;
+}
+
+export default function Dashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [bankroll, setBankroll] = useState<Bankroll | null>(null);
-  const [topOpportunities, setTopOpportunities] = useState<Opportunity[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/login');
-    }
+    if (status === 'unauthenticated') router.push('/login');
   }, [status, router]);
 
   useEffect(() => {
-    if (session) {
-      loadData();
-    }
-  }, [session]);
+    const fetchData = async () => {
+      try {
+        const res = await fetch('/api/opportunities');
+        const data = await res.json();
+        setOpportunities(data.slice(0, 10));
+      } catch (error) {
+        console.error('Erreur:', error);
+      }
+    };
+    if (status === 'authenticated') fetchData();
+  }, [status]);
 
-  const loadData = async () => {
-    try {
-      setLoading(true);
-      const [bankrollData, opportunitiesData] = await Promise.all([
-        api.getBankroll(),
-        api.getTopOpportunities(5),
-      ]);
-      setBankroll(bankrollData);
-      setTopOpportunities(opportunitiesData);
-    } catch (error) {
-      console.error('Error loading dashboard data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (status === 'loading' || loading) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <Navbar />
-        <div className="flex items-center justify-center h-screen">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-4 text-gray-600">Chargement...</p>
-          </div>
-        </div>
-      </div>
-    );
+  if (status === 'loading') {
+    return <div className="flex items-center justify-center min-h-screen"><div className="text-xl">Chargement...</div></div>;
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600 mt-1">Bienvenue, {session?.user?.name}</p>
-        </div>
+    <div className="p-8">
+      <h1 className="text-3xl font-bold mb-4">Dashboard Mon_PS 🎯</h1>
+      <p className="mb-8">Bienvenue, {session?.user?.name}</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <StatsCard
-            title="Bankroll Actuel"
-            value={`${bankroll?.current_balance.toFixed(2) || '0.00'} €`}
-            subtitle={`Initial: ${bankroll?.initial_balance.toFixed(2) || '0.00'} €`}
-            icon={<WalletIcon size={24} />}
-            trend={bankroll && bankroll.profit_loss > 0 ? 'up' : bankroll && bankroll.profit_loss < 0 ? 'down' : 'neutral'}
-            trendValue={`${bankroll?.profit_loss.toFixed(2) || '0.00'} €`}
-          />
-          
-          <StatsCard
-            title="ROI"
-            value={`${bankroll?.roi.toFixed(2) || '0.00'}%`}
-            subtitle={`${bankroll?.total_bets || 0} paris placés`}
-            icon={<PercentIcon size={24} />}
-            trend={bankroll && bankroll.roi > 0 ? 'up' : bankroll && bankroll.roi < 0 ? 'down' : 'neutral'}
-          />
-          
-          <StatsCard
-            title="Win Rate"
-            value={`${bankroll?.win_rate.toFixed(1) || '0.0'}%`}
-            subtitle={`${bankroll?.winning_bets || 0} / ${bankroll?.total_bets || 0} gagnés`}
-            icon={<TargetIcon size={24} />}
-          />
-          
-          <StatsCard
-            title="Total Mise"
-            value={`${bankroll?.total_staked.toFixed(2) || '0.00'} €`}
-            subtitle={`Retourné: ${bankroll?.total_returned.toFixed(2) || '0.00'} €`}
-            icon={<TrendingUpIcon size={24} />}
-          />
+      <div className="grid grid-cols-4 gap-4 mb-8">
+        <div className="bg-white rounded-lg shadow p-6">
+          <h3 className="text-gray-500 text-sm">Bankroll</h3>
+          <p className="text-3xl font-bold">1011 €</p>
         </div>
+        <div className="bg-white rounded-lg shadow p-6">
+          <h3 className="text-gray-500 text-sm">Cotes</h3>
+          <p className="text-3xl font-bold">2520</p>
+        </div>
+        <div className="bg-white rounded-lg shadow p-6">
+          <h3 className="text-gray-500 text-sm">Paris</h3>
+          <p className="text-3xl font-bold">4</p>
+        </div>
+        <div className="bg-white rounded-lg shadow p-6">
+          <h3 className="text-gray-500 text-sm">ROI</h3>
+          <p className="text-3xl font-bold text-green-600">+1.1%</p>
+        </div>
+      </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-gray-900">Top 5 Opportunités</h2>
-            <button
-              onClick={() => router.push('/opportunities')}
-              className="text-primary hover:text-blue-600 text-sm font-medium"
-            >
-              Voir toutes →
-            </button>
-          </div>
-          
-          {topOpportunities.length === 0 ? (
-            <p className="text-gray-500 text-center py-8">Aucune opportunité disponible</p>
-          ) : (
-            <div className="space-y-4">
-              {topOpportunities.map((opp) => (
-                <div
-                  key={opp.id}
-                  className="border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs font-semibold text-gray-500 uppercase">{opp.sport}</span>
-                        <span className="text-xs text-gray-400">•</span>
-                        <span className="text-xs text-gray-500">{opp.league}</span>
-                      </div>
-                      <h3 className="font-semibold text-gray-900">
-                        {opp.home_team} vs {opp.away_team}
-                      </h3>
-                      <p className="text-sm text-gray-600 mt-1">
-                        {opp.market_type} - {opp.outcome}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-2xl font-bold text-primary">{opp.odds.toFixed(2)}</p>
-                      <p className="text-xs text-gray-500">{opp.bookmaker}</p>
-                      {opp.edge_percentage && (
-                        <p className="text-xs font-semibold text-success mt-1">
-                          Edge: +{opp.edge_percentage.toFixed(1)}%
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </div>
+      <div className="bg-white rounded-lg shadow">
+        <div className="p-6 border-b">
+          <h2 className="text-2xl font-bold">Top 10 Opportunités 🔥</h2>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Match</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Outcome</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Cote</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Spread %</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y">
+              {opportunities.map((o, i) => (
+                <tr key={i} className="hover:bg-gray-50">
+                  <td className="px-6 py-4">
+                    <div className="font-medium">{o.home_team} vs {o.away_team}</div>
+                  </td>
+                  <td className="px-6 py-4 text-sm">{o.outcome}</td>
+                  <td className="px-6 py-4 text-right">
+                    <div className="font-bold text-green-600">{o.best_odd}</div>
+                    <div className="text-xs text-gray-500">{o.bookmaker_best}</div>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <span className={`px-2 py-1 text-sm font-bold rounded ${
+                      o.spread_pct > 30 ? 'bg-green-100 text-green-800' : 
+                      o.spread_pct > 20 ? 'bg-yellow-100 text-yellow-800' : 
+                      'bg-gray-100 text-gray-800'
+                    }`}>
+                      {o.spread_pct.toFixed(1)}%
+                    </span>
+                  </td>
+                </tr>
               ))}
-            </div>
-          )}
+            </tbody>
+          </table>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
