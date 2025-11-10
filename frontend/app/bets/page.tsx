@@ -1,201 +1,297 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import Navbar from '@/components/Navbar';
-import { api } from '@/lib/api';
-import { Bet } from '@/types';
-import { CheckCircleIcon, XCircleIcon, ClockIcon, TrashIcon } from 'lucide-react';
+import { useMemo, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { format } from 'date-fns'
+import { fr } from 'date-fns/locale'
+import { TrendingUp, Activity, Target, CalendarDays, Filter, RefreshCw } from 'lucide-react'
+
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { getBets } from '@/lib/api'
+import { mockBets } from '@/lib/mock/bets'
+import { queryKeys } from '@/lib/query-keys'
+import { cn } from '@/lib/utils'
+import type { Bet } from '@/types/api'
+
+type TabFilter = 'all' | 'active' | 'settled' | 'won' | 'lost'
+
+const resultClassNames = (bet: Bet) =>
+  cn(
+    'rounded-2xl border border-border/60 bg-surface/80 p-5 transition-all duration-300',
+    bet.result === 'won' && 'border-success/40 bg-success/10 shadow-lg shadow-success/20',
+    bet.result === 'lost' && 'border-danger/40 bg-danger/10 shadow-lg shadow-danger/20',
+    bet.result === 'pending' && 'border-warning/40 bg-warning/10 shadow-lg shadow-warning/20',
+  )
+
+const betTypeBadge = (betType: Bet['bet_type']) =>
+  cn(
+    'rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide',
+    betType === 'tabac'
+      ? 'border border-purple-400/40 bg-purple-400/15 text-purple-200'
+      : 'border border-green-400/40 bg-green-400/15 text-green-200',
+  )
+
+const computeStats = (bets: Bet[]) => {
+  const totalBets = bets.length
+  const settledBets = bets.filter((bet) => bet.result === 'won' || bet.result === 'lost')
+  const wins = settledBets.filter((bet) => bet.result === 'won')
+  const totalProfit = settledBets.reduce((acc, bet) => acc + (bet.actual_profit ?? 0), 0)
+  const totalStake = settledBets.reduce((acc, bet) => acc + bet.stake, 0)
+
+  const winRate = settledBets.length > 0 ? (wins.length / settledBets.length) * 100 : 0
+  const roi = totalStake > 0 ? (totalProfit / totalStake) * 100 : 0
+
+  return {
+    totalBets,
+    settledBets: settledBets.length,
+    winRate,
+    totalProfit,
+    roi,
+  }
+}
 
 export default function BetsPage() {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-  const [bets, setBets] = useState<Bet[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<'all' | 'pending' | 'won' | 'lost'>('all');
+  const [tab, setTab] = useState<TabFilter>('all')
+  const [strategyFilter, setStrategyFilter] = useState<'all' | Bet['bet_type']>('all')
+  const [bookmakerFilter, setBookmakerFilter] = useState<string>('all')
+  const [startDate, setStartDate] = useState<string>('')
+  const [endDate, setEndDate] = useState<string>('')
 
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/login');
-    }
-  }, [status, router]);
+  const { data, isLoading, isRefetching, refetch } = useQuery<Bet[]>({
+    queryKey: queryKeys.bets.all,
+    queryFn: getBets,
+    refetchInterval: 60_000,
+    staleTime: 30_000,
+    retry: 1,
+    initialData: mockBets,
+  })
 
-  useEffect(() => {
-    if (session) {
-      loadBets();
-    }
-  }, [session]);
+  const bets = data ?? mockBets
+  const stats = computeStats(bets)
 
-  const loadBets = async () => {
-    try {
-      setLoading(true);
-      const data = await api.getBets();
-      setBets(data);
-    } catch (error) {
-      console.error('Error loading bets:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const bookmakers = useMemo(() => Array.from(new Set(bets.map((bet) => bet.bookmaker))), [bets])
 
-  const handleDeleteBet = async (id: number) => {
-    if (!confirm('Êtes-vous sûr de vouloir supprimer ce pari ?')) return;
-    
-    try {
-      await api.deleteBet(id);
-      setBets(bets.filter((bet) => bet.id !== id));
-    } catch (error) {
-      console.error('Error deleting bet:', error);
-      alert('Erreur lors de la suppression du pari');
-    }
-  };
+  const filteredBets = useMemo(() => {
+    return bets.filter((bet) => {
+      const matchesTab =
+        tab === 'all'
+          ? true
+          : tab === 'active'
+            ? bet.result === 'pending'
+            : tab === 'settled'
+              ? bet.result === 'won' || bet.result === 'lost'
+              : bet.result === tab
 
-  const filteredBets = filter === 'all' ? bets : bets.filter((bet) => bet.status === filter);
+      const matchesStrategy = strategyFilter === 'all' || bet.bet_type === strategyFilter
+      const matchesBookmaker = bookmakerFilter === 'all' || bet.bookmaker === bookmakerFilter
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'won':
-        return <CheckCircleIcon className="text-success" size={20} />;
-      case 'lost':
-        return <XCircleIcon className="text-danger" size={20} />;
-      case 'pending':
-        return <ClockIcon className="text-warning" size={20} />;
-      default:
-        return null;
-    }
-  };
+      const createdAt = new Date(bet.created_at)
+      const afterStart = startDate ? createdAt >= new Date(startDate) : true
+      const beforeEnd = endDate ? createdAt <= new Date(endDate) : true
 
-  const getStatusLabel = (status: string) => {
-    const labels = {
-      pending: 'En attente',
-      won: 'Gagné',
-      lost: 'Perdu',
-      void: 'Annulé',
-    };
-    return labels[status as keyof typeof labels] || status;
-  };
-
-  if (status === 'loading' || loading) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <Navbar />
-        <div className="flex items-center justify-center h-screen">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-4 text-gray-600">Chargement...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+      return matchesTab && matchesStrategy && matchesBookmaker && afterStart && beforeEnd
+    })
+  }, [bets, tab, strategyFilter, bookmakerFilter, startDate, endDate])
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Mes Paris</h1>
-          <p className="text-gray-600 mt-1">{filteredBets.length} paris</p>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-md p-4 mb-6">
-          <div className="flex gap-2">
-            <button
-              onClick={() => setFilter('all')}
-              className={`px-4 py-2 rounded-md font-medium transition-colors ${
-                filter === 'all' ? 'bg-primary text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+    <div className="min-h-screen bg-background p-4 sm:p-6 lg:p-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6">
+        <Card className="border-green-500/20 bg-gradient-to-br from-green-500/5 via-background to-transparent p-6 md:p-8">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center gap-3">
+              <div className="rounded-2xl bg-green-500/15 p-3 text-green-400">
+                <TrendingUp className="h-7 w-7" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold">Historique des paris</h1>
+                <p className="text-sm text-muted-foreground">
+                  Suivi détaillé des paris Tabac et Ligne, résultats et performances.
+                </p>
+              </div>
+            </div>
+            <Button
+              variant="default"
+              className="flex items-center gap-2 rounded-full px-5 py-2"
+              onClick={() => refetch()}
+              disabled={isRefetching}
             >
-              Tous
-            </button>
-            <button
-              onClick={() => setFilter('pending')}
-              className={`px-4 py-2 rounded-md font-medium transition-colors ${
-                filter === 'pending' ? 'bg-warning text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              En attente
-            </button>
-            <button
-              onClick={() => setFilter('won')}
-              className={`px-4 py-2 rounded-md font-medium transition-colors ${
-                filter === 'won' ? 'bg-success text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              Gagnés
-            </button>
-            <button
-              onClick={() => setFilter('lost')}
-              className={`px-4 py-2 rounded-md font-medium transition-colors ${
-                filter === 'lost' ? 'bg-danger text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              Perdus
-            </button>
+              <RefreshCw className="h-4 w-4" />
+              Rafraîchir
+            </Button>
           </div>
+        </Card>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <Card className="border border-border/60 bg-surface/80 p-6 shadow-lg shadow-primary/10">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <TrendingUp className="h-4 w-4 text-primary" />
+              ROI total
+            </div>
+            <p className="mt-3 text-3xl font-semibold text-primary">{stats.roi.toFixed(2)}%</p>
+            <p className="mt-1 text-xs text-muted-foreground">{stats.settledBets} paris réglés</p>
+          </Card>
+          <Card className="border border-border/60 bg-surface/80 p-6 shadow-lg shadow-success/10">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Activity className="h-4 w-4 text-success" />
+              Win rate
+            </div>
+            <p className="mt-3 text-3xl font-semibold text-success">{stats.winRate.toFixed(1)}%</p>
+            <p className="mt-1 text-xs text-muted-foreground">{stats.totalBets} paris totaux</p>
+          </Card>
+          <Card className="border border-border/60 bg-surface/80 p-6 shadow-lg shadow-success/10">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Target className="h-4 w-4 text-success" />
+              Profit total
+            </div>
+            <p
+              className={cn(
+                'mt-3 text-3xl font-semibold',
+                stats.totalProfit >= 0 ? 'text-success' : 'text-danger',
+              )}
+            >
+              {stats.totalProfit >= 0 ? '+' : ''}
+              {stats.totalProfit.toFixed(2)} €
+            </p>
+            <p className="mt-1 text-xs text-muted-foreground">Depuis le début</p>
+          </Card>
         </div>
 
-        <div className="space-y-4">
-          {filteredBets.length === 0 ? (
-            <div className="bg-white rounded-lg shadow-md p-12 text-center">
-              <p className="text-gray-500 text-lg">Aucun pari pour le moment</p>
+        <Card className="border border-border/60 bg-surface/80 p-6">
+          <div className="flex flex-wrap items-center gap-2">
+            {(['all', 'active', 'settled', 'won', 'lost'] as TabFilter[]).map((tabKey) => (
+              <Button
+                key={tabKey}
+                variant={tabKey === tab ? 'default' : 'ghost'}
+                className={cn(
+                  'rounded-full px-4 py-2 text-sm capitalize',
+                  tabKey === tab
+                    ? 'bg-primary text-primary-foreground shadow-md'
+                    : 'border border-border/60 text-text-secondary hover:text-text-primary',
+                )}
+                onClick={() => setTab(tabKey)}
+              >
+                {tabKey}
+              </Button>
+            ))}
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="flex flex-col gap-2">
+              <label className="text-xs uppercase tracking-wide text-text-muted">Stratégie</label>
+              <select
+                className="rounded-xl border border-border bg-surface-hover px-3 py-2 text-sm text-text-primary"
+                value={strategyFilter}
+                onChange={(event) => setStrategyFilter(event.target.value as 'all' | Bet['bet_type'])}
+              >
+                <option value="all">Toutes</option>
+                <option value="tabac">Tabac</option>
+                <option value="ligne">Ligne</option>
+              </select>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs uppercase tracking-wide text-text-muted">Bookmaker</label>
+              <select
+                className="rounded-xl border border-border bg-surface-hover px-3 py-2 text-sm text-text-primary"
+                value={bookmakerFilter}
+                onChange={(event) => setBookmakerFilter(event.target.value)}
+              >
+                <option value="all">Tous</option>
+                {bookmakers.map((bookmaker) => (
+                  <option key={bookmaker} value={bookmaker}>
+                    {bookmaker}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="flex items-center gap-2 text-xs uppercase tracking-wide text-text-muted">
+                <CalendarDays className="h-4 w-4" />
+                Date début
+              </label>
+              <input
+                type="date"
+                value={startDate}
+                onChange={(event) => setStartDate(event.target.value)}
+                className="rounded-xl border border-border bg-surface-hover px-3 py-2 text-sm text-text-primary"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="flex items-center gap-2 text-xs uppercase tracking-wide text-text-muted">
+                <Filter className="h-4 w-4" />
+                Date fin
+              </label>
+              <input
+                type="date"
+                value={endDate}
+                onChange={(event) => setEndDate(event.target.value)}
+                className="rounded-xl border border-border bg-surface-hover px-3 py-2 text-sm text-text-primary"
+              />
+            </div>
+          </div>
+        </Card>
+
+        <Card className="border border-border/60 bg-surface/80 p-6">
+          {isLoading ? (
+            <div className="flex items-center justify-center py-12 text-text-muted">
+              Chargement des paris…
+            </div>
+          ) : filteredBets.length === 0 ? (
+            <div className="flex items-center justify-center py-12 text-text-muted">
+              Aucun pari ne correspond à ces filtres.
             </div>
           ) : (
-            filteredBets.map((bet) => (
-              <div key={bet.id} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      {getStatusIcon(bet.status)}
-                      <span className="font-semibold text-gray-900">{getStatusLabel(bet.status)}</span>
-                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">{bet.sport}</span>
-                      <span className="text-sm text-gray-500">{bet.bookmaker}</span>
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{bet.event_description}</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                      <div>
-                        <p className="text-gray-500">Cote</p>
-                        <p className="font-semibold text-gray-900">{bet.odds.toFixed(2)}</p>
+            <div className="grid gap-4">
+              {filteredBets.map((bet) => (
+                <div key={bet.id} className={resultClassNames(bet)}>
+                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                    <div className="space-y-3">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Badge className={betTypeBadge(bet.bet_type)}>{bet.bet_type}</Badge>
+                        <Badge variant="secondary" className="rounded-full bg-surface-hover px-3 py-1 text-xs">
+                          {bet.bookmaker}
+                        </Badge>
+                        <span className="text-xs text-text-muted">
+                          {format(new Date(bet.created_at), 'dd MMM yyyy · HH:mm', { locale: fr })}
+                        </span>
                       </div>
                       <div>
-                        <p className="text-gray-500">Mise</p>
-                        <p className="font-semibold text-gray-900">{bet.stake.toFixed(2)} €</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-500">Gain potentiel</p>
-                        <p className="font-semibold text-gray-900">{bet.potential_return.toFixed(2)} €</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-500">Résultat</p>
-                        <p className={`font-semibold ${
-                          bet.profit_loss && bet.profit_loss > 0 ? 'text-success' : 
-                          bet.profit_loss && bet.profit_loss < 0 ? 'text-danger' : 
-                          'text-gray-900'
-                        }`}>
-                          {bet.profit_loss ? `${bet.profit_loss > 0 ? '+' : ''}${bet.profit_loss.toFixed(2)} €` : '-'}
+                        <h3 className="text-lg font-semibold text-text-primary">{bet.match_id}</h3>
+                        <p className="text-sm text-text-secondary">
+                          {bet.outcome} @{' '}
+                          <span className="number text-primary">{bet.odds_value.toFixed(2)}</span>
                         </p>
                       </div>
                     </div>
-                    <p className="text-xs text-gray-500 mt-3">
-                      Placé le {new Date(bet.placed_at).toLocaleString('fr-FR')}
-                      {bet.settled_at && ` • Réglé le ${new Date(bet.settled_at).toLocaleString('fr-FR')}`}
-                    </p>
+                    <div className="space-y-3 text-right">
+                      <div>
+                        <p className="text-xs uppercase tracking-wide text-text-muted">Stake</p>
+                        <p className="number text-lg text-text-primary">{bet.stake.toFixed(2)} €</p>
+                      </div>
+                      {bet.actual_profit !== null && (
+                        <p
+                          className={cn(
+                            'number text-lg font-semibold',
+                            bet.actual_profit > 0 ? 'text-success' : 'text-danger',
+                          )}
+                        >
+                          {bet.actual_profit > 0 ? '+' : ''}
+                          {bet.actual_profit.toFixed(2)} €
+                        </p>
+                      )}
+                      <p className="text-xs text-text-muted">
+                        CLV {bet.clv !== null ? bet.clv.toFixed(2) : '-'}
+                      </p>
+                    </div>
                   </div>
-                  <button
-                    onClick={() => handleDeleteBet(bet.id)}
-                    className="ml-4 p-2 text-danger hover:bg-danger/10 rounded-md transition-colors"
-                    title="Supprimer le pari"
-                  >
-                    <TrashIcon size={20} />
-                  </button>
                 </div>
-              </div>
-            ))
+              ))}
+            </div>
           )}
-        </div>
-      </main>
+        </Card>
+      </div>
     </div>
-  );
+  )
 }
+

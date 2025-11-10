@@ -3,31 +3,102 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 232 35% 7%;
+    --surface: 234 28% 12%;
+    --surface-hover: 233 26% 16%;
+    --primary: 266 83% 66%;
+    --primary-hover: 266 83% 61%;
+    --primary-foreground: 210 40% 96%;
+    --secondary: 236 17% 24%;
+    --secondary-foreground: 210 40% 96%;
+    --card: 233 28% 14%;
+    --card-foreground: 213 32% 94%;
+    --popover: 232 30% 10%;
+    --popover-foreground: 213 32% 94%;
+    --muted: 232 22% 18%;
+    --muted-foreground: 215 18% 66%;
+    --accent: 266 83% 66%;
+    --accent-foreground: 210 40% 96%;
+    --destructive: 0 85% 61%;
+    --destructive-foreground: 210 40% 96%;
+    --success: 160 84% 43%;
+    --danger: 0 84% 63%;
+    --warning: 43 94% 55%;
+    --text-primary: 213 32% 94%;
+    --text-secondary: 214 26% 70%;
+    --text-muted: 213 20% 60%;
+    --border: 220 30% 20%;
+    --border-light: 215 26% 30%;
+    --ring: 266 83% 66%;
+    --input: 232 26% 18%;
+    --chart-1: 262 88% 66%;
+    --chart-2: 160 84% 40%;
+    --chart-3: 43 96% 56%;
+    --chart-4: 0 85% 61%;
+    --chart-5: 200 95% 63%;
+    --radius: 0.9rem;
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply bg-background;
+  }
+
+  body {
+    @apply bg-background text-text-primary font-sans antialiased;
+    background-image: radial-gradient(circle at top right, rgba(139, 92, 246, 0.12), transparent 55%), radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.08), transparent 45%);
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(139, 92, 246, 0.35);
+    color: hsl(var(--text-primary));
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .heading-xl {
+    @apply text-[3rem] leading-[1.1] font-extrabold text-text-primary;
   }
+
+  .heading-lg {
+    @apply text-[2rem] leading-tight font-bold text-text-primary;
+  }
+
+  .heading-md {
+    @apply text-[1.5rem] leading-snug font-semibold text-text-primary;
+  }
+
+  .body-lg {
+    @apply text-[1.125rem] leading-7 text-text-secondary;
+  }
+
+  .body-md {
+    @apply text-base leading-6 text-text-secondary;
+  }
+
+  .body-sm {
+    @apply text-sm leading-5 text-text-muted;
+  }
+
+  .number {
+    @apply font-mono font-semibold tracking-tight;
+  }
+}
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
 }

@@ -1,100 +1,89 @@
-import { getSession } from 'next-auth/react';
-import { Opportunity, Bet, Bankroll } from '@/types';
+import type { AnalyticsResponse, Bet, Opportunity } from '@/types/api'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://91.98.131.218:8000';
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? process.env.API_URL ?? 'http://10.10.0.1:8001'
 
-async function getAuthHeaders() {
-  const session = await getSession();
-  const headers: HeadersInit = {
-    'Content-Type': 'application/json',
-  };
-  
-  if (session?.accessToken) {
-    headers['Authorization'] = `Bearer ${session.accessToken}`;
-  }
-  
-  return headers;
+interface ApiFetchOptions extends RequestInit {
+  retries?: number
+  retryDelay?: number
+  query?: Record<string, string | number | boolean | undefined>
 }
 
-export const api = {
-  // Opportunities
-  getOpportunities: async (): Promise<Opportunity[]> => {
-    const headers = await getAuthHeaders();
-    const response = await fetch(`${API_BASE_URL}/opportunities/realistic`, { headers });
-    if (!response.ok) throw new Error('Failed to fetch opportunities');
-    return response.json();
-  },
+const defaultHeaders: HeadersInit = {
+  'Content-Type': 'application/json',
+}
 
-  getTopOpportunities: async (limit: number = 10): Promise<Opportunity[]> => {
-    const headers = await getAuthHeaders();
-    const response = await fetch(`${API_BASE_URL}/opportunities/top/${limit}`, { headers });
-    if (!response.ok) throw new Error('Failed to fetch top opportunities');
-    return response.json();
-  },
+const wait = (duration: number) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, duration)
+  })
 
-  // Bets
-  getBets: async (): Promise<Bet[]> => {
-    const headers = await getAuthHeaders();
-    const response = await fetch(`${API_BASE_URL}/bets`, { headers });
-    if (!response.ok) throw new Error('Failed to fetch bets');
-    return response.json();
-  },
+const buildUrl = (endpoint: string, query?: ApiFetchOptions['query']) => {
+  const url = new URL(endpoint, API_BASE_URL)
+  if (query) {
+    Object.entries(query).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        url.searchParams.append(key, String(value))
+      }
+    })
+  }
+  return url.toString()
+}
 
-  createBet: async (bet: Partial<Bet>): Promise<Bet> => {
-    const headers = await getAuthHeaders();
-    const response = await fetch(`${API_BASE_URL}/bets`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify(bet),
-    });
-    if (!response.ok) throw new Error('Failed to create bet');
-    return response.json();
-  },
+export async function apiFetch<T>(endpoint: string, options: ApiFetchOptions = {}): Promise<T> {
+  const { retries = 2, retryDelay = 600, headers, query, ...rest } = options
+  const url = buildUrl(endpoint, query)
 
-  updateBet: async (id: number, data: Partial<Bet>): Promise<Bet> => {
-    const headers = await getAuthHeaders();
-    const response = await fetch(`${API_BASE_URL}/bets/${id}`, {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) throw new Error('Failed to update bet');
-    return response.json();
-  },
+  let attempt = 0
+  let error: unknown
 
-  deleteBet: async (id: number): Promise<void> => {
-    const headers = await getAuthHeaders();
-    const response = await fetch(`${API_BASE_URL}/bets/${id}`, {
-      method: 'DELETE',
-      headers,
-    });
-    if (!response.ok) throw new Error('Failed to delete bet');
-  },
+  while (attempt <= retries) {
+    try {
+      const response = await fetch(url, {
+        cache: 'no-store',
+        ...rest,
+        headers: {
+          ...defaultHeaders,
+          ...headers,
+        },
+      })
 
-  // Bankroll
-  getBankroll: async (): Promise<Bankroll> => {
-    const headers = await getAuthHeaders();
-    const response = await fetch(`${API_BASE_URL}/bankroll`, { headers });
-    if (!response.ok) throw new Error('Failed to fetch bankroll');
-    return response.json();
-  },
+      if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`)
+      }
 
-  updateBankroll: async (amount: number): Promise<Bankroll> => {
-    const headers = await getAuthHeaders();
-    const response = await fetch(`${API_BASE_URL}/bankroll`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ amount }),
-    });
-    if (!response.ok) throw new Error('Failed to update bankroll');
-    return response.json();
-  },
+      const data = (await response.json()) as T
+      return data
+    } catch (err) {
+      error = err
+      attempt += 1
+      if (attempt > retries) {
+        break
+      }
+      await wait(retryDelay * attempt)
+    }
+  }
 
-  // Stats
-  getStats: async (): Promise<any> => {
-    const headers = await getAuthHeaders();
-    const response = await fetch(`${API_BASE_URL}/stats/summary`, { headers });
-    if (!response.ok) throw new Error('Failed to fetch stats');
-    return response.json();
-  },
-};
+  throw error instanceof Error ? error : new Error('API request failed')
+}
+
+export async function getOpportunities(): Promise<Opportunity[]> {
+  return apiFetch<Opportunity[]>('/opportunities/', {
+    query: { min_spread_pct: 10 },
+  })
+}
+
+export async function getBets(): Promise<Bet[]> {
+  return apiFetch<Bet[]>('/bets/')
+}
+
+export async function getAnalytics(
+  periodDays = 30,
+): Promise<AnalyticsResponse> {
+  return apiFetch<AnalyticsResponse>(
+    '/stats/analytics/comprehensive',
+    {
+      query: { period_days: periodDays },
+    },
+  )
+}

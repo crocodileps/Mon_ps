@@ -1,0 +1,165 @@
+import type {
+  BankrollPoint,
+  DashboardMetrics,
+  HeatmapDay,
+  Opportunity,
+  PerformancePoint,
+} from '@/types/api'
+
+export const mockDashboardMetrics: DashboardMetrics = {
+  bankroll: 10500,
+  bankrollChange: 3.4,
+  roi: 5.2,
+  roiChange: 1.2,
+  clv: 2.1,
+  clvChange: 0.6,
+  sharpeRatio: 1.35,
+  sharpeChange: 0.18,
+  openBets: 14,
+  openExposure: 34,
+  potentialReturn: 516,
+}
+
+export const mockPerformanceData: PerformancePoint[] = [
+  { date: '01/11', tabac_roi: 2.1, ligne_roi: 1.8 },
+  { date: '02/11', tabac_roi: 2.4, ligne_roi: 2.1 },
+  { date: '03/11', tabac_roi: 2.6, ligne_roi: 2.2 },
+  { date: '04/11', tabac_roi: 2.8, ligne_roi: 2.3 },
+  { date: '05/11', tabac_roi: 3.0, ligne_roi: 2.4 },
+  { date: '06/11', tabac_roi: 3.2, ligne_roi: 2.5 },
+  { date: '07/11', tabac_roi: 3.4, ligne_roi: 2.6 },
+  { date: '08/11', tabac_roi: 3.6, ligne_roi: 2.7 },
+  { date: '09/11', tabac_roi: 3.8, ligne_roi: 2.9 },
+  { date: '10/11', tabac_roi: 4.0, ligne_roi: 3.0 },
+  { date: '11/11', tabac_roi: 4.1, ligne_roi: 3.1 },
+  { date: '12/11', tabac_roi: 4.3, ligne_roi: 3.2 },
+  { date: '13/11', tabac_roi: 4.5, ligne_roi: 3.3 },
+  { date: '14/11', tabac_roi: 4.6, ligne_roi: 3.4 },
+  { date: '15/11', tabac_roi: 4.7, ligne_roi: 3.5 },
+  { date: '16/11', tabac_roi: 4.9, ligne_roi: 3.6 },
+  { date: '17/11', tabac_roi: 5.0, ligne_roi: 3.7 },
+  { date: '18/11', tabac_roi: 5.2, ligne_roi: 3.8 },
+  { date: '19/11', tabac_roi: 5.3, ligne_roi: 3.9 },
+  { date: '20/11', tabac_roi: 5.4, ligne_roi: 4.0 },
+  { date: '21/11', tabac_roi: 5.5, ligne_roi: 4.1 },
+  { date: '22/11', tabac_roi: 5.6, ligne_roi: 4.2 },
+  { date: '23/11', tabac_roi: 5.7, ligne_roi: 4.3 },
+  { date: '24/11', tabac_roi: 5.8, ligne_roi: 4.4 },
+  { date: '25/11', tabac_roi: 5.9, ligne_roi: 4.5 },
+  { date: '26/11', tabac_roi: 6.0, ligne_roi: 4.6 },
+  { date: '27/11', tabac_roi: 6.1, ligne_roi: 4.7 },
+  { date: '28/11', tabac_roi: 6.2, ligne_roi: 4.8 },
+  { date: '29/11', tabac_roi: 6.3, ligne_roi: 4.9 },
+  { date: '30/11', tabac_roi: 6.5, ligne_roi: 5.0 },
+]
+
+export const mockBankrollHistory: BankrollPoint[] = [
+  { date: '2025-07-01', balance: 9300 },
+  { date: '2025-07-08', balance: 9550 },
+  { date: '2025-07-15', balance: 9710 },
+  { date: '2025-07-22', balance: 9980 },
+  { date: '2025-07-29', balance: 10120 },
+  { date: '2025-08-05', balance: 10280 },
+  { date: '2025-08-12', balance: 10340 },
+  { date: '2025-08-19', balance: 10420 },
+  { date: '2025-08-26', balance: 10500 },
+]
+
+export const mockHeatmap: HeatmapDay[] = Array.from({ length: 30 }, (_, index) => {
+  const day = index + 1
+  const profitPattern = [
+    180, 90, -60, 0, 240, -150, 120, 210, -40, 260,
+    130, -80, 40, 280, 95, -120, 170, 230, -70, 320,
+    60, -90, 190, 110, -50, 210, 260, 30, -20, 300,
+  ]
+
+  return {
+    date: `2025-11-${String(day).padStart(2, '0')}`,
+    day,
+    profit: profitPattern[index] ?? 0,
+  }
+})
+
+export const mockTopOpportunities: Opportunity[] = [
+  {
+    id: 'opp-001',
+    match_id: 'PSG-MONACO-2025-08-31',
+    home_team: 'PSG',
+    away_team: 'Monaco',
+    sport: 'Football',
+    commence_time: '2025-08-31T19:45:00Z',
+    outcome: 'PSG -1.5',
+    best_odds: 1.92,
+    worst_odds: 1.8,
+    bookmaker_best: 'Pinnacle',
+    bookmaker_worst: 'Bet365',
+    edge_pct: 12.4,
+    nb_bookmakers: 8,
+  },
+  {
+    id: 'opp-002',
+    match_id: 'NYK-LAL-2025-08-30',
+    home_team: 'NY Knicks',
+    away_team: 'LA Lakers',
+    sport: 'Basketball',
+    commence_time: '2025-08-30T01:30:00Z',
+    outcome: 'Total o/u > 224.5',
+    best_odds: 1.97,
+    worst_odds: 1.83,
+    bookmaker_best: 'FanDuel',
+    bookmaker_worst: 'DraftKings',
+    edge_pct: 11.2,
+    nb_bookmakers: 6,
+  },
+  {
+    id: 'opp-003',
+    match_id: 'TOR-BOS-2025-08-29',
+    home_team: 'Toronto Blue Jays',
+    away_team: 'Boston Red Sox',
+    sport: 'Baseball',
+    commence_time: '2025-08-29T23:05:00Z',
+    outcome: 'Blue Jays ML',
+    best_odds: 2.12,
+    worst_odds: 1.95,
+    bookmaker_best: 'Pinnacle',
+    bookmaker_worst: 'Caesars',
+    edge_pct: 10.8,
+    nb_bookmakers: 5,
+  },
+  {
+    id: 'opp-004',
+    match_id: 'FEDERER-NADAL-2025-08-28',
+    home_team: 'Roger Federer',
+    away_team: 'Rafael Nadal',
+    sport: 'Tennis',
+    commence_time: '2025-08-28T17:00:00Z',
+    outcome: 'Federer 3-1',
+    best_odds: 3.6,
+    worst_odds: 3.1,
+    bookmaker_best: 'Betfair',
+    bookmaker_worst: '888Sport',
+    edge_pct: 16.7,
+    nb_bookmakers: 7,
+  },
+  {
+    id: 'opp-005',
+    match_id: 'OM-LYON-2025-08-27',
+    home_team: 'Olympique de Marseille',
+    away_team: 'Olympique Lyonnais',
+    sport: 'Football',
+    commence_time: '2025-08-27T20:00:00Z',
+    outcome: 'Lyon +0.5',
+    best_odds: 1.88,
+    worst_odds: 1.74,
+    bookmaker_best: 'Unibet',
+    bookmaker_worst: 'Winamax',
+    edge_pct: 13.5,
+    nb_bookmakers: 9,
+  },
+]
+
+export const mockBookmakerHighlights = [
+  { bookmaker: 'Bet365', profit: 2237 },
+  { bookmaker: 'Pinnacle', profit: 1490 },
+]
+
