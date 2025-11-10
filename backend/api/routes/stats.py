@@ -2,8 +2,8 @@
 Routes pour les statistiques
 """
 from fastapi import APIRouter
-from backend.api.models.schemas import Stats, BankrollSummary
-from backend.api.services.database import get_cursor
+from api.models.schemas import Stats, BankrollSummary
+from api.services.database import get_cursor
 
 router = APIRouter(prefix="/stats", tags=["Statistics"])
 
@@ -37,7 +37,6 @@ def get_bankroll():
     """Résumé du bankroll et des performances"""
     
     with get_cursor() as cursor:
-        # Vérifier si la table bets existe
         cursor.execute("""
             SELECT EXISTS (
                 SELECT FROM information_schema.tables 
@@ -46,7 +45,6 @@ def get_bankroll():
         """)
         
         row = cursor.fetchone()
-        # CORRECTION: RealDictCursor retourne un dict, pas un tuple
         table_exists = row.get('exists') if row else False
         
         if not table_exists:

@@ -3,8 +3,8 @@ Routes pour la gestion des paris
 """
 from fastapi import APIRouter, HTTPException
 from typing import List, Optional
-from backend.api.models.schemas import BetCreate, BetUpdate, BetInDB
-from backend.api.services.database import get_cursor, get_db
+from api.models.schemas import BetCreate, BetUpdate, BetInDB
+from api.services.database import get_cursor, get_db
 from psycopg2.extras import RealDictCursor
 
 router = APIRouter(prefix="/bets", tags=["Bets"])
@@ -16,7 +16,6 @@ def create_bet(bet: BetCreate):
     with get_db() as conn:
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         try:
-            # Créer la table si elle n'existe pas
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS bets (
                     id SERIAL PRIMARY KEY,
@@ -37,7 +36,6 @@ def create_bet(bet: BetCreate):
             """)
             conn.commit()
             
-            # Insérer le pari
             cursor.execute("""
                 INSERT INTO bets 
                 (match_id, outcome, bookmaker, odds_value, stake, bet_type, notes)
@@ -66,7 +64,6 @@ def get_bets(
 ):
     """Récupérer la liste des paris"""
     
-    # Vérifier si la table existe
     with get_cursor() as cursor:
         cursor.execute("""
             SELECT EXISTS (
@@ -76,7 +73,6 @@ def get_bets(
         """)
         
         row = cursor.fetchone()
-        # RealDictCursor retourne un dict avec la clé 'exists'
         if not row or not row.get('exists'):
             return []
     

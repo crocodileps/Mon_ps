@@ -4,7 +4,7 @@ Service de connexion à la base de données
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from contextlib import contextmanager
-from backend.api.config import settings
+from api.config import settings
 
 def get_db_connection():
     """Créer une connexion à la base de données"""

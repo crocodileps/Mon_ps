@@ -3,8 +3,8 @@ Application FastAPI principale
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.api.config import settings
-from backend.api.routes import odds, opportunities, bets, stats
+from api.config import settings
+from api.routes import odds, opportunities, bets, stats
 
 # Créer l'application
 app = FastAPI(
