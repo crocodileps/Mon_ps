@@ -2,9 +2,13 @@
 Routes pour les statistiques
 """
 import time
+from datetime import datetime, timedelta
+from typing import Any, Dict, List
 
-from fastapi import APIRouter, Request
-from api.models.schemas import Stats, BankrollSummary
+from fastapi import APIRouter, Query, Request
+
+from api.models.schemas import BankrollSummary, Stats
+from api.services.analytics import AnalyticsService
 from api.services.database import get_cursor
 from api.services.logging import logger
 
@@ -206,6 +210,130 @@ def get_bankroll(request: Request):
         )
     
     return stats
+
+
+def _normalize_bet(record: Dict[str, Any]) -> Dict[str, Any]:
+    """Prépare un enregistrement de pari pour le service analytics."""
+    if record is None:
+        return {}
+
+    normalized = dict(record)
+
+    if "actual_profit" not in normalized:
+        normalized["actual_profit"] = normalized.get("profit_loss")
+
+    normalized.setdefault("clv", None)
+    normalized.setdefault("odds_close", None)
+    normalized.setdefault(
+        "market_type",
+        normalized.get("market_type") or normalized.get("bet_type"),
+    )
+    normalized.setdefault("bet_type", normalized.get("bet_type") or "unknown")
+    normalized.setdefault("created_at", normalized.get("created_at", datetime.now()))
+
+    return normalized
+
+
+@router.get("/analytics/comprehensive")
+async def get_comprehensive_analytics(
+    request: Request,
+    period_days: int = Query(30, ge=1, le=365),
+):
+    """Récupère toutes les analytics avancées."""
+    request_id = getattr(request.state, "request_id", "unknown")
+
+    logger.info(
+        "comprehensive_analytics_requested",
+        request_id=request_id,
+        period_days=period_days,
+    )
+
+    cutoff_date = datetime.now() - timedelta(days=period_days)
+
+    with get_cursor() as cursor:
+        cursor.execute(
+            """
+            SELECT EXISTS (
+                SELECT FROM information_schema.tables
+                WHERE table_name = 'bets'
+            )
+            """
+        )
+        existence_row = cursor.fetchone()
+        table_exists = bool(existence_row and existence_row.get("exists"))
+
+        bets_raw: List[Dict[str, Any]] = []
+        if table_exists:
+            cursor.execute(
+                """
+                SELECT *
+                FROM bets
+                WHERE created_at >= %s
+                ORDER BY created_at ASC
+                """,
+                (cutoff_date,),
+            )
+            bets_raw = cursor.fetchall() or []
+        else:
+            logger.warning(
+                "comprehensive_analytics_no_table",
+                request_id=request_id,
+                table="bets",
+            )
+
+    bets = [_normalize_bet(record) for record in bets_raw]
+
+    if not bets:
+        logger.info(
+            "comprehensive_analytics_no_bets",
+            request_id=request_id,
+            period_days=period_days,
+        )
+        return {
+            "status": "analytics_completed",
+            "period_days": period_days,
+            "bets_analyzed": 0,
+            "message": "Aucun pari trouvé pour la période - consultez les logs pour le détail",
+        }
+
+    AnalyticsService.log_clv_by_bookmaker(request_id, bets)
+    AnalyticsService.log_clv_by_market(request_id, bets)
+
+    tabac_bets = [bet for bet in bets if bet.get("bet_type") == "tabac"]
+    ligne_bets = [bet for bet in bets if bet.get("bet_type") == "ligne"]
+
+    AnalyticsService.log_strategy_comparison(request_id, tabac_bets, ligne_bets)
+    AnalyticsService.log_losing_streak(request_id, bets)
+    AnalyticsService.log_sharpe_ratio(request_id, bets, period_days)
+
+    stakes_total = sum(float(bet.get("stake") or 0) for bet in bets)
+    profit_total = sum(float(bet.get("actual_profit") or 0) for bet in bets)
+    bankroll_current = 10000 + profit_total  # Placeholder
+
+    AnalyticsService.log_bankroll_snapshot(
+        request_id=request_id,
+        bankroll_current=bankroll_current,
+        bankroll_start_week=10000,
+        bankroll_peak=max(bankroll_current, 10500),
+        bankroll_valley=min(bankroll_current, 9500),
+    )
+
+    logger.info(
+        "comprehensive_analytics_completed",
+        request_id=request_id,
+        period_days=period_days,
+        bets_analyzed=len(bets),
+    )
+
+    return {
+        "status": "analytics_completed",
+        "period_days": period_days,
+        "bets_analyzed": len(bets),
+        "message": "Check logs for detailed analytics",
+        "total_staked": round(stakes_total, 2),
+        "total_profit": round(profit_total, 2),
+    }
+
 
 @router.get("/bookmakers")
 def get_bookmaker_stats(request: Request):
