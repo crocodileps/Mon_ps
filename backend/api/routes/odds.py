@@ -2,8 +2,11 @@
 Routes pour les cotes
 """
 import time
-from fastapi import APIRouter, HTTPException, Query
 from typing import List, Optional
+
+from fastapi import APIRouter, HTTPException, Query, Request
+
+from api.config import settings
 from api.models.schemas import OddResponse, MatchSummary, MatchDetail
 from api.services.database import get_cursor
 from api.services.logging import logger
@@ -12,15 +15,18 @@ router = APIRouter(prefix="/odds", tags=["Odds"])
 
 @router.get("/", response_model=List[OddResponse])
 def get_odds(
+    request: Request,
     sport: Optional[str] = None,
     bookmaker: Optional[str] = None,
     limit: int = Query(100, le=1000)
 ):
     """Récupérer les cotes avec filtres optionnels"""
-    
+
     start_time = time.time()
+    request_id = request.state.request_id
     logger.info(
         "odds_request_started",
+        request_id=request_id,
         endpoint="/odds",
         sport=sport,
         bookmaker=bookmaker,
@@ -43,6 +49,7 @@ def get_odds(
     
     logger.debug(
         "odds_query_prepared",
+        request_id=request_id,
         endpoint="/odds",
         query=query,
         params=params,
@@ -52,9 +59,19 @@ def get_odds(
         cursor.execute(query, params)
         results = cursor.fetchall()
 
+    if settings.ENV == "development":
+        logger.debug(
+            "sql_query_debug",
+            request_id=request_id,
+            query=str(query),
+            filter_sport=sport,
+            filter_bookmaker=bookmaker,
+        )
+
     duration = time.time() - start_time
     logger.info(
         "odds_retrieved",
+        request_id=request_id,
         endpoint="/odds",
         results_count=len(results),
         duration_ms=round(duration * 1000, 2),
@@ -64,14 +81,17 @@ def get_odds(
 
 @router.get("/matches", response_model=List[MatchSummary])
 def get_matches(
+    request: Request,
     sport: Optional[str] = None,
     upcoming_only: bool = True
 ):
     """Récupérer la liste des matchs"""
     
     start_time = time.time()
+    request_id = request.state.request_id
     logger.info(
         "odds_matches_request_started",
+        request_id=request_id,
         endpoint="/odds/matches",
         sport=sport,
         upcoming_only=upcoming_only,
@@ -109,6 +129,7 @@ def get_matches(
     
     logger.debug(
         "odds_matches_query_prepared",
+        request_id=request_id,
         endpoint="/odds/matches",
         query=query,
         params=params,
@@ -118,9 +139,19 @@ def get_matches(
         cursor.execute(query, params)
         matches = cursor.fetchall()
 
+    if settings.ENV == "development":
+        logger.debug(
+            "sql_query_debug",
+            request_id=request_id,
+            query=str(query),
+            filter_sport=sport,
+            filter_bookmaker=None,
+        )
+
     duration = time.time() - start_time
     logger.info(
         "odds_matches_retrieved",
+        request_id=request_id,
         endpoint="/odds/matches",
         results_count=len(matches),
         duration_ms=round(duration * 1000, 2),
@@ -129,12 +160,14 @@ def get_matches(
     return matches
 
 @router.get("/matches/{match_id}", response_model=MatchDetail)
-def get_match_detail(match_id: str):
+def get_match_detail(request: Request, match_id: str):
     """Détails complets d'un match"""
     
     start_time = time.time()
+    request_id = request.state.request_id
     logger.info(
         "odds_match_detail_request_started",
+        request_id=request_id,
         endpoint=f"/odds/matches/{match_id}",
         match_id=match_id,
     )
@@ -167,6 +200,7 @@ def get_match_detail(match_id: str):
     with get_cursor() as cursor:
         logger.debug(
             "odds_match_detail_summary_query_prepared",
+            request_id=request_id,
             endpoint=f"/odds/matches/{match_id}",
             query=match_summary_query,
             params=(match_id,),
@@ -178,6 +212,7 @@ def get_match_detail(match_id: str):
         if not match:
             logger.warning(
                 "odds_match_detail_not_found",
+                request_id=request_id,
                 endpoint=f"/odds/matches/{match_id}",
                 match_id=match_id,
             )
@@ -185,6 +220,7 @@ def get_match_detail(match_id: str):
         
         logger.debug(
             "odds_match_detail_odds_query_prepared",
+            request_id=request_id,
             endpoint=f"/odds/matches/{match_id}",
             query=odds_query,
             params=(match_id,),
@@ -193,9 +229,19 @@ def get_match_detail(match_id: str):
         
         odds = cursor.fetchall()
     
+    if settings.ENV == "development":
+        logger.debug(
+            "sql_query_debug",
+            request_id=request_id,
+            query=str(odds_query),
+            filter_sport=None,
+            filter_bookmaker=None,
+        )
+
     duration = time.time() - start_time
     logger.info(
         "odds_match_detail_retrieved",
+        request_id=request_id,
         endpoint=f"/odds/matches/{match_id}",
         results_count=len(odds),
         duration_ms=round(duration * 1000, 2),

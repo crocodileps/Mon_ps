@@ -2,23 +2,27 @@
 Routes pour la gestion des paris
 """
 import time
-from fastapi import APIRouter, HTTPException
 from typing import List, Optional
+
+from fastapi import APIRouter, HTTPException, Request
+from psycopg2.extras import RealDictCursor
+
 from api.models.schemas import BetCreate, BetUpdate, BetInDB
 from api.services.database import get_cursor, get_db
 from api.services.logging import logger
-from psycopg2.extras import RealDictCursor
 
 router = APIRouter(prefix="/bets", tags=["Bets"])
 
 @router.post("/", response_model=BetInDB, status_code=201)
-def create_bet(bet: BetCreate):
+def create_bet(request: Request, bet: BetCreate):
     """Créer un nouveau pari"""
     
     start_time = time.time()
+    request_id = request.state.request_id
     payload = bet.dict()
     logger.info(
         "bets_create_request_started",
+        request_id=request_id,
         endpoint="/bets",
         payload=payload,
     )
@@ -67,6 +71,7 @@ def create_bet(bet: BetCreate):
             result_id = result.get("id") if isinstance(result, dict) else None
             logger.info(
                 "bet_created",
+                request_id=request_id,
                 endpoint="/bets",
                 bet_id=result_id,
                 duration_ms=round(duration * 1000, 2),
@@ -80,6 +85,7 @@ def create_bet(bet: BetCreate):
                 duration,
                 exc,
                 exc_info=True,
+                request_id=request_id,
             )
             raise
         except Exception as exc:
@@ -90,6 +96,7 @@ def create_bet(bet: BetCreate):
                 duration,
                 exc,
                 exc_info=True,
+                request_id=request_id,
             )
             raise
         finally:
@@ -97,11 +104,13 @@ def create_bet(bet: BetCreate):
 
 @router.get("/", response_model=List[BetInDB])
 def get_bets(
+    request: Request,
     result: Optional[str] = None,
     limit: int = 100
 ):
     """Récupérer la liste des paris"""
     
+    request_id = request.state.request_id
     with get_cursor() as cursor:
         cursor.execute("""
             SELECT EXISTS (
@@ -112,6 +121,11 @@ def get_bets(
         
         row = cursor.fetchone()
         if not row or not row.get('exists'):
+            logger.info(
+                "bets_table_absent",
+                request_id=request_id,
+                endpoint="/bets",
+            )
             return []
     
     query = "SELECT * FROM bets WHERE 1=1"
@@ -126,29 +140,56 @@ def get_bets(
     
     with get_cursor() as cursor:
         cursor.execute(query, params)
-        return cursor.fetchall()
+        records = cursor.fetchall()
+
+    logger.info(
+        "bets_list_retrieved",
+        request_id=request_id,
+        endpoint="/bets",
+        results_count=len(records),
+        filter_result=result,
+        limit=limit,
+    )
+
+    return records
 
 @router.get("/{bet_id}", response_model=BetInDB)
-def get_bet(bet_id: int):
+def get_bet(request: Request, bet_id: int):
     """Récupérer un pari spécifique"""
     
+    request_id = request.state.request_id
     with get_cursor() as cursor:
         cursor.execute("SELECT * FROM bets WHERE id = %s", (bet_id,))
         bet = cursor.fetchone()
         
         if not bet:
+            logger.warning(
+                "bet_not_found",
+                request_id=request_id,
+                endpoint=f"/bets/{bet_id}",
+                bet_id=bet_id,
+            )
             raise HTTPException(status_code=404, detail="Bet not found")
         
+        logger.info(
+            "bet_retrieved",
+            request_id=request_id,
+            endpoint=f"/bets/{bet_id}",
+            bet_id=bet_id,
+        )
+
         return bet
 
 @router.patch("/{bet_id}", response_model=BetInDB)
-def update_bet(bet_id: int, bet_update: BetUpdate):
+def update_bet(request: Request, bet_id: int, bet_update: BetUpdate):
     """Mettre à jour un pari (résultat, gains, etc)"""
     
     start_time = time.time()
+    request_id = request.state.request_id
     update_data = bet_update.dict(exclude_unset=True)
     logger.info(
         "bets_update_request_started",
+        request_id=request_id,
         endpoint=f"/bets/{bet_id}",
         bet_id=bet_id,
         payload=update_data,
@@ -219,12 +260,19 @@ def update_bet(bet_id: int, bet_update: BetUpdate):
             result = cursor.fetchone()
             
             if not result:
+                logger.warning(
+                    "bet_update_not_found",
+                    request_id=request_id,
+                    endpoint=f"/bets/{bet_id}",
+                    bet_id=bet_id,
+                )
                 raise HTTPException(status_code=404, detail="Bet not found")
             
             conn.commit()
             duration = time.time() - start_time
             logger.info(
                 "bet_updated",
+                request_id=request_id,
                 endpoint=f"/bets/{bet_id}",
                 bet_id=result.get("id") if isinstance(result, dict) else None,
                 duration_ms=round(duration * 1000, 2),
@@ -240,6 +288,7 @@ def update_bet(bet_id: int, bet_update: BetUpdate):
                 duration,
                 exc,
                 exc_info=True,
+                request_id=request_id,
             )
             raise
         except Exception as exc:
@@ -251,18 +300,21 @@ def update_bet(bet_id: int, bet_update: BetUpdate):
                 duration,
                 exc,
                 exc_info=True,
+                request_id=request_id,
             )
             raise
         finally:
             cursor.close()
 
 @router.delete("/{bet_id}", status_code=204)
-def delete_bet(bet_id: int):
+def delete_bet(request: Request, bet_id: int):
     """Supprimer un pari"""
     
     start_time = time.time()
+    request_id = request.state.request_id
     logger.info(
         "bets_delete_request_started",
+        request_id=request_id,
         endpoint=f"/bets/{bet_id}",
         bet_id=bet_id,
     )
@@ -274,12 +326,19 @@ def delete_bet(bet_id: int):
             result = cursor.fetchone()
             
             if not result:
+                logger.warning(
+                    "bet_delete_not_found",
+                    request_id=request_id,
+                    endpoint=f"/bets/{bet_id}",
+                    bet_id=bet_id,
+                )
                 raise HTTPException(status_code=404, detail="Bet not found")
             
             conn.commit()
             duration = time.time() - start_time
             logger.info(
                 "bet_deleted",
+                request_id=request_id,
                 endpoint=f"/bets/{bet_id}",
                 bet_id=bet_id,
                 duration_ms=round(duration * 1000, 2),
@@ -293,6 +352,7 @@ def delete_bet(bet_id: int):
                 duration,
                 exc,
                 exc_info=True,
+                request_id=request_id,
             )
             raise
         except Exception as exc:
@@ -304,6 +364,7 @@ def delete_bet(bet_id: int):
                 duration,
                 exc,
                 exc_info=True,
+                request_id=request_id,
             )
             raise
         finally:

@@ -2,7 +2,8 @@
 Routes pour les statistiques
 """
 import time
-from fastapi import APIRouter
+
+from fastapi import APIRouter, Request
 from api.models.schemas import Stats, BankrollSummary
 from api.services.database import get_cursor
 from api.services.logging import logger
@@ -10,12 +11,14 @@ from api.services.logging import logger
 router = APIRouter(prefix="/stats", tags=["Statistics"])
 
 @router.get("/global", response_model=Stats)
-def get_global_stats():
+def get_global_stats(request: Request):
     """Statistiques globales du système"""
     
     start_time = time.time()
+    request_id = request.state.request_id
     logger.info(
         "stats_global_request_started",
+        request_id=request_id,
         endpoint="/stats/global",
     )
 
@@ -44,12 +47,14 @@ def get_global_stats():
     if stats['total_odds'] == 0:
         logger.warning(
             "stats_global_no_data",
+            request_id=request_id,
             endpoint="/stats/global",
             duration_ms=round(duration * 1000, 2),
         )
     else:
         logger.info(
             "stats_global_calculated",
+            request_id=request_id,
             endpoint="/stats/global",
             total_odds=stats['total_odds'],
             total_matches=stats['total_matches'],
@@ -59,12 +64,14 @@ def get_global_stats():
     return stats
 
 @router.get("/bankroll", response_model=BankrollSummary)
-def get_bankroll():
+def get_bankroll(request: Request):
     """Résumé du bankroll et des performances"""
     
     start_time = time.time()
+    request_id = request.state.request_id
     logger.info(
         "stats_bankroll_request_started",
+        request_id=request_id,
         endpoint="/stats/bankroll",
     )
 
@@ -96,6 +103,7 @@ def get_bankroll():
             duration = time.time() - start_time
             logger.warning(
                 "stats_bankroll_no_bets",
+                request_id=request_id,
                 endpoint="/stats/bankroll",
                 duration_ms=round(duration * 1000, 2),
             )
@@ -145,12 +153,14 @@ def get_bankroll():
     if stats['nb_bets'] == 0:
         logger.warning(
             "stats_bankroll_no_bets",
+            request_id=request_id,
             endpoint="/stats/bankroll",
             duration_ms=round(duration * 1000, 2),
         )
     else:
         logger.info(
             "stats_bankroll_calculated",
+            request_id=request_id,
             endpoint="/stats/bankroll",
             nb_bets=stats['nb_bets'],
             roi=stats['roi'],
@@ -161,12 +171,14 @@ def get_bankroll():
     return stats
 
 @router.get("/bookmakers")
-def get_bookmaker_stats():
+def get_bookmaker_stats(request: Request):
     """Statistiques par bookmaker"""
     
     start_time = time.time()
+    request_id = request.state.request_id
     logger.info(
         "stats_bookmakers_request_started",
+        request_id=request_id,
         endpoint="/stats/bookmakers",
     )
 
@@ -189,12 +201,14 @@ def get_bookmaker_stats():
     if not stats:
         logger.warning(
             "stats_bookmakers_no_data",
+            request_id=request_id,
             endpoint="/stats/bookmakers",
             duration_ms=round(duration * 1000, 2),
         )
     else:
         logger.info(
             "stats_bookmakers_calculated",
+            request_id=request_id,
             endpoint="/stats/bookmakers",
             nb_bookmakers=len(stats),
             duration_ms=round(duration * 1000, 2),

@@ -2,8 +2,11 @@
 Routes pour les opportunités (arbitrage, value bets)
 """
 import time
-from fastapi import APIRouter, Query
 from typing import List, Optional
+
+from fastapi import APIRouter, Query, Request
+
+from api.config import settings
 from api.models.schemas import Opportunity
 from api.services.database import get_cursor
 from api.services.logging import logger
@@ -12,6 +15,7 @@ router = APIRouter(prefix="/opportunities", tags=["Opportunities"])
 
 @router.get("/", response_model=List[Opportunity])
 def get_opportunities(
+    request: Request,
     min_spread_pct: float = Query(5.0, description="Écart minimum en %"),
     sport: Optional[str] = None,
     limit: int = Query(50, le=100)
@@ -19,8 +23,10 @@ def get_opportunities(
     """Détecter les opportunités d'arbitrage ou de value betting"""
     
     start_time = time.time()
+    request_id = request.state.request_id
     logger.info(
         "opportunities_request_started",
+        request_id=request_id,
         endpoint="/opportunities",
         min_spread_pct=min_spread_pct,
         sport=sport,
@@ -95,11 +101,21 @@ def get_opportunities(
     with get_cursor() as cursor:
         cursor.execute(query, params)
         opportunities = cursor.fetchall()
+
+    if settings.ENV == "development":
+        logger.debug(
+            "sql_query_debug",
+            request_id=request_id,
+            query=str(query),
+            filter_sport=sport,
+            filter_bookmaker=None,
+        )
     
     duration = time.time() - start_time
     if not opportunities:
         logger.warning(
             "opportunities_not_found",
+            request_id=request_id,
             endpoint="/opportunities",
             min_spread_pct=min_spread_pct,
             sport=sport,
@@ -108,6 +124,7 @@ def get_opportunities(
     else:
         logger.info(
             "opportunities_retrieved",
+            request_id=request_id,
             endpoint="/opportunities",
             results_count=len(opportunities),
             duration_ms=round(duration * 1000, 2),
@@ -119,12 +136,14 @@ def get_opportunities(
     return opportunities
 
 @router.get("/arbitrage")
-def detect_arbitrage(sport: Optional[str] = None):
+def detect_arbitrage(request: Request, sport: Optional[str] = None):
     """Détecter les opportunités d'arbitrage pur"""
     
     start_time = time.time()
+    request_id = request.state.request_id
     logger.info(
         "opportunities_arbitrage_request_started",
+        request_id=request_id,
         endpoint="/opportunities/arbitrage",
         sport=sport,
     )
@@ -191,11 +210,21 @@ def detect_arbitrage(sport: Optional[str] = None):
     with get_cursor() as cursor:
         cursor.execute(query, params)
         arbitrage_opportunities = cursor.fetchall()
+
+    if settings.ENV == "development":
+        logger.debug(
+            "sql_query_debug",
+            request_id=request_id,
+            query=str(query),
+            filter_sport=sport,
+            filter_bookmaker=None,
+        )
     
     duration = time.time() - start_time
     if not arbitrage_opportunities:
         logger.warning(
             "opportunities_arbitrage_not_found",
+            request_id=request_id,
             endpoint="/opportunities/arbitrage",
             sport=sport,
             duration_ms=round(duration * 1000, 2),
@@ -203,6 +232,7 @@ def detect_arbitrage(sport: Optional[str] = None):
     else:
         logger.info(
             "opportunities_arbitrage_retrieved",
+            request_id=request_id,
             endpoint="/opportunities/arbitrage",
             results_count=len(arbitrage_opportunities),
             duration_ms=round(duration * 1000, 2),
