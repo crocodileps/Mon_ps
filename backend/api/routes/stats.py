@@ -43,13 +43,26 @@ def get_global_stats(request: Request):
         "api_requests_remaining": None
     }
 
-    duration = time.time() - start_time
+    duration_ms = (time.time() - start_time) * 1000
+
+    if duration_ms > 100:
+        logger.warning(
+            "slow_query_detected",
+            request_id=request_id,
+            endpoint="/stats/global",
+            query_type="global_stats_calculation",
+            duration_ms=round(duration_ms, 2),
+            threshold_ms=100,
+            results_count=1,
+            filters_applied={},
+        )
+
     if stats['total_odds'] == 0:
         logger.warning(
             "stats_global_no_data",
             request_id=request_id,
             endpoint="/stats/global",
-            duration_ms=round(duration * 1000, 2),
+            duration_ms=round(duration_ms, 2),
         )
     else:
         logger.info(
@@ -58,7 +71,7 @@ def get_global_stats(request: Request):
             endpoint="/stats/global",
             total_odds=stats['total_odds'],
             total_matches=stats['total_matches'],
-            duration_ms=round(duration * 1000, 2),
+            duration_ms=round(duration_ms, 2),
         )
     
     return stats
@@ -100,12 +113,23 @@ def get_bankroll(request: Request):
                 "nb_pending": 0,
                 "win_rate": 0.0
             }
-            duration = time.time() - start_time
+            duration_ms = (time.time() - start_time) * 1000
+            if duration_ms > 100:
+                logger.warning(
+                    "slow_query_detected",
+                    request_id=request_id,
+                    endpoint="/stats/bankroll",
+                    query_type="bankroll_stats_calculation",
+                    duration_ms=round(duration_ms, 2),
+                    threshold_ms=100,
+                    results_count=0,
+                    filters_applied={"table_exists": False},
+                )
             logger.warning(
                 "stats_bankroll_no_bets",
                 request_id=request_id,
                 endpoint="/stats/bankroll",
-                duration_ms=round(duration * 1000, 2),
+                duration_ms=round(duration_ms, 2),
             )
             return stats
         
@@ -149,13 +173,26 @@ def get_bankroll(request: Request):
             "win_rate": round(win_rate, 2)
         }
 
-    duration = time.time() - start_time
+    duration_ms = (time.time() - start_time) * 1000
+
+    if duration_ms > 100:
+        logger.warning(
+            "slow_query_detected",
+            request_id=request_id,
+            endpoint="/stats/bankroll",
+            query_type="bankroll_stats_calculation",
+            duration_ms=round(duration_ms, 2),
+            threshold_ms=100,
+            results_count=stats['nb_bets'],
+            filters_applied={"table_exists": True},
+        )
+
     if stats['nb_bets'] == 0:
         logger.warning(
             "stats_bankroll_no_bets",
             request_id=request_id,
             endpoint="/stats/bankroll",
-            duration_ms=round(duration * 1000, 2),
+            duration_ms=round(duration_ms, 2),
         )
     else:
         logger.info(
@@ -165,7 +202,7 @@ def get_bankroll(request: Request):
             nb_bets=stats['nb_bets'],
             roi=stats['roi'],
             win_rate=stats['win_rate'],
-            duration_ms=round(duration * 1000, 2),
+            duration_ms=round(duration_ms, 2),
         )
     
     return stats
@@ -197,13 +234,26 @@ def get_bookmaker_stats(request: Request):
         
         stats = cursor.fetchall()
 
-    duration = time.time() - start_time
+    duration_ms = (time.time() - start_time) * 1000
+
+    if duration_ms > 100:
+        logger.warning(
+            "slow_query_detected",
+            request_id=request_id,
+            endpoint="/stats/bookmakers",
+            query_type="bookmakers_stats_calculation",
+            duration_ms=round(duration_ms, 2),
+            threshold_ms=100,
+            results_count=len(stats),
+            filters_applied={},
+        )
+
     if not stats:
         logger.warning(
             "stats_bookmakers_no_data",
             request_id=request_id,
             endpoint="/stats/bookmakers",
-            duration_ms=round(duration * 1000, 2),
+            duration_ms=round(duration_ms, 2),
         )
     else:
         logger.info(
@@ -211,7 +261,7 @@ def get_bookmaker_stats(request: Request):
             request_id=request_id,
             endpoint="/stats/bookmakers",
             nb_bookmakers=len(stats),
-            duration_ms=round(duration * 1000, 2),
+            duration_ms=round(duration_ms, 2),
         )
     
     return stats

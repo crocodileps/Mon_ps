@@ -24,6 +24,20 @@ def get_opportunities(
     
     start_time = time.time()
     request_id = request.state.request_id
+
+    def _get_value(item, key, default=None):
+        if isinstance(item, dict):
+            return item.get(key, default)
+        if hasattr(item, key):
+            return getattr(item, key, default)
+        mapping = getattr(item, "_mapping", None)
+        if mapping is not None:
+            return mapping.get(key, default)
+        try:
+            return item[key]
+        except (TypeError, KeyError, IndexError):
+            return default
+
     logger.info(
         "opportunities_request_started",
         request_id=request_id,
@@ -106,12 +120,29 @@ def get_opportunities(
         logger.debug(
             "sql_query_debug",
             request_id=request_id,
-            query=str(query),
+            query=str(query)[:500],
             filter_sport=sport,
             filter_bookmaker=None,
         )
     
-    duration = time.time() - start_time
+    duration_ms = (time.time() - start_time) * 1000
+
+    if duration_ms > 100:
+        logger.warning(
+            "slow_query_detected",
+            request_id=request_id,
+            endpoint="/opportunities",
+            query_type="opportunity_detection",
+            duration_ms=round(duration_ms, 2),
+            threshold_ms=100,
+            results_count=len(opportunities),
+            filters_applied={
+                "sport": sport,
+                "bookmaker": None,
+                "limit": limit,
+            },
+        )
+
     if not opportunities:
         logger.warning(
             "opportunities_not_found",
@@ -119,7 +150,7 @@ def get_opportunities(
             endpoint="/opportunities",
             min_spread_pct=min_spread_pct,
             sport=sport,
-            duration_ms=round(duration * 1000, 2),
+            duration_ms=round(duration_ms, 2),
         )
     else:
         logger.info(
@@ -127,11 +158,54 @@ def get_opportunities(
             request_id=request_id,
             endpoint="/opportunities",
             results_count=len(opportunities),
-            duration_ms=round(duration * 1000, 2),
+            duration_ms=round(duration_ms, 2),
             min_spread_pct=min_spread_pct,
             sport=sport,
             limit=limit,
         )
+
+        for opp in opportunities:
+            edge_pct = _get_value(opp, "spread_pct", 0.0)
+            edge_pct = float(edge_pct) if edge_pct is not None else 0.0
+
+            if edge_pct > 10:
+                logger.info(
+                    "high_edge_opportunity_detected",
+                    request_id=request_id,
+                    match_id=_get_value(opp, "match_id"),
+                    home_team=_get_value(opp, "home_team"),
+                    away_team=_get_value(opp, "away_team"),
+                    sport=_get_value(opp, "sport"),
+                    market_type="h2h",
+                    outcome=_get_value(opp, "outcome"),
+                    edge_pct=round(edge_pct, 2),
+                    best_bookmaker=_get_value(opp, "bookmaker_best"),
+                    best_odds=float(_get_value(opp, "best_odd", 0.0) or 0.0),
+                    worst_bookmaker=_get_value(opp, "bookmaker_worst"),
+                    worst_odds=float(_get_value(opp, "worst_odd", 0.0) or 0.0),
+                    nb_bookmakers=_get_value(opp, "nb_bookmakers"),
+                    severity="high" if edge_pct > 15 else "medium",
+                )
+
+        spreads = [
+            float(_get_value(result, "spread_pct", 0.0) or 0.0)
+            for result in opportunities
+        ]
+
+        if spreads:
+            avg_spread = sum(spreads) / len(spreads)
+            max_spread = max(spreads)
+
+            logger.info(
+                "opportunities_analysis",
+                request_id=request_id,
+                endpoint="/opportunities",
+                results_count=len(opportunities),
+                avg_spread_pct=round(avg_spread, 2),
+                max_spread_pct=round(max_spread, 2),
+                high_edge_count=len([spread for spread in spreads if spread > 10]),
+                duration_ms=round(duration_ms, 2),
+            )
     
     return opportunities
 
@@ -215,19 +289,36 @@ def detect_arbitrage(request: Request, sport: Optional[str] = None):
         logger.debug(
             "sql_query_debug",
             request_id=request_id,
-            query=str(query),
+            query=str(query)[:500],
             filter_sport=sport,
             filter_bookmaker=None,
         )
     
-    duration = time.time() - start_time
+    duration_ms = (time.time() - start_time) * 1000
+
+    if duration_ms > 100:
+        logger.warning(
+            "slow_query_detected",
+            request_id=request_id,
+            endpoint="/opportunities/arbitrage",
+            query_type="arbitrage_detection",
+            duration_ms=round(duration_ms, 2),
+            threshold_ms=100,
+            results_count=len(arbitrage_opportunities),
+            filters_applied={
+                "sport": sport,
+                "bookmaker": None,
+                "limit": None,
+            },
+        )
+
     if not arbitrage_opportunities:
         logger.warning(
             "opportunities_arbitrage_not_found",
             request_id=request_id,
             endpoint="/opportunities/arbitrage",
             sport=sport,
-            duration_ms=round(duration * 1000, 2),
+            duration_ms=round(duration_ms, 2),
         )
     else:
         logger.info(
@@ -235,7 +326,7 @@ def detect_arbitrage(request: Request, sport: Optional[str] = None):
             request_id=request_id,
             endpoint="/opportunities/arbitrage",
             results_count=len(arbitrage_opportunities),
-            duration_ms=round(duration * 1000, 2),
+            duration_ms=round(duration_ms, 2),
             sport=sport,
         )
     

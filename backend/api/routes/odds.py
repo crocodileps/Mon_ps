@@ -63,18 +63,35 @@ def get_odds(
         logger.debug(
             "sql_query_debug",
             request_id=request_id,
-            query=str(query),
+            query=str(query)[:500],
             filter_sport=sport,
             filter_bookmaker=bookmaker,
         )
 
-    duration = time.time() - start_time
+    duration_ms = (time.time() - start_time) * 1000
+
+    if duration_ms > 100:
+        logger.warning(
+            "slow_query_detected",
+            request_id=request_id,
+            endpoint="/odds",
+            query_type="odds_retrieval",
+            duration_ms=round(duration_ms, 2),
+            threshold_ms=100,
+            results_count=len(results),
+            filters_applied={
+                "sport": sport,
+                "bookmaker": bookmaker,
+                "limit": limit,
+            },
+        )
+
     logger.info(
         "odds_retrieved",
         request_id=request_id,
         endpoint="/odds",
         results_count=len(results),
-        duration_ms=round(duration * 1000, 2),
+        duration_ms=round(duration_ms, 2),
     )
 
     return results
@@ -143,18 +160,36 @@ def get_matches(
         logger.debug(
             "sql_query_debug",
             request_id=request_id,
-            query=str(query),
+            query=str(query)[:500],
             filter_sport=sport,
             filter_bookmaker=None,
         )
 
-    duration = time.time() - start_time
+    duration_ms = (time.time() - start_time) * 1000
+
+    if duration_ms > 100:
+        logger.warning(
+            "slow_query_detected",
+            request_id=request_id,
+            endpoint="/odds/matches",
+            query_type="matches_retrieval",
+            duration_ms=round(duration_ms, 2),
+            threshold_ms=100,
+            results_count=len(matches),
+            filters_applied={
+                "sport": sport,
+                "bookmaker": None,
+                "limit": None,
+                "upcoming_only": upcoming_only,
+            },
+        )
+
     logger.info(
         "odds_matches_retrieved",
         request_id=request_id,
         endpoint="/odds/matches",
         results_count=len(matches),
-        duration_ms=round(duration * 1000, 2),
+        duration_ms=round(duration_ms, 2),
     )
 
     return matches
@@ -233,18 +268,36 @@ def get_match_detail(request: Request, match_id: str):
         logger.debug(
             "sql_query_debug",
             request_id=request_id,
-            query=str(odds_query),
+            query=str(odds_query)[:500],
             filter_sport=None,
             filter_bookmaker=None,
         )
 
-    duration = time.time() - start_time
+    duration_ms = (time.time() - start_time) * 1000
+
+    if duration_ms > 100:
+        logger.warning(
+            "slow_query_detected",
+            request_id=request_id,
+            endpoint=f"/odds/matches/{match_id}",
+            query_type="match_detail_retrieval",
+            duration_ms=round(duration_ms, 2),
+            threshold_ms=100,
+            results_count=len(odds),
+            filters_applied={
+                "match_id": match_id,
+                "sport": None,
+                "bookmaker": None,
+                "limit": None,
+            },
+        )
+
     logger.info(
         "odds_match_detail_retrieved",
         request_id=request_id,
         endpoint=f"/odds/matches/{match_id}",
         results_count=len(odds),
-        duration_ms=round(duration * 1000, 2),
+        duration_ms=round(duration_ms, 2),
         match_id=match_id,
     )
     

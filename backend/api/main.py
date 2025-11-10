@@ -50,17 +50,13 @@ async def log_requests(request: Request, call_next):
     start_time = time.time()
 
     request_id = getattr(request.state, "request_id", "unknown")
-    user_agent = request.headers.get("user-agent", "unknown")
-    client_ip = request.client.host if request.client else None
 
     # Log de la requête entrante
     logger.info(
         "request_started",
         request_id=request_id,
         method=request.method,
-        path=request.url.path,
-        client_ip=client_ip,
-        user_agent=user_agent
+        path=request.url.path
     )
 
     # Traiter la requête
@@ -76,9 +72,7 @@ async def log_requests(request: Request, call_next):
         method=request.method,
         path=request.url.path,
         status_code=response.status_code,
-        duration_ms=round(duration_ms, 2),
-        client_ip=client_ip,
-        user_agent=user_agent
+        duration_ms=round(duration_ms, 2)
     )
 
     return response

@@ -13,6 +13,21 @@ from api.services.logging import logger
 
 router = APIRouter(prefix="/bets", tags=["Bets"])
 
+
+def _get_record_value(record, key, default=None):
+    if isinstance(record, dict):
+        return record.get(key, default)
+    if hasattr(record, key):
+        return getattr(record, key, default)
+    mapping = getattr(record, "_mapping", None)
+    if mapping is not None:
+        return mapping.get(key, default)
+    try:
+        return record[key]
+    except (TypeError, KeyError, IndexError):
+        return default
+
+
 @router.post("/", response_model=BetInDB, status_code=201)
 def create_bet(request: Request, bet: BetCreate):
     """Créer un nouveau pari"""
@@ -67,14 +82,35 @@ def create_bet(request: Request, bet: BetCreate):
             
             result = cursor.fetchone()
             conn.commit()
-            duration = time.time() - start_time
-            result_id = result.get("id") if isinstance(result, dict) else None
+            duration_ms = (time.time() - start_time) * 1000
+            result_id = _get_record_value(result, "id")
+            stake_value = _get_record_value(result, "stake", 0)
+            odds_value = _get_record_value(result, "odds_value", 0)
+            stake_float = float(stake_value or 0)
+            odds_float = float(odds_value or 0)
+            potential_profit = stake_float * max(odds_float - 1, 0)
+
+            logger.info(
+                "bet_placed",
+                request_id=request_id,
+                bet_id=result_id,
+                match_id=_get_record_value(result, "match_id"),
+                outcome=_get_record_value(result, "outcome"),
+                bookmaker=_get_record_value(result, "bookmaker"),
+                odds_value=odds_float,
+                stake=stake_float,
+                potential_profit=round(potential_profit, 2),
+                bet_type=_get_record_value(result, "bet_type"),
+                status=_get_record_value(result, "result") or "pending",
+                severity="info",
+            )
+
             logger.info(
                 "bet_created",
                 request_id=request_id,
                 endpoint="/bets",
                 bet_id=result_id,
-                duration_ms=round(duration * 1000, 2),
+                duration_ms=round(duration_ms, 2),
             )
             return result
         except HTTPException as exc:
@@ -111,6 +147,7 @@ def get_bets(
     """Récupérer la liste des paris"""
     
     request_id = request.state.request_id
+    start_time = time.time()
     with get_cursor() as cursor:
         cursor.execute("""
             SELECT EXISTS (
@@ -142,6 +179,25 @@ def get_bets(
         cursor.execute(query, params)
         records = cursor.fetchall()
 
+    duration_ms = (time.time() - start_time) * 1000
+
+    if duration_ms > 100:
+        logger.warning(
+            "slow_query_detected",
+            request_id=request_id,
+            endpoint="/bets",
+            query_type="bets_list_retrieval",
+            duration_ms=round(duration_ms, 2),
+            threshold_ms=100,
+            results_count=len(records),
+            filters_applied={
+                "result": result,
+                "sport": None,
+                "bookmaker": None,
+                "limit": limit,
+            },
+        )
+
     logger.info(
         "bets_list_retrieved",
         request_id=request_id,
@@ -149,6 +205,7 @@ def get_bets(
         results_count=len(records),
         filter_result=result,
         limit=limit,
+        duration_ms=round(duration_ms, 2),
     )
 
     return records
@@ -158,6 +215,7 @@ def get_bet(request: Request, bet_id: int):
     """Récupérer un pari spécifique"""
     
     request_id = request.state.request_id
+    start_time = time.time()
     with get_cursor() as cursor:
         cursor.execute("SELECT * FROM bets WHERE id = %s", (bet_id,))
         bet = cursor.fetchone()
@@ -171,11 +229,31 @@ def get_bet(request: Request, bet_id: int):
             )
             raise HTTPException(status_code=404, detail="Bet not found")
         
+        duration_ms = (time.time() - start_time) * 1000
+
+        if duration_ms > 100:
+            logger.warning(
+                "slow_query_detected",
+                request_id=request_id,
+                endpoint=f"/bets/{bet_id}",
+                query_type="bet_detail_retrieval",
+                duration_ms=round(duration_ms, 2),
+                threshold_ms=100,
+                results_count=1,
+                filters_applied={
+                    "bet_id": bet_id,
+                    "result": None,
+                    "sport": None,
+                    "bookmaker": None,
+                },
+            )
+
         logger.info(
             "bet_retrieved",
             request_id=request_id,
             endpoint=f"/bets/{bet_id}",
             bet_id=bet_id,
+            duration_ms=round(duration_ms, 2),
         )
 
         return bet
@@ -269,14 +347,33 @@ def update_bet(request: Request, bet_id: int, bet_update: BetUpdate):
                 raise HTTPException(status_code=404, detail="Bet not found")
             
             conn.commit()
-            duration = time.time() - start_time
+            duration_ms = (time.time() - start_time) * 1000
+            updated_bet_id = _get_record_value(result, "id")
             logger.info(
                 "bet_updated",
                 request_id=request_id,
                 endpoint=f"/bets/{bet_id}",
-                bet_id=result.get("id") if isinstance(result, dict) else None,
-                duration_ms=round(duration * 1000, 2),
+                bet_id=updated_bet_id,
+                duration_ms=round(duration_ms, 2),
             )
+
+            if bet_update.result in ["won", "lost"]:
+                stake_float = float(_get_record_value(result, "stake", 0) or 0)
+                profit = float(_get_record_value(result, "profit_loss", 0) or 0)
+                odds_float = float(_get_record_value(result, "odds_value", 0) or 0)
+                roi = (profit / stake_float) * 100 if stake_float else 0.0
+
+                logger.info(
+                    "bet_settled",
+                    request_id=request_id,
+                    bet_id=bet_id,
+                    result=bet_update.result,
+                    stake=stake_float,
+                    odds_value=odds_float,
+                    actual_profit=profit,
+                    roi_pct=round(roi, 2),
+                    severity="info" if profit >= 0 else "warning",
+                )
             
             return result
         except HTTPException as exc:
