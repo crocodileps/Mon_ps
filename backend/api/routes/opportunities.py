@@ -1,10 +1,12 @@
 """
 Routes pour les opportunités (arbitrage, value bets)
 """
+import time
 from fastapi import APIRouter, Query
 from typing import List, Optional
 from api.models.schemas import Opportunity
 from api.services.database import get_cursor
+from api.services.logging import logger
 
 router = APIRouter(prefix="/opportunities", tags=["Opportunities"])
 
@@ -16,6 +18,14 @@ def get_opportunities(
 ):
     """Détecter les opportunités d'arbitrage ou de value betting"""
     
+    start_time = time.time()
+    logger.info(
+        "Requete GET /opportunities: min_spread_pct=%s sport=%s limit=%s",
+        min_spread_pct,
+        sport,
+        limit,
+    )
+
     query = """
     WITH odds_stats AS (
         SELECT 
@@ -83,12 +93,30 @@ def get_opportunities(
     
     with get_cursor() as cursor:
         cursor.execute(query, params)
-        return cursor.fetchall()
+        opportunities = cursor.fetchall()
+    
+    duration = time.time() - start_time
+    if not opportunities:
+        logger.warning(
+            "Aucune opportunite trouvee pour GET /opportunities en %.3fs",
+            duration,
+        )
+    else:
+        logger.info(
+            "Reponse GET /opportunities: %d opportunites en %.3fs",
+            len(opportunities),
+            duration,
+        )
+    
+    return opportunities
 
 @router.get("/arbitrage")
 def detect_arbitrage(sport: Optional[str] = None):
     """Détecter les opportunités d'arbitrage pur"""
     
+    start_time = time.time()
+    logger.info("Requete GET /opportunities/arbitrage: sport=%s", sport)
+
     query = """
     WITH best_odds AS (
         SELECT 
@@ -150,4 +178,19 @@ def detect_arbitrage(sport: Optional[str] = None):
     
     with get_cursor() as cursor:
         cursor.execute(query, params)
-        return cursor.fetchall()
+        arbitrage_opportunities = cursor.fetchall()
+    
+    duration = time.time() - start_time
+    if not arbitrage_opportunities:
+        logger.warning(
+            "Aucune opportunite trouvee pour GET /opportunities/arbitrage en %.3fs",
+            duration,
+        )
+    else:
+        logger.info(
+            "Reponse GET /opportunities/arbitrage: %d opportunites en %.3fs",
+            len(arbitrage_opportunities),
+            duration,
+        )
+    
+    return arbitrage_opportunities

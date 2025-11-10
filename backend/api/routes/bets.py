@@ -1,10 +1,12 @@
 """
 Routes pour la gestion des paris
 """
+import time
 from fastapi import APIRouter, HTTPException
 from typing import List, Optional
 from api.models.schemas import BetCreate, BetUpdate, BetInDB
 from api.services.database import get_cursor, get_db
+from api.services.logging import logger
 from psycopg2.extras import RealDictCursor
 
 router = APIRouter(prefix="/bets", tags=["Bets"])
@@ -13,6 +15,10 @@ router = APIRouter(prefix="/bets", tags=["Bets"])
 def create_bet(bet: BetCreate):
     """Créer un nouveau pari"""
     
+    start_time = time.time()
+    payload = bet.dict()
+    logger.info("Requete POST /bets: payload=%s", payload)
+
     with get_db() as conn:
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         try:
@@ -53,7 +59,34 @@ def create_bet(bet: BetCreate):
             
             result = cursor.fetchone()
             conn.commit()
+            duration = time.time() - start_time
+            result_id = result.get("id") if isinstance(result, dict) else None
+            logger.info(
+                "Reponse POST /bets: id=%s en %.3fs",
+                result_id,
+                duration,
+            )
             return result
+        except HTTPException as exc:
+            conn.rollback()
+            duration = time.time() - start_time
+            logger.error(
+                "Erreur POST /bets en %.3fs: %s",
+                duration,
+                exc,
+                exc_info=True,
+            )
+            raise
+        except Exception as exc:
+            conn.rollback()
+            duration = time.time() - start_time
+            logger.error(
+                "Erreur POST /bets en %.3fs: %s",
+                duration,
+                exc,
+                exc_info=True,
+            )
+            raise
         finally:
             cursor.close()
 
@@ -107,6 +140,10 @@ def get_bet(bet_id: int):
 def update_bet(bet_id: int, bet_update: BetUpdate):
     """Mettre à jour un pari (résultat, gains, etc)"""
     
+    start_time = time.time()
+    update_data = bet_update.dict(exclude_unset=True)
+    logger.info("Requete PATCH /bets/%s: payload=%s", bet_id, update_data)
+
     with get_db() as conn:
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         try:
@@ -170,12 +207,42 @@ def update_bet(bet_id: int, bet_update: BetUpdate):
             """, params)
             
             result = cursor.fetchone()
-            conn.commit()
             
             if not result:
                 raise HTTPException(status_code=404, detail="Bet not found")
             
+            conn.commit()
+            duration = time.time() - start_time
+            logger.info(
+                "Reponse PATCH /bets/%s: id=%s en %.3fs",
+                bet_id,
+                result.get("id") if isinstance(result, dict) else None,
+                duration,
+            )
+            
             return result
+        except HTTPException as exc:
+            conn.rollback()
+            duration = time.time() - start_time
+            logger.error(
+                "Erreur PATCH /bets/%s en %.3fs: %s",
+                bet_id,
+                duration,
+                exc,
+                exc_info=True,
+            )
+            raise
+        except Exception as exc:
+            conn.rollback()
+            duration = time.time() - start_time
+            logger.error(
+                "Erreur PATCH /bets/%s en %.3fs: %s",
+                bet_id,
+                duration,
+                exc,
+                exc_info=True,
+            )
+            raise
         finally:
             cursor.close()
 
@@ -183,6 +250,9 @@ def update_bet(bet_id: int, bet_update: BetUpdate):
 def delete_bet(bet_id: int):
     """Supprimer un pari"""
     
+    start_time = time.time()
+    logger.info("Requete DELETE /bets/%s", bet_id)
+
     with get_db() as conn:
         cursor = conn.cursor()
         try:
@@ -193,5 +263,33 @@ def delete_bet(bet_id: int):
                 raise HTTPException(status_code=404, detail="Bet not found")
             
             conn.commit()
+            duration = time.time() - start_time
+            logger.info(
+                "Reponse DELETE /bets/%s en %.3fs",
+                bet_id,
+                duration,
+            )
+        except HTTPException as exc:
+            conn.rollback()
+            duration = time.time() - start_time
+            logger.error(
+                "Erreur DELETE /bets/%s en %.3fs: %s",
+                bet_id,
+                duration,
+                exc,
+                exc_info=True,
+            )
+            raise
+        except Exception as exc:
+            conn.rollback()
+            duration = time.time() - start_time
+            logger.error(
+                "Erreur DELETE /bets/%s en %.3fs: %s",
+                bet_id,
+                duration,
+                exc,
+                exc_info=True,
+            )
+            raise
         finally:
             cursor.close()
