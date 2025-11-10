@@ -1,0 +1,2 @@
+"""Package des migrations Alembic."""
+

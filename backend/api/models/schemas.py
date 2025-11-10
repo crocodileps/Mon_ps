@@ -118,9 +118,14 @@ class BetInDB(BaseModel):
     payout: Optional[Decimal] = None
     profit_loss: Optional[Decimal] = None
     notes: Optional[str] = None
-    clv: Optional[float] = None  # Closing Line Value
-    odds_close: Optional[Decimal] = None  # Cote de clôture
-    market_type: Optional[str] = None  # h2h, totals, btts, etc.
+    # Nouveaux champs pour analytics
+    clv: Optional[float] = Field(None, description="Closing Line Value")
+    odds_close: Optional[float] = Field(None, description="Cote de clôture")
+    market_type: Optional[str] = Field(
+        None,
+        max_length=50,
+        description="Type de marché: h2h, totals, btts, etc.",
+    )
     created_at: datetime
     updated_at: Optional[datetime] = None
     
