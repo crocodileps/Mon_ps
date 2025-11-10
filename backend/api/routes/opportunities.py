@@ -20,10 +20,11 @@ def get_opportunities(
     
     start_time = time.time()
     logger.info(
-        "Requete GET /opportunities: min_spread_pct=%s sport=%s limit=%s",
-        min_spread_pct,
-        sport,
-        limit,
+        "opportunities_request_started",
+        endpoint="/opportunities",
+        min_spread_pct=min_spread_pct,
+        sport=sport,
+        limit=limit,
     )
 
     query = """
@@ -98,14 +99,21 @@ def get_opportunities(
     duration = time.time() - start_time
     if not opportunities:
         logger.warning(
-            "Aucune opportunite trouvee pour GET /opportunities en %.3fs",
-            duration,
+            "opportunities_not_found",
+            endpoint="/opportunities",
+            min_spread_pct=min_spread_pct,
+            sport=sport,
+            duration_ms=round(duration * 1000, 2),
         )
     else:
         logger.info(
-            "Reponse GET /opportunities: %d opportunites en %.3fs",
-            len(opportunities),
-            duration,
+            "opportunities_retrieved",
+            endpoint="/opportunities",
+            results_count=len(opportunities),
+            duration_ms=round(duration * 1000, 2),
+            min_spread_pct=min_spread_pct,
+            sport=sport,
+            limit=limit,
         )
     
     return opportunities
@@ -115,7 +123,11 @@ def detect_arbitrage(sport: Optional[str] = None):
     """Détecter les opportunités d'arbitrage pur"""
     
     start_time = time.time()
-    logger.info("Requete GET /opportunities/arbitrage: sport=%s", sport)
+    logger.info(
+        "opportunities_arbitrage_request_started",
+        endpoint="/opportunities/arbitrage",
+        sport=sport,
+    )
 
     query = """
     WITH best_odds AS (
@@ -183,14 +195,18 @@ def detect_arbitrage(sport: Optional[str] = None):
     duration = time.time() - start_time
     if not arbitrage_opportunities:
         logger.warning(
-            "Aucune opportunite trouvee pour GET /opportunities/arbitrage en %.3fs",
-            duration,
+            "opportunities_arbitrage_not_found",
+            endpoint="/opportunities/arbitrage",
+            sport=sport,
+            duration_ms=round(duration * 1000, 2),
         )
     else:
         logger.info(
-            "Reponse GET /opportunities/arbitrage: %d opportunites en %.3fs",
-            len(arbitrage_opportunities),
-            duration,
+            "opportunities_arbitrage_retrieved",
+            endpoint="/opportunities/arbitrage",
+            results_count=len(arbitrage_opportunities),
+            duration_ms=round(duration * 1000, 2),
+            sport=sport,
         )
     
     return arbitrage_opportunities

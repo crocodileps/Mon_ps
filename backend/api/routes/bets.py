@@ -17,7 +17,11 @@ def create_bet(bet: BetCreate):
     
     start_time = time.time()
     payload = bet.dict()
-    logger.info("Requete POST /bets: payload=%s", payload)
+    logger.info(
+        "bets_create_request_started",
+        endpoint="/bets",
+        payload=payload,
+    )
 
     with get_db() as conn:
         cursor = conn.cursor(cursor_factory=RealDictCursor)
@@ -62,9 +66,10 @@ def create_bet(bet: BetCreate):
             duration = time.time() - start_time
             result_id = result.get("id") if isinstance(result, dict) else None
             logger.info(
-                "Reponse POST /bets: id=%s en %.3fs",
-                result_id,
-                duration,
+                "bet_created",
+                endpoint="/bets",
+                bet_id=result_id,
+                duration_ms=round(duration * 1000, 2),
             )
             return result
         except HTTPException as exc:
@@ -142,7 +147,12 @@ def update_bet(bet_id: int, bet_update: BetUpdate):
     
     start_time = time.time()
     update_data = bet_update.dict(exclude_unset=True)
-    logger.info("Requete PATCH /bets/%s: payload=%s", bet_id, update_data)
+    logger.info(
+        "bets_update_request_started",
+        endpoint=f"/bets/{bet_id}",
+        bet_id=bet_id,
+        payload=update_data,
+    )
 
     with get_db() as conn:
         cursor = conn.cursor(cursor_factory=RealDictCursor)
@@ -214,10 +224,10 @@ def update_bet(bet_id: int, bet_update: BetUpdate):
             conn.commit()
             duration = time.time() - start_time
             logger.info(
-                "Reponse PATCH /bets/%s: id=%s en %.3fs",
-                bet_id,
-                result.get("id") if isinstance(result, dict) else None,
-                duration,
+                "bet_updated",
+                endpoint=f"/bets/{bet_id}",
+                bet_id=result.get("id") if isinstance(result, dict) else None,
+                duration_ms=round(duration * 1000, 2),
             )
             
             return result
@@ -251,7 +261,11 @@ def delete_bet(bet_id: int):
     """Supprimer un pari"""
     
     start_time = time.time()
-    logger.info("Requete DELETE /bets/%s", bet_id)
+    logger.info(
+        "bets_delete_request_started",
+        endpoint=f"/bets/{bet_id}",
+        bet_id=bet_id,
+    )
 
     with get_db() as conn:
         cursor = conn.cursor()
@@ -265,9 +279,10 @@ def delete_bet(bet_id: int):
             conn.commit()
             duration = time.time() - start_time
             logger.info(
-                "Reponse DELETE /bets/%s en %.3fs",
-                bet_id,
-                duration,
+                "bet_deleted",
+                endpoint=f"/bets/{bet_id}",
+                bet_id=bet_id,
+                duration_ms=round(duration * 1000, 2),
             )
         except HTTPException as exc:
             conn.rollback()

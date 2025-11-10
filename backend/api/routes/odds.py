@@ -20,10 +20,11 @@ def get_odds(
     
     start_time = time.time()
     logger.info(
-        "Requete GET /odds: sport=%s bookmaker=%s limit=%s",
-        sport,
-        bookmaker,
-        limit,
+        "odds_request_started",
+        endpoint="/odds",
+        sport=sport,
+        bookmaker=bookmaker,
+        limit=limit,
     )
 
     query = "SELECT * FROM odds WHERE 1=1"
@@ -40,7 +41,12 @@ def get_odds(
     query += " ORDER BY created_at DESC LIMIT %s"
     params.append(limit)
     
-    logger.debug("Execution requete odds: %s | params=%s", query, params)
+    logger.debug(
+        "odds_query_prepared",
+        endpoint="/odds",
+        query=query,
+        params=params,
+    )
 
     with get_cursor() as cursor:
         cursor.execute(query, params)
@@ -48,9 +54,10 @@ def get_odds(
 
     duration = time.time() - start_time
     logger.info(
-        "Reponse GET /odds: %d enregistrements en %.3fs",
-        len(results),
-        duration,
+        "odds_retrieved",
+        endpoint="/odds",
+        results_count=len(results),
+        duration_ms=round(duration * 1000, 2),
     )
 
     return results
@@ -64,9 +71,10 @@ def get_matches(
     
     start_time = time.time()
     logger.info(
-        "Requete GET /odds/matches: sport=%s upcoming_only=%s",
-        sport,
-        upcoming_only,
+        "odds_matches_request_started",
+        endpoint="/odds/matches",
+        sport=sport,
+        upcoming_only=upcoming_only,
     )
 
     query = """
@@ -100,9 +108,10 @@ def get_matches(
     """
     
     logger.debug(
-        "Execution requete matches: %s | params=%s",
-        query,
-        params,
+        "odds_matches_query_prepared",
+        endpoint="/odds/matches",
+        query=query,
+        params=params,
     )
 
     with get_cursor() as cursor:
@@ -111,9 +120,10 @@ def get_matches(
 
     duration = time.time() - start_time
     logger.info(
-        "Reponse GET /odds/matches: %d matchs en %.3fs",
-        len(matches),
-        duration,
+        "odds_matches_retrieved",
+        endpoint="/odds/matches",
+        results_count=len(matches),
+        duration_ms=round(duration * 1000, 2),
     )
 
     return matches
@@ -123,7 +133,11 @@ def get_match_detail(match_id: str):
     """Détails complets d'un match"""
     
     start_time = time.time()
-    logger.info("Requete GET /odds/matches/%s", match_id)
+    logger.info(
+        "odds_match_detail_request_started",
+        endpoint=f"/odds/matches/{match_id}",
+        match_id=match_id,
+    )
     
     match_summary_query = """
             SELECT 
@@ -152,22 +166,28 @@ def get_match_detail(match_id: str):
 
     with get_cursor() as cursor:
         logger.debug(
-            "Execution requete resume match: %s | params=%s",
-            match_summary_query,
-            (match_id,),
+            "odds_match_detail_summary_query_prepared",
+            endpoint=f"/odds/matches/{match_id}",
+            query=match_summary_query,
+            params=(match_id,),
         )
         cursor.execute(match_summary_query, (match_id,))
         
         match = cursor.fetchone()
         
         if not match:
-            logger.warning("Match introuvable pour match_id=%s", match_id)
+            logger.warning(
+                "odds_match_detail_not_found",
+                endpoint=f"/odds/matches/{match_id}",
+                match_id=match_id,
+            )
             raise HTTPException(status_code=404, detail="Match not found")
         
         logger.debug(
-            "Execution requete details match: %s | params=%s",
-            odds_query,
-            (match_id,),
+            "odds_match_detail_odds_query_prepared",
+            endpoint=f"/odds/matches/{match_id}",
+            query=odds_query,
+            params=(match_id,),
         )
         cursor.execute(odds_query, (match_id,))
         
@@ -175,10 +195,11 @@ def get_match_detail(match_id: str):
     
     duration = time.time() - start_time
     logger.info(
-        "Reponse GET /odds/matches/%s: %d lignes de cotes en %.3fs",
-        match_id,
-        len(odds),
-        duration,
+        "odds_match_detail_retrieved",
+        endpoint=f"/odds/matches/{match_id}",
+        results_count=len(odds),
+        duration_ms=round(duration * 1000, 2),
+        match_id=match_id,
     )
     
     return {**match, "odds": odds}

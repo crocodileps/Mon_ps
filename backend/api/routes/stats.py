@@ -14,7 +14,10 @@ def get_global_stats():
     """Statistiques globales du système"""
     
     start_time = time.time()
-    logger.info("Requete GET /stats/global")
+    logger.info(
+        "stats_global_request_started",
+        endpoint="/stats/global",
+    )
 
     with get_cursor() as cursor:
         cursor.execute("""
@@ -39,13 +42,18 @@ def get_global_stats():
 
     duration = time.time() - start_time
     if stats['total_odds'] == 0:
-        logger.warning("no_odds_found_for_stats", endpoint="/stats/global", duration=duration)
+        logger.warning(
+            "stats_global_no_data",
+            endpoint="/stats/global",
+            duration_ms=round(duration * 1000, 2),
+        )
     else:
         logger.info(
-            "Reponse GET /stats/global: total_odds=%d total_matches=%d en %.3fs",
-            stats['total_odds'],
-            stats['total_matches'],
-            duration,
+            "stats_global_calculated",
+            endpoint="/stats/global",
+            total_odds=stats['total_odds'],
+            total_matches=stats['total_matches'],
+            duration_ms=round(duration * 1000, 2),
         )
     
     return stats
@@ -55,7 +63,10 @@ def get_bankroll():
     """Résumé du bankroll et des performances"""
     
     start_time = time.time()
-    logger.info("Requete GET /stats/bankroll")
+    logger.info(
+        "stats_bankroll_request_started",
+        endpoint="/stats/bankroll",
+    )
 
     with get_cursor() as cursor:
         cursor.execute("""
@@ -84,9 +95,9 @@ def get_bankroll():
             }
             duration = time.time() - start_time
             logger.warning(
-                "no_bets_found_for_stats",
+                "stats_bankroll_no_bets",
                 endpoint="/stats/bankroll",
-                duration=duration,
+                duration_ms=round(duration * 1000, 2),
             )
             return stats
         
@@ -133,17 +144,18 @@ def get_bankroll():
     duration = time.time() - start_time
     if stats['nb_bets'] == 0:
         logger.warning(
-            "no_bets_found_for_stats",
+            "stats_bankroll_no_bets",
             endpoint="/stats/bankroll",
-            duration=duration,
+            duration_ms=round(duration * 1000, 2),
         )
     else:
         logger.info(
-            "Reponse GET /stats/bankroll: nb_bets=%d roi=%.2f win_rate=%.2f en %.3fs",
-            stats['nb_bets'],
-            stats['roi'],
-            stats['win_rate'],
-            duration,
+            "stats_bankroll_calculated",
+            endpoint="/stats/bankroll",
+            nb_bets=stats['nb_bets'],
+            roi=stats['roi'],
+            win_rate=stats['win_rate'],
+            duration_ms=round(duration * 1000, 2),
         )
     
     return stats
@@ -153,7 +165,10 @@ def get_bookmaker_stats():
     """Statistiques par bookmaker"""
     
     start_time = time.time()
-    logger.info("Requete GET /stats/bookmakers")
+    logger.info(
+        "stats_bookmakers_request_started",
+        endpoint="/stats/bookmakers",
+    )
 
     with get_cursor() as cursor:
         cursor.execute("""
@@ -173,15 +188,16 @@ def get_bookmaker_stats():
     duration = time.time() - start_time
     if not stats:
         logger.warning(
-            "no_bookmaker_stats_found",
+            "stats_bookmakers_no_data",
             endpoint="/stats/bookmakers",
-            duration=duration,
+            duration_ms=round(duration * 1000, 2),
         )
     else:
         logger.info(
-            "Reponse GET /stats/bookmakers: nb_bookmakers=%d en %.3fs",
-            len(stats),
-            duration,
+            "stats_bookmakers_calculated",
+            endpoint="/stats/bookmakers",
+            nb_bookmakers=len(stats),
+            duration_ms=round(duration * 1000, 2),
         )
     
     return stats
