@@ -3,8 +3,8 @@ Routes pour les cotes
 """
 from fastapi import APIRouter, HTTPException, Query
 from typing import List, Optional
-from backend.api.models.schemas import OddResponse, MatchSummary, MatchDetail
-from backend.api.services.database import get_cursor
+from api.models.schemas import OddResponse, MatchSummary, MatchDetail
+from api.services.database import get_cursor
 
 router = APIRouter(prefix="/odds", tags=["Odds"])
 
@@ -79,7 +79,6 @@ def get_matches(
 def get_match_detail(match_id: str):
     """Détails complets d'un match"""
     
-    # Récupérer le résumé
     with get_cursor() as cursor:
         cursor.execute("""
             SELECT 
@@ -103,7 +102,6 @@ def get_match_detail(match_id: str):
         if not match:
             raise HTTPException(status_code=404, detail="Match not found")
         
-        # Récupérer toutes les cotes
         cursor.execute("""
             SELECT id, sport, league, match_id, home_team, away_team,
                    commence_time, bookmaker, market_type, outcome_name,
