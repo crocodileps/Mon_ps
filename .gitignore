@@ -39,3 +39,4 @@ Thumbs.db
 # Database backups
 *.sql
 *.dump
+INFOS_SERVEUR.txt
