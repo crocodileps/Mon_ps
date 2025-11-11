@@ -1,0 +1,58 @@
+groups:
+  - name: mon_ps_alerts
+    interval: 30s
+    rules:
+      # Alerte Bankroll critique
+      - alert: BankrollCritique
+        expr: monps_bankroll < 900
+        for: 1m
+        labels:
+          severity: critical
+          component: bankroll
+        annotations:
+          summary: "🔴 Bankroll critique"
+          description: "Bankroll actuel: {{ $value }}€. Seuil critique: 900€. ACTION REQUISE!"
+
+      # Alerte Win Rate faible
+      - alert: WinRateFaible
+        expr: monps_win_rate < 50
+        for: 5m
+        labels:
+          severity: warning
+          component: performance
+        annotations:
+          summary: "⚠️ Win rate trop faible"
+          description: "Win rate actuel: {{ $value }}%. Seuil minimal: 50%"
+
+      # Alerte ROI négatif
+      - alert: ROINegatif
+        expr: monps_roi < 0
+        for: 5m
+        labels:
+          severity: warning
+          component: performance
+        annotations:
+          summary: "⚠️ ROI négatif détecté"
+          description: "ROI actuel: {{ $value }}%. Stratégie à revoir."
+
+      # Alerte Backend down
+      - alert: BackendDown
+        expr: up{job="monps_backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: system
+        annotations:
+          summary: "🔴 Backend Mon_PS hors ligne"
+          description: "Le backend ne répond plus. Vérifier les logs immédiatement!"
+
+      # Alerte Bankroll warning
+      - alert: BankrollWarning
+        expr: monps_bankroll < 950 and monps_bankroll >= 900
+        for: 5m
+        labels:
+          severity: warning
+          component: bankroll
+        annotations:
+          summary: "⚠️ Bankroll faible"
+          description: "Bankroll actuel: {{ $value }}€. Approche du seuil critique (900€)"

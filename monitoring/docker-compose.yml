@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       POSTGRES_USER: monps_user
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-monps_secure_password_2024}
+      POSTGRES_PASSWORD: monps_secure_password_2024
       POSTGRES_DB: monps_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -29,7 +29,7 @@ services:
       DB_PORT: 5432
       DB_NAME: monps_db
       DB_USER: monps_user
-      DB_PASSWORD: ${POSTGRES_PASSWORD:-monps_secure_password_2024}
+      DB_PASSWORD: monps_secure_password_2024
       ENV: production
     depends_on:
       postgres:
@@ -54,12 +54,27 @@ services:
     networks:
       - monps_network
 
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: monps_alertmanager
+    restart: always
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
+    volumes:
+      - ./config/alertmanager:/etc/alertmanager
+      - alertmanager_data:/alertmanager
+    ports:
+      - "9093:9093"
+    networks:
+      - monps_network
+
   grafana:
-    image: grafana/grafana:10.4.0
+    image: grafana/grafana:latest
     container_name: monps_grafana
     restart: always
     environment:
-      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: SuperSecure2025Grafana19
       GF_SERVER_ROOT_URL: http://localhost:3000
     volumes:
       - grafana_data:/var/lib/grafana
@@ -79,3 +94,4 @@ volumes:
   postgres_data:
   prometheus_data:
   grafana_data:
+  alertmanager_data:
