@@ -1,108 +1,43 @@
 """
-Schémas Pydantic pour l'API
+Schémas Pydantic pour validation des données
 """
 from pydantic import BaseModel, Field
-from typing import Optional, List
-from datetime import datetime
+from typing import Optional
 from decimal import Decimal
+from datetime import datetime
 
 # ========================================
-# ODDS (Cotes)
-# ========================================
-
-class OddBase(BaseModel):
-    """Schéma de base pour une cote"""
-    sport: str
-    league: Optional[str] = None
-    match_id: str
-    home_team: str
-    away_team: str
-    commence_time: datetime
-    bookmaker: str
-    market_type: str
-    outcome_name: str
-    odds_value: Decimal
-    point: Optional[Decimal] = None
-
-class OddInDB(OddBase):
-    """Cote telle qu'en base de données"""
-    id: int
-    last_update: datetime
-    created_at: datetime
-    
-    class Config:
-        from_attributes = True
-
-class OddResponse(OddBase):
-    """Réponse API pour une cote"""
-    id: int
-    last_update: datetime
-    
-    class Config:
-        from_attributes = True
-
-# ========================================
-# MATCHES
-# ========================================
-
-class MatchSummary(BaseModel):
-    """Résumé d'un match"""
-    match_id: str
-    home_team: str
-    away_team: str
-    sport: str
-    league: Optional[str] = None
-    commence_time: datetime
-    nb_bookmakers: int
-    best_home_odd: Optional[Decimal] = None
-    best_away_odd: Optional[Decimal] = None
-    best_draw_odd: Optional[Decimal] = None
-
-class MatchDetail(MatchSummary):
-    """Détails complets d'un match avec toutes les cotes"""
-    odds: List[OddResponse]
-
-# ========================================
-# OPPORTUNITIES (Opportunités)
-# ========================================
-
-class Opportunity(BaseModel):
-    """Opportunité détectée (arbitrage ou value bet)"""
-    match_id: str
-    home_team: str
-    away_team: str
-    sport: str
-    commence_time: datetime
-    opportunity_type: str  # "arbitrage" ou "value"
-    outcome: str
-    best_odd: Decimal
-    worst_odd: Decimal
-    spread_pct: float
-    bookmaker_best: str
-    bookmaker_worst: str
-    nb_bookmakers: int
-    estimated_value: Optional[float] = None
-
-# ========================================
-# BETS (Paris)
+# BETS
 # ========================================
 
 class BetCreate(BaseModel):
-    """Création d'un pari"""
+    """Création d'un pari - TOUS LES CHAMPS OPTIONNELS POUR IMPORT"""
     match_id: str
     outcome: str
     bookmaker: str
     odds_value: Decimal
     stake: Decimal = Field(gt=0, description="Mise en euros")
-    bet_type: str = Field(default="value", description="Type: value, arbitrage, etc")
+    bet_type: str = Field(default="value", description="Type: value, arbitrage, tabac, ligne, etc")
     notes: Optional[str] = None
+    
+    # Champs optionnels pour import de paris passés
+    status: Optional[str] = Field(None, description="pending, settled, void")
+    result: Optional[str] = Field(None, description="won, lost, void")
+    actual_profit: Optional[Decimal] = Field(None, description="Profit réel après règlement")
+    clv: Optional[float] = Field(None, description="Closing Line Value")
+    odds_close: Optional[float] = Field(None, description="Cote de clôture")
+    market_type: Optional[str] = Field(None, description="Type de marché")
 
 class BetUpdate(BaseModel):
-    """Mise à jour d'un pari"""
+    """Mise à jour d'un pari après règlement"""
     result: Optional[str] = None  # "won", "lost", "void"
     actual_odds: Optional[Decimal] = None
     payout: Optional[Decimal] = None
     notes: Optional[str] = None
+    status: Optional[str] = None
+    actual_profit: Optional[Decimal] = None
+    clv: Optional[float] = None
+    odds_close: Optional[float] = None
 
 class BetInDB(BaseModel):
     """Pari en base de données"""
@@ -118,7 +53,8 @@ class BetInDB(BaseModel):
     payout: Optional[Decimal] = None
     profit_loss: Optional[Decimal] = None
     notes: Optional[str] = None
-    # Nouveaux champs pour analytics
+    status: Optional[str] = None
+    actual_profit: Optional[Decimal] = None
     clv: Optional[float] = Field(None, description="Closing Line Value")
     odds_close: Optional[float] = Field(None, description="Cote de clôture")
     market_type: Optional[str] = Field(
@@ -128,7 +64,7 @@ class BetInDB(BaseModel):
     )
     created_at: datetime
     updated_at: Optional[datetime] = None
-    
+
     class Config:
         from_attributes = True
 
@@ -136,29 +72,8 @@ class BetInDB(BaseModel):
 # BANKROLL
 # ========================================
 
-class BankrollSummary(BaseModel):
-    """Résumé du bankroll"""
-    current_balance: Decimal
-    initial_balance: Decimal
-    total_staked: Decimal
-    total_returned: Decimal
-    total_profit: Decimal
-    roi: float
-    nb_bets: int
-    nb_won: int
-    nb_lost: int
-    nb_pending: int
-    win_rate: float
-
-# ========================================
-# STATISTICS
-# ========================================
-
-class Stats(BaseModel):
-    """Statistiques globales"""
-    total_odds: int
-    total_matches: int
-    total_bookmakers: int
-    total_sports: int
-    last_update: datetime
-    api_requests_remaining: Optional[int] = None
+class BankrollUpdate(BaseModel):
+    """Mise à jour du bankroll"""
+    amount: Decimal = Field(description="Montant à ajouter/retirer")
+    reason: str = Field(description="Raison: deposit, withdrawal, adjustment")
+    notes: Optional[str] = None
