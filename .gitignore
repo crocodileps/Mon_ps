@@ -40,3 +40,8 @@ Thumbs.db
 *.sql
 *.dump
 INFOS_SERVEUR.txt
+
+# Phase 10 - Collector
+monitoring/collector/.env
+monitoring/collector/logs/
+*.log
