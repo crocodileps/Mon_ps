@@ -3,17 +3,29 @@ Route pour exposer les métriques Prometheus
 """
 from fastapi import APIRouter
 from fastapi.responses import Response
-from prometheus_client import Gauge, generate_latest, CONTENT_TYPE_LATEST
+from prometheus_client import Counter, Gauge, Histogram, generate_latest, CONTENT_TYPE_LATEST
 from sqlalchemy import create_engine, text
 import os
 
 router = APIRouter()
 
-# Métriques
+# Métriques métier
 total_bets_gauge = Gauge('monps_total_bets', 'Total number of bets')
 bankroll_gauge = Gauge('monps_bankroll', 'Current bankroll in EUR')
 roi_gauge = Gauge('monps_roi', 'Return on Investment')
 win_rate_gauge = Gauge('monps_win_rate', 'Win rate percentage')
+
+# Métriques HTTP (on les crée mais elles seront remplies plus tard via middleware)
+http_requests_total = Counter(
+    'http_requests_total',
+    'Total HTTP requests',
+    ['method', 'endpoint', 'status']
+)
+http_request_duration = Histogram(
+    'http_request_duration_seconds',
+    'HTTP request duration in seconds',
+    ['method', 'endpoint']
+)
 
 INITIAL_BANKROLL = 1000.0
 
