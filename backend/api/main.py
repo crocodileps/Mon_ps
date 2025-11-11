@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.config import settings
 from api.services.logging import logger
 from api.routes import bets, odds, opportunities, stats, metrics
+from api.routes import metrics_collector_routes
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -28,6 +29,10 @@ app.include_router(odds.router, prefix="/odds", tags=["odds"])
 app.include_router(opportunities.router, prefix="/opportunities", tags=["opportunities"])
 app.include_router(stats.router, prefix="/stats", tags=["stats"])
 app.include_router(metrics.router, tags=["metrics"])
+app.include_router(
+    metrics_collector_routes.router,
+    tags=["Metrics Collector"]
+)
 
 @app.on_event("startup")
 async def startup():
