@@ -14,7 +14,7 @@ export interface OpportunitiesFilters {
   [key: string]: string | number | undefined
 }
 
-type QueryOptions = Omit<
+type QueryOptions = Omit
   UseQueryOptions<Opportunity[], Error, Opportunity[], ReturnType<typeof queryKeys.opportunities.list>>,
   'queryKey' | 'queryFn'
 >
@@ -23,7 +23,7 @@ export function useOpportunities(filters?: OpportunitiesFilters, options?: Query
   return useQuery({
     queryKey: queryKeys.opportunities.list(filters),
     queryFn: () =>
-      apiFetch<Opportunity[]>('/opportunities', {
+      apiFetch<Opportunity[]>('/opportunities/opportunities/', {
         query: {
           sport: filters?.sport,
           bookmaker: filters?.bookmaker,

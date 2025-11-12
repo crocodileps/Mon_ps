@@ -1,89 +1,79 @@
-import type { AnalyticsResponse, Bet, Opportunity } from '@/types/api'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://monps_backend:8000'
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? process.env.API_URL ?? 'http://10.10.0.1:8001'
-
-interface ApiFetchOptions extends RequestInit {
-  retries?: number
-  retryDelay?: number
-  query?: Record<string, string | number | boolean | undefined>
+interface ApiError {
+  detail: string
+  status: number
 }
 
-const defaultHeaders: HeadersInit = {
-  'Content-Type': 'application/json',
+export class ApiClientError extends Error {
+  status: number
+  
+  constructor(message: string, status: number) {
+    super(message)
+    this.name = 'ApiClientError'
+    this.status = status
+  }
 }
 
-const wait = (duration: number) =>
-  new Promise((resolve) => {
-    setTimeout(resolve, duration)
-  })
-
-const buildUrl = (endpoint: string, query?: ApiFetchOptions['query']) => {
-  const url = new URL(endpoint, API_BASE_URL)
+export async function apiFetch<T>(
+  endpoint: string,
+  options: RequestInit & { query?: Record<string, any> } = {}
+): Promise<T> {
+  const { query, ...fetchOptions } = options
+  
+  let url = `${API_BASE_URL}${endpoint}`
   if (query) {
+    const params = new URLSearchParams()
     Object.entries(query).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
-        url.searchParams.append(key, String(value))
+        params.append(key, String(value))
       }
     })
-  }
-  return url.toString()
-}
-
-export async function apiFetch<T>(endpoint: string, options: ApiFetchOptions = {}): Promise<T> {
-  const { retries = 2, retryDelay = 600, headers, query, ...rest } = options
-  const url = buildUrl(endpoint, query)
-
-  let attempt = 0
-  let error: unknown
-
-  while (attempt <= retries) {
-    try {
-      const response = await fetch(url, {
-        cache: 'no-store',
-        ...rest,
-        headers: {
-          ...defaultHeaders,
-          ...headers,
-        },
-      })
-
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
-      }
-
-      const data = (await response.json()) as T
-      return data
-    } catch (err) {
-      error = err
-      attempt += 1
-      if (attempt > retries) {
-        break
-      }
-      await wait(retryDelay * attempt)
+    const queryString = params.toString()
+    if (queryString) {
+      url += `?${queryString}`
     }
   }
-
-  throw error instanceof Error ? error : new Error('API request failed')
-}
-
-export async function getOpportunities(): Promise<Opportunity[]> {
-  return apiFetch<Opportunity[]>('/opportunities/', {
-    query: { min_spread_pct: 10 },
-  })
-}
-
-export async function getBets(): Promise<Bet[]> {
-  return apiFetch<Bet[]>('/bets/')
-}
-
-export async function getAnalytics(
-  periodDays = 30,
-): Promise<AnalyticsResponse> {
-  return apiFetch<AnalyticsResponse>(
-    '/stats/analytics/comprehensive',
-    {
-      query: { period_days: periodDays },
+  
+  const response = await fetch(url, {
+    ...fetchOptions,
+    headers: {
+      'Content-Type': 'application/json',
+      ...fetchOptions.headers,
     },
-  )
+  })
+  
+  if (!response.ok) {
+    const error: ApiError = await response.json().catch(() => ({
+      detail: 'Unknown error',
+      status: response.status,
+    }))
+    throw new ApiClientError(error.detail, response.status)
+  }
+  
+  return response.json()
+}
+
+export async function checkHealth() {
+  return apiFetch<{ status: string; timestamp: string }>('/health')
+}
+
+export async function getOpportunities(params?: any) {
+  return apiFetch<any[]>('/opportunities/opportunities/', { query: params })
+}
+
+export async function getGlobalStats() {
+  return apiFetch<any>('/stats/stats/global')
+}
+
+export async function getBankrollStats() {
+  return apiFetch<any>('/stats/stats/bankroll')
+}
+
+export async function getBookmakerStats() {
+  return apiFetch<any[]>('/stats/stats/bookmakers')
+}
+
+export async function getComprehensiveAnalytics() {
+  return apiFetch<any>('/stats/stats/analytics/comprehensive')
 }
