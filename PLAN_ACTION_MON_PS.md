@@ -100,3 +100,25 @@ Bankroll:    1030€
 ROI:         37.5%
 Win Rate:    62.5%
 ```
+
+---
+
+## 🔄 MISE À JOUR (12 Nov 2025 - 18h)
+
+### ✅ ACCOMPLI AUJOURD'HUI
+- Alertmanager configuré et opérationnel
+- Collector v2.0 (économie 97% API)
+- 1,042 cotes collectées
+- Templates email HTML
+- Documentation complète (3 guides)
+
+### �� PROCHAINE SESSION
+1. Backend metrics auto-refresh
+2. Test email opportunités (24h)
+3. Import dashboard Grafana
+
+### 📊 MÉTRIQUES ACTUELLES
+- Quota API: 491/500
+- Opportunités: 10+ (jusqu'à 57% spread)
+- Services: 6/6 actifs
+- Cron: Automatisé (3h)
