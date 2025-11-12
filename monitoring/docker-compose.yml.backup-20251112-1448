@@ -53,21 +53,6 @@ services:
     networks:
       - monps_network
 
-  alertmanager:
-    image: prom/alertmanager:latest
-    container_name: monps_alertmanager
-    restart: always
-    command:
-      - '--config.file=/etc/alertmanager/alertmanager.yml'
-      - '--storage.path=/alertmanager'
-    volumes:
-      - ./config/alertmanager:/etc/alertmanager
-      - alertmanager_data:/alertmanager
-    ports:
-      - "9093:9093"
-    networks:
-      - monps_network
-
   grafana:
     image: grafana/grafana:latest
     container_name: monps_grafana
@@ -110,4 +95,3 @@ volumes:
   postgres_data:
   prometheus_data:
   grafana_data:
-  alertmanager_data:

@@ -1,58 +1,91 @@
 groups:
-  - name: mon_ps_alerts
-    interval: 30s
+  - name: mon_ps_trading
+    interval: 1m
     rules:
-      # Alerte Bankroll critique
+      # ========================================
+      # OPPORTUNITÉS (24h seulement)
+      # ========================================
+      
+      - alert: NewOpportunitySpike
+        expr: increase(monps_opportunities_detected_total[5m]) > 5
+        labels:
+          severity: info
+        annotations:
+          summary: "Pic d'opportunités détecté"
+          description: "{{ $value }} nouvelles opportunités dans les 5 dernières minutes"
+
+      # ========================================
+      # ALERTES CRITIQUES SYSTÈME
+      # ========================================
+      
+      - alert: BackendDown
+        expr: up{job="backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "🚨 Backend API est DOWN"
+          description: "L'API FastAPI ne répond plus depuis 1 minute"
+
       - alert: BankrollCritique
         expr: monps_bankroll < 900
-        for: 1m
-        labels:
-          severity: critical
-          component: bankroll
-        annotations:
-          summary: "🔴 Bankroll critique"
-          description: "Bankroll actuel: {{ $value }}€. Seuil critique: 900€. ACTION REQUISE!"
-
-      # Alerte Win Rate faible
-      - alert: WinRateFaible
-        expr: monps_win_rate < 50
         for: 5m
         labels:
-          severity: warning
-          component: performance
+          severity: critical
+          current_value: "{{ $value }}€"
+          threshold: "900€"
         annotations:
-          summary: "⚠️ Win rate trop faible"
-          description: "Win rate actuel: {{ $value }}%. Seuil minimal: 50%"
+          summary: "💸 Bankroll critique"
+          description: "Bankroll actuel: {{ $value }}€ (seuil: 900€). STOP TRADING!"
 
-      # Alerte ROI négatif
       - alert: ROINegatif
         expr: monps_roi < 0
-        for: 5m
-        labels:
-          severity: warning
-          component: performance
-        annotations:
-          summary: "⚠️ ROI négatif détecté"
-          description: "ROI actuel: {{ $value }}%. Stratégie à revoir."
-
-      # Alerte Backend down
-      - alert: BackendDown
-        expr: up{job="monps_backend"} == 0
-        for: 1m
+        for: 10m
         labels:
           severity: critical
-          component: system
+          current_value: "{{ $value }}%"
         annotations:
-          summary: "🔴 Backend Mon_PS hors ligne"
-          description: "Le backend ne répond plus. Vérifier les logs immédiatement!"
+          summary: "📉 ROI négatif"
+          description: "ROI actuel: {{ $value }}%. Analyse des stratégies requise."
 
-      # Alerte Bankroll warning
-      - alert: BankrollWarning
-        expr: monps_bankroll < 950 and monps_bankroll >= 900
-        for: 5m
+      - alert: WinRateFaible
+        expr: monps_win_rate < 50
+        for: 30m
         labels:
           severity: warning
-          component: bankroll
+          current_value: "{{ $value }}%"
         annotations:
-          summary: "⚠️ Bankroll faible"
-          description: "Bankroll actuel: {{ $value }}€. Approche du seuil critique (900€)"
+          summary: "⚠️ Win rate faible"
+          description: "Win rate: {{ $value }}% (seuil: 50%). Révision stratégie."
+
+      # ========================================
+      # ALERTES AGENTS ML
+      # ========================================
+      
+      - alert: AgentPerformanceImproved
+        expr: increase(agent_roi[1h]) > 5
+        labels:
+          severity: info
+        annotations:
+          summary: "🚀 Agent ML améliore ses performances"
+          description: "ROI agent augmenté de {{ $value }}% en 1h"
+
+      - alert: AgentSignalStrong
+        expr: agent_confidence > 85
+        labels:
+          severity: info
+        annotations:
+          summary: "💎 Signal ML haute confiance"
+          description: "Agent détecte opportunité avec {{ $value }}% confiance"
+
+      # ========================================
+      # ALERTES DONNÉES
+      # ========================================
+      
+      - alert: NoDataCollection
+        expr: time() - monps_last_collection_timestamp > 14400  # 4h
+        labels:
+          severity: warning
+        annotations:
+          summary: "⚠️ Pas de collecte depuis 4h"
+          description: "Dernière collecte il y a {{ $value }}s. Vérifier le collector."

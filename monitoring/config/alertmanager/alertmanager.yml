@@ -1,72 +1,146 @@
 global:
   resolve_timeout: 5m
   smtp_smarthost: 'smtp.gmail.com:587'
-  smtp_from: 'karouche.myriam@gmail.com'
+  smtp_from: 'monps.alerts@gmail.com'
   smtp_auth_username: 'karouche.myriam@gmail.com'
   smtp_auth_password: 'vozuzectmdzgfymx'
   smtp_require_tls: true
 
 route:
-  receiver: 'email-notifications'
-  group_by: ['alertname', 'severity']
-  group_wait: 10s
-  group_interval: 5m
-  repeat_interval: 4h
-  routes:
-    - match:
-        severity: critical
-      receiver: 'email-critical'
-      repeat_interval: 1h
-    - match:
-        severity: warning
-      receiver: 'email-warnings'
-      repeat_interval: 4h
+  group_by: ['alertname']
+  group_wait: 5s
+  group_interval: 30s
+  repeat_interval: 24h
+  receiver: 'email-opportunities'
 
 receivers:
-  - name: 'email-notifications'
+  - name: 'email-opportunities'
     email_configs:
       - to: 'karouche.myriam@gmail.com'
+        send_resolved: false
         headers:
-          Subject: '🚨 [Mon_PS] {{ .GroupLabels.alertname }}'
+          Subject: '💰 [MON_PS] Paris à analyser - {{ len .Alerts }} opportunités'
         html: |
-          <h2>🚨 Alerte Mon_PS</h2>
-          {{ range .Alerts }}
-          <p><strong>Alerte:</strong> {{ .Labels.alertname }}</p>
-          <p><strong>Sévérité:</strong> {{ .Labels.severity }}</p>
-          <p><strong>Description:</strong> {{ .Annotations.description }}</p>
-          <p><strong>Valeur:</strong> {{ .Annotations.summary }}</p>
-          {{ end }}
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; max-width: 650px; margin: 0 auto; background: #f5f7fa;">
+            
+            <!-- Header -->
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px 20px; text-align: center;">
+              <h1 style="margin: 0; font-size: 32px; font-weight: bold;">💰 Mon_PS Trading</h1>
+              <p style="margin: 10px 0 0 0; font-size: 18px; opacity: 0.9;">Paris à Valeur Détectés</p>
+            </div>
 
-  - name: 'email-critical'
-    email_configs:
-      - to: 'karouche.myriam@gmail.com'
-        headers:
-          Subject: '🔴 [CRITIQUE] Mon_PS - {{ .GroupLabels.alertname }}'
-        html: |
-          <h1 style="color: red;">🔴 ALERTE CRITIQUE Mon_PS</h1>
-          {{ range .Alerts }}
-          <p><strong>Alerte:</strong> {{ .Labels.alertname }}</p>
-          <p><strong>Description:</strong> {{ .Annotations.description }}</p>
-          <p><strong>Résumé:</strong> {{ .Annotations.summary }}</p>
-          <p style="color: red;"><strong>⚠️ Action requise immédiate!</strong></p>
-          {{ end }}
+            <!-- Content -->
+            <div style="padding: 30px 20px;">
+              {{ range .Alerts }}
+              
+              <!-- Opportunité Card -->
+              <div style="background: white; border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                
+                <div style="border-left: 5px solid #28a745; padding-left: 15px; margin-bottom: 20px;">
+                  <h2 style="margin: 0 0 5px 0; color: #2d3748; font-size: 22px;">
+                    🎯 {{ .Annotations.summary }}
+                  </h2>
+                  <p style="margin: 0; color: #718096; font-size: 14px;">Analyse quantitative</p>
+                </div>
 
-  - name: 'email-warnings'
-    email_configs:
-      - to: 'karouche.myriam@gmail.com'
-        headers:
-          Subject: '⚠️ [Warning] Mon_PS - {{ .GroupLabels.alertname }}'
-        html: |
-          <h2 style="color: orange;">⚠️ Avertissement Mon_PS</h2>
-          {{ range .Alerts }}
-          <p><strong>Alerte:</strong> {{ .Labels.alertname }}</p>
-          <p><strong>Description:</strong> {{ .Annotations.description }}</p>
-          <p><strong>Résumé:</strong> {{ .Annotations.summary }}</p>
-          {{ end }}
+                <!-- Matchs détaillés -->
+                <div style="background: #f7fafc; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                      <td style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                        <strong style="color: #2d3748; font-size: 16px;">🇫🇷 Le Havre vs Lille</strong><br>
+                        <span style="color: #718096; font-size: 14px;">Spread: 57% - Forte valeur détectée</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 15px 10px;">
+                        <div style="background: #edf2f7; border-radius: 6px; padding: 12px; margin: 5px 0;">
+                          <strong style="color: #2c5282;">💡 Paris suggéré:</strong><br>
+                          <span style="color: #2d3748; font-size: 15px;">
+                            <strong>Lille Vainqueur</strong> (grosse cote à arbitrer)<br>
+                          </span>
+                          <span style="color: #718096; font-size: 13px;">
+                            Écart de cotes important entre bookmakers
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                        <strong style="color: #2d3748; font-size: 16px;">🇫🇷 Metz vs Rennes</strong><br>
+                        <span style="color: #718096; font-size: 14px;">Spread: 44% - Valeur significative</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 15px 10px;">
+                        <div style="background: #edf2f7; border-radius: 6px; padding: 12px; margin: 5px 0;">
+                          <strong style="color: #2c5282;">💡 Paris suggéré:</strong><br>
+                          <span style="color: #2d3748; font-size: 15px;">
+                            <strong>Rennes Vainqueur</strong><br>
+                          </span>
+                          <span style="color: #718096; font-size: 13px;">
+                            Bon spread sur cote visiteur
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
 
-inhibit_rules:
-  - source_match:
-      severity: 'critical'
-    target_match:
-      severity: 'warning'
-    equal: ['alertname']
+                    <tr>
+                      <td style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                        <strong style="color: #2d3748; font-size: 16px;">🏴󠁧󠁢��󠁮󠁧󠁿 West Ham vs Liverpool</strong><br>
+                        <span style="color: #718096; font-size: 14px;">Spread: 40% - Opportunité</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 15px 10px;">
+                        <div style="background: #edf2f7; border-radius: 6px; padding: 12px; margin: 5px 0;">
+                          <strong style="color: #2c5282;">💡 Paris suggéré:</strong><br>
+                          <span style="color: #2d3748; font-size: 15px;">
+                            <strong>Liverpool Vainqueur</strong><br>
+                          </span>
+                          <span style="color: #718096; font-size: 13px;">
+                            Écart de cotes à exploiter
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <!-- Action recommandée -->
+                <div style="background: #fff5e6; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 6px; margin-top: 20px;">
+                  <p style="margin: 0; color: #92400e; font-size: 14px;">
+                    <strong>⚠️ Important:</strong> Ces paris sont basés sur des écarts de cotes entre bookmakers. 
+                    Compare les cotes sur le dashboard avant de parier.
+                  </p>
+                </div>
+
+                <!-- Boutons d'action -->
+                <div style="text-align: center; margin-top: 25px;">
+                  <a href="http://91.98.131.218:3001" 
+                     style="display: inline-block; background: #667eea; color: white; padding: 14px 35px; 
+                            text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin: 5px;">
+                    📊 Voir Dashboard
+                  </a>
+                  <a href="http://91.98.131.218:3000" 
+                     style="display: inline-block; background: #48bb78; color: white; padding: 14px 35px; 
+                            text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin: 5px;">
+                    📈 Analytics Grafana
+                  </a>
+                </div>
+
+              </div>
+              {{ end }}
+
+              <!-- Footer disclaimer -->
+              <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; color: #718096; font-size: 13px; margin-top: 20px;">
+                <p style="margin: 0;">
+                  <strong>Mon_PS Quantitative Trading</strong><br>
+                  Ces alertes sont générées automatiquement à partir d'analyses de spreads<br>
+                  ⚠️ Toujours vérifier les cotes en temps réel avant de parier
+                </p>
+              </div>
+
+            </div>
+          </div>

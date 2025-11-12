@@ -1,0 +1,128 @@
+global:
+  resolve_timeout: 5m
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'monps.alerts@gmail.com'
+  smtp_auth_username: 'karouche.myriam@gmail.com'
+  smtp_auth_password: 'vozuzectmdzgfymx'
+  smtp_require_tls: true
+
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 24h  # ⭐ Répéter seulement toutes les 24h si pas résolu
+  receiver: 'email-default'
+  
+  routes:
+    # Opportunités de trading (24h seulement)
+    - match:
+        alertname: OpportunityDetected
+      receiver: 'email-opportunities'
+      group_wait: 10s
+      repeat_interval: 24h  # ⭐ Une seule fois par 24h
+      
+    # Nouvelles opportunités (changement détecté)
+    - match:
+        alertname: NewOpportunitySpike
+      receiver: 'email-opportunities'
+      group_wait: 5s
+      repeat_interval: 24h
+    
+    # Alertes critiques système (immédiat)
+    - match:
+        severity: critical
+      receiver: 'email-critical'
+      group_wait: 10s
+      repeat_interval: 1h  # ⭐ Toutes les heures si critique non résolu
+    
+    # Site down (immédiat)
+    - match:
+        alertname: BackendDown
+      receiver: 'email-critical'
+      group_wait: 5s
+      repeat_interval: 30m  # ⭐ Toutes les 30min si toujours down
+    
+    # Agents ML (nouveaux signaux seulement)
+    - match_re:
+        alertname: Agent.*
+      receiver: 'email-agents'
+      group_wait: 30s
+      repeat_interval: 24h  # ⭐ Une fois par jour max
+
+receivers:
+  - name: 'email-opportunities'
+    email_configs:
+      - to: 'karouche.myriam@gmail.com'
+        send_resolved: false  # ⭐ Ne pas envoyer de "résolu"
+        headers:
+          Subject: '💰 [MON_PS] Nouvelles opportunités (24h)'
+        html: |
+          <h2>💰 Opportunités de Trading - Dernières 24h</h2>
+          {{ range .Alerts }}
+          <div style="border-left: 4px solid #28a745; padding: 10px; margin: 10px 0; background: #f8f9fa;">
+            <strong>{{ .Labels.home_team }} vs {{ .Labels.away_team }}</strong><br>
+            🎯 Outcome: {{ .Labels.outcome }}<br>
+            📊 Spread: <strong>{{ .Labels.spread_pct }}%</strong><br>
+            💵 Cote: {{ .Labels.best_odd }} @ {{ .Labels.bookmaker_best }}<br>
+            ⏰ Kick-off: {{ .Labels.commence_time }}<br>
+          </div>
+          {{ end }}
+          <p>🔗 <a href="http://91.98.131.218:3000">Voir Dashboard</a></p>
+
+  - name: 'email-critical'
+    email_configs:
+      - to: 'karouche.myriam@gmail.com'
+        send_resolved: true  # ⭐ Envoyer aussi quand résolu
+        headers:
+          Subject: '🚨 [MON_PS] ALERTE CRITIQUE - {{ .GroupLabels.alertname }}'
+        html: |
+          <div style="background: #dc3545; color: white; padding: 20px; border-radius: 10px;">
+            <h1>🚨 ALERTE CRITIQUE</h1>
+            <h2>{{ .GroupLabels.alertname }}</h2>
+          </div>
+          {{ range .Alerts }}
+          <div style="padding: 15px; background: #f8d7da; margin: 10px 0; border-radius: 5px;">
+            <p><strong>{{ .Annotations.summary }}</strong></p>
+            <p>{{ .Annotations.description }}</p>
+            {{ if .Labels.current_value }}
+            <p>💥 Valeur: <strong>{{ .Labels.current_value }}</strong></p>
+            {{ end }}
+          </div>
+          {{ end }}
+          <p>⚠️ Action immédiate requise !</p>
+
+  - name: 'email-agents'
+    email_configs:
+      - to: 'karouche.myriam@gmail.com'
+        send_resolved: false
+        headers:
+          Subject: '🤖 [MON_PS] Signal Agent ML - {{ .GroupLabels.alertname }}'
+        html: |
+          <h2>🤖 Nouveau Signal Agent ML</h2>
+          {{ range .Alerts }}
+          <div style="border-left: 4px solid #007bff; padding: 15px; background: #e7f3ff; margin: 10px 0;">
+            <strong>Agent:</strong> {{ .Labels.agent_name }}<br>
+            <strong>Signal:</strong> {{ .Labels.signal_type }}<br>
+            <strong>Confiance:</strong> {{ .Labels.confidence }}%<br>
+            <p>{{ .Annotations.description }}</p>
+          </div>
+          {{ end }}
+
+  - name: 'email-default'
+    email_configs:
+      - to: 'karouche.myriam@gmail.com'
+        send_resolved: false
+        headers:
+          Subject: 'ℹ️ [MON_PS] {{ .GroupLabels.alertname }}'
+        html: |
+          {{ range .Alerts }}
+          <p><strong>{{ .Annotations.summary }}</strong></p>
+          <p>{{ .Annotations.description }}</p>
+          {{ end }}
+
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname']
