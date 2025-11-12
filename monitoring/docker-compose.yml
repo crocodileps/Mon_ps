@@ -1,108 +1,97 @@
-version: '3.8'
-
 services:
+  postgres:
+    image: timescale/timescaledb:latest-pg16
+    container_name: monps_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: monps_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-monps_secure_password_2024}
+      POSTGRES_DB: monps_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - monps_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U monps_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: /home/Mon_ps/backend
+    container_name: monps_backend
+    restart: always
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: monps_db
+      DB_USER: monps_user
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-monps_secure_password_2024}
+      ENV: production
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8001:8000"
+    networks:
+      - monps_network
+
   prometheus:
     image: prom/prometheus:latest
     container_name: monps_prometheus
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - ./prometheus/rules.yml:/etc/prometheus/rules.yml:ro
-      - prometheus_data:/prometheus
+    restart: always
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
-      - '--web.console.templates=/usr/share/prometheus/consoles'
       - '--storage.tsdb.retention.time=30d'
+    volumes:
+      - ./config/prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
     ports:
       - "9090:9090"
     networks:
       - monps_network
-    restart: unless-stopped
 
   grafana:
     image: grafana/grafana:latest
     container_name: monps_grafana
+    restart: always
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+      GF_SERVER_ROOT_URL: http://localhost:3000
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./grafana/provisioning:/etc/grafana/provisioning:ro
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=SuperSecure2025Grafana19
-      - GF_USERS_ALLOW_SIGN_UP=false
-      - GF_SERVER_ROOT_URL=http://localhost:3000
-      - GF_INSTALL_PLUGINS=
+      - ./config/grafana/provisioning:/etc/grafana/provisioning
     ports:
       - "3000:3000"
     networks:
       - monps_network
     depends_on:
       - prometheus
-    restart: unless-stopped
-
-  alertmanager:
-    image: prom/alertmanager:latest
-    container_name: monps_alertmanager
-    volumes:
-      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
-      - alertmanager_data:/alertmanager
-    command:
-      - '--config.file=/etc/alertmanager/alertmanager.yml'
-      - '--storage.path=/alertmanager'
-    ports:
-      - "9093:9093"
-    networks:
-      - monps_network
-    restart: unless-stopped
-
-  odds-collector:
-    build:
-      context: ./collector
-      dockerfile: Dockerfile
-    container_name: monps_odds_collector
-    environment:
-      - ODDS_API_KEY=e62b647a1714eafcda7adc07f59cdb0d
-      - DB_HOST=monps_postgres
-      - DB_PORT=5432
-      - DB_NAME=monps_db
-      - DB_USER=monps_user
-      - DB_PASSWORD=monps_secure_password_2024
-      - EMAIL_PASSWORD=vozuzectmdzgfymx
-      - EMAIL_FROM=karouche.myriam@gmail.com
-      - EMAIL_TO=karouche.myriam@gmail.com
-      - MIN_SPREAD_THRESHOLD=2.0
-      - PYTHONUNBUFFERED=1
-    volumes:
-      - ./collector/logs:/app/logs
-    networks:
-      - monps_network
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    restart: unless-stopped
-
-volumes:
-  prometheus_data:
-    driver: local
-  grafana_data:
-    driver: local
-  alertmanager_data:
-    driver: local
-
-networks:
-  monps_network:
-    driver: bridge
 
   frontend:
     build:
       context: ../frontend
       dockerfile: Dockerfile
     container_name: monps_frontend
+    restart: unless-stopped
     environment:
       - NEXT_PUBLIC_API_URL=http://monps_backend:8000
       - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
     ports:
-      - "3001:3000"
+      - "0.0.0.0:3001:3000"
     networks:
       - monps_network
-    restart: unless-stopped
     depends_on:
-      - odds-collector
+      - backend
+
+networks:
+  monps_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  prometheus_data:
+  grafana_data:

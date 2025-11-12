@@ -78,7 +78,7 @@ export function MobileSidebar({
             <nav className="flex flex-col gap-3">
               {navItems.map((item) => {
                 const isActive = pathname === item.href
-                const badgeValue = 'badge' in item ? getBadgeValue(item.badge) : undefined
+                const badgeValue = getBadgeValue(item.badge)
                 const Icon = item.icon
 
                 return (

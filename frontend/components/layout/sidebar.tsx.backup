@@ -88,7 +88,7 @@ export function Sidebar({ opportunitiesCount = 0, activeBetsCount = 0 }: Sidebar
         {navItems.map((item) => {
           const isActive = pathname === item.href
           const Icon = item.icon
-          const badgeValue = 'badge' in item ? getBadgeValue(item.badge) : undefined
+          const badgeValue = getBadgeValue(item.badge)
 
           return (
             <Link
