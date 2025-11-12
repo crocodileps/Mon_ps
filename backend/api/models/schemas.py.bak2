@@ -111,24 +111,12 @@ class MatchDetail(BaseModel):
 
 class OpportunityResponse(BaseModel):
     """Opportunité de pari détectée"""
+    id: int
     match_id: str
-    home_team: str
-    away_team: str
-    sport: str
-    commence_time: datetime
     opportunity_type: str
-    outcome: str
-    best_odd: Decimal
-    worst_odd: Optional[Decimal] = None
-    spread_pct: float
-    bookmaker_best: str
-    bookmaker_worst: Optional[str] = None
-    nb_bookmakers: int
-    estimated_value: Optional[float] = None
-    id: Optional[int] = None
-    value: Optional[Decimal] = None
-    details: Optional[Dict[str, Any]] = None
-    created_at: Optional[datetime] = None
+    value: Decimal
+    details: Dict[str, Any]
+    created_at: datetime
 
     class Config:
         from_attributes = True

@@ -55,13 +55,13 @@ def get_opportunities(
             away_team,
             sport,
             commence_time,
-            outcome_name,
+            outcome,
             MIN(odds_value) as min_odd,
             MAX(odds_value) as max_odd,
             COUNT(DISTINCT bookmaker) as nb_bookmakers
         FROM odds
-        WHERE market_type = 'h2h'
-          AND commence_time > NOW()
+        
+          WHERE commence_time > NOW()
     """
     
     params = []
@@ -71,7 +71,7 @@ def get_opportunities(
         params.append(sport)
     
     query += """
-        GROUP BY match_id, home_team, away_team, sport, commence_time, outcome_name
+        GROUP BY match_id, home_team, away_team, sport, commence_time, outcome
         HAVING COUNT(DISTINCT bookmaker) >= 3
     ),
     odds_with_spread AS (
@@ -89,18 +89,18 @@ def get_opportunities(
         ows.sport,
         ows.commence_time,
         'value' as opportunity_type,
-        ows.outcome_name as outcome,
+        ows.outcome as outcome,
         ows.max_odd as best_odd,
         ows.min_odd as worst_odd,
         ows.spread_pct::float,
         (SELECT o.bookmaker FROM odds o 
          WHERE o.match_id = ows.match_id 
-           AND o.outcome_name = ows.outcome_name 
+           AND o.outcome = ows.outcome 
            AND o.odds_value = ows.max_odd 
          LIMIT 1) as bookmaker_best,
         (SELECT o.bookmaker FROM odds o 
          WHERE o.match_id = ows.match_id 
-           AND o.outcome_name = ows.outcome_name 
+           AND o.outcome = ows.outcome 
            AND o.odds_value = ows.min_odd 
          LIMIT 1) as bookmaker_worst,
         ows.nb_bookmakers,
@@ -230,12 +230,12 @@ def detect_arbitrage(request: Request, sport: Optional[str] = None):
             away_team,
             sport,
             commence_time,
-            MAX(CASE WHEN outcome_name = home_team THEN odds_value END) as home_odd,
-            MAX(CASE WHEN outcome_name = away_team THEN odds_value END) as away_odd,
-            MAX(CASE WHEN outcome_name = 'Draw' THEN odds_value END) as draw_odd
+            MAX(CASE WHEN outcome = home_team THEN odds_value END) as home_odd,
+            MAX(CASE WHEN outcome = away_team THEN odds_value END) as away_odd,
+            MAX(CASE WHEN outcome = 'Draw' THEN odds_value END) as draw_odd
         FROM odds
-        WHERE market_type = 'h2h'
-          AND commence_time > NOW()
+        
+          WHERE commence_time > NOW()
     """
     
     params = []

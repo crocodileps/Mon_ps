@@ -1,7 +1,10 @@
 """
 API FastAPI principale pour Mon_PS
 """
-from fastapi import FastAPI
+import time
+import uuid
+
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from api.config import settings
 from api.services.logging import logger
@@ -22,6 +25,44 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Middleware pour ajouter un ID de corrélation à chaque requête
+@app.middleware("http")
+async def add_correlation_id(request: Request, call_next):
+    """Ajoute un identifiant unique à chaque requête entrante"""
+    request_id = str(uuid.uuid4())
+    request.state.request_id = request_id
+    
+    response = await call_next(request)
+    response.headers["X-Request-ID"] = request_id
+    
+    return response
+
+# Middleware de logging des requêtes
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    """Log toutes les requêtes avec durée d'exécution"""
+    start_time = time.time()
+    
+    request_id = getattr(request.state, "request_id", "unknown")
+    
+    # Traiter la requête
+    response = await call_next(request)
+    
+    # Calculer le temps d'exécution
+    duration_ms = (time.time() - start_time) * 1000
+    
+    # Log de la réponse
+    logger.info(
+        "request_completed",
+        request_id=request_id,
+        method=request.method,
+        path=request.url.path,
+        status_code=response.status_code,
+        duration_ms=round(duration_ms, 2)
+    )
+    
+    return response
 
 # Routes
 app.include_router(bets.router, prefix="/bets", tags=["bets"])

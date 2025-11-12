@@ -14,7 +14,7 @@ from api.services.logging import logger
 
 router = APIRouter(prefix="/stats", tags=["Statistics"])
 
-@router.get("/global", response_model=Stats)
+@router.get("/global", response_model=dict)
 def get_global_stats(request: Request):
     """Statistiques globales du système"""
     

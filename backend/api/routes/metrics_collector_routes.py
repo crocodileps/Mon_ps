@@ -85,7 +85,7 @@ def update_metrics_from_db():
                 COUNT(*) as odds_count,
                 COUNT(DISTINCT match_id) as matches_count,
                 COUNT(DISTINCT bookmaker) as bookmakers_count
-            FROM odds_history
+            FROM odds
             WHERE collected_at >= NOW() - INTERVAL '1 hour'
             GROUP BY sport
         """)
@@ -109,7 +109,7 @@ def update_metrics_from_db():
             if max_spread_val:
                 max_spread.labels(sport=sport).set(float(max_spread_val))
         
-        cursor.execute("SELECT MAX(collected_at) FROM odds_history")
+        cursor.execute("SELECT MAX(collected_at) FROM odds")
         last_collected = cursor.fetchone()[0]
         if last_collected:
             import time
@@ -144,7 +144,7 @@ async def collector_stats() -> Dict:
                 COUNT(DISTINCT sport) as total_sports,
                 MIN(collected_at) as first_collection,
                 MAX(collected_at) as last_collection
-            FROM odds_history
+            FROM odds
         """)
         
         row = cursor.fetchone()
@@ -187,7 +187,7 @@ async def collector_stats() -> Dict:
                 COUNT(DISTINCT match_id) as matches_count,
                 COUNT(DISTINCT bookmaker) as bookmakers_count,
                 MAX(collected_at) as last_update
-            FROM odds_history
+            FROM odds
             WHERE collected_at >= NOW() - INTERVAL '24 hours'
             GROUP BY sport
             ORDER BY odds_count DESC
