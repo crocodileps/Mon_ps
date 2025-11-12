@@ -102,13 +102,23 @@ services:
     depends_on:
       - backend
 
+networks:
+  monps_network:
+    driver: bridge
+
+volumes:
+  uptime-kuma-data:
+  postgres_data:
+  prometheus_data:
+  grafana_data:
+  alertmanager_data:
 
   uptime-kuma:
     image: louislam/uptime-kuma:1
     container_name: monps_uptime
     restart: unless-stopped
     ports:
-      - "3002:3001"
+      - "3001:3001"
     volumes:
       - uptime-kuma-data:/app/data
     networks:
