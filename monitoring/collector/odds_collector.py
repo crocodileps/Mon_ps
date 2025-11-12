@@ -1,178 +1,304 @@
+#!/usr/bin/env python3
 """
-Collector Optimisé v2.0 - Structure DB correcte
+Collector v2.1 - Avec déduplication et filtre 24h
 """
 import os
-import logging
+import sys
 import json
-from datetime import datetime, timezone
-from pathlib import Path
+import time
 import requests
 import psycopg2
+from datetime import datetime, timedelta
+from pathlib import Path
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # Configuration
 API_KEY = os.getenv('ODDS_API_KEY')
-API_BASE_URL = 'https://api.the-odds-api.com/v4'
-SPORTS = ['soccer_epl', 'soccer_spain_la_liga', 'soccer_france_ligue_one']
-MIN_COLLECT_INTERVAL = 7200
-CACHE_DIR = Path('/home/Mon_ps/monitoring/collector/cache')
-CACHE_DIR.mkdir(exist_ok=True)
+SPORTS = os.getenv('SPORTS', 'soccer_epl,soccer_spain_la_liga,soccer_france_ligue_one').split(',')
+MIN_SPREAD = float(os.getenv('MIN_SPREAD_THRESHOLD', '5.0'))
+EMAIL_FROM = os.getenv('EMAIL_FROM')
+EMAIL_TO = os.getenv('EMAIL_TO')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 
 DB_CONFIG = {
     'host': os.getenv('DB_HOST', 'localhost'),
-    'port': int(os.getenv('DB_PORT', 5432)),
-    'database': os.getenv('DB_NAME', 'monps_db'),
-    'user': os.getenv('DB_USER', 'monps_user'),
+    'port': int(os.getenv('DB_PORT', '5432')),
+    'database': os.getenv('DB_NAME'),
+    'user': os.getenv('DB_USER'),
     'password': os.getenv('DB_PASSWORD')
 }
 
-log_file = f'/home/Mon_ps/monitoring/collector/logs/collector_{datetime.now().strftime("%Y%m%d")}.log'
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[logging.FileHandler(log_file), logging.StreamHandler()]
-)
-logger = logging.getLogger(__name__)
+CACHE_DIR = Path(__file__).parent / 'cache'
+CACHE_DIR.mkdir(exist_ok=True)
 
-class SmartCollector:
-    def __init__(self):
-        self.conn = None
-        self.stats = {'api_calls': 0, 'skipped': 0, 'saved_odds': 0}
+# Fichier de tracking des alertes déjà envoyées
+SENT_ALERTS_FILE = CACHE_DIR / 'sent_alerts.json'
+
+def load_sent_alerts():
+    """Charger les alertes déjà envoyées"""
+    if SENT_ALERTS_FILE.exists():
+        with open(SENT_ALERTS_FILE, 'r') as f:
+            data = json.load(f)
+            # Nettoyer les alertes de plus de 48h
+            cutoff = (datetime.now() - timedelta(hours=48)).isoformat()
+            return {k: v for k, v in data.items() if v > cutoff}
+    return {}
+
+def save_sent_alerts(alerts):
+    """Sauvegarder les alertes envoyées"""
+    with open(SENT_ALERTS_FILE, 'w') as f:
+        json.dump(alerts, f)
+
+def get_cache_file(sport):
+    return CACHE_DIR / f"{sport}_last.json"
+
+def load_last_update(sport):
+    cache_file = get_cache_file(sport)
+    if cache_file.exists():
+        with open(cache_file, 'r') as f:
+            return json.load(f)
+    return {'last_updated': None, 'quota_remaining': None}
+
+def save_last_update(sport, quota_remaining):
+    cache_file = get_cache_file(sport)
+    with open(cache_file, 'w') as f:
+        json.dump({
+            'last_updated': datetime.now().isoformat(),
+            'quota_remaining': quota_remaining
+        }, f)
+
+def collect_odds_for_sport(sport):
+    """Collecter les cotes pour un sport"""
+    print(f"[{datetime.now()}] Collecte {sport}...")
     
-    def _get_last_collect_time(self, sport):
-        cache_file = CACHE_DIR / f'{sport}_last.json'
-        if cache_file.exists():
-            try:
-                data = json.loads(cache_file.read_text())
-                return datetime.fromisoformat(data['timestamp'])
-            except:
-                return None
-        return None
+    url = f"https://api.the-odds-api.com/v4/sports/{sport}/odds"
+    params = {
+        'apiKey': API_KEY,
+        'regions': 'eu',
+        'markets': 'h2h',
+        'oddsFormat': 'decimal'
+    }
     
-    def _save_last_collect_time(self, sport):
-        cache_file = CACHE_DIR / f'{sport}_last.json'
-        cache_file.write_text(json.dumps({
-            'timestamp': datetime.now().isoformat(),
-            'sport': sport
-        }))
-    
-    def should_collect(self, sport):
-        last = self._get_last_collect_time(sport)
-        if not last:
-            logger.info(f"🆕 {sport}: Première collecte")
-            return True
+    try:
+        response = requests.get(url, params=params, timeout=30)
+        response.raise_for_status()
         
-        elapsed = (datetime.now() - last).total_seconds()
-        if elapsed < MIN_COLLECT_INTERVAL:
-            logger.info(f"⏭️  {sport}: SKIP ({elapsed/3600:.1f}h)")
-            self.stats['skipped'] += 1
-            return False
+        quota_remaining = int(response.headers.get('x-requests-remaining', 0))
+        data = response.json()
         
-        logger.info(f"✅ {sport}: OK ({elapsed/3600:.1f}h)")
-        return True
+        save_last_update(sport, quota_remaining)
+        
+        # Filtrer matchs < 24h
+        now = datetime.now()
+        cutoff = (now + timedelta(hours=24))
+        
+        filtered_data = []
+        for match in data:
+            commence_time = datetime.fromisoformat(match["commence_time"].replace("Z", "+00:00")).replace(tzinfo=None)
+            if commence_time <= cutoff:
+                filtered_data.append(match)
+        
+        print(f"✅ {len(filtered_data)} matchs collectés (< 24h), quota restant: {quota_remaining}")
+        return filtered_data, quota_remaining
+        
+    except Exception as e:
+        print(f"❌ Erreur collecte {sport}: {e}")
+        return [], None
+
+def save_to_database(sport, matches_data):
+    """Sauvegarder dans PostgreSQL"""
+    if not matches_data:
+        return 0
     
-    def fetch_odds(self, sport):
-        url = f"{API_BASE_URL}/sports/{sport}/odds"
-        params = {
-            'apiKey': API_KEY,
-            'regions': 'eu',
-            'markets': 'h2h',  # Seulement h2h pour la structure actuelle
-            'oddsFormat': 'decimal'
-        }
+    conn = psycopg2.connect(**DB_CONFIG)
+    cursor = conn.cursor()
+    
+    inserted = 0
+    for match in matches_data:
+        match_id = match['id']
+        home_team = match['home_team']
+        away_team = match['away_team']
+        commence_time = match['commence_time']
         
-        try:
-            logger.info(f"🌐 API CALL → {sport}")
-            response = requests.get(url, params=params, timeout=30)
-            response.raise_for_status()
-            self.stats['api_calls'] += 1
+        for bookmaker in match.get('bookmakers', []):
+            bookmaker_name = bookmaker['key']
             
-            remaining = response.headers.get('x-requests-remaining', '?')
-            logger.info(f"📊 Quota restant: {remaining}")
-            return response.json()
-        except Exception as e:
-            logger.error(f"❌ {sport}: {e}")
-            return []
-    
-    def save_to_db(self, sport, matches):
-        if not matches:
-            return 0
-        
-        cursor = self.conn.cursor()
-        now = datetime.now(timezone.utc)
-        saved = 0
-        
-        for match in matches:
-            match_id = match['id']
-            home = match['home_team']
-            away = match['away_team']
-            commence = match['commence_time']
-            match_time = datetime.fromisoformat(commence.replace('Z', '+00:00'))
-            
-            # Skip matchs passés
-            if match_time < now:
-                continue
-            
-            # Traiter chaque bookmaker
-            for bookie in match.get('bookmakers', []):
-                bookmaker = bookie['title']
-                
-                # Extraire home/away/draw odds
-                home_odds = None
-                away_odds = None
-                draw_odds = None
-                
-                for market in bookie.get('markets', []):
-                    if market['key'] == 'h2h':
-                        for outcome in market.get('outcomes', []):
-                            if outcome['name'] == home:
-                                home_odds = float(outcome['price'])
-                            elif outcome['name'] == away:
-                                away_odds = float(outcome['price'])
-                            elif outcome['name'] == 'Draw':
-                                draw_odds = float(outcome['price'])
-                
-                # Insérer
-                if home_odds and away_odds:
+            for market in bookmaker.get('markets', []):
+                if market['key'] != 'h2h':
+                    continue
+                    
+                for outcome in market.get('outcomes', []):
                     try:
                         cursor.execute("""
-                            INSERT INTO odds_history 
-                            (match_id, sport, home_team, away_team, commence_time,
-                             bookmaker, home_odds, away_odds, draw_odds, collected_at)
-                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                            ON CONFLICT (match_id, bookmaker, collected_at) DO NOTHING
+                            INSERT INTO odds (
+                                match_id, sport, home_team, away_team,
+                                bookmaker, outcome, odds_value, commence_time
+                            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                            ON CONFLICT (match_id, bookmaker, outcome, created_at) 
+                            DO NOTHING
                         """, (
-                            match_id, sport, home, away, commence,
-                            bookmaker, home_odds, away_odds, draw_odds, now
+                            match_id, sport, home_team, away_team,
+                            bookmaker_name, outcome['name'], 
+                            outcome['price'], commence_time
                         ))
-                        saved += 1
+                        inserted += cursor.rowcount
                     except Exception as e:
-                        logger.error(f"❌ Erreur INSERT: {e}")
-                        continue
-        
-        self.conn.commit()
-        self.stats['saved_odds'] = saved
-        logger.info(f"💾 {saved} cotes ({len(matches)} matchs)")
-        return saved
+                        print(f"Erreur insertion: {e}")
     
-    def run(self):
-        logger.info("="*70)
-        logger.info("🚀 COLLECTOR OPTIMISÉ v2.0")
-        logger.info("="*70)
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+    return inserted
+
+def check_opportunities_and_alert():
+    """Vérifier les opportunités et envoyer UN email groupé"""
+    conn = psycopg2.connect(**DB_CONFIG)
+    cursor = conn.cursor()
+    
+    # Charger les alertes déjà envoyées
+    sent_alerts = load_sent_alerts()
+    
+    # Chercher opportunités < 24h avec spread > 5%
+    cursor.execute("""
+        WITH odds_stats AS (
+            SELECT
+                match_id,
+                home_team,
+                away_team,
+                sport,
+                commence_time,
+                outcome,
+                MIN(odds_value) as min_odd,
+                MAX(odds_value) as max_odd,
+                COUNT(DISTINCT bookmaker) as nb_bookmakers
+            FROM odds
+            WHERE commence_time > NOW() 
+              AND commence_time < NOW() + INTERVAL '24 hours'
+            GROUP BY match_id, home_team, away_team, sport, commence_time, outcome
+            HAVING COUNT(DISTINCT bookmaker) >= 3
+        )
+        SELECT
+            match_id,
+            home_team,
+            away_team,
+            sport,
+            commence_time,
+            outcome,
+            max_odd,
+            min_odd,
+            ((max_odd - min_odd) / min_odd * 100) as spread_pct,
+            nb_bookmakers
+        FROM odds_stats
+        WHERE ((max_odd - min_odd) / min_odd * 100) >= %s
+        ORDER BY spread_pct DESC
+        LIMIT 10
+    """, (MIN_SPREAD,))
+    
+    opportunities = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    
+    if not opportunities:
+        print("Aucune opportunité détectée")
+        return
+    
+    # Filtrer les nouvelles opportunités
+    new_opportunities = []
+    for opp in opportunities:
+        match_id, home, away, sport, commence, outcome, max_odd, min_odd, spread, nb_bk = opp
         
-        self.conn = psycopg2.connect(**DB_CONFIG)
-        logger.info("✅ Connecté PostgreSQL")
+        # Créer une clé unique
+        alert_key = f"{match_id}_{outcome}_{int(spread)}"
         
-        for sport in SPORTS:
-            if not self.should_collect(sport):
-                continue
-            data = self.fetch_odds(sport)
-            self.save_to_db(sport, data)
-            self._save_last_collect_time(sport)
+        # Vérifier si déjà envoyée
+        if alert_key not in sent_alerts:
+            new_opportunities.append(opp)
+            sent_alerts[alert_key] = datetime.now().isoformat()
+    
+    if not new_opportunities:
+        print(f"{len(opportunities)} opportunités trouvées mais déjà alertées")
+        return
+    
+    # Sauvegarder les alertes
+    save_sent_alerts(sent_alerts)
+    
+    # Envoyer UN email groupé
+    send_grouped_email(new_opportunities)
+
+def send_grouped_email(opportunities):
+    """Envoyer UN email avec toutes les opportunités"""
+    html = """
+    <html>
+    <body style="font-family: Arial, sans-serif;">
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; color: white;">
+            <h1>💰 Mon_PS Trading</h1>
+            <h2>Nouvelles Opportunités Détectées</h2>
+        </div>
+        <div style="padding: 20px;">
+            <p><strong>{} opportunités à analyser dans les 24h</strong></p>
+    """.format(len(opportunities))
+    
+    for opp in opportunities:
+        match_id, home, away, sport, commence, outcome, max_odd, min_odd, spread, nb_bk = opp
         
-        self.conn.close()
-        logger.info("="*70)
-        logger.info(f"📊 API: {self.stats['api_calls']} | Saved: {self.stats['saved_odds']}")
-        logger.info("="*70)
+        html += f"""
+        <div style="border-left: 4px solid #667eea; padding: 15px; margin: 15px 0; background: #f8f9fa;">
+            <h3 style="margin: 0 0 10px 0;">🏆 {home} vs {away}</h3>
+            <p><strong>Sport:</strong> {sport.replace('soccer_', '').replace('_', ' ').title()}</p>
+            <p><strong>Pari suggéré:</strong> {outcome}</p>
+            <p><strong>Spread:</strong> <span style="color: #667eea; font-size: 1.2em; font-weight: bold;">{spread:.1f}%</span></p>
+            <p><strong>Cotes:</strong> {max_odd:.2f} → {min_odd:.2f}</p>
+            <p><strong>Bookmakers:</strong> {nb_bk}</p>
+            <p><strong>Commence:</strong> {commence.strftime('%d/%m/%Y %H:%M')}</p>
+        </div>
+        """
+    
+    html += """
+        </div>
+    </body>
+    </html>
+    """
+    
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = f"[MON_PS] {len(opportunities)} opportunités détectées (<24h)"
+    msg['From'] = EMAIL_FROM
+    msg['To'] = EMAIL_TO
+    msg.attach(MIMEText(html, 'html'))
+    
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(EMAIL_FROM, EMAIL_PASSWORD)
+        server.send_message(msg)
+        server.quit()
+        print(f"✅ Email envoyé : {len(opportunities)} opportunités")
+    except Exception as e:
+        print(f"❌ Erreur email: {e}")
+
+def main():
+    print("=" * 60)
+    print(f"COLLECTOR v2.1 - {datetime.now()}")
+    print("=" * 60)
+    
+    total_inserted = 0
+    
+    for sport in SPORTS:
+        matches, quota = collect_odds_for_sport(sport)
+        inserted = save_to_database(sport, matches)
+        total_inserted += inserted
+        
+        if quota and quota < 100:
+            print(f"⚠️  Quota API faible: {quota} requêtes restantes")
+    
+    print(f"\n✅ {total_inserted} nouvelles cotes insérées")
+    
+    # Vérifier opportunités
+    check_opportunities_and_alert()
+    
+    print("=" * 60)
 
 if __name__ == '__main__':
-    collector = SmartCollector()
-    collector.run()
+    main()

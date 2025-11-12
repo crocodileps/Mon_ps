@@ -1,21 +1,21 @@
 groups:
-  - name: opportunities_working
-    interval: 1m
+  - name: opportunities_24h
+    interval: 5m
     rules:
       - alert: NewOpportunitiesDetected
-        expr: sum(monps_current_opportunities) > 50
+        expr: sum(monps_current_opportunities) > 20
         for: 2m
         labels:
           severity: info
         annotations:
           summary: "{{ $value }} opportunités disponibles"
-          description: "Total: {{ $value }} paris à valeur (EPL+Ligue1+LaLiga)"
+          description: "Opportunités de paris à forte valeur détectées"
       
       - alert: ExtremeSpreadOpportunity
-        expr: max(monps_max_spread_percent) > 100
+        expr: max(monps_max_spread_percent) > 50
         for: 1m
         labels:
-          severity: info
+          severity: high
         annotations:
           summary: "Spread extrême: {{ $value }}%"
-          description: "Un spread de {{ $value }}% détecté - opportunité majeure"
+          description: "Une opportunité exceptionnelle a été détectée"
