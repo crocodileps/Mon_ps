@@ -61,7 +61,7 @@ export default function BetsPage() {
 
   const { data, isLoading, isRefetching, refetch } = useQuery<Bet[]>({
     queryKey: queryKeys.bets.all,
-    queryFn: getBets,
+    queryFn: () => getBets(),
     refetchInterval: 60_000,
     staleTime: 30_000,
     retry: 1,

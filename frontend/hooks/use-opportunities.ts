@@ -14,10 +14,7 @@ export interface OpportunitiesFilters {
   [key: string]: string | number | undefined
 }
 
-type QueryOptions = Omit
-  UseQueryOptions<Opportunity[], Error, Opportunity[], ReturnType<typeof queryKeys.opportunities.list>>,
-  'queryKey' | 'queryFn'
->
+type QueryOptions = Omit<UseQueryOptions<Opportunity[], Error, Opportunity[], ReturnType<typeof queryKeys.opportunities.list>>, 'queryKey' | 'queryFn'>
 
 export function useOpportunities(filters?: OpportunitiesFilters, options?: QueryOptions) {
   return useQuery({

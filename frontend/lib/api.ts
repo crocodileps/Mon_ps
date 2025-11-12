@@ -77,3 +77,53 @@ export async function getBookmakerStats() {
 export async function getComprehensiveAnalytics() {
   return apiFetch<any>('/stats/stats/analytics/comprehensive')
 }
+
+// ============= BETS =============
+export async function getBets(params?: { status?: string }) {
+  return apiFetch<any[]>('/bets/bets/', { query: params })
+}
+
+export async function getBet(betId: string) {
+  return apiFetch<any>(`/bets/bets/${betId}`)
+}
+
+export async function createBet(bet: any) {
+  return apiFetch<any>('/bets/bets/', {
+    method: 'POST',
+    body: JSON.stringify(bet),
+  })
+}
+
+export async function updateBet(betId: string, bet: any) {
+  return apiFetch<any>(`/bets/bets/${betId}`, {
+    method: 'PUT',
+    body: JSON.stringify(bet),
+  })
+}
+
+// ============= ODDS =============
+export async function getOdds(params?: { sport?: string; bookmaker?: string }) {
+  return apiFetch<any[]>('/odds/odds/', { query: params })
+}
+
+export async function getMatches() {
+  return apiFetch<any[]>('/odds/odds/matches')
+}
+
+export async function getMatch(matchId: string) {
+  return apiFetch<any>(`/odds/odds/matches/${matchId}`)
+}
+
+// ============= ARBITRAGE =============
+export async function getArbitrageOpportunities() {
+  return apiFetch<any[]>('/opportunities/opportunities/arbitrage')
+}
+
+// ============= METRICS =============
+export async function getMetrics() {
+  return apiFetch<any>('/metrics')
+}
+
+export async function getCollectorStats() {
+  return apiFetch<any>('/metrics/collector/stats')
+}
