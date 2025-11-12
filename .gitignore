@@ -45,3 +45,15 @@ INFOS_SERVEUR.txt
 monitoring/collector/.env
 monitoring/collector/logs/
 *.log
+
+# Backups PostgreSQL (ajouté Phase 14)
+backups/*.sql.gz
+backups/*.sql
+
+# Logs (ajouté Phase 14)
+logs/*.log
+*.log
+
+# Fichiers temporaires Docker
+monitoring/docker-compose.yml.before-*
+*.backup
