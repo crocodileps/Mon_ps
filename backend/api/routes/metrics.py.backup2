@@ -1,0 +1,84 @@
+"""
+Routes métriques Prometheus avec refresh
+"""
+from fastapi import APIRouter, Depends
+from prometheus_client import Gauge, Counter, generate_latest, CONTENT_TYPE_LATEST
+from fastapi.responses import Response
+import logging
+
+from api.services.database import get_cursor  # ⭐ BON IMPORT
+
+router = APIRouter()
+logger = logging.getLogger(__name__)
+
+# Métriques existantes
+total_bets = Gauge('monps_total_bets', 'Total number of bets')
+bankroll = Gauge('monps_bankroll', 'Current bankroll in EUR')
+roi = Gauge('monps_roi', 'Return on Investment')
+win_rate = Gauge('monps_win_rate', 'Win rate percentage')
+
+# Nouvelles métriques opportunités
+current_opportunities = Gauge('monps_current_opportunities', 'Number of current opportunities')
+max_spread_percent = Gauge('monps_max_spread_percent', 'Maximum spread percentage currently available')
+active_bookmakers = Gauge('monps_active_bookmakers', 'Number of active bookmakers')
+
+@router.get("")
+def get_metrics():
+    """Endpoint Prometheus"""
+    return Response(
+        content=generate_latest(),
+        media_type=CONTENT_TYPE_LATEST
+    )
+
+@router.get("/refresh")
+def refresh_metrics():
+    """
+    Rafraîchir les métriques opportunités depuis la DB
+    """
+    try:
+        # Utiliser get_cursor comme les autres routes
+        with get_cursor() as cursor:
+            # Stats globales
+            cursor.execute("""
+                SELECT 
+                    COUNT(*) as total_bets,
+                    SUM(stake) as total_stake,
+                    SUM(CASE WHEN result = 'won' THEN profit ELSE -stake END) as total_profit
+                FROM bets
+            """)
+            stats_result = cursor.fetchone()
+            
+            if stats_result and stats_result[0] > 0:
+                total_bets.set(stats_result[0])
+                total_stake = stats_result[1] or 0
+                total_profit = stats_result[2] or 0
+                if total_stake > 0:
+                    roi.set((total_profit / total_stake) * 100)
+            
+            # Opportunités
+            cursor.execute("""
+                SELECT 
+                    COUNT(*) as nb_opportunities,
+                    COALESCE(MAX(home_spread_pct), 0) as max_spread
+                FROM v_current_opportunities
+                WHERE home_spread_pct > 5
+            """)
+            opp_result = cursor.fetchone()
+            
+            nb_opps = opp_result[0] if opp_result else 0
+            max_spr = opp_result[1] if opp_result else 0
+            
+            current_opportunities.set(nb_opps)
+            max_spread_percent.set(float(max_spr))
+            
+            logger.info(f"Metrics refreshed: {nb_opps} opportunities, {max_spr}% max spread")
+            
+            return {
+                "updated": True,
+                "opportunities": nb_opps,
+                "max_spread": float(max_spr)
+            }
+        
+    except Exception as e:
+        logger.error(f"Error refreshing metrics: {e}")
+        return {"updated": False, "error": str(e)}

@@ -10,6 +10,7 @@ from api.config import settings
 from api.services.logging import logger
 from api.routes import bets, odds, opportunities, stats, metrics
 from api.routes import metrics_collector_routes
+from api.routes import metrics_routes
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -70,6 +71,7 @@ app.include_router(odds.router, prefix="/odds", tags=["odds"])
 app.include_router(opportunities.router, prefix="/opportunities", tags=["opportunities"])
 app.include_router(stats.router, prefix="/stats", tags=["stats"])
 app.include_router(metrics.router, tags=["metrics"])
+app.include_router(metrics_routes.router)
 app.include_router(
     metrics_collector_routes.router,
     tags=["Metrics Collector"]
