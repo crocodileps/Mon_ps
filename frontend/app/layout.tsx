@@ -1,44 +1,44 @@
-import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono as JetBrainsMono } from 'next/font/google'
-import { PropsWithChildren } from 'react'
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Providers } from "./providers";
+import { Sidebar } from "@/components/layout/sidebar";
+import { Header } from "@/components/layout/header";
+import { MobileNav } from "@/components/layout/mobile-nav";
 
-import './globals.css'
-import { Providers } from './providers'
-import { AppShell } from '@/components/layout/app-shell'
-import { cn } from '@/lib/utils'
-
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-sans',
-})
-
-const jetBrainsMono = JetBrainsMono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-mono',
-})
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Mon_PS – Dashboard sportif quantitatif',
-  description:
-    'Plateforme premium de paris sportifs pour suivre les opportunités, les performances et la bankroll.',
-}
+  title: "Mon_PS - Dashboard Quantitatif",
+  description: "Système de trading quantitatif pour paris sportifs",
+};
 
-export default function RootLayout({ children }: PropsWithChildren) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="fr" className="dark" suppressHydrationWarning>
-      <body
-        className={cn(
-          'min-h-screen bg-background text-text-primary selection:bg-primary/40',
-          inter.variable,
-          jetBrainsMono.variable,
-        )}
-      >
+    <html lang="fr" className="dark">
+      <body className={`${inter.className} min-h-screen bg-slate-950 text-slate-200`}>
         <Providers>
-          <AppShell>{children}</AppShell>
+          <div className="flex h-screen w-full bg-slate-950 text-slate-200 overflow-hidden">
+            {/* Sidebar Desktop */}
+            <Sidebar />
+
+            {/* Main Content */}
+            <main className="flex-1 flex flex-col overflow-y-auto">
+              <Header />
+              <div className="flex-1 p-4 md:p-8 pb-24 md:pb-8">
+                {children}
+              </div>
+            </main>
+
+            {/* Mobile Nav */}
+            <MobileNav />
+          </div>
         </Providers>
       </body>
     </html>
-  )
+  );
 }

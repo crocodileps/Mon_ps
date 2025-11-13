@@ -1,131 +1,99 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { BarChart3, LayoutDashboard, Settings, Target, TrendingUp } from 'lucide-react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-
-import { Badge } from '@/components/ui/badge'
-import { useUiStore } from '@/lib/stores/ui-store'
-import { cn } from '@/lib/utils'
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import {
+  LayoutDashboard,
+  Target,
+  TrendingUp,
+  BarChart3,
+  Settings,
+  Users2,
+  Shield,
+  Lightbulb,
+  LucideIcon,
+} from "lucide-react";
 
 interface SidebarProps {
-  opportunitiesCount?: number
-  activeBetsCount?: number
+  opportunitiesCount?: number;
+  activeBetsCount?: number;
 }
 
-export const navItems = [
-  {
-    href: '/',
-    icon: LayoutDashboard,
-    label: 'Dashboard',
-  },
-  {
-    href: '/opportunities',
-    icon: Target,
-    label: 'Opportunités',
-    badge: 'opportunities',
-  },
-  {
-    href: '/bets',
-    icon: TrendingUp,
-    label: 'Paris',
-    badge: 'bets',
-  },
-  {
-    href: '/analytics',
-    icon: BarChart3,
-    label: 'Analytics',
-  },
-  {
-    href: '/settings',
-    icon: Settings,
-    label: 'Paramètres',
-  },
-] as const
-
-const containerVariants = {
-  open: {
-    width: 260,
-    transition: { type: 'spring', stiffness: 120, damping: 14 },
-  },
-  collapsed: {
-    width: 88,
-    transition: { type: 'spring', stiffness: 120, damping: 14 },
-  },
+interface NavItem {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+  href: string;
+  badge?: string;
 }
 
-export function Sidebar({ opportunitiesCount = 0, activeBetsCount = 0 }: SidebarProps) {
-  const pathname = usePathname()
-  const { isSidebarCollapsed } = useUiStore()
+export const navItems: NavItem[] = [
+  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, href: "/" },
+  { id: "opportunities", label: "Opportunités", icon: Target, href: "/opportunities", badge: "opportunitiesCount" },
+  { id: "bets", label: "Paris", icon: TrendingUp, href: "/bets", badge: "activeBetsCount" },
+  { id: "compare-agents", label: "Comparer", icon: Users2, href: "/compare-agents" },
+  { id: "agent-strategy", label: "Stratégie Agents", icon: Shield, href: "/agent-strategy" },
+  { id: "tips", label: "Astuces", icon: Lightbulb, href: "/tips" },
+  { id: "analytics", label: "Analytics", icon: BarChart3, href: "/analytics" },
+  { id: "settings", label: "Paramètres", icon: Settings, href: "/settings" },
+];
 
-  const getBadgeValue = (type?: string) => {
-    switch (type) {
-      case 'opportunities':
-        return opportunitiesCount
-      case 'bets':
-        return activeBetsCount
-      default:
-        return undefined
-    }
-  }
+export function Sidebar({ opportunitiesCount, activeBetsCount }: SidebarProps) {
+  const pathname = usePathname();
+
+  const getBadgeCount = (badgeType?: string) => {
+    if (badgeType === "opportunitiesCount") return opportunitiesCount;
+    if (badgeType === "activeBetsCount") return activeBetsCount;
+    return undefined;
+  };
 
   return (
-    <motion.aside
-      animate={isSidebarCollapsed ? 'collapsed' : 'open'}
-      variants={containerVariants}
-      className={cn(
-        'hidden lg:flex h-[calc(100vh-2rem)] sticky top-4 flex-col rounded-3xl border border-border/60 bg-surface/80 p-4 shadow-inner-glow backdrop-blur-xl transition-all duration-300',
-      )}
-    >
-      <div className="mb-8 space-y-1 px-1">
-        <div className="text-xs uppercase tracking-[0.35em] text-text-muted">Mon_PS</div>
-        <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-2xl font-bold text-transparent">
-          Quant Lab
-        </span>
+    <nav className="hidden md:flex flex-col w-20 xl:w-64 bg-slate-950/80 backdrop-blur-lg border-r border-slate-800 p-4 transition-all duration-300">
+      <div className="flex items-center justify-center xl:justify-start space-x-3 h-16 mb-6 px-3">
+        <Target className="h-8 w-8 text-blue-400" style={{ filter: "drop-shadow(0 0 8px rgba(59,130,246,0.7))" }} />
+        <span className="text-2xl font-bold text-white xl:block hidden font-tech text-glow-blue">AURA</span>
       </div>
-      <nav className="flex flex-1 flex-col gap-2">
+
+      <ul className="flex-grow space-y-2">
         {navItems.map((item) => {
-          const isActive = pathname === item.href
-          const Icon = item.icon
-          const badgeValue = 'badge' in item ? getBadgeValue(item.badge) : undefined
+          const isActive = pathname === item.href;
+          const badgeCount = getBadgeCount(item.badge);
 
           return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'group relative flex items-center gap-3 rounded-2xl px-4 py-3 transition-colors duration-200',
-                isActive
-                  ? 'bg-gradient-to-r from-primary/20 via-primary/10 to-transparent text-text-primary shadow-glow'
-                  : 'text-text-secondary hover:bg-surface-hover/80 hover:text-text-primary',
-              )}
-            >
-              <span
+            <li key={item.id}>
+              <Link
+                href={item.href}
                 className={cn(
-                  'flex h-9 w-9 items-center justify-center rounded-xl bg-surface-hover/70 transition-colors duration-200',
-                  isActive && 'bg-primary/20 text-primary-foreground',
+                  "flex items-center justify-between space-x-4 p-3 rounded-lg text-slate-300 w-full group",
+                  isActive
+                    ? "bg-blue-600/20 text-blue-300 border border-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+                    : "hover:bg-slate-800/50"
                 )}
               >
-                <Icon className="h-5 w-5" />
-              </span>
-              <span className="text-sm font-semibold tracking-wide">{item.label}</span>
-              {typeof badgeValue === 'number' && badgeValue > 0 ? (
-                <Badge variant="secondary" className="ml-auto bg-primary/20 text-primary">
-                  {badgeValue}
-                </Badge>
-              ) : null}
-            </Link>
-          )
+                <div className="flex items-center space-x-4">
+                  <item.icon className={cn("h-6 w-6", isActive ? "text-blue-400" : "text-slate-400")} />
+                  <span className="xl:block hidden text-lg font-medium">{item.label}</span>
+                </div>
+                {badgeCount !== undefined && badgeCount > 0 && (
+                  <span className="xl:block hidden px-2 py-0.5 text-xs font-bold bg-blue-500 text-white rounded-full">
+                    {badgeCount}
+                  </span>
+                )}
+              </Link>
+            </li>
+          );
         })}
-      </nav>
-      <div className="rounded-2xl border border-border/70 bg-surface-hover/60 p-4">
-        <p className="text-xs uppercase tracking-wide text-text-muted">Stratégie hybride</p>
-        <p className="mt-2 text-sm text-text-secondary">
-          10 paris Tabac + 10 paris Ligne analysés en temps réel.
-        </p>
-      </div>
-    </motion.aside>
-  )
-}
+      </ul>
 
+      <div className="mt-auto pt-4 border-t border-slate-700">
+        <div className="rounded-2xl border border-slate-700/70 bg-slate-800/60 p-4">
+          <p className="text-xs uppercase tracking-wide text-slate-400">Stratégie hybride</p>
+          <p className="mt-2 text-sm text-slate-300 xl:block hidden">
+            10 paris Tabac + 10 paris Ligne analysés en temps réel.
+          </p>
+        </div>
+      </div>
+    </nav>
+  );
+}
