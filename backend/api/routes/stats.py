@@ -105,16 +105,16 @@ def get_bankroll(request: Request):
         
         if not table_exists:
             stats = {
-                "current_balance": 1000.0,
+                "current_bankroll": 1000.0,
                 "initial_balance": 1000.0,
                 "total_staked": 0.0,
                 "total_returned": 0.0,
                 "total_profit": 0.0,
                 "roi": 0.0,
-                "nb_bets": 0,
-                "nb_won": 0,
-                "nb_lost": 0,
-                "nb_pending": 0,
+                "total_bets": 0,
+                "won_bets": 0,
+                "lost_bets": 0,
+                "pending_bets": 0,
                 "win_rate": 0.0
             }
             duration_ms = (time.time() - start_time) * 1000
@@ -141,8 +141,8 @@ def get_bankroll(request: Request):
             SELECT 
                 COUNT(*) as nb_bets,
                 COALESCE(SUM(stake), 0) as total_staked,
-                COALESCE(SUM(CASE WHEN result = 'won' THEN payout ELSE 0 END), 0) as total_returned,
-                COALESCE(SUM(profit_loss), 0) as total_profit,
+                COALESCE(SUM(CASE WHEN result = 'won' THEN actual_profit ELSE 0 END), 0) as total_returned,
+                COALESCE(SUM(actual_profit), 0) as total_profit,
                 COUNT(CASE WHEN result = 'won' THEN 1 END) as nb_won,
                 COUNT(CASE WHEN result = 'lost' THEN 1 END) as nb_lost,
                 COUNT(CASE WHEN result IS NULL THEN 1 END) as nb_pending
@@ -164,16 +164,16 @@ def get_bankroll(request: Request):
         win_rate = (nb_won / (nb_won + nb_lost) * 100) if (nb_won + nb_lost) > 0 else 0
         
         stats = {
-            "current_balance": initial_balance + total_profit,
+            "current_bankroll": round(initial_balance + total_profit, 2),
             "initial_balance": initial_balance,
             "total_staked": total_staked,
             "total_returned": total_returned,
             "total_profit": total_profit,
             "roi": round(roi, 2),
-            "nb_bets": nb_bets,
-            "nb_won": nb_won,
-            "nb_lost": nb_lost,
-            "nb_pending": nb_pending,
+            "total_bets": nb_bets,
+            "won_bets": nb_won,
+            "lost_bets": nb_lost,
+            "pending_bets": nb_pending,
             "win_rate": round(win_rate, 2)
         }
 
@@ -187,11 +187,11 @@ def get_bankroll(request: Request):
             query_type="bankroll_stats_calculation",
             duration_ms=round(duration_ms, 2),
             threshold_ms=100,
-            results_count=stats['nb_bets'],
+            results_count=stats['total_bets'],
             filters_applied={"table_exists": True},
         )
 
-    if stats['nb_bets'] == 0:
+    if stats['total_bets'] == 0:
         logger.warning(
             "stats_bankroll_no_bets",
             request_id=request_id,
@@ -203,7 +203,7 @@ def get_bankroll(request: Request):
             "stats_bankroll_calculated",
             request_id=request_id,
             endpoint="/stats/bankroll",
-            nb_bets=stats['nb_bets'],
+            nb_bets=stats['total_bets'],
             roi=stats['roi'],
             win_rate=stats['win_rate'],
             duration_ms=round(duration_ms, 2),

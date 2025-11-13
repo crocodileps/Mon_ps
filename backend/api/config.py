@@ -28,6 +28,8 @@ class Settings(BaseSettings):
         "http://localhost:3000",
         "http://localhost:8000",
         "http://localhost:8001",
+        "http://91.98.131.218:3001", 
+        "http://91.98.131.218:3000",
     ]
     
     @property

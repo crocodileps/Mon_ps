@@ -92,7 +92,7 @@ services:
     container_name: monps_frontend
     restart: unless-stopped
     environment:
-      - NEXT_PUBLIC_API_URL=http://monps_backend:8000
+      - NEXT_PUBLIC_API_URL=http://91.98.131.218:8001
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
     ports:

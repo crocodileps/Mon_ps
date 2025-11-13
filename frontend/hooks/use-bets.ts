@@ -102,7 +102,7 @@ export function useUpdateBet() {
 
   return useMutation({
     mutationFn: async ({ id, payload }: { id: number; payload: UpdateBetPayload }) => {
-      const { data } = await api.put<Bet>(`/bets/bets/${id}`, payload);
+      const { data } = await api.patch<Bet>(`/bets/bets/${id}`, payload);
       return data;
     },
     onSuccess: (data) => {

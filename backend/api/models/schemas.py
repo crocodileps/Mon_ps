@@ -143,13 +143,13 @@ class Opportunity(OpportunityResponse):
 
 class BankrollSummary(BaseModel):
     """Résumé du bankroll"""
-    current_bankroll: Decimal
+    current_bankroll: float
     total_bets: int
     won_bets: int
     lost_bets: int
     pending_bets: int
-    total_staked: Decimal
-    total_profit: Decimal
+    total_staked: float
+    total_profit: float
     roi: float
     win_rate: float
 

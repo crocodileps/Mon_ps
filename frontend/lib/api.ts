@@ -1,13 +1,24 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://backend:8000";
+// Utiliser l'IP publique par défaut
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://91.98.131.218:8001';
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
+  timeout: 10000,
 });
+
+// Intercepteur pour logger les erreurs
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error('API Error:', error.response?.data || error.message);
+    return Promise.reject(error);
+  }
+);
 
 // Fonction générique pour fetch avec axios
 export async function apiFetch<T>(endpoint: string, params?: any): Promise<T> {
