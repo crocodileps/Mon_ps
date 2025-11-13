@@ -23,10 +23,10 @@ export function DashboardStats() {
     );
   }
 
-  const bankroll = stats?.bankroll || 0;
-  const roi = stats?.roi || 0;
-  const avgClv = stats?.avg_clv || 0;
-  const activeBets = stats?.active_bets_count || 0;
+  const bankroll = stats?.betting_stats?.total_staked || 0;
+  const roi = stats?.performance?.roi || 0;
+  const avgClv = stats?.clv_analysis?.avg_clv || 0;
+  const activeBets = stats?.betting_stats?.active_bets || 0;
 
   // Calcul des variations (24h) - à connecter plus tard avec l'API
   const bankrollChange = stats?.bankroll_change_24h || 0;
