@@ -8,3 +8,7 @@
 export { OpportunityCard } from './OpportunityCard';
 export { BetCard } from './BetCard';
 export { StatsWidget } from './StatsWidget';
+export { BetForm } from './BetForm';
+export { OpportunityFilters } from './OpportunityFilters';
+export { BetsTable } from './BetsTable';
+export type { FilterState } from './OpportunityFilters';
