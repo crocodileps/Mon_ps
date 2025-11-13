@@ -23,7 +23,7 @@ const Select = ({ value, onValueChange, children }: SelectProps) => {
   )
 }
 
-const SelectTrigger = React.forwardRef
+const SelectTrigger = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
 >(({ className, children, ...props }, ref) => {
