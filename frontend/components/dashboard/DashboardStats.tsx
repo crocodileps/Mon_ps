@@ -29,9 +29,9 @@ export function DashboardStats() {
   const activeBets = activeBetsCount || 0;
 
   // Calcul des variations (24h) - à connecter plus tard avec l'API
-  const bankrollChange = stats?.bankroll_change_24h || 0;
-  const roiChange = stats?.roi_change_24h || 0;
-  const clvChange = stats?.clv_change_24h || 0;
+  const bankrollChange = 0; // TODO: Tracking 24h non disponible
+  const roiChange = 0; // TODO: Tracking 24h non disponible
+  const clvChange = 0; // TODO: Tracking 24h non disponible
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
