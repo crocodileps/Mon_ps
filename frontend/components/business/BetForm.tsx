@@ -100,7 +100,7 @@ export function BetForm({ mode = 'create', initialData, onSuccess, onCancel }: B
       bookmaker: formData.bookmaker,
       odds_value: parseFloat(formData.odds_value),
       stake: parseFloat(formData.stake),
-      bet_type: formData.bet_type,
+      bet_type: formData.bet_type as any,
       notes: formData.notes || undefined,
     };
 
