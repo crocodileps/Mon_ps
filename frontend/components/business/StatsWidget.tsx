@@ -99,7 +99,7 @@ export function StatsWidget({
           <div className="flex items-center gap-1 text-xs">
             <TrendIcon className={cn('h-3 w-3', trendColor)} />
             <span className={trendColor}>
-              {change > 0 ? '+' : ''}{change.toFixed(2)}%
+              {change > 0 ? '+' : ''}{(change || 0).toFixed(2)}%
             </span>
             <span className="text-muted-foreground ml-1">{changeLabel}</span>
           </div>
