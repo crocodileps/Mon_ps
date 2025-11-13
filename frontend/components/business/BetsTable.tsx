@@ -281,9 +281,9 @@ export function BetsTable({ onEditBet }: BetsTableProps) {
                   <TableCell>
                     <span
                       className={
-                        bet.actual_profit && parseFloat(bet.actual_profit) > 0
+                        bet.actual_profit && parseFloat(String(bet.actual_profit)) > 0
                           ? 'text-green-400 font-semibold'
-                          : bet.actual_profit && parseFloat(bet.actual_profit) < 0
+                          : bet.actual_profit && parseFloat(String(bet.actual_profit)) < 0
                           ? 'text-red-400 font-semibold'
                           : 'text-slate-400'
                       }
