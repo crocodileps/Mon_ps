@@ -276,8 +276,8 @@ export function BetsTable({ onEditBet }: BetsTableProps) {
                   <TableCell className="font-medium">#{bet.id}</TableCell>
                   <TableCell className="max-w-xs truncate">{bet.outcome}</TableCell>
                   <TableCell>{bet.bookmaker}</TableCell>
-                  <TableCell>{parseFloat(bet.odds_value as string).toFixed(2)}</TableCell>
-                  <TableCell>{parseFloat(bet.stake as string).toFixed(2)}€</TableCell>
+                  <TableCell>{parseFloat(String(bet.odds_value)).toFixed(2)}</TableCell>
+                  <TableCell>{parseFloat(String(bet.stake)).toFixed(2)}€</TableCell>
                   <TableCell>
                     <span
                       className={
@@ -288,7 +288,7 @@ export function BetsTable({ onEditBet }: BetsTableProps) {
                           : 'text-slate-400'
                       }
                     >
-                      {bet.actual_profit ? `${parseFloat(bet.actual_profit as string).toFixed(2)}€` : '-'}
+                      {bet.actual_profit ? `${parseFloat(String(bet.actual_profit)).toFixed(2)}€` : '-'}
                     </span>
                   </TableCell>
                   <TableCell>{getTypeBadge(bet.bet_type)}</TableCell>
