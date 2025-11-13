@@ -5,9 +5,9 @@ import { useDashboard } from '@/hooks/use-dashboard';
 import { DollarSign, TrendingUp, Target, Activity } from 'lucide-react';
 
 export function DashboardStats() {
-  const { analytics: stats, isBackendOnline } = useDashboard();
+  const { analytics, activeBetsCount, isLoading } = useDashboard();
 
-  if (!stats) {
+  if (isLoading || !analytics) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[1, 2, 3, 4].map((i) => (
@@ -23,10 +23,10 @@ export function DashboardStats() {
     );
   }
 
-  const bankroll = stats?.betting_stats?.total_staked || 0;
-  const roi = stats?.performance?.roi || 0;
-  const avgClv = stats?.clv_analysis?.avg_clv || 0;
-  const activeBets = stats?.betting_stats?.active_bets || 0;
+  const bankroll = analytics?.bankroll_stats?.current_bankroll || 0;
+  const roi = analytics?.global_stats?.roi || 0;
+  const avgClv = analytics?.global_stats?.avg_clv || 0;
+  const activeBets = activeBetsCount || 0;
 
   // Calcul des variations (24h) - à connecter plus tard avec l'API
   const bankrollChange = stats?.bankroll_change_24h || 0;
