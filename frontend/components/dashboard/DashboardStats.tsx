@@ -1,11 +1,11 @@
 'use client';
 
 import { StatsWidget } from '@/components/business';
-import { useDashboardStats } from '@/hooks/use-dashboard';
+import { useDashboard } from '@/hooks/use-dashboard';
 import { DollarSign, TrendingUp, Target, Activity } from 'lucide-react';
 
 export function DashboardStats() {
-  const { data: stats, isLoading } = useDashboardStats();
+  const { data: stats, isLoading } = useDashboard();
 
   if (isLoading) {
     return (
