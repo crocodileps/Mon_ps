@@ -33,7 +33,7 @@ def get_odds(
         limit=limit,
     )
 
-    query = "SELECT * FROM odds WHERE 1=1"
+    query = "SELECT * FROM odds_history WHERE 1=1"
     params = []
     
     if sport:
@@ -120,13 +120,13 @@ def get_matches(
         home_team,
         away_team,
         sport,
-        league,
+
         commence_time,
         COUNT(DISTINCT bookmaker) as nb_bookmakers,
         MAX(CASE WHEN outcome_name = home_team THEN odds_value END) as best_home_odd,
         MAX(CASE WHEN outcome_name = away_team THEN odds_value END) as best_away_odd,
         MAX(CASE WHEN outcome_name = 'Draw' THEN odds_value END) as best_draw_odd
-    FROM odds
+    FROM odds_history_history
     WHERE market_type = 'h2h'
     """
     
@@ -140,7 +140,7 @@ def get_matches(
         query += " AND commence_time > NOW()"
     
     query += """
-    GROUP BY match_id, home_team, away_team, sport, league, commence_time
+    GROUP BY match_id, home_team, away_team, sport, commence_time
     ORDER BY commence_time
     """
     
@@ -213,21 +213,21 @@ def get_match_detail(request: Request, match_id: str):
                 home_team,
                 away_team,
                 sport,
-                league,
+
                 commence_time,
                 COUNT(DISTINCT bookmaker) as nb_bookmakers,
                 MAX(CASE WHEN outcome_name = home_team THEN odds_value END) as best_home_odd,
                 MAX(CASE WHEN outcome_name = away_team THEN odds_value END) as best_away_odd,
                 MAX(CASE WHEN outcome_name = 'Draw' THEN odds_value END) as best_draw_odd
-            FROM odds
+            FROM odds_history_history
             WHERE match_id = %s AND market_type = 'h2h'
-            GROUP BY match_id, home_team, away_team, sport, league, commence_time
+            GROUP BY match_id, home_team, away_team, sport, commence_time
         """
     odds_query = """
-            SELECT id, sport, league, match_id, home_team, away_team,
+            SELECT id, sport, match_id, home_team, away_team,
                    commence_time, bookmaker, market_type, outcome_name,
                    odds_value, point, last_update
-            FROM odds
+            FROM odds_history_history
             WHERE match_id = %s
             ORDER BY bookmaker, market_type, outcome_name
         """
