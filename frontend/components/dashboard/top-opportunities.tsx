@@ -1,4 +1,5 @@
 import { Badge } from '@/components/ui/badge'
+import { formatNumber } from "@/lib/format";
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
@@ -43,14 +44,14 @@ export function TopOpportunities({ data }: TopOpportunitiesProps) {
                   <p className="mt-2 text-sm text-text-secondary">
                     {opp.outcome}{' '}
                     <span className="number text-primary">
-                      {opp.best_odds.toFixed(2)}
+                      {formatNumber(opp.best_odds, 2)}
                     </span>{' '}
                     @ {opp.bookmaker_best}
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
                   <Badge variant="secondary" className={cn('rounded-full px-3 py-1 text-sm font-semibold', edgeTone)}>
-                    {opp.edge_pct.toFixed(1)}% Edge
+                    {formatNumber(opp.edge_pct, 1)}% Edge
                   </Badge>
                   <Button size="sm" className="rounded-full px-4">
                     Place Bet

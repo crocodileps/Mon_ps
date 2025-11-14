@@ -1,4 +1,5 @@
 'use client'
+import { formatNumber } from "@/lib/format";
 
 import { motion } from 'framer-motion'
 import { TrendingDown, TrendingUp, type LucideIcon } from 'lucide-react'
@@ -58,7 +59,7 @@ export function StatCard({
                 )}
                 <span className={cn(trend === 'down' ? 'text-danger' : 'text-success')}>
                   {trend === 'down' ? '' : '+'}
-                  {change.toFixed(1)}%
+                  {formatNumber(change, 1)}%
                 </span>
               </div>
             ) : null}

@@ -1,4 +1,5 @@
 'use client';
+import { formatNumber } from "@/lib/format";
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp, TrendingDown, Minus, LucideIcon } from 'lucide-react';
@@ -37,9 +38,9 @@ export function StatsWidget({
     
     switch (format) {
       case 'currency':
-        return `${numValue.toFixed(decimals)}€`;
+        return `${formatNumber(numValue, decimals)}€`;
       case 'percentage':
-        return `${numValue.toFixed(decimals)}%`;
+        return `${formatNumber(numValue, decimals)}%`;
       default:
         return numValue.toLocaleString('fr-FR', {
           minimumFractionDigits: 0,
@@ -99,7 +100,7 @@ export function StatsWidget({
           <div className="flex items-center gap-1 text-xs">
             <TrendIcon className={cn('h-3 w-3', trendColor)} />
             <span className={trendColor}>
-              {change > 0 ? '+' : ''}{(change || 0).toFixed(2)}%
+              {change > 0 ? '+' : ''}{formatNumber(change || 0, 2)}%
             </span>
             <span className="text-muted-foreground ml-1">{changeLabel}</span>
           </div>

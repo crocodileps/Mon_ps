@@ -1,4 +1,5 @@
 'use client'
+import { formatNumber } from "@/lib/format";
 
 import { useEffect, useState } from 'react'
 
@@ -49,6 +50,6 @@ export function AnimatedNumber({
     animate()
   }, [value, mounted, displayValue])
 
-  const formatted = displayValue.toFixed(decimals)
+  const formatted = formatNumber(displayValue, decimals)
   return <span className={`number ${className}`}>{`${prefix}${formatted}${suffix}`}</span>
 }

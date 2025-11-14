@@ -1,4 +1,5 @@
 'use client';
+import { formatNumber, formatEuro } from '@/lib/format';
 
 import { useBets } from '@/hooks/use-bets';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -146,8 +147,8 @@ export function ActiveBetsPreview({ limit = 5 }: ActiveBetsPreviewProps) {
                   {bet.outcome}
                 </TableCell>
                 <TableCell>{bet.bookmaker}</TableCell>
-                <TableCell>{parseFloat(String(bet.odds_value)).toFixed(2)}</TableCell>
-                <TableCell>{parseFloat(String(bet.stake)).toFixed(2)}€</TableCell>
+                <TableCell>{formatNumber(bet.odds_value, 2)}</TableCell>
+                <TableCell>{formatEuro(bet.stake, 2)}</TableCell>
                 <TableCell>{getTypeBadge(bet.bet_type)}</TableCell>
                 <TableCell className="text-sm text-slate-400">
                   {new Date(bet.created_at).toLocaleDateString('fr-FR')}
