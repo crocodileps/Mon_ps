@@ -123,11 +123,11 @@ def get_matches(
 
         commence_time,
         COUNT(DISTINCT bookmaker) as nb_bookmakers,
-        MAX(CASE WHEN outcome_name = home_team THEN odds_value END) as best_home_odd,
-        MAX(CASE WHEN outcome_name = away_team THEN odds_value END) as best_away_odd,
-        MAX(CASE WHEN outcome_name = 'Draw' THEN odds_value END) as best_draw_odd
+        MAX(home_odds) as best_home_odd,
+        MAX(away_odds) as best_away_odd,
+        MAX(draw_odds) as best_draw_odd
     FROM odds_history
-    WHERE market_type = 'h2h'
+    WHERE commence_time IS NOT NULL
     """
     
     params = []
