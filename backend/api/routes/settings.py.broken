@@ -1,0 +1,126 @@
+"""
+Routes API pour la gestion des paramètres (Settings)
+"""
+from fastapi import APIRouter, HTTPException, Depends
+from sqlalchemy.orm import Session
+from typing import List, Dict, Any
+from datetime import datetime
+
+from ..services.database import get_db
+from ..models.schemas import SettingResponse, SettingUpdate
+
+router = APIRouter(prefix="/settings", tags=["settings"])
+
+
+@router.get("/", response_model=List[SettingResponse])
+def get_all_settings(db: Session = Depends(get_db)):
+    """
+    Récupérer tous les paramètres de configuration
+    """
+    query = """
+        SELECT id, key, value, description, created_at, updated_at
+        FROM settings
+        ORDER BY key
+    """
+    result = db.execute(query)
+    rows = result.fetchall()
+    
+    settings = []
+    for row in rows:
+        settings.append({
+            "id": row[0],
+            "key": row[1],
+            "value": row[2],
+            "description": row[3],
+            "created_at": row[4],
+            "updated_at": row[5]
+        })
+    
+    return settings
+
+
+@router.get("/{key}", response_model=SettingResponse)
+def get_setting(key: str, db: Session = Depends(get_db)):
+    """
+    Récupérer un paramètre spécifique par sa clé
+    """
+    query = """
+        SELECT id, key, value, description, created_at, updated_at
+        FROM settings
+        WHERE key = :key
+    """
+    result = db.execute(query, {"key": key})
+    row = result.fetchone()
+    
+    if not row:
+        raise HTTPException(status_code=404, detail=f"Setting '{key}' not found")
+    
+    return {
+        "id": row[0],
+        "key": row[1],
+        "value": row[2],
+        "description": row[3],
+        "created_at": row[4],
+        "updated_at": row[5]
+    }
+
+
+@router.put("/{key}", response_model=SettingResponse)
+def update_setting(
+    key: str,
+    setting: SettingUpdate,
+    db: Session = Depends(get_db)
+):
+    """
+    Mettre à jour un paramètre existant
+    
+    Le champ updated_at est automatiquement mis à jour par le trigger PostgreSQL
+    """
+    # Vérifier que le setting existe
+    check_query = "SELECT id FROM settings WHERE key = :key"
+    result = db.execute(check_query, {"key": key})
+    if not result.fetchone():
+        raise HTTPException(status_code=404, detail=f"Setting '{key}' not found")
+    
+    # Mettre à jour
+    update_query = """
+        UPDATE settings
+        SET value = :value
+        WHERE key = :key
+        RETURNING id, key, value, description, created_at, updated_at
+    """
+    result = db.execute(
+        update_query,
+        {"key": key, "value": setting.value}
+    )
+    db.commit()
+    
+    row = result.fetchone()
+    
+    return {
+        "id": row[0],
+        "key": row[1],
+        "value": row[2],
+        "description": row[3],
+        "created_at": row[4],
+        "updated_at": row[5]
+    }
+
+
+@router.get("/health", response_model=Dict[str, Any])
+def settings_health_check(db: Session = Depends(get_db)):
+    """
+    Vérifier que la table settings est accessible
+    """
+    try:
+        query = "SELECT COUNT(*) FROM settings"
+        result = db.execute(query)
+        count = result.fetchone()[0]
+        
+        return {
+            "status": "healthy",
+            "settings_count": count,
+            "timestamp": datetime.now().isoformat()
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
