@@ -1,7 +1,6 @@
 'use client'
 
 import { Activity, Calendar, Target, TrendingUp, Wallet, Zap } from 'lucide-react'
-import { formatNumber } from "@/lib/format";
 
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
@@ -162,7 +161,7 @@ export default function DashboardPage() {
                         }`}
                       >
                         {day.profit > 0 ? '+' : ''}
-                        {formatNumber(day.profit, 2)}€
+                        {day.profit.toFixed(2)}€
                       </p>
                       <p className="text-[11px] text-muted-foreground">{day.bets} paris</p>
                     </div>

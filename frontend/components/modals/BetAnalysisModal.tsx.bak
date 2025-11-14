@@ -1,5 +1,4 @@
 'use client';
-import { formatNumber } from "@/lib/format";
 
 import { X, TrendingUp, AlertTriangle, CheckCircle2, BarChart3 } from 'lucide-react';
 import { GlassCard } from '@/components/ui/glass-card';
@@ -91,14 +90,14 @@ export function BetAnalysisModal({ isOpen, onClose, analysis }: BetAnalysisModal
               <TrendingUp className="h-4 w-4 text-green-400" />
               <p className="text-xs text-slate-400">Expected Value</p>
             </div>
-            <p className="text-2xl font-bold text-green-400">+{formatNumber(analysis.expectedValue, 2)}%</p>
+            <p className="text-2xl font-bold text-green-400">+{analysis.expectedValue.toFixed(2)}%</p>
           </div>
           <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
             <div className="flex items-center gap-2 mb-2">
               <BarChart3 className="h-4 w-4 text-blue-400" />
               <p className="text-xs text-slate-400">Kelly Fraction</p>
             </div>
-            <p className="text-2xl font-bold text-blue-400">{formatNumber(analysis.kellyFraction * 100, 1)}%</p>
+            <p className="text-2xl font-bold text-blue-400">{(analysis.kellyFraction * 100).toFixed(1)}%</p>
           </div>
           <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
             <div className="flex items-center gap-2 mb-2">

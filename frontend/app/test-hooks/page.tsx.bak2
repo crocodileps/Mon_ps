@@ -94,13 +94,13 @@ export default function TestHooksPage() {
               <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
                 <p className="text-xs text-slate-400 mb-1">Bankroll</p>
                 <p className="text-2xl font-bold text-white">
-                  {formatNumber(stats.bankroll.data?.current_bankroll ?? 0, 2)}€
+                  {stats.bankroll.data?.current_bankroll?.toFixed(2) || 0}€
                 </p>
               </div>
               <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
                 <p className="text-xs text-slate-400 mb-1">ROI</p>
                 <p className="text-2xl font-bold text-green-400">
-                  {formatNumber(stats.global.data?.roi ?? 0, 2)}%
+                  {stats.global.data?.roi?.toFixed(2) || 0}%
                 </p>
               </div>
               <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
@@ -112,7 +112,7 @@ export default function TestHooksPage() {
               <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
                 <p className="text-xs text-slate-400 mb-1">Win Rate</p>
                 <p className="text-2xl font-bold text-purple-400">
-                  {formatNumber(stats.global.data?.win_rate ?? 0, 1)}%
+                  {stats.global.data?.win_rate?.toFixed(1) || 0}%
                 </p>
               </div>
             </div>

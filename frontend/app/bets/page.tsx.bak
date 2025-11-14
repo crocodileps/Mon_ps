@@ -1,7 +1,6 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { formatNumber } from "@/lib/format";
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
@@ -130,7 +129,7 @@ export default function BetsPage() {
               <TrendingUp className="h-4 w-4 text-primary" />
               ROI total
             </div>
-            <p className="mt-3 text-3xl font-semibold text-primary">{formatNumber(stats.roi, 2)}%</p>
+            <p className="mt-3 text-3xl font-semibold text-primary">{stats.roi.toFixed(2)}%</p>
             <p className="mt-1 text-xs text-muted-foreground">{stats.settledBets} paris réglés</p>
           </Card>
           <Card className="border border-border/60 bg-surface/80 p-6 shadow-lg shadow-success/10">
@@ -138,7 +137,7 @@ export default function BetsPage() {
               <Activity className="h-4 w-4 text-success" />
               Win rate
             </div>
-            <p className="mt-3 text-3xl font-semibold text-success">{formatNumber(stats.winRate, 1)}%</p>
+            <p className="mt-3 text-3xl font-semibold text-success">{stats.winRate.toFixed(1)}%</p>
             <p className="mt-1 text-xs text-muted-foreground">{stats.totalBets} paris totaux</p>
           </Card>
           <Card className="border border-border/60 bg-surface/80 p-6 shadow-lg shadow-success/10">
@@ -153,7 +152,7 @@ export default function BetsPage() {
               )}
             >
               {stats.totalProfit >= 0 ? '+' : ''}
-              {formatNumber(stats.totalProfit, 2)} €
+              {stats.totalProfit.toFixed(2)} €
             </p>
             <p className="mt-1 text-xs text-muted-foreground">Depuis le début</p>
           </Card>
@@ -261,14 +260,14 @@ export default function BetsPage() {
                         <h3 className="text-lg font-semibold text-text-primary">{bet.match_id}</h3>
                         <p className="text-sm text-text-secondary">
                           {bet.outcome} @{' '}
-                          <span className="number text-primary">{formatNumber(bet.odds_value, 2)}</span>
+                          <span className="number text-primary">{bet.odds_value.toFixed(2)}</span>
                         </p>
                       </div>
                     </div>
                     <div className="space-y-3 text-right">
                       <div>
                         <p className="text-xs uppercase tracking-wide text-text-muted">Stake</p>
-                        <p className="number text-lg text-text-primary">{formatNumber(bet.stake, 2)} €</p>
+                        <p className="number text-lg text-text-primary">{bet.stake.toFixed(2)} €</p>
                       </div>
                       {bet.actual_profit !== null && (
                         <p
@@ -278,11 +277,11 @@ export default function BetsPage() {
                           )}
                         >
                           {bet.actual_profit > 0 ? '+' : ''}
-                          {formatNumber(bet.actual_profit, 2)} €
+                          {bet.actual_profit.toFixed(2)} €
                         </p>
                       )}
                       <p className="text-xs text-text-muted">
-                        CLV {bet.clv !== null ? formatNumber(bet.clv, 2) : '-'}
+                        CLV {bet.clv !== null ? bet.clv.toFixed(2) : '-'}
                       </p>
                     </div>
                   </div>

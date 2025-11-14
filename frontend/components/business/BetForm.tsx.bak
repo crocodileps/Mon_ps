@@ -1,5 +1,4 @@
 'use client';
-import { formatNumber } from "@/lib/format";
 
 import { useState, useEffect } from 'react';
 import { useCreateBet, useUpdateBet } from '@/hooks/use-bets';
@@ -267,9 +266,9 @@ export function BetForm({ mode = 'create', initialData, onSuccess, onCancel }: B
               <p className="text-sm text-blue-400">
                 💰 Gain potentiel :{' '}
                 <span className="font-bold">
-                  {formatNumber(parseFloat(formData.odds_value) * parseFloat(formData.stake), 2)}€
+                  {(parseFloat(formData.odds_value) * parseFloat(formData.stake)).toFixed(2)}€
                 </span>
-                {' '}(+{formatNumber(parseFloat(formData.odds_value) * parseFloat(formData.stake) - parseFloat(formData.stake), 2)}€)
+                {' '}(+{(parseFloat(formData.odds_value) * parseFloat(formData.stake) - parseFloat(formData.stake)).toFixed(2)}€)
               </p>
             </div>
           )}

@@ -1,5 +1,4 @@
 'use client';
-import { formatNumber } from "@/lib/format";
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -45,11 +44,11 @@ export function BetCard(props: BetCardProps) {
       <CardContent className="space-y-3">
         <div className="grid grid-cols-2 gap-3">
           <div className="p-3 bg-secondary/50 rounded-lg"><p className="text-xs text-muted-foreground mb-1">Pronostic</p><p className="font-semibold">{outcome}</p></div>
-          <div className="p-3 bg-secondary/50 rounded-lg"><p className="text-xs text-muted-foreground mb-1">Cote</p><p className="font-bold text-xl">{formatNumber(Number(odds_value), 2)}</p></div>
+          <div className="p-3 bg-secondary/50 rounded-lg"><p className="text-xs text-muted-foreground mb-1">Cote</p><p className="font-bold text-xl">{Number(odds_value).toFixed(2)}</p></div>
         </div>
         <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
-          <div><p className="text-xs text-muted-foreground mb-1">Mise</p><p className="font-semibold flex items-center gap-1"><DollarSign className="h-4 w-4" />{formatNumber(Number(stake), 2)}€</p></div>
-          {actual_profit !== null && actual_profit !== undefined && <div className="text-right"><p className="text-xs text-muted-foreground mb-1">Profit</p><p className={`font-bold text-lg ${actual_profit >= 0 ? 'text-green-500' : 'text-red-500'}`}>{actual_profit >= 0 ? '+' : ''}{formatNumber(Number(actual_profit), 2)}€</p></div>}
+          <div><p className="text-xs text-muted-foreground mb-1">Mise</p><p className="font-semibold flex items-center gap-1"><DollarSign className="h-4 w-4" />{Number(stake).toFixed(2)}€</p></div>
+          {actual_profit !== null && actual_profit !== undefined && <div className="text-right"><p className="text-xs text-muted-foreground mb-1">Profit</p><p className={`font-bold text-lg ${actual_profit >= 0 ? 'text-green-500' : 'text-red-500'}`}>{actual_profit >= 0 ? '+' : ''}{Number(actual_profit).toFixed(2)}€</p></div>}
         </div>
         <div className="flex items-center justify-between text-sm"><span className="text-muted-foreground">Bookmaker:</span><span className="font-medium">{bookmaker}</span></div>
         {(onEdit || onDelete) && <div className="flex gap-2 pt-2">{onEdit && <Button variant="outline" className="flex-1" onClick={onEdit}>Modifier</Button>}{onDelete && <Button variant="destructive" className="flex-1" onClick={onDelete}>Supprimer</Button>}</div>}

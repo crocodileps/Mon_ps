@@ -1,7 +1,6 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { formatNumber } from "@/lib/format";
 import { useQuery } from '@tanstack/react-query'
 import { motion } from 'framer-motion'
 import { RefreshCw, Target } from 'lucide-react'
@@ -186,7 +185,7 @@ export default function OpportunitiesPage() {
                     onChange={(event) => setMinEdge(Number(event.target.value))}
                     className="flex-1 accent-primary"
                   />
-                  <span className="number text-primary">{formatNumber(minEdge, 1)}%</span>
+                  <span className="number text-primary">{minEdge.toFixed(1)}%</span>
                 </div>
               </div>
             </div>
@@ -251,14 +250,14 @@ export default function OpportunitiesPage() {
                           </Badge>
                         </TableCell>
                         <TableCell className="text-sm text-text-secondary">{opp.outcome}</TableCell>
-                        <TableCell className="number text-right text-primary">{formatNumber(opp.best_odds, 2)}</TableCell>
+                        <TableCell className="number text-right text-primary">{opp.best_odds.toFixed(2)}</TableCell>
                         <TableCell className="text-sm text-text-secondary">{opp.bookmaker_best}</TableCell>
                         <TableCell className="text-right">
                           <Badge
                             variant="secondary"
                             className={`rounded-full px-3 py-1 text-sm font-semibold ${edgeBadgeVariant(opp.edge_pct)}`}
                           >
-                            {formatNumber(opp.edge_pct, 1)}%
+                            {opp.edge_pct.toFixed(1)}%
                           </Badge>
                         </TableCell>
                         <TableCell className="text-right">

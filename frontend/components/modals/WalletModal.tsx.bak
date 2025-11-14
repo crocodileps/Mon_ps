@@ -1,7 +1,6 @@
 'use client';
 
 import { X, TrendingUp } from 'lucide-react';
-import { formatNumber } from "@/lib/format";
 import { GlassCard } from '@/components/ui/glass-card';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import { CustomTooltip } from '@/components/ui/custom-tooltip';
@@ -46,7 +45,7 @@ export function WalletModal({ isOpen, onClose, walletData }: WalletModalProps) {
             <p className="text-sm text-slate-400 mb-1">ROI Global</p>
             <p className="text-2xl font-bold text-green-400 flex items-center gap-2">
               <TrendingUp className="h-5 w-5" />
-              {formatNumber(walletData.roi, 2)}%
+              {walletData.roi.toFixed(2)}%
             </p>
           </div>
           <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">

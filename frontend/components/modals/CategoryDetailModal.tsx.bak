@@ -1,5 +1,4 @@
 'use client';
-import { formatNumber } from "@/lib/format";
 
 import { X, Briefcase, Star, AlertCircle, ThumbsDown, TrendingUp, Calendar } from 'lucide-react';
 import { GlassCard } from '@/components/ui/glass-card';
@@ -130,15 +129,15 @@ export function CategoryDetailModal({ isOpen, onClose, category }: CategoryDetai
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
             <p className="text-xs text-slate-400 mb-1">Mise Totale</p>
-            <p className="text-xl font-bold text-white">{formatNumber(stats.totalStake, 2)}€</p>
+            <p className="text-xl font-bold text-white">{stats.totalStake.toFixed(2)}€</p>
           </div>
           <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
             <p className="text-xs text-slate-400 mb-1">Cote Moyenne</p>
-            <p className="text-xl font-bold text-blue-400">{formatNumber(stats.avgOdds, 2)}</p>
+            <p className="text-xl font-bold text-blue-400">{stats.avgOdds.toFixed(2)}</p>
           </div>
           <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
             <p className="text-xs text-slate-400 mb-1">EV Moyen</p>
-            <p className="text-xl font-bold text-green-400">+{formatNumber(stats.avgEV, 2)}%</p>
+            <p className="text-xl font-bold text-green-400">+{stats.avgEV.toFixed(2)}%</p>
           </div>
           <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
             <p className="text-xs text-slate-400 mb-1">Résultats</p>
@@ -172,17 +171,17 @@ export function CategoryDetailModal({ isOpen, onClose, category }: CategoryDetai
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div>
                   <p className="text-xs text-slate-400 mb-1">Cote</p>
-                  <p className="text-lg font-bold text-blue-400">{formatNumber(bet.odds, 2)}</p>
+                  <p className="text-lg font-bold text-blue-400">{bet.odds.toFixed(2)}</p>
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 mb-1">Mise</p>
-                  <p className="text-lg font-bold text-white">{formatNumber(bet.stake, 2)}€</p>
+                  <p className="text-lg font-bold text-white">{bet.stake.toFixed(2)}€</p>
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 mb-1">Expected Value</p>
                   <div className="flex items-center gap-1">
                     <TrendingUp className="h-4 w-4 text-green-400" />
-                    <p className="text-lg font-bold text-green-400">+{formatNumber(bet.expectedValue, 2)}%</p>
+                    <p className="text-lg font-bold text-green-400">+{bet.expectedValue.toFixed(2)}%</p>
                   </div>
                 </div>
                 <div>

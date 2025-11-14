@@ -1,5 +1,4 @@
 'use client';
-import { formatNumber } from "@/lib/format";
 
 import { X, Lightbulb, TrendingUp, Users, Calendar } from 'lucide-react';
 import { GlassCard } from '@/components/ui/glass-card';
@@ -118,14 +117,14 @@ export function TipDetailModal({ isOpen, onClose, tip }: TipDetailModalProps) {
               <TrendingUp className="h-4 w-4 text-blue-400" />
               <p className="text-xs text-slate-400">Cote Totale</p>
             </div>
-            <p className="text-2xl font-bold text-blue-400">{formatNumber(tip.totalOdds, 2)}</p>
+            <p className="text-2xl font-bold text-blue-400">{tip.totalOdds.toFixed(2)}</p>
           </div>
           <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
             <div className="flex items-center gap-2 mb-2">
               <span className="text-green-400">💰</span>
               <p className="text-xs text-slate-400">Gain Potentiel</p>
             </div>
-            <p className="text-2xl font-bold text-green-400">{formatNumber(tip.potentialReturn, 2)}€</p>
+            <p className="text-2xl font-bold text-green-400">{tip.potentialReturn.toFixed(2)}€</p>
           </div>
           <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
             <div className="flex items-center gap-2 mb-2">
@@ -139,7 +138,7 @@ export function TipDetailModal({ isOpen, onClose, tip }: TipDetailModalProps) {
               <span className="text-yellow-400">🎲</span>
               <p className="text-xs text-slate-400">Mise</p>
             </div>
-            <p className="text-2xl font-bold text-white">{formatNumber(tip.stake, 2)}€</p>
+            <p className="text-2xl font-bold text-white">{tip.stake.toFixed(2)}€</p>
           </div>
         </div>
 
@@ -163,7 +162,7 @@ export function TipDetailModal({ isOpen, onClose, tip }: TipDetailModalProps) {
                     <p className="text-sm text-slate-300">{bet.selection}</p>
                   </div>
                   <div className="text-right ml-4">
-                    <p className="text-lg font-bold text-blue-400">{formatNumber(bet.odds, 2)}</p>
+                    <p className="text-lg font-bold text-blue-400">{bet.odds.toFixed(2)}</p>
                     <p className={`text-xs font-semibold ${getStatusColor(bet.status)}`}>
                       {getStatusLabel(bet.status)}
                     </p>
@@ -194,10 +193,10 @@ export function TipDetailModal({ isOpen, onClose, tip }: TipDetailModalProps) {
             <h4 className="text-sm font-semibold text-white mb-2">💡 Calcul du Combiné</h4>
             <div className="text-sm text-slate-300 space-y-1">
               <p>
-                Cote totale = {tip.bets.map(b => formatNumber(b.odds, 2)).join(' × ')} = <span className="font-semibold text-blue-400">{formatNumber(tip.totalOdds, 2)}</span>
+                Cote totale = {tip.bets.map(b => b.odds.toFixed(2)).join(' × ')} = <span className="font-semibold text-blue-400">{tip.totalOdds.toFixed(2)}</span>
               </p>
               <p>
-                Gain si tous les paris gagnent = {tip.stake}€ × {formatNumber(tip.totalOdds, 2)} = <span className="font-semibold text-green-400">{formatNumber(tip.potentialReturn, 2)}€</span>
+                Gain si tous les paris gagnent = {tip.stake}€ × {tip.totalOdds.toFixed(2)} = <span className="font-semibold text-green-400">{tip.potentialReturn.toFixed(2)}€</span>
               </p>
               <p className="text-xs text-slate-400 mt-2">
                 ⚠️ Attention : Un seul pari perdu = perte totale de la mise
