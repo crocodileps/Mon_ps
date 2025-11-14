@@ -15,14 +15,12 @@ interface GlobalStats {
 
 interface BankrollStats {
   current_bankroll: number;
-  total_bets: number;
-  won_bets: number;
-  lost_bets: number;
-  pending_bets: number;
-  total_staked: number;
+  initial_bankroll: number;
   total_profit: number;
-  roi: number;
-  win_rate: number;
+  roi_percentage: number;
+  max_drawdown: number;
+  current_exposure: number;
+  available_balance: number;
 }
 
 interface BookmakerStats {
