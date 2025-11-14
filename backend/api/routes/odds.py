@@ -126,7 +126,7 @@ def get_matches(
         MAX(CASE WHEN outcome_name = home_team THEN odds_value END) as best_home_odd,
         MAX(CASE WHEN outcome_name = away_team THEN odds_value END) as best_away_odd,
         MAX(CASE WHEN outcome_name = 'Draw' THEN odds_value END) as best_draw_odd
-    FROM odds_history_history
+    FROM odds_history
     WHERE market_type = 'h2h'
     """
     
@@ -219,7 +219,7 @@ def get_match_detail(request: Request, match_id: str):
                 MAX(CASE WHEN outcome_name = home_team THEN odds_value END) as best_home_odd,
                 MAX(CASE WHEN outcome_name = away_team THEN odds_value END) as best_away_odd,
                 MAX(CASE WHEN outcome_name = 'Draw' THEN odds_value END) as best_draw_odd
-            FROM odds_history_history
+            FROM odds_history
             WHERE match_id = %s AND market_type = 'h2h'
             GROUP BY match_id, home_team, away_team, sport, commence_time
         """
@@ -227,7 +227,7 @@ def get_match_detail(request: Request, match_id: str):
             SELECT id, sport, match_id, home_team, away_team,
                    commence_time, bookmaker, market_type, outcome_name,
                    odds_value, point, last_update
-            FROM odds_history_history
+            FROM odds_history
             WHERE match_id = %s
             ORDER BY bookmaker, market_type, outcome_name
         """
