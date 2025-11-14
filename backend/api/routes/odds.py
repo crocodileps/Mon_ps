@@ -122,10 +122,11 @@ def get_matches(
         sport,
 
         commence_time,
-        COUNT(DISTINCT bookmaker) as nb_bookmakers,
-        MAX(home_odds) as best_home_odd,
-        MAX(away_odds) as best_away_odd,
-        MAX(draw_odds) as best_draw_odd
+        sport as league,
+        COUNT(DISTINCT bookmaker) as bookmaker_count,
+        MAX(home_odds) as best_home_odds,
+        MAX(away_odds) as best_away_odds,
+        MAX(draw_odds) as best_draw_odds
     FROM odds_history
     WHERE commence_time IS NOT NULL
     """
