@@ -132,7 +132,7 @@ def save_to_database(sport, matches_data):
                 for outcome in market.get('outcomes', []):
                     try:
                         cursor.execute("""
-                            INSERT INTO odds (
+                            INSERT INTO odds_history (
                                 match_id, sport, home_team, away_team,
                                 bookmaker, outcome, odds_value, commence_time
                             ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
