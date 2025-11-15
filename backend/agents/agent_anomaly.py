@@ -46,7 +46,7 @@ class AnomalyDetectorAgent:
                 draw_odds,
                 collected_at
             FROM odds_history
-            WHERE collected_at >= NOW() - INTERVAL '1 hour'
+            WHERE collected_at >= NOW() - INTERVAL '7 days'
             ORDER BY collected_at DESC
         """
         df = pd.read_sql(query, conn)

@@ -41,9 +41,9 @@ class PatternMatcherAgent:
                 max_home_odds,
                 max_away_odds,
                 max_draw_odds,
-                collected_at
+                last_update
             FROM v_current_opportunities
-            ORDER BY collected_at DESC
+            ORDER BY last_update DESC
         """
         df = pd.read_sql(query, conn)
         conn.close()
