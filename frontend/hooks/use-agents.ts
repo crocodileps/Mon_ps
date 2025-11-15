@@ -31,6 +31,7 @@ export interface AgentPerformance {
   avg_confidence: number
   avg_ev: number
   avg_kelly: number
+  status?: string
   top_signal?: AgentSignal
 }
 
@@ -38,6 +39,7 @@ export interface AgentHealth {
   status: string
   agents: string[]
   db_connected: boolean
+  total_opportunities?: number
 }
 
 // Hook pour récupérer les signaux des agents
