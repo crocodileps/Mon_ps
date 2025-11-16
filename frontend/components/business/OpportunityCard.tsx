@@ -13,19 +13,19 @@ interface OpportunityCardProps {
   sport: string;
   commence_time: string;
   outcome: string;
-  best_odds: number;
+  best_odd: string;
   bookmaker_best: string;
-  edge_pct: number;
+  spread_pct: number;
   nb_bookmakers: number;
   onPlaceBet?: () => void;
 }
 
 export function OpportunityCard(props: OpportunityCardProps) {
-  const { home_team, away_team, sport, commence_time, outcome, best_odds, bookmaker_best, edge_pct, nb_bookmakers, onPlaceBet } = props;
+  const { home_team, away_team, sport, commence_time, outcome, best_odd, bookmaker_best, spread_pct, nb_bookmakers, onPlaceBet } = props;
   
   const date = new Date(commence_time);
   const dateStr = date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
-  const badgeColor = edge_pct >= 15 ? 'bg-green-500/20 text-green-500' : edge_pct >= 10 ? 'bg-yellow-500/20 text-yellow-500' : 'bg-blue-500/20 text-blue-500';
+  const badgeColor = spread_pct >= 15 ? 'bg-green-500/20 text-green-500' : spread_pct >= 10 ? 'bg-yellow-500/20 text-yellow-500' : 'bg-blue-500/20 text-blue-500';
 
   return (
     <Card className="hover:shadow-lg transition-shadow">
@@ -38,13 +38,13 @@ export function OpportunityCard(props: OpportunityCardProps) {
               <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{dateStr}</span>
             </div>
           </div>
-          <Badge className={badgeColor}><TrendingUp className="h-3 w-3 mr-1" />{formatNumber(edge_pct, 1)}%</Badge>
+          <Badge className={badgeColor}><TrendingUp className="h-3 w-3 mr-1" />{formatNumber(spread_pct, 1)}%</Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
           <div><p className="text-xs text-muted-foreground mb-1">Pronostic</p><p className="font-semibold">{outcome}</p></div>
-          <div className="text-right"><p className="text-xs text-muted-foreground mb-1">Meilleure cote</p><p className="text-2xl font-bold">{formatNumber(best_odds, 2)}</p></div>
+          <div className="text-right"><p className="text-xs text-muted-foreground mb-1">Meilleure cote</p><p className="text-2xl font-bold">{formatNumber(best_odd, 2)}</p></div>
         </div>
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center gap-2"><Target className="h-4 w-4 text-muted-foreground" /><span className="text-muted-foreground">Bookmaker:</span><span className="font-medium">{bookmaker_best}</span></div>

@@ -9,11 +9,11 @@ interface Opportunity {
   sport: string;
   commence_time: string;
   outcome: string;
-  best_odds: number;
-  worst_odds: number;
+  best_odd: string;
+  worst_odd: string;
   bookmaker_best: string;
   bookmaker_worst: string;
-  edge_pct: number;
+  spread_pct: number;
   nb_bookmakers: number;
 }
 

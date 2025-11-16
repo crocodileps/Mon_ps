@@ -18,7 +18,7 @@ export function RecentOpportunities({ limit = 3, onPlaceBet }: RecentOpportuniti
 
   // Trier par edge décroissant et prendre les N meilleures
   const topOpportunities = [...opportunities]
-    .sort((a, b) => (b.edge_pct || 0) - (a.edge_pct || 0))
+    .sort((a, b) => (b.spread_pct || 0) - (a.spread_pct || 0))
     .slice(0, limit);
 
   if (isLoading) {

@@ -144,11 +144,11 @@ export default function TestHooksPage() {
                       {opp.home_team} vs {opp.away_team}
                     </p>
                     <p className="text-sm text-slate-400">
-                      {opp.outcome} @ {opp.best_odds} ({opp.bookmaker_best})
+                      {opp.outcome} @ {opp.best_odd} ({opp.bookmaker_best})
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-green-400 font-bold">+{formatNumber(opp.edge_pct, 2)}%</p>
+                    <p className="text-green-400 font-bold">+{formatNumber(opp.spread_pct, 2)}%</p>
                     <p className="text-xs text-slate-400">{opp.nb_bookmakers} bookmakers</p>
                   </div>
                 </div>

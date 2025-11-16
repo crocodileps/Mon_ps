@@ -11,9 +11,9 @@ export default function TestBusinessComponentsPage() {
     sport: 'soccer_france_ligue_one',
     commence_time: new Date(Date.now() + 86400000).toISOString(),
     outcome: 'home',
-    best_odds: 2.15,
+    best_odd: '2.15',
     bookmaker_best: 'Betclic',
-    edge_pct: 12.5,
+    spread_pct: 12.5,
     nb_bookmakers: 15,
   };
 
@@ -50,8 +50,8 @@ export default function TestBusinessComponentsPage() {
         <h2 className="text-2xl font-semibold text-white">🎯 OpportunityCard</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <OpportunityCard {...mockOpportunity} onPlaceBet={() => alert('Placer ce pari')} />
-          <OpportunityCard {...mockOpportunity} edge_pct={18.5} outcome="away" best_odds={3.40} />
-          <OpportunityCard {...mockOpportunity} edge_pct={8.2} outcome="draw" best_odds={3.10} bookmaker_best="Unibet" />
+          <OpportunityCard {...mockOpportunity} spread_pct={18.5} outcome="away" best_odd="3.40" />
+          <OpportunityCard {...mockOpportunity} spread_pct={8.2} outcome="draw" best_odd="3.10" bookmaker_best="Unibet" />
         </div>
       </section>
 
