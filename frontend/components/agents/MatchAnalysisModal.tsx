@@ -26,6 +26,7 @@ import {
 
 import { HelpCircle } from 'lucide-react';
 import { AgentDetailedAnalysis } from './AgentDetailedAnalysis';
+import { PatronAnalysisCard } from './PatronAnalysisCard'
 
 interface AgentAnalysis {
   agent_id: string;
@@ -314,6 +315,12 @@ export function MatchAnalysisModal({ matchId, matchName, isOpen, onClose }: Matc
               homeTeam={data.match.home_team}
               awayTeam={data.match.away_team}
             />
+
+          {/* Agent Patron - Meta-Analyse */}
+          <div className="mt-6">
+            <PatronAnalysisCard matchId={matchId} />
+          </div>
+
             <p className="text-xs text-slate-500 text-center">
               Analyse effectuée le {new Date(data.timestamp).toLocaleString('fr-FR')}
             </p>

@@ -497,3 +497,170 @@ async def analyze_match_with_agents(match_id: str):
         },
         "timestamp": str(import_datetime.datetime.now())
     }
+@router.get("/patron/analyze/{match_id}")
+async def analyze_with_patron(match_id: str):
+    """
+    Agent Patron : Meta-Analyste qui synthétise les 4 agents
+    """
+    
+    # 1. Récupérer l'analyse des 4 agents
+    base_analysis = await analyze_match_with_agents(match_id)
+    
+    if "error" in base_analysis:
+        return base_analysis
+    
+    agents_list = base_analysis.get("agents", [])
+    
+    # 2. Extraire les scores de chaque agent
+    scores = {}
+    signals = {}
+    agents_results = {}
+
+    for agent_data in agents_list:
+        agent_id = agent_data.get("agent_id", "unknown")
+        agents_results[agent_id] = agent_data
+        confidence = agent_data.get("confidence", 0)
+        scores[agent_id] = confidence
+        
+        # Classifier le signal
+        if confidence >= 80:
+            signals[agent_id] = "FORT"
+        elif confidence >= 60:
+            signals[agent_id] = "MOYEN"
+        elif confidence >= 40:
+            signals[agent_id] = "FAIBLE"
+        else:
+            signals[agent_id] = "TRES_FAIBLE"
+    
+    # 3. Calculer le consensus
+    strong_signals = sum(1 for s in signals.values() if s in ["FORT", "MOYEN"])
+    
+    if strong_signals == 4:
+        consensus_level = "FORT (4/4)"
+        consensus_factor = 1.2
+        consensus_description = "Tous les agents sont d'accord - Signal très fiable"
+    elif strong_signals == 3:
+        consensus_level = "MAJORITAIRE (3/4)"
+        consensus_factor = 1.0
+        consensus_description = "Majorité des agents concordent - Signal fiable"
+    elif strong_signals == 2:
+        consensus_level = "DIVISE (2/2)"
+        consensus_factor = 0.7
+        consensus_description = "Agents divisés - Prudence recommandée"
+    else:
+        consensus_level = "CONFLICTUEL (1/4)"
+        consensus_factor = 0.4
+        consensus_description = "Peu de consensus - Signal faible"
+    
+    # 4. Pondération dynamique des agents
+    weights = {
+        "anomaly_detector": 0.25,
+        "spread_optimizer": 0.35,
+        "pattern_matcher": 0.20,
+        "backtest_engine": 0.20
+    }
+    
+    # 5. Score composite
+    weighted_score = sum(
+        scores.get(agent, 0) * weights.get(agent, 0.25)
+        for agent in scores.keys()
+    )
+    
+    # Appliquer le facteur de consensus
+    final_score = weighted_score * consensus_factor
+    final_score = min(100, max(0, final_score))
+    
+    # 6. Déterminer la recommandation finale
+    if final_score >= 80:
+        recommendation = "FORT SIGNAL"
+        action = "Exécuter avec mise Kelly complète"
+        mise_pct = 3.5
+    elif final_score >= 65:
+        recommendation = "BON SIGNAL"
+        action = "Exécuter avec mise conservatrice"
+        mise_pct = 2.5
+    elif final_score >= 50:
+        recommendation = "SIGNAL MOYEN"
+        action = "Observer attentivement, mise réduite"
+        mise_pct = 1.5
+    elif final_score >= 35:
+        recommendation = "SIGNAL FAIBLE"
+        action = "Ne pas parier, observer uniquement"
+        mise_pct = 0
+    else:
+        recommendation = "REJET"
+        action = "Éviter absolument"
+        mise_pct = 0
+    
+    # 7. Identifier les points forts et vigilance
+    best_agent = max(scores.items(), key=lambda x: x[1])
+    worst_agent = min(scores.items(), key=lambda x: x[1])
+    
+    point_fort = f"L'agent {best_agent[0].replace('_', ' ').title()} est le plus confiant ({best_agent[1]:.0f}%)"
+    
+    if worst_agent[1] < 50:
+        point_vigilance = f"Attention: {worst_agent[0].replace('_', ' ').title()} a une confiance faible ({worst_agent[1]:.0f}%)"
+    else:
+        point_vigilance = "Tous les agents ont une confiance acceptable"
+    
+    # 8. Générer l'arbitrage
+    if consensus_factor >= 1.0:
+        arbitrage = "Le consensus fort entre les agents valide la décision. Aucun arbitrage nécessaire."
+    elif consensus_factor >= 0.7:
+        arbitrage = f"Malgré la divergence de {worst_agent[0].replace('_', ' ').title()}, la majorité l'emporte. Réduire la mise par précaution."
+    else:
+        arbitrage = "Trop de conflits entre agents. Il est recommandé de ne pas parier sur cette opportunité."
+    
+    # 9. Recommandations spécifiques
+    recommendations = [
+        "Vérifier les compositions d'équipes 1h avant le match",
+        f"Placer le pari avec mise de {mise_pct}% du bankroll",
+        "Définir un stop-loss si la cote baisse de plus de 5%"
+    ]
+    
+    if worst_agent[1] < 40:
+        recommendations.append(f"Investiguer pourquoi {worst_agent[0].replace('_', ' ').title()} est en désaccord")
+    
+    if final_score < 50:
+        recommendations = [
+            "Ne pas parier sur cette opportunité",
+            "Attendre un meilleur consensus entre agents",
+            "Observer l'évolution des cotes"
+        ]
+    
+    # 10. Construire la réponse finale
+    patron_analysis = {
+        "match_id": match_id,
+        "match_info": base_analysis.get("match_info", {}),
+        
+        "score_global": round(final_score, 1),
+        "consensus": consensus_level,
+        "consensus_description": consensus_description,
+        "confiance_agregee": round(weighted_score, 1),
+        "recommendation": recommendation,
+        "action": action,
+        "mise_recommandee_pct": mise_pct,
+        
+        "synthese_agents": {
+            agent_id: {
+                "signal": signals[agent_id],
+                "confiance": round(scores[agent_id], 1),
+                "poids": weights.get(agent_id, 0.25),
+                "contribution": round(scores[agent_id] * weights.get(agent_id, 0.25), 1)
+            }
+            for agent_id in scores.keys()
+        },
+        
+        "analyse_patron": {
+            "point_fort": point_fort,
+            "point_vigilance": point_vigilance,
+            "arbitrage": arbitrage,
+            "decision_finale": f"{recommendation} - {action}"
+        },
+        
+        "recommandations": recommendations,
+        
+        "details_agents": agents_results
+    }
+    
+    return patron_analysis
