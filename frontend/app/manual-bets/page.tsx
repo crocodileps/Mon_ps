@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { CreateBetModal } from '@/components/manual-bets/create-bet-modal';
 import { useManualBets, useManualBetsStats, useCalculateCLV, useUpdateBetResult } from '@/hooks/use-manual-bets';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -90,6 +91,7 @@ export default function ManualBetsPage() {
               <Calculator className="w-4 h-4 mr-2" />
               {calculateCLV.isPending ? 'Calcul...' : 'Calculer CLV'}
             </Button>
+            <CreateBetModal />
           </div>
         </div>
 
