@@ -1,11 +1,9 @@
 'use client'
 
+import { MatchAnalysisModal } from '@/components/agents/MatchAnalysisModal';
 import { useMemo, useState } from 'react'
-import { formatNumber } from "@/lib/format";
 import { useQuery } from '@tanstack/react-query'
-import { motion } from 'framer-motion'
 import { RefreshCw, Target } from 'lucide-react'
-
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -18,271 +16,209 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { getOpportunities } from '@/lib/api'
-import { queryKeys } from '@/lib/query-keys'
-import type { Opportunity } from '@/types/api'
 
-type SortKey = 'match' | 'sport' | 'best_odds' | 'edge_pct'
-type SortDirection = 'asc' | 'desc'
+interface Opportunity {
+  id: string;
+  match_id: string;
+  home_team: string;
+  away_team: string;
+  sport: string;
+  commence_time: string;
+  outcome: string;
+  best_odds: number;
+  bookmaker_best: string;
+  edge_pct: number;
+}
 
 const edgeBadgeVariant = (edge: number) => {
-  if (edge > 15) return 'bg-success/15 text-success'
-  if (edge >= 10) return 'bg-warning/15 text-warning'
-  return 'bg-surface-hover text-text-secondary'
+  if (edge > 15) return 'bg-green-500/20 text-green-400'
+  if (edge >= 10) return 'bg-yellow-500/20 text-yellow-400'
+  return 'bg-slate-500/20 text-slate-400'
 }
 
 export default function OpportunitiesPage() {
   const [sportFilter, setSportFilter] = useState<string>('all')
   const [bookmakerFilter, setBookmakerFilter] = useState<string>('all')
   const [minEdge, setMinEdge] = useState<number>(10)
-  const [sortKey, setSortKey] = useState<SortKey>('edge_pct')
-  const [sortDirection, setSortDirection] = useState<SortDirection>('desc')
+  const [selectedMatch, setSelectedMatch] = useState<{id: string, name: string} | null>(null)
 
-  const { data, isLoading, isRefetching, refetch } = useQuery<Opportunity[]>({
-    queryKey: queryKeys.opportunities.all,
+  const { data, isLoading, refetch } = useQuery<Opportunity[]>({
+    queryKey: ['opportunities'],
     queryFn: getOpportunities,
-    refetchInterval: 30_000,
-    staleTime: 20_000,
-    retry: 1,
+    refetchInterval: 30000,
+    staleTime: 20000,
   })
 
   const opportunities = data ?? []
 
-  const filters = useMemo(() => {
-    const sports = new Set<string>()
-    const bookmakers = new Set<string>()
-
-    opportunities.forEach((opp) => {
-      sports.add(opp.sport)
-      bookmakers.add(opp.bookmaker_best)
+  const filteredData = useMemo(() => {
+    return opportunities.filter((opp) => {
+      if (sportFilter !== 'all' && opp.sport !== sportFilter) return false
+      if (bookmakerFilter !== 'all' && opp.bookmaker_best !== bookmakerFilter) return false
+      if (opp.edge_pct < minEdge) return false
+      return true
     })
+  }, [opportunities, sportFilter, bookmakerFilter, minEdge])
 
-    return {
-      sports: Array.from(sports),
-      bookmakers: Array.from(bookmakers),
-    }
+  const sports = useMemo(() => {
+    const set = new Set(opportunities.map((o) => o.sport))
+    return Array.from(set).sort()
   }, [opportunities])
 
-  const filteredData = useMemo(() => {
-    const filtered = opportunities.filter((opp) => {
-      const edgeOk = opp.edge_pct >= minEdge
-      const sportOk = sportFilter === 'all' || opp.sport === sportFilter
-      const bookmakerOk = bookmakerFilter === 'all' || opp.bookmaker_best === bookmakerFilter
-      return edgeOk && sportOk && bookmakerOk
-    })
-
-    const sorted = [...filtered].sort((a, b) => {
-      const direction = sortDirection === 'asc' ? 1 : -1
-
-      switch (sortKey) {
-        case 'match':
-          return direction * `${a.home_team} ${a.away_team}`.localeCompare(`${b.home_team} ${b.away_team}`)
-        case 'sport':
-          return direction * a.sport.localeCompare(b.sport)
-        case 'best_odds':
-          return direction * (a.best_odds - b.best_odds)
-        case 'edge_pct':
-        default:
-          return direction * (a.edge_pct - b.edge_pct)
-      }
-    })
-
-    return sorted
-  }, [opportunities, sportFilter, bookmakerFilter, minEdge, sortKey, sortDirection])
-
-  const handleSort = (key: SortKey) => {
-    if (sortKey === key) {
-      setSortDirection((prev) => (prev === 'asc' ? 'desc' : 'asc'))
-      return
-    }
-    setSortKey(key)
-    setSortDirection('desc')
-  }
+  const bookmakers = useMemo(() => {
+    const set = new Set(opportunities.map((o) => o.bookmaker_best))
+    return Array.from(set).sort()
+  }, [opportunities])
 
   return (
-    <div className="min-h-screen bg-background p-4 sm:p-6 lg:p-8">
-      <div className="mx-auto flex max-w-7xl flex-col gap-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <Card className="border-purple-500/20 bg-gradient-to-br from-purple-500/5 via-background to-transparent p-6 md:p-8">
-            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-              <div className="flex items-center gap-3">
-                <div className="rounded-2xl bg-purple-500/15 p-3 text-purple-400">
-                  <Target className="h-7 w-7" />
-                </div>
-                <div>
-                  <h1 className="text-3xl font-bold">Opportunités</h1>
-                  <p className="text-sm text-muted-foreground">
-                    Surveillance temps réel des edges détectés sur les marchés principaux.
-                  </p>
-                </div>
-              </div>
-              <Button
-                variant="default"
-                className="flex items-center gap-2 rounded-full px-5 py-2"
-                onClick={() => refetch()}
-                disabled={isRefetching}
-              >
-                <RefreshCw className="h-4 w-4" />
-                Rafraîchir
-              </Button>
-            </div>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-        >
-          <Card className="border-border/60 bg-surface/80">
-            <div className="border-b border-border/70 px-6 py-5">
-              <h2 className="text-lg font-semibold text-text-primary">Filtres</h2>
-            </div>
-            <div className="grid gap-4 px-6 py-6 md:grid-cols-2 lg:grid-cols-4">
-              <div className="flex flex-col gap-2">
-                <label className="text-xs uppercase tracking-wide text-text-muted">Sport</label>
-                <select
-                  className="rounded-xl border border-border bg-surface-hover px-3 py-2 text-sm text-text-primary"
-                  value={sportFilter}
-                  onChange={(event) => setSportFilter(event.target.value)}
-                >
-                  <option value="all">Tous</option>
-                  {filters.sports.map((sport) => (
-                    <option key={sport} value={sport}>
-                      {sport}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-xs uppercase tracking-wide text-text-muted">Bookmaker</label>
-                <select
-                  className="rounded-xl border border-border bg-surface-hover px-3 py-2 text-sm text-text-primary"
-                  value={bookmakerFilter}
-                  onChange={(event) => setBookmakerFilter(event.target.value)}
-                >
-                  <option value="all">Tous</option>
-                  {filters.bookmakers.map((bookmaker) => (
-                    <option key={bookmaker} value={bookmaker}>
-                      {bookmaker}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex flex-col gap-2 md:col-span-2 lg:col-span-1">
-                <label className="text-xs uppercase tracking-wide text-text-muted">Edge minimum</label>
-                <div className="flex items-center gap-4">
-                  <input
-                    type="range"
-                    min={0}
-                    max={25}
-                    step={0.5}
-                    value={minEdge}
-                    onChange={(event) => setMinEdge(Number(event.target.value))}
-                    className="flex-1 accent-primary"
-                  />
-                  <span className="number text-primary">{formatNumber(minEdge, 1)}%</span>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-        >
-          <Card className="border-border/60 bg-surface/80">
-            <div className="flex flex-col gap-2 border-b border-border/70 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="text-lg font-semibold text-text-primary">{filteredData.length} opportunités</h2>
-              <p className="text-xs uppercase tracking-wide text-text-muted">
-                Actualisation automatique toutes les 30 secondes
-              </p>
-            </div>
-            <div className="overflow-hidden px-2 py-4 sm:px-4">
-              <div className="w-full overflow-x-auto rounded-2xl border border-border/50">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="cursor-pointer" onClick={() => handleSort('match')}>
-                        Match
-                      </TableHead>
-                      <TableHead className="cursor-pointer" onClick={() => handleSort('sport')}>
-                        Sport
-                      </TableHead>
-                      <TableHead>Outcome</TableHead>
-                      <TableHead className="cursor-pointer text-right" onClick={() => handleSort('best_odds')}>
-                        Best Odds
-                      </TableHead>
-                      <TableHead>Bookmaker</TableHead>
-                      <TableHead className="cursor-pointer text-right" onClick={() => handleSort('edge_pct')}>
-                        Edge %
-                      </TableHead>
-                      <TableHead className="text-right">Action</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {filteredData.map((opp) => (
-                      <TableRow key={opp.id} className="hover:bg-surface-hover/60">
-                        <TableCell>
-                          <div className="flex flex-col">
-                            <span className="text-sm font-semibold text-text-primary">
-                              {opp.home_team} vs {opp.away_team}
-                            </span>
-                            <span className="text-xs text-text-muted">
-                              {new Date(opp.commence_time).toLocaleString('fr-FR', {
-                                day: '2-digit',
-                                month: 'short',
-                                hour: '2-digit',
-                                minute: '2-digit',
-                              })}
-                            </span>
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant="secondary" className="rounded-full bg-surface-hover px-3 py-1 text-xs">
-                            {opp.sport}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-sm text-text-secondary">{opp.outcome}</TableCell>
-                        <TableCell className="number text-right text-primary">{formatNumber(opp.best_odds, 2)}</TableCell>
-                        <TableCell className="text-sm text-text-secondary">{opp.bookmaker_best}</TableCell>
-                        <TableCell className="text-right">
-                          <Badge
-                            variant="secondary"
-                            className={`rounded-full px-3 py-1 text-sm font-semibold ${edgeBadgeVariant(opp.edge_pct)}`}
-                          >
-                            {formatNumber(opp.edge_pct, 1)}%
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <Button size="sm" className="rounded-full px-4">
-                            Place Bet
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-                {isLoading && (
-                  <div className="flex items-center justify-center py-10 text-text-muted">
-                    Chargement des opportunités…
-                  </div>
-                )}
-                {!isLoading && filteredData.length === 0 && (
-                  <div className="flex items-center justify-center py-10 text-text-muted">
-                    Aucune opportunité avec ces filtres.
-                  </div>
-                )}
-              </div>
-            </div>
-          </Card>
-        </motion.div>
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-violet-500/20 rounded-xl">
+            <Target className="w-8 h-8 text-violet-400" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold text-white">Opportunités</h1>
+            <p className="text-slate-400">Surveillance temps réel des edges détectés</p>
+          </div>
+        </div>
+        <Button onClick={() => refetch()} variant="outline" className="border-violet-500">
+          <RefreshCw className="w-4 h-4 mr-2" />
+          Rafraîchir
+        </Button>
       </div>
+
+      <Card className="bg-slate-800/50 border-slate-700 p-6">
+        <h3 className="text-lg font-semibold mb-4">Filtres</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label className="text-sm text-slate-400">SPORT</label>
+            <select
+              value={sportFilter}
+              onChange={(e) => setSportFilter(e.target.value)}
+              className="w-full mt-1 bg-slate-700 border-slate-600 rounded p-2 text-white"
+            >
+              <option value="all">Tous</option>
+              {sports.map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
+          </div>
+<div>
+            <label className="text-sm text-slate-400">BOOKMAKER</label>
+            <select
+              value={bookmakerFilter}
+              onChange={(e) => setBookmakerFilter(e.target.value)}
+              className="w-full mt-1 bg-slate-700 border-slate-600 rounded p-2 text-white"
+            >
+              <option value="all">Tous</option>
+              {bookmakers.map((b) => (
+                <option key={b} value={b}>{b}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="text-sm text-slate-400">EDGE MINIMUM</label>
+            <div className="flex items-center gap-3 mt-1">
+              <input
+                type="range"
+                min="0"
+                max="50"
+                step="0.5"
+                value={minEdge}
+                onChange={(e) => setMinEdge(parseFloat(e.target.value))}
+                className="flex-1"
+              />
+              <span className="text-violet-400 font-bold">{minEdge.toFixed(1)}%</span>
+            </div>
+          </div>
+        </div>
+      </Card>
+
+      <Card className="bg-slate-800/50 border-slate-700">
+        <div className="p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold">{filteredData.length} opportunités</h3>
+            <span className="text-xs text-slate-400">ACTUALISATION AUTOMATIQUE TOUTES LES 30 SECONDES</span>
+          </div>
+
+          <Table>
+            <TableHeader>
+              <TableRow className="border-slate-700">
+                <TableHead className="text-slate-400">Match</TableHead>
+                <TableHead className="text-slate-400">Sport</TableHead>
+                <TableHead className="text-slate-400">Outcome</TableHead>
+                <TableHead className="text-slate-400 text-right">Best Odds</TableHead>
+                <TableHead className="text-slate-400">Bookmaker</TableHead>
+                <TableHead className="text-slate-400 text-right">Edge %</TableHead>
+                <TableHead className="text-slate-400 text-right">Action</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {filteredData.map((opp) => (
+                <TableRow key={opp.id} className="border-slate-700 hover:bg-slate-800/50">
+                  <TableCell>
+                    <div>
+                      <p className="font-medium text-white">{opp.home_team} vs {opp.away_team}</p>
+                      <p className="text-xs text-slate-500">
+                        {new Date(opp.commence_time).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
+                      </p>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant="secondary" className="bg-slate-700 text-xs">
+                      {opp.sport.replace('soccer_', '').replace(/_/g, ' ')}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-slate-300">{opp.outcome}</TableCell>
+                  <TableCell className="text-right font-bold text-white">{opp.best_odds.toFixed(2)}</TableCell>
+                  <TableCell className="text-slate-300">{opp.bookmaker_best}</TableCell>
+                  <TableCell className="text-right">
+                    <Badge className={`${edgeBadgeVariant(opp.edge_pct)} font-bold`}>
+                      {opp.edge_pct.toFixed(1)}%
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <div className="flex gap-2 justify-end">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="rounded-full px-3 border-violet-500 text-violet-400 hover:bg-violet-500/20"
+                        onClick={() => setSelectedMatch({ id: opp.match_id, name: `${opp.home_team} vs ${opp.away_team}` })}
+                      >
+                        Analyser
+                      </Button>
+                      <Button size="sm" className="rounded-full px-4 bg-violet-600 hover:bg-violet-700">
+                        Place Bet
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+{isLoading && (
+            <div className="flex items-center justify-center py-10 text-slate-400">
+              Chargement des opportunités...
+            </div>
+          )}
+          {!isLoading && filteredData.length === 0 && (
+            <div className="flex items-center justify-center py-10 text-slate-400">
+              Aucune opportunité avec ces filtres.
+            </div>
+          )}
+        </div>
+      </Card>
+
+      {/* Modal Analyse Agents */}
+      {selectedMatch && (
+        <MatchAnalysisModal
+          matchId={selectedMatch.id}
+          matchName={selectedMatch.name}
+          isOpen={!!selectedMatch}
+          onClose={() => setSelectedMatch(null)}
+        />
+      )}
     </div>
   )
 }
