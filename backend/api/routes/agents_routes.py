@@ -664,3 +664,54 @@ async def analyze_with_patron(match_id: str):
     }
     
     return patron_analysis
+
+@router.post("/patron/batch")
+async def batch_patron_scores(match_ids: list[str]):
+    """
+    Calcule les scores Patron pour plusieurs matchs en batch
+    Retourne un dictionnaire {match_id: score_info}
+    """
+    results = {}
+    
+    for match_id in match_ids[:20]:  # Limite à 20 matchs max
+        try:
+            # Récupérer l'analyse de base
+            base_analysis = await analyze_match_with_agents(match_id)
+            
+            if "error" in base_analysis:
+                results[match_id] = {"score": 0, "label": "ERREUR", "color": "text-red-400"}
+                continue
+            
+            agents_list = base_analysis.get("agents", [])
+            
+            # Calculer score moyen
+            scores = []
+            for agent in agents_list:
+                scores.append(agent.get("confidence", 0))
+            
+            avg_score = sum(scores) / len(scores) if scores else 0
+            
+            # Déterminer le label et la couleur
+            if avg_score >= 70:
+                label = "FORT SIGNAL"
+                color = "text-green-400"
+            elif avg_score >= 50:
+                label = "ANALYSER"
+                color = "text-blue-400"
+            elif avg_score >= 30:
+                label = "PRUDENCE"
+                color = "text-orange-400"
+            else:
+                label = "EVITER"
+                color = "text-red-400"
+            
+            results[match_id] = {
+                "score": round(avg_score, 1),
+                "label": label,
+                "color": color
+            }
+        except Exception as e:
+            results[match_id] = {"score": 0, "label": "ERREUR", "color": "text-red-400"}
+    
+    return results
+
