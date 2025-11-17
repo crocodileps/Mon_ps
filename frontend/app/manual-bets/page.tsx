@@ -36,6 +36,12 @@ export default function ManualBetsPage() {
 
   const handleUpdateResult = async (betId: number, result: string, stake: number, odds: number) => {
     const profit = result === 'win' ? stake * (odds - 1) : -stake;
+    const confirmMsg = result === 'win' 
+      ? `Confirmer VICTOIRE ? Profit: +${profit.toFixed(2)}€`
+      : `Confirmer DÉFAITE ? Perte: ${profit.toFixed(2)}€`;
+    
+    if (!confirm(confirmMsg)) return;
+    
     try {
       await updateResult.mutateAsync({ id: betId, result, profit_loss: profit });
     } catch (error) {
