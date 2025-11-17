@@ -13,6 +13,7 @@ from api.routes import agents_routes
 from api.routes import metrics_collector_routes
 from api.routes import settings as settings_route
 from api.routes import metrics_routes
+from api.routes import manual_bets_routes
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -76,6 +77,7 @@ app.include_router(metrics.router, tags=["metrics"])
 app.include_router(settings_route.router, prefix="/settings", tags=["settings"])
 app.include_router(metrics_routes.router)
 app.include_router(agents_routes.router)
+app.include_router(manual_bets_routes.router)
 app.include_router(
     metrics_collector_routes.router,
     tags=["Metrics Collector"]
