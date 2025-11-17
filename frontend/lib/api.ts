@@ -41,7 +41,21 @@ export async function getGlobalStats() {
 // Opportunités
 export async function getOpportunities(params?: any) {
   const { data } = await api.get("/opportunities/opportunities/", { params });
-  return data;
+  return data.map((opp: any) => ({
+    id: opp.match_id,
+    match_id: opp.match_id,
+    home_team: opp.home_team,
+    away_team: opp.away_team,
+    sport: opp.sport,
+    commence_time: opp.commence_time,
+    outcome: opp.outcome,
+    best_odds: parseFloat(opp.best_odd) || 0,
+    worst_odds: parseFloat(opp.worst_odd) || 0,
+    bookmaker_best: opp.bookmaker_best,
+    bookmaker_worst: opp.bookmaker_worst,
+    edge_pct: opp.spread_pct || 0,
+    nb_bookmakers: opp.nb_bookmakers,
+  }));
 }
 
 // Bets
@@ -52,18 +66,5 @@ export async function getBets(params?: any) {
 
 export default api;
 
-// Wrappers pour React Query
-api.get = async function(url: string, config?: any) {
-  const response = await axios.get(API_BASE_URL + url, { ...this.defaults, ...config });
-  return response.data;
-};
 
-api.post = async function(url: string, data?: any, config?: any) {
-  const response = await axios.post(API_BASE_URL + url, data, { ...this.defaults, ...config });
-  return response.data;
-};
 
-api.put = async function(url: string, data?: any, config?: any) {
-  const response = await axios.put(API_BASE_URL + url, data, { ...this.defaults, ...config });
-  return response.data;
-};

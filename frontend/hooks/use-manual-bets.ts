@@ -67,7 +67,7 @@ export function useManualBets(params?: {
 
   return useQuery<ManualBet[]>({
     queryKey: ['manual-bets', params],
-    queryFn: () => api.get(url),
+    queryFn: async () => { const { data } = await api.get(url); return data; },
     refetchInterval: 60000, // Refresh toutes les minutes
   });
 }
@@ -75,7 +75,7 @@ export function useManualBets(params?: {
 export function useManualBetsStats() {
   return useQuery<ManualBetsStats>({
     queryKey: ['manual-bets-stats'],
-    queryFn: () => api.get('/manual-bets/stats'),
+    queryFn: async () => { const { data } = await api.get('/manual-bets/stats'); return data; },
     refetchInterval: 60000,
   });
 }
@@ -83,7 +83,7 @@ export function useManualBetsStats() {
 export function useManualBet(id: number) {
   return useQuery<ManualBet>({
     queryKey: ['manual-bet', id],
-    queryFn: () => api.get(`/manual-bets/${id}`),
+    queryFn: async () => { const { data } = await api.get(`/manual-bets/${id}`); return data; },
     enabled: !!id,
   });
 }
@@ -92,7 +92,7 @@ export function useCalculateCLV() {
   const queryClient = useQueryClient();
 
   return useMutation<CLVCalculationResult>({
-    mutationFn: () => api.post('/manual-bets/calculate-clv'),
+    mutationFn: async () => { const { data } = await api.post('/manual-bets/calculate-clv'); return data; },
     onSuccess: () => {
       // Invalider les queries pour rafraîchir les données
       queryClient.invalidateQueries({ queryKey: ['manual-bets'] });
@@ -105,8 +105,8 @@ export function useUpdateBetResult() {
   const queryClient = useQueryClient();
 
   return useMutation<ManualBet, Error, { id: number; result: string; profit_loss?: number }>({
-    mutationFn: ({ id, result, profit_loss }) =>
-      api.put(`/manual-bets/${id}`, { result, profit_loss }),
+    mutationFn: async ({ id, result, profit_loss }) =>
+      {  const  { data } =  await  api.put ( `/manual-bets/$ {id} `,  {  result, profit_loss   } ) ;  return data ;  } ,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['manual-bets'] });
       queryClient.invalidateQueries({ queryKey: ['manual-bets-stats'] });

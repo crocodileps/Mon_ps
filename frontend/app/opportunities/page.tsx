@@ -18,7 +18,6 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { getOpportunities } from '@/lib/api'
-import { mockOpportunities } from '@/lib/mock/opportunities'
 import { queryKeys } from '@/lib/query-keys'
 import type { Opportunity } from '@/types/api'
 
@@ -44,10 +43,9 @@ export default function OpportunitiesPage() {
     refetchInterval: 30_000,
     staleTime: 20_000,
     retry: 1,
-    initialData: mockOpportunities,
   })
 
-  const opportunities = data ?? mockOpportunities
+  const opportunities = data ?? []
 
   const filters = useMemo(() => {
     const sports = new Set<string>()
