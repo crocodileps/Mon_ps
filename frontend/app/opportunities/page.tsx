@@ -104,7 +104,7 @@ export default function OpportunitiesPage() {
               ))}
             </select>
           </div>
-<div>
+          <div>
             <label className="text-sm text-slate-400">BOOKMAKER</label>
             <select
               value={bookmakerFilter}
@@ -117,7 +117,7 @@ export default function OpportunitiesPage() {
               ))}
             </select>
           </div>
-          <div>
+<div>
             <label className="text-sm text-slate-400">EDGE MINIMUM</label>
             <div className="flex items-center gap-3 mt-1">
               <input
@@ -151,6 +151,8 @@ export default function OpportunitiesPage() {
                 <TableHead className="text-slate-400 text-right">Best Odds</TableHead>
                 <TableHead className="text-slate-400">Bookmaker</TableHead>
                 <TableHead className="text-slate-400 text-right">Edge %</TableHead>
+                <TableHead className="text-slate-400">Pari Recommande</TableHead>
+                <TableHead className="text-slate-400">Score Patron</TableHead>
                 <TableHead className="text-slate-400 text-right">Action</TableHead>
               </TableRow>
             </TableHeader>
@@ -178,6 +180,16 @@ export default function OpportunitiesPage() {
                       {opp.edge_pct.toFixed(1)}%
                     </Badge>
                   </TableCell>
+                  <TableCell>
+                    <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30">
+                      1X2 {opp.outcome === 'home' ? 'Home' : opp.outcome === 'away' ? 'Away' : 'Draw'} @ {opp.best_odds.toFixed(2)}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <span className="font-medium text-sm text-orange-400">
+                      PRUDENCE
+                    </span>
+                  </TableCell>
                   <TableCell className="text-right">
                     <div className="flex gap-2 justify-end">
                       <Button
@@ -197,7 +209,7 @@ export default function OpportunitiesPage() {
               ))}
             </TableBody>
           </Table>
-{isLoading && (
+          {isLoading && (
             <div className="flex items-center justify-center py-10 text-slate-400">
               Chargement des opportunités...
             </div>
@@ -210,7 +222,6 @@ export default function OpportunitiesPage() {
         </div>
       </Card>
 
-      {/* Modal Analyse Agents */}
       {selectedMatch && (
         <MatchAnalysisModal
           matchId={selectedMatch.id}
