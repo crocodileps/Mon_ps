@@ -51,3 +51,19 @@ export async function getBets(params?: any) {
 }
 
 export default api;
+
+// Wrappers pour React Query
+api.get = async function(url: string, config?: any) {
+  const response = await axios.get(API_BASE_URL + url, { ...this.defaults, ...config });
+  return response.data;
+};
+
+api.post = async function(url: string, data?: any, config?: any) {
+  const response = await axios.post(API_BASE_URL + url, data, { ...this.defaults, ...config });
+  return response.data;
+};
+
+api.put = async function(url: string, data?: any, config?: any) {
+  const response = await axios.put(API_BASE_URL + url, data, { ...this.defaults, ...config });
+  return response.data;
+};
