@@ -379,7 +379,7 @@ async def analyze_match_with_agents(match_id: str):
     if match_info.get("odds"):
         max_spread = max(match_info["odds"]["home"]["spread_pct"], match_info["odds"]["away"]["spread_pct"], match_info["odds"]["draw"]["spread_pct"])
         if max_spread > 10:
-            anomaly_score = min(max_spread / 10, 10)
+            anomaly_score = min(10 + (max_spread / 20), 95)
             is_anomaly = True
             reason_a = f"Spread élevé détecté ({max_spread:.1f}%)"
     else:
@@ -421,7 +421,7 @@ async def analyze_match_with_agents(match_id: str):
     agents_analysis.append({
         "agent_id": "spread_optimizer", "agent_name": "Spread Optimizer", "icon": "📊",
         "status": "active", "recommendation": best_outcome.upper() if expected_value > 0 else "PASS",
-        "confidence": round(min(expected_value * 100, 10), 2) if expected_value > 0 else 0,
+        "confidence": round(min(30 + (expected_value * 800), 90), 2) if expected_value > 0 else 0,
         "reason": reason_b,
         "details": {"kelly_fraction": round(kelly_fraction, 4), "expected_value": round(expected_value, 4), "recommended_stake_pct": round(recommended_stake, 2), "best_outcome": best_outcome}
     })
@@ -432,16 +432,16 @@ async def analyze_match_with_agents(match_id: str):
     sport = match_info["sport"]
     if "epl" in sport or "premier" in sport.lower():
         patterns_found.append("Premier League - Forte compétition")
-        confidence_c += 3
+        confidence_c += 25
     if "ligue_one" in sport:
         patterns_found.append("Ligue 1 - PSG dominance")
-        confidence_c += 2
+        confidence_c += 20
     if "serie_a" in sport:
         patterns_found.append("Serie A - Défenses solides")
-        confidence_c += 2
+        confidence_c += 20
     if "la_liga" in sport:
         patterns_found.append("La Liga - Technique élevée")
-        confidence_c += 2
+        confidence_c += 20
     reason_c = "; ".join(patterns_found) if patterns_found else "Aucun pattern significatif"
     
     agents_analysis.append({
@@ -459,12 +459,12 @@ async def analyze_match_with_agents(match_id: str):
     if match_info.get("bookmaker_count", 0) >= 10:
         win_rate = 0.52
         avg_roi = 3.2
-        historical_performance = 7.5
+        historical_performance = 65.0
         reason_d = f"Couverture élevée ({match_info['bookmaker_count']} books) - ROI historique: {avg_roi}%"
     elif match_info.get("bookmaker_count", 0) >= 5:
         win_rate = 0.50
         avg_roi = 1.5
-        historical_performance = 5.0
+        historical_performance = 45.0
         reason_d = f"Couverture moyenne ({match_info['bookmaker_count']} books)"
     
     agents_analysis.append({

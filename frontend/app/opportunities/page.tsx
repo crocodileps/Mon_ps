@@ -2,6 +2,7 @@
 
 import { MatchAnalysisModal } from '@/components/agents/MatchAnalysisModal';
 import { useMemo, useState } from 'react'
+import { usePatronScores } from '@/hooks/use-patron-scores'
 import { useQuery } from '@tanstack/react-query'
 import { RefreshCw, Target } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
@@ -68,7 +69,11 @@ export default function OpportunitiesPage() {
   const bookmakers = useMemo(() => {
     const set = new Set(opportunities.map((o) => o.bookmaker_best))
     return Array.from(set).sort()
-  }, [opportunities])
+  }, [opportunities]) 
+
+// Récupérer les scores Patron pour tous les matchs
+  const matchIds = useMemo(() => filteredData.map(opp => opp.match_id), [filteredData])
+  const { data: patronScores } = usePatronScores(matchIds)
 
   return (
     <div className="space-y-6">
@@ -186,9 +191,15 @@ export default function OpportunitiesPage() {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <span className="font-medium text-sm text-orange-400">
-                      PRUDENCE
-                    </span>
+                    {patronScores?.[opp.match_id] ? (
+                      <span className={`font-medium text-sm ${patronScores[opp.match_id].color}`}>
+                        {patronScores[opp.match_id].label}
+                      </span>
+                    ) : (
+                      <span className="font-medium text-sm text-gray-500">
+                        Chargement...
+                      </span>
+                    )}
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex gap-2 justify-end">
