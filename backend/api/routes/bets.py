@@ -370,7 +370,7 @@ def update_bet(request: Request, bet_id: int, bet_update: BetUpdate):
                     result=bet_update.result,
                     stake=stake_float,
                     odds_value=odds_float,
-                    actual_profit=profit,
+                    profit=profit,
                     roi_pct=round(roi, 2),
                     severity="info" if profit >= 0 else "warning",
                 )

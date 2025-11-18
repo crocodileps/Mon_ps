@@ -8,6 +8,8 @@ import { RefreshCw, Target, FilterX, ArrowUpDown, Clock, Trophy, Database } from
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { PlaceBetModal } from '@/components/PlaceBetModal'
+import { Toaster } from 'sonner'
 import {
   Table,
   TableBody,
@@ -153,7 +155,8 @@ export default function OpportunitiesPage() {
   const [minEdge, setMinEdge] = useState<number>(10)
   const [dateFilter, setDateFilter] = useState<string>('all') 
   const [selectedMatch, setSelectedMatch] = useState<{id: string, name: string} | null>(null)
-  
+  const [selectedBet, setSelectedBet] = useState<any | null>(null)
+
   const [sortConfig, setSortConfig] = useState<{key: keyof Opportunity, direction: 'asc' | 'desc'}>({ key: 'commence_time', direction: 'asc' })
 
   const { data, isLoading, refetch } = useQuery<Opportunity[]>({
@@ -422,7 +425,12 @@ const timeA = new Date(a.commence_time).getTime()
                         >
                           Analyser
                         </Button>
-                        <Button size="sm" className="rounded-full px-4 h-8 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-900/20">
+                        <Button 
+                          size="sm" 
+                          onClick={() => setSelectedBet(opp)}
+                          className="rounded-full px-4 h-8 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-900/20"
+                        >  
+
                           Parier
                         </Button>
                       </div>
@@ -454,7 +462,26 @@ const timeA = new Date(a.commence_time).getTime()
           onClose={() => setSelectedMatch(null)}
         />
       )}
+      {selectedMatch && (
+        <MatchAnalysisModal
+          matchId={selectedMatch.id}
+          matchName={selectedMatch.name}
+          isOpen={!!selectedMatch}
+          onClose={() => setSelectedMatch(null)}
+        />
+      )}
+
+      {selectedBet && (
+        <PlaceBetModal
+          isOpen={!!selectedBet}
+          onClose={() => setSelectedBet(null)}
+          opportunity={selectedBet}
+          patronScore={patronScores?.[selectedBet.match_id]?.label}
+        />
+      )}
+
+      <Toaster position="top-right" richColors />
     </div>
   )
 }
-
+    

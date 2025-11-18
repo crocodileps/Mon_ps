@@ -75,7 +75,7 @@ export function useManualBets(params?: {
 export function useManualBetsStats() {
   return useQuery<ManualBetsStats>({
     queryKey: ['manual-bets-stats'],
-    queryFn: async () => { const { data } = await api.get('/manual-bets/stats'); return data; },
+    queryFn: async () => { const { data } = await api.get('/bets/stats'); return data; },
     refetchInterval: 60000,
   });
 }

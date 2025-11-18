@@ -67,5 +67,46 @@ export async function getBets(params?: any) {
 
 export default api;
 
+// ============= BETS / P&L =============
+export const placeBet = async (betData: {
+  match_id: string
+  opportunity_id?: string
+  home_team: string
+  away_team: string
+  sport: string
+  league?: string
+  commence_time: string
+  outcome: string
+  odds: number
+  stake: number
+  bookmaker: string
+  edge_pct?: number
+  agent_recommended?: string
+  patron_score?: string
+  patron_confidence?: number
+  notes?: string
+}) => {
+  const response = await fetch(`${API_BASE_URL}/bets/place`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(betData)
+  })
+  if (!response.ok) throw new Error('Failed to place bet')
+  return response.json()
+}
+
+export const getBetsStats = async () => {
+  const response = await fetch(`${API_BASE_URL}/bets/stats`)
+  if (!response.ok) throw new Error('Failed to fetch stats')
+  return response.json()
+}
+
+export const getBetsHistory = async (limit = 50, status?: string) => {
+  const params = new URLSearchParams({ limit: limit.toString() })
+  if (status) params.append('status', status)
+  const response = await fetch(`${API_BASE_URL}/bets/history?${params}`)
+  if (!response.ok) throw new Error('Failed to fetch history')
+  return response.json()
+}
 
 
