@@ -1,10 +1,10 @@
 'use client'
 
-import { MatchAnalysisModal } from '@/components/agents/MatchAnalysisModal';
+import { MatchAnalysisModal } from '@/components/agents/MatchAnalysisModal'
 import { useMemo, useState } from 'react'
 import { usePatronScores } from '@/hooks/use-patron-scores'
 import { useQuery } from '@tanstack/react-query'
-import { RefreshCw, Target } from 'lucide-react'
+import { RefreshCw, Target, FilterX } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -18,17 +18,18 @@ import {
 } from '@/components/ui/table'
 import { getOpportunities } from '@/lib/api'
 
+// Interface stricte pour TypeScript
 interface Opportunity {
-  id: string;
-  match_id: string;
-  home_team: string;
-  away_team: string;
-  sport: string;
-  commence_time: string;
-  outcome: string;
-  best_odds: number;
-  bookmaker_best: string;
-  edge_pct: number;
+  id: string
+  match_id: string
+  home_team: string
+  away_team: string
+  sport: string
+  commence_time: string
+  outcome: string
+  best_odds: number
+  bookmaker_best: string
+  edge_pct: number
 }
 
 const edgeBadgeVariant = (edge: number) => {
@@ -37,10 +38,22 @@ const edgeBadgeVariant = (edge: number) => {
   return 'bg-slate-500/20 text-slate-400'
 }
 
+// --- LA CLÉ DU SUCCÈS : Fonction de date robuste ---
+const getDateKey = (dateInput: string | Date) => {
+  try {
+    const d = new Date(dateInput)
+    // Retourne toujours YYYY-MM-DD
+    return d.toISOString().split('T')[0]
+  } catch (e) {
+    return "INVALID_DATE"
+  }
+}
+
 export default function OpportunitiesPage() {
   const [sportFilter, setSportFilter] = useState<string>('all')
   const [bookmakerFilter, setBookmakerFilter] = useState<string>('all')
   const [minEdge, setMinEdge] = useState<number>(10)
+  const [dateFilter, setDateFilter] = useState<string>('today') // Par défaut sur Aujourd'hui
   const [selectedMatch, setSelectedMatch] = useState<{id: string, name: string} | null>(null)
 
   const { data, isLoading, refetch } = useQuery<Opportunity[]>({
@@ -50,28 +63,57 @@ export default function OpportunitiesPage() {
     staleTime: 20000,
   })
 
-  const opportunities = data ?? []
+  const rawOpportunities = data ?? []
 
+  // --- LOGIQUE FILTRÉE ET VALIDÉE ---
   const filteredData = useMemo(() => {
-    return opportunities.filter((opp) => {
-      if (sportFilter !== 'all' && opp.sport !== sportFilter) return false
-      if (bookmakerFilter !== 'all' && opp.bookmaker_best !== bookmakerFilter) return false
+    const todayKey = getDateKey(new Date())
+    
+    return rawOpportunities.filter((opp: Opportunity) => {
+      // 1. EDGE
       if (opp.edge_pct < minEdge) return false
+
+      // 2. SPORT
+      if (sportFilter !== 'all' && opp.sport.trim() !== sportFilter.trim()) return false
+      
+      // 3. BOOKMAKER
+      if (bookmakerFilter !== 'all' && opp.bookmaker_best !== bookmakerFilter) return false
+      
+      // 4. DATE (Logique réparée)
+      if (dateFilter !== 'all') {
+        const matchKey = getDateKey(opp.commence_time)
+        
+        if (dateFilter === 'today') {
+           if (matchKey !== todayKey) return false
+        }
+        else if (dateFilter === 'tomorrow') {
+           const d = new Date()
+           d.setDate(d.getDate() + 1)
+           const tomorrowKey = getDateKey(d)
+           if (matchKey !== tomorrowKey) return false
+        }
+        else if (dateFilter === 'week') {
+            const matchTime = new Date(opp.commence_time).getTime()
+            const todayTime = new Date().setHours(0,0,0,0)
+            const nextWeekTime = new Date().setDate(new Date().getDate() + 7)
+            if (matchTime < todayTime || matchTime > nextWeekTime) return false
+        }
+      }
+      
       return true
     })
-  }, [opportunities, sportFilter, bookmakerFilter, minEdge])
+  }, [rawOpportunities, sportFilter, bookmakerFilter, minEdge, dateFilter])
 
   const sports = useMemo(() => {
-    const set = new Set(opportunities.map((o) => o.sport))
+    const set = new Set(rawOpportunities.map((o) => o.sport))
     return Array.from(set).sort()
-  }, [opportunities])
+  }, [rawOpportunities])
 
   const bookmakers = useMemo(() => {
-    const set = new Set(opportunities.map((o) => o.bookmaker_best))
+    const set = new Set(rawOpportunities.map((o) => o.bookmaker_best))
     return Array.from(set).sort()
-  }, [opportunities]) 
+  }, [rawOpportunities])
 
-// Récupérer les scores Patron pour tous les matchs
   const matchIds = useMemo(() => filteredData.map(opp => opp.match_id), [filteredData])
   const { data: patronScores } = usePatronScores(matchIds)
 
@@ -95,7 +137,7 @@ export default function OpportunitiesPage() {
 
       <Card className="bg-slate-800/50 border-slate-700 p-6">
         <h3 className="text-lg font-semibold mb-4">Filtres</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <label className="text-sm text-slate-400">SPORT</label>
             <select
@@ -122,7 +164,7 @@ export default function OpportunitiesPage() {
               ))}
             </select>
           </div>
-<div>
+          <div>
             <label className="text-sm text-slate-400">EDGE MINIMUM</label>
             <div className="flex items-center gap-3 mt-1">
               <input
@@ -136,6 +178,19 @@ export default function OpportunitiesPage() {
               />
               <span className="text-violet-400 font-bold">{minEdge.toFixed(1)}%</span>
             </div>
+          </div>
+          <div>
+            <label className="text-sm text-slate-400">DATE DES MATCHS</label>
+            <select
+              value={dateFilter}
+              onChange={(e) => setDateFilter(e.target.value)}
+              className="w-full mt-1 bg-slate-700 border-slate-600 rounded p-2 text-white"
+            >
+              <option value="all">Tous</option>
+              <option value="today">Aujourd'hui</option>
+              <option value="tomorrow">Demain</option>
+              <option value="week">Cette semaine</option>
+            </select>
           </div>
         </div>
       </Card>
@@ -162,72 +217,79 @@ export default function OpportunitiesPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredData.map((opp) => (
-                <TableRow key={opp.id} className="border-slate-700 hover:bg-slate-800/50">
-                  <TableCell>
-                    <div>
-                      <p className="font-medium text-white">{opp.home_team} vs {opp.away_team}</p>
-                      <p className="text-xs text-slate-500">
-                        {new Date(opp.commence_time).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
-                      </p>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="secondary" className="bg-slate-700 text-xs">
-                      {opp.sport.replace('soccer_', '').replace(/_/g, ' ')}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-slate-300">{opp.outcome}</TableCell>
-                  <TableCell className="text-right font-bold text-white">{opp.best_odds.toFixed(2)}</TableCell>
-                  <TableCell className="text-slate-300">{opp.bookmaker_best}</TableCell>
-                  <TableCell className="text-right">
-                    <Badge className={`${edgeBadgeVariant(opp.edge_pct)} font-bold`}>
-                      {opp.edge_pct.toFixed(1)}%
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30">
-                      1X2 {opp.outcome === 'home' ? 'Home' : opp.outcome === 'away' ? 'Away' : 'Draw'} @ {opp.best_odds.toFixed(2)}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    {patronScores?.[opp.match_id] ? (
-                      <span className={`font-medium text-sm ${patronScores[opp.match_id].color}`}>
-                        {patronScores[opp.match_id].label}
-                      </span>
-                    ) : (
-                      <span className="font-medium text-sm text-gray-500">
-                        Chargement...
-                      </span>
-                    )}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex gap-2 justify-end">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="rounded-full px-3 border-violet-500 text-violet-400 hover:bg-violet-500/20"
-                        onClick={() => setSelectedMatch({ id: opp.match_id, name: `${opp.home_team} vs ${opp.away_team}` })}
-                      >
-                        Analyser
-                      </Button>
-                      <Button size="sm" className="rounded-full px-4 bg-violet-600 hover:bg-violet-700">
-                        Place Bet
-                      </Button>
-                    </div>
-                  </TableCell>
+              {filteredData.length > 0 ? (
+                filteredData.map((opp) => (
+                  <TableRow key={opp.id} className="border-slate-700 hover:bg-slate-800/50">
+                    <TableCell>
+                      <div>
+                        <p className="font-medium text-white">{opp.home_team} vs {opp.away_team}</p>
+                        <p className="text-xs text-slate-500">
+                          {new Date(opp.commence_time).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
+                        </p>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="secondary" className="bg-slate-700 text-xs">
+                        {opp.sport.replace('soccer_', '').replace(/_/g, ' ')}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-slate-300">{opp.outcome}</TableCell>
+                    <TableCell className="text-right font-bold text-white">{opp.best_odds.toFixed(2)}</TableCell>
+                    <TableCell className="text-slate-300">{opp.bookmaker_best}</TableCell>
+                    <TableCell className="text-right">
+                      <Badge className={`${edgeBadgeVariant(opp.edge_pct)} font-bold`}>
+                        {opp.edge_pct.toFixed(1)}%
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30">
+                        1X2 {opp.outcome === 'home' ? 'Home' : opp.outcome === 'away' ? 'Away' : 'Draw'} @ {opp.best_odds.toFixed(2)}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      {patronScores?.[opp.match_id] ? (
+                        <span className={`font-medium text-sm ${patronScores[opp.match_id].color}`}>
+                          {patronScores[opp.match_id].label}
+                        </span>
+                      ) : (
+                        <span className="font-medium text-sm text-gray-500">
+                          Chargement...
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <div className="flex gap-2 justify-end">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="rounded-full px-3 border-violet-500 text-violet-400 hover:bg-violet-500/20"
+                          onClick={() => setSelectedMatch({ id: opp.match_id, name: `${opp.home_team} vs ${opp.away_team}` })}
+                        >
+                          Analyser
+                        </Button>
+                        <Button size="sm" className="rounded-full px-4 bg-violet-600 hover:bg-violet-700">
+                          Place Bet
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                   <TableCell colSpan={9} className="h-24 text-center text-slate-400">
+                      <div className="flex flex-col items-center justify-center gap-2">
+                        <FilterX className="w-8 h-8 opacity-50" />
+                        <p>Aucune opportunité trouvée avec ces filtres.</p>
+                      </div>
+                   </TableCell>
                 </TableRow>
-              ))}
+              )}
             </TableBody>
           </Table>
+          
           {isLoading && (
             <div className="flex items-center justify-center py-10 text-slate-400">
-              Chargement des opportunités...
-            </div>
-          )}
-          {!isLoading && filteredData.length === 0 && (
-            <div className="flex items-center justify-center py-10 text-slate-400">
-              Aucune opportunité avec ces filtres.
+              Chargement des données...
             </div>
           )}
         </div>
