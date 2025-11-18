@@ -53,7 +53,8 @@ export async function getOpportunities(params?: any) {
     worst_odds: parseFloat(opp.worst_odd) || 0,
     bookmaker_best: opp.bookmaker_best,
     bookmaker_worst: opp.bookmaker_worst,
-    edge_pct: opp.spread_pct || 0,
+    // La propriété edge_pct est bien créée ici à partir de spread_pct
+    edge_pct: opp.spread_pct || 0, 
     nb_bookmakers: opp.nb_bookmakers,
   }));
 }
