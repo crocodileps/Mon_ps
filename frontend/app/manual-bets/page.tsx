@@ -150,7 +150,6 @@ export default function PnLPage() {
                 <TableHead className="text-slate-400 text-right">Mise</TableHead>
                 <TableHead className="text-slate-400">Bookmaker</TableHead>
                 <TableHead className="text-slate-400 text-right">Edge</TableHead>
-                <TableHead className="text-slate-400 text-right">CLV</TableHead>
                 <TableHead className="text-slate-400">Patron</TableHead>
                 <TableHead className="text-slate-400">Statut</TableHead>
                 <TableHead className="text-slate-400 text-right">P&L</TableHead>
@@ -196,29 +195,8 @@ export default function PnLPage() {
                     </TableCell>
                     <TableCell className="text-right">
                       {bet.edge_pct ? (
-                    <TableCell className="text-right">
-                      {bet.clv_percent !== null ? (
-                        <Badge className={bet.clv_percent >= 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}>
-                          {bet.clv_percent >= 0 ? '+' : ''}{bet.clv_percent.toFixed(2)}%
-                        </Badge>
-                      ) : <span className="text-slate-600">--</span>}
-                    </TableCell>
                         <Badge className="bg-green-500/20 text-green-400">
-                    <TableCell className="text-right">
-                      {bet.clv_percent !== null ? (
-                        <Badge className={bet.clv_percent >= 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}>
-                          {bet.clv_percent >= 0 ? '+' : ''}{bet.clv_percent.toFixed(2)}%
-                        </Badge>
-                      ) : <span className="text-slate-600">--</span>}
-                    </TableCell>
                           {bet.edge_pct.toFixed(1)}%
-                    <TableCell className="text-right">
-                      {bet.clv_percent !== null ? (
-                        <Badge className={bet.clv_percent >= 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}>
-                          {bet.clv_percent >= 0 ? '+' : ''}{bet.clv_percent.toFixed(2)}%
-                        </Badge>
-                      ) : <span className="text-slate-600">--</span>}
-                    </TableCell>
                         </Badge>
                       ) : <span className="text-slate-600">--</span>}
                     </TableCell>
