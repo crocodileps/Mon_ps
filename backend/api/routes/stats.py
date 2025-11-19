@@ -141,8 +141,8 @@ def get_bankroll(request: Request):
             SELECT 
                 COUNT(*) as nb_bets,
                 COALESCE(SUM(stake), 0) as total_staked,
-                COALESCE(SUM(CASE WHEN result = 'won' THEN actual_profit ELSE 0 END), 0) as total_returned,
-                COALESCE(SUM(actual_profit), 0) as total_profit,
+                COALESCE(SUM(CASE WHEN result = 'won' THEN profit ELSE 0 END), 0) as total_returned,
+                COALESCE(SUM(profit), 0) as total_profit,
                 COUNT(CASE WHEN result = 'won' THEN 1 END) as nb_won,
                 COUNT(CASE WHEN result = 'lost' THEN 1 END) as nb_lost,
                 COUNT(CASE WHEN result IS NULL THEN 1 END) as nb_pending
@@ -219,8 +219,8 @@ def _normalize_bet(record: Dict[str, Any]) -> Dict[str, Any]:
 
     normalized = dict(record)
 
-    if "actual_profit" not in normalized:
-        normalized["actual_profit"] = normalized.get("profit_loss")
+    if "profit" not in normalized:
+        normalized["profit"] = normalized.get("profit_loss")
 
     normalized.setdefault("clv", None)
     normalized.setdefault("odds_close", None)
@@ -307,7 +307,7 @@ async def get_comprehensive_analytics(
     AnalyticsService.log_sharpe_ratio(request_id, bets, period_days)
 
     stakes_total = sum(float(bet.get("stake") or 0) for bet in bets)
-    profit_total = sum(float(bet.get("actual_profit") or 0) for bet in bets)
+    profit_total = sum(float(bet.get("profit") or 0) for bet in bets)
     bankroll_current = 10000 + profit_total  # Placeholder
 
     AnalyticsService.log_bankroll_snapshot(

@@ -51,7 +51,7 @@ def calculate_metrics():
                 return
             
             # Profit
-            profit = conn.execute(text("SELECT COALESCE(SUM(actual_profit), 0) FROM bets")).scalar()
+            profit = conn.execute(text("SELECT COALESCE(SUM(profit), 0) FROM bets")).scalar()
             total_profit = float(profit or 0)
             
             # Stake
