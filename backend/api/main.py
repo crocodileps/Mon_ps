@@ -15,6 +15,8 @@ from api.routes import settings as settings_route
 from api.routes import metrics_routes
 from api.routes import manual_bets_routes
 from api.routes import bets_routes
+from api.routes import agents_stats_routes
+from api.routes import agents_comparison_routes
 from api.routes import settlement_routes
 
 app = FastAPI(
@@ -85,6 +87,8 @@ app.include_router(
     tags=["Metrics Collector"]
 )
 app.include_router(bets_routes.router)
+app.include_router(agents_stats_routes.router)
+app.include_router(agents_comparison_routes.router)
 app.include_router(settlement_routes.router)
 
 @app.on_event("startup")
