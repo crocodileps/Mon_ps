@@ -1,303 +1,246 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { CreateBetModal } from '@/components/manual-bets/create-bet-modal';
-import { useManualBets, useManualBetsStats, useCalculateCLV, useUpdateBetResult } from '@/hooks/use-manual-bets';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { 
-  TrendingUp, 
-  TrendingDown, 
-  Calculator, 
-  RefreshCw,
-  Trophy,
-  Target,
+import { useState } from 'react'
+import { useBets, useBetsStats } from '@/hooks/use-bets'
+import { LayoutWrapper } from '@/app/layout-wrapper'
+import { Card } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import {
+  TrendingUp,
+  TrendingDown,
   DollarSign,
-  Percent
-} from 'lucide-react';
+  Target,
+  Trophy,
+  RefreshCw,
+  CheckCircle,
+  XCircle,
+  Clock
+} from 'lucide-react'
 
-export default function ManualBetsPage() {
-  const [filter, setFilter] = useState<string>('all');
-  
-  const { data: bets, isLoading: betsLoading, refetch: refetchBets } = useManualBets();
-  const { data: stats, isLoading: statsLoading } = useManualBetsStats();
-  const calculateCLV = useCalculateCLV();
-  const updateResult = useUpdateBetResult();
+export default function PnLPage() {
+  const [statusFilter, setStatusFilter] = useState<string>('all')
+  const { data: statsData, refetch: refetchStats } = useBetsStats()
+  const { data: betsData, refetch: refetchBets, isLoading } = useBets(50, statusFilter === 'all' ? undefined : statusFilter)
 
-  const handleCalculateCLV = async () => {
-    try {
-      const result = await calculateCLV.mutateAsync();
-      alert(`CLV calculé pour ${result.updated} paris`);
-    } catch (error) {
-      alert('Erreur lors du calcul CLV');
-    }
-  };
+  const stats = statsData || {
+    total_bets: 0,
+    wins: 0,
+    losses: 0,
+    pending: 0,
+    total_staked: 0,
+    total_profit: 0,
+    roi_pct: 0,
+    win_rate: 0
+  }
 
-  const handleUpdateResult = async (betId: number, result: string, stake: number, odds: number) => {
-    const profit = result === 'win' ? stake * (odds - 1) : -stake;
-    const confirmMsg = result === 'win' 
-      ? `Confirmer VICTOIRE ? Profit: +${profit.toFixed(2)}€`
-      : `Confirmer DÉFAITE ? Perte: ${profit.toFixed(2)}€`;
-    
-    if (!confirm(confirmMsg)) return;
-    
-    try {
-      await updateResult.mutateAsync({ id: betId, result, profit_loss: profit });
-    } catch (error) {
-      alert('Erreur lors de la mise à jour');
-    }
-  };
+  const bets = betsData?.bets || []
 
-  const formatCLV = (clv: number | null) => {
-    if (clv === null) return 'En attente';
-    const prefix = clv > 0 ? '+' : '';
-    return `${prefix}${clv.toFixed(2)}%`;
-  };
-
-  const getCLVColor = (clv: number | null) => {
-    if (clv === null) return 'text-gray-400';
-    if (clv > 2) return 'text-green-400';
-    if (clv > 0) return 'text-green-300';
-    if (clv > -2) return 'text-yellow-400';
-    return 'text-red-400';
-  };
-
-  const filteredBets = bets?.filter(bet => {
-    if (filter === 'all') return true;
-    if (filter === 'pending') return bet.result === null;
-    if (filter === 'completed') return bet.result !== null;
-    if (filter === 'positive-clv') return bet.clv_percent !== null && bet.clv_percent > 0;
-    return true;
-  });
+  const handleRefresh = () => {
+    refetchStats()
+    refetchBets()
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <LayoutWrapper>
+      <div className="space-y-6 pb-10">
         {/* Header */}
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-white">Paris Manuels & CLV</h1>
-            <p className="text-slate-400 mt-1">Tracking de vos paris avec Closing Line Value automatique</p>
+            <h1 className="text-3xl font-bold text-white tracking-tight">P&L Dashboard</h1>
+            <p className="text-slate-400">Suivi en temps réel de vos performances</p>
           </div>
-          <div className="flex gap-3">
-            <Button
-              onClick={() => refetchBets()}
-              variant="outline"
-              className="bg-slate-800/50 border-slate-600 text-white hover:bg-slate-700"
-            >
-              <RefreshCw className="w-4 h-4 mr-2" />
-              Rafraîchir
-            </Button>
-            <Button
-              onClick={handleCalculateCLV}
-              disabled={calculateCLV.isPending}
-              className="bg-violet-600 hover:bg-violet-700 text-white"
-            >
-              <Calculator className="w-4 h-4 mr-2" />
-              {calculateCLV.isPending ? 'Calcul...' : 'Calculer CLV'}
-            </Button>
-            <CreateBetModal />
-          </div>
+          <Button onClick={handleRefresh} variant="outline">
+            <RefreshCw className="w-4 h-4 mr-2" />
+            Rafraîchir
+          </Button>
         </div>
 
-        {/* Stats Cards */}
-        {!statsLoading && stats && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Card className="bg-slate-800/60 backdrop-blur-sm border-slate-700">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-400 flex items-center gap-2">
-                  <Target className="w-4 h-4" />
-                  Total Paris
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-white">{stats.total_bets}</div>
-                <p className="text-xs text-slate-400">
-                  {stats.wins}W - {stats.losses}L
-                </p>
-              </CardContent>
-            </Card>
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Card className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 border-blue-500/20 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <DollarSign className="w-8 h-8 text-blue-400" />
+              <Badge variant="outline" className="border-blue-500/30 text-blue-400">
+                {stats.total_bets} paris
+              </Badge>
+            </div>
+            <p className="text-sm text-slate-400 mb-1">Mise Totale</p>
+            <p className="text-3xl font-bold text-white">{stats.total_staked.toFixed(2)}€</p>
+          </Card>
 
-            <Card className="bg-slate-800/60 backdrop-blur-sm border-slate-700">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-400 flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4" />
-                  CLV Moyen
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className={`text-2xl font-bold ${getCLVColor(stats.avg_clv_percent)}`}>
-                  {stats.avg_clv_percent !== null ? formatCLV(stats.avg_clv_percent) : 'N/A'}
-                </div>
-                <p className="text-xs text-slate-400">
-                  Objectif: &gt; 1%
-                </p>
-              </CardContent>
-            </Card>
+          <Card className={`bg-gradient-to-br ${stats.total_profit >= 0 ? 'from-green-500/10 to-green-600/5 border-green-500/20' : 'from-red-500/10 to-red-600/5 border-red-500/20'} p-6`}>
+            <div className="flex items-center justify-between mb-4">
+              {stats.total_profit >= 0 ? (
+                <TrendingUp className="w-8 h-8 text-green-400" />
+              ) : (
+                <TrendingDown className="w-8 h-8 text-red-400" />
+              )}
+              <Badge variant="outline" className={stats.total_profit >= 0 ? 'border-green-500/30 text-green-400' : 'border-red-500/30 text-red-400'}>
+                {stats.roi_pct.toFixed(1)}% ROI
+              </Badge>
+            </div>
+            <p className="text-sm text-slate-400 mb-1">Profit Net</p>
+            <p className={`text-3xl font-bold ${stats.total_profit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+              {stats.total_profit >= 0 ? '+' : ''}{stats.total_profit.toFixed(2)}€
+            </p>
+          </Card>
 
-            <Card className="bg-slate-800/60 backdrop-blur-sm border-slate-700">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-400 flex items-center gap-2">
-                  <DollarSign className="w-4 h-4" />
-                  Profit Total
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className={`text-2xl font-bold ${
-                  (stats.total_profit || 0) >= 0 ? 'text-green-400' : 'text-red-400'
-                }`}>
-                  {stats.total_profit !== null ? `${stats.total_profit.toFixed(2)}€` : '0€'}
-                </div>
-                <p className="text-xs text-slate-400">
-                  Misé: {stats.total_staked?.toFixed(2) || '0'}€
-                </p>
-              </CardContent>
-            </Card>
+          <Card className="bg-gradient-to-br from-violet-500/10 to-violet-600/5 border-violet-500/20 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <Trophy className="w-8 h-8 text-violet-400" />
+              <Badge variant="outline" className="border-violet-500/30 text-violet-400">
+                {stats.wins}W / {stats.losses}L
+              </Badge>
+            </div>
+            <p className="text-sm text-slate-400 mb-1">Taux de Réussite</p>
+            <p className="text-3xl font-bold text-white">{stats.win_rate.toFixed(1)}%</p>
+          </Card>
 
-            <Card className="bg-slate-800/60 backdrop-blur-sm border-slate-700">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-400 flex items-center gap-2">
-                  <Percent className="w-4 h-4" />
-                  ROI
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className={`text-2xl font-bold ${
-                  (stats.roi_percent || 0) >= 0 ? 'text-green-400' : 'text-red-400'
-                }`}>
-                  {stats.roi_percent !== null ? `${stats.roi_percent.toFixed(2)}%` : '0%'}
-                </div>
-                <p className="text-xs text-slate-400">
-                  Return on Investment
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        )}
+          <Card className="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border-orange-500/20 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <Clock className="w-8 h-8 text-orange-400" />
+              <Badge variant="outline" className="border-orange-500/30 text-orange-400">
+                En attente
+              </Badge>
+            </div>
+            <p className="text-sm text-slate-400 mb-1">Paris Actifs</p>
+            <p className="text-3xl font-bold text-white">{stats.pending}</p>
+          </Card>
+        </div>
 
         {/* Filters */}
-        <div className="flex gap-2">
-          {['all', 'pending', 'completed', 'positive-clv'].map((f) => (
-            <Button
-              key={f}
-              onClick={() => setFilter(f)}
-              variant={filter === f ? 'default' : 'outline'}
-              size="sm"
-              className={filter === f 
-                ? 'bg-violet-600 text-white' 
-                : 'bg-slate-800/50 border-slate-600 text-slate-300 hover:bg-slate-700'
-              }
-            >
-              {f === 'all' && 'Tous'}
-              {f === 'pending' && 'En attente'}
-              {f === 'completed' && 'Terminés'}
-              {f === 'positive-clv' && 'CLV Positif'}
-            </Button>
-          ))}
-        </div>
+        <Card className="bg-slate-900/50 border-slate-800 p-4">
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-slate-400 font-medium">Statut :</span>
+            {['all', 'pending', 'won', 'lost'].map((status) => (
+              <Button
+                key={status}
+                size="sm"
+                variant={statusFilter === status ? 'default' : 'ghost'}
+                onClick={() => setStatusFilter(status)}
+                className={statusFilter === status ? 'bg-violet-600' : ''}
+              >
+                {status === 'all' ? 'Tous' : status === 'pending' ? 'En attente' : status === 'won' ? 'Gagnés' : 'Perdus'}
+              </Button>
+            ))}
+          </div>
+        </Card>
 
-        {/* Bets List */}
-        <div className="space-y-4">
-          {betsLoading ? (
-            <div className="text-center text-slate-400 py-10">Chargement...</div>
-          ) : filteredBets?.length === 0 ? (
-            <div className="text-center text-slate-400 py-10">Aucun pari trouvé</div>
-          ) : (
-            filteredBets?.map((bet) => (
-              <Card key={bet.id} className="bg-slate-800/60 backdrop-blur-sm border-slate-700">
-                <CardContent className="p-4">
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                    {/* Match Info */}
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="outline" className="text-xs border-slate-600 text-slate-300">
-                          {bet.sport.replace('soccer_', '').replace(/_/g, ' ').toUpperCase()}
-                        </Badge>
-                        <Badge 
-                          variant={bet.market_type === 'totals' ? 'default' : 'secondary'}
-                          className={bet.market_type === 'totals' ? 'bg-blue-600' : 'bg-purple-600'}
-                        >
-                          {bet.market_type === 'totals' ? 'Over/Under' : '1X2'}
-                        </Badge>
-                        {bet.result && (
-                          <Badge 
-                            variant={bet.result === 'win' ? 'default' : 'destructive'}
-                            className={bet.result === 'win' ? 'bg-green-600' : 'bg-red-600'}
-                          >
-                            {bet.result.toUpperCase()}
-                          </Badge>
-                        )}
-                      </div>
-                      <h3 className="text-lg font-semibold text-white">{bet.match_name}</h3>
-                      <p className="text-slate-400 text-sm">
-                        {new Date(bet.kickoff_time).toLocaleString('fr-FR')} • {bet.bookmaker}
-                      </p>
-                    </div>
+        {/* Table */}
+        <Card className="bg-slate-900/50 border-slate-800 overflow-hidden">
+          <div className="p-6 border-b border-slate-800">
+            <h3 className="text-lg font-semibold text-white">Historique des Paris</h3>
+          </div>
 
-                    {/* Bet Details */}
-                    <div className="flex flex-wrap gap-6 items-center">
-                      <div className="text-center">
-                        <p className="text-xs text-slate-400">Sélection</p>
-                        <p className="text-white font-medium">{bet.selection}</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-xs text-slate-400">Cote</p>
-                        <p className="text-white font-medium">{bet.odds_obtained.toFixed(2)}</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-xs text-slate-400">Mise</p>
-                        <p className="text-white font-medium">{bet.stake}€</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-xs text-slate-400">Pinnacle</p>
-                        <p className="text-slate-300 font-medium">
-                          {bet.closing_odds ? bet.closing_odds.toFixed(3) : '-'}
+          <Table>
+            <TableHeader className="bg-slate-950/50">
+              <TableRow className="border-slate-800 hover:bg-transparent">
+                <TableHead className="text-slate-400">Match</TableHead>
+                <TableHead className="text-slate-400">Sélection</TableHead>
+                <TableHead className="text-slate-400 text-right">Cote</TableHead>
+                <TableHead className="text-slate-400 text-right">Mise</TableHead>
+                <TableHead className="text-slate-400">Bookmaker</TableHead>
+                <TableHead className="text-slate-400 text-right">Edge</TableHead>
+                <TableHead className="text-slate-400">Patron</TableHead>
+                <TableHead className="text-slate-400">Statut</TableHead>
+                <TableHead className="text-slate-400 text-right">P&L</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {isLoading ? (
+                <TableRow>
+                  <TableCell colSpan={9} className="h-32 text-center text-slate-400">
+                    Chargement...
+                  </TableCell>
+                </TableRow>
+              ) : bets.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={9} className="h-32 text-center text-slate-400">
+                    Aucun pari
+                  </TableCell>
+                </TableRow>
+              ) : (
+                bets.map((bet: any) => (
+                  <TableRow key={bet.id} className="border-slate-800 hover:bg-slate-800/40">
+                    <TableCell>
+                      <div>
+                        <p className="font-bold text-white text-sm">{bet.home_team} vs {bet.away_team}</p>
+                        <p className="text-xs text-slate-500">
+                          {new Date(bet.commence_time).toLocaleDateString('fr-FR')}
                         </p>
                       </div>
-                      <div className="text-center">
-                        <p className="text-xs text-slate-400">CLV</p>
-                        <p className={`font-bold text-lg ${getCLVColor(bet.clv_percent)}`}>
-                          {formatCLV(bet.clv_percent)}
-                        </p>
-                      </div>
-                      
-                      {/* Actions */}
-                      {!bet.result && new Date(bet.kickoff_time) < new Date() && (
-                        <div className="flex gap-2">
-                          <Button
-                            size="sm"
-                            onClick={() => handleUpdateResult(bet.id, 'win', bet.stake, bet.odds_obtained)}
-                            className="bg-green-600 hover:bg-green-700"
-                          >
-                            <Trophy className="w-3 h-3 mr-1" />
-                            Win
-                          </Button>
-                          <Button
-                            size="sm"
-                            onClick={() => handleUpdateResult(bet.id, 'loss', bet.stake, bet.odds_obtained)}
-                            variant="destructive"
-                          >
-                            <TrendingDown className="w-3 h-3 mr-1" />
-                            Loss
-                          </Button>
-                        </div>
+                    </TableCell>
+                    <TableCell>
+                      <Badge className="bg-blue-500/10 text-blue-400 capitalize">
+                        {bet.outcome}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right font-mono font-bold text-white">
+                      {bet.odds.toFixed(2)}
+                    </TableCell>
+                    <TableCell className="text-right font-medium text-white">
+                      {bet.stake.toFixed(2)}€
+                    </TableCell>
+                    <TableCell className="text-slate-300 text-sm">
+                      {bet.bookmaker}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {bet.edge_pct ? (
+                        <Badge className="bg-green-500/20 text-green-400">
+                          {bet.edge_pct.toFixed(1)}%
+                        </Badge>
+                      ) : <span className="text-slate-600">--</span>}
+                    </TableCell>
+                    <TableCell>
+                      {bet.patron_score && (
+                        <Badge className={bet.patron_score === 'ANALYSER' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}>
+                          {bet.patron_score}
+                        </Badge>
                       )}
-                    </div>
-                  </div>
-                  
-                  {/* Notes */}
-                  {bet.notes && (
-                    <div className="mt-3 pt-3 border-t border-slate-700">
-                      <p className="text-xs text-slate-400">Notes: {bet.notes}</p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))
-          )}
-        </div>
+                    </TableCell>
+                    <TableCell>
+                      {bet.status === 'pending' && (
+                        <Badge className="bg-orange-500/20 text-orange-400">
+                          <Clock className="w-3 h-3 mr-1" />
+                          En attente
+                        </Badge>
+                      )}
+                      {bet.status === 'won' && (
+                        <Badge className="bg-green-500/20 text-green-400">
+                          <CheckCircle className="w-3 h-3 mr-1" />
+                          Gagné
+                        </Badge>
+                      )}
+                      {bet.status === 'lost' && (
+                        <Badge className="bg-red-500/20 text-red-400">
+                          <XCircle className="w-3 h-3 mr-1" />
+                          Perdu
+                        </Badge>
+                      )}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {bet.profit !== null ? (
+                        <span className={`font-bold ${bet.profit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                          {bet.profit >= 0 ? '+' : ''}{bet.profit.toFixed(2)}€
+                        </span>
+                      ) : <span className="text-slate-600">--</span>}
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </Card>
       </div>
-    </div>
-  );
+    </LayoutWrapper>
+  )
 }
