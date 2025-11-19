@@ -62,7 +62,7 @@ async def get_bets_history(limit: int = 50, status: Optional[str] = None, sport:
                 SELECT id, match_id, home_team, away_team, sport, league, commence_time,
                        outcome, odds, stake, bookmaker, edge_pct, agent_recommended,
                        patron_score, status, result, final_score, payout, profit,
-                       placed_at, settled_at, notes
+                       placed_at, settled_at, notes, closing_odds, clv_percent, settled_by
                 FROM bets WHERE 1=1
             """
             params = []
@@ -93,7 +93,10 @@ async def get_bets_history(limit: int = 50, status: Optional[str] = None, sport:
                     "profit": float(row[18]) if row[18] else None,
                     "placed_at": row[19].isoformat() if row[19] else None,
                     "settled_at": row[20].isoformat() if row[20] else None,
-                    "notes": row[21]
+                    "notes": row[21],
+                    "closing_odds": float(row[22]) if row[22] else None,
+                    "clv_percent": float(row[23]) if row[23] else None,
+                    "settled_by": row[24]
                 })
             return {"bets": bets, "count": len(bets)}
     except Exception as e:
