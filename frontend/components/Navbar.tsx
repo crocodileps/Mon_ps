@@ -13,6 +13,7 @@ export default function Navbar() {
     { href: '/dashboard', label: 'Dashboard', icon: HomeIcon },
     { href: '/opportunities', label: 'Opportunités', icon: TrendingUpIcon },
     { href: '/bets', label: 'Paris', icon: WalletIcon },
+    { href: '/agents-comparison', label: 'Comparaison Agents', icon: LineChartIcon },
     { href: '/analytics', label: 'Analytics', icon: LineChartIcon },
   ];
 
