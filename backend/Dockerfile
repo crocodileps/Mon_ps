@@ -36,4 +36,4 @@ RUN chmod 0644 /etc/cron.d/settlement-cron && \
     touch /var/log/settlement.log /var/log/clv.log
 
 # Démarrer cron avec le backend
-CMD service cron start && uvicorn api.main:app --host 0.0.0.0 --port 8001
+CMD service cron start && uvicorn api.main:app --host 0.0.0.0 --port 8000
