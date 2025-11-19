@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BarChart3, TrendingUp, LineChart, Menu as MenuIcon } from 'lucide-react'
+import { BarChart3, TrendingUp, LineChart, Menu as MenuIcon, Users } from 'lucide-react'
 import { Button } from './ui/button'
 
 export function Navigation() {
@@ -12,6 +12,7 @@ export function Navigation() {
     { href: '/opportunities', label: 'Opportunités', icon: TrendingUp },
     { href: '/manual-bets', label: 'P&L', icon: BarChart3 },
     { href: '/analytics', label: 'Analytics', icon: LineChart }
+    ,{ href: '/agents-comparison', label: 'Comparaison Agents', icon: Users }
   ]
 
   return (

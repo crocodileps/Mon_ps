@@ -16,7 +16,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     { href: '/opportunities', label: 'Opportunités', icon: TrendingUp },
     { href: '/classification', label: 'Classification', icon: FolderKanban },
     { href: '/agents', label: 'Agents', icon: Zap },
-    { href: '/compare-agents', label: 'Comparer les Agents', icon: Activity },
+    { href: '/agents-comparison', label: 'Comparer les Agents', icon: Activity },
     { href: '/strategies', label: 'Stratégies', icon: Lightbulb },
     { href: '/systems', label: 'Systèmes & Combos', icon: Layers },
     { href: '/stats', label: 'Analyse', icon: BarChart3 },
