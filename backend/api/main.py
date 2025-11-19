@@ -15,6 +15,7 @@ from api.routes import settings as settings_route
 from api.routes import metrics_routes
 from api.routes import manual_bets_routes
 from api.routes import bets_routes
+from api.routes import settlement_routes
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -84,6 +85,7 @@ app.include_router(
     tags=["Metrics Collector"]
 )
 app.include_router(bets_routes.router)
+app.include_router(settlement_routes.router)
 
 @app.on_event("startup")
 async def startup():
