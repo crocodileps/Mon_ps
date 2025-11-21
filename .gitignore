@@ -58,3 +58,13 @@ logs/*.log
 monitoring/docker-compose.yml.before-*
 *.backup
 monitoring/collector/cache/*.json
+
+# Backups
+*.backup-*
+
+# Cache
+monitoring/collector/cache/*.json
+
+# Docs temporaires
+.learning_journal/
+docs/adr/TEMPLATE_ADR.md

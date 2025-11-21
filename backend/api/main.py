@@ -238,3 +238,7 @@ app.include_router(agent_telegram_router)
 # Telegram Stats Routes (HTML)
 from api.routes.telegram_stats_routes import router as telegram_stats_router
 app.include_router(telegram_stats_router)
+
+# Briefing Routes
+from api.routes.briefing_routes import router as briefing_router
+app.include_router(briefing_router)
