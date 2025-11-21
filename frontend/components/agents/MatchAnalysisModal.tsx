@@ -247,7 +247,7 @@ export function MatchAnalysisModal({ matchId, matchName, isOpen, onClose }: Matc
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-slate-400">Confiance</span>
                       <span className={`text-xl font-bold ${getConfidenceColor(agent.confidence)}`}>
-                        {agent.confidence.toFixed(1)}/10
+                        {agent.confidence.toFixed(1)}/100
                       </span>
                     </div>
                     <div className="bg-slate-700/50 p-3 rounded-lg">

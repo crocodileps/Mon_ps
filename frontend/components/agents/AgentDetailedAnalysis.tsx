@@ -82,7 +82,7 @@ const generateDetailedAnalysis = (agent: AgentAnalysis, matchOdds: MatchOdds, ho
       probability: 50 + agent.confidence * 5,
       confidenceLevel: agent.confidence * 10,
       whySupport: `L'agent identifie des patterns historiques correspondant à ce type de match. ${agent.details.patterns?.join('. ')}. Ces tendances ont montré une récurrence significative dans les données passées.`,
-      detailedAnalysis: `L'analyse des patterns révèle ${agent.details.pattern_count} correspondance(s) historique(s). Dans la ligue ${agent.details.sport?.replace('soccer_', '').replace(/_/g, ' ')}, ces patterns ont généré des résultats prévisibles. La confiance de ${agent.confidence.toFixed(1)}/10 reflète la force de ces corrélations.`,
+      detailedAnalysis: `L'analyse des patterns révèle ${agent.details.pattern_count} correspondance(s) historique(s). Dans la ligue ${agent.details.sport?.replace('soccer_', '').replace(/_/g, ' ')}, ces patterns ont généré des résultats prévisibles. La confiance de ${agent.confidence.toFixed(1)}/100 reflète la force de ces corrélations.`,
       recommendations: [
         'Considérer les tendances historiques de la ligue',
         'Vérifier les confrontations directes récentes',

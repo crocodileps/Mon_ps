@@ -373,26 +373,108 @@ async def analyze_match_with_agents(match_id: str):
     agents_analysis = []
     
     # Agent A - Anomaly Detector
+    # Agent A - Anomaly Detector (FERRARI 2.0 MULTI-FACTEURS)
+    import math
+    
     anomaly_score = 0
     is_anomaly = False
     reason_a = "Pas d'anomalie détectée"
+    spread_score = 0
+    variance_score = 0
+    bookmaker_bonus = 0
+    extreme_bonus = 0
+    recommendation_text = ""
+    
     if match_info.get("odds"):
-        max_spread = max(match_info["odds"]["home"]["spread_pct"], match_info["odds"]["away"]["spread_pct"], match_info["odds"]["draw"]["spread_pct"])
+        home_spread = match_info["odds"]["home"]["spread_pct"]
+        away_spread = match_info["odds"]["away"]["spread_pct"]
+        draw_spread = match_info["odds"]["draw"]["spread_pct"]
+        max_spread = max(home_spread, away_spread, draw_spread)
+        
+        # FACTEUR 1 : Spread Principal (0-50 points)
         if max_spread > 10:
-            anomaly_score = min(10 + (max_spread / 20), 95)
+            spread_score = min(15 + (12 * math.log10(max(max_spread, 1))), 50)
+        else:
+            spread_score = max_spread
+        
+        # FACTEUR 2 : Variance entre les spreads (0-20 points)
+        spreads = [home_spread, away_spread, draw_spread]
+        spread_variance = max(spreads) - min(spreads)
+        variance_score = min(spread_variance / 10, 20)
+        
+        # FACTEUR 3 : Nombre de bookmakers (0-15 points)
+        bookmaker_count = match_info.get("bookmaker_count", 0)
+        bookmaker_bonus = min(bookmaker_count * 0.8, 15)
+        
+        # FACTEUR 4 : Bonus pour spreads extrêmes (0-15 points)
+        if max_spread > 500:
+            extreme_bonus = 15
+        elif max_spread > 200:
+            extreme_bonus = 10
+        elif max_spread > 100:
+            extreme_bonus = 7
+        elif max_spread > 50:
+            extreme_bonus = 4
+        
+        # SCORE TOTAL (0-100, cap à 95)
+        anomaly_score = min(
+            spread_score + variance_score + bookmaker_bonus + extreme_bonus,
+            95
+        )
+        
+        # Classification avec recommandations
+        if anomaly_score >= 80:
             is_anomaly = True
-            reason_a = f"Spread élevé détecté ({max_spread:.1f}%)"
+            level = "🔥 EXTRÊME"
+            quality = "DIAMANT"
+            recommendation_text = f"Opportunité RARE avec spread massif de {max_spread:.0f}%. {bookmaker_count} bookmakers confirment cette anomalie exceptionnelle. Inefficience majeure du marché."
+        elif anomaly_score >= 65:
+            is_anomaly = True
+            level = "⚡ FORTE"
+            quality = "PREMIUM"
+            recommendation_text = f"Forte anomalie (spread {max_spread:.0f}% sur {bookmaker_count} books). Disparité significative exploitable. Vérifier liquidité."
+        elif anomaly_score >= 50:
+            is_anomaly = True
+            level = "💎 MOYENNE"
+            quality = "BONNE"
+            recommendation_text = f"Anomalie intéressante (spread {max_spread:.0f}%). Dispersion notable entre {bookmaker_count} sources. Validation requise."
+        elif anomaly_score >= 35:
+            is_anomaly = True
+            level = "📊 FAIBLE"
+            quality = "STANDARD"
+            recommendation_text = f"Légère anomalie (spread {max_spread:.1f}%). Marché stable avec {bookmaker_count} books. Valeur limitée."
+        else:
+            level = "✓ NORMALE"
+            quality = "N/A"
+            recommendation_text = f"Marché équilibré (spread {max_spread:.1f}%). Aucune inefficience sur {bookmaker_count} books."
+        
+        reason_a = f"{level} | Spread: {max_spread:.0f}% | {bookmaker_count} books | {quality}"
     else:
         max_spread = 0
+        bookmaker_count = 0
+        recommendation_text = "Données insuffisantes"
     
     agents_analysis.append({
-        "agent_id": "anomaly_detector", "agent_name": "Anomaly Detector", "icon": "🔍",
-        "status": "active", "recommendation": "REVIEW" if is_anomaly else "NORMAL",
-        "confidence": round(anomaly_score, 2), "reason": reason_a,
-        "details": {"anomaly_score": round(anomaly_score, 2), "is_anomaly": is_anomaly, "max_spread": max_spread}
+        "agent_id": "anomaly_detector",
+        "agent_name": "Anomaly Detector Ferrari 2.0",
+        "icon": "🔍",
+        "status": "active",
+        "recommendation": "REVIEW" if is_anomaly else "NORMAL",
+        "confidence": round(anomaly_score, 2),
+        "reason": reason_a,
+        "recommendation_text": recommendation_text,
+        "details": {
+            "anomaly_score": round(anomaly_score, 2),
+            "is_anomaly": is_anomaly,
+            "max_spread": max_spread,
+            "spread_score": round(spread_score, 2),
+            "variance_score": round(variance_score, 2),
+            "bookmaker_bonus": round(bookmaker_bonus, 2),
+            "extreme_bonus": extreme_bonus,
+            "bookmaker_count": bookmaker_count
+        }
     })
-    
-    # Agent B - Spread Optimizer
+
     kelly_fraction = 0
     expected_value = 0
     recommended_stake = 0
