@@ -52,7 +52,7 @@ const generateDetailedAnalysis = (agent: AgentAnalysis, matchOdds: MatchOdds, ho
       probability: Math.min(95, 45 + agent.confidence * 5),
       confidenceLevel: agent.confidence * 10,
       whySupport: `L'agent détecte une anomalie significative sur les cotes. Le spread de ${agent.details.max_spread?.toFixed(1)}% entre bookmakers indique une possible erreur de cotation ou une information non intégrée par certains opérateurs. Cette divergence représente une opportunité de value betting.`,
-      detailedAnalysis: `L'analyse approfondie révèle un écart anormal de ${agent.details.max_spread?.toFixed(1)}% sur les cotes. ${agent.details.is_anomaly ? 'Ce niveau de dispersion est inhabituel et suggère une opportunité.' : 'Le marché semble équilibré.'} Le score d'anomalie de ${agent.details.anomaly_score?.toFixed(2)}/10 place ce match dans les ${100 - agent.confidence * 10}% des matchs les plus atypiques.`,
+      detailedAnalysis: `L'analyse approfondie révèle un écart anormal de ${agent.details.max_spread?.toFixed(1)}% sur les cotes. ${agent.details.is_anomaly ? 'Ce niveau de dispersion est inhabituel et suggère une opportunité.' : 'Le marché semble équilibré.'} Le score d'anomalie de ${agent.details.anomaly_score?.toFixed(2)}/100 place ce match dans les ${100 - agent.confidence * 10}% des matchs les plus atypiques.`,
       recommendations: [
         'Vérifier les compositions d\'équipes avant de parier',
         'Comparer avec au moins 5 bookmakers différents',

@@ -291,7 +291,7 @@ export function MatchAnalysisModal({ matchId, matchName, isOpen, onClose }: Matc
                     {agent.agent_id === 'anomaly_detector' && agent.details.is_anomaly && (
                       <div className="bg-yellow-500/10 p-2 rounded text-xs">
                         <p className="text-slate-400">Score Anomalie</p>
-                        <p className="text-yellow-400 font-bold">{agent.details.anomaly_score.toFixed(2)}/10</p>
+                        <p className="text-yellow-400 font-bold">{agent.details.anomaly_score.toFixed(2)}/100</p>
                       </div>
                     )}
 
