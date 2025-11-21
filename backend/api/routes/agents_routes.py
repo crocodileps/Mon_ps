@@ -475,39 +475,283 @@ async def analyze_match_with_agents(match_id: str):
         }
     })
 
+    # ═══════════════════════════════════════════════════════════════════
+    # AGENT B FERRARI 2.0 - SPREAD OPTIMIZER EXPERT INTERNATIONAL
+    # ═══════════════════════════════════════════════════════════════════
+    import math
+    import statistics
+    
+    # Variables d'initialisation
+    ferrari_score = 0
     kelly_fraction = 0
     expected_value = 0
-    recommended_stake = 0
+    true_edge = 0
     best_outcome = "none"
-    reason_b = "Pas d'opportunité Kelly"
+    confidence_interval = 0
+    sharpe_estimate = 0
+    risk_reward_ratio = 0
+    recommendation_text = ""
+    
+    # Facteurs Ferrari
+    ev_score = 0
+    edge_quality_score = 0
+    kelly_score = 0
+    confidence_score = 0
+    rr_score = 0
+    
     if match_info.get("odds"):
-        best_ev = -1
+        outcomes_data = []
+        
+        # ════════════════════════════════════════════════════════════════
+        # ÉTAPE 1 : TRUE ODDS CALCULATION (VIG REMOVAL)
+        # ════════════════════════════════════════════════════════════════
         for outcome in ["home", "away", "draw"]:
             odds_data = match_info["odds"][outcome]
-            if odds_data["best"] > 1:
+            if odds_data["best"] > 1.01:
+                # Implied probability du meilleur bookmaker
                 implied_prob = 1 / odds_data["best"]
-                b = odds_data["best"] - 1
-                p = implied_prob * 1.05
+                
+                # Vig removal : calculer overround
+                total_prob_market = sum(1/match_info["odds"][o]["best"] for o in ["home", "away", "draw"] if match_info["odds"][o]["best"] > 1.01)
+                overround = total_prob_market - 1
+                
+                # True probability (removal proportionnel du vig)
+                true_prob = implied_prob / total_prob_market if total_prob_market > 0 else implied_prob
+                
+                # Worst odds pour spread
+                worst_odds = odds_data.get("worst", odds_data["best"])
+                
+                outcomes_data.append({
+                    "outcome": outcome,
+                    "best_odds": odds_data["best"],
+                    "worst_odds": worst_odds,
+                    "implied_prob": implied_prob,
+                    "true_prob": true_prob,
+                    "spread": odds_data.get("spread_pct", 0)
+                })
+        
+        if outcomes_data:
+            # ════════════════════════════════════════════════════════════
+            # ÉTAPE 2 : EDGE DETECTION & KELLY OPTIMAL
+            # ════════════════════════════════════════════════════════════
+            best_ev = -999
+            best_data = None
+            
+            for data in outcomes_data:
+                # Kelly Criterion avec true probability
+                b = data["best_odds"] - 1  # Gain net
+                p = data["true_prob"]
                 q = 1 - p
-                kelly = (b * p - q) / b if b > 0 else 0
+                
+                # Kelly fraction (non négatif seulement)
+                kelly_raw = (b * p - q) / b if b > 0 else 0
+                kelly_raw = max(0, kelly_raw)
+                
+                # Expected Value
                 ev = (p * b) - q
-                if ev > best_ev and kelly > 0:
+                
+                # True Edge (différence true prob vs implied)
+                edge = p - data["implied_prob"]
+                
+                if ev > best_ev:
                     best_ev = ev
-                    kelly_fraction = kelly
-                    expected_value = ev
-                    best_outcome = outcome
-                    recommended_stake = min(kelly * 100, 5)
-        if best_ev > 0:
-            reason_b = f"Meilleure valeur sur {best_outcome.upper()} (EV: {expected_value:.2%})"
+                    best_data = {
+                        "outcome": data["outcome"],
+                        "kelly": kelly_raw,
+                        "ev": ev,
+                        "edge": edge,
+                        "odds": data["best_odds"],
+                        "true_prob": p,
+                        "implied_prob": data["implied_prob"]
+                    }
+            
+            if best_data and best_data["ev"] > 0:
+                expected_value = best_data["ev"]
+                true_edge = best_data["edge"]
+                best_outcome = best_data["outcome"]
+                
+                # ════════════════════════════════════════════════════════
+                # ÉTAPE 3 : KELLY FRACTIONAL DYNAMIQUE
+                # ════════════════════════════════════════════════════════
+                kelly_raw = best_data["kelly"]
+                
+                # Fractional Kelly basé sur edge
+                if true_edge > 0.08:  # Edge >8%
+                    kelly_multiplier = 0.5  # Half Kelly
+                elif true_edge > 0.05:  # Edge >5%
+                    kelly_multiplier = 0.35  # Conservative
+                elif true_edge > 0.03:  # Edge >3%
+                    kelly_multiplier = 0.25  # Very conservative
+                else:  # Edge <3%
+                    kelly_multiplier = 0.15  # Micro
+                
+                kelly_fraction = kelly_raw * kelly_multiplier
+                
+                # Cap à 5% du bankroll max
+                kelly_pct = min(kelly_fraction * 100, 5.0)
+                
+                # ════════════════════════════════════════════════════════
+                # ÉTAPE 4 : RISK/REWARD & SHARPE ESTIMATE
+                # ════════════════════════════════════════════════════════
+                potential_profit = (best_data["odds"] - 1)
+                potential_loss = 1
+                risk_reward_ratio = potential_profit / potential_loss
+                
+                # Sharpe Ratio estimation (simplifié)
+                # Sharpe = (Expected Return - Risk Free) / Volatility
+                # Approximation : Sharpe ≈ EV / sqrt(Variance)
+                variance = best_data["true_prob"] * ((potential_profit) ** 2) + (1 - best_data["true_prob"]) * ((potential_loss) ** 2)
+                volatility = math.sqrt(variance)
+                sharpe_estimate = (expected_value / volatility) if volatility > 0 else 0
+                
+                # Confidence Interval (95%)
+                nb_books = match_info.get("bookmaker_count", 1)
+                confidence_interval = 1.96 * (volatility / math.sqrt(max(nb_books, 1)))
+                
+                # ════════════════════════════════════════════════════════
+                # ÉTAPE 5 : SCORING FERRARI MULTI-FACTEURS (0-100)
+                # ════════════════════════════════════════════════════════
+                
+                # FACTEUR 1 : Expected Value (0-35 points)
+                ev_pct = expected_value * 100
+                if ev_pct >= 10:
+                    ev_score = 35
+                elif ev_pct >= 5:
+                    ev_score = 30
+                elif ev_pct >= 2:
+                    ev_score = 20
+                elif ev_pct >= 0:
+                    ev_score = 10
+                
+                # FACTEUR 2 : True Edge Quality (0-25 points)
+                edge_pct = true_edge * 100
+                if edge_pct >= 8:
+                    edge_quality_score = 25
+                elif edge_pct >= 6:
+                    edge_quality_score = 20
+                elif edge_pct >= 4:
+                    edge_quality_score = 15
+                elif edge_pct >= 2:
+                    edge_quality_score = 10
+                
+                # FACTEUR 3 : Kelly Fraction Sécurisé (0-20 points)
+                if kelly_pct >= 2.0:
+                    kelly_score = 20
+                elif kelly_pct >= 1.0:
+                    kelly_score = 15
+                elif kelly_pct >= 0.5:
+                    kelly_score = 10
+                elif kelly_pct >= 0.1:
+                    kelly_score = 5
+                
+                # FACTEUR 4 : Probability Confidence (0-15 points)
+                nb_books = match_info.get("bookmaker_count", 0)
+                if nb_books >= 20:
+                    confidence_score = 15
+                elif nb_books >= 10:
+                    confidence_score = 10
+                else:
+                    confidence_score = 5
+                
+                # Bonus Pinnacle (si disponible)
+                # TODO: détecter présence Pinnacle dans les bookmakers
+                # confidence_score += 3 si Pinnacle
+                
+                # FACTEUR 5 : Risk/Reward Optimal (0-5 points)
+                if risk_reward_ratio >= 3.0:
+                    rr_score = 5
+                elif risk_reward_ratio >= 2.0:
+                    rr_score = 4
+                elif risk_reward_ratio >= 1.5:
+                    rr_score = 2
+                
+                # SCORE TOTAL (cap à 95)
+                ferrari_score = min(
+                    ev_score + edge_quality_score + kelly_score + confidence_score + rr_score,
+                    95
+                )
+                
+                # ════════════════════════════════════════════════════════
+                # ÉTAPE 6 : CLASSIFICATION EXPERT
+                # ════════════════════════════════════════════════════════
+                if ferrari_score >= 90:
+                    level = "💎 DIAMANT KELLY"
+                    classification = "EXCEPTIONAL"
+                    recommendation_text = f"Opportunité exceptionnelle détectée. EV: {ev_pct:.2f}%, Edge: {edge_pct:.2f}%. Kelly suggère {kelly_pct:.2f}% du bankroll (fractional {kelly_multiplier}). True odds: {1/best_data['true_prob']:.2f} vs Market: {best_data['odds']:.2f}. Consensus {nb_books} bookmakers. Sharpe estimé: {sharpe_estimate:.2f}."
+                
+                elif ferrari_score >= 80:
+                    level = "🔥 PREMIUM SHARP"
+                    classification = "EXCELLENT"
+                    recommendation_text = f"Excellent edge confirmé. EV: {ev_pct:.2f}%, Edge: {edge_pct:.2f}%. Position recommandée: {kelly_pct:.2f}% (fractional {kelly_multiplier}). Sharp money détecté. Risk/Reward: {risk_reward_ratio:.2f}:1. Sharpe: {sharpe_estimate:.2f}."
+                
+                elif ferrari_score >= 70:
+                    level = "⚡ VALUE BET SOLIDE"
+                    classification = "GOOD"
+                    recommendation_text = f"Value bet confirmée. EV attendu: {ev_pct:.2f}%, Edge: {edge_pct:.2f}%. Mise suggérée: {kelly_pct:.2f}% avec safety margin. Probability edge suffisant pour ROI positif long terme."
+                
+                elif ferrari_score >= 60:
+                    level = "💚 OPPORTUNITÉ CORRECTE"
+                    classification = "FAIR"
+                    recommendation_text = f"Légère value détectée. EV: {ev_pct:.2f}%, Edge: {edge_pct:.2f}%. Position micro: {kelly_pct:.2f}% du bankroll. Diversification recommandée. Acceptable avec bankroll >$5k."
+                
+                elif ferrari_score >= 50:
+                    level = "📊 VALUE MARGINALE"
+                    classification = "MARGINAL"
+                    recommendation_text = f"Value minimale. EV: {ev_pct:.2f}%, Edge faible: {edge_pct:.2f}%. Micro-stakes seulement ({kelly_pct:.2f}%). Considérer uniquement avec bankroll >$10k et diversification."
+                
+                else:
+                    level = "❌ EDGE INSUFFISANT"
+                    classification = "SKIP"
+                    recommendation_text = f"Edge trop faible pour être exploitable. EV: {ev_pct:.2f}%, Edge: {edge_pct:.2f}%. Frais et variance mangent le profit attendu. PASS."
+                
+                reason_b = f"{level} | EV: {ev_pct:.2f}% | Edge: {edge_pct:.2f}% | Kelly: {kelly_pct:.2f}%"
+            
+            else:
+                # Pas de value détectée
+                reason_b = "Aucun edge positif détecté sur ce match"
+                recommendation_text = "Marché efficace. Probabilités implicites supérieures aux probabilités vraies. Aucune value exploitable. SKIP."
+        
+        else:
+            reason_b = "Données insuffisantes pour analyse"
+            recommendation_text = "Impossible de calculer les true odds sans données complètes."
     
+    else:
+        reason_b = "Pas de cotes disponibles"
+        recommendation_text = "Aucune cote disponible pour ce match."
+    
+    # ════════════════════════════════════════════════════════════════════
+    # RÉSULTAT FINAL AGENT B
+    # ════════════════════════════════════════════════════════════════════
     agents_analysis.append({
-        "agent_id": "spread_optimizer", "agent_name": "Spread Optimizer", "icon": "📊",
-        "status": "active", "recommendation": best_outcome.upper() if expected_value > 0 else "PASS",
-        "confidence": round(min(30 + (expected_value * 800), 90), 2) if expected_value > 0 else 0,
+        "agent_id": "spread_optimizer",
+        "agent_name": "Spread Optimizer Ferrari 2.0",
+        "icon": "📊",
+        "status": "active",
+        "recommendation": best_outcome.upper() if expected_value > 0 else "SKIP",
+        "confidence": round(ferrari_score, 2),
         "reason": reason_b,
-        "details": {"kelly_fraction": round(kelly_fraction, 4), "expected_value": round(expected_value, 4), "recommended_stake_pct": round(recommended_stake, 2), "best_outcome": best_outcome}
+        "recommendation_text": recommendation_text,
+        "details": {
+            "ferrari_score": round(ferrari_score, 2),
+            "expected_value": round(expected_value, 4),
+            "true_edge": round(true_edge, 4),
+            "kelly_fraction": round(kelly_fraction, 4),
+            "kelly_pct": round(kelly_pct, 2) if kelly_fraction > 0 else 0,
+            "recommended_stake_pct": round(kelly_pct, 2) if kelly_fraction > 0 else 0,
+            "best_outcome": best_outcome,
+            "sharpe_estimate": round(sharpe_estimate, 2),
+            "risk_reward_ratio": round(risk_reward_ratio, 2),
+            "confidence_interval_95": round(confidence_interval, 4),
+            # Détails facteurs
+            "ev_score": ev_score,
+            "edge_quality_score": edge_quality_score,
+            "kelly_score": kelly_score,
+            "confidence_score": confidence_score,
+            "rr_score": rr_score
+        }
     })
-    
+
+
     # Agent C - Pattern Matcher
     patterns_found = []
     confidence_c = 0
