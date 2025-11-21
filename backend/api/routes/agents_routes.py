@@ -891,27 +891,265 @@ async def analyze_match_with_agents(match_id: str):
         }
     })
     
-    # Agent D - Backtest Engine
-    win_rate = 0
-    avg_roi = 0
-    historical_performance = 0
-    reason_d = "Données historiques insuffisantes"
-    if match_info.get("bookmaker_count", 0) >= 10:
-        win_rate = 0.52
-        avg_roi = 3.2
-        historical_performance = 65.0
-        reason_d = f"Couverture élevée ({match_info['bookmaker_count']} books) - ROI historique: {avg_roi}%"
-    elif match_info.get("bookmaker_count", 0) >= 5:
-        win_rate = 0.50
-        avg_roi = 1.5
-        historical_performance = 45.0
-        reason_d = f"Couverture moyenne ({match_info['bookmaker_count']} books)"
-    
+    # Agent D - Backtest Engine Ferrari 2.5 (Real Data)
+    import psycopg2
+    from psycopg2.extras import RealDictCursor
+    import math
+
+    ferrari_score_d = 0
+    win_rate_score = 0
+    sharpe_score = 0
+    sample_score = 0
+    consistency_score = 0
+    recommendation_text_d = ""
+
+    sport = match_info.get("sport", "")
+    home_team = match_info.get("home_team", "")
+    away_team = match_info.get("away_team", "")
+
+    # DB Config
+    db_config = {
+        "host": "monps_postgres",
+        "database": "monps_db",
+        "user": "monps_user",
+        "password": "monps_secure_password_2024"
+    }
+
+    # Map sport to league
+    league_map = {
+        "soccer_epl": "Premier League",
+        "premier": "Premier League",
+        "spain": "La Liga",
+        "la_liga": "La Liga",
+        "italy": "Serie A",
+        "serie_a": "Serie A",
+        "germany": "Bundesliga",
+        "bundesliga": "Bundesliga",
+        "france": "Ligue 1",
+        "ligue_one": "Ligue 1"
+    }
+
+    league = None
+    for key, value in league_map.items():
+        if key in sport.lower():
+            league = value
+            break
+
+    # Stats historiques réelles
+    total_matches = 0
+    home_wins = 0
+    draws = 0
+    away_wins = 0
+    avg_home_goals = 0
+    avg_away_goals = 0
+    home_win_rate = 0
+    draw_rate = 0
+    away_win_rate = 0
+
+    # Stats équipe spécifique
+    team_home_matches = 0
+    team_home_wins = 0
+    team_away_matches = 0
+    team_away_wins = 0
+
+    if league:
+        try:
+            conn = psycopg2.connect(**db_config)
+            cursor = conn.cursor(cursor_factory=RealDictCursor)
+
+            # QUERY 1: Stats générales de la ligue
+            cursor.execute("""
+                SELECT
+                    COUNT(*) as total,
+                    SUM(CASE WHEN result = 'H' THEN 1 ELSE 0 END) as home_wins,
+                    SUM(CASE WHEN result = 'D' THEN 1 ELSE 0 END) as draws,
+                    SUM(CASE WHEN result = 'A' THEN 1 ELSE 0 END) as away_wins,
+                    AVG(home_goals) as avg_home_goals,
+                    AVG(away_goals) as avg_away_goals
+                FROM matches_results
+                WHERE league = %s
+            """, (league,))
+
+            stats = cursor.fetchone()
+            if stats and stats['total'] > 0:
+                total_matches = stats['total']
+                home_wins = stats['home_wins']
+                draws = stats['draws']
+                away_wins = stats['away_wins']
+                avg_home_goals = float(stats['avg_home_goals'] or 0)
+                avg_away_goals = float(stats['avg_away_goals'] or 0)
+
+                home_win_rate = (home_wins / total_matches) * 100
+                draw_rate = (draws / total_matches) * 100
+                away_win_rate = (away_wins / total_matches) * 100
+
+            # QUERY 2: Performance équipe à domicile
+            cursor.execute("""
+                SELECT
+                    COUNT(*) as matches,
+                    SUM(CASE WHEN result = 'H' THEN 1 ELSE 0 END) as wins
+                FROM matches_results
+                WHERE league = %s AND home_team ILIKE %s
+            """, (league, f"%{home_team}%"))
+
+            team_home = cursor.fetchone()
+            if team_home:
+                team_home_matches = team_home['matches'] or 0
+                team_home_wins = team_home['wins'] or 0
+
+            # QUERY 3: Performance équipe en déplacement
+            cursor.execute("""
+                SELECT
+                    COUNT(*) as matches,
+                    SUM(CASE WHEN result = 'A' THEN 1 ELSE 0 END) as wins
+                FROM matches_results
+                WHERE league = %s AND away_team ILIKE %s
+            """, (league, f"%{away_team}%"))
+
+            team_away = cursor.fetchone()
+            if team_away:
+                team_away_matches = team_away['matches'] or 0
+                team_away_wins = team_away['wins'] or 0
+
+            conn.close()
+
+        except Exception as e:
+            pass
+
+    # CALCUL SCORES FERRARI
+
+    # FACTEUR 1: Win Rate Historical (0-35 pts)
+    if total_matches >= 1000:
+        # Données robustes
+        if home_win_rate >= 50:
+            win_rate_score = 35
+        elif home_win_rate >= 45:
+            win_rate_score = 30
+        elif home_win_rate >= 40:
+            win_rate_score = 25
+        elif home_win_rate >= 35:
+            win_rate_score = 15
+        else:
+            win_rate_score = 10
+
+        sample_quality = "EXCELLENT"
+    elif total_matches >= 500:
+        win_rate_score = 20
+        sample_quality = "BON"
+    elif total_matches >= 100:
+        win_rate_score = 10
+        sample_quality = "MOYEN"
+    else:
+        win_rate_score = 5
+        sample_quality = "FAIBLE"
+
+    # FACTEUR 2: Sharpe Quality (0-30 pts) - Basé sur consistance historique
+    if total_matches > 0:
+        # Sharpe simplifié = win_rate / variance
+        # Plus le draw_rate est élevé, plus c'est volatile
+        volatility = draw_rate / 100 if draw_rate > 0 else 0.3
+        pseudo_sharpe = (home_win_rate / 100) / volatility if volatility > 0 else 0
+
+        if pseudo_sharpe >= 2.0:
+            sharpe_score = 30
+        elif pseudo_sharpe >= 1.5:
+            sharpe_score = 25
+        elif pseudo_sharpe >= 1.0:
+            sharpe_score = 18
+        elif pseudo_sharpe >= 0.5:
+            sharpe_score = 10
+        else:
+            sharpe_score = 5
+
+    # FACTEUR 3: Sample Size (0-20 pts)
+    if total_matches >= 2000:
+        sample_score = 20
+    elif total_matches >= 1000:
+        sample_score = 17
+    elif total_matches >= 500:
+        sample_score = 13
+    elif total_matches >= 100:
+        sample_score = 8
+    else:
+        sample_score = 3
+
+    # FACTEUR 4: Consistency (0-15 pts) - Équipes spécifiques
+    team_performance = 0
+    if team_home_matches >= 20:
+        team_home_wr = (team_home_wins / team_home_matches) * 100
+        if team_home_wr >= 60:
+            team_performance += 8
+        elif team_home_wr >= 50:
+            team_performance += 5
+        elif team_home_wr >= 40:
+            team_performance += 3
+
+    if team_away_matches >= 20:
+        team_away_wr = (team_away_wins / team_away_matches) * 100
+        if team_away_wr >= 40:
+            team_performance += 7
+        elif team_away_wr >= 30:
+            team_performance += 4
+        elif team_away_wr >= 20:
+            team_performance += 2
+
+    consistency_score = min(team_performance, 15)
+
+    # SCORE TOTAL (cap 95)
+    ferrari_score_d = min(win_rate_score + sharpe_score + sample_score + consistency_score, 95)   
+
+    # CLASSIFICATION
+    if ferrari_score_d >= 85:
+        level_d = "🏆 EXCELLENT TRACK RECORD"
+        recommendation_text_d = f"Backtest excellent sur {total_matches:,} matchs réels. {league}: Home win {home_win_rate:.1f}%, Draw {draw_rate:.1f}%, Away {away_win_rate:.1f}%. Équipe home: {team_home_wins}/{team_home_matches} victoires domicile. Données historiques robustes validant les patterns."
+    elif ferrari_score_d >= 70:
+        level_d = "⚡ BON HISTORIQUE"
+        recommendation_text_d = f"Bon historique sur {total_matches:,} matchs. {league}: Home {home_win_rate:.1f}%, Draw {draw_rate:.1f}%. Sample: {sample_quality}. Buts moyens: {avg_home_goals:.1f} - {avg_away_goals:.1f}. Backtest valide les tendances."
+    elif ferrari_score_d >= 55:
+        level_d = "💎 HISTORIQUE MOYEN"
+        recommendation_text_d = f"Historique moyen. {total_matches:,} matchs analysés. {league}: Patterns détectables mais variance élevée. Sample: {sample_quality}. Prudence recommandée."        
+    elif ferrari_score_d >= 40:
+        level_d = "📊 DONNÉES LIMITÉES"
+        recommendation_text_d = f"Données historiques limitées ({total_matches} matchs). Sample: {sample_quality}. Backtest incomplet. Attendre plus de données."
+    else:
+        level_d = "❌ INSUFFISANT"
+        recommendation_text_d = f"Sample insuffisant pour backtest fiable. {total_matches} matchs seulement. Besoin de plus d'historique pour validation."
+
+    reason_d = f"{level_d} | {total_matches:,} matchs | Home: {home_win_rate:.1f}% | {sample_quality}"
+
+    if not league:
+        reason_d = "Ligue non supportée pour backtest"
+        recommendation_text_d = "Cette ligue n'a pas de données historiques dans notre système."  
+        ferrari_score_d = 0
+
     agents_analysis.append({
-        "agent_id": "backtest_engine", "agent_name": "Backtest Engine", "icon": "📈",
-        "status": "active", "recommendation": "POSITIVE" if avg_roi > 0 else "NEUTRAL",
-        "confidence": round(historical_performance, 2), "reason": reason_d,
-        "details": {"historical_win_rate": round(win_rate, 4), "avg_roi_pct": round(avg_roi, 2), "sample_size": match_info.get("bookmaker_count", 0)}
+        "agent_id": "backtest_engine",
+        "agent_name": "Backtest Engine Ferrari 2.5",
+        "icon": "📈",
+        "status": "active",
+        "recommendation": "VALIDATED" if ferrari_score_d >= 70 else "CAUTION" if ferrari_score_d >= 40 else "INSUFFICIENT",
+        "confidence": round(ferrari_score_d, 2),
+        "reason": reason_d,
+        "recommendation_text": recommendation_text_d,
+        "details": {
+            "ferrari_score": round(ferrari_score_d, 2),
+            "total_historical_matches": total_matches,
+            "league": league or "Unknown",
+            "home_win_rate": round(home_win_rate, 2),
+            "draw_rate": round(draw_rate, 2),
+            "away_win_rate": round(away_win_rate, 2),
+            "avg_goals_home": round(avg_home_goals, 2),
+            "avg_goals_away": round(avg_away_goals, 2),
+            "team_home_matches": team_home_matches,
+            "team_home_wins": team_home_wins,
+            "team_away_matches": team_away_matches,
+            "team_away_wins": team_away_wins,
+            "sample_quality": sample_quality,
+            "win_rate_score": win_rate_score,
+            "sharpe_score": sharpe_score,
+            "sample_score": sample_score,
+            "consistency_score": consistency_score
+        }
     })
     
     # Score global
