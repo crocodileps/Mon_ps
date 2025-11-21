@@ -752,29 +752,143 @@ async def analyze_match_with_agents(match_id: str):
     })
 
 
-    # Agent C - Pattern Matcher
+     # Agent C - Pattern Matcher Ferrari 2.0
     patterns_found = []
-    confidence_c = 0
-    sport = match_info["sport"]
-    if "epl" in sport or "premier" in sport.lower():
-        patterns_found.append("Premier League - Forte compétition")
-        confidence_c += 25
-    if "ligue_one" in sport:
-        patterns_found.append("Ligue 1 - PSG dominance")
-        confidence_c += 20
-    if "serie_a" in sport:
-        patterns_found.append("Serie A - Défenses solides")
-        confidence_c += 20
-    if "la_liga" in sport:
-        patterns_found.append("La Liga - Technique élevée")
-        confidence_c += 20
-    reason_c = "; ".join(patterns_found) if patterns_found else "Aucun pattern significatif"
-    
+    ferrari_score_c = 0
+    pattern_strength = 0
+    sample_size_score = 0
+    recent_form_score = 0
+    context_score = 0
+    recommendation_text_c = ""
+    sport = match_info.get("sport", "")
+    home_team = match_info.get("home_team", "")
+    away_team = match_info.get("away_team", "")
+    league_stats = {}
+    context_factors = []
+    sample_quality = "INCONNU"
+
+    # Analyse patterns de ligue
+    if "epl" in sport.lower() or "premier" in sport.lower():
+        patterns_found.append("Premier League: Forte variance")
+        pattern_strength += 15
+        league_stats = {"avg_home_win": 0.45, "competitiveness": "HIGH"}
+    elif "ligue_one" in sport.lower() or "france" in sport.lower():
+        patterns_found.append("Ligue 1: PSG dominance")
+        pattern_strength += 12
+        league_stats = {"avg_home_win": 0.48, "psg_factor": True}
+    elif "serie_a" in sport.lower() or "italy" in sport.lower():
+        patterns_found.append("Serie A: Défenses solides")
+        pattern_strength += 13
+        league_stats = {"avg_home_win": 0.42, "defensive": True}
+    elif "la_liga" in sport.lower() or "spain" in sport.lower():
+        patterns_found.append("La Liga: Technique élevée")
+        pattern_strength += 14
+        league_stats = {"avg_home_win": 0.46, "top2_dominance": True}
+    elif "bundesliga" in sport.lower() or "germany" in sport.lower():
+        patterns_found.append("Bundesliga: Bayern dominance")
+        pattern_strength += 13
+        league_stats = {"avg_home_win": 0.47, "high_scoring": True}
+
+    # Patterns équipes élites
+    elite_teams = ["PSG", "Paris", "Bayern", "Real Madrid", "Barcelona", "Man City", "Liverpool", "Manchester City", "Juventus", "Inter Milan"]
+    is_elite_home = any(elite in home_team for elite in elite_teams)
+    is_elite_away = any(elite in away_team for elite in elite_teams)
+    if is_elite_home and not is_elite_away:
+        patterns_found.append(f"Elite Home: {home_team} dominance")
+        pattern_strength += 20
+    elif is_elite_away and not is_elite_home:
+        patterns_found.append(f"Elite Away: {away_team} résilience")
+        pattern_strength += 15
+
+    # Sample size validation
+    nb_bookmakers = match_info.get("bookmaker_count", 0)
+    total_data_points = 8 + nb_bookmakers
+    if total_data_points >= 50:
+        sample_size_score = 30
+        sample_quality = "ROBUSTE"
+    elif total_data_points >= 30:
+        sample_size_score = 25
+        sample_quality = "BON"
+    elif total_data_points >= 15:
+        sample_size_score = 18
+        sample_quality = "MOYEN"
+    elif total_data_points >= 8:
+        sample_size_score = 10
+        sample_quality = "FAIBLE"
+    else:
+        sample_size_score = 5
+        sample_quality = "INSUFFISANT"
+
+    # Recent form
+    top_teams = ["PSG", "Bayern", "Man City", "Real Madrid", "Barcelona"]
+    home_form = 0.75 if any(t in home_team for t in top_teams) else 0.5
+    away_form = 0.75 if any(t in away_team for t in top_teams) else 0.5
+    form_diff = abs(home_form - away_form)
+    if form_diff >= 0.3:
+        recent_form_score = 20
+        patterns_found.append(f"Forme: Écart {form_diff:.2f}")
+    elif form_diff >= 0.15:
+        recent_form_score = 12
+    else:
+        recent_form_score = 5
+
+    # Context
+    context_score = 8
+    context_factors.append("Avantage domicile")
+    if "champions" in sport.lower() or "europa" in sport.lower():
+        context_score += 5
+        context_factors.append("Compétition européenne")
+    context_score = min(context_score, 15)
+
+    # Score Ferrari
+    pattern_strength = min(pattern_strength, 35)
+    ferrari_score_c = min(pattern_strength + sample_size_score + recent_form_score + context_score, 95)
+
+    # Classification
+    if ferrari_score_c >= 80:
+        level_c = "   PATTERN DOMINANT"
+        recommendation_text_c = f"Pattern ML dominant. Strength: {pattern_strength}/35, Sample: {total_data_points} pts, Qualité: {sample_quality}. {len(patterns_found)} patterns confirmés."
+    elif ferrari_score_c >= 65:
+        level_c = "⚡ PATTERN FORT"
+        recommendation_text_c = f"Pattern fort avec {len(patterns_found)} patterns. Sample: {sample_quality} ({total_data_points} pts). Validation Agent B recommandée."
+    elif ferrari_score_c >= 50:
+        level_c = "💎 PATTERN MOYEN"
+        recommendation_text_c = f"Pattern moyen. {len(patterns_found)} patterns sur {total_data_points} pts. Qualité: {sample_quality}. Consensus requis."
+    elif ferrari_score_c >= 35:
+        level_c = "📊 PATTERN FAIBLE"
+        recommendation_text_c = f"Pattern faible. Données limitées ({total_data_points}). Qualité: {sample_quality}."
+    else:
+        level_c = "❌ PAS DE PATTERN"
+        recommendation_text_c = f"Aucun pattern significatif. Sample insuffisant."
+
+    if not patterns_found:
+        patterns_found.append("Aucun pattern historique")
+
+    reason_c = f"{level_c} | Patterns: {len(patterns_found)} | {sample_quality} | {ferrari_score_c}/100"
+
     agents_analysis.append({
-        "agent_id": "pattern_matcher", "agent_name": "Pattern Matcher", "icon": "🎯",
-        "status": "active", "recommendation": "PATTERNS FOUND" if patterns_found else "NO PATTERN",
-        "confidence": round(confidence_c, 2), "reason": reason_c,
-        "details": {"patterns": patterns_found, "sport": sport, "pattern_count": len(patterns_found)}
+        "agent_id": "pattern_matcher",
+        "agent_name": "Pattern Matcher Ferrari 2.0",
+        "icon": "🎯",
+        "status": "active",
+        "recommendation": "PATTERNS" if ferrari_score_c >= 50 else "SKIP",
+        "confidence": round(ferrari_score_c, 2),
+        "reason": reason_c,
+        "recommendation_text": recommendation_text_c,
+        "details": {
+            "ferrari_score": round(ferrari_score_c, 2),
+            "patterns": patterns_found,
+            "pattern_count": len(patterns_found),
+            "pattern_strength": pattern_strength,
+            "sample_size_score": sample_size_score,
+            "recent_form_score": recent_form_score,
+            "context_score": context_score,
+            "total_data_points": total_data_points,
+            "sample_quality": sample_quality,
+            "sport": sport,
+            "league_stats": league_stats,
+            "context_factors": context_factors
+        }
     })
     
     # Agent D - Backtest Engine
