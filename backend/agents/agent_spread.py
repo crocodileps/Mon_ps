@@ -211,3 +211,54 @@ class SpreadOptimizerAgent:
         }
         
         return results
+
+    async def send_telegram_alerts(self, signals, bankroll=5000):
+        """
+        Envoie les signaux sur Telegram
+        """
+        try:
+            from services.telegram_bot import get_telegram_bot
+            bot = get_telegram_bot()
+            
+            for signal in signals[:3]:  # Top 3 opportunités seulement
+                # Mapper direction vers sélection lisible
+                direction_map = {
+                    'BACK_HOME': signal['match'].split(' vs ')[0] + ' Gagnant',
+                    'BACK_AWAY': signal['match'].split(' vs ')[1] + ' Gagnant',
+                    'BACK_DRAW': 'Match Nul'
+                }
+                
+                # Calculer stake en euros
+                kelly_stake = bankroll * (signal['kelly_fraction'])
+                
+                # Déterminer risk level
+                if signal['confidence'] >= 80:
+                    risk_level = 'LOW'
+                elif signal['confidence'] >= 60:
+                    risk_level = 'MEDIUM'
+                else:
+                    risk_level = 'HIGH'
+                
+                opportunity = {
+                    'id': f"agent_b_{hash(signal['match'])}",
+                    'match': signal['match'],
+                    'league': signal['sport'],
+                    'commence_time': 'Prochainement',
+                    'bet_type': '1X2',
+                    'selection': direction_map.get(signal['direction'], signal['direction']),
+                    'odds': round(signal['odds']['avg'], 2),
+                    'bookmaker': 'Meilleur bookmaker',
+                    'edge': round(signal['spread_pct'], 2),
+                    'kelly_stake': int(kelly_stake),
+                    'kelly_percent': round(signal['recommended_stake_pct'], 2),
+                    'confidence': int(signal['confidence']),
+                    'risk_level': risk_level,
+                    'agent_name': 'Agent B (Spread Optimizer)',
+                    'analysis': signal['reason']
+                }
+                
+                await bot.send_opportunity_alert(opportunity)
+                logger.info(f"✅ Alerte Telegram envoyée: {signal['match']}")
+                
+        except Exception as e:
+            logger.error(f"❌ Erreur envoi Telegram: {e}")

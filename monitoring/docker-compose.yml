@@ -30,6 +30,8 @@ services:
       DB_USER: monps_user
       DB_PASSWORD: ${POSTGRES_PASSWORD:-monps_secure_password_2024}
       ENV: production
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID}
     depends_on:
       postgres:
         condition: service_healthy
@@ -114,11 +116,37 @@ services:
     networks:
       - monps_network
 
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: monps_n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=91.98.131.218
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://91.98.131.218:5678/
+      - N8N_BASIC_AUTH_ACTIVE=false
+      - GENERIC_TIMEZONE=Europe/Paris
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=168
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - /home/Mon_ps:/data/monps
+    networks:
+      - monps_network
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
 networks:
   monps_network:
     driver: bridge
 
 volumes:
+  n8n_data:
   uptime-kuma-data:
   postgres_data:
   prometheus_data:

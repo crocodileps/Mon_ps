@@ -271,6 +271,98 @@ class MultiAgentOrchestrator:
         print(f"\n💾 Résultats sauvegardés: {filename}")
 
 
+
+    async def send_best_opportunities_telegram(self):
+        """
+        Envoie les meilleures opportunités sur Telegram
+        Basé sur l agent avec le meilleur ROI
+        """
+        from services.telegram_bot import get_telegram_bot
+        import logging
+        
+        logger = logging.getLogger(__name__)
+        bot = get_telegram_bot()
+        
+        if self.comparison is None or len(self.comparison) == 0:
+            return {"status": "error", "message": "Backtest requis"}
+        
+        best_agent_name = self.comparison.iloc[0]["strategy"]
+        best_signals = self.signals.get(best_agent_name, [])
+        
+        if not best_signals:
+            return {"status": "no_signals"}
+        
+        sent_count = 0
+        def get_best_bookmaker(home_team, away_team, direction):
+            """Récupère le meilleur bookmaker pour cette opportunité"""
+            import psycopg2
+            conn = psycopg2.connect(**self.db_config)
+            cursor = conn.cursor()
+            
+            if direction == 'BACK_HOME':
+                odds_col = 'home_odds'
+            elif direction == 'BACK_AWAY':
+                odds_col = 'away_odds'
+            else:
+                odds_col = 'draw_odds'
+            
+            query = f"""
+                SELECT bookmaker, {odds_col}
+                FROM odds_history
+                WHERE home_team = %s AND away_team = %s
+                AND {odds_col} IS NOT NULL
+                ORDER BY {odds_col} DESC
+                LIMIT 1
+            """
+            
+            cursor.execute(query, (home_team, away_team))
+            result = cursor.fetchone()
+            conn.close()
+            
+            return result[0] if result else "Bookmaker inconnu"
+        for signal in best_signals[:3]:
+            try:
+                match_parts = signal["match"].split(" vs ")
+                home_team = match_parts[0] if len(match_parts) > 0 else "Home"
+                away_team = match_parts[1] if len(match_parts) > 1 else "Away"
+                best_bookmaker = get_best_bookmaker(home_team, away_team, signal["direction"])
+                if signal["direction"] == "BACK_HOME":
+                    selection = f"{home_team} Gagnant"
+                elif signal["direction"] == "BACK_AWAY":
+                    selection = f"{match_parts[1]} Gagnant"
+                else:
+                    selection = "Match Nul"
+                
+                stake_pct = signal.get("recommended_stake_pct", 5.0)
+                stake = (stake_pct / 100) * self.bankroll
+                confidence = signal.get("confidence", 50)
+                risk_level = "LOW" if confidence >= 80 else "MEDIUM" if confidence >= 60 else "HIGH"
+                
+                opportunity = {
+                    "id": f"orchestrator_{hash(signal['match'])}",
+                    "match": signal["match"],
+                    "league": signal.get("sport", "Sport"),
+                    "commence_time": "Prochainement",
+                    "bet_type": "1X2",
+                    "selection": selection,
+                    "odds": signal["odds"]["avg"] if isinstance(signal.get("odds"), dict) else 2.0,
+                    "bookmaker": best_bookmaker,
+                    "edge": signal.get("spread_pct", 0),
+                    "kelly_stake": int(stake),
+                    "kelly_percent": round(stake_pct, 2),
+                    "confidence": int(confidence),
+                    "risk_level": risk_level,
+                    "agent_name": f"Agent Patron (via {best_agent_name})",
+                    "analysis": signal.get("reason", "Sélectionné par orchestrator")
+                }
+                
+                await bot.send_opportunity_alert(opportunity)
+                sent_count += 1
+            except Exception as e:
+                logger.error(f"Erreur: {e}")
+        
+        return {"status": "sent", "opportunities_sent": sent_count}
+
 def main():
     """Fonction principale"""
     orchestrator = MultiAgentOrchestrator(DB_CONFIG, bankroll=1000)
