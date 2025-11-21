@@ -752,7 +752,11 @@ async def analyze_match_with_agents(match_id: str):
     })
 
 
-     # Agent C - Pattern Matcher Ferrari 2.0
+    # Agent C - Pattern Matcher Ferrari 2.5 (DB-Enhanced)
+    import psycopg2
+    from psycopg2.extras import RealDictCursor
+    from datetime import datetime, timedelta
+    
     patterns_found = []
     ferrari_score_c = 0
     pattern_strength = 0
@@ -760,14 +764,140 @@ async def analyze_match_with_agents(match_id: str):
     recent_form_score = 0
     context_score = 0
     recommendation_text_c = ""
+    
     sport = match_info.get("sport", "")
     home_team = match_info.get("home_team", "")
     away_team = match_info.get("away_team", "")
+    match_id = match_info.get("match_id", "")
     league_stats = {}
     context_factors = []
     sample_quality = "INCONNU"
-
-    # Analyse patterns de ligue
+    
+    # DB Config
+    db_config = {
+        "host": "monps_postgres",
+        "database": "monps_db",
+        "user": "monps_user",
+        "password": "monps_secure_password_2024"
+    }
+    
+    # ÉTAPE 1: H2H FREQUENCY (DB Query)
+    h2h_count = 0
+    try:
+        conn = psycopg2.connect(**db_config)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        two_years_ago = datetime.now() - timedelta(days=730)
+        cursor.execute("""
+            SELECT COUNT(DISTINCT match_id) as h2h_count
+            FROM odds
+            WHERE home_team = %s AND away_team = %s
+            AND commence_time >= %s
+        """, (home_team, away_team, two_years_ago))
+        result = cursor.fetchone()
+        h2h_count = result['h2h_count'] if result else 0
+        conn.close()
+        
+        if h2h_count >= 10:
+            patterns_found.append(f"H2H: {h2h_count} confrontations récentes")
+            pattern_strength += 15
+        elif h2h_count >= 5:
+            patterns_found.append(f"H2H: {h2h_count} matchs analysés")
+            pattern_strength += 10
+        elif h2h_count >= 2:
+            patterns_found.append(f"H2H: Historique limité ({h2h_count})")
+            pattern_strength += 5
+    except:
+        pass
+    
+    # ÉTAPE 2: BOOKMAKER COVERAGE (DB Query)
+    bookmaker_coverage = {'count': 0, 'bookmakers': [], 'has_pinnacle': False}
+    try:
+        conn = psycopg2.connect(**db_config)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute("""
+            SELECT COUNT(DISTINCT bookmaker) as book_count,
+                   array_agg(DISTINCT bookmaker) as bookmakers
+            FROM odds
+            WHERE match_id = %s
+        """, (match_id,))
+        result = cursor.fetchone()
+        if result:
+            bookmaker_coverage['count'] = result['book_count'] or 0
+            bookmaker_coverage['bookmakers'] = result['bookmakers'] or []
+            bookmaker_coverage['has_pinnacle'] = 'pinnacle' in [b.lower() for b in bookmaker_coverage['bookmakers']]
+        conn.close()
+        
+        if bookmaker_coverage['count'] >= 30:
+            patterns_found.append(f"Couverture excellente: {bookmaker_coverage['count']} books")
+            pattern_strength += 12
+        elif bookmaker_coverage['count'] >= 15:
+            patterns_found.append(f"Bonne couverture: {bookmaker_coverage['count']} books")
+            pattern_strength += 8
+        
+        if bookmaker_coverage['has_pinnacle']:
+            patterns_found.append("Pinnacle présent (sharp book)")
+            pattern_strength += 5
+    except:
+        pass
+    
+    # ÉTAPE 3: SHARP MONEY DETECTION (DB Query)
+    sharp_detected = False
+    sharp_movements = []
+    try:
+        conn = psycopg2.connect(**db_config)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute("""
+            SELECT outcome, 
+                   MIN(odds_value) as min_odds,
+                   MAX(odds_value) as max_odds,
+                   COUNT(*) as updates
+            FROM odds_history
+            WHERE match_id = %s
+            GROUP BY outcome
+        """, (match_id,))
+        movements = cursor.fetchall()
+        conn.close()
+        
+        for mov in movements:
+            if mov['updates'] >= 5:
+                movement_pct = abs((mov['max_odds'] - mov['min_odds']) / mov['min_odds']) * 100
+                if movement_pct > 5:
+                    sharp_detected = True
+                    sharp_movements.append({
+                        'outcome': mov['outcome'],
+                        'movement': round(movement_pct, 1)
+                    })
+        
+        if sharp_detected:
+            patterns_found.append(f"Sharp money détecté: {len(sharp_movements)} mouvements")
+            pattern_strength += 10
+    except:
+        pass
+    
+    # ÉTAPE 4: TEAM LIQUIDITY (DB Query)
+    team_liquidity = {'total_matches': 0, 'coverage': 0}
+    try:
+        conn = psycopg2.connect(**db_config)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute("""
+            SELECT COUNT(DISTINCT match_id) as total_matches
+            FROM odds
+            WHERE home_team = %s OR away_team = %s
+        """, (home_team, away_team))
+        result = cursor.fetchone()
+        team_liquidity['total_matches'] = result['total_matches'] if result else 0
+        conn.close()
+        
+        if team_liquidity['total_matches'] >= 100:
+            patterns_found.append(f"Équipes liquides: {team_liquidity['total_matches']} matchs DB")
+            pattern_strength += 8
+        elif team_liquidity['total_matches'] >= 50:
+            patterns_found.append(f"Liquidité moyenne: {team_liquidity['total_matches']} matchs")
+            pattern_strength += 4
+    except:
+        pass
+    
+    # ÉTAPE 5: Analyse patterns de ligue (comme avant)
     if "epl" in sport.lower() or "premier" in sport.lower():
         patterns_found.append("Premier League: Forte variance")
         pattern_strength += 15
@@ -788,29 +918,31 @@ async def analyze_match_with_agents(match_id: str):
         patterns_found.append("Bundesliga: Bayern dominance")
         pattern_strength += 13
         league_stats = {"avg_home_win": 0.47, "high_scoring": True}
-
-    # Patterns équipes élites
+    
+    # ÉTAPE 6: Patterns équipes élites
     elite_teams = ["PSG", "Paris", "Bayern", "Real Madrid", "Barcelona", "Man City", "Liverpool", "Manchester City", "Juventus", "Inter Milan"]
     is_elite_home = any(elite in home_team for elite in elite_teams)
     is_elite_away = any(elite in away_team for elite in elite_teams)
     if is_elite_home and not is_elite_away:
-        patterns_found.append(f"Elite Home: {home_team} dominance")
+        patterns_found.append(f"Elite Home: {home_team}")
         pattern_strength += 20
     elif is_elite_away and not is_elite_home:
-        patterns_found.append(f"Elite Away: {away_team} résilience")
+        patterns_found.append(f"Elite Away: {away_team}")
         pattern_strength += 15
-
-    # Sample size validation
-    nb_bookmakers = match_info.get("bookmaker_count", 0)
-    total_data_points = 8 + nb_bookmakers
-    if total_data_points >= 50:
+    
+    # ÉTAPE 7: Sample size validation (DB-enhanced)
+    total_data_points = h2h_count + bookmaker_coverage['count'] + team_liquidity['total_matches']
+    if total_data_points >= 100:
         sample_size_score = 30
+        sample_quality = "EXCELLENT"
+    elif total_data_points >= 50:
+        sample_size_score = 25
         sample_quality = "ROBUSTE"
     elif total_data_points >= 30:
-        sample_size_score = 25
+        sample_size_score = 20
         sample_quality = "BON"
     elif total_data_points >= 15:
-        sample_size_score = 18
+        sample_size_score = 15
         sample_quality = "MOYEN"
     elif total_data_points >= 8:
         sample_size_score = 10
@@ -818,8 +950,8 @@ async def analyze_match_with_agents(match_id: str):
     else:
         sample_size_score = 5
         sample_quality = "INSUFFISANT"
-
-    # Recent form
+    
+    # ÉTAPE 8: Recent form (simulé comme avant)
     top_teams = ["PSG", "Bayern", "Man City", "Real Madrid", "Barcelona"]
     home_form = 0.75 if any(t in home_team for t in top_teams) else 0.5
     away_form = 0.75 if any(t in away_team for t in top_teams) else 0.5
@@ -831,44 +963,44 @@ async def analyze_match_with_agents(match_id: str):
         recent_form_score = 12
     else:
         recent_form_score = 5
-
-    # Context
+    
+    # ÉTAPE 9: Context
     context_score = 8
     context_factors.append("Avantage domicile")
     if "champions" in sport.lower() or "europa" in sport.lower():
         context_score += 5
         context_factors.append("Compétition européenne")
     context_score = min(context_score, 15)
-
-    # Score Ferrari
+    
+    # ÉTAPE 10: Score Ferrari (cap 95)
     pattern_strength = min(pattern_strength, 35)
     ferrari_score_c = min(pattern_strength + sample_size_score + recent_form_score + context_score, 95)
-
-    # Classification
+    
+    # ÉTAPE 11: Classification
     if ferrari_score_c >= 80:
-        level_c = "   PATTERN DOMINANT"
-        recommendation_text_c = f"Pattern ML dominant. Strength: {pattern_strength}/35, Sample: {total_data_points} pts, Qualité: {sample_quality}. {len(patterns_found)} patterns confirmés."
+        level_c = "🔥 PATTERN DOMINANT"
+        recommendation_text_c = f"Pattern ML dominant avec données DB réelles. H2H: {h2h_count} matchs, Bookmakers: {bookmaker_coverage['count']}, Liquidité: {team_liquidity['total_matches']} entrées. Sharp money: {'Détecté' if sharp_detected else 'Non'}. Qualité: {sample_quality}. Confiance maximale."
     elif ferrari_score_c >= 65:
         level_c = "⚡ PATTERN FORT"
-        recommendation_text_c = f"Pattern fort avec {len(patterns_found)} patterns. Sample: {sample_quality} ({total_data_points} pts). Validation Agent B recommandée."
+        recommendation_text_c = f"Pattern fort validé DB. {len(patterns_found)} patterns, {total_data_points} data points. Sample: {sample_quality}. H2H: {h2h_count}. Validation Agent B recommandée."
     elif ferrari_score_c >= 50:
         level_c = "💎 PATTERN MOYEN"
-        recommendation_text_c = f"Pattern moyen. {len(patterns_found)} patterns sur {total_data_points} pts. Qualité: {sample_quality}. Consensus requis."
+        recommendation_text_c = f"Pattern moyen. {len(patterns_found)} patterns DB. Qualité: {sample_quality}. Consensus requis."
     elif ferrari_score_c >= 35:
         level_c = "📊 PATTERN FAIBLE"
-        recommendation_text_c = f"Pattern faible. Données limitées ({total_data_points}). Qualité: {sample_quality}."
+        recommendation_text_c = f"Pattern faible. Données DB limitées. Qualité: {sample_quality}."
     else:
         level_c = "❌ PAS DE PATTERN"
-        recommendation_text_c = f"Aucun pattern significatif. Sample insuffisant."
-
+        recommendation_text_c = f"Aucun pattern DB significatif."
+    
     if not patterns_found:
-        patterns_found.append("Aucun pattern historique")
-
-    reason_c = f"{level_c} | Patterns: {len(patterns_found)} | {sample_quality} | {ferrari_score_c}/100"
-
+        patterns_found.append("Aucun pattern DB détecté")
+    
+    reason_c = f"{level_c} | {len(patterns_found)} patterns | {sample_quality} | {ferrari_score_c}/100"
+    
     agents_analysis.append({
         "agent_id": "pattern_matcher",
-        "agent_name": "Pattern Matcher Ferrari 2.0",
+        "agent_name": "Pattern Matcher Ferrari 2.5",
         "icon": "🎯",
         "status": "active",
         "recommendation": "PATTERNS" if ferrari_score_c >= 50 else "SKIP",
@@ -887,10 +1019,16 @@ async def analyze_match_with_agents(match_id: str):
             "sample_quality": sample_quality,
             "sport": sport,
             "league_stats": league_stats,
-            "context_factors": context_factors
+            "context_factors": context_factors,
+            "h2h_count": h2h_count,
+            "bookmaker_coverage": bookmaker_coverage['count'],
+            "has_pinnacle": bookmaker_coverage.get('has_pinnacle', False),
+            "sharp_money_detected": sharp_detected,
+            "sharp_movements": sharp_movements,
+            "team_liquidity": team_liquidity['total_matches']
         }
-    })
-    
+    })     
+
     # Agent D - Backtest Engine
     win_rate = 0
     avg_roi = 0
