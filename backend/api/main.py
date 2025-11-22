@@ -250,3 +250,7 @@ app.include_router(stats_routes.router, prefix="/stats", tags=["stats"])
 # Results routes (Scraper n8n)
 from api.routes import results_routes
 app.include_router(results_routes.router, prefix="/results", tags=["results"])
+
+# Strategies routes (Meta-learning)
+from api.routes import strategies_routes
+app.include_router(strategies_routes.router, prefix="/strategies", tags=["strategies"])
