@@ -1041,9 +1041,7 @@ async def analyze_match_with_agents(match_id: str):
             factors={
                 "pattern_strength": pattern_strength,
                 "sample_size_score": sample_size_score,
-                "h2h_count": h2h_count,
-                "bookmaker_coverage": bookmaker_coverage.get('count', 0),
-                "patterns": patterns_found
+                "patterns_count": len(patterns_found)
             }
         )
     except Exception as e:
@@ -1330,31 +1328,6 @@ async def analyze_match_with_agents(match_id: str):
                 "sharpe_score": sharpe_score,
                 "sample_score": sample_score,
                 "sample_quality": sample_quality if league else "N/A"
-            }
-        )
-    except Exception as e:
-        pass
-
-    # === LEARNING SYSTEM: Save Agent C Analysis ===
-    try:
-        save_agent_analysis(
-            match_info=match_info,
-            agent_name="Pattern Matcher Ferrari 2.5",
-            agent_version="2.5",
-            recommendation="PATTERNS" if ferrari_score_c >= 50 else "SKIP",
-            confidence=ferrari_score_c,
-            reasoning=recommendation_text_c,
-            factors={
-                "pattern_strength": pattern_strength,
-                "sample_size_score": sample_size_score,
-                "recent_form_score": recent_form_score,
-                "context_score": context_score,
-                "h2h_count": h2h_count,
-                "bookmaker_coverage": bookmaker_coverage.get('count', 0),
-                "sharp_money_detected": sharp_detected,
-                "patterns": patterns_found,
-                "sample_quality": sample_quality,
-                "total_data_points": total_data_points
             }
         )
     except Exception as e:
