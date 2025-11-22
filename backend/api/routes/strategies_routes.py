@@ -199,3 +199,263 @@ async def create_improvement(
     except Exception as e:
         logger.error(f"Erreur création amélioration: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/improvements")
+async def get_all_improvements():
+    """Récupère toutes les améliorations suggérées par GPT-4o"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        cursor.execute("""
+            SELECT 
+                si.id,
+                si.strategy_id,
+                si.agent_name,
+                si.strategy_name,
+                si.baseline_win_rate,
+                si.baseline_roi,
+                si.baseline_samples,
+                si.failure_pattern,
+                si.missing_factors,
+                si.recommended_adjustments,
+                si.llm_reasoning,
+                si.new_threshold,
+                si.old_threshold,
+                si.ab_test_active,
+                si.ab_test_start,
+                si.ab_test_matches_a,
+                si.ab_test_matches_b,
+                si.ab_test_wins_a,
+                si.ab_test_wins_b,
+                si.improvement_validated,
+                si.improvement_applied,
+                si.performance_gain,
+                si.created_at,
+                si.analyzed_at,
+                -- Calculer win rate A/B test
+                CASE 
+                    WHEN si.ab_test_matches_a > 0 
+                    THEN ROUND(100.0 * si.ab_test_wins_a / si.ab_test_matches_a, 2)
+                    ELSE NULL
+                END as ab_win_rate_a,
+                CASE 
+                    WHEN si.ab_test_matches_b > 0 
+                    THEN ROUND(100.0 * si.ab_test_wins_b / si.ab_test_matches_b, 2)
+                    ELSE NULL
+                END as ab_win_rate_b
+            FROM strategy_improvements si
+            ORDER BY si.created_at DESC
+        """)
+        
+        improvements = cursor.fetchall()
+        conn.close()
+        
+        return {
+            "success": True,
+            "improvements": improvements,
+            "total": len(improvements)
+        }
+        
+    except Exception as e:
+        logger.error(f"Erreur improvements: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/improvements/{improvement_id}")
+async def get_improvement_details(improvement_id: int):
+    """Détails complets d'une amélioration"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        cursor.execute("""
+            SELECT 
+                si.*,
+                s.win_rate as current_win_rate,
+                s.roi as current_roi,
+                s.tier as current_tier,
+                -- Stats A/B test
+                CASE 
+                    WHEN si.ab_test_matches_a > 0 
+                    THEN ROUND(100.0 * si.ab_test_wins_a / si.ab_test_matches_a, 2)
+                    ELSE NULL
+                END as ab_win_rate_a,
+                CASE 
+                    WHEN si.ab_test_matches_b > 0 
+                    THEN ROUND(100.0 * si.ab_test_wins_b / si.ab_test_matches_b, 2)
+                    ELSE NULL
+                END as ab_win_rate_b
+            FROM strategy_improvements si
+            JOIN strategies s ON si.strategy_id = s.id
+            WHERE si.id = %s
+        """, (improvement_id,))
+        
+        improvement = cursor.fetchone()
+        conn.close()
+        
+        if not improvement:
+            raise HTTPException(status_code=404, detail="Amélioration non trouvée")
+        
+        return {
+            "success": True,
+            "improvement": improvement
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Erreur détails: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/improvements/{improvement_id}/activate-test")
+async def activate_ab_test(improvement_id: int):
+    """Active un A/B test pour une amélioration"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Vérifier que l'amélioration existe et n'est pas déjà en test
+        cursor.execute("""
+            SELECT id, ab_test_active, improvement_applied
+            FROM strategy_improvements
+            WHERE id = %s
+        """, (improvement_id,))
+        
+        improvement = cursor.fetchone()
+        
+        if not improvement:
+            raise HTTPException(status_code=404, detail="Amélioration non trouvée")
+        
+        if improvement['ab_test_active']:
+            raise HTTPException(status_code=400, detail="A/B test déjà actif")
+        
+        if improvement['improvement_applied']:
+            raise HTTPException(status_code=400, detail="Amélioration déjà appliquée")
+        
+        # Activer le test
+        cursor.execute("""
+            UPDATE strategy_improvements
+            SET 
+                ab_test_active = TRUE,
+                ab_test_start = NOW(),
+                ab_test_matches_a = 0,
+                ab_test_matches_b = 0,
+                ab_test_wins_a = 0,
+                ab_test_wins_b = 0
+            WHERE id = %s
+            RETURNING id
+        """, (improvement_id,))
+        
+        conn.commit()
+        conn.close()
+        
+        return {
+            "success": True,
+            "message": "A/B test activé",
+            "improvement_id": improvement_id
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Erreur activation test: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/improvements/{improvement_id}/apply")
+async def apply_improvement(improvement_id: int):
+    """Applique définitivement une amélioration validée"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Récupérer amélioration
+        cursor.execute("""
+            SELECT 
+                si.*,
+                CASE 
+                    WHEN si.ab_test_matches_b > 0 
+                    THEN ROUND(100.0 * si.ab_test_wins_b / si.ab_test_matches_b, 2)
+                    ELSE NULL
+                END as ab_win_rate_b
+            FROM strategy_improvements si
+            WHERE id = %s
+        """, (improvement_id,))
+        
+        improvement = cursor.fetchone()
+        
+        if not improvement:
+            raise HTTPException(status_code=404, detail="Amélioration non trouvée")
+        
+        if improvement['improvement_applied']:
+            raise HTTPException(status_code=400, detail="Déjà appliquée")
+        
+        # Calculer gain de performance
+        performance_gain = None
+        if improvement['ab_win_rate_b'] and improvement['baseline_win_rate']:
+            performance_gain = improvement['ab_win_rate_b'] - improvement['baseline_win_rate']
+        
+        # Appliquer l'amélioration
+        cursor.execute("""
+            UPDATE strategy_improvements
+            SET 
+                improvement_applied = TRUE,
+                improvement_validated = TRUE,
+                ab_test_active = FALSE,
+                ab_test_end = NOW(),
+                performance_gain = %s
+            WHERE id = %s
+        """, (performance_gain, improvement_id))
+        
+        # TODO: Mettre à jour les paramètres de la stratégie dans le code de l'agent
+        # Pour l'instant, c'est juste marqué comme appliqué
+        
+        conn.commit()
+        conn.close()
+        
+        return {
+            "success": True,
+            "message": "Amélioration appliquée",
+            "performance_gain": performance_gain
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Erreur application: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.delete("/improvements/{improvement_id}")
+async def reject_improvement(improvement_id: int):
+    """Rejette une amélioration"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            DELETE FROM strategy_improvements
+            WHERE id = %s
+            AND improvement_applied = FALSE
+            RETURNING id
+        """, (improvement_id,))
+        
+        deleted = cursor.fetchone()
+        
+        if not deleted:
+            raise HTTPException(
+                status_code=404, 
+                detail="Amélioration non trouvée ou déjà appliquée"
+            )
+        
+        conn.commit()
+        conn.close()
+        
+        return {
+            "success": True,
+            "message": "Amélioration rejetée"
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Erreur rejet: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
