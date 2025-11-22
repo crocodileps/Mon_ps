@@ -459,3 +459,301 @@ async def reject_improvement(improvement_id: int):
     except Exception as e:
         logger.error(f"Erreur rejet: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/meta-learning/analyze")
+async def trigger_gpt4o_analysis():
+    """Déclenche analyse GPT-4o via N8N ou cron"""
+    import subprocess
+    import os
+    
+    try:
+        # Exécuter script meta-learning
+        result = subprocess.run(
+            ["python3", "/app/scripts/meta_learning_gpt4o.py"],
+            capture_output=True,
+            text=True,
+            timeout=300  # 5 minutes max
+        )
+        
+        if result.returncode == 0:
+            # Parser résultat
+            lines = result.stdout.split('\n')
+            improvements_created = 0
+            
+            for line in lines:
+                if "Améliorations créées:" in line:
+                    improvements_created = int(line.split(':')[1].strip())
+                    break
+            
+            return {
+                "success": True,
+                "message": "Analyse GPT-4o terminée",
+                "improvements_created": improvements_created,
+                "output": result.stdout[-500:]  # Derniers 500 chars
+            }
+        else:
+            raise Exception(f"Script error: {result.stderr}")
+            
+    except subprocess.TimeoutExpired:
+        raise HTTPException(status_code=408, detail="Timeout: Analyse trop longue")
+    except Exception as e:
+        logger.error(f"Erreur trigger GPT-4o: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/results/fetch")
+async def trigger_results_fetch():
+    """Déclenche récupération résultats matchs"""
+    import subprocess
+    
+    try:
+        result = subprocess.run(
+            ["python3", "/app/scripts/fetch_results_football_data_v2.py"],
+            capture_output=True,
+            text=True,
+            timeout=180  # 3 minutes max
+        )
+        
+        if result.returncode == 0:
+            # Parser stats
+            lines = result.stdout.split('\n')
+            matches_processed = 0
+            
+            for line in lines:
+                if "matchs traités" in line:
+                    matches_processed = int(line.split()[0])
+                    break
+            
+            return {
+                "success": True,
+                "message": "Résultats récupérés",
+                "matches_processed": matches_processed
+            }
+        else:
+            raise Exception(f"Script error: {result.stderr}")
+            
+    except subprocess.TimeoutExpired:
+        raise HTTPException(status_code=408, detail="Timeout")
+    except Exception as e:
+        logger.error(f"Erreur fetch results: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/improvements/{improvement_id}/archive")
+async def archive_improvement(improvement_id: int, reason: str = None):
+    """Archive une amélioration pour consultation ultérieure"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Récupérer amélioration
+        cursor.execute("""
+            SELECT * FROM strategy_improvements
+            WHERE id = %s
+        """, (improvement_id,))
+        
+        improvement = cursor.fetchone()
+        if not improvement:
+            raise HTTPException(status_code=404, detail="Amélioration non trouvée")
+        
+        old_status = improvement['status']
+        
+        # Archiver
+        cursor.execute("""
+            UPDATE strategy_improvements
+            SET 
+                status = 'archived',
+                archived_at = NOW(),
+                archived_reason = %s,
+                ab_test_active = FALSE
+            WHERE id = %s
+        """, (reason, improvement_id))
+        
+        # Historique
+        cursor.execute("""
+            INSERT INTO improvement_status_history (
+                improvement_id, old_status, new_status, reason
+            ) VALUES (%s, %s, 'archived', %s)
+        """, (improvement_id, old_status, reason))
+        
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"✅ Amélioration {improvement_id} archivée")
+        
+        return {
+            "success": True,
+            "message": "Amélioration archivée",
+            "improvement_id": improvement_id
+        }
+        
+    except Exception as e:
+        logger.error(f"Erreur archive: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/improvements/{improvement_id}/reactivate")
+async def reactivate_improvement(improvement_id: int):
+    """Réactive une amélioration archivée"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Vérifier statut
+        cursor.execute("""
+            SELECT status FROM strategy_improvements
+            WHERE id = %s
+        """, (improvement_id,))
+        
+        result = cursor.fetchone()
+        if not result:
+            raise HTTPException(status_code=404, detail="Amélioration non trouvée")
+        
+        if result['status'] != 'archived':
+            raise HTTPException(status_code=400, detail="Amélioration pas archivée")
+        
+        # Réactiver
+        cursor.execute("""
+            UPDATE strategy_improvements
+            SET 
+                status = 'proposed',
+                reactivated_at = NOW()
+            WHERE id = %s
+        """, (improvement_id,))
+        
+        # Historique
+        cursor.execute("""
+            INSERT INTO improvement_status_history (
+                improvement_id, old_status, new_status, reason
+            ) VALUES (%s, 'archived', 'proposed', 'Réactivation manuelle')
+        """, (improvement_id,))
+        
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"✅ Amélioration {improvement_id} réactivée")
+        
+        return {
+            "success": True,
+            "message": "Amélioration réactivée",
+            "improvement_id": improvement_id
+        }
+        
+    except Exception as e:
+        logger.error(f"Erreur reactivate: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/improvements/archived")
+async def get_archived_improvements():
+    """Récupère améliorations archivées"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        cursor.execute("""
+            SELECT * FROM archived_improvements
+        """)
+        
+        improvements = cursor.fetchall()
+        conn.close()
+        
+        return {
+            "success": True,
+            "count": len(improvements),
+            "improvements": [dict(row) for row in improvements]
+        }
+        
+    except Exception as e:
+        logger.error(f"Erreur get archived: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/improvements/activate-selected")
+async def activate_selected_improvements(improvement_ids: list[int]):
+    """Active test A/B pour améliorations sélectionnées"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor()
+        
+        activated = []
+        errors = []
+        
+        for imp_id in improvement_ids:
+            try:
+                # Vérifier statut
+                cursor.execute("""
+                    SELECT status FROM strategy_improvements
+                    WHERE id = %s
+                """, (imp_id,))
+                
+                result = cursor.fetchone()
+                if not result:
+                    errors.append(f"ID {imp_id}: non trouvée")
+                    continue
+                
+                if result[0] != 'proposed':
+                    errors.append(f"ID {imp_id}: statut incorrect ({result[0]})")
+                    continue
+                
+                # Activer
+                cursor.execute("""
+                    UPDATE strategy_improvements
+                    SET 
+                        status = 'active',
+                        ab_test_active = TRUE,
+                        ab_test_start = NOW()
+                    WHERE id = %s
+                """, (imp_id,))
+                
+                # Historique
+                cursor.execute("""
+                    INSERT INTO improvement_status_history (
+                        improvement_id, old_status, new_status, reason
+                    ) VALUES (%s, 'proposed', 'active', 'Activation manuelle sélection')
+                """, (imp_id,))
+                
+                activated.append(imp_id)
+                
+            except Exception as e:
+                errors.append(f"ID {imp_id}: {str(e)}")
+        
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"✅ {len(activated)} améliorations activées")
+        
+        return {
+            "success": True,
+            "activated": activated,
+            "count": len(activated),
+            "errors": errors if errors else None
+        }
+        
+    except Exception as e:
+        logger.error(f"Erreur activate selected: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/improvements/{improvement_id}/set-priority")
+async def set_improvement_priority(improvement_id: int, priority: int):
+    """Définit priorité amélioration (0-10)"""
+    if priority < 0 or priority > 10:
+        raise HTTPException(status_code=400, detail="Priorité doit être 0-10")
+    
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            UPDATE strategy_improvements
+            SET priority = %s
+            WHERE id = %s
+        """, (priority, improvement_id))
+        
+        conn.commit()
+        conn.close()
+        
+        return {
+            "success": True,
+            "improvement_id": improvement_id,
+            "priority": priority
+        }
+        
+    except Exception as e:
+        logger.error(f"Erreur set priority: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
