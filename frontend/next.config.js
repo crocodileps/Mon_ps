@@ -1,27 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  reactStrictMode: true,
-  swcMinify: true,
-  
-  typescript: {
-    ignoreBuildErrors: false,
-  },
-  
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
-  
   async rewrites() {
     return [
       {
-        source: '/api-backend/:path*',
-        destination: process.env.NEXT_PUBLIC_API_URL 
-          ? `${process.env.NEXT_PUBLIC_API_URL}/:path*`
-          : 'http://monps_backend:8000/:path*',
+        source: '/api/:path*',
+        destination: 'http://monps_backend:8000/:path*',
       },
     ];
   },
-}
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

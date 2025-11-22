@@ -22,6 +22,88 @@ DB_CONFIG = {
     'password': 'monps_secure_password_2024'
 }
 
+# ═══════════════════════════════════════════════════════════
+# LEARNING SYSTEM - HELPER FUNCTIONS
+# ═══════════════════════════════════════════════════════════
+
+def save_agent_analysis(match_info, agent_name, agent_version, recommendation, confidence, reasoning, factors):
+    """Sauvegarde l'analyse d'un agent dans la DB"""
+    import psycopg2
+    import json
+    
+    try:
+        conn = psycopg2.connect(
+            host="monps_postgres",
+            database="monps_db",
+            user="monps_user",
+            password="monps_secure_password_2024"
+        )
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            INSERT INTO agent_analyses 
+            (match_id, agent_name, agent_version, home_team, away_team, 
+             sport, league, commence_time, recommendation, confidence_score, 
+             reasoning, factors)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (match_id, agent_name, analyzed_at) DO NOTHING
+        """, (
+            match_info.get('match_id'),
+            agent_name,
+            agent_version,
+            match_info.get('home_team'),
+            match_info.get('away_team'),
+            match_info.get('sport'),
+            match_info.get('league'),
+            match_info.get('commence_time'),
+            recommendation,
+            confidence,
+            reasoning,
+            json.dumps(factors)
+        ))
+        
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        pass
+
+def save_agent_prediction(match_info, agent_name, predicted_outcome, probability, confidence, strategy, edge, kelly):
+    """Sauvegarde une prédiction agent"""
+    import psycopg2
+    
+    try:
+        conn = psycopg2.connect(
+            host="monps_postgres",
+            database="monps_db",
+            user="monps_user",
+            password="monps_secure_password_2024"
+        )
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            INSERT INTO agent_predictions 
+            (match_id, agent_name, predicted_outcome, predicted_probability, 
+             confidence, strategy_used, edge_detected, kelly_fraction)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (match_id, agent_name, predicted_at) DO NOTHING
+        """, (
+            match_info.get('match_id'),
+            agent_name,
+            predicted_outcome,
+            probability,
+            confidence,
+            strategy,
+            edge,
+            kelly
+        ))
+        
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        pass
+
+
+
 
 class AgentSignal(BaseModel):
     agent: str
@@ -474,6 +556,27 @@ async def analyze_match_with_agents(match_id: str):
             "bookmaker_count": bookmaker_count
         }
     })
+    # === LEARNING SYSTEM: Save Agent A Analysis ===
+    try:
+        save_agent_analysis(
+            match_info=match_info,
+            agent_name="Anomaly Detector Ferrari 2.0",
+            agent_version="2.0",
+            recommendation="REVIEW" if is_anomaly else "NORMAL",
+            confidence=anomaly_score,
+            reasoning=recommendation_text,
+            factors={
+                "spread_score": spread_score,
+                "variance_score": variance_score,
+                "bookmaker_bonus": bookmaker_bonus,
+                "extreme_bonus": extreme_bonus,
+                "max_spread": max_spread,
+                "bookmaker_count": bookmaker_count
+            }
+        )
+    except:
+        pass
+
 
     # ═══════════════════════════════════════════════════════════════════
     # AGENT B FERRARI 2.0 - SPREAD OPTIMIZER EXPERT INTERNATIONAL
@@ -750,6 +853,41 @@ async def analyze_match_with_agents(match_id: str):
             "rr_score": rr_score
         }
     })
+    # === LEARNING SYSTEM: Save Agent B Analysis ===
+    try:
+        save_agent_analysis(
+            match_info=match_info,
+            agent_name="Spread Optimizer Ferrari 2.0",
+            agent_version="2.0",
+            recommendation=best_outcome.upper() if expected_value > 0 else "SKIP",
+            confidence=ferrari_score,
+            reasoning=recommendation_text,
+            factors={
+                "expected_value": float(expected_value),
+                "true_edge": float(true_edge),
+                "kelly_fraction": float(kelly_fraction),
+                "kelly_pct": float(kelly_pct) if kelly_fraction > 0 else 0,
+                "sharpe_estimate": float(sharpe_estimate),
+                "risk_reward_ratio": float(risk_reward_ratio),
+                "ev_score": ev_score,
+                "edge_quality_score": edge_quality_score,
+                "kelly_score": kelly_score
+            }
+        )
+        if expected_value > 0:
+            save_agent_prediction(
+                match_info=match_info,
+                agent_name="Spread Optimizer Ferrari 2.0",
+                predicted_outcome=best_outcome,
+                probability=float(best_data.get('true_prob', 0)) if 'best_data' in locals() and best_data else 0,
+                confidence=ferrari_score,
+                strategy="Kelly Criterion",
+                edge=float(true_edge),
+                kelly=float(kelly_fraction)
+            )
+    except Exception as e:
+        pass
+
 
 
      # Agent C - Pattern Matcher Ferrari 2.0
@@ -890,6 +1028,27 @@ async def analyze_match_with_agents(match_id: str):
             "context_factors": context_factors
         }
     })
+
+    # === LEARNING SYSTEM: Save Agent C Analysis ===
+    try:
+        save_agent_analysis(
+            match_info=match_info,
+            agent_name="Pattern Matcher Ferrari 2.5",
+            agent_version="2.5",
+            recommendation="PATTERNS" if ferrari_score_c >= 50 else "SKIP",
+            confidence=ferrari_score_c,
+            reasoning=recommendation_text_c,
+            factors={
+                "pattern_strength": pattern_strength,
+                "sample_size_score": sample_size_score,
+                "h2h_count": h2h_count,
+                "bookmaker_coverage": bookmaker_coverage.get('count', 0),
+                "patterns": patterns_found
+            }
+        )
+    except Exception as e:
+        pass
+
     
     # Agent D - Backtest Engine Ferrari 2.5 (Real Data)
     import psycopg2
@@ -1151,6 +1310,56 @@ async def analyze_match_with_agents(match_id: str):
             "consistency_score": consistency_score
         }
     })
+    # === LEARNING SYSTEM: Save Agent D Analysis ===
+    try:
+        save_agent_analysis(
+            match_info=match_info,
+            agent_name="Backtest Engine Ferrari 2.5",
+            agent_version="2.5",
+            recommendation="VALIDATED" if ferrari_score_d >= 70 else "CAUTION" if ferrari_score_d >= 40 else "INSUFFICIENT",
+            confidence=ferrari_score_d,
+            reasoning=recommendation_text_d,
+            factors={
+                "total_historical_matches": total_matches,
+                "home_win_rate": float(home_win_rate),
+                "draw_rate": float(draw_rate),
+                "away_win_rate": float(away_win_rate),
+                "team_home_wins": team_home_wins,
+                "team_home_matches": team_home_matches,
+                "win_rate_score": win_rate_score,
+                "sharpe_score": sharpe_score,
+                "sample_score": sample_score,
+                "sample_quality": sample_quality if league else "N/A"
+            }
+        )
+    except Exception as e:
+        pass
+
+    # === LEARNING SYSTEM: Save Agent C Analysis ===
+    try:
+        save_agent_analysis(
+            match_info=match_info,
+            agent_name="Pattern Matcher Ferrari 2.5",
+            agent_version="2.5",
+            recommendation="PATTERNS" if ferrari_score_c >= 50 else "SKIP",
+            confidence=ferrari_score_c,
+            reasoning=recommendation_text_c,
+            factors={
+                "pattern_strength": pattern_strength,
+                "sample_size_score": sample_size_score,
+                "recent_form_score": recent_form_score,
+                "context_score": context_score,
+                "h2h_count": h2h_count,
+                "bookmaker_coverage": bookmaker_coverage.get('count', 0),
+                "sharp_money_detected": sharp_detected,
+                "patterns": patterns_found,
+                "sample_quality": sample_quality,
+                "total_data_points": total_data_points
+            }
+        )
+    except Exception as e:
+        pass
+
     
     # Score global
     total_confidence = sum([a["confidence"] for a in agents_analysis])
