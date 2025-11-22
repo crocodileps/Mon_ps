@@ -254,3 +254,7 @@ app.include_router(results_routes.router, prefix="/results", tags=["results"])
 # Strategies routes (Meta-learning)
 from api.routes import strategies_routes
 app.include_router(strategies_routes.router, prefix="/strategies", tags=["strategies"])
+
+# Results routes (Récupération résultats matchs)
+from api.routes import results_routes
+app.include_router(results_routes.router, prefix="/results", tags=["results"])

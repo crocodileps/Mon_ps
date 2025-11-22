@@ -459,3 +459,80 @@ async def reject_improvement(improvement_id: int):
     except Exception as e:
         logger.error(f"Erreur rejet: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/meta-learning/analyze")
+async def trigger_gpt4o_analysis():
+    """Déclenche analyse GPT-4o via N8N ou cron"""
+    import subprocess
+    import os
+    
+    try:
+        # Exécuter script meta-learning
+        result = subprocess.run(
+            ["python3", "/app/scripts/meta_learning_gpt4o.py"],
+            capture_output=True,
+            text=True,
+            timeout=300  # 5 minutes max
+        )
+        
+        if result.returncode == 0:
+            # Parser résultat
+            lines = result.stdout.split('\n')
+            improvements_created = 0
+            
+            for line in lines:
+                if "Améliorations créées:" in line:
+                    improvements_created = int(line.split(':')[1].strip())
+                    break
+            
+            return {
+                "success": True,
+                "message": "Analyse GPT-4o terminée",
+                "improvements_created": improvements_created,
+                "output": result.stdout[-500:]  # Derniers 500 chars
+            }
+        else:
+            raise Exception(f"Script error: {result.stderr}")
+            
+    except subprocess.TimeoutExpired:
+        raise HTTPException(status_code=408, detail="Timeout: Analyse trop longue")
+    except Exception as e:
+        logger.error(f"Erreur trigger GPT-4o: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/results/fetch")
+async def trigger_results_fetch():
+    """Déclenche récupération résultats matchs"""
+    import subprocess
+    
+    try:
+        result = subprocess.run(
+            ["python3", "/app/scripts/fetch_results_football_data_v2.py"],
+            capture_output=True,
+            text=True,
+            timeout=180  # 3 minutes max
+        )
+        
+        if result.returncode == 0:
+            # Parser stats
+            lines = result.stdout.split('\n')
+            matches_processed = 0
+            
+            for line in lines:
+                if "matchs traités" in line:
+                    matches_processed = int(line.split()[0])
+                    break
+            
+            return {
+                "success": True,
+                "message": "Résultats récupérés",
+                "matches_processed": matches_processed
+            }
+        else:
+            raise Exception(f"Script error: {result.stderr}")
+            
+    except subprocess.TimeoutExpired:
+        raise HTTPException(status_code=408, detail="Timeout")
+    except Exception as e:
+        logger.error(f"Erreur fetch results: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
