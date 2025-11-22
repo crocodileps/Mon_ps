@@ -50,12 +50,10 @@ export default function StrategiesPage() {
 
   const fetchData = async () => {
     try {
-      // Fetch strategies
       const stratRes = await fetch('http://91.98.131.218:8001/strategies/ranking');
       const stratData = await stratRes.json();
       setStrategies(stratData.strategies || []);
 
-      // Fetch improvements
       const impRes = await fetch('http://91.98.131.218:8001/strategies/improvements');
       const impData = await impRes.json();
       setImprovements(impData.improvements || []);
@@ -88,14 +86,14 @@ export default function StrategiesPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="text-white text-xl">Chargement...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-8">
+    <div className="p-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -187,7 +185,6 @@ export default function StrategiesPage() {
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    {/* Rank + Tier */}
                     <div className="flex items-center gap-4">
                       <div className="text-3xl font-bold text-gray-600">
                         #{index + 1}
@@ -207,9 +204,7 @@ export default function StrategiesPage() {
                       </div>
                     </div>
 
-                    {/* Métriques */}
                     <div className="flex items-center gap-6">
-                      {/* Win rate */}
                       <div className="text-center">
                         <div className="text-gray-400 text-xs mb-1">Win Rate</div>
                         <div className="text-white font-bold text-lg">
@@ -217,7 +212,6 @@ export default function StrategiesPage() {
                         </div>
                       </div>
 
-                      {/* ROI */}
                       <div className="text-center">
                         <div className="text-gray-400 text-xs mb-1">ROI</div>
                         <div className={`font-bold text-lg ${
@@ -227,7 +221,6 @@ export default function StrategiesPage() {
                         </div>
                       </div>
 
-                      {/* Score */}
                       <div className="text-center">
                         <div className="text-gray-400 text-xs mb-1">Score</div>
                         <div className="text-violet-400 font-bold text-lg">
@@ -235,12 +228,10 @@ export default function StrategiesPage() {
                         </div>
                       </div>
 
-                      {/* Trend */}
                       <div>
                         {getTrendIcon(strategy.trend)}
                       </div>
 
-                      {/* Amélioration disponible */}
                       {strategy.has_improvement_test && (
                         <div className="px-2 py-1 bg-purple-500/20 rounded text-purple-400 text-xs font-semibold">
                           A/B Test
