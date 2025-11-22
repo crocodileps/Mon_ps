@@ -246,3 +246,7 @@ app.include_router(briefing_router)
 # Stats routes (Learning System)
 from api.routes import stats_routes
 app.include_router(stats_routes.router, prefix="/stats", tags=["stats"])
+
+# Results routes (Scraper n8n)
+from api.routes import results_routes
+app.include_router(results_routes.router, prefix="/results", tags=["results"])
