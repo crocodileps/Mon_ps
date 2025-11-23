@@ -62,7 +62,7 @@ export default function VariationsFerrariPage() {
 
   const fetchVariations = async () => {
     try {
-      const response = await fetch(`http://91.98.131.218:8001/strategies/improvements/${improvementId}/variations`);
+      const response = await fetch(`http://91.98.131.218:8001/api/ferrari/improvements/${improvementId}/ferrari-variations`);
       const data = await response.json();
       if (data.success) {
         setVariations(data.variations);
@@ -76,7 +76,7 @@ export default function VariationsFerrariPage() {
 
   const fetchRecommendations = async () => {
     try {
-      const response = await fetch(`http://91.98.131.218:8001/ferrari/improvements/${improvementId}/traffic-recommendation`);
+      const response = await fetch(`http://91.98.131.218:8001/api/ferrari/improvements/${improvementId}/traffic-recommendation`);
       const data = await response.json();
       if (data.success) {
         setRecommendations(data.recommendations);

@@ -254,6 +254,7 @@ app.include_router(results_routes.router, prefix="/results", tags=["results"])
 # Strategies routes (Meta-learning)
 from api.routes import strategies_routes
 from api.routes import ferrari_routes
+from api.routes import ferrari_variations_routes
 from api.routes import variations_routes
 app.include_router(strategies_routes.router, prefix="/strategies", tags=["strategies"])
 
@@ -261,4 +262,5 @@ app.include_router(strategies_routes.router, prefix="/strategies", tags=["strate
 from api.routes import results_routes
 app.include_router(results_routes.router, prefix="/results", tags=["results"])
 app.include_router(ferrari_routes.router, prefix="/api/ferrari", tags=["Ferrari 2.0"])
+app.include_router(ferrari_variations_routes.router, prefix="/api/ferrari", tags=["Ferrari Variations Real"])
 app.include_router(variations_routes.router, prefix="/strategies", tags=["Variations"])
