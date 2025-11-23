@@ -1,154 +1,152 @@
+networks:
+  monps_network:
+    driver: bridge
 services:
-  postgres:
-    image: timescale/timescaledb:latest-pg16
-    container_name: monps_postgres
-    restart: always
-    environment:
-      POSTGRES_USER: monps_user
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-monps_secure_password_2024}
-      POSTGRES_DB: monps_db
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+  alertmanager:
+    command:
+    - --config.file=/etc/alertmanager/alertmanager.yml
+    - --storage.path=/alertmanager
+    container_name: monps_alertmanager
+    image: prom/alertmanager:latest
     networks:
-      - monps_network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U monps_user"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
+    - monps_network
+    ports:
+    - 9093:9093
+    restart: always
+    volumes:
+    - ./config/alertmanager:/etc/alertmanager
+    - alertmanager_data:/alertmanager
   backend:
     build: /home/Mon_ps/backend
     container_name: monps_backend
-    restart: always
-    environment:
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_NAME: monps_db
-      DB_USER: monps_user
-      DB_PASSWORD: ${POSTGRES_PASSWORD:-monps_secure_password_2024}
-      ENV: production
-      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
-      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID}
     depends_on:
       postgres:
         condition: service_healthy
-    ports:
-      - "8001:8000"
-    networks:
-      - monps_network
-
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: monps_prometheus
-    restart: always
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.retention.time=30d'
-    volumes:
-      - ./config/prometheus:/etc/prometheus
-      - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
-    networks:
-      - monps_network
-
-  alertmanager:
-    image: prom/alertmanager:latest
-    container_name: monps_alertmanager
-    restart: always
-    command:
-      - '--config.file=/etc/alertmanager/alertmanager.yml'
-      - '--storage.path=/alertmanager'
-    volumes:
-      - ./config/alertmanager:/etc/alertmanager
-      - alertmanager_data:/alertmanager
-    ports:
-      - "9093:9093"
-    networks:
-      - monps_network
-
-  grafana:
-    image: grafana/grafana:latest
-    container_name: monps_grafana
-    restart: always
     environment:
-      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
-      GF_SERVER_ROOT_URL: http://localhost:3000
-    volumes:
-      - grafana_data:/var/lib/grafana
-      - ./config/grafana/provisioning:/etc/grafana/provisioning
-    ports:
-      - "3000:3000"
+      DB_HOST: postgres
+      DB_NAME: monps_db
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-monps_secure_password_2024}
+      DB_PORT: 5432
+      DB_USER: monps_user
+      ENV: production
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID}
     networks:
-      - monps_network
-    depends_on:
-      - prometheus
-
+    - monps_network
+    env_file:
+      - .env
+    ports:
+    - 8001:8000
+    restart: always
   frontend:
     build:
       context: ../frontend
       dockerfile: Dockerfile
     container_name: monps_frontend
-    restart: unless-stopped
-    environment:
-      - NEXT_PUBLIC_API_URL=http://91.98.131.218:8001
-      - NODE_ENV=production
-      - NEXT_TELEMETRY_DISABLED=1
-    ports:
-      - "0.0.0.0:3001:3000"
-    networks:
-      - monps_network
     depends_on:
-      - backend
-
-
-  uptime-kuma:
-    image: louislam/uptime-kuma:1
-    container_name: monps_uptime
-    restart: unless-stopped
-    ports:
-      - "3002:3001"
-    volumes:
-      - uptime-kuma-data:/app/data
+    - backend
+    environment:
+    - NEXT_PUBLIC_API_URL=http://91.98.131.218:8001
+    - NODE_ENV=production
+    - NEXT_TELEMETRY_DISABLED=1
     networks:
-      - monps_network
-
-
+    - monps_network
+    ports:
+    - 0.0.0.0:3001:3000
+    restart: unless-stopped
+  grafana:
+    container_name: monps_grafana
+    depends_on:
+    - prometheus
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+      GF_SERVER_ROOT_URL: http://localhost:3000
+    image: grafana/grafana:latest
+    networks:
+    - monps_network
+    ports:
+    - 3000:3000
+    restart: always
+    volumes:
+    - grafana_data:/var/lib/grafana
+    - ./config/grafana/provisioning:/etc/grafana/provisioning
   n8n:
-    image: n8nio/n8n:latest
     container_name: monps_n8n
-    ports:
-      - "5678:5678"
-    environment:
-      - N8N_HOST=91.98.131.218
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=http
-      - NODE_ENV=production
-      - WEBHOOK_URL=http://91.98.131.218:5678/
-      - N8N_BASIC_AUTH_ACTIVE=false
-      - GENERIC_TIMEZONE=Europe/Paris
-      - EXECUTIONS_DATA_PRUNE=true
-      - EXECUTIONS_DATA_MAX_AGE=168
-    volumes:
-      - n8n_data:/home/node/.n8n
-      - /home/Mon_ps:/data/monps
-    networks:
-      - monps_network
-    restart: unless-stopped
     depends_on:
-      - postgres
-
-networks:
-  monps_network:
-    driver: bridge
-
+    - postgres
+    environment:
+    - N8N_HOST=91.98.131.218
+    - N8N_PORT=5678
+    - N8N_PROTOCOL=http
+    - NODE_ENV=production
+    - WEBHOOK_URL=http://91.98.131.218:5678/
+    - N8N_BASIC_AUTH_ACTIVE=false
+    - GENERIC_TIMEZONE=Europe/Paris
+    - EXECUTIONS_DATA_PRUNE=true
+    - EXECUTIONS_DATA_MAX_AGE=168
+    - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+    - DB_SQLITE_POOL_SIZE=5
+    - N8N_RUNNERS_ENABLED=true
+    - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+    - N8N_GIT_NODE_DISABLE_BARE_REPOS=true
+    image: n8nio/n8n:latest
+    networks:
+    - monps_network
+    ports:
+    - 5678:5678
+    restart: unless-stopped
+    volumes:
+    - n8n_data:/home/node/.n8n
+    - /home/Mon_ps:/data/monps
+  postgres:
+    container_name: monps_postgres
+    environment:
+      POSTGRES_DB: monps_db
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-monps_secure_password_2024}
+      POSTGRES_USER: monps_user
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test:
+      - CMD-SHELL
+      - pg_isready -U monps_user
+      timeout: 5s
+    image: timescale/timescaledb:latest-pg16
+    networks:
+    - monps_network
+    ports:
+    - 5432:5432
+    restart: always
+    volumes:
+    - postgres_data:/var/lib/postgresql/data
+  prometheus:
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    - --storage.tsdb.retention.time=30d
+    container_name: monps_prometheus
+    image: prom/prometheus:latest
+    networks:
+    - monps_network
+    ports:
+    - 9090:9090
+    restart: always
+    volumes:
+    - ./config/prometheus:/etc/prometheus
+    - prometheus_data:/prometheus
+  uptime-kuma:
+    container_name: monps_uptime
+    image: louislam/uptime-kuma:1
+    networks:
+    - monps_network
+    ports:
+    - 3002:3001
+    restart: unless-stopped
+    volumes:
+    - uptime-kuma-data:/app/data
 volumes:
-  n8n_data:
-  uptime-kuma-data:
-  postgres_data:
-  prometheus_data:
-  grafana_data:
-  alertmanager_data:
+  alertmanager_data: null
+  grafana_data: null
+  n8n_data: null
+  postgres_data: null
+  prometheus_data: null
+  uptime-kuma-data: null

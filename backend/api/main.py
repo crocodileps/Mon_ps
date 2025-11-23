@@ -242,3 +242,19 @@ app.include_router(telegram_stats_router)
 # Briefing Routes
 from api.routes.briefing_routes import router as briefing_router
 app.include_router(briefing_router)
+
+# Stats routes (Learning System)
+from api.routes import stats_routes
+app.include_router(stats_routes.router, prefix="/stats", tags=["stats"])
+
+# Results routes (Scraper n8n)
+from api.routes import results_routes
+app.include_router(results_routes.router, prefix="/results", tags=["results"])
+
+# Strategies routes (Meta-learning)
+from api.routes import strategies_routes
+app.include_router(strategies_routes.router, prefix="/strategies", tags=["strategies"])
+
+# Results routes (Récupération résultats matchs)
+from api.routes import results_routes
+app.include_router(results_routes.router, prefix="/results", tags=["results"])

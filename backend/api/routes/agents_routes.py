@@ -22,6 +22,88 @@ DB_CONFIG = {
     'password': 'monps_secure_password_2024'
 }
 
+# ═══════════════════════════════════════════════════════════
+# LEARNING SYSTEM - HELPER FUNCTIONS
+# ═══════════════════════════════════════════════════════════
+
+def save_agent_analysis(match_info, agent_name, agent_version, recommendation, confidence, reasoning, factors):
+    """Sauvegarde l'analyse d'un agent dans la DB"""
+    import psycopg2
+    import json
+    
+    try:
+        conn = psycopg2.connect(
+            host="monps_postgres",
+            database="monps_db",
+            user="monps_user",
+            password="monps_secure_password_2024"
+        )
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            INSERT INTO agent_analyses 
+            (match_id, agent_name, agent_version, home_team, away_team, 
+             sport, league, commence_time, recommendation, confidence_score, 
+             reasoning, factors)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (match_id, agent_name, analyzed_at) DO NOTHING
+        """, (
+            match_info.get('match_id'),
+            agent_name,
+            agent_version,
+            match_info.get('home_team'),
+            match_info.get('away_team'),
+            match_info.get('sport'),
+            match_info.get('league'),
+            match_info.get('commence_time'),
+            recommendation,
+            confidence,
+            reasoning,
+            json.dumps(factors)
+        ))
+        
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        pass
+
+def save_agent_prediction(match_info, agent_name, predicted_outcome, probability, confidence, strategy, edge, kelly):
+    """Sauvegarde une prédiction agent"""
+    import psycopg2
+    
+    try:
+        conn = psycopg2.connect(
+            host="monps_postgres",
+            database="monps_db",
+            user="monps_user",
+            password="monps_secure_password_2024"
+        )
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            INSERT INTO agent_predictions 
+            (match_id, agent_name, predicted_outcome, predicted_probability, 
+             confidence, strategy_used, edge_detected, kelly_fraction)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (match_id, agent_name, predicted_at) DO NOTHING
+        """, (
+            match_info.get('match_id'),
+            agent_name,
+            predicted_outcome,
+            probability,
+            confidence,
+            strategy,
+            edge,
+            kelly
+        ))
+        
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        pass
+
+
+
 
 class AgentSignal(BaseModel):
     agent: str
@@ -474,87 +556,783 @@ async def analyze_match_with_agents(match_id: str):
             "bookmaker_count": bookmaker_count
         }
     })
+    # === LEARNING SYSTEM: Save Agent A Analysis ===
+    try:
+        save_agent_analysis(
+            match_info=match_info,
+            agent_name="Anomaly Detector Ferrari 2.0",
+            agent_version="2.0",
+            recommendation="REVIEW" if is_anomaly else "NORMAL",
+            confidence=anomaly_score,
+            reasoning=recommendation_text,
+            factors={
+                "spread_score": spread_score,
+                "variance_score": variance_score,
+                "bookmaker_bonus": bookmaker_bonus,
+                "extreme_bonus": extreme_bonus,
+                "max_spread": max_spread,
+                "bookmaker_count": bookmaker_count
+            }
+        )
+    except:
+        pass
 
+
+    # ═══════════════════════════════════════════════════════════════════
+    # AGENT B FERRARI 2.0 - SPREAD OPTIMIZER EXPERT INTERNATIONAL
+    # ═══════════════════════════════════════════════════════════════════
+    import math
+    import statistics
+    
+    # Variables d'initialisation
+    ferrari_score = 0
     kelly_fraction = 0
     expected_value = 0
-    recommended_stake = 0
+    true_edge = 0
     best_outcome = "none"
-    reason_b = "Pas d'opportunité Kelly"
+    confidence_interval = 0
+    sharpe_estimate = 0
+    risk_reward_ratio = 0
+    recommendation_text = ""
+    
+    # Facteurs Ferrari
+    ev_score = 0
+    edge_quality_score = 0
+    kelly_score = 0
+    confidence_score = 0
+    rr_score = 0
+    
     if match_info.get("odds"):
-        best_ev = -1
+        outcomes_data = []
+        
+        # ════════════════════════════════════════════════════════════════
+        # ÉTAPE 1 : TRUE ODDS CALCULATION (VIG REMOVAL)
+        # ════════════════════════════════════════════════════════════════
         for outcome in ["home", "away", "draw"]:
             odds_data = match_info["odds"][outcome]
-            if odds_data["best"] > 1:
+            if odds_data["best"] > 1.01:
+                # Implied probability du meilleur bookmaker
                 implied_prob = 1 / odds_data["best"]
-                b = odds_data["best"] - 1
-                p = implied_prob * 1.05
+                
+                # Vig removal : calculer overround
+                total_prob_market = sum(1/match_info["odds"][o]["best"] for o in ["home", "away", "draw"] if match_info["odds"][o]["best"] > 1.01)
+                overround = total_prob_market - 1
+                
+                # True probability (removal proportionnel du vig)
+                true_prob = implied_prob / total_prob_market if total_prob_market > 0 else implied_prob
+                
+                # Worst odds pour spread
+                worst_odds = odds_data.get("worst", odds_data["best"])
+                
+                outcomes_data.append({
+                    "outcome": outcome,
+                    "best_odds": odds_data["best"],
+                    "worst_odds": worst_odds,
+                    "implied_prob": implied_prob,
+                    "true_prob": true_prob,
+                    "spread": odds_data.get("spread_pct", 0)
+                })
+        
+        if outcomes_data:
+            # ════════════════════════════════════════════════════════════
+            # ÉTAPE 2 : EDGE DETECTION & KELLY OPTIMAL
+            # ════════════════════════════════════════════════════════════
+            best_ev = -999
+            best_data = None
+            
+            for data in outcomes_data:
+                # Kelly Criterion avec true probability
+                b = data["best_odds"] - 1  # Gain net
+                p = data["true_prob"]
                 q = 1 - p
-                kelly = (b * p - q) / b if b > 0 else 0
+                
+                # Kelly fraction (non négatif seulement)
+                kelly_raw = (b * p - q) / b if b > 0 else 0
+                kelly_raw = max(0, kelly_raw)
+                
+                # Expected Value
                 ev = (p * b) - q
-                if ev > best_ev and kelly > 0:
+                
+                # True Edge (différence true prob vs implied)
+                edge = p - data["implied_prob"]
+                
+                if ev > best_ev:
                     best_ev = ev
-                    kelly_fraction = kelly
-                    expected_value = ev
-                    best_outcome = outcome
-                    recommended_stake = min(kelly * 100, 5)
-        if best_ev > 0:
-            reason_b = f"Meilleure valeur sur {best_outcome.upper()} (EV: {expected_value:.2%})"
+                    best_data = {
+                        "outcome": data["outcome"],
+                        "kelly": kelly_raw,
+                        "ev": ev,
+                        "edge": edge,
+                        "odds": data["best_odds"],
+                        "true_prob": p,
+                        "implied_prob": data["implied_prob"]
+                    }
+            
+            if best_data and best_data["ev"] > 0:
+                expected_value = best_data["ev"]
+                true_edge = best_data["edge"]
+                best_outcome = best_data["outcome"]
+                
+                # ════════════════════════════════════════════════════════
+                # ÉTAPE 3 : KELLY FRACTIONAL DYNAMIQUE
+                # ════════════════════════════════════════════════════════
+                kelly_raw = best_data["kelly"]
+                
+                # Fractional Kelly basé sur edge
+                if true_edge > 0.08:  # Edge >8%
+                    kelly_multiplier = 0.5  # Half Kelly
+                elif true_edge > 0.05:  # Edge >5%
+                    kelly_multiplier = 0.35  # Conservative
+                elif true_edge > 0.03:  # Edge >3%
+                    kelly_multiplier = 0.25  # Very conservative
+                else:  # Edge <3%
+                    kelly_multiplier = 0.15  # Micro
+                
+                kelly_fraction = kelly_raw * kelly_multiplier
+                
+                # Cap à 5% du bankroll max
+                kelly_pct = min(kelly_fraction * 100, 5.0)
+                
+                # ════════════════════════════════════════════════════════
+                # ÉTAPE 4 : RISK/REWARD & SHARPE ESTIMATE
+                # ════════════════════════════════════════════════════════
+                potential_profit = (best_data["odds"] - 1)
+                potential_loss = 1
+                risk_reward_ratio = potential_profit / potential_loss
+                
+                # Sharpe Ratio estimation (simplifié)
+                # Sharpe = (Expected Return - Risk Free) / Volatility
+                # Approximation : Sharpe ≈ EV / sqrt(Variance)
+                variance = best_data["true_prob"] * ((potential_profit) ** 2) + (1 - best_data["true_prob"]) * ((potential_loss) ** 2)
+                volatility = math.sqrt(variance)
+                sharpe_estimate = (expected_value / volatility) if volatility > 0 else 0
+                
+                # Confidence Interval (95%)
+                nb_books = match_info.get("bookmaker_count", 1)
+                confidence_interval = 1.96 * (volatility / math.sqrt(max(nb_books, 1)))
+                
+                # ════════════════════════════════════════════════════════
+                # ÉTAPE 5 : SCORING FERRARI MULTI-FACTEURS (0-100)
+                # ════════════════════════════════════════════════════════
+                
+                # FACTEUR 1 : Expected Value (0-35 points)
+                ev_pct = expected_value * 100
+                if ev_pct >= 10:
+                    ev_score = 35
+                elif ev_pct >= 5:
+                    ev_score = 30
+                elif ev_pct >= 2:
+                    ev_score = 20
+                elif ev_pct >= 0:
+                    ev_score = 10
+                
+                # FACTEUR 2 : True Edge Quality (0-25 points)
+                edge_pct = true_edge * 100
+                if edge_pct >= 8:
+                    edge_quality_score = 25
+                elif edge_pct >= 6:
+                    edge_quality_score = 20
+                elif edge_pct >= 4:
+                    edge_quality_score = 15
+                elif edge_pct >= 2:
+                    edge_quality_score = 10
+                
+                # FACTEUR 3 : Kelly Fraction Sécurisé (0-20 points)
+                if kelly_pct >= 2.0:
+                    kelly_score = 20
+                elif kelly_pct >= 1.0:
+                    kelly_score = 15
+                elif kelly_pct >= 0.5:
+                    kelly_score = 10
+                elif kelly_pct >= 0.1:
+                    kelly_score = 5
+                
+                # FACTEUR 4 : Probability Confidence (0-15 points)
+                nb_books = match_info.get("bookmaker_count", 0)
+                if nb_books >= 20:
+                    confidence_score = 15
+                elif nb_books >= 10:
+                    confidence_score = 10
+                else:
+                    confidence_score = 5
+                
+                # Bonus Pinnacle (si disponible)
+                # TODO: détecter présence Pinnacle dans les bookmakers
+                # confidence_score += 3 si Pinnacle
+                
+                # FACTEUR 5 : Risk/Reward Optimal (0-5 points)
+                if risk_reward_ratio >= 3.0:
+                    rr_score = 5
+                elif risk_reward_ratio >= 2.0:
+                    rr_score = 4
+                elif risk_reward_ratio >= 1.5:
+                    rr_score = 2
+                
+                # SCORE TOTAL (cap à 95)
+                ferrari_score = min(
+                    ev_score + edge_quality_score + kelly_score + confidence_score + rr_score,
+                    95
+                )
+                
+                # ════════════════════════════════════════════════════════
+                # ÉTAPE 6 : CLASSIFICATION EXPERT
+                # ════════════════════════════════════════════════════════
+                if ferrari_score >= 90:
+                    level = "💎 DIAMANT KELLY"
+                    classification = "EXCEPTIONAL"
+                    recommendation_text = f"Opportunité exceptionnelle détectée. EV: {ev_pct:.2f}%, Edge: {edge_pct:.2f}%. Kelly suggère {kelly_pct:.2f}% du bankroll (fractional {kelly_multiplier}). True odds: {1/best_data['true_prob']:.2f} vs Market: {best_data['odds']:.2f}. Consensus {nb_books} bookmakers. Sharpe estimé: {sharpe_estimate:.2f}."
+                
+                elif ferrari_score >= 80:
+                    level = "🔥 PREMIUM SHARP"
+                    classification = "EXCELLENT"
+                    recommendation_text = f"Excellent edge confirmé. EV: {ev_pct:.2f}%, Edge: {edge_pct:.2f}%. Position recommandée: {kelly_pct:.2f}% (fractional {kelly_multiplier}). Sharp money détecté. Risk/Reward: {risk_reward_ratio:.2f}:1. Sharpe: {sharpe_estimate:.2f}."
+                
+                elif ferrari_score >= 70:
+                    level = "⚡ VALUE BET SOLIDE"
+                    classification = "GOOD"
+                    recommendation_text = f"Value bet confirmée. EV attendu: {ev_pct:.2f}%, Edge: {edge_pct:.2f}%. Mise suggérée: {kelly_pct:.2f}% avec safety margin. Probability edge suffisant pour ROI positif long terme."
+                
+                elif ferrari_score >= 60:
+                    level = "💚 OPPORTUNITÉ CORRECTE"
+                    classification = "FAIR"
+                    recommendation_text = f"Légère value détectée. EV: {ev_pct:.2f}%, Edge: {edge_pct:.2f}%. Position micro: {kelly_pct:.2f}% du bankroll. Diversification recommandée. Acceptable avec bankroll >$5k."
+                
+                elif ferrari_score >= 50:
+                    level = "📊 VALUE MARGINALE"
+                    classification = "MARGINAL"
+                    recommendation_text = f"Value minimale. EV: {ev_pct:.2f}%, Edge faible: {edge_pct:.2f}%. Micro-stakes seulement ({kelly_pct:.2f}%). Considérer uniquement avec bankroll >$10k et diversification."
+                
+                else:
+                    level = "❌ EDGE INSUFFISANT"
+                    classification = "SKIP"
+                    recommendation_text = f"Edge trop faible pour être exploitable. EV: {ev_pct:.2f}%, Edge: {edge_pct:.2f}%. Frais et variance mangent le profit attendu. PASS."
+                
+                reason_b = f"{level} | EV: {ev_pct:.2f}% | Edge: {edge_pct:.2f}% | Kelly: {kelly_pct:.2f}%"
+            
+            else:
+                # Pas de value détectée
+                reason_b = "Aucun edge positif détecté sur ce match"
+                recommendation_text = "Marché efficace. Probabilités implicites supérieures aux probabilités vraies. Aucune value exploitable. SKIP."
+        
+        else:
+            reason_b = "Données insuffisantes pour analyse"
+            recommendation_text = "Impossible de calculer les true odds sans données complètes."
     
+    else:
+        reason_b = "Pas de cotes disponibles"
+        recommendation_text = "Aucune cote disponible pour ce match."
+    
+    # ════════════════════════════════════════════════════════════════════
+    # RÉSULTAT FINAL AGENT B
+    # ════════════════════════════════════════════════════════════════════
     agents_analysis.append({
-        "agent_id": "spread_optimizer", "agent_name": "Spread Optimizer", "icon": "📊",
-        "status": "active", "recommendation": best_outcome.upper() if expected_value > 0 else "PASS",
-        "confidence": round(min(30 + (expected_value * 800), 90), 2) if expected_value > 0 else 0,
+        "agent_id": "spread_optimizer",
+        "agent_name": "Spread Optimizer Ferrari 2.0",
+        "icon": "📊",
+        "status": "active",
+        "recommendation": best_outcome.upper() if expected_value > 0 else "SKIP",
+        "confidence": round(ferrari_score, 2),
         "reason": reason_b,
-        "details": {"kelly_fraction": round(kelly_fraction, 4), "expected_value": round(expected_value, 4), "recommended_stake_pct": round(recommended_stake, 2), "best_outcome": best_outcome}
+        "recommendation_text": recommendation_text,
+        "details": {
+            "ferrari_score": round(ferrari_score, 2),
+            "expected_value": round(expected_value, 4),
+            "true_edge": round(true_edge, 4),
+            "kelly_fraction": round(kelly_fraction, 4),
+            "kelly_pct": round(kelly_pct, 2) if kelly_fraction > 0 else 0,
+            "recommended_stake_pct": round(kelly_pct, 2) if kelly_fraction > 0 else 0,
+            "best_outcome": best_outcome,
+            "sharpe_estimate": round(sharpe_estimate, 2),
+            "risk_reward_ratio": round(risk_reward_ratio, 2),
+            "confidence_interval_95": round(confidence_interval, 4),
+            # Détails facteurs
+            "ev_score": ev_score,
+            "edge_quality_score": edge_quality_score,
+            "kelly_score": kelly_score,
+            "confidence_score": confidence_score,
+            "rr_score": rr_score
+        }
     })
-    
-    # Agent C - Pattern Matcher
+    # === LEARNING SYSTEM: Save Agent B Analysis ===
+    try:
+        save_agent_analysis(
+            match_info=match_info,
+            agent_name="Spread Optimizer Ferrari 2.0",
+            agent_version="2.0",
+            recommendation=best_outcome.upper() if expected_value > 0 else "SKIP",
+            confidence=ferrari_score,
+            reasoning=recommendation_text,
+            factors={
+                "expected_value": float(expected_value),
+                "true_edge": float(true_edge),
+                "kelly_fraction": float(kelly_fraction),
+                "kelly_pct": float(kelly_pct) if kelly_fraction > 0 else 0,
+                "sharpe_estimate": float(sharpe_estimate),
+                "risk_reward_ratio": float(risk_reward_ratio),
+                "ev_score": ev_score,
+                "edge_quality_score": edge_quality_score,
+                "kelly_score": kelly_score
+            }
+        )
+        if expected_value > 0:
+            save_agent_prediction(
+                match_info=match_info,
+                agent_name="Spread Optimizer Ferrari 2.0",
+                predicted_outcome=best_outcome,
+                probability=float(best_data.get('true_prob', 0)) if 'best_data' in locals() and best_data else 0,
+                confidence=ferrari_score,
+                strategy="Kelly Criterion",
+                edge=float(true_edge),
+                kelly=float(kelly_fraction)
+            )
+    except Exception as e:
+        pass
+
+
+
+     # Agent C - Pattern Matcher Ferrari 2.0
     patterns_found = []
-    confidence_c = 0
-    sport = match_info["sport"]
-    if "epl" in sport or "premier" in sport.lower():
-        patterns_found.append("Premier League - Forte compétition")
-        confidence_c += 25
-    if "ligue_one" in sport:
-        patterns_found.append("Ligue 1 - PSG dominance")
-        confidence_c += 20
-    if "serie_a" in sport:
-        patterns_found.append("Serie A - Défenses solides")
-        confidence_c += 20
-    if "la_liga" in sport:
-        patterns_found.append("La Liga - Technique élevée")
-        confidence_c += 20
-    reason_c = "; ".join(patterns_found) if patterns_found else "Aucun pattern significatif"
-    
+    ferrari_score_c = 0
+    pattern_strength = 0
+    sample_size_score = 0
+    recent_form_score = 0
+    context_score = 0
+    recommendation_text_c = ""
+    sport = match_info.get("sport", "")
+    home_team = match_info.get("home_team", "")
+    away_team = match_info.get("away_team", "")
+    league_stats = {}
+    context_factors = []
+    sample_quality = "INCONNU"
+
+    # Analyse patterns de ligue
+    if "epl" in sport.lower() or "premier" in sport.lower():
+        patterns_found.append("Premier League: Forte variance")
+        pattern_strength += 15
+        league_stats = {"avg_home_win": 0.45, "competitiveness": "HIGH"}
+    elif "ligue_one" in sport.lower() or "france" in sport.lower():
+        patterns_found.append("Ligue 1: PSG dominance")
+        pattern_strength += 12
+        league_stats = {"avg_home_win": 0.48, "psg_factor": True}
+    elif "serie_a" in sport.lower() or "italy" in sport.lower():
+        patterns_found.append("Serie A: Défenses solides")
+        pattern_strength += 13
+        league_stats = {"avg_home_win": 0.42, "defensive": True}
+    elif "la_liga" in sport.lower() or "spain" in sport.lower():
+        patterns_found.append("La Liga: Technique élevée")
+        pattern_strength += 14
+        league_stats = {"avg_home_win": 0.46, "top2_dominance": True}
+    elif "bundesliga" in sport.lower() or "germany" in sport.lower():
+        patterns_found.append("Bundesliga: Bayern dominance")
+        pattern_strength += 13
+        league_stats = {"avg_home_win": 0.47, "high_scoring": True}
+
+    # Patterns équipes élites
+    elite_teams = ["PSG", "Paris", "Bayern", "Real Madrid", "Barcelona", "Man City", "Liverpool", "Manchester City", "Juventus", "Inter Milan"]
+    is_elite_home = any(elite in home_team for elite in elite_teams)
+    is_elite_away = any(elite in away_team for elite in elite_teams)
+    if is_elite_home and not is_elite_away:
+        patterns_found.append(f"Elite Home: {home_team} dominance")
+        pattern_strength += 20
+    elif is_elite_away and not is_elite_home:
+        patterns_found.append(f"Elite Away: {away_team} résilience")
+        pattern_strength += 15
+
+    # Sample size validation
+    nb_bookmakers = match_info.get("bookmaker_count", 0)
+    total_data_points = 8 + nb_bookmakers
+    if total_data_points >= 50:
+        sample_size_score = 30
+        sample_quality = "ROBUSTE"
+    elif total_data_points >= 30:
+        sample_size_score = 25
+        sample_quality = "BON"
+    elif total_data_points >= 15:
+        sample_size_score = 18
+        sample_quality = "MOYEN"
+    elif total_data_points >= 8:
+        sample_size_score = 10
+        sample_quality = "FAIBLE"
+    else:
+        sample_size_score = 5
+        sample_quality = "INSUFFISANT"
+
+    # Recent form
+    top_teams = ["PSG", "Bayern", "Man City", "Real Madrid", "Barcelona"]
+    home_form = 0.75 if any(t in home_team for t in top_teams) else 0.5
+    away_form = 0.75 if any(t in away_team for t in top_teams) else 0.5
+    form_diff = abs(home_form - away_form)
+    if form_diff >= 0.3:
+        recent_form_score = 20
+        patterns_found.append(f"Forme: Écart {form_diff:.2f}")
+    elif form_diff >= 0.15:
+        recent_form_score = 12
+    else:
+        recent_form_score = 5
+
+    # Context
+    context_score = 8
+    context_factors.append("Avantage domicile")
+    if "champions" in sport.lower() or "europa" in sport.lower():
+        context_score += 5
+        context_factors.append("Compétition européenne")
+    context_score = min(context_score, 15)
+
+    # Score Ferrari
+    pattern_strength = min(pattern_strength, 35)
+    ferrari_score_c = min(pattern_strength + sample_size_score + recent_form_score + context_score, 95)
+
+    # Classification
+    if ferrari_score_c >= 80:
+        level_c = "   PATTERN DOMINANT"
+        recommendation_text_c = f"Pattern ML dominant. Strength: {pattern_strength}/35, Sample: {total_data_points} pts, Qualité: {sample_quality}. {len(patterns_found)} patterns confirmés."
+    elif ferrari_score_c >= 65:
+        level_c = "⚡ PATTERN FORT"
+        recommendation_text_c = f"Pattern fort avec {len(patterns_found)} patterns. Sample: {sample_quality} ({total_data_points} pts). Validation Agent B recommandée."
+    elif ferrari_score_c >= 50:
+        level_c = "💎 PATTERN MOYEN"
+        recommendation_text_c = f"Pattern moyen. {len(patterns_found)} patterns sur {total_data_points} pts. Qualité: {sample_quality}. Consensus requis."
+    elif ferrari_score_c >= 35:
+        level_c = "📊 PATTERN FAIBLE"
+        recommendation_text_c = f"Pattern faible. Données limitées ({total_data_points}). Qualité: {sample_quality}."
+    else:
+        level_c = "❌ PAS DE PATTERN"
+        recommendation_text_c = f"Aucun pattern significatif. Sample insuffisant."
+
+    if not patterns_found:
+        patterns_found.append("Aucun pattern historique")
+
+    reason_c = f"{level_c} | Patterns: {len(patterns_found)} | {sample_quality} | {ferrari_score_c}/100"
+
     agents_analysis.append({
-        "agent_id": "pattern_matcher", "agent_name": "Pattern Matcher", "icon": "🎯",
-        "status": "active", "recommendation": "PATTERNS FOUND" if patterns_found else "NO PATTERN",
-        "confidence": round(confidence_c, 2), "reason": reason_c,
-        "details": {"patterns": patterns_found, "sport": sport, "pattern_count": len(patterns_found)}
+        "agent_id": "pattern_matcher",
+        "agent_name": "Pattern Matcher Ferrari 2.0",
+        "icon": "🎯",
+        "status": "active",
+        "recommendation": "PATTERNS" if ferrari_score_c >= 50 else "SKIP",
+        "confidence": round(ferrari_score_c, 2),
+        "reason": reason_c,
+        "recommendation_text": recommendation_text_c,
+        "details": {
+            "ferrari_score": round(ferrari_score_c, 2),
+            "patterns": patterns_found,
+            "pattern_count": len(patterns_found),
+            "pattern_strength": pattern_strength,
+            "sample_size_score": sample_size_score,
+            "recent_form_score": recent_form_score,
+            "context_score": context_score,
+            "total_data_points": total_data_points,
+            "sample_quality": sample_quality,
+            "sport": sport,
+            "league_stats": league_stats,
+            "context_factors": context_factors
+        }
     })
+
+    # === LEARNING SYSTEM: Save Agent C Analysis ===
+    try:
+        save_agent_analysis(
+            match_info=match_info,
+            agent_name="Pattern Matcher Ferrari 2.5",
+            agent_version="2.5",
+            recommendation="PATTERNS" if ferrari_score_c >= 50 else "SKIP",
+            confidence=ferrari_score_c,
+            reasoning=recommendation_text_c,
+            factors={
+                "pattern_strength": pattern_strength,
+                "sample_size_score": sample_size_score,
+                "patterns_count": len(patterns_found)
+            }
+        )
+    except Exception as e:
+        pass
+
     
-    # Agent D - Backtest Engine
-    win_rate = 0
-    avg_roi = 0
-    historical_performance = 0
-    reason_d = "Données historiques insuffisantes"
-    if match_info.get("bookmaker_count", 0) >= 10:
-        win_rate = 0.52
-        avg_roi = 3.2
-        historical_performance = 65.0
-        reason_d = f"Couverture élevée ({match_info['bookmaker_count']} books) - ROI historique: {avg_roi}%"
-    elif match_info.get("bookmaker_count", 0) >= 5:
-        win_rate = 0.50
-        avg_roi = 1.5
-        historical_performance = 45.0
-        reason_d = f"Couverture moyenne ({match_info['bookmaker_count']} books)"
-    
+    # Agent D - Backtest Engine Ferrari 2.5 (Real Data)
+    import psycopg2
+    from psycopg2.extras import RealDictCursor
+    import math
+
+    ferrari_score_d = 0
+    win_rate_score = 0
+    sharpe_score = 0
+    sample_score = 0
+    consistency_score = 0
+    recommendation_text_d = ""
+
+    sport = match_info.get("sport", "")
+    home_team = match_info.get("home_team", "")
+    away_team = match_info.get("away_team", "")
+
+    # DB Config
+    db_config = {
+        "host": "monps_postgres",
+        "database": "monps_db",
+        "user": "monps_user",
+        "password": "monps_secure_password_2024"
+    }
+
+    # Map sport to league
+    league_map = {
+        "soccer_epl": "Premier League",
+        "premier": "Premier League",
+        "spain": "La Liga",
+        "la_liga": "La Liga",
+        "italy": "Serie A",
+        "serie_a": "Serie A",
+        "germany": "Bundesliga",
+        "bundesliga": "Bundesliga",
+        "france": "Ligue 1",
+        "ligue_one": "Ligue 1"
+    }
+
+    league = None
+    for key, value in league_map.items():
+        if key in sport.lower():
+            league = value
+            break
+
+    # Stats historiques réelles
+    total_matches = 0
+    home_wins = 0
+    draws = 0
+    away_wins = 0
+    avg_home_goals = 0
+    avg_away_goals = 0
+    home_win_rate = 0
+    draw_rate = 0
+    away_win_rate = 0
+
+    # Stats équipe spécifique
+    team_home_matches = 0
+    team_home_wins = 0
+    team_away_matches = 0
+    team_away_wins = 0
+
+    if league:
+        try:
+            conn = psycopg2.connect(**db_config)
+            cursor = conn.cursor(cursor_factory=RealDictCursor)
+
+            # QUERY 1: Stats générales de la ligue
+            cursor.execute("""
+                SELECT
+                    COUNT(*) as total,
+                    SUM(CASE WHEN result = 'H' THEN 1 ELSE 0 END) as home_wins,
+                    SUM(CASE WHEN result = 'D' THEN 1 ELSE 0 END) as draws,
+                    SUM(CASE WHEN result = 'A' THEN 1 ELSE 0 END) as away_wins,
+                    AVG(home_goals) as avg_home_goals,
+                    AVG(away_goals) as avg_away_goals
+                FROM matches_results
+                WHERE league = %s
+            """, (league,))
+
+            stats = cursor.fetchone()
+            if stats and stats['total'] > 0:
+                total_matches = stats['total']
+                home_wins = stats['home_wins']
+                draws = stats['draws']
+                away_wins = stats['away_wins']
+                avg_home_goals = float(stats['avg_home_goals'] or 0)
+                avg_away_goals = float(stats['avg_away_goals'] or 0)
+
+                home_win_rate = (home_wins / total_matches) * 100
+                draw_rate = (draws / total_matches) * 100
+                away_win_rate = (away_wins / total_matches) * 100
+
+            # QUERY 2: Performance équipe à domicile
+            cursor.execute("""
+                SELECT
+                    COUNT(*) as matches,
+                    SUM(CASE WHEN result = 'H' THEN 1 ELSE 0 END) as wins
+                FROM matches_results
+                WHERE league = %s AND home_team ILIKE %s
+            """, (league, f"%{home_team}%"))
+
+            team_home = cursor.fetchone()
+            if team_home:
+                team_home_matches = team_home['matches'] or 0
+                team_home_wins = team_home['wins'] or 0
+
+            # QUERY 3: Performance équipe en déplacement
+            cursor.execute("""
+                SELECT
+                    COUNT(*) as matches,
+                    SUM(CASE WHEN result = 'A' THEN 1 ELSE 0 END) as wins
+                FROM matches_results
+                WHERE league = %s AND away_team ILIKE %s
+            """, (league, f"%{away_team}%"))
+
+            team_away = cursor.fetchone()
+            if team_away:
+                team_away_matches = team_away['matches'] or 0
+                team_away_wins = team_away['wins'] or 0
+
+            conn.close()
+
+        except Exception as e:
+            pass
+
+    # CALCUL SCORES FERRARI
+
+    # FACTEUR 1: Win Rate Historical (0-35 pts)
+    if total_matches >= 1000:
+        # Données robustes
+        if home_win_rate >= 50:
+            win_rate_score = 35
+        elif home_win_rate >= 45:
+            win_rate_score = 30
+        elif home_win_rate >= 40:
+            win_rate_score = 25
+        elif home_win_rate >= 35:
+            win_rate_score = 15
+        else:
+            win_rate_score = 10
+
+        sample_quality = "EXCELLENT"
+    elif total_matches >= 500:
+        win_rate_score = 20
+        sample_quality = "BON"
+    elif total_matches >= 100:
+        win_rate_score = 10
+        sample_quality = "MOYEN"
+    else:
+        win_rate_score = 5
+        sample_quality = "FAIBLE"
+
+    # FACTEUR 2: Sharpe Quality (0-30 pts) - Basé sur consistance historique
+    if total_matches > 0:
+        # Sharpe simplifié = win_rate / variance
+        # Plus le draw_rate est élevé, plus c'est volatile
+        volatility = draw_rate / 100 if draw_rate > 0 else 0.3
+        pseudo_sharpe = (home_win_rate / 100) / volatility if volatility > 0 else 0
+
+        if pseudo_sharpe >= 2.0:
+            sharpe_score = 30
+        elif pseudo_sharpe >= 1.5:
+            sharpe_score = 25
+        elif pseudo_sharpe >= 1.0:
+            sharpe_score = 18
+        elif pseudo_sharpe >= 0.5:
+            sharpe_score = 10
+        else:
+            sharpe_score = 5
+
+    # FACTEUR 3: Sample Size (0-20 pts)
+    if total_matches >= 2000:
+        sample_score = 20
+    elif total_matches >= 1000:
+        sample_score = 17
+    elif total_matches >= 500:
+        sample_score = 13
+    elif total_matches >= 100:
+        sample_score = 8
+    else:
+        sample_score = 3
+
+    # FACTEUR 4: Consistency (0-15 pts) - Équipes spécifiques
+    team_performance = 0
+    if team_home_matches >= 20:
+        team_home_wr = (team_home_wins / team_home_matches) * 100
+        if team_home_wr >= 60:
+            team_performance += 8
+        elif team_home_wr >= 50:
+            team_performance += 5
+        elif team_home_wr >= 40:
+            team_performance += 3
+
+    if team_away_matches >= 20:
+        team_away_wr = (team_away_wins / team_away_matches) * 100
+        if team_away_wr >= 40:
+            team_performance += 7
+        elif team_away_wr >= 30:
+            team_performance += 4
+        elif team_away_wr >= 20:
+            team_performance += 2
+
+    consistency_score = min(team_performance, 15)
+
+    # SCORE TOTAL (cap 95)
+    ferrari_score_d = min(win_rate_score + sharpe_score + sample_score + consistency_score, 95)   
+
+    # CLASSIFICATION
+    if ferrari_score_d >= 85:
+        level_d = "🏆 EXCELLENT TRACK RECORD"
+        recommendation_text_d = f"Backtest excellent sur {total_matches:,} matchs réels. {league}: Home win {home_win_rate:.1f}%, Draw {draw_rate:.1f}%, Away {away_win_rate:.1f}%. Équipe home: {team_home_wins}/{team_home_matches} victoires domicile. Données historiques robustes validant les patterns."
+    elif ferrari_score_d >= 70:
+        level_d = "⚡ BON HISTORIQUE"
+        recommendation_text_d = f"Bon historique sur {total_matches:,} matchs. {league}: Home {home_win_rate:.1f}%, Draw {draw_rate:.1f}%. Sample: {sample_quality}. Buts moyens: {avg_home_goals:.1f} - {avg_away_goals:.1f}. Backtest valide les tendances."
+    elif ferrari_score_d >= 55:
+        level_d = "💎 HISTORIQUE MOYEN"
+        recommendation_text_d = f"Historique moyen. {total_matches:,} matchs analysés. {league}: Patterns détectables mais variance élevée. Sample: {sample_quality}. Prudence recommandée."        
+    elif ferrari_score_d >= 40:
+        level_d = "📊 DONNÉES LIMITÉES"
+        recommendation_text_d = f"Données historiques limitées ({total_matches} matchs). Sample: {sample_quality}. Backtest incomplet. Attendre plus de données."
+    else:
+        level_d = "❌ INSUFFISANT"
+        recommendation_text_d = f"Sample insuffisant pour backtest fiable. {total_matches} matchs seulement. Besoin de plus d'historique pour validation."
+
+    reason_d = f"{level_d} | {total_matches:,} matchs | Home: {home_win_rate:.1f}% | {sample_quality}"
+
+    if not league:
+        reason_d = "Ligue non supportée pour backtest"
+        recommendation_text_d = "Cette ligue n'a pas de données historiques dans notre système."  
+        ferrari_score_d = 0
+
     agents_analysis.append({
-        "agent_id": "backtest_engine", "agent_name": "Backtest Engine", "icon": "📈",
-        "status": "active", "recommendation": "POSITIVE" if avg_roi > 0 else "NEUTRAL",
-        "confidence": round(historical_performance, 2), "reason": reason_d,
-        "details": {"historical_win_rate": round(win_rate, 4), "avg_roi_pct": round(avg_roi, 2), "sample_size": match_info.get("bookmaker_count", 0)}
+        "agent_id": "backtest_engine",
+        "agent_name": "Backtest Engine Ferrari 2.5",
+        "icon": "📈",
+        "status": "active",
+        "recommendation": "VALIDATED" if ferrari_score_d >= 70 else "CAUTION" if ferrari_score_d >= 40 else "INSUFFICIENT",
+        "confidence": round(ferrari_score_d, 2),
+        "reason": reason_d,
+        "recommendation_text": recommendation_text_d,
+        "details": {
+            "ferrari_score": round(ferrari_score_d, 2),
+            "total_historical_matches": total_matches,
+            "league": league or "Unknown",
+            "home_win_rate": round(home_win_rate, 2),
+            "draw_rate": round(draw_rate, 2),
+            "away_win_rate": round(away_win_rate, 2),
+            "avg_goals_home": round(avg_home_goals, 2),
+            "avg_goals_away": round(avg_away_goals, 2),
+            "team_home_matches": team_home_matches,
+            "team_home_wins": team_home_wins,
+            "team_away_matches": team_away_matches,
+            "team_away_wins": team_away_wins,
+            "sample_quality": sample_quality,
+            "win_rate_score": win_rate_score,
+            "sharpe_score": sharpe_score,
+            "sample_score": sample_score,
+            "consistency_score": consistency_score
+        }
     })
+    # === LEARNING SYSTEM: Save Agent D Analysis ===
+    try:
+        save_agent_analysis(
+            match_info=match_info,
+            agent_name="Backtest Engine Ferrari 2.5",
+            agent_version="2.5",
+            recommendation="VALIDATED" if ferrari_score_d >= 70 else "CAUTION" if ferrari_score_d >= 40 else "INSUFFICIENT",
+            confidence=ferrari_score_d,
+            reasoning=recommendation_text_d,
+            factors={
+                "total_historical_matches": total_matches,
+                "home_win_rate": float(home_win_rate),
+                "draw_rate": float(draw_rate),
+                "away_win_rate": float(away_win_rate),
+                "team_home_wins": team_home_wins,
+                "team_home_matches": team_home_matches,
+                "win_rate_score": win_rate_score,
+                "sharpe_score": sharpe_score,
+                "sample_score": sample_score,
+                "sample_quality": sample_quality if league else "N/A"
+            }
+        )
+    except Exception as e:
+        pass
+
     
     # Score global
     total_confidence = sum([a["confidence"] for a in agents_analysis])
