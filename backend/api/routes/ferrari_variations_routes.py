@@ -23,13 +23,13 @@ DB_CONFIG = {
 async def get_ferrari_real_variations(improvement_id: int):
     """
     Retourne les VRAIES variations Ferrari depuis agent_b_variations
-    avec leurs stats réelles depuis variation_stats
+    avec leurs stats réelles depuis variation_stats (VIEW)
     """
     try:
         conn = psycopg2.connect(**DB_CONFIG)
         cursor = conn.cursor(cursor_factory=RealDictCursor)
 
-        # Récupérer variations + stats (sans match_id, utiliser id)
+        # variation_stats est une VIEW avec stats déjà agrégées
         cursor.execute("""
             SELECT
                 v.id,
@@ -39,22 +39,18 @@ async def get_ferrari_real_variations(improvement_id: int):
                 v.status,
                 v.created_at,
                 v.updated_at,
-                -- Stats réelles depuis variation_stats
-                COUNT(vs.id) as matches_tested,
-                COUNT(CASE WHEN vs.is_winner THEN 1 END) as wins,
-                COUNT(CASE WHEN NOT vs.is_winner THEN 1 END) as losses,
-                COALESCE(
-                    ROUND(100.0 * COUNT(CASE WHEN vs.is_winner THEN 1 END)::numeric / 
-                    NULLIF(COUNT(vs.id), 0), 1), 
-                    0
-                ) as win_rate,
-                COALESCE(SUM(vs.profit), 0) as total_profit,
-                COALESCE(ROUND(AVG(vs.roi) * 100, 1), 0) as roi
+                -- Stats depuis la VIEW (déjà calculées)
+                COALESCE(vs.total_bets, 0) as matches_tested,
+                COALESCE(vs.wins, 0) as wins,
+                COALESCE(vs.losses, 0) as losses,
+                COALESCE(vs.win_rate, 0) as win_rate,
+                COALESCE(vs.total_profit, 0) as total_profit,
+                COALESCE(vs.roi, 0) as roi
             FROM agent_b_variations v
             LEFT JOIN variation_stats vs ON v.id = vs.variation_id
-            GROUP BY v.id, v.variation_name, v.description, v.config, v.status, v.created_at, v.updated_at
+            WHERE v.improvement_id = %s OR v.improvement_id IS NULL
             ORDER BY v.id ASC
-        """)
+        """, (improvement_id,))
 
         variations_raw = cursor.fetchall()
         
@@ -70,28 +66,37 @@ async def get_ferrari_real_variations(improvement_id: int):
                 var_dict['enabled_factors'] = list(api_boost.keys()) if api_boost else []
                 var_dict['use_api_football'] = config.get('use_api_football', False)
                 var_dict['custom_threshold'] = config.get('confidence_threshold')
+                var_dict['use_new_threshold'] = config.get('use_api_football', False)
             else:
                 var_dict['enabled_factors'] = []
                 var_dict['use_api_football'] = False
                 var_dict['custom_threshold'] = None
+                var_dict['use_new_threshold'] = False
             
             # Déterminer si contrôle
             name_lower = var_dict.get('name', '').lower()
-            var_dict['is_control'] = 'baseline' in name_lower or 'contrôle' in name_lower
+            var_dict['is_control'] = 'baseline' in name_lower or 'contrôle' in name_lower or 'control' in name_lower
             
             # Status actif
             var_dict['is_active'] = var_dict.get('status') in ['active', 'testing']
             
-            # Traffic par défaut
+            # Traffic par défaut (sera ajusté par Thompson Sampling)
             var_dict['traffic_percentage'] = 20
             
             # Enabled adjustments
             var_dict['enabled_adjustments'] = []
             
-            # Convertir en float si nécessaire
+            # Assurer types corrects
+            var_dict['matches_tested'] = int(var_dict.get('matches_tested', 0))
+            var_dict['wins'] = int(var_dict.get('wins', 0))
+            var_dict['losses'] = int(var_dict.get('losses', 0))
             var_dict['win_rate'] = float(var_dict.get('win_rate', 0))
             var_dict['total_profit'] = float(var_dict.get('total_profit', 0))
             var_dict['roi'] = float(var_dict.get('roi', 0))
+            
+            # Ajouter agent_name et improvement_threshold (pour compatibilité frontend)
+            var_dict['agent_name'] = 'Ferrari Ultimate 2.0'
+            var_dict['improvement_threshold'] = 52.5
             
             result.append(var_dict)
 
@@ -102,8 +107,8 @@ async def get_ferrari_real_variations(improvement_id: int):
             "improvement_id": improvement_id,
             "total": len(result),
             "variations": result,
-            "source": "agent_b_variations + variation_stats (real)",
-            "note": "Stats will populate as Ferrari generates signals"
+            "source": "agent_b_variations + variation_stats VIEW",
+            "note": "Stats will populate as Ferrari generates real signals"
         }
         
     except Exception as e:
