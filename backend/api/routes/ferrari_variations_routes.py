@@ -29,7 +29,7 @@ async def get_ferrari_real_variations(improvement_id: int):
         conn = psycopg2.connect(**DB_CONFIG)
         cursor = conn.cursor(cursor_factory=RealDictCursor)
 
-        # Récupérer TOUTES les variations (pas de filtre improvement_id car colonne n'existe pas)
+        # Récupérer variations + stats (sans match_id, utiliser id)
         cursor.execute("""
             SELECT
                 v.id,
@@ -40,12 +40,12 @@ async def get_ferrari_real_variations(improvement_id: int):
                 v.created_at,
                 v.updated_at,
                 -- Stats réelles depuis variation_stats
-                COUNT(DISTINCT vs.match_id) as matches_tested,
-                COUNT(DISTINCT CASE WHEN vs.is_winner THEN vs.match_id END) as wins,
-                COUNT(DISTINCT CASE WHEN NOT vs.is_winner THEN vs.match_id END) as losses,
+                COUNT(vs.id) as matches_tested,
+                COUNT(CASE WHEN vs.is_winner THEN 1 END) as wins,
+                COUNT(CASE WHEN NOT vs.is_winner THEN 1 END) as losses,
                 COALESCE(
-                    ROUND(100.0 * COUNT(DISTINCT CASE WHEN vs.is_winner THEN vs.match_id END)::numeric / 
-                    NULLIF(COUNT(DISTINCT vs.match_id), 0), 1), 
+                    ROUND(100.0 * COUNT(CASE WHEN vs.is_winner THEN 1 END)::numeric / 
+                    NULLIF(COUNT(vs.id), 0), 1), 
                     0
                 ) as win_rate,
                 COALESCE(SUM(vs.profit), 0) as total_profit,
@@ -82,11 +82,16 @@ async def get_ferrari_real_variations(improvement_id: int):
             # Status actif
             var_dict['is_active'] = var_dict.get('status') in ['active', 'testing']
             
-            # Traffic par défaut (sera ajusté par Thompson Sampling)
+            # Traffic par défaut
             var_dict['traffic_percentage'] = 20
             
-            # Enabled adjustments (vide pour l'instant)
+            # Enabled adjustments
             var_dict['enabled_adjustments'] = []
+            
+            # Convertir en float si nécessaire
+            var_dict['win_rate'] = float(var_dict.get('win_rate', 0))
+            var_dict['total_profit'] = float(var_dict.get('total_profit', 0))
+            var_dict['roi'] = float(var_dict.get('roi', 0))
             
             result.append(var_dict)
 
@@ -97,7 +102,7 @@ async def get_ferrari_real_variations(improvement_id: int):
             "improvement_id": improvement_id,
             "total": len(result),
             "variations": result,
-            "source": "agent_b_variations + variation_stats (real data)",
+            "source": "agent_b_variations + variation_stats (real)",
             "note": "Stats will populate as Ferrari generates signals"
         }
         
