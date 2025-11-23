@@ -29,7 +29,7 @@ async def get_ferrari_real_variations(improvement_id: int):
         conn = psycopg2.connect(**DB_CONFIG)
         cursor = conn.cursor(cursor_factory=RealDictCursor)
 
-        # Récupérer variations + stats réelles
+        # Récupérer TOUTES les variations (pas de filtre improvement_id car colonne n'existe pas)
         cursor.execute("""
             SELECT
                 v.id,
@@ -44,39 +44,50 @@ async def get_ferrari_real_variations(improvement_id: int):
                 COUNT(DISTINCT CASE WHEN vs.is_winner THEN vs.match_id END) as wins,
                 COUNT(DISTINCT CASE WHEN NOT vs.is_winner THEN vs.match_id END) as losses,
                 COALESCE(
-                    ROUND(100.0 * COUNT(DISTINCT CASE WHEN vs.is_winner THEN vs.match_id END) / 
+                    ROUND(100.0 * COUNT(DISTINCT CASE WHEN vs.is_winner THEN vs.match_id END)::numeric / 
                     NULLIF(COUNT(DISTINCT vs.match_id), 0), 1), 
                     0
                 ) as win_rate,
                 COALESCE(SUM(vs.profit), 0) as total_profit,
-                COALESCE(AVG(vs.roi) * 100, 0) as roi,
-                -- Facteurs activés depuis config
-                v.config->'api_boost' as enabled_factors,
-                (v.config->>'use_api_football')::boolean as use_api_football,
-                (v.config->>'confidence_threshold')::float as custom_threshold,
-                -- Variation contrôle
-                (v.variation_name LIKE '%Baseline%' OR v.variation_name LIKE '%Contrôle%') as is_control,
-                (v.status = 'active' OR v.status = 'testing') as is_active
+                COALESCE(ROUND(AVG(vs.roi) * 100, 1), 0) as roi
             FROM agent_b_variations v
             LEFT JOIN variation_stats vs ON v.id = vs.variation_id
-            WHERE v.improvement_id = %s
             GROUP BY v.id, v.variation_name, v.description, v.config, v.status, v.created_at, v.updated_at
-            ORDER BY 
-                (v.variation_name LIKE '%%Baseline%%' OR v.variation_name LIKE '%%Contrôle%%') DESC,
-                v.id ASC
-        """, (improvement_id,))
+            ORDER BY v.id ASC
+        """)
 
-        variations = cursor.fetchall()
+        variations_raw = cursor.fetchall()
         
-        # Nettoyer les données pour JSON
+        # Nettoyer et enrichir les données
         result = []
-        for var in variations:
+        for var in variations_raw:
             var_dict = dict(var)
-            # Extraire facteurs du config
+            
+            # Extraire config
             config = var_dict.get('config', {})
-            api_boost = config.get('api_boost', {}) if isinstance(config, dict) else {}
-            var_dict['enabled_factors'] = list(api_boost.keys()) if api_boost else []
-            var_dict['traffic_percentage'] = 20  # Par défaut, à ajuster avec Thompson Sampling
+            if isinstance(config, dict):
+                api_boost = config.get('api_boost', {})
+                var_dict['enabled_factors'] = list(api_boost.keys()) if api_boost else []
+                var_dict['use_api_football'] = config.get('use_api_football', False)
+                var_dict['custom_threshold'] = config.get('confidence_threshold')
+            else:
+                var_dict['enabled_factors'] = []
+                var_dict['use_api_football'] = False
+                var_dict['custom_threshold'] = None
+            
+            # Déterminer si contrôle
+            name_lower = var_dict.get('name', '').lower()
+            var_dict['is_control'] = 'baseline' in name_lower or 'contrôle' in name_lower
+            
+            # Status actif
+            var_dict['is_active'] = var_dict.get('status') in ['active', 'testing']
+            
+            # Traffic par défaut (sera ajusté par Thompson Sampling)
+            var_dict['traffic_percentage'] = 20
+            
+            # Enabled adjustments (vide pour l'instant)
+            var_dict['enabled_adjustments'] = []
+            
             result.append(var_dict)
 
         conn.close()
@@ -86,9 +97,12 @@ async def get_ferrari_real_variations(improvement_id: int):
             "improvement_id": improvement_id,
             "total": len(result),
             "variations": result,
-            "source": "agent_b_variations (real data)"
+            "source": "agent_b_variations + variation_stats (real data)",
+            "note": "Stats will populate as Ferrari generates signals"
         }
         
     except Exception as e:
         logger.error(f"Erreur get ferrari variations: {e}")
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
