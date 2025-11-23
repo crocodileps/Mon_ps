@@ -53,9 +53,12 @@ class ThompsonSampling:
     def get_confidence_interval(self, variation_id: int, confidence: float = 0.95) -> Tuple[float, float]:
         params = self.variations[variation_id]
         alpha_val = (1 - confidence) / 2
-        lower = beta.ppf(alpha_val, params['alpha'], params['beta'])
-        upper = beta.ppf(1 - alpha_val, params['alpha'], params['beta'])
-        return (lower, upper)
+        # Convert to float pour scipy
+        alpha_f = float(params['alpha'])
+        beta_f = float(params['beta'])
+        lower = beta.ppf(alpha_val, alpha_f, beta_f)
+        upper = beta.ppf(1 - alpha_val, alpha_f, beta_f)
+        return (float(lower), float(upper))
     
     def calculate_traffic_allocation(self, min_traffic: float = 0.05) -> Dict[int, float]:
         N = 1000
