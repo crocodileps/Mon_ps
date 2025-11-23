@@ -261,6 +261,50 @@ async def get_all_improvements():
     except Exception as e:
         logger.error(f"Erreur improvements: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+@router.get("/improvements/archived")
+async def get_archived_improvements():
+    """
+    Récupère toutes les améliorations archivées
+    
+    Returns:
+        {"success": True, "improvements": [...], "total": X}
+    """
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        cursor.execute("""
+            SELECT
+                si.id,
+                si.agent_name,
+                si.strategy_name,
+                si.baseline_win_rate,
+                si.new_threshold,
+                si.failure_pattern,
+                si.missing_factors,
+                si.recommended_adjustments,
+                si.llm_reasoning,
+                si.status,
+                si.archived_at,
+                si.archived_reason,
+                si.created_at
+            FROM strategy_improvements si
+            WHERE si.status = 'archived'
+            ORDER BY si.archived_at DESC
+        """)
+        
+        improvements = cursor.fetchall()
+        conn.close()
+        
+        return {
+            "success": True,
+            "improvements": improvements,
+            "total": len(improvements)
+        }
+        
+    except Exception as e:
+        logger.error(f"Erreur liste archivées: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/improvements/{improvement_id}")
 async def get_improvement_details(improvement_id: int):
@@ -591,3 +635,4 @@ async def reactivate_improvement(improvement_id: int):
     except Exception as e:
         logger.error(f"Erreur réactivation: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
