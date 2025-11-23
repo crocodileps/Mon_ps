@@ -245,6 +245,7 @@ async def get_all_improvements():
                     ELSE NULL
                 END as ab_win_rate_b
             FROM strategy_improvements si
+            WHERE si.status != 'archived'
             ORDER BY si.created_at DESC
         """)
         
@@ -458,4 +459,69 @@ async def reject_improvement(improvement_id: int):
         raise
     except Exception as e:
         logger.error(f"Erreur rejet: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/improvements/{improvement_id}/archive")
+async def archive_improvement(
+    improvement_id: int,
+    reason: str = None
+):
+    """
+    Archive une amélioration pour plus tard
+    
+    Args:
+        improvement_id: ID de l'amélioration
+        reason: Raison de l'archivage (optionnel)
+    
+    Returns:
+        {"success": True, "improvement_id": X}
+    """
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Vérifier existence
+        cursor.execute(
+            "SELECT * FROM strategy_improvements WHERE id = %s",
+            (improvement_id,)
+        )
+        improvement = cursor.fetchone()
+        
+        if not improvement:
+            conn.close()
+            raise HTTPException(
+                status_code=404,
+                detail="Amélioration non trouvée"
+            )
+        
+        # Archiver
+        cursor.execute("""
+            UPDATE strategy_improvements
+            SET 
+                status = 'archived',
+                archived_at = NOW(),
+                archived_reason = %s,
+                ab_test_active = FALSE
+            WHERE id = %s
+            RETURNING id, agent_name, status
+        """, (reason, improvement_id))
+        
+        result = cursor.fetchone()
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"Amélioration {improvement_id} archivée: {reason}")
+        
+        return {
+            "success": True,
+            "improvement_id": improvement_id,
+            "agent_name": result['agent_name'],
+            "status": result['status'],
+            "reason": reason
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Erreur archivage: {e}")
         raise HTTPException(status_code=500, detail=str(e))
