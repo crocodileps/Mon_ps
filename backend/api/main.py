@@ -260,5 +260,5 @@ app.include_router(strategies_routes.router, prefix="/strategies", tags=["strate
 # Results routes (Récupération résultats matchs)
 from api.routes import results_routes
 app.include_router(results_routes.router, prefix="/results", tags=["results"])
-app.include_router(ferrari_routes.router, prefix="/ferrari", tags=["Ferrari 2.0"])
+app.include_router(ferrari_routes.router, prefix="/api/ferrari", tags=["Ferrari 2.0"])
 app.include_router(variations_routes.router, prefix="/strategies", tags=["Variations"])
