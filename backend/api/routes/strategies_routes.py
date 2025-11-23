@@ -27,6 +27,9 @@ class StrategyRanking(BaseModel):
     trend: Optional[str]
     has_improvement_test: bool
 
+
+class ActivateSelectedRequest(BaseModel):
+    improvement_ids: List[int]
 @router.get("/ranking")
 async def get_strategies_ranking():
     """Récupère le ranking de toutes les stratégies"""
@@ -636,3 +639,76 @@ async def reactivate_improvement(improvement_id: int):
         logger.error(f"Erreur réactivation: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+
+@router.post("/improvements/activate-selected")
+async def activate_selected_improvements(request: ActivateSelectedRequest):
+    """
+    Active plusieurs améliorations pour tests A/B en masse
+    
+    Args:
+        improvement_ids: Liste des IDs à activer
+    
+    Returns:
+        {"success": True, "activated": X, "ids": [...]}
+    """
+    try:
+        improvement_ids = request.improvement_ids
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Vérifier que toutes les améliorations existent et sont proposées
+        cursor.execute("""
+            SELECT id, agent_name, status
+            FROM strategy_improvements
+            WHERE id = ANY(%s)
+        """, (improvement_ids,))
+        
+        improvements = cursor.fetchall()
+        
+        if len(improvements) != len(improvement_ids):
+            conn.close()
+            raise HTTPException(
+                status_code=404,
+                detail="Certaines améliorations n'existent pas"
+            )
+        
+        # Vérifier qu'aucune n'est déjà active ou appliquée
+        non_proposed = [imp for imp in improvements if imp['status'] not in ['proposed', 'archived']]
+        if non_proposed:
+            conn.close()
+            raise HTTPException(
+                status_code=400,
+                detail=f"Certaines améliorations ne peuvent pas être activées (status: {non_proposed[0]['status']})"
+            )
+        
+        # Activer toutes les améliorations sélectionnées
+        cursor.execute("""
+            UPDATE strategy_improvements
+            SET 
+                status = 'active',
+                ab_test_active = TRUE,
+                ab_test_start = NOW(),
+                archived_at = NULL,
+                archived_reason = NULL
+            WHERE id = ANY(%s)
+            RETURNING id, agent_name, status
+        """, (improvement_ids,))
+        
+        activated = cursor.fetchall()
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"{len(activated)} améliorations activées: {improvement_ids}")
+        
+        return {
+            "success": True,
+            "activated": len(activated),
+            "improvements": activated,
+            "ids": improvement_ids
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Erreur activation multiple: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
