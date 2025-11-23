@@ -6,3 +6,19 @@ from .ferrari_smart_router import (
     EngineType,
     RouterStrategy
 )
+
+# Ferrari Auto-Promotion Engine
+from .ferrari_auto_promotion import (
+    AutoPromotionEngine,
+    get_auto_promotion_engine,
+    PromotionDecision,
+    PromotionStatus
+)
+
+# Ferrari Real-Time Tracker
+from .ferrari_realtime_tracker import (
+    RealtimePerformanceTracker,
+    get_realtime_tracker,
+    AlertLevel,
+    AlertType
+)
