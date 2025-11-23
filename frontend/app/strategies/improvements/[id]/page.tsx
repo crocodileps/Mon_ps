@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import {
   ArrowLeft, Brain, AlertTriangle, CheckCircle,
   Clock, XCircle, Play, Check, X, Zap, Target,
-  Lightbulb, Activity, BarChart3, TrendingUp
+  Lightbulb, Activity, BarChart3, TrendingUp, Settings
 } from 'lucide-react';
 
 interface Improvement {
@@ -198,6 +198,17 @@ export default function ImprovementDetailsPage() {
                   </div>
                 </div>
               )}
+              {/* Séparateur */}
+              <div className="my-6 border-t border-white/10"></div>
+
+              {/* Bouton Gérer les améliorations */}
+              <button
+                onClick={() => router.push("/strategies/manage")}
+                className="w-full px-4 py-3 bg-violet-500/20 hover:bg-violet-500/30 border border-violet-500/30 rounded-lg text-violet-400 font-semibold flex items-center justify-center gap-2 transition-all"
+              >
+                <Settings className="w-5 h-5" />
+                Gérer les améliorations
+              </button>
             </div>
           </div>
         </div>
