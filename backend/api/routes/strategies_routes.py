@@ -525,3 +525,69 @@ async def archive_improvement(
     except Exception as e:
         logger.error(f"Erreur archivage: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/improvements/{improvement_id}/reactivate")
+async def reactivate_improvement(improvement_id: int):
+    """
+    Réactive une amélioration archivée
+    
+    Args:
+        improvement_id: ID de l'amélioration archivée
+    
+    Returns:
+        {"success": True, "improvement_id": X}
+    """
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Vérifier que l'amélioration est archivée
+        cursor.execute(
+            "SELECT * FROM strategy_improvements WHERE id = %s",
+            (improvement_id,)
+        )
+        improvement = cursor.fetchone()
+        
+        if not improvement:
+            conn.close()
+            raise HTTPException(
+                status_code=404,
+                detail="Amélioration non trouvée"
+            )
+        
+        if improvement['status'] != 'archived':
+            conn.close()
+            raise HTTPException(
+                status_code=400,
+                detail="Amélioration n'est pas archivée"
+            )
+        
+        # Réactiver
+        cursor.execute("""
+            UPDATE strategy_improvements
+            SET 
+                status = 'proposed',
+                archived_at = NULL,
+                archived_reason = NULL
+            WHERE id = %s
+            RETURNING id, agent_name, status
+        """, (improvement_id,))
+        
+        result = cursor.fetchone()
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"Amélioration {improvement_id} réactivée")
+        
+        return {
+            "success": True,
+            "improvement_id": improvement_id,
+            "agent_name": result['agent_name'],
+            "status": result['status']
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Erreur réactivation: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
