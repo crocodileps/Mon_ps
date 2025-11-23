@@ -254,9 +254,11 @@ app.include_router(results_routes.router, prefix="/results", tags=["results"])
 # Strategies routes (Meta-learning)
 from api.routes import strategies_routes
 from api.routes import ferrari_routes
+from api.routes import variations_routes
 app.include_router(strategies_routes.router, prefix="/strategies", tags=["strategies"])
 
 # Results routes (Récupération résultats matchs)
 from api.routes import results_routes
 app.include_router(results_routes.router, prefix="/results", tags=["results"])
 app.include_router(ferrari_routes.router, prefix="/ferrari", tags=["Ferrari 2.0"])
+app.include_router(variations_routes.router, prefix="/strategies", tags=["Variations"])
