@@ -68,3 +68,10 @@ monitoring/collector/cache/*.json
 # Docs temporaires
 .learning_journal/
 docs/adr/TEMPLATE_ADR.md
+
+# Python cache
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
