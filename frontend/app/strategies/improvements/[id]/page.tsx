@@ -182,17 +182,22 @@ export default function ImprovementDetailsPage() {
                 </div>
               )}
               {improvement.ab_test_active && (
-                <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-                  <div className="text-blue-400 text-sm font-semibold mb-2">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => router.push(`/strategies/improvements/${improvement.id}/variations`)}
+                  className="w-full p-4 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 hover:border-blue-500/50 rounded-lg transition-all cursor-pointer"
+                >
+                  <div className="text-blue-400 text-sm font-semibold mb-2 flex items-center justify-center gap-2">
+                    <Activity className="w-4 h-4 animate-pulse" />
                     A/B Test en cours
                   </div>
-                  <div className="text-gray-300 text-xs">
+                  <div className="text-gray-300 text-xs mb-2">
                     Collecte des données...
                   </div>
-                </div>
+                  <div className="text-blue-400 text-xs font-medium">→ Voir les variations</div>
+                </motion.button>
               )}
-              {improvement.improvement_applied && (
-                <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
                   <div className="text-green-400 font-semibold mb-2">
                     ✅ Appliquée
                   </div>
