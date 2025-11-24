@@ -673,6 +673,12 @@ export default function ManageImprovementsPage() {
                       )}
 
                       {status === 'active' && (
+                        <div className="px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-2">
+                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                          <span className="text-green-400 font-medium text-sm">Test A/B en cours</span>
+                        </div>
+                      )}
+                      {status === 'active' && (
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
@@ -680,13 +686,9 @@ export default function ManageImprovementsPage() {
                           className="px-4 py-2 bg-green-500/10 hover:bg-green-500/20 border border-green-500/30 rounded-lg flex items-center gap-2 cursor-pointer transition-all"
                         >
                           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                          <span className="text-green-400 font-medium text-sm">🏎️ Test A/B en cours</span>
-                        </motion.button>
-                      )}
                           <span className="text-green-400 font-medium text-sm">Test A/B en cours</span>
                         </motion.button>
                       )}
-
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -696,20 +698,6 @@ export default function ManageImprovementsPage() {
                         Voir détails
                         <ChevronRight className="w-4 h-4" />
                       </motion.button>
-
-                      {status === 'active' && (
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => router.push(`/strategies/improvements/${imp.id}/variations`)}
-                          className="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg flex items-center gap-2 font-bold shadow-lg"
-                        >
-                          🏎️ Variations Ferrari
-                        </motion.button>
-                      )}
-                    </div>
-                  </div>
-                </div>
               </motion.div>
             );
           })}
