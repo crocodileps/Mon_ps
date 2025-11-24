@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import {
   ArrowLeft, Brain, AlertTriangle, CheckCircle,
   Clock, XCircle, Play, Check, X, Zap, Target,
-  Lightbulb, Activity, BarChart3, TrendingUp
+  Lightbulb, Activity, BarChart3, TrendingUp, Settings
 } from 'lucide-react';
 
 interface Improvement {
@@ -54,7 +54,7 @@ export default function ImprovementDetailsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-white text-xl">Chargement...</div>
       </div>
     );
@@ -62,14 +62,14 @@ export default function ImprovementDetailsPage() {
 
   if (!improvement) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-white text-xl">Amélioration non trouvée</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-8">
+    <div className="min-h-screen p-8">
       <button
         onClick={() => router.push('/strategies')}
         className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6"
@@ -198,6 +198,17 @@ export default function ImprovementDetailsPage() {
                   </div>
                 </div>
               )}
+              {/* Séparateur */}
+              <div className="my-6 border-t border-white/10"></div>
+
+              {/* Bouton Gérer les améliorations */}
+              <button
+                onClick={() => router.push("/strategies/manage")}
+                className="w-full px-4 py-3 bg-violet-500/20 hover:bg-violet-500/30 border border-violet-500/30 rounded-lg text-violet-400 font-semibold flex items-center justify-center gap-2 transition-all"
+              >
+                <Settings className="w-5 h-5" />
+                Gérer les améliorations
+              </button>
             </div>
           </div>
         </div>
