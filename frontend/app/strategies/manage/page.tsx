@@ -696,6 +696,17 @@ export default function ManageImprovementsPage() {
                         Voir détails
                         <ChevronRight className="w-4 h-4" />
                       </motion.button>
+
+                      {status === 'active' && (
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => router.push(`/strategies/improvements/${imp.id}/variations`)}
+                          className="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg flex items-center gap-2 font-bold shadow-lg"
+                        >
+                          🏎️ Variations Ferrari
+                        </motion.button>
+                      )}
                     </div>
                   </div>
                 </div>
