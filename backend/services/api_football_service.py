@@ -277,10 +277,18 @@ class APIFootballService:
         if not data or 'response' not in data:
             return {'total_matches': 0, 'team1_wins': 0, 'team2_wins': 0, 'draws': 0, 'dominance_score': 0}
         
-        matches = data['response']
-        
-        team1_wins = sum(1 for m in matches if m['teams']['home']['winner'] if m['teams']['home']['id'] == team1_id else m['teams']['away']['winner'])
-        team2_wins = sum(1 for m in matches if m['teams']['home']['winner'] if m['teams']['home']['id'] == team2_id else m['teams']['away']['winner'])
+        matches = data["response"]
+
+        team1_wins = sum(
+            1 for m in matches
+            if (m["teams"]["home"]["id"] == team1_id and m["teams"]["home"]["winner"])
+            or (m["teams"]["away"]["id"] == team1_id and m["teams"]["away"]["winner"])
+        )
+        team2_wins = sum(
+            1 for m in matches
+            if (m["teams"]["home"]["id"] == team2_id and m["teams"]["home"]["winner"])
+            or (m["teams"]["away"]["id"] == team2_id and m["teams"]["away"]["winner"])
+        )
         draws = len(matches) - team1_wins - team2_wins
         
         # Dominance score (-0.5 to +0.5)
