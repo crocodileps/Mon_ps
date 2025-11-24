@@ -289,7 +289,6 @@ class APIFootballService:
             if (m["teams"]["home"]["id"] == team2_id and m["teams"]["home"]["winner"])
             or (m["teams"]["away"]["id"] == team2_id and m["teams"]["away"]["winner"])
         )
-        )
         draws = len(matches) - team1_wins - team2_wins
         
         # Dominance score (-0.5 to +0.5)
