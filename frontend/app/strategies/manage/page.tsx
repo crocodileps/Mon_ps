@@ -682,7 +682,7 @@ export default function ManageImprovementsPage() {
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => router.push ( `/strategies/improvements/${imp.id}`)}
+                        onClick={() => router.push(`/strategies/improvements/${imp.id}`)}
                         className="px-4 py-2 bg-slate-700/30 hover:bg-slate-600/30 backdrop-blur-sm text-slate-300 hover:text-white rounded-lg flex items-center gap-2 transition-all font-medium"
                       >
                         Voir détails
