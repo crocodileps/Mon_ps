@@ -141,20 +141,21 @@ class SpreadOptimizerFerrariV3:
             
             # Query opportunités (comme baseline)
             query = """
-                SELECT DISTINCT
-                    sport_key,
+                SELECT
+                    match_id,
+                    sport as sport_key,
                     home_team,
                     away_team,
-                    MAX(home_odds) as best_home,
-                    MIN(home_odds) as worst_home,
-                    MAX(away_odds) as best_away,
-                    MIN(away_odds) as worst_away
-                FROM current_opportunities
+                    max_home_odds as best_home,
+                    min_home_odds as worst_home,
+                    max_away_odds as best_away,
+                    min_away_odds as worst_away,
+                    home_spread_pct,
+                    away_spread_pct
+                FROM v_current_opportunities
                 WHERE commence_time > NOW()
-                AND home_odds IS NOT NULL
-                GROUP BY sport_key, home_team, away_team
-                HAVING (MAX(home_odds) - MIN(home_odds)) / MIN(home_odds) * 100 >= %s
-                ORDER BY (MAX(home_odds) - MIN(home_odds)) / MIN(home_odds) DESC
+                AND home_spread_pct >= %s
+                ORDER BY home_spread_pct DESC
                 LIMIT 50
             """
             
