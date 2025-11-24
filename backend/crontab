@@ -4,3 +4,6 @@
 
 # CLV uniquement - toutes les 4h pour capturer closing odds
 0 */4 * * * cd /app && python3 scripts/auto_clv.py >> /var/log/clv.log 2>&1
+
+# Ferrari V3 A/B Testing - quotidien à 10h00 (après settlement matin)
+0 10 * * * cd /app && API_FOOTBALL_KEY=122c7380779a7a5b381c4d0896e33c3d bash scripts/run_ferrari_ab_test.sh >> /var/log/ferrari/cron.log 2>&1
