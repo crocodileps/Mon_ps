@@ -1,5 +1,6 @@
 """
-Routes API pour variations Ferrari - Données réelles depuis improvement_variations
+Routes API pour variations Ferrari - VRAIES DONNÉES UNIQUEMENT
+Utilise improvement_variations (données réelles de tests A/B)
 """
 from fastapi import APIRouter, HTTPException
 from typing import List, Dict, Optional
@@ -22,33 +23,14 @@ DB_CONFIG = {
 @router.get("/improvements/{improvement_id}/ferrari-variations")
 async def get_ferrari_real_variations(improvement_id: int):
     """
-    Retourne les variations Ferrari avec VRAIES données
-    Utilise improvement_variations + variation_bayesian_stats
+    Retourne UNIQUEMENT les variations avec VRAIES données
+    Source: improvement_variations (tests A/B réels)
     """
     try:
         conn = psycopg2.connect(**DB_CONFIG)
         cursor = conn.cursor(cursor_factory=RealDictCursor)
 
-        # D'abord essayer agent_b_variations (nouvelles variations calibrées)
-        cursor.execute("""
-            SELECT
-                v.id,
-                v.variation_name as name,
-                v.description,
-                v.config,
-                v.status,
-                v.created_at,
-                v.updated_at,
-                v.improvement_id
-            FROM agent_b_variations v
-            WHERE v.improvement_id = %s OR v.improvement_id IS NULL
-            ORDER BY v.id ASC
-        """, (improvement_id,))
-        
-        calibrated_variations = cursor.fetchall()
-
-        # Ensuite récupérer les VRAIES données depuis improvement_variations
-        # (improvement_id=1 a les vraies stats)
+        # Récupérer les vraies variations avec données
         cursor.execute("""
             SELECT
                 iv.id,
@@ -64,86 +46,67 @@ async def get_ferrari_real_variations(improvement_id: int):
                 iv.is_control,
                 iv.is_active,
                 iv.enabled_factors,
+                iv.enabled_adjustments,
                 iv.use_new_threshold,
                 iv.custom_threshold,
+                iv.created_at,
+                iv.updated_at,
                 vbs.alpha,
                 vbs.beta,
                 vbs.expected_win_rate as bayesian_expected_wr,
                 vbs.confidence_lower,
-                vbs.confidence_upper,
-                vbs.last_sample
+                vbs.confidence_upper
             FROM improvement_variations iv
             LEFT JOIN variation_bayesian_stats vbs ON iv.id = vbs.variation_id
-            WHERE iv.improvement_id = 1
-            ORDER BY iv.id ASC
-        """)
+            WHERE iv.improvement_id = %s OR iv.improvement_id = 1
+            ORDER BY iv.win_rate DESC
+        """, (improvement_id,))
         
-        real_variations = cursor.fetchall()
-
+        variations = cursor.fetchall()
         conn.close()
 
-        # Combiner les données
         result = []
-        
-        # Si on a des variations calibrées pour cet improvement
-        if calibrated_variations:
-            for var in calibrated_variations:
-                var_dict = dict(var)
-                
-                # Enrichir avec config
-                config = var_dict.get('config', {})
-                if isinstance(config, dict):
-                    seuils = config.get('seuils', {})
-                    var_dict['confidence_threshold'] = seuils.get('confidence_threshold', 0.4)
-                    var_dict['edge_threshold'] = seuils.get('min_spread', 0.01)
-                else:
-                    var_dict['confidence_threshold'] = 0.4
-                    var_dict['edge_threshold'] = 0.01
-                
-                # Stats (par défaut 0, seront populées avec vrais signaux)
-                var_dict['matches_tested'] = 0
-                var_dict['wins'] = 0
-                var_dict['losses'] = 0
-                var_dict['win_rate'] = 0.0
-                var_dict['total_profit'] = 0.0
-                var_dict['roi'] = 0.0
-                var_dict['traffic_percentage'] = 20
-                var_dict['is_control'] = 'baseline' in var_dict.get('name', '').lower()
-                var_dict['is_active'] = var_dict.get('status') == 'active'
-                var_dict['enabled_factors'] = []
-                var_dict['use_new_threshold'] = False
-                var_dict['custom_threshold'] = None
-                var_dict['agent_name'] = 'Ferrari Ultimate 2.0'
-                var_dict['improvement_threshold'] = 52.5
-                
-                result.append(var_dict)
-
-        # Ajouter les vraies variations avec données (de improvement_id=1)
-        for var in real_variations:
+        for var in variations:
             var_dict = dict(var)
             
             # Format pour frontend
-            var_dict['is_control'] = var_dict.get('is_control', False)
-            var_dict['is_active'] = var_dict.get('is_active', True)
-            var_dict['traffic_percentage'] = var_dict.get('traffic_percentage', 20)
-            var_dict['enabled_factors'] = var_dict.get('enabled_factors', []) or []
-            var_dict['use_new_threshold'] = var_dict.get('use_new_threshold', False)
-            var_dict['custom_threshold'] = var_dict.get('custom_threshold')
             var_dict['agent_name'] = 'Ferrari Ultimate 2.0'
             var_dict['improvement_threshold'] = 52.5
+            var_dict['status'] = 'active' if var_dict.get('is_active', True) else 'paused'
+            
+            # Enabled factors - convertir en liste si nécessaire
+            enabled_factors = var_dict.get('enabled_factors', [])
+            if enabled_factors is None:
+                enabled_factors = []
+            var_dict['enabled_factors'] = list(enabled_factors) if enabled_factors else []
+            
+            # Enabled adjustments
+            enabled_adjustments = var_dict.get('enabled_adjustments', [])
+            if enabled_adjustments is None:
+                enabled_adjustments = []
+            var_dict['enabled_adjustments'] = list(enabled_adjustments) if enabled_adjustments else []
             
             # Bayesian stats
             var_dict['bayesian'] = {
-                'alpha': float(var_dict.get('alpha', 1.0) or 1.0),
-                'beta': float(var_dict.get('beta', 1.0) or 1.0),
-                'expected_win_rate': float(var_dict.get('bayesian_expected_wr', 50.0) or 50.0),
-                'confidence_lower': float(var_dict.get('confidence_lower', 10.0) or 10.0),
-                'confidence_upper': float(var_dict.get('confidence_upper', 90.0) or 90.0)
+                'alpha': float(var_dict.get('alpha') or 1.0),
+                'beta': float(var_dict.get('beta') or 1.0),
+                'expected_win_rate': float(var_dict.get('bayesian_expected_wr') or 50.0),
+                'confidence_lower': float(var_dict.get('confidence_lower') or 10.0),
+                'confidence_upper': float(var_dict.get('confidence_upper') or 90.0)
             }
             
-            # Nettoyer les champs temporaires
-            for key in ['alpha', 'beta', 'bayesian_expected_wr', 'confidence_lower', 'confidence_upper', 'last_sample']:
+            # Nettoyer champs temporaires
+            for key in ['alpha', 'beta', 'bayesian_expected_wr', 'confidence_lower', 'confidence_upper']:
                 var_dict.pop(key, None)
+            
+            # Assurer types corrects
+            var_dict['matches_tested'] = int(var_dict.get('matches_tested') or 0)
+            var_dict['wins'] = int(var_dict.get('wins') or 0)
+            var_dict['losses'] = int(var_dict.get('losses') or 0)
+            var_dict['win_rate'] = float(var_dict.get('win_rate') or 0)
+            var_dict['total_profit'] = float(var_dict.get('total_profit') or 0)
+            var_dict['roi'] = float(var_dict.get('roi') or 0)
+            var_dict['traffic_percentage'] = int(var_dict.get('traffic_percentage') or 20)
             
             result.append(var_dict)
 
@@ -152,8 +115,8 @@ async def get_ferrari_real_variations(improvement_id: int):
             "improvement_id": improvement_id,
             "total": len(result),
             "variations": result,
-            "source": "improvement_variations + variation_bayesian_stats",
-            "has_real_data": len(real_variations) > 0
+            "source": "improvement_variations (vraies données A/B)",
+            "has_real_data": True
         }
 
     except Exception as e:
@@ -163,76 +126,15 @@ async def get_ferrari_real_variations(improvement_id: int):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/improvements/{improvement_id}/calibrated-variations")
-async def get_calibrated_variations(improvement_id: int):
-    """
-    Retourne uniquement les variations AUTO-CALIBRÉES (Ferrari CAL)
-    """
-    try:
-        conn = psycopg2.connect(**DB_CONFIG)
-        cursor = conn.cursor(cursor_factory=RealDictCursor)
-
-        cursor.execute("""
-            SELECT
-                v.id,
-                v.variation_name as name,
-                v.description,
-                v.config,
-                v.status,
-                v.created_at
-            FROM agent_b_variations v
-            WHERE (v.improvement_id = %s OR v.improvement_id IS NULL)
-              AND v.variation_name LIKE '%%CAL%%'
-            ORDER BY v.id ASC
-        """, (improvement_id,))
-        
-        variations = cursor.fetchall()
-        conn.close()
-
-        result = []
-        for var in variations:
-            var_dict = dict(var)
-            config = var_dict.get('config', {})
-            seuils = config.get('seuils', {}) if isinstance(config, dict) else {}
-            
-            result.append({
-                'id': var_dict['id'],
-                'name': var_dict['name'],
-                'description': var_dict.get('description', ''),
-                'confidence_threshold': seuils.get('confidence_threshold', 0.4) * 100,
-                'edge_threshold': seuils.get('min_spread', 0.01) * 100,
-                'is_active': var_dict.get('status') == 'active',
-                'matches_tested': 0,
-                'wins': 0,
-                'win_rate': 0.0,
-                'total_profit': 0.0,
-                'roi': 0.0,
-                'traffic_percentage': 20
-            })
-
-        return {
-            "success": True,
-            "improvement_id": improvement_id,
-            "total": len(result),
-            "variations": result
-        }
-
-    except Exception as e:
-        logger.error(f"Erreur get calibrated variations: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-
 @router.get("/improvements/{improvement_id}/traffic-recommendation")
 async def get_traffic_recommendations(improvement_id: int):
     """
     Retourne les recommandations de trafic basées sur Thompson Sampling
-    Utilise les VRAIES données de variation_bayesian_stats
     """
     try:
         conn = psycopg2.connect(**DB_CONFIG)
         cursor = conn.cursor(cursor_factory=RealDictCursor)
 
-        # Récupérer les stats bayésiennes RÉELLES
         cursor.execute("""
             SELECT
                 vbs.variation_id,
@@ -242,8 +144,6 @@ async def get_traffic_recommendations(improvement_id: int):
                 vbs.expected_win_rate,
                 vbs.confidence_lower,
                 vbs.confidence_upper,
-                vbs.last_sample,
-                vbs.total_samples,
                 iv.traffic_percentage,
                 iv.matches_tested,
                 iv.wins,
@@ -258,7 +158,6 @@ async def get_traffic_recommendations(improvement_id: int):
         conn.close()
 
         if not stats:
-            # Retourner des données par défaut si pas de stats
             return {
                 "success": True,
                 "improvement_id": improvement_id,
@@ -266,41 +165,54 @@ async def get_traffic_recommendations(improvement_id: int):
                 "note": "Pas de données bayésiennes disponibles"
             }
 
-        # Calculer les recommandations de trafic
-        total_expected = sum(float(s['expected_win_rate'] or 50) for s in stats)
+        # Calculer recommandations Thompson Sampling
+        import random
+        samples = []
+        for stat in stats:
+            alpha = float(stat['current_alpha'] or 1)
+            beta = float(stat['current_beta'] or 1)
+            # Échantillonner de la distribution Beta
+            sample = random.betavariate(alpha, beta)
+            samples.append((stat, sample))
+        
+        # Normaliser pour obtenir les pourcentages de trafic
+        total_samples = sum(s[1] for s in samples)
         
         recommendations = []
-        for stat in stats:
-            expected_wr = float(stat['expected_win_rate'] or 50)
-            # Recommandation proportionnelle au win rate attendu
-            recommended_traffic = (expected_wr / total_expected) * 100 if total_expected > 0 else 20
+        for stat, sample in samples:
+            recommended = (sample / total_samples) * 100 if total_samples > 0 else 20
+            current = stat['traffic_percentage'] or 20
             
             recommendations.append({
                 'variation_id': stat['variation_id'],
                 'variation_name': stat['variation_name'],
-                'current_alpha': float(stat['current_alpha'] or 1.0),
-                'current_beta': float(stat['current_beta'] or 1.0),
-                'expected_win_rate': expected_wr,
+                'current_alpha': float(stat['current_alpha'] or 1),
+                'current_beta': float(stat['current_beta'] or 1),
+                'expected_win_rate': float(stat['expected_win_rate'] or 50),
                 'confidence_interval': [
                     float(stat['confidence_lower'] or 10) / 100,
                     float(stat['confidence_upper'] or 90) / 100
                 ],
-                'recommended_traffic': round(recommended_traffic, 1),
-                'current_traffic': stat['traffic_percentage'] or 20,
+                'recommended_traffic': round(recommended, 1),
+                'current_traffic': current,
+                'traffic_change': round(recommended - current, 1),
                 'matches_tested': stat['matches_tested'] or 0,
                 'actual_win_rate': float(stat['win_rate'] or 0)
             })
+
+        # Trier par trafic recommandé
+        recommendations.sort(key=lambda x: x['recommended_traffic'], reverse=True)
 
         return {
             "success": True,
             "improvement_id": improvement_id,
             "recommendations": recommendations,
             "total_variations": len(recommendations),
-            "source": "variation_bayesian_stats + improvement_variations"
+            "total_traffic": round(sum(r['recommended_traffic'] for r in recommendations), 1)
         }
 
     except Exception as e:
-        logger.error(f"Erreur get traffic recommendations: {e}")
+        logger.error(f"Erreur traffic recommendations: {e}")
         import traceback
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
