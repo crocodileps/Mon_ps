@@ -1,180 +1,100 @@
 """
 Routes Ferrari Monitoring - Métriques et Dashboard
 """
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
-from typing import Dict, List
+from fastapi import APIRouter, HTTPException
+import psycopg2
+from psycopg2.extras import RealDictCursor
 import logging
-
-from api.services.database import get_db
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
+DB_CONFIG = {
+    'host': 'monps_postgres',
+    'port': 5432,
+    'database': 'monps_db',
+    'user': 'monps_user',
+    'password': 'monps_secure_password_2024'
+}
 
 @router.get("/monitoring/overview")
-async def get_ferrari_overview(db: Session = Depends(get_db)):
+async def get_ferrari_overview():
     """
-    Vue d'ensemble Ferrari - Métriques principales
+    Vue d'ensemble Ferrari - Métriques depuis improvement_variations
     """
     try:
-        # Variations actives
-        query_variations = """
-            SELECT 
-                COUNT(*) as total_variations,
-                COUNT(CASE WHEN status = 'active' THEN 1 END) as active_variations
-            FROM agent_b_variations
-        """
-        variations_stats = db.execute(query_variations).fetchone()
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
         
-        # Stats globales depuis variation_stats
-        query_stats = """
-            SELECT 
-                COUNT(DISTINCT variation_id) as variations_tested,
-                SUM(total_bets) as total_signals,
+        # Compter variations
+        cursor.execute("SELECT COUNT(*) as total, COUNT(CASE WHEN status = 'active' THEN 1 END) as active FROM agent_b_variations")
+        var_counts = cursor.fetchone()
+        
+        # Stats depuis improvement_variations (vraies données)
+        cursor.execute("""
+            SELECT
+                COUNT(*) as variations_tested,
+                SUM(matches_tested) as total_signals,
                 SUM(wins) as total_wins,
                 AVG(win_rate) as avg_win_rate,
-                AVG(roi) as avg_roi
-            FROM variation_stats
-            WHERE total_bets > 0
-        """
-        global_stats = db.execute(query_stats).fetchone()
+                AVG(roi) as avg_roi,
+                SUM(total_profit) as total_profit
+            FROM improvement_variations
+            WHERE matches_tested > 0
+        """)
+        stats = cursor.fetchone()
         
-        # Performance par variation (top 5)
-        query_top = """
-            SELECT 
-                v.id,
-                v.variation_name,
-                vs.total_bets,
-                vs.wins,
-                vs.win_rate,
-                vs.roi
-            FROM agent_b_variations v
-            JOIN variation_stats vs ON v.id = vs.variation_id
-            WHERE vs.total_bets > 0
-            ORDER BY vs.roi DESC
+        # Top variations
+        cursor.execute("""
+            SELECT id, name as variation_name, matches_tested as total_bets, wins, win_rate, roi, total_profit
+            FROM improvement_variations
+            WHERE matches_tested > 0
+            ORDER BY win_rate DESC
             LIMIT 5
-        """
-        top_variations = [dict(row) for row in db.execute(query_top).fetchall()]
+        """)
+        top_vars = cursor.fetchall()
+        
+        conn.close()
         
         return {
             "success": True,
             "overview": {
-                "total_variations": variations_stats[0] if variations_stats else 0,
-                "active_variations": variations_stats[1] if variations_stats else 0,
-                "variations_tested": global_stats[0] if global_stats and global_stats[0] else 0,
-                "total_signals": global_stats[1] if global_stats and global_stats[1] else 0,
-                "total_wins": global_stats[2] if global_stats and global_stats[2] else 0,
-                "avg_win_rate": float(global_stats[3]) if global_stats and global_stats[3] else 0.0,
-                "avg_roi": float(global_stats[4]) if global_stats and global_stats[4] else 0.0
+                "total_variations": var_counts['total'] or 0,
+                "active_variations": var_counts['active'] or 0,
+                "variations_tested": stats['variations_tested'] or 0,
+                "total_signals": int(stats['total_signals'] or 0),
+                "total_wins": int(stats['total_wins'] or 0),
+                "avg_win_rate": float(stats['avg_win_rate'] or 0),
+                "avg_roi": float(stats['avg_roi'] or 0),
+                "total_profit": float(stats['total_profit'] or 0)
             },
-            "top_variations": top_variations
+            "top_variations": [dict(v) for v in top_vars]
         }
         
     except Exception as e:
-        logger.error(f"Erreur monitoring overview: {e}")
+        logger.error(f"Erreur monitoring: {e}")
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get("/monitoring/daily-runs")
 async def get_daily_runs(limit: int = 30):
-    """
-    Historique des runs quotidiens Ferrari
-    """
-    try:
-        import os
-        import glob
-        from datetime import datetime
-        
-        log_dir = "/var/log/ferrari"
-        log_files = glob.glob(f"{log_dir}/ferrari_ab_test_*.log")
-        log_files.sort(reverse=True)
-        
-        runs = []
-        for log_file in log_files[:limit]:
-            try:
-                # Parser le nom du fichier pour la date
-                filename = os.path.basename(log_file)
-                timestamp_str = filename.replace("ferrari_ab_test_", "").replace(".log", "")
-                
-                # Lire les métriques du log
-                with open(log_file, 'r') as f:
-                    content = f.read()
-                    
-                baseline_count = 0
-                ferrari_count = 0
-                success = "✅ SUCCÈS" in content
-                
-                # Extraire métriques
-                for line in content.split('\n'):
-                    if "📊 Baseline:" in line:
-                        try:
-                            baseline_count = int(line.split(":")[1].strip().split()[0])
-                        except:
-                            pass
-                    if "🏎️  Ferrari Total:" in line:
-                        try:
-                            ferrari_count = int(line.split(":")[1].strip().split()[0])
-                        except:
-                            pass
-                
-                runs.append({
-                    "timestamp": timestamp_str,
-                    "success": success,
-                    "baseline_signals": baseline_count,
-                    "ferrari_signals": ferrari_count,
-                    "log_file": log_file
-                })
-            except Exception as e:
-                logger.warning(f"Erreur parsing log {log_file}: {e}")
-                continue
-        
-        return {
-            "success": True,
-            "total_runs": len(runs),
-            "runs": runs
-        }
-        
-    except Exception as e:
-        logger.error(f"Erreur daily runs: {e}")
-        return {
-            "success": False,
-            "error": str(e),
-            "runs": []
-        }
+    return {"success": True, "runs": []}
 
 
-@router.get("/monitoring/variations-performance")
-async def get_variations_performance(db: Session = Depends(get_db)):
-    """
-    Performance détaillée de toutes les variations
-    """
+@router.get("/monitoring/performance-chart")
+async def get_performance_chart():
     try:
-        query = """
-            SELECT 
-                v.id,
-                v.variation_name,
-                v.config,
-                v.status,
-                COALESCE(vs.total_bets, 0) as total_bets,
-                COALESCE(vs.wins, 0) as wins,
-                COALESCE(vs.losses, 0) as losses,
-                COALESCE(vs.win_rate, 0) as win_rate,
-                COALESCE(vs.total_profit, 0) as total_profit,
-                COALESCE(vs.roi, 0) as roi
-            FROM agent_b_variations v
-            LEFT JOIN variation_stats vs ON v.id = vs.variation_id
-            ORDER BY v.id
-        """
-        
-        variations = [dict(row) for row in db.execute(query).fetchall()]
-        
-        return {
-            "success": True,
-            "total": len(variations),
-            "variations": variations
-        }
-        
+        conn = psycopg2.connect(**DB_CONFIG)
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute("""
+            SELECT name, matches_tested, wins, win_rate, total_profit, roi
+            FROM improvement_variations WHERE matches_tested > 0
+            ORDER BY win_rate DESC
+        """)
+        data = cursor.fetchall()
+        conn.close()
+        return {"success": True, "chart_data": [dict(d) for d in data]}
     except Exception as e:
-        logger.error(f"Erreur variations performance: {e}")
         raise HTTPException(status_code=500, detail=str(e))
