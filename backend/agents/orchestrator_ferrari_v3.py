@@ -39,11 +39,8 @@ class OrchestratorFerrariV3:
         self.team_resolver = get_team_resolver(DB_CONFIG)
         
         # Agent baseline
-        self.baseline = SpreadOptimizer(
-            db_config=DB_CONFIG,
-            min_spread=2.0,
-            confidence_threshold=0.70
-        )
+        # Agent baseline (utilise params par défaut)
+        self.baseline = SpreadOptimizer(db_config=DB_CONFIG)
         
         logger.info("🏎️ Orchestrator Ferrari V3 initialisé")
     
