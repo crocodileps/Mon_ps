@@ -13,7 +13,7 @@ import random
 from services.api_football_service import get_api_football_service
 from services.team_resolver import get_team_resolver
 from agents.agent_spread_ferrari_v3 import SpreadOptimizerFerrariV3
-from agents.agent_spread import SpreadOptimizer  # Baseline
+from agents.agent_spread import SpreadOptimizerAgent as SpreadOptimizer  # Baseline
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
