@@ -2157,6 +2157,61 @@ async def analyze_conseil_ultim(match_id: str):
         else:
             confiance_label = "FAIBLE"
         
+        # === SAUVEGARDE AUTOMATIQUE DANS HISTORIQUE ===
+        try:
+            conn_save = psycopg2.connect(
+                host='monps_postgres',
+                port=5432,
+                database='monps_db',
+                user='monps_user',
+                password='monps_secure_password_2024'
+            )
+            cur_save = conn_save.cursor()
+            
+            # UPSERT - Insert ou Update si existe déjà
+            cur_save.execute("""
+                INSERT INTO conseil_ultim_history (
+                    match_id, home_team, away_team, sport, commence_time,
+                    recommended_outcome, recommended_label, score, edge_reel,
+                    notre_proba, cote_moyenne, risque, conseil,
+                    patron_score, patron_outcome, status
+                ) VALUES (
+                    %s, %s, %s, %s, NOW(),
+                    %s, %s, %s, %s,
+                    %s, %s, %s, %s,
+                    %s, %s, 'pending'
+                )
+                ON CONFLICT (match_id) DO UPDATE SET
+                    score = EXCLUDED.score,
+                    edge_reel = EXCLUDED.edge_reel,
+                    notre_proba = EXCLUDED.notre_proba,
+                    recommended_outcome = EXCLUDED.recommended_outcome,
+                    recommended_label = EXCLUDED.recommended_label
+            """, (
+                match_id,
+                outcomes_data[0]['home_team'],
+                outcomes_data[0]['away_team'],
+                outcomes_data[0]['sport'],
+                best['outcome'],
+                best['label'],
+                best['score_final'],
+                best['edge_reel'],
+                best['notre_proba'],
+                best['cote_moyenne'],
+                best['risque'],
+                best['conseil'],
+                patron_score,
+                patron_outcome
+            ))
+            
+            conn_save.commit()
+            cur_save.close()
+            conn_save.close()
+        except Exception as save_err:
+            # Ne pas bloquer si erreur de sauvegarde
+            print(f"Erreur sauvegarde historique: {save_err}")
+        
+
         return {
             "match_id": match_id,
             "match_info": {
@@ -2295,3 +2350,234 @@ async def batch_conseil_ultim(match_ids: list[str]):
     except Exception as e:
         return {"error": str(e)}
 
+
+
+# ============================================================
+# ENDPOINTS HISTORIQUE CONSEIL ULTIM
+# ============================================================
+
+@router.get("/conseil-ultim/history")
+async def get_conseil_history(
+    status: str = None,
+    limit: int = 50,
+    min_score: float = None
+):
+    """
+    Récupère l'historique des recommandations Agent Conseil Ultim
+    
+    Params:
+    - status: 'pending', 'resolved', 'all' (défaut: all)
+    - limit: nombre max de résultats (défaut: 50)
+    - min_score: score minimum (optionnel)
+    """
+    import psycopg2
+    from psycopg2.extras import RealDictCursor
+    
+    try:
+        conn = psycopg2.connect(
+            host='monps_postgres',
+            port=5432,
+            database='monps_db',
+            user='monps_user',
+            password='monps_secure_password_2024'
+        )
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        query = "SELECT * FROM conseil_ultim_history WHERE 1=1"
+        params = []
+        
+        if status and status != 'all':
+            query += " AND status = %s"
+            params.append(status)
+        
+        if min_score:
+            query += " AND score >= %s"
+            params.append(min_score)
+        
+        query += " ORDER BY created_at DESC LIMIT %s"
+        params.append(limit)
+        
+        cur.execute(query, params)
+        results = cur.fetchall()
+        
+        cur.close()
+        conn.close()
+        
+        return {
+            "count": len(results),
+            "history": results
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@router.get("/conseil-ultim/performance")
+async def get_conseil_performance():
+    """
+    Statistiques de performance de l'Agent Conseil Ultim
+    - Win rate global et par tranche de score
+    - Nombre de recommandations
+    """
+    import psycopg2
+    from psycopg2.extras import RealDictCursor
+    
+    try:
+        conn = psycopg2.connect(
+            host='monps_postgres',
+            port=5432,
+            database='monps_db',
+            user='monps_user',
+            password='monps_secure_password_2024'
+        )
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Stats globales
+        cur.execute("""
+            SELECT 
+                COUNT(*) as total,
+                COUNT(CASE WHEN status = 'pending' THEN 1 END) as pending,
+                COUNT(CASE WHEN status = 'resolved' THEN 1 END) as resolved,
+                COUNT(CASE WHEN is_win = true THEN 1 END) as wins,
+                COUNT(CASE WHEN is_win = false THEN 1 END) as losses,
+                ROUND(AVG(score)::numeric, 1) as avg_score,
+                ROUND(AVG(edge_reel)::numeric, 1) as avg_edge
+            FROM conseil_ultim_history
+        """)
+        global_stats = cur.fetchone()
+        
+        # Win rate par tranche de score
+        cur.execute("""
+            SELECT 
+                CASE 
+                    WHEN score >= 75 THEN 'elite_75+'
+                    WHEN score >= 60 THEN 'good_60-74'
+                    WHEN score >= 50 THEN 'medium_50-59'
+                    ELSE 'low_<50'
+                END as score_range,
+                COUNT(*) as total,
+                COUNT(CASE WHEN is_win = true THEN 1 END) as wins,
+                ROUND(
+                    100.0 * COUNT(CASE WHEN is_win = true THEN 1 END) / 
+                    NULLIF(COUNT(CASE WHEN status = 'resolved' THEN 1 END), 0),
+                    1
+                ) as win_rate
+            FROM conseil_ultim_history
+            GROUP BY score_range
+            ORDER BY score_range DESC
+        """)
+        by_score = cur.fetchall()
+        
+        # Win rate par conseil
+        cur.execute("""
+            SELECT 
+                conseil,
+                COUNT(*) as total,
+                COUNT(CASE WHEN is_win = true THEN 1 END) as wins,
+                ROUND(
+                    100.0 * COUNT(CASE WHEN is_win = true THEN 1 END) / 
+                    NULLIF(COUNT(CASE WHEN status = 'resolved' THEN 1 END), 0),
+                    1
+                ) as win_rate
+            FROM conseil_ultim_history
+            GROUP BY conseil
+        """)
+        by_conseil = cur.fetchall()
+        
+        cur.close()
+        conn.close()
+        
+        # Calcul win rate global
+        resolved = global_stats['resolved'] or 0
+        wins = global_stats['wins'] or 0
+        win_rate = round(100 * wins / resolved, 1) if resolved > 0 else None
+        
+        return {
+            "global": {
+                "total_recommendations": global_stats['total'],
+                "pending": global_stats['pending'],
+                "resolved": global_stats['resolved'],
+                "wins": wins,
+                "losses": global_stats['losses'] or 0,
+                "win_rate": win_rate,
+                "avg_score": float(global_stats['avg_score']) if global_stats['avg_score'] else None,
+                "avg_edge": float(global_stats['avg_edge']) if global_stats['avg_edge'] else None
+            },
+            "by_score_range": by_score,
+            "by_conseil": by_conseil
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@router.post("/conseil-ultim/resolve")
+async def resolve_conseil_recommendations():
+    """
+    Résout automatiquement les recommandations pending
+    en comparant avec match_results
+    """
+    import psycopg2
+    from psycopg2.extras import RealDictCursor
+    
+    try:
+        conn = psycopg2.connect(
+            host='monps_postgres',
+            port=5432,
+            database='monps_db',
+            user='monps_user',
+            password='monps_secure_password_2024'
+        )
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Trouver les matchs pending avec résultats disponibles
+        cur.execute("""
+            SELECT 
+                h.id,
+                h.match_id,
+                h.recommended_outcome,
+                r.outcome as actual_outcome,
+                r.score_home,
+                r.score_away
+            FROM conseil_ultim_history h
+            JOIN match_results r ON h.match_id = r.match_id
+            WHERE h.status = 'pending'
+            AND r.is_finished = true
+            AND r.outcome IS NOT NULL
+        """)
+        
+        to_resolve = cur.fetchall()
+        resolved_count = 0
+        wins = 0
+        losses = 0
+        
+        for match in to_resolve:
+            is_win = match['recommended_outcome'] == match['actual_outcome']
+            
+            cur.execute("""
+                UPDATE conseil_ultim_history
+                SET 
+                    actual_outcome = %s,
+                    is_win = %s,
+                    status = 'resolved',
+                    resolved_at = NOW()
+                WHERE id = %s
+            """, (match['actual_outcome'], is_win, match['id']))
+            
+            resolved_count += 1
+            if is_win:
+                wins += 1
+            else:
+                losses += 1
+        
+        conn.commit()
+        cur.close()
+        conn.close()
+        
+        return {
+            "resolved": resolved_count,
+            "wins": wins,
+            "losses": losses,
+            "win_rate": round(100 * wins / resolved_count, 1) if resolved_count > 0 else None,
+            "message": f"{resolved_count} recommandations résolues"
+        }
+    except Exception as e:
+        return {"error": str(e)}
