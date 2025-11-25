@@ -21,7 +21,9 @@ export function usePatronScores(matchIds: string[]) {
       return response.data
     },
     enabled: matchIds.length > 0,
-    staleTime: 60000, // 1 minute
-    refetchInterval: 120000, // 2 minutes
+    staleTime: 300000, // 5 minutes
+    cacheTime: 600000, // 10 minutes
+    refetchInterval: 180000, // 3 minutes
+    refetchOnWindowFocus: false, // Pas de refetch au focus
   })
 }

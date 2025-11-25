@@ -149,15 +149,38 @@ const getDateKey = (dateInput: string | Date) => {
 }
 
 
-// Elite Stars Badge System V2.0
-const getEliteStarBadge = (patronLabel: string) => {
-  const scoreMap: Record<string, number> = {
-    'PRUDENCE': 85,
-    'ANALYSER': 50,
-    'EVITER': 20
-  }
+// Elite Stars Badge System V2.0 - Hybrid Pro
+const calculateLocalBadge = (edge: number, outcome: string, odds: number): number => {
+  let score = 50
   
-  const score = scoreMap[patronLabel] || 50
+  if (edge > 200) score -= 25
+  else if (edge > 100) score -= 15
+  else if (edge > 50) score += 5
+  else if (edge > 20) score += 10
+  else if (edge < 10) score -= 10
+  
+  if (outcome === 'draw') score -= 10
+  if (outcome === 'home') score += 5
+  
+  if (odds > 10) score -= 20
+  else if (odds > 5) score -= 10
+  else if (odds < 2) score += 10
+  
+  return Math.max(10, Math.min(90, score))
+}
+
+const getEliteStarBadge = (patronLabel: string | null, localScore?: number) => {
+  let score = localScore || 50
+  
+  // Override avec Patron si disponible
+  if (patronLabel) {
+    const scoreMap: Record<string, number> = {
+      'PRUDENCE': 85,
+      'ANALYSER': 50,
+      'EVITER': 20
+    }
+    score = scoreMap[patronLabel] || score
+  }
   
   let stars = ''
   let emoji = ''
@@ -494,10 +517,13 @@ const timeA = new Date(a.commence_time).getTime()
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      {patronScores?.[opp.match_id] ? (() => {
-                        const badge = getEliteStarBadge(patronScores[opp.match_id].label)
+                      {(() => {
+                        const patronLabel = patronScores?.[opp.match_id]?.label || null
+                        const localScore = calculateLocalBadge(opp.edge_pct, opp.outcome, opp.best_odds)
+                        const badge = getEliteStarBadge(patronLabel, localScore)
+                        const isLoading = !patronLabel
                         return (
-                          <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg border backdrop-blur-sm ${badge.bgClass}`}>
+                          <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg border backdrop-blur-sm transition-all duration-500 ${badge.bgClass} ${isLoading ? 'animate-pulse border-slate-600' : ''}`}>
                             <span className="text-base">{badge.emoji}</span>
                             <span className={`text-xs ${badge.colorClass}`}>{badge.stars}</span>
                             <span className={`text-[10px] font-bold ${badge.colorClass}`}>{badge.score}</span>
@@ -506,9 +532,7 @@ const timeA = new Date(a.commence_time).getTime()
                             </span>
                           </div>
                         )
-                      })() : (
-                        <span className="text-slate-600 text-xs italic">--</span>
-                      )}
+                      })()}
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex gap-2 justify-end">
