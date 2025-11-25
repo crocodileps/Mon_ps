@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { Sparkles, TrendingUp, AlertTriangle, AlertCircle } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Sparkles, TrendingUp, AlertTriangle, AlertCircle, RefreshCw } from 'lucide-react'
 
 interface FeuxItem {
   titre: string
@@ -23,7 +23,7 @@ interface Props {
 }
 
 export function DiamondSynthesis({ matchId }: Props) {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [synthesis, setSynthesis] = useState<Synthesis | null>(null)
   const [error, setError] = useState<string | null>(null)
 
@@ -45,6 +45,11 @@ export function DiamondSynthesis({ matchId }: Props) {
     }
   }
 
+  // Auto-génération au chargement
+  useEffect(() => {
+    fetchSynthesis()
+  }, [matchId])
+
   const getRiskColor = (level: string) => {
     switch (level) {
       case 'FAIBLE': return 'text-green-400'
@@ -63,7 +68,21 @@ export function DiamondSynthesis({ matchId }: Props) {
     }
   }
 
-  if (!synthesis) {
+  if (loading) {
+    return (
+      <div className="bg-gradient-to-r from-cyan-900/20 to-blue-900/20 rounded-xl p-6 border border-cyan-500/30 mb-6">
+        <div className="flex items-center gap-3 mb-4">
+          <Sparkles className="text-cyan-400 animate-pulse" size={28} />
+          <h3 className="text-xl font-bold text-cyan-400">💎 Diamond Synthesis</h3>
+        </div>
+        <div className="flex items-center justify-center py-8">
+          <div className="text-cyan-400 text-sm">⏳ Génération de la synthèse IA avec GPT-4o...</div>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
     return (
       <div className="bg-gradient-to-r from-cyan-900/20 to-blue-900/20 rounded-xl p-6 border border-cyan-500/30 mb-6">
         <div className="flex items-center justify-between mb-4">
@@ -73,35 +92,44 @@ export function DiamondSynthesis({ matchId }: Props) {
           </div>
           <button
             onClick={fetchSynthesis}
-            disabled={loading}
-            className="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-black font-semibold rounded-lg transition-colors disabled:opacity-50"
+            className="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-black font-semibold rounded-lg transition-colors flex items-center gap-2"
           >
-            {loading ? '⏳ Génération...' : '✨ Générer Synthèse IA'}
+            <RefreshCw size={16} />
+            Réessayer
           </button>
         </div>
-        <p className="text-gray-400 text-sm">
-          Synthèse qualitative générée par GPT-4o analysant tous les signaux des agents ML.
-        </p>
-        {error && <p className="text-red-400 mt-2 text-sm">❌ {error}</p>}
+        <p className="text-red-400 text-sm">❌ {error}</p>
       </div>
     )
   }
 
+  if (!synthesis) return null
+
   return (
     <div className="bg-gradient-to-r from-cyan-900/20 to-blue-900/20 rounded-xl p-6 border border-cyan-500/30 space-y-6 mb-6">
-      {/* Header */}
+      {/* Header avec bouton refresh */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Sparkles className="text-cyan-400" size={28} />
           <h3 className="text-xl font-bold text-cyan-400">💎 Diamond Synthesis</h3>
         </div>
-        <div className="flex gap-4 text-sm">
-          <span className={`font-semibold ${getRiskColor(synthesis.risk_level)}`}>
-            Risque: {synthesis.risk_level}
-          </span>
-          <span className={`font-semibold ${getConfidenceColor(synthesis.confidence_narrative)}`}>
-            Conf: {synthesis.confidence_narrative}
-          </span>
+        <div className="flex items-center gap-4">
+          <div className="flex gap-4 text-sm">
+            <span className={`font-semibold ${getRiskColor(synthesis.risk_level)}`}>
+              Risque: {synthesis.risk_level}
+            </span>
+            <span className={`font-semibold ${getConfidenceColor(synthesis.confidence_narrative)}`}>
+              Conf: {synthesis.confidence_narrative}
+            </span>
+          </div>
+          <button
+            onClick={fetchSynthesis}
+            disabled={loading}
+            className="p-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 rounded-lg transition-colors"
+            title="Régénérer"
+          >
+            <RefreshCw size={16} />
+          </button>
         </div>
       </div>
 
