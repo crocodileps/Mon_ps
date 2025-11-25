@@ -1885,3 +1885,123 @@ Génère une synthèse JSON avec:
             "error": f"Erreur: {str(e)}",
             "match_id": match_id
         }
+
+@router.get("/patron/analyze-factors/{match_id}")
+async def analyze_factors_for_match(match_id: str, variation_id: int = None):
+    """
+    Analyse détaillée des facteurs pour un match spécifique
+    Retourne le score de chaque facteur (0-10) avec impact et détail
+    """
+    import psycopg2
+    from psycopg2.extras import RealDictCursor
+    
+    # 1. Récupérer l'analyse des 4 agents
+    base_analysis = await analyze_match_with_agents(match_id)
+    if "error" in base_analysis:
+        return base_analysis
+    
+    agents = base_analysis.get("agents", [])
+    
+    # 2. Extraire les signaux des agents
+    anomaly = next((a for a in agents if "Anomaly" in a.get("agent_name", "")), None)
+    spread = next((a for a in agents if "Spread" in a.get("agent_name", "")), None)
+    pattern = next((a for a in agents if "Pattern" in a.get("agent_name", "")), None)
+    backtest = next((a for a in agents if "Backtest" in a.get("agent_name", "")), None)
+    
+    # 3. Calculer les scores des facteurs
+    factors_analysis = []
+    
+    # Facteur 1 : Forme récente (basé sur backtest + pattern)
+    forme_score = 5.0  # Neutre par défaut
+    forme_impact = 0.0
+    if backtest:
+        home_wr = backtest.get("details", {}).get("home_win_rate", 50)
+        if home_wr > 50:
+            forme_score = min(10, 5 + (home_wr - 50) / 10)
+            forme_impact = (home_wr - 50) / 2
+        else:
+            forme_score = max(0, 5 - (50 - home_wr) / 10)
+            forme_impact = -(50 - home_wr) / 2
+    
+    factors_analysis.append({
+        "name": "forme_récente_des_équipes",
+        "display_name": "Forme Récente",
+        "score": round(forme_score, 1),
+        "impact": round(forme_impact, 1),
+        "detail": f"Analyse des derniers matchs" + (f" - {backtest.get('details', {}).get('team_home_wins', 0)} victoires récentes" if backtest else ""),
+        "category": "positive" if forme_score >= 6 else "negative" if forme_score < 4 else "neutral"
+    })
+    
+    # Facteur 2 : Blessures (basé sur anomaly detector)
+    blessures_score = 5.0
+    blessures_impact = 0.0
+    if anomaly:
+        conf = anomaly.get("confidence", 50)
+        if conf > 80:  # Pas d'anomalies = bonnes nouvelles sur blessures
+            blessures_score = 8.0
+            blessures_impact = 10.0
+        elif conf < 40:
+            blessures_score = 3.0
+            blessures_impact = -15.0
+    
+    factors_analysis.append({
+        "name": "blessures_clés",
+        "display_name": "Blessures Clés",
+        "score": round(blessures_score, 1),
+        "impact": round(blessures_impact, 1),
+        "detail": "Aucune anomalie détectée" if blessures_score > 6 else "Effectif surveillé",
+        "category": "positive" if blessures_score >= 6 else "negative" if blessures_score < 4 else "neutral"
+    })
+    
+    # Facteur 3 : Conditions météo (neutre par défaut)
+    meteo_score = 5.0
+    meteo_impact = 0.0
+    
+    factors_analysis.append({
+        "name": "conditions_météorologiques",
+        "display_name": "Conditions Météo",
+        "score": round(meteo_score, 1),
+        "impact": round(meteo_impact, 1),
+        "detail": "Conditions standard attendues",
+        "category": "neutral"
+    })
+    
+    # Facteur 4 : Historique H2H (basé sur backtest)
+    h2h_score = 5.0
+    h2h_impact = 0.0
+    if backtest:
+        sample_quality = backtest.get("details", {}).get("sample_quality", "STANDARD")
+        if sample_quality == "EXCELLENT":
+            h2h_score = 7.5
+            h2h_impact = 8.0
+        elif sample_quality == "FAIBLE":
+            h2h_score = 3.0
+            h2h_impact = -8.0
+    
+    factors_analysis.append({
+        "name": "historique_des_confrontations_directes",
+        "display_name": "Historique H2H",
+        "score": round(h2h_score, 1),
+        "impact": round(h2h_impact, 1),
+        "detail": f"Historique {backtest.get('details', {}).get('sample_quality', 'standard').lower()}" if backtest else "Données limitées",
+        "category": "positive" if h2h_score >= 6 else "negative" if h2h_score < 4 else "neutral"
+    })
+    
+    # 4. Calculer les statistiques globales
+    positive_count = sum(1 for f in factors_analysis if f["category"] == "positive")
+    negative_count = sum(1 for f in factors_analysis if f["category"] == "negative")
+    avg_score = sum(f["score"] for f in factors_analysis) / len(factors_analysis)
+    avg_impact = sum(f["impact"] for f in factors_analysis) / len(factors_analysis)
+    
+    return {
+        "match_id": match_id,
+        "factors": factors_analysis,
+        "summary": {
+            "positive_count": positive_count,
+            "negative_count": negative_count,
+            "neutral_count": len(factors_analysis) - positive_count - negative_count,
+            "average_score": round(avg_score, 1),
+            "average_impact": round(avg_impact, 1),
+            "overall_sentiment": "positive" if avg_score >= 6 else "negative" if avg_score < 4 else "neutral"
+        }
+    }

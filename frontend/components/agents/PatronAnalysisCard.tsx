@@ -1,4 +1,5 @@
 'use client'
+import { FactorsAnalysis } from './FactorsAnalysis'
 
 import { useState, useEffect } from 'react'
 import { Crown, TrendingUp, TrendingDown, Target } from 'lucide-react'
@@ -248,6 +249,9 @@ export function PatronAnalysisCard({ matchId }: Props) {
             </div>
           </div>
         )}
+        {/* Analyse des Facteurs pour ce Match */}
+        <FactorsAnalysis matchId={matchId} />
+
 
         {/* Facteurs Positifs */}
         {score_v2.factors_positive.length > 0 && (
