@@ -7,3 +7,6 @@
 
 # Ferrari V3 A/B Testing - quotidien à 10h00 (après settlement matin)
 0 10 * * * cd /app && API_FOOTBALL_KEY=122c7380779a7a5b381c4d0896e33c3d bash scripts/run_ferrari_ab_test.sh >> /var/log/ferrari/cron.log 2>&1
+
+# Meta-Learning GPT-4o - quotidien à 11h00 (après Ferrari A/B test)
+0 11 * * * cd /app && python3 scripts/meta_learning_gpt4o.py >> /var/log/meta_learning.log 2>&1
