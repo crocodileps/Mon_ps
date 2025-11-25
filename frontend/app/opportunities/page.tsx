@@ -4,6 +4,7 @@ import { MatchAnalysisModal } from '@/components/agents/MatchAnalysisModal'
 import { ConseilUltimModal } from '@/components/ConseilUltimModal'
 import { useMemo, useState, useEffect } from 'react'
 import { usePatronScores } from '@/hooks/use-patron-scores'
+import { useConseilScores } from '@/hooks/use-conseil-scores'
 import { useQuery } from '@tanstack/react-query'
 import { RefreshCw, Target, FilterX, ArrowUpDown, Clock, Trophy, Database } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
@@ -192,6 +193,13 @@ const getConseilBadge = (outcome: string, homeTeam: string, awayTeam: string) =>
   }
 }
 
+// Couleur badge Conseil selon score Agent Conseil Ultim
+const getConseilColorByScore = (score: number) => {
+  if (score >= 75) return 'bg-green-500/20 text-green-400 border-green-500/30'
+  if (score >= 50) return 'bg-blue-500/20 text-blue-400 border-blue-500/30'
+  return 'bg-orange-500/20 text-orange-400 border-orange-500/30'
+}
+
 const getEliteStarBadge = (patronLabel: string | null, localScore?: number) => {
   let score = localScore || 50
   
@@ -344,6 +352,7 @@ const timeA = new Date(a.commence_time).getTime()
   const bookmakers = useMemo(() => Array.from(new Set(rawOpportunities.map(o => o.bookmaker_best))).sort(), [rawOpportunities])
   const matchIds = useMemo(() => filteredData.map(opp => opp.match_id), [filteredData])
   const { data: patronScores } = usePatronScores(matchIds)
+  const { data: conseilScores, isLoading: conseilLoading } = useConseilScores(matchIds)
 
   // Tri intelligent par risque (utilise Agent Patron)
   const sortedData = useMemo(() => {
@@ -538,10 +547,33 @@ const timeA = new Date(a.commence_time).getTime()
                     </TableCell>
                     <TableCell>
                       {(() => {
-                        const conseil = getConseilBadge(opp.outcome, opp.home_team, opp.away_team)
+                        const conseilData = conseilScores?.[opp.match_id]
+                        
+                        // Chargement en cours
+                        if (!conseilData) {
+                          return (
+                            <Badge 
+                              className="bg-slate-500/10 text-slate-400 border-slate-500/20 animate-pulse cursor-pointer"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setSelectedMatchConseil({
+                                  id: opp.match_id,
+                                  home: opp.home_team,
+                                  away: opp.away_team
+                                })
+                                setConseilModalOpen(true)
+                              }}
+                            >
+                              ⏳ Analyse...
+                            </Badge>
+                          )
+                        }
+                        
+                        // Vraie recommandation Agent Conseil Ultim
+                        const colorClass = getConseilColorByScore(conseilData.score)
                         return (
-                          <Badge 
-                            className={`${conseil.colorClass} border font-medium text-xs cursor-pointer hover:scale-105 transition-transform`}
+                          <Badge
+                            className={`${colorClass} border font-medium text-xs cursor-pointer hover:scale-105 transition-transform`}
                             onClick={(e) => {
                               e.stopPropagation()
                               setSelectedMatchConseil({
@@ -553,11 +585,12 @@ const timeA = new Date(a.commence_time).getTime()
                             }}
                             title="Cliquer pour analyse complète"
                           >
-                            {conseil.label}
+                            {conseilData.label} ({Math.round(conseilData.score)})
                           </Badge>
                         )
                       })()}
                     </TableCell>
+
                     <TableCell className="hidden">
                       <Badge className="bg-blue-500/10 text-blue-400 border border-blue-500/20 font-medium">
                         {opp.outcome === 'draw' ? 'Nul' : opp.outcome === 'home' ? 'Domicile' : 'Extérieur'}
