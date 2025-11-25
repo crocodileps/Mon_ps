@@ -4,10 +4,12 @@ Routes API pour les Agents ML - Version Complète (4 Agents)
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 import datetime as import_datetime
+from datetime import datetime
 from typing import List, Dict, Any, Optional
 import sys
 import warnings
 
+from openai import OpenAI
 warnings.filterwarnings('ignore')
 sys.path.append('/app/agents')
 
@@ -1357,132 +1359,21 @@ async def analyze_match_with_agents(match_id: str):
         },
         "timestamp": str(import_datetime.datetime.now())
     }
-
-@router.get("/patron/variations")
-async def get_patron_variations():
-    """
-    Retourne la liste des variations disponibles pour l'Agent Patron
-    Triées par win_rate décroissant
-    """
-    import psycopg2
-    
-    try:
-        conn = psycopg2.connect(
-            host='monps_postgres',
-            port=5432,
-            database='monps_db',
-            user='monps_user',
-            password='monps_secure_password_2024'
-        )
-        cur = conn.cursor()
-        
-        cur.execute("""
-            SELECT 
-                id, name, description, enabled_factors,
-                matches_tested, wins, losses, win_rate, total_profit, roi,
-                is_active, is_control
-            FROM improvement_variations
-            WHERE is_active = true
-            ORDER BY win_rate DESC NULLS LAST, roi DESC NULLS LAST
-        """)
-        
-        rows = cur.fetchall()
-        cur.close()
-        conn.close()
-        
-        variations = []
-        for i, row in enumerate(rows):
-            variations.append({
-                "id": row[0],
-                "name": row[1],
-                "description": row[2],
-                "factors": row[3] if row[3] else [],
-                "matches_tested": row[4] if row[4] else 0,
-                "wins": row[5] if row[5] else 0,
-                "losses": row[6] if row[6] else 0,
-                "win_rate": float(row[7]) if row[7] else 0,
-                "total_profit": float(row[8]) if row[8] else 0,
-                "roi": float(row[9]) if row[9] else 0,
-                "is_active": row[10],
-                "is_control": row[11],
-                "is_best": i == 0
-            })
-        
-        return {
-            "variations": variations,
-            "total": len(variations),
-            "best_variation_id": variations[0]["id"] if variations else None
-        }
-        
-    except Exception as e:
-        return {"error": str(e), "variations": []}
-
 @router.get("/patron/analyze/{match_id}")
-async def analyze_with_patron(match_id: str, variation_id: int = None):
+async def analyze_with_patron(match_id: str):
     """
-    Agent Patron V2.0 : Meta-Analyste avec sélection de variation
-    et score basé sur les données réelles (60 matchs analysés)
+    Agent Patron : Meta-Analyste qui synthétise les 4 agents
     """
-    import psycopg2
-
+    
     # 1. Récupérer l'analyse des 4 agents
     base_analysis = await analyze_match_with_agents(match_id)
-
+    
     if "error" in base_analysis:
         return base_analysis
-
+    
     agents_list = base_analysis.get("agents", [])
-
-    # 2. Récupérer la variation (meilleure par défaut ou sélectionnée)
-    selected_variation = None
-    try:
-        conn = psycopg2.connect(
-            host='monps_postgres',
-            port=5432,
-            database='monps_db',
-            user='monps_user',
-            password='monps_secure_password_2024'
-        )
-        cur = conn.cursor()
-        
-        if variation_id:
-            cur.execute("""
-                SELECT id, name, description, enabled_factors,
-                       matches_tested, wins, losses, win_rate, total_profit, roi
-                FROM improvement_variations
-                WHERE id = %s AND is_active = true
-            """, (variation_id,))
-        else:
-            cur.execute("""
-                SELECT id, name, description, enabled_factors,
-                       matches_tested, wins, losses, win_rate, total_profit, roi
-                FROM improvement_variations
-                WHERE is_active = true
-                ORDER BY win_rate DESC NULLS LAST, roi DESC NULLS LAST
-                LIMIT 1
-            """)
-        
-        var_row = cur.fetchone()
-        cur.close()
-        conn.close()
-        
-        if var_row:
-            selected_variation = {
-                "id": var_row[0],
-                "name": var_row[1],
-                "description": var_row[2],
-                "factors": var_row[3] if var_row[3] else [],
-                "matches_tested": var_row[4] if var_row[4] else 0,
-                "wins": var_row[5] if var_row[5] else 0,
-                "losses": var_row[6] if var_row[6] else 0,
-                "win_rate": float(var_row[7]) if var_row[7] else 0,
-                "total_profit": float(var_row[8]) if var_row[8] else 0,
-                "roi": float(var_row[9]) if var_row[9] else 0
-            }
-    except Exception as e:
-        selected_variation = None
-
-    # 3. Extraire les scores de chaque agent
+    
+    # 2. Extraire les scores de chaque agent
     scores = {}
     signals = {}
     agents_results = {}
@@ -1492,7 +1383,8 @@ async def analyze_with_patron(match_id: str, variation_id: int = None):
         agents_results[agent_id] = agent_data
         confidence = agent_data.get("confidence", 0)
         scores[agent_id] = confidence
-
+        
+        # Classifier le signal
         if confidence >= 80:
             signals[agent_id] = "FORT"
         elif confidence >= 60:
@@ -1501,251 +1393,138 @@ async def analyze_with_patron(match_id: str, variation_id: int = None):
             signals[agent_id] = "FAIBLE"
         else:
             signals[agent_id] = "TRES_FAIBLE"
-
-    # 4. Extraire outcome et confidence du spread_optimizer pour Score V2
-    spread_agent = next((a for a in agents_list if a.get("agent_id") == "spread_optimizer"), None)
     
-    predicted_outcome = "home"
-    agent_confidence = 40
-    edge = 0
+    # 3. Calculer le consensus
+    strong_signals = sum(1 for s in signals.values() if s in ["FORT", "MOYEN"])
     
-    if spread_agent:
-        details = spread_agent.get("details", {})
-        rec = spread_agent.get("recommendation", "").lower()
-        if rec in ["home", "away", "draw"]:
-            predicted_outcome = rec
-        agent_confidence = spread_agent.get("confidence", 40)
-        edge = details.get("edge_pct", 0) if details.get("edge_pct") else 0
-
-    # 5. CALCUL DU SCORE V2 (basé sur nos 60 résultats réels)
-    score_v2 = 50  # Base
-    factors_positive = []
-    factors_negative = []
-
-    # === BONUS OUTCOME (basé sur nos données) ===
-    if predicted_outcome == "home":
-        score_v2 += 15
-        factors_positive.append({
-            "label": "HOME",
-            "points": 15,
-            "detail": "62.5% WR historique sur 72 matchs"
-        })
-    elif predicted_outcome == "away":
-        score_v2 -= 10
-        factors_negative.append({
-            "label": "AWAY",
-            "points": -10,
-            "detail": "14.0% WR historique - zone a risque"
-        })
-    elif predicted_outcome == "draw":
-        score_v2 -= 20
-        factors_negative.append({
-            "label": "DRAW",
-            "points": -20,
-            "detail": "4.5% WR historique - tres risque"
-        })
-
-    # === BONUS CONFIANCE (paradoxe inverse confirme) ===
-    if 25 <= agent_confidence < 35:
-        score_v2 += 20
-        factors_positive.append({
-            "label": f"Confiance {agent_confidence:.0f}%",
-            "points": 20,
-            "detail": "Zone diamant: 77.8% WR (7W/2L sur 9 matchs)"
-        })
-    elif 35 <= agent_confidence < 50:
-        score_v2 += 5
-        factors_positive.append({
-            "label": f"Confiance {agent_confidence:.0f}%",
-            "points": 5,
-            "detail": "Zone correcte: 45.5% WR"
-        })
-    elif agent_confidence >= 50:
-        score_v2 -= 15
-        factors_negative.append({
-            "label": f"Confiance {agent_confidence:.0f}%",
-            "points": -15,
-            "detail": "ATTENTION: Paradoxe inverse, 14-25% WR seulement"
-        })
-
-    # === BONUS EDGE ===
-    if edge and edge > 20:
-        score_v2 += 10
-        factors_positive.append({
-            "label": f"Edge {edge:.1f}%",
-            "points": 10,
-            "detail": "Edge excellent"
-        })
-    elif edge and edge > 10:
-        score_v2 += 5
-        factors_positive.append({
-            "label": f"Edge {edge:.1f}%",
-            "points": 5,
-            "detail": "Edge significatif"
-        })
-    elif edge and edge > 5:
-        score_v2 += 2
-        factors_positive.append({
-            "label": f"Edge {edge:.1f}%",
-            "points": 2,
-            "detail": "Edge modere"
-        })
-
-    # Clamp 0-100
-    score_v2 = max(0, min(100, score_v2))
-
-    # 6. DETERMINER LA NOTE
-    if score_v2 >= 90:
-        grade = "A+"
-        verdict = "EXCELLENT"
-        verdict_color = "green-500"
-        verdict_message = "Toutes conditions optimales"
-    elif score_v2 >= 80:
-        grade = "A"
-        verdict = "RECOMMANDE"
-        verdict_color = "green-400"
-        verdict_message = "Conditions tres favorables"
-    elif score_v2 >= 70:
-        grade = "B+"
-        verdict = "FAVORABLE"
-        verdict_color = "green-300"
-        verdict_message = "Bon potentiel"
-    elif score_v2 >= 60:
-        grade = "B"
-        verdict = "MODERE"
-        verdict_color = "yellow-400"
-        verdict_message = "Potentiel avec reserves"
-    elif score_v2 >= 50:
-        grade = "C"
-        verdict = "RISQUE"
-        verdict_color = "orange-400"
-        verdict_message = "Equilibre risque/recompense"
-    elif score_v2 >= 40:
-        grade = "D"
-        verdict = "DEFAVORABLE"
-        verdict_color = "orange-500"
-        verdict_message = "Plus de facteurs negatifs"
+    if strong_signals == 4:
+        consensus_level = "FORT (4/4)"
+        consensus_factor = 1.2
+        consensus_description = "Tous les agents sont d'accord - Signal très fiable"
+    elif strong_signals == 3:
+        consensus_level = "MAJORITAIRE (3/4)"
+        consensus_factor = 1.0
+        consensus_description = "Majorité des agents concordent - Signal fiable"
+    elif strong_signals == 2:
+        consensus_level = "DIVISE (2/2)"
+        consensus_factor = 0.7
+        consensus_description = "Agents divisés - Prudence recommandée"
     else:
-        grade = "E"
-        verdict = "DECONSEILLE"
-        verdict_color = "red-500"
-        verdict_message = "Conditions defavorables"
-
-    # 7. REFERENCE HISTORIQUE
-    if predicted_outcome == "home" and 25 <= agent_confidence < 35:
-        historical_reference = {
-            "zone": "HOME + Conf 25-35%",
-            "win_rate": 77.8,
-            "sample": "7W/2L sur 9 matchs",
-            "quality": "DIAMANT"
-        }
-    elif predicted_outcome == "home" and 35 <= agent_confidence < 50:
-        historical_reference = {
-            "zone": "HOME + Conf 35-50%",
-            "win_rate": 45.5,
-            "sample": "5W/6L sur 11 matchs",
-            "quality": "OR"
-        }
-    elif predicted_outcome == "home" and agent_confidence >= 50:
-        historical_reference = {
-            "zone": "HOME + Conf 50%+",
-            "win_rate": 25.0,
-            "sample": "1W/3L sur 4 matchs",
-            "quality": "ATTENTION"
-        }
-    elif predicted_outcome == "away" and agent_confidence < 50:
-        historical_reference = {
-            "zone": "AWAY + Conf <50%",
-            "win_rate": 23.8,
-            "sample": "5W/16L sur 21 matchs",
-            "quality": "BRONZE"
-        }
-    elif predicted_outcome == "away" and agent_confidence >= 50:
-        historical_reference = {
-            "zone": "AWAY + Conf 50%+",
-            "win_rate": 0.0,
-            "sample": "0W/3L sur 3 matchs",
-            "quality": "CRITIQUE"
-        }
-    elif predicted_outcome == "draw":
-        historical_reference = {
-            "zone": "DRAW",
-            "win_rate": 16.7,
-            "sample": "2W/10L sur 12 matchs",
-            "quality": "RISQUE"
-        }
-    else:
-        historical_reference = {
-            "zone": f"{predicted_outcome.upper()}",
-            "win_rate": 33.3,
-            "sample": "Moyenne globale 20W/40L",
-            "quality": "STANDARD"
-        }
-
-    # 8. Ancien calcul (garder pour compatibilite)
+        consensus_level = "CONFLICTUEL (1/4)"
+        consensus_factor = 0.4
+        consensus_description = "Peu de consensus - Signal faible"
+    
+    # 4. Pondération dynamique des agents
     weights = {
         "anomaly_detector": 0.25,
         "spread_optimizer": 0.35,
         "pattern_matcher": 0.20,
         "backtest_engine": 0.20
     }
-
+    
+    # 5. Score composite
     weighted_score = sum(
         scores.get(agent, 0) * weights.get(agent, 0.25)
         for agent in scores.keys()
     )
-
-    strong_signals = sum(1 for s in signals.values() if s in ["FORT", "MOYEN"])
-
-    if strong_signals == 4:
-        consensus_level = "FORT (4/4)"
-    elif strong_signals == 3:
-        consensus_level = "MAJORITAIRE (3/4)"
-    elif strong_signals == 2:
-        consensus_level = "DIVISE (2/4)"
+    
+    # Appliquer le facteur de consensus
+    final_score = weighted_score * consensus_factor
+    final_score = min(100, max(0, final_score))
+    
+    # 6. Déterminer la recommandation finale
+    if final_score >= 80:
+        recommendation = "FORT SIGNAL"
+        action = "Exécuter avec mise Kelly complète"
+        mise_pct = 3.5
+    elif final_score >= 65:
+        recommendation = "BON SIGNAL"
+        action = "Exécuter avec mise conservatrice"
+        mise_pct = 2.5
+    elif final_score >= 50:
+        recommendation = "SIGNAL MOYEN"
+        action = "Observer attentivement, mise réduite"
+        mise_pct = 1.5
+    elif final_score >= 35:
+        recommendation = "SIGNAL FAIBLE"
+        action = "Ne pas parier, observer uniquement"
+        mise_pct = 0
     else:
-        consensus_level = "CONFLICTUEL"
-
-    # 9. Construire la reponse enrichie
+        recommendation = "REJET"
+        action = "Éviter absolument"
+        mise_pct = 0
+    
+    # 7. Identifier les points forts et vigilance
+    best_agent = max(scores.items(), key=lambda x: x[1])
+    worst_agent = min(scores.items(), key=lambda x: x[1])
+    
+    point_fort = f"L'agent {best_agent[0].replace('_', ' ').title()} est le plus confiant ({best_agent[1]:.0f}%)"
+    
+    if worst_agent[1] < 50:
+        point_vigilance = f"Attention: {worst_agent[0].replace('_', ' ').title()} a une confiance faible ({worst_agent[1]:.0f}%)"
+    else:
+        point_vigilance = "Tous les agents ont une confiance acceptable"
+    
+    # 8. Générer l'arbitrage
+    if consensus_factor >= 1.0:
+        arbitrage = "Le consensus fort entre les agents valide la décision. Aucun arbitrage nécessaire."
+    elif consensus_factor >= 0.7:
+        arbitrage = f"Malgré la divergence de {worst_agent[0].replace('_', ' ').title()}, la majorité l'emporte. Réduire la mise par précaution."
+    else:
+        arbitrage = "Trop de conflits entre agents. Il est recommandé de ne pas parier sur cette opportunité."
+    
+    # 9. Recommandations spécifiques
+    recommendations = [
+        "Vérifier les compositions d'équipes 1h avant le match",
+        f"Placer le pari avec mise de {mise_pct}% du bankroll",
+        "Définir un stop-loss si la cote baisse de plus de 5%"
+    ]
+    
+    if worst_agent[1] < 40:
+        recommendations.append(f"Investiguer pourquoi {worst_agent[0].replace('_', ' ').title()} est en désaccord")
+    
+    if final_score < 50:
+        recommendations = [
+            "Ne pas parier sur cette opportunité",
+            "Attendre un meilleur consensus entre agents",
+            "Observer l'évolution des cotes"
+        ]
+    
+    # 10. Construire la réponse finale
     patron_analysis = {
         "match_id": match_id,
-        "match_info": base_analysis.get("match", {}),
-
-        # NOUVEAU: Score V2 avec note
-        "score_v2": {
-            "score": round(score_v2, 1),
-            "grade": grade,
-            "verdict": verdict,
-            "verdict_color": verdict_color,
-            "verdict_message": verdict_message,
-            "factors_positive": factors_positive,
-            "factors_negative": factors_negative,
-            "historical_reference": historical_reference,
-            "predicted_outcome": predicted_outcome,
-            "agent_confidence": round(agent_confidence, 1)
-        },
-
-        # NOUVEAU: Variation selectionnee
-        "variation": selected_variation,
-
-        # Ancien format (compatibilite)
-        "score_global": round(score_v2, 1),
+        "match_info": base_analysis.get("match_info", {}),
+        
+        "score_global": round(final_score, 1),
         "consensus": consensus_level,
+        "consensus_description": consensus_description,
         "confiance_agregee": round(weighted_score, 1),
-
+        "recommendation": recommendation,
+        "action": action,
+        "mise_recommandee_pct": mise_pct,
+        
         "synthese_agents": {
             agent_id: {
-                "signal": signals.get(agent_id, "INCONNU"),
-                "confiance": round(scores.get(agent_id, 0), 1),
+                "signal": signals[agent_id],
+                "confiance": round(scores[agent_id], 1),
                 "poids": weights.get(agent_id, 0.25),
-                "contribution": round(scores.get(agent_id, 0) * weights.get(agent_id, 0.25), 1)
+                "contribution": round(scores[agent_id] * weights.get(agent_id, 0.25), 1)
             }
             for agent_id in scores.keys()
         },
-
+        
+        "analyse_patron": {
+            "point_fort": point_fort,
+            "point_vigilance": point_vigilance,
+            "arbitrage": arbitrage,
+            "decision_finale": f"{recommendation} - {action}"
+        },
+        
+        "recommandations": recommendations,
+        
         "details_agents": agents_results
     }
-
+    
     return patron_analysis
 
 @router.post("/patron/batch")
@@ -1798,3 +1577,88 @@ async def batch_patron_scores(match_ids: list[str]):
     
     return results
 
+@router.post("/diamond/synthesize")
+async def diamond_synthesize(match_id: str):
+    """
+    Agent Diamond Narrator : Synthèse qualitative avec GPT-4o
+    Génère une analyse narrative basée sur les 4 agents + Agent Patron
+    """
+    import os
+    
+    # 1. Récupérer l'analyse complète
+    base_analysis = await analyze_match_with_agents(match_id)
+    if "error" in base_analysis:
+        return base_analysis
+    
+    # 2. Récupérer l'analyse Patron
+    try:
+        patron_analysis = await analyze_with_patron(match_id)
+    except:
+        patron_analysis = None
+    
+    # 3. Préparer le contexte
+    agents_data = base_analysis.get("agents", [])
+    match_info = base_analysis.get("match", {})
+    
+    context = f"""MATCH: {match_info.get('home_team')} vs {match_info.get('away_team')}
+SPORT: {match_info.get('sport')}
+DATE: {match_info.get('commence_time')}
+
+ODDS:
+- HOME: {match_info.get('odds', {}).get('home', {}).get('best')}
+- DRAW: {match_info.get('odds', {}).get('draw', {}).get('best')}
+- AWAY: {match_info.get('odds', {}).get('away', {}).get('best')}
+
+ANALYSES DES 4 AGENTS ML:
+"""
+    
+    for agent in agents_data:
+        context += f"\n{agent.get('agent_name')}: {agent.get('prediction')} (conf: {agent.get('confidence')}/100)\n"
+        context += f"Raison: {agent.get('reason')}\n"
+    
+    if patron_analysis and "score_v2" in patron_analysis:
+        score_v2 = patron_analysis["score_v2"]
+        context += f"\n\nAGENT PATRON: Score {score_v2.get('score')}/100 ({score_v2.get('grade')})\n"
+        context += f"Verdict: {score_v2.get('verdict')}\n"
+    
+    # 4. Appeler GPT-4o
+    try:
+        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": "Tu es un expert en analyse de paris sportifs quantitatifs. Réponds en JSON."},
+                {"role": "user", "content": f"""{context}
+
+Génère une synthèse JSON avec:
+- feux_verts: [{{"titre": "...", "detail": "..."}}] (2-3 points forts)
+- feux_orange: [{{"titre": "...", "detail": "..."}}] (1-2 vigilances)
+- feux_rouges: [{{"titre": "...", "detail": "..."}}] (1-2 risques)
+- recommandation: "verdict concis"
+- narrative: "analyse de 2-3 phrases"
+- risk_level: "FAIBLE|MODÉRÉ|ÉLEVÉ"
+- confidence_narrative: "HIGH|MEDIUM|LOW"
+"""}
+            ],
+            temperature=0.3,
+            max_tokens=1500,
+            response_format={"type": "json_object"}
+        )
+        
+        import json
+        synthesis = json.loads(response.choices[0].message.content)
+        
+        return {
+            "match_id": match_id,
+            "synthesis": synthesis,
+            "generated_at": datetime.now().isoformat(),
+            "model": "gpt-4o",
+            "cost_estimate": 0.004
+        }
+        
+    except Exception as e:
+        return {
+            "error": f"Erreur: {str(e)}",
+            "match_id": match_id
+        }
