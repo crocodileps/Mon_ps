@@ -198,7 +198,7 @@ export function MatchAnalysisModal({ matchId, matchName, isOpen, onClose }: Matc
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-slate-800 text-xs text-slate-300 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity w-64 pointer-events-none z-50">
                         {globalScoreExplanation}
                         <div className="mt-2 text-xs">
-                          <div className="text-green-400">7+ = STRONG BET</div>
+                          <div className="text-green-400">70+ = EXCELLENT</div>
                           <div className="text-blue-400">5-7 = CONSIDER</div>
                           <div className="text-yellow-400">3-5 = CAUTION</div>
                           <div className="text-red-400">&lt;3 = NEUTRAL</div>
@@ -215,15 +215,6 @@ export function MatchAnalysisModal({ matchId, matchName, isOpen, onClose }: Matc
                   </div>
                 </div>
                 <div className="mt-4">
-                  <Badge className={`${getRecommendationColor(data.global_score.recommendation)} text-lg px-4 py-2`}>
-                    {data.global_score.recommendation === 'STRONG BET' && <CheckCircle2 className="w-5 h-5 mr-2" />}
-                    {data.global_score.recommendation === 'CAUTION' && <AlertTriangle className="w-5 h-5 mr-2" />}
-                    {data.global_score.recommendation === 'CONSIDER' && <TrendingUp className="w-5 h-5 mr-2" />}
-                    {data.global_score.recommendation}
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
 
 
             {/* Agents Grid */}
