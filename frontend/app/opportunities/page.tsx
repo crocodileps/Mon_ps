@@ -148,6 +148,58 @@ const getDateKey = (dateInput: string | Date) => {
   }
 }
 
+
+// Elite Stars Badge System V2.0
+const getEliteStarBadge = (patronLabel: string) => {
+  const scoreMap: Record<string, number> = {
+    'PRUDENCE': 85,
+    'ANALYSER': 50,
+    'EVITER': 20
+  }
+  
+  const score = scoreMap[patronLabel] || 50
+  
+  let stars = ''
+  let emoji = ''
+  let label = ''
+  let colorClass = ''
+  let bgClass = ''
+  
+  if (score >= 80) {
+    stars = '⭐⭐⭐⭐⭐'
+    emoji = '💎'
+    label = 'ELITE'
+    colorClass = 'text-yellow-400'
+    bgClass = 'bg-yellow-500/10 border-yellow-500/30 shadow-lg shadow-yellow-900/20'
+  } else if (score >= 60) {
+    stars = '⭐⭐⭐⭐☆'
+    emoji = '⚡'
+    label = 'PRIME'
+    colorClass = 'text-green-400'
+    bgClass = 'bg-green-500/10 border-green-500/30 shadow-lg shadow-green-900/20'
+  } else if (score >= 40) {
+    stars = '⭐⭐⭐☆☆'
+    emoji = '🎯'
+    label = 'STANDARD'
+    colorClass = 'text-yellow-500'
+    bgClass = 'bg-yellow-500/10 border-yellow-500/30'
+  } else if (score >= 20) {
+    stars = '⭐⭐☆☆☆'
+    emoji = '⚠️'
+    label = 'RISKY'
+    colorClass = 'text-orange-400'
+    bgClass = 'bg-orange-500/10 border-orange-500/30'
+  } else {
+    stars = '⭐☆☆☆☆'
+    emoji = '❌'
+    label = 'AVOID'
+    colorClass = 'text-red-400'
+    bgClass = 'bg-red-500/10 border-red-500/30 shadow-lg shadow-red-900/20'
+  }
+  
+  return { stars, emoji, label, score, colorClass, bgClass }
+}
+
 export default function OpportunitiesPage() {
   const [categoryFilter, setCategoryFilter] = useState<string>('all')
   const [leagueFilter, setLeagueFilter] = useState<string>('all') 
@@ -223,6 +275,7 @@ const timeA = new Date(a.commence_time).getTime()
       return timeA - timeB  // Tri ascendant (plus proche en premier)
     })
 
+
     return res
   }, [rawOpportunities, categoryFilter, leagueFilter, bookmakerFilter, minEdge, dateFilter])
 
@@ -243,6 +296,39 @@ const timeA = new Date(a.commence_time).getTime()
   const bookmakers = useMemo(() => Array.from(new Set(rawOpportunities.map(o => o.bookmaker_best))).sort(), [rawOpportunities])
   const matchIds = useMemo(() => filteredData.map(opp => opp.match_id), [filteredData])
   const { data: patronScores } = usePatronScores(matchIds)
+
+  // Tri intelligent par risque (utilise Agent Patron)
+  const sortedData = useMemo(() => {
+    if (dateFilter !== 'risk_asc') {
+      return filteredData
+    }
+    
+    return [...filteredData].sort((a, b) => {
+      let riskA = 50, riskB = 50
+      
+      // 1. PRIORITÉ : Score Agent Patron
+      const patronA = patronScores?.[a.match_id]?.label || 'ANALYSER'
+      const patronB = patronScores?.[b.match_id]?.label || 'ANALYSER'
+      
+      if (patronA === 'PRUDENCE') riskA = 20
+      else if (patronA === 'EVITER') riskA = 80
+      
+      if (patronB === 'PRUDENCE') riskB = 20
+      else if (patronB === 'EVITER') riskB = 80
+      
+      // 2. Ajustements secondaires
+      if (a.edge_pct > 200) riskA += 15
+      if (a.outcome === 'draw') riskA += 8
+      if (a.best_odds > 10) riskA += 12
+      
+      if (b.edge_pct > 200) riskB += 15
+      if (b.outcome === 'draw') riskB += 8
+      if (b.best_odds > 10) riskB += 12
+      
+      return riskA - riskB
+    })
+  }, [filteredData, patronScores, dateFilter])
+
 
   return (
     <div className="space-y-6">
@@ -345,6 +431,7 @@ const timeA = new Date(a.commence_time).getTime()
               <option value="today">Aujourd'hui</option>
               <option value="tomorrow">Demain</option>
               <option value="week">Cette semaine</option>
+              <option value="risk_asc">🎯 Moins risqué d'abord</option>
             </select>
           </div>
         </div>
@@ -373,7 +460,7 @@ const timeA = new Date(a.commence_time).getTime()
             </TableHeader>
             <TableBody>
               {filteredData.length > 0 ? (
-                filteredData.map((opp) => (
+                sortedData.map((opp) => (
                   <TableRow key={opp.id} className="border-slate-800 hover:bg-slate-800/40 transition-colors">
                     <TableCell>
                       <div className="py-1">
@@ -407,11 +494,19 @@ const timeA = new Date(a.commence_time).getTime()
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      {patronScores?.[opp.match_id] ? (
-                        <span className={`font-bold text-xs px-2 py-1 rounded ${patronScores[opp.match_id].color === 'text-red-500' ? 'bg-red-500/10 text-red-400' : 'bg-green-500/10 text-green-400'}`}>
-                          {patronScores[opp.match_id].label}
-                        </span>
-                      ) : (
+                      {patronScores?.[opp.match_id] ? (() => {
+                        const badge = getEliteStarBadge(patronScores[opp.match_id].label)
+                        return (
+                          <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg border backdrop-blur-sm ${badge.bgClass}`}>
+                            <span className="text-base">{badge.emoji}</span>
+                            <span className={`text-xs ${badge.colorClass}`}>{badge.stars}</span>
+                            <span className={`text-[10px] font-bold ${badge.colorClass}`}>{badge.score}</span>
+                            <span className={`text-[9px] font-black tracking-wider ${badge.colorClass}`}>
+                              {badge.label}
+                            </span>
+                          </div>
+                        )
+                      })() : (
                         <span className="text-slate-600 text-xs italic">--</span>
                       )}
                     </TableCell>
