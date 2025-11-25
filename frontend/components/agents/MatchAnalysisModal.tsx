@@ -199,9 +199,9 @@ export function MatchAnalysisModal({ matchId, matchName, isOpen, onClose }: Matc
                         {globalScoreExplanation}
                         <div className="mt-2 text-xs">
                           <div className="text-green-400">70+ = EXCELLENT</div>
-                          <div className="text-blue-400">5-7 = CONSIDER</div>
-                          <div className="text-yellow-400">3-5 = CAUTION</div>
-                          <div className="text-red-400">&lt;3 = NEUTRAL</div>
+                          <div className="text-blue-400">50-70 = RECOMMANDÉ</div>
+                          <div className="text-yellow-400">30-50 = MODÉRÉ</div>
+                          <div className="text-red-400">&lt;30 = RISQUÉ</div>
                         </div>
                       </div>
                     </div>
@@ -211,10 +211,13 @@ export function MatchAnalysisModal({ matchId, matchName, isOpen, onClose }: Matc
                     <p className={`text-4xl font-bold ${getConfidenceColor(data.global_score.average_confidence)}`}>
                       {data.global_score.average_confidence.toFixed(1)}
                     </p>
-                    <p className="text-xs text-slate-400">/ 10</p>
+                    <p className="text-xs text-slate-400">/ 100</p>
                   </div>
                 </div>
                 <div className="mt-4">
+                </div>
+              </CardContent>
+            </Card>
 
 
             {/* Agents Grid */}
