@@ -169,6 +169,28 @@ const calculateLocalBadge = (edge: number, outcome: string, odds: number): numbe
   return Math.max(10, Math.min(90, score))
 }
 
+const getConseilBadge = (outcome: string, homeTeam: string, awayTeam: string) => {
+  const cleanHome = homeTeam.split(' ').slice(0, 2).join(' ').toUpperCase()
+  const cleanAway = awayTeam.split(' ').slice(0, 2).join(' ').toUpperCase()
+  
+  if (outcome === 'home') {
+    return {
+      label: `🏠 ${cleanHome}`,
+      colorClass: 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+    }
+  } else if (outcome === 'away') {
+    return {
+      label: `✈️ ${cleanAway}`,
+      colorClass: 'bg-purple-500/10 text-purple-400 border-purple-500/20'
+    }
+  } else {
+    return {
+      label: '⚖️ MATCH NUL',
+      colorClass: 'bg-slate-500/10 text-slate-400 border-slate-500/20'
+    }
+  }
+}
+
 const getEliteStarBadge = (patronLabel: string | null, localScore?: number) => {
   let score = localScore || 50
   
@@ -512,6 +534,16 @@ const timeA = new Date(a.commence_time).getTime()
                       </Badge>
                     </TableCell>
                     <TableCell>
+                      {(() => {
+                        const conseil = getConseilBadge(opp.outcome, opp.home_team, opp.away_team)
+                        return (
+                          <Badge className={`${conseil.colorClass} border font-medium text-xs`}>
+                            {conseil.label}
+                          </Badge>
+                        )
+                      })()}
+                    </TableCell>
+                    <TableCell className="hidden">
                       <Badge className="bg-blue-500/10 text-blue-400 border border-blue-500/20 font-medium">
                         {opp.outcome === 'draw' ? 'Nul' : opp.outcome === 'home' ? 'Domicile' : 'Extérieur'}
                       </Badge>
