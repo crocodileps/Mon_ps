@@ -27,6 +27,7 @@ import {
 import { HelpCircle } from 'lucide-react';
 import { AgentDetailedAnalysis } from './AgentDetailedAnalysis';
 import { PatronAnalysisCard } from './PatronAnalysisCard'
+import { DiamondSynthesis } from './DiamondSynthesis'
 
 interface AgentAnalysis {
   agent_id: string;
@@ -134,6 +135,9 @@ export function MatchAnalysisModal({ matchId, matchName, isOpen, onClose }: Matc
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold flex items-center gap-3">
             <Brain className="w-7 h-7 text-violet-400" />
+          {/* Diamond Synthesis - Synthèse qualitative GPT-4o */}
+          <DiamondSynthesis matchId={matchId} />
+
             Analyse des Agents ML
           </DialogTitle>
         </DialogHeader>
