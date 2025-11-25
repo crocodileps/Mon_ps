@@ -1051,6 +1051,8 @@ async def analyze_match_with_agents(match_id: str):
     # Agent D - Backtest Engine Ferrari 2.5 (Real Data)
     import psycopg2
     from psycopg2.extras import RealDictCursor
+    import hashlib
+    import json
     import math
 
     ferrari_score_d = 0
@@ -2014,6 +2016,8 @@ async def analyze_conseil_ultim(match_id: str):
     Stratégie Hybrid : Probabilité (40%) + Edge (30%) + Patron (20%) + Liquidité (10%)
     """
     import psycopg2
+    import hashlib
+    import json
     from psycopg2.extras import RealDictCursor
     
     try:
@@ -2044,11 +2048,39 @@ async def analyze_conseil_ultim(match_id: str):
         """, (match_id,))
         
         outcomes_data = cur.fetchall()
+        
+        if not outcomes_data:
+            cur.close()
+            conn.close()
+            return {"error": "Match non trouvé"}
+        
+        # === CACHE INTELLIGENT ===
+        # Créer signature des cotes (hash des moyennes arrondies)
+        cotes_list = sorted(outcomes_data, key=lambda x: x['outcome'])
+        cotes_str = "|".join([f"{o['outcome']}:{round(float(o['avg_cote']), 2)}" for o in cotes_list])
+        current_signature = hashlib.md5(cotes_str.encode()).hexdigest()[:16]
+        
+        # Vérifier si cache existe et est valide
+        cur.execute("""
+            SELECT cached_response, cotes_signature
+            FROM conseil_ultim_history
+            WHERE match_id = %s
+        """, (match_id,))
+        cache_row = cur.fetchone()
+        
+        if cache_row and cache_row['cached_response'] and cache_row['cotes_signature'] == current_signature:
+            # Cache valide ! Cotes inchangées
+            cur.close()
+            conn.close()
+            cached = dict(cache_row['cached_response'])
+            cached['from_cache'] = True
+            cached['cache_signature'] = current_signature
+            return cached
+        
+        # Pas de cache valide - fermer connexion et continuer
         cur.close()
         conn.close()
         
-        if not outcomes_data:
-            return {"error": "Match non trouvé"}
         
         # Obtenir Agent Patron (Variation E = id 6)
         patron_analysis = await analyze_with_patron(match_id, variation_id=6)
@@ -2157,62 +2189,8 @@ async def analyze_conseil_ultim(match_id: str):
         else:
             confiance_label = "FAIBLE"
         
-        # === SAUVEGARDE AUTOMATIQUE DANS HISTORIQUE ===
-        try:
-            conn_save = psycopg2.connect(
-                host='monps_postgres',
-                port=5432,
-                database='monps_db',
-                user='monps_user',
-                password='monps_secure_password_2024'
-            )
-            cur_save = conn_save.cursor()
-            
-            # UPSERT - Insert ou Update si existe déjà
-            cur_save.execute("""
-                INSERT INTO conseil_ultim_history (
-                    match_id, home_team, away_team, sport, commence_time,
-                    recommended_outcome, recommended_label, score, edge_reel,
-                    notre_proba, cote_moyenne, risque, conseil,
-                    patron_score, patron_outcome, status
-                ) VALUES (
-                    %s, %s, %s, %s, NOW(),
-                    %s, %s, %s, %s,
-                    %s, %s, %s, %s,
-                    %s, %s, 'pending'
-                )
-                ON CONFLICT (match_id) DO UPDATE SET
-                    score = EXCLUDED.score,
-                    edge_reel = EXCLUDED.edge_reel,
-                    notre_proba = EXCLUDED.notre_proba,
-                    recommended_outcome = EXCLUDED.recommended_outcome,
-                    recommended_label = EXCLUDED.recommended_label
-            """, (
-                match_id,
-                outcomes_data[0]['home_team'],
-                outcomes_data[0]['away_team'],
-                outcomes_data[0]['sport'],
-                best['outcome'],
-                best['label'],
-                best['score_final'],
-                best['edge_reel'],
-                best['notre_proba'],
-                best['cote_moyenne'],
-                best['risque'],
-                best['conseil'],
-                patron_score,
-                patron_outcome
-            ))
-            
-            conn_save.commit()
-            cur_save.close()
-            conn_save.close()
-        except Exception as save_err:
-            # Ne pas bloquer si erreur de sauvegarde
-            print(f"Erreur sauvegarde historique: {save_err}")
-        
-
-        return {
+        # Construire la réponse
+        response_data = {
             "match_id": match_id,
             "match_info": {
                 "home_team": outcomes_data[0]['home_team'],
@@ -2230,6 +2208,70 @@ async def analyze_conseil_ultim(match_id: str):
                 "predicted_outcome": patron_outcome
             }
         }
+        
+        # === SAUVEGARDE AUTOMATIQUE DANS HISTORIQUE ===
+        try:
+            conn_save = psycopg2.connect(
+                host='monps_postgres',
+                port=5432,
+                database='monps_db',
+                user='monps_user',
+                password='monps_secure_password_2024'
+            )
+            cur_save = conn_save.cursor()
+            
+            # UPSERT - Insert ou Update si existe déjà
+            cur_save.execute("""
+                INSERT INTO conseil_ultim_history (
+                    match_id, home_team, away_team, sport, commence_time,
+                    recommended_outcome, recommended_label, score, edge_reel,
+                    notre_proba, cote_moyenne, risque, conseil,
+                    patron_score, patron_outcome, status,
+                    cotes_signature, cached_response
+                ) VALUES (
+                    %s, %s, %s, %s, NOW(),
+                    %s, %s, %s, %s,
+                    %s, %s, %s, %s,
+                    %s, %s, 'pending',
+                    %s, %s
+                )
+                ON CONFLICT (match_id) DO UPDATE SET
+                    score = EXCLUDED.score,
+                    edge_reel = EXCLUDED.edge_reel,
+                    notre_proba = EXCLUDED.notre_proba,
+                    recommended_outcome = EXCLUDED.recommended_outcome,
+                    recommended_label = EXCLUDED.recommended_label,
+                    cotes_signature = EXCLUDED.cotes_signature,
+                    cached_response = EXCLUDED.cached_response
+            """, (
+                match_id,
+                outcomes_data[0]['home_team'],
+                outcomes_data[0]['away_team'],
+                outcomes_data[0]['sport'],
+                best['outcome'],
+                best['label'],
+                best['score_final'],
+                best['edge_reel'],
+                best['notre_proba'],
+                best['cote_moyenne'],
+                best['risque'],
+                best['conseil'],
+                patron_score,
+                patron_outcome,
+                current_signature,
+                json.dumps(response_data)
+            ))
+            
+            conn_save.commit()
+            cur_save.close()
+            conn_save.close()
+        except Exception as save_err:
+            # Ne pas bloquer si erreur de sauvegarde
+            print(f"Erreur sauvegarde historique: {save_err}")
+        
+
+        response_data['from_cache'] = False
+        return response_data
         
     except Exception as e:
         return {"error": str(e)}
