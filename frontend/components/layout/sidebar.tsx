@@ -36,6 +36,7 @@ export const navItems: NavItem[] = [
   { id: "manual-bets", label: "Paris & CLV", icon: Calculator, href: "/manual-bets" },
   { id: "compare-agents", label: "Comparer", icon: Users2, href: "/agents-comparison" },
   { id: "agent-strategy", label: "Stratégie", icon: Shield, href: "/agents" },
+  { id: "conseil-ultim", label: "Conseil Ultim", icon: Target, href: "/conseil-ultim" },
   { id: "tips", label: "Astuces", icon: Lightbulb, href: "/tips" },
   { id: "analytics", label: "Analytics", icon: BarChart3, href: "/analytics" },
   { id: "settings", label: "Paramètres", icon: Settings, href: "/settings" },

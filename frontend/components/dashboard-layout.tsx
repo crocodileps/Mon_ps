@@ -21,6 +21,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     { href: '/systems', label: 'Systèmes & Combos', icon: Layers },
     { href: '/stats', label: 'Analyse', icon: BarChart3 },
     { href: '/manual-bets', label: 'Paris & CLV', icon: Calculator },
+    { href: '/conseil-ultim', label: 'Conseil Ultim', icon: Activity },
   ]
 
   const settingsItems = [
