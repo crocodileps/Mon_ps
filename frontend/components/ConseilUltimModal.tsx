@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Badge } from '@/components/ui/badge'
 import { RefreshCw, TrendingUp, AlertTriangle } from 'lucide-react'
@@ -30,10 +30,13 @@ export function ConseilUltimModal({ isOpen, onClose, matchId, homeTeam, awayTeam
     setLoading(false)
   }
 
-  // Auto-fetch au montage
-  if (isOpen && !data && !loading) {
-    fetchAnalysis()
-  }
+  // Fetch à chaque changement de matchId
+  useEffect(() => {
+    if (isOpen) {
+      setData(null) // Reset data
+      fetchAnalysis()
+    }
+  }, [matchId, isOpen])
 
   if (loading || !data) {
     return (
