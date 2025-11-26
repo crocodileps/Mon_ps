@@ -954,3 +954,74 @@ async def get_top_predictions(
         }
     except Exception as e:
         return {"error": str(e)}
+
+
+# 🧠 Endpoint pour analyse LLM enrichie
+@router.post("/analyze-llm/{match_id}")
+async def analyze_match_with_llm(match_id: str, data: dict):
+    """Analyse LLM enrichie par données locales"""
+    import httpx
+    import os
+    
+    openai_key = os.getenv("OPENAI_API_KEY")
+    if not openai_key:
+        return {"error": "OpenAI API key not configured", "narrative": None}
+    
+    home_team = data.get("home_team", "Équipe A")
+    away_team = data.get("away_team", "Équipe B")
+    league = data.get("league", "Football")
+    xg_home = data.get("xg_home", 0)
+    xg_away = data.get("xg_away", 0)
+    xg_total = data.get("xg_total", 0)
+    markets = data.get("markets", {})
+    top3 = data.get("top3", [])
+    combos = data.get("combos", [])
+    alerts = data.get("alerts", [])
+    context = data.get("context", "")
+    
+    markets_text = "\n".join([f"- {k}: {v.get('score', 0):.0f}% ({v.get('recommendation', 'N/A')})" for k, v in markets.items() if v and v.get('score', 0) > 0])
+    top3_text = "\n".join([f"  {i+1}. {m.get('name', '')} - {m.get('score', 0):.0f}% : {m.get('reasoning', '')}" for i, m in enumerate(top3)])
+    combos_text = "\n".join([f"  - {c.get('name', '')} ({c.get('confidence', 0):.0f}%): {c.get('reasoning', '')}" for c in combos]) if combos else "Aucun combo détecté"
+    alerts_text = "\n".join([f"  - {a}" for a in alerts]) if alerts else "Aucune alerte"
+    
+    prompt = f"""Tu es un analyste sportif professionnel. Analyse ce match:
+
+MATCH: {home_team} vs {away_team} ({league})
+xG: {home_team} {xg_home:.2f} - {away_team} {xg_away:.2f} (Total: {xg_total:.2f})
+Contexte: {context}
+
+MARCHÉS (13):
+{markets_text}
+
+TOP 3:
+{top3_text}
+
+COMBINÉS:
+{combos_text}
+
+ALERTES:
+{alerts_text}
+
+Génère une analyse narrative complète de 300-400 mots. Structure:
+1. Contexte du match (profil offensif/défensif)
+2. Analyse COMPLÈTE des 13 marchés (BTTS, Over/Under 1.5/2.5/3.5, Double Chance, DNB) avec focus sur les TOP 3
+3. Combinés recommandés
+4. Points de vigilance
+5. VERDICT FINAL: meilleur pari unique + meilleur combo
+
+Style direct, professionnel, avec emojis."""
+
+    try:
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            response = await client.post(
+                "https://api.openai.com/v1/chat/completions",
+                headers={"Authorization": f"Bearer {openai_key}", "Content-Type": "application/json"},
+                json={"model": "gpt-4o-mini", "messages": [{"role": "user", "content": prompt}], "max_tokens": 800, "temperature": 0.7}
+            )
+            if response.status_code == 200:
+                result = response.json()
+                return {"narrative": result["choices"][0]["message"]["content"], "match_id": match_id}
+            else:
+                return {"error": f"OpenAI error: {response.status_code}", "narrative": None}
+    except Exception as e:
+        return {"error": str(e), "narrative": None}
