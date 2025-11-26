@@ -558,7 +558,7 @@ export default function FullGainPage() {
       setError(null);
       setProgress({ current: 0, total: 0 });
       
-      const oppRes = await fetch('http://91.98.131.218:8001/opportunities/opportunities/?limit=200');
+      const oppRes = await fetch('http://91.98.131.218:8001/opportunities/opportunities/?limit=100');
       if (!oppRes.ok) throw new Error(`API Error: ${oppRes.status}`);
       
       const oppData = await oppRes.json();
