@@ -23,7 +23,14 @@ import {
   Activity,
   Layers,
   Search,
-  SlidersHorizontal
+  SlidersHorizontal,
+  Brain,
+  Sparkles,
+  AlertCircle,
+  CheckCircle,
+  XCircle,
+  TrendingDown,
+  Info
 } from 'lucide-react';
 
 // Types
@@ -71,11 +78,19 @@ interface MatchAnalysis {
     };
   };
   generated_at: string;
-  // Extra fields from opportunities
   league?: string;
   commence_time?: string;
-  best_odds_btts?: number;
-  best_odds_over25?: number;
+  // AI Interpretation
+  interpretation?: MatchInterpretation;
+}
+
+interface MatchInterpretation {
+  summary: string;
+  btts_verdict: string;
+  over_verdict: string;
+  best_bet: string;
+  confidence_level: 'HIGH' | 'MEDIUM' | 'LOW';
+  reasoning: string;
 }
 
 interface Opportunity {
@@ -89,6 +104,117 @@ interface Opportunity {
   worst_odds: number;
   edge_pct: number;
 }
+
+// Generate AI Interpretation locally (without external API)
+const generateInterpretation = (analysis: MatchAnalysis): MatchInterpretation => {
+  const bttsScore = analysis.btts.score;
+  const overScore = analysis.over25.score;
+  const totalXG = analysis.poisson.total_xg;
+  const bttsProb = analysis.poisson.btts_prob;
+  const overProb = analysis.poisson.over25_prob;
+  
+  // Determine best bet
+  let bestBet = '';
+  let confidenceLevel: 'HIGH' | 'MEDIUM' | 'LOW' = 'LOW';
+  
+  const maxScore = Math.max(bttsScore, overScore);
+  
+  if (maxScore >= 70) {
+    confidenceLevel = 'HIGH';
+    if (bttsScore > overScore) {
+      bestBet = 'BTTS OUI';
+    } else if (overScore > bttsScore) {
+      bestBet = 'OVER 2.5';
+    } else {
+      bestBet = totalXG > 3 ? 'OVER 2.5' : 'BTTS OUI';
+    }
+  } else if (maxScore >= 55) {
+    confidenceLevel = 'MEDIUM';
+    if (bttsScore >= 55 && overScore >= 55) {
+      bestBet = 'BTTS + OVER 2.5 (Combo)';
+    } else if (bttsScore >= 55) {
+      bestBet = 'BTTS OUI (prudent)';
+    } else {
+      bestBet = 'OVER 2.5 (prudent)';
+    }
+  } else {
+    confidenceLevel = 'LOW';
+    if (bttsScore < 40 && overScore < 40) {
+      bestBet = 'UNDER 2.5 ou BTTS NON';
+    } else {
+      bestBet = 'ÉVITER ce match';
+    }
+  }
+  
+  // Generate BTTS verdict
+  let bttsVerdict = '';
+  if (bttsScore >= 70) {
+    bttsVerdict = `💎 DIAMOND (${bttsScore.toFixed(0)}%) - Les deux équipes devraient marquer`;
+  } else if (bttsScore >= 60) {
+    bttsVerdict = `✅ STRONG (${bttsScore.toFixed(0)}%) - BTTS probable`;
+  } else if (bttsScore >= 50) {
+    bttsVerdict = `📈 POSSIBLE (${bttsScore.toFixed(0)}%) - BTTS incertain`;
+  } else {
+    bttsVerdict = `⏭️ SKIP (${bttsScore.toFixed(0)}%) - BTTS peu probable`;
+  }
+  
+  // Generate Over verdict
+  let overVerdict = '';
+  if (overScore >= 70) {
+    overVerdict = `💎 DIAMOND (${overScore.toFixed(0)}%) - Plus de 2.5 buts très probable`;
+  } else if (overScore >= 60) {
+    overVerdict = `✅ STRONG (${overScore.toFixed(0)}%) - Over 2.5 probable`;
+  } else if (overScore >= 50) {
+    overVerdict = `📈 POSSIBLE (${overScore.toFixed(0)}%) - Over 2.5 incertain`;
+  } else {
+    overVerdict = `⏭️ SKIP (${overScore.toFixed(0)}%) - Under 2.5 plus probable`;
+  }
+  
+  // Generate summary
+  let summary = '';
+  if (totalXG >= 3.5) {
+    summary = `Match à haut potentiel offensif (xG: ${totalXG.toFixed(2)}). `;
+  } else if (totalXG >= 2.8) {
+    summary = `Match équilibré offensivement (xG: ${totalXG.toFixed(2)}). `;
+  } else if (totalXG >= 2.2) {
+    summary = `Match modérément offensif (xG: ${totalXG.toFixed(2)}). `;
+  } else {
+    summary = `Match défensif prévu (xG: ${totalXG.toFixed(2)}). `;
+  }
+  
+  if (bttsProb >= 55 && overProb >= 55) {
+    summary += 'Poisson suggère des buts des deux côtés.';
+  } else if (overProb >= 60) {
+    summary += 'Une équipe devrait dominer offensivement.';
+  } else {
+    summary += 'Match serré avec peu de buts attendus.';
+  }
+  
+  // Generate reasoning
+  const reasons: string[] = [];
+  if (analysis.patron.data_quality.home_stats && analysis.patron.data_quality.away_stats) {
+    reasons.push('Stats complètes disponibles');
+  }
+  if (analysis.patron.data_quality.h2h) {
+    reasons.push('H2H analysé');
+  }
+  if (analysis.btts.factors.form_l5 && analysis.btts.factors.form_l5 >= 60) {
+    reasons.push('Bonne forme récente');
+  }
+  
+  const reasoning = reasons.length > 0 
+    ? `Basé sur: ${reasons.join(', ')}.`
+    : 'Analyse basée sur le modèle Poisson et stats globales.';
+  
+  return {
+    summary,
+    btts_verdict: bttsVerdict,
+    over_verdict: overVerdict,
+    best_bet: bestBet,
+    confidence_level: confidenceLevel,
+    reasoning
+  };
+};
 
 // Animated Counter Component
 const AnimatedCounter = ({ value, suffix = '', prefix = '' }: { value: number; suffix?: string; prefix?: string }) => {
@@ -106,7 +232,7 @@ const AnimatedCounter = ({ value, suffix = '', prefix = '' }: { value: number; s
         setDisplayValue(value);
         clearInterval(timer);
       } else {
-        setDisplayValue(Math.floor(current));
+        setDisplayValue(Math.floor(current * 10) / 10);
       }
     }, duration / steps);
     
@@ -119,17 +245,17 @@ const AnimatedCounter = ({ value, suffix = '', prefix = '' }: { value: number; s
 // Score Badge Component
 const ScoreBadge = ({ score, size = 'md' }: { score: number; size?: 'sm' | 'md' | 'lg' }) => {
   const getColor = () => {
-    if (score >= 75) return 'from-emerald-500 to-cyan-400';
-    if (score >= 65) return 'from-cyan-500 to-blue-400';
-    if (score >= 55) return 'from-yellow-500 to-orange-400';
-    if (score >= 45) return 'from-orange-500 to-red-400';
+    if (score >= 70) return 'from-emerald-500 to-cyan-400';
+    if (score >= 60) return 'from-cyan-500 to-blue-400';
+    if (score >= 50) return 'from-yellow-500 to-orange-400';
+    if (score >= 40) return 'from-orange-500 to-red-400';
     return 'from-red-500 to-pink-400';
   };
   
   const getGlow = () => {
-    if (score >= 75) return 'shadow-emerald-500/50';
-    if (score >= 65) return 'shadow-cyan-500/50';
-    if (score >= 55) return 'shadow-yellow-500/50';
+    if (score >= 70) return 'shadow-emerald-500/50';
+    if (score >= 60) return 'shadow-cyan-500/50';
+    if (score >= 50) return 'shadow-yellow-500/50';
     return 'shadow-red-500/50';
   };
   
@@ -146,6 +272,91 @@ const ScoreBadge = ({ score, size = 'md' }: { score: number; size?: 'sm' | 'md' 
       shadow-lg ${getGlow()}
     `}>
       {score.toFixed(0)}
+    </div>
+  );
+};
+
+// Confidence Badge
+const ConfidenceBadge = ({ level }: { level: 'HIGH' | 'MEDIUM' | 'LOW' }) => {
+  const styles = {
+    HIGH: 'bg-gradient-to-r from-emerald-600 to-cyan-500 text-white',
+    MEDIUM: 'bg-gradient-to-r from-yellow-600 to-orange-500 text-white',
+    LOW: 'bg-slate-700 text-slate-300'
+  };
+  
+  const icons = {
+    HIGH: <Sparkles className="w-3 h-3" />,
+    MEDIUM: <AlertCircle className="w-3 h-3" />,
+    LOW: <XCircle className="w-3 h-3" />
+  };
+  
+  const labels = {
+    HIGH: 'Confiance Élevée',
+    MEDIUM: 'Confiance Moyenne',
+    LOW: 'Confiance Faible'
+  };
+  
+  return (
+    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${styles[level]}`}>
+      {icons[level]}
+      {labels[level]}
+    </span>
+  );
+};
+
+// Interpretation Card Component
+const InterpretationCard = ({ interpretation, totalXG }: { 
+  interpretation: MatchInterpretation; 
+  totalXG: number;
+}) => {
+  return (
+    <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-xl p-4 border border-cyan-500/30 mb-4">
+      <div className="flex items-center gap-2 mb-3">
+        <Brain className="w-5 h-5 text-cyan-400" />
+        <h4 className="text-sm font-semibold text-cyan-400">Analyse Intelligente</h4>
+        <ConfidenceBadge level={interpretation.confidence_level} />
+      </div>
+      
+      {/* Summary */}
+      <p className="text-sm text-slate-300 mb-3">{interpretation.summary}</p>
+      
+      {/* Verdicts */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+        <div className="flex items-center gap-2 text-sm">
+          <Goal className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+          <span className="text-slate-300">{interpretation.btts_verdict}</span>
+        </div>
+        <div className="flex items-center gap-2 text-sm">
+          <TrendingUp className="w-4 h-4 text-blue-400 flex-shrink-0" />
+          <span className="text-slate-300">{interpretation.over_verdict}</span>
+        </div>
+      </div>
+      
+      {/* xG Info */}
+      <div className="flex items-center gap-2 text-sm mb-3">
+        <Target className="w-4 h-4 text-purple-400" />
+        <span className="text-slate-400">Expected Goals:</span>
+        <span className={`font-bold ${totalXG >= 2.8 ? 'text-emerald-400' : totalXG >= 2.2 ? 'text-yellow-400' : 'text-red-400'}`}>
+          {totalXG.toFixed(2)} buts
+        </span>
+      </div>
+      
+      {/* Best Bet Recommendation */}
+      <div className="flex items-center justify-between bg-slate-900/50 rounded-lg p-3">
+        <div className="flex items-center gap-2">
+          <Sparkles className="w-5 h-5 text-yellow-400" />
+          <span className="text-sm text-slate-400">Meilleur pari:</span>
+        </div>
+        <span className={`font-bold text-lg ${
+          interpretation.confidence_level === 'HIGH' ? 'text-emerald-400' :
+          interpretation.confidence_level === 'MEDIUM' ? 'text-yellow-400' : 'text-slate-400'
+        }`}>
+          {interpretation.best_bet}
+        </span>
+      </div>
+      
+      {/* Reasoning */}
+      <p className="text-xs text-slate-500 mt-2 italic">{interpretation.reasoning}</p>
     </div>
   );
 };
@@ -271,7 +482,7 @@ const XGVisual = ({ homeXG, awayXG, homeTeam, awayTeam }: {
       </div>
       <div className="flex justify-center">
         <span className="text-sm font-bold text-white">
-          Total xG: <span className="text-cyan-400">{total.toFixed(2)}</span>
+          Total xG: <span className={`${total >= 2.8 ? 'text-emerald-400' : total >= 2.2 ? 'text-yellow-400' : 'text-red-400'}`}>{total.toFixed(2)}</span>
         </span>
       </div>
     </div>
@@ -330,6 +541,14 @@ const DetailDrawer = ({
             </div>
             
             <div className="p-4 space-y-6">
+              {/* AI Interpretation */}
+              {analysis.interpretation && (
+                <InterpretationCard 
+                  interpretation={analysis.interpretation}
+                  totalXG={analysis.poisson.total_xg}
+                />
+              )}
+              
               {/* xG Visual */}
               <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/50">
                 <h3 className="text-sm font-semibold text-slate-400 mb-3 flex items-center gap-2">
@@ -517,7 +736,7 @@ const DetailDrawer = ({
   );
 };
 
-// Match Row Component (with expansion)
+// Match Row Component (with expansion and interpretation)
 const MatchRow = ({ 
   analysis, 
   onOpenDrawer,
@@ -531,6 +750,7 @@ const MatchRow = ({
 }) => {
   const maxScore = Math.max(analysis.btts.score, analysis.over25.score);
   const interestLevel = analysis.patron.match_interest;
+  const interpretation = analysis.interpretation;
   
   const getInterestColor = () => {
     if (interestLevel.includes('DIAMOND')) return 'border-l-purple-500';
@@ -554,7 +774,7 @@ const MatchRow = ({
         className="p-4 cursor-pointer"
         onClick={onToggleExpand}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           {/* Match Info */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
@@ -569,6 +789,19 @@ const MatchRow = ({
               {analysis.league || 'Football'} • xG: {analysis.poisson.total_xg.toFixed(2)}
             </p>
           </div>
+          
+          {/* Quick Interpretation Badge */}
+          {interpretation && (
+            <div className="hidden md:flex items-center gap-2">
+              <div className={`px-3 py-1 rounded-lg text-xs font-medium ${
+                interpretation.confidence_level === 'HIGH' ? 'bg-emerald-500/20 text-emerald-400' :
+                interpretation.confidence_level === 'MEDIUM' ? 'bg-yellow-500/20 text-yellow-400' :
+                'bg-slate-700 text-slate-400'
+              }`}>
+                {interpretation.best_bet}
+              </div>
+            </div>
+          )}
           
           {/* Scores */}
           <div className="flex items-center gap-4">
@@ -589,6 +822,7 @@ const MatchRow = ({
               <button
                 onClick={(e) => { e.stopPropagation(); onOpenDrawer(); }}
                 className="p-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 transition-colors"
+                title="Voir analyse détaillée"
               >
                 <Eye className="w-4 h-4" />
               </button>
@@ -600,7 +834,7 @@ const MatchRow = ({
         </div>
       </div>
       
-      {/* Expanded Content */}
+      {/* Expanded Content with Interpretation */}
       <AnimatePresence>
         {isExpanded && (
           <motion.div
@@ -611,6 +845,26 @@ const MatchRow = ({
             className="overflow-hidden"
           >
             <div className="px-4 pb-4 pt-0 border-t border-slate-700/50">
+              {/* AI Interpretation Mini */}
+              {interpretation && (
+                <div className="mt-4 p-3 bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded-lg border border-cyan-500/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Brain className="w-4 h-4 text-cyan-400" />
+                    <span className="text-sm font-semibold text-cyan-400">Analyse</span>
+                    <ConfidenceBadge level={interpretation.confidence_level} />
+                  </div>
+                  <p className="text-sm text-slate-300 mb-2">{interpretation.summary}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+                    <div className="text-slate-400">{interpretation.btts_verdict}</div>
+                    <div className="text-slate-400">{interpretation.over_verdict}</div>
+                  </div>
+                  <div className="mt-2 flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-yellow-400" />
+                    <span className="text-sm font-bold text-yellow-400">{interpretation.best_bet}</span>
+                  </div>
+                </div>
+              )}
+              
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 {/* Quick Stats */}
                 <div className="space-y-2">
@@ -679,6 +933,7 @@ export default function FullGainPage() {
   const [selectedAnalysis, setSelectedAnalysis] = useState<MatchAnalysis | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
+  const [progress, setProgress] = useState({ current: 0, total: 0 });
   
   // Filters
   const [filters, setFilters] = useState({
@@ -687,7 +942,6 @@ export default function FullGainPage() {
     league: 'all',
     search: ''
   });
-  const [showFilters, setShowFilters] = useState(false);
   
   // Stats
   const [stats, setStats] = useState({
@@ -698,52 +952,86 @@ export default function FullGainPage() {
     avgOver: 0
   });
   
-  // Fetch opportunities and analyze them
+  // Fetch ALL opportunities and analyze them
   const fetchAnalyses = useCallback(async () => {
     try {
-      // Get opportunities first
-      const oppRes = await fetch('http://91.98.131.218:8001/opportunities/opportunities/?limit=30');
+      setProgress({ current: 0, total: 0 });
+      
+      // Get ALL opportunities (limit 200)
+      const oppRes = await fetch('http://91.98.131.218:8001/opportunities/opportunities/?limit=200');
       const opportunities: Opportunity[] = await oppRes.json();
       
-      // Analyze each match
-      const analysesPromises = opportunities.slice(0, 20).map(async (opp) => {
-        try {
-          const res = await fetch(`http://91.98.131.218:8001/patron-diamond/analyze/${opp.match_id}`);
-          if (!res.ok) return null;
-          const analysis = await res.json();
-          return {
-            ...analysis,
-            league: opp.sport?.replace('soccer_', '').replace(/_/g, ' ').toUpperCase()
-          };
-        } catch {
-          return null;
-        }
-      });
+      // Remove duplicates based on match_id
+      const uniqueOpportunities = opportunities.filter((opp, index, self) =>
+        index === self.findIndex(o => o.match_id === opp.match_id)
+      );
       
-      const results = await Promise.all(analysesPromises);
-      const validAnalyses = results.filter(Boolean) as MatchAnalysis[];
+      setProgress({ current: 0, total: uniqueOpportunities.length });
+      
+      // Analyze each match (batch processing)
+      const batchSize = 10;
+      const allAnalyses: MatchAnalysis[] = [];
+      
+      for (let i = 0; i < uniqueOpportunities.length; i += batchSize) {
+        const batch = uniqueOpportunities.slice(i, i + batchSize);
+        
+        const batchResults = await Promise.all(
+          batch.map(async (opp) => {
+            try {
+              const res = await fetch(`http://91.98.131.218:8001/patron-diamond/analyze/${opp.match_id}`);
+              if (!res.ok) return null;
+              const analysis = await res.json();
+              
+              // Add interpretation
+              const interpretation = generateInterpretation(analysis);
+              
+              return {
+                ...analysis,
+                league: opp.sport?.replace('soccer_', '').replace(/_/g, ' ').toUpperCase(),
+                interpretation
+              };
+            } catch {
+              return null;
+            }
+          })
+        );
+        
+        const validResults = batchResults.filter(Boolean) as MatchAnalysis[];
+        allAnalyses.push(...validResults);
+        
+        setProgress({ current: i + batch.length, total: uniqueOpportunities.length });
+        
+        // Small delay between batches to avoid overloading
+        if (i + batchSize < uniqueOpportunities.length) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+      }
       
       // Sort by max score
-      validAnalyses.sort((a, b) => {
+      allAnalyses.sort((a, b) => {
         const maxA = Math.max(a.btts.score, a.over25.score);
         const maxB = Math.max(b.btts.score, b.over25.score);
         return maxB - maxA;
       });
       
-      setAnalyses(validAnalyses);
+      setAnalyses(allAnalyses);
       
       // Calculate stats
-      const diamond = validAnalyses.filter(a => 
-        a.btts.recommendation.includes('DIAMOND') || a.over25.recommendation.includes('DIAMOND')
+      const diamond = allAnalyses.filter(a => 
+        a.btts.score >= 70 || a.over25.score >= 70
       ).length;
-      const strong = validAnalyses.filter(a => 
-        a.btts.recommendation.includes('STRONG') || a.over25.recommendation.includes('STRONG')
+      const strong = allAnalyses.filter(a => 
+        (a.btts.score >= 60 && a.btts.score < 70) || (a.over25.score >= 60 && a.over25.score < 70)
       ).length;
-      const avgBtts = validAnalyses.reduce((acc, a) => acc + a.btts.score, 0) / validAnalyses.length;
-      const avgOver = validAnalyses.reduce((acc, a) => acc + a.over25.score, 0) / validAnalyses.length;
+      const avgBtts = allAnalyses.length > 0 
+        ? allAnalyses.reduce((acc, a) => acc + a.btts.score, 0) / allAnalyses.length 
+        : 0;
+      const avgOver = allAnalyses.length > 0 
+        ? allAnalyses.reduce((acc, a) => acc + a.over25.score, 0) / allAnalyses.length 
+        : 0;
       
       setStats({
-        total: validAnalyses.length,
+        total: allAnalyses.length,
         diamond,
         strong,
         avgBtts,
@@ -764,6 +1052,7 @@ export default function FullGainPage() {
   
   const handleRefresh = () => {
     setRefreshing(true);
+    setLoading(true);
     fetchAnalyses();
   };
   
@@ -789,8 +1078,8 @@ export default function FullGainPage() {
     const maxScore = Math.max(a.btts.score, a.over25.score);
     if (maxScore < filters.minScore) return false;
     
-    if (filters.market === 'btts' && a.btts.score < 55) return false;
-    if (filters.market === 'over25' && a.over25.score < 55) return false;
+    if (filters.market === 'btts' && a.btts.score < 50) return false;
+    if (filters.market === 'over25' && a.over25.score < 50) return false;
     
     if (filters.search) {
       const search = filters.search.toLowerCase();
@@ -835,6 +1124,27 @@ export default function FullGainPage() {
             </button>
           </div>
         </motion.div>
+        
+        {/* Progress Bar (during loading) */}
+        {loading && progress.total > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mb-6"
+          >
+            <div className="flex items-center justify-between text-sm text-slate-400 mb-2">
+              <span>Analyse en cours...</span>
+              <span>{progress.current} / {progress.total} matchs</span>
+            </div>
+            <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${(progress.current / progress.total) * 100}%` }}
+                className="h-full bg-gradient-to-r from-cyan-500 to-purple-500"
+              />
+            </div>
+          </motion.div>
+        )}
         
         {/* Stats Cards */}
         <motion.div
@@ -938,15 +1248,34 @@ export default function FullGainPage() {
               <option value={0}>All Scores</option>
               <option value={50}>Score ≥ 50</option>
               <option value={60}>Score ≥ 60</option>
-              <option value={70}>Score ≥ 70</option>
+              <option value={70}>Score ≥ 70 (Diamond)</option>
             </select>
             
+            {/* Info Button */}
             <button
-              onClick={() => setShowFilters(!showFilters)}
+              onClick={() => alert(`
+📊 GUIDE FULL GAIN 2.0
+
+🎯 SCORES:
+- 70+ = 💎 DIAMOND PICK (Très forte conviction)
+- 60-69 = ✅ STRONG BET (Bonne opportunité)
+- 50-59 = 📈 POSSIBLE (Incertain)
+- <50 = ⏭️ SKIP (Éviter)
+
+🧮 CALCUL:
+- Poisson Model (35-40%)
+- Stats Globales (25%)
+- Forme L5 (15%)
+- Head to Head (15-25%)
+
+💡 CONSEIL:
+Cliquez sur 👁️ pour voir l'analyse complète!
+              `)}
               className="p-2 bg-slate-800/50 border border-slate-700/50 rounded-lg 
                          text-slate-400 hover:text-white transition-colors"
+              title="Guide d'utilisation"
             >
-              <SlidersHorizontal className="w-5 h-5" />
+              <Info className="w-5 h-5" />
             </button>
           </div>
         </motion.div>
@@ -962,6 +1291,11 @@ export default function FullGainPage() {
             <div className="flex flex-col items-center justify-center py-20">
               <RefreshCw className="w-10 h-10 text-cyan-400 animate-spin mb-4" />
               <p className="text-slate-400">Analyzing matches...</p>
+              {progress.total > 0 && (
+                <p className="text-sm text-slate-500 mt-2">
+                  {progress.current} / {progress.total} matchs analysés
+                </p>
+              )}
             </div>
           ) : filteredAnalyses.length === 0 ? (
             <div className="text-center py-20">
@@ -974,7 +1308,7 @@ export default function FullGainPage() {
                 key={analysis.match_id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.05 }}
+                transition={{ delay: Math.min(idx * 0.02, 0.5) }}
               >
                 <MatchRow
                   analysis={analysis}
