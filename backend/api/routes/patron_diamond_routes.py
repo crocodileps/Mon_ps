@@ -430,6 +430,42 @@ async def analyze_match_diamond(
         
         over_reasoning = f"Over 2.5 {'probable' if over_score >= 55 else 'incertain'} ({over_score:.0f}%). "
         over_reasoning += f"xG: {total_xg:.2f}, Poisson: {poisson['over25_prob']}%."
+
+        # ========== BTTS NO ANALYSIS ==========
+        btts_no_score = 100 - btts_score
+        btts_no_recommendation = get_recommendation(btts_no_score, btts_confidence)
+        btts_no_value = "N/A"  # Odds à ajouter plus tard
+        btts_no_kelly = 0
+        btts_no_reasoning = f"BTTS No {'probable' if btts_no_score >= 55 else 'incertain'} ({btts_no_score:.0f}%). Inverse de BTTS Yes."
+
+        # ========== UNDER 2.5 ANALYSIS ==========
+        under25_score = 100 - over_score
+        under25_recommendation = get_recommendation(under25_score, over_confidence)
+        under25_value = "N/A"
+        under25_kelly = 0
+        under25_reasoning = f"Under 2.5 {'probable' if under25_score >= 55 else 'incertain'} ({under25_score:.0f}%). xG: {total_xg:.2f}."
+
+        # ========== DOUBLE CHANCE ANALYSIS ==========
+        dc_1x_score = poisson['double_chance']['1x']
+        dc_x2_score = poisson['double_chance']['x2']
+        dc_12_score = poisson['double_chance']['12']
+        
+        dc_confidence = 40
+        if home_stats: dc_confidence += 20
+        if away_stats: dc_confidence += 20
+        if h2h: dc_confidence += 20
+
+        dc_1x_recommendation = get_recommendation(dc_1x_score, dc_confidence)
+        dc_x2_recommendation = get_recommendation(dc_x2_score, dc_confidence)
+        dc_12_recommendation = get_recommendation(dc_12_score, dc_confidence)
+
+        # ========== DRAW NO BET ANALYSIS ==========
+        dnb_home_score = poisson['draw_no_bet']['home']
+        dnb_away_score = poisson['draw_no_bet']['away']
+        
+        dnb_home_recommendation = get_recommendation(dnb_home_score, dc_confidence)
+        dnb_away_recommendation = get_recommendation(dnb_away_score, dc_confidence)
+
         
         # ========== PATRON SCORE ==========
         patron_score = (btts_score + over_score) / 2
@@ -501,6 +537,49 @@ async def analyze_match_diamond(
                 "factors": {k: round(v, 1) if isinstance(v, float) else v 
                            for k, v in over_factors.items()},
                 "reasoning": over_reasoning
+            },
+            "btts_no": {
+                "score": round(btts_no_score, 1),
+                "probability": poisson['btts_no_prob'],
+                "recommendation": btts_no_recommendation,
+                "confidence": btts_confidence,
+                "reasoning": btts_no_reasoning
+            },
+            "under25": {
+                "score": round(under25_score, 1),
+                "probability": poisson['under25_prob'],
+                "recommendation": under25_recommendation,
+                "confidence": over_confidence,
+                "reasoning": under25_reasoning
+            },
+            "double_chance": {
+                "1x": {
+                    "score": round(dc_1x_score, 1),
+                    "recommendation": dc_1x_recommendation,
+                    "confidence": dc_confidence
+                },
+                "x2": {
+                    "score": round(dc_x2_score, 1),
+                    "recommendation": dc_x2_recommendation,
+                    "confidence": dc_confidence
+                },
+                "12": {
+                    "score": round(dc_12_score, 1),
+                    "recommendation": dc_12_recommendation,
+                    "confidence": dc_confidence
+                }
+            },
+            "draw_no_bet": {
+                "home": {
+                    "score": round(dnb_home_score, 1),
+                    "recommendation": dnb_home_recommendation,
+                    "confidence": dc_confidence
+                },
+                "away": {
+                    "score": round(dnb_away_score, 1),
+                    "recommendation": dnb_away_recommendation,
+                    "confidence": dc_confidence
+                }
             },
             
             "patron": {
