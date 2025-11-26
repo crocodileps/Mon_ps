@@ -464,13 +464,101 @@ async def analyze_match_diamond(
         dnb_away_score = poisson['draw_no_bet']['away']
         
         dnb_home_recommendation = get_recommendation(dnb_home_score, dc_confidence)
+
+        # ========== OVER 1.5 ANALYSIS ==========
+        over15_score = poisson['over15_prob'] * 0.40
+        xg15_factor = min(100, max(0, (total_xg - 1.5) * 50 + 50))
+        over15_score += xg15_factor * 0.30
+        if home_stats and away_stats:
+            home_avg = safe_float(home_stats.get('avg_goals_scored'), 1.5)
+            away_avg = safe_float(away_stats.get('avg_goals_scored'), 1.0)
+            avg_goals = home_avg + away_avg
+            over15_score += min(100, avg_goals * 25) * 0.30
+        else:
+            over15_score += 50 * 0.30
+        over15_score = max(0, min(100, over15_score))
+        over15_recommendation = get_recommendation(over15_score, over_confidence)
+        over15_reasoning = f"Over 1.5 {'probable' if over15_score >= 55 else 'incertain'} ({over15_score:.0f}%). xG: {total_xg:.2f}."
+
+        # ========== UNDER 1.5 ANALYSIS ==========
+        under15_score = 100 - over15_score
+        under15_recommendation = get_recommendation(under15_score, over_confidence)
+        under15_reasoning = f"Under 1.5 {'probable' if under15_score >= 55 else 'incertain'} ({under15_score:.0f}%). Inverse Over 1.5."
+
+        # ========== OVER 3.5 ANALYSIS ==========
+        over35_score = poisson['over35_prob'] * 0.45
+        xg35_factor = min(100, max(0, (total_xg - 3.5) * 40 + 30))
+        over35_score += xg35_factor * 0.35
+        if home_stats and away_stats:
+            home_high = safe_float(home_stats.get('over_25_pct'), 50)
+            away_high = safe_float(away_stats.get('over_25_pct'), 50)
+            high_scoring = (home_high + away_high) / 2
+            over35_score += high_scoring * 0.20
+        else:
+            over35_score += 40 * 0.20
+        over35_score = max(0, min(100, over35_score))
+        over35_recommendation = get_recommendation(over35_score, over_confidence)
+        over35_reasoning = f"Over 3.5 {'probable' if over35_score >= 55 else 'incertain'} ({over35_score:.0f}%). xG: {total_xg:.2f}."
+
+        # ========== UNDER 3.5 ANALYSIS ==========
+        under35_score = 100 - over35_score
+        under35_recommendation = get_recommendation(under35_score, over_confidence)
+        under35_reasoning = f"Under 3.5 {'probable' if under35_score >= 55 else 'incertain'} ({under35_score:.0f}%). Inverse Over 3.5."
+
+        # ========== ENRICHIR DC avec stats ==========
+        if home_stats and away_stats:
+            home_win_pct = safe_float(home_stats.get('home_win_pct'), 40)
+            away_win_pct = safe_float(away_stats.get('away_win_pct'), 30)
+            home_draw_pct = safe_float(home_stats.get('draw_pct'), 25)
+            away_draw_pct = safe_float(away_stats.get('draw_pct'), 25)
+            # Enrichir DC 1X
+            dc_1x_score = dc_1x_score * 0.50 + (home_win_pct + home_draw_pct) * 0.50
+            # Enrichir DC X2
+            dc_x2_score = dc_x2_score * 0.50 + (away_win_pct + away_draw_pct) * 0.50
+            # Enrichir DC 12
+            dc_12_score = dc_12_score * 0.50 + (home_win_pct + away_win_pct) * 0.50
+            dc_1x_score = max(0, min(100, dc_1x_score))
+            dc_x2_score = max(0, min(100, dc_x2_score))
+            dc_12_score = max(0, min(100, dc_12_score))
+        # Recalculer recommandations DC
+        dc_1x_recommendation = get_recommendation(dc_1x_score, dc_confidence)
+        dc_x2_recommendation = get_recommendation(dc_x2_score, dc_confidence)
+        dc_12_recommendation = get_recommendation(dc_12_score, dc_confidence)
+
+        # ========== ENRICHIR DNB avec stats ==========
+        if home_stats and away_stats:
+            dnb_home_score = dnb_home_score * 0.50 + home_win_pct * 0.50
+            dnb_away_score = dnb_away_score * 0.50 + away_win_pct * 0.50
+            dnb_home_score = max(0, min(100, dnb_home_score))
+            dnb_away_score = max(0, min(100, dnb_away_score))
+        # Recalculer recommandations DNB
+        dnb_home_recommendation = get_recommendation(dnb_home_score, dc_confidence)
         dnb_away_recommendation = get_recommendation(dnb_away_score, dc_confidence)
 
+        # ========== BEST/WORST MARKET ==========
+        all_markets = [
+            ('btts', btts_score, btts_recommendation),
+            ('btts_no', btts_no_score, btts_no_recommendation),
+            ('over15', over15_score, over15_recommendation),
+            ('under15', under15_score, under15_recommendation),
+            ('over25', over_score, over_recommendation),
+            ('under25', under25_score, under25_recommendation),
+            ('over35', over35_score, over35_recommendation),
+            ('under35', under35_score, under35_recommendation),
+            ('dc_1x', dc_1x_score, dc_1x_recommendation),
+            ('dc_x2', dc_x2_score, dc_x2_recommendation),
+            ('dc_12', dc_12_score, dc_12_recommendation),
+            ('dnb_home', dnb_home_score, dnb_home_recommendation),
+            ('dnb_away', dnb_away_score, dnb_away_recommendation),
+        ]
+        best_market = max(all_markets, key=lambda x: x[1])
+        worst_market = min(all_markets, key=lambda x: x[1])
+
+        # ========== PATRON SCORE AMÉLIORÉ ==========
+        all_scores = [m[1] for m in all_markets]
+        patron_score = sum(all_scores) / len(all_scores)
         
-        # ========== PATRON SCORE ==========
-        patron_score = (btts_score + over_score) / 2
-        
-        max_score = max(btts_score, over_score)
+        max_score = max(all_scores)
         if max_score >= 70:
             match_interest = "💎 DIAMOND MATCH"
         elif max_score >= 60:
@@ -582,6 +670,44 @@ async def analyze_match_diamond(
                 }
             },
             
+            "over15": {
+                "score": round(over15_score, 1),
+                "probability": poisson['over15_prob'],
+                "recommendation": over15_recommendation,
+                "confidence": over_confidence,
+                "reasoning": over15_reasoning
+            },
+            "under15": {
+                "score": round(under15_score, 1),
+                "probability": poisson['under15_prob'],
+                "recommendation": under15_recommendation,
+                "confidence": over_confidence,
+                "reasoning": under15_reasoning
+            },
+            "over35": {
+                "score": round(over35_score, 1),
+                "probability": poisson['over35_prob'],
+                "recommendation": over35_recommendation,
+                "confidence": over_confidence,
+                "reasoning": over35_reasoning
+            },
+            "under35": {
+                "score": round(under35_score, 1),
+                "probability": poisson['under35_prob'],
+                "recommendation": under35_recommendation,
+                "confidence": over_confidence,
+                "reasoning": under35_reasoning
+            },
+            "best_market": {
+                "type": best_market[0],
+                "score": round(best_market[1], 1),
+                "recommendation": best_market[2]
+            },
+            "worst_market": {
+                "type": worst_market[0],
+                "score": round(worst_market[1], 1),
+                "recommendation": worst_market[2]
+            },
             "patron": {
                 "score": round(patron_score, 1),
                 "match_interest": match_interest,
