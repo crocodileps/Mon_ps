@@ -26,200 +26,6 @@ import {
   MessageSquare
 } from 'lucide-react';
 
-
-// 📊 Market display names - Noms clairs pour tous les marchés
-const MARKET_LABELS: Record<string, string> = {
-  'BTTS': 'BTTS Oui',
-  'BTTS No': 'BTTS Non',
-  'O1.5': 'Over 1.5',
-  'U1.5': 'Under 1.5',
-  'O2.5': 'Over 2.5',
-  'U2.5': 'Under 2.5',
-  'O3.5': 'Over 3.5',
-  'U3.5': 'Under 3.5',
-  'DC 1X': 'Dom/Nul',
-  'DC X2': 'Nul/Ext',
-  'DC 12': 'Dom/Ext',
-  'DNB H': 'Dom (0 si nul)',
-  'DNB A': 'Ext (0 si nul)',
-};
-
-// 🏆 ANALYSE SMART 2.0 - Analyse complète des 13 marchés avec détection de combinés
-const generateSmartAnalysis = (analysis: MatchAnalysis): {
-  context: string;
-  top3: Array<{name: string; score: number; reasoning: string}>;
-  combos: Array<{name: string; markets: string[]; confidence: number; reasoning: string}>;
-  alerts: string[];
-  bestBet: string;
-  worstBet: string;
-} => {
-  const totalXG = analysis.poisson.total_xg;
-  const homeXG = analysis.poisson.home_xg;
-  const awayXG = analysis.poisson.away_xg;
-  const xgDiff = Math.abs(homeXG - awayXG);
-  
-  // Scores des marchés
-  const btts = analysis.btts?.score || 0;
-  const bttsNo = analysis.btts_no?.score || 0;
-  const o15 = analysis.over15?.score || 0;
-  const u15 = analysis.under15?.score || 0;
-  const o25 = analysis.over25?.score || 0;
-  const u25 = analysis.under25?.score || 0;
-  const o35 = analysis.over35?.score || 0;
-  const u35 = analysis.under35?.score || 0;
-  const dc1x = analysis.double_chance?.['1x']?.score || 0;
-  const dcx2 = analysis.double_chance?.['x2']?.score || 0;
-  const dc12 = analysis.double_chance?.['12']?.score || 0;
-  const dnbH = analysis.draw_no_bet?.home?.score || 0;
-  const dnbA = analysis.draw_no_bet?.away?.score || 0;
-  
-  const home1x2 = analysis.poisson['1x2']?.home || 0;
-  const draw1x2 = analysis.poisson['1x2']?.draw || 0;
-  const away1x2 = analysis.poisson['1x2']?.away || 0;
-  
-  // 📊 CONTEXTE DU MATCH
-  let context = '';
-  if (totalXG >= 3.5) {
-    context = `🔥 Match EXPLOSIF (${totalXG.toFixed(2)} xG) - Fort potentiel offensif.`;
-  } else if (totalXG >= 2.8) {
-    context = `⚽ Match OFFENSIF (${totalXG.toFixed(2)} xG) - Buts attendus.`;
-  } else if (totalXG >= 2.2) {
-    context = `📊 Match ÉQUILIBRÉ (${totalXG.toFixed(2)} xG) - Issue incertaine.`;
-  } else if (totalXG >= 1.5) {
-    context = `🛡️ Match FERMÉ (${totalXG.toFixed(2)} xG) - Défenses solides.`;
-  } else {
-    context = `🔒 Match TRÈS DÉFENSIF (${totalXG.toFixed(2)} xG) - Peu de buts.`;
-  }
-  
-  // Domination
-  if (xgDiff >= 1.5) {
-    const dom = homeXG > awayXG ? analysis.home_team : analysis.away_team;
-    context += ` ${dom} DOMINE nettement.`;
-  } else if (xgDiff >= 0.8) {
-    const dom = homeXG > awayXG ? analysis.home_team : analysis.away_team;
-    context += ` Léger avantage ${dom}.`;
-  } else {
-    context += ` Match très serré.`;
-  }
-
-  // 🏆 TOP 3 MARCHÉS avec reasoning
-  const allMarkets = [
-    { name: 'BTTS Oui', score: btts, reasoning: btts >= 65 ? 'Deux équipes offensives' : btts >= 50 ? 'Possible mais risqué' : 'Défenses solides' },
-    { name: 'BTTS Non', score: bttsNo, reasoning: bttsNo >= 65 ? 'Une équipe ne marquera pas' : 'Incertain' },
-    { name: 'Over 1.5', score: o15, reasoning: o15 >= 70 ? 'Quasi-certain, au moins 2 buts' : 'Probable' },
-    { name: 'Under 1.5', score: u15, reasoning: u15 >= 50 ? 'Match très fermé possible' : 'Peu probable' },
-    { name: 'Over 2.5', score: o25, reasoning: o25 >= 65 ? 'Match ouvert, 3+ buts attendus' : o25 >= 50 ? 'Possible' : 'Défensif' },
-    { name: 'Under 2.5', score: u25, reasoning: u25 >= 60 ? 'Match fermé prévu' : 'Risqué' },
-    { name: 'Over 3.5', score: o35, reasoning: o35 >= 50 ? 'Festival de buts possible' : 'Ambitieux' },
-    { name: 'Under 3.5', score: u35, reasoning: u35 >= 70 ? 'Très sûr, max 3 buts' : 'Probable' },
-    { name: 'Dom/Nul (1X)', score: dc1x, reasoning: dc1x >= 70 ? `${analysis.home_team} favori ou nul` : 'Risqué' },
-    { name: 'Nul/Ext (X2)', score: dcx2, reasoning: dcx2 >= 70 ? `${analysis.away_team} peut surprendre` : 'Outsider' },
-    { name: 'Dom/Ext (12)', score: dc12, reasoning: dc12 >= 70 ? 'Pas de nul attendu' : 'Nul possible' },
-    { name: 'DNB Dom', score: dnbH, reasoning: dnbH >= 65 ? `${analysis.home_team} gagne ou remboursé` : 'Incertain' },
-    { name: 'DNB Ext', score: dnbA, reasoning: dnbA >= 50 ? `${analysis.away_team} peut gagner` : 'Difficile' },
-  ].filter(m => m.score > 0).sort((a, b) => b.score - a.score);
-  
-  const top3 = allMarkets.slice(0, 3);
-
-  // 🎯 DÉTECTION DE COMBINÉS COHÉRENTS
-  const combos: Array<{name: string; markets: string[]; confidence: number; reasoning: string}> = [];
-  
-  // Combo 1: BTTS + Over 2.5 (classique)
-  if (btts >= 60 && o25 >= 60) {
-    const conf = Math.min(btts, o25);
-    combos.push({
-      name: '🔥 BTTS + Over 2.5',
-      markets: ['BTTS Oui', 'Over 2.5'],
-      confidence: conf,
-      reasoning: `Combo classique - Les deux équipes marquent dans un match ouvert (${conf.toFixed(0)}%)`
-    });
-  }
-  
-  // Combo 2: BTTS + Over 1.5 (sécurisé)
-  if (btts >= 55 && o15 >= 75) {
-    const conf = Math.min(btts, o15) - 5;
-    combos.push({
-      name: '✅ BTTS + Over 1.5',
-      markets: ['BTTS Oui', 'Over 1.5'],
-      confidence: conf,
-      reasoning: `Combo sécurisé - Au moins 2 buts avec les deux qui marquent (${conf.toFixed(0)}%)`
-    });
-  }
-  
-  // Combo 3: DC 1X + Under 2.5 (défensif domicile)
-  if (dc1x >= 65 && u25 >= 55 && totalXG < 2.5) {
-    const conf = Math.min(dc1x, u25) - 5;
-    combos.push({
-      name: '🛡️ Dom/Nul + Under 2.5',
-      markets: ['Dom/Nul (1X)', 'Under 2.5'],
-      confidence: conf,
-      reasoning: `${analysis.home_team} tient le résultat dans un match fermé (${conf.toFixed(0)}%)`
-    });
-  }
-  
-  // Combo 4: DC 12 + Over 1.5 (match décisif)
-  if (dc12 >= 70 && o15 >= 80) {
-    const conf = Math.min(dc12, o15) - 10;
-    combos.push({
-      name: '⚡ Pas de Nul + Over 1.5',
-      markets: ['Dom/Ext (12)', 'Over 1.5'],
-      confidence: conf,
-      reasoning: `Un vainqueur clair avec au moins 2 buts (${conf.toFixed(0)}%)`
-    });
-  }
-  
-  // Combo 5: DNB + BTTS (favori offensif)
-  if (dnbH >= 60 && btts >= 55 && homeXG > awayXG + 0.5) {
-    const conf = Math.min(dnbH, btts) - 5;
-    combos.push({
-      name: '💎 DNB Dom + BTTS',
-      markets: ['DNB Dom', 'BTTS Oui'],
-      confidence: conf,
-      reasoning: `${analysis.home_team} gagne dans un match ouvert (${conf.toFixed(0)}%)`
-    });
-  }
-  
-  // Combo 6: Under 3.5 + Over 1.5 (range sécurisé)
-  if (u35 >= 70 && o15 >= 75) {
-    const conf = Math.min(u35, o15) - 5;
-    combos.push({
-      name: '🎯 2-3 Buts (Range)',
-      markets: ['Over 1.5', 'Under 3.5'],
-      confidence: conf,
-      reasoning: `Match avec 2-3 buts attendus - Range optimal (${conf.toFixed(0)}%)`
-    });
-  }
-
-  // Trier les combos par confiance
-  combos.sort((a, b) => b.confidence - a.confidence);
-
-  // ⚠️ ALERTES - Contradictions détectées
-  const alerts: string[] = [];
-  
-  if (btts >= 65 && u15 >= 40) {
-    alerts.push(`⚠️ Contradiction: BTTS élevé (${btts.toFixed(0)}%) mais Under 1.5 notable (${u15.toFixed(0)}%)`);
-  }
-  if (o25 >= 60 && bttsNo >= 55) {
-    alerts.push(`⚠️ Attention: Over 2.5 probable mais BTTS Non aussi (une équipe domine)`);
-  }
-  if (dc1x >= 70 && dcx2 >= 50) {
-    alerts.push(`⚠️ Match incertain malgré les scores DC élevés`);
-  }
-  if (totalXG >= 3.0 && u25 >= 50) {
-    alerts.push(`⚠️ xG élevé (${totalXG.toFixed(2)}) mais Under 2.5 notable - Vérifier les stats défensives`);
-  }
-
-  // 🏆 BEST & WORST
-  const bestBet = top3[0] ? `🏆 ${top3[0].name} (${top3[0].score.toFixed(0)}%) - ${top3[0].reasoning}` : 'Aucun pari clair';
-  const worstMarket = allMarkets[allMarkets.length - 1];
-  const worstBet = worstMarket ? `❌ Éviter: ${worstMarket.name} (${worstMarket.score.toFixed(0)}%)` : '';
-
-  return { context, top3, combos, alerts, bestBet, worstBet };
-};
-
-
-const getMarketLabel = (key: string): string => MARKET_LABELS[key] || key;
-
 // Types
 interface PoissonData {
   home_xg: number;
@@ -695,63 +501,6 @@ const getTop3Markets = (analysis: MatchAnalysis): Array<{name: string; score: nu
 const MatchRow = ({ analysis, onOpenDrawer, isExpanded, onToggleExpand }: { analysis: MatchAnalysis; onOpenDrawer: () => void; isExpanded: boolean; onToggleExpand: () => void }) => {
   const maxScore = Math.max(analysis.btts.score, analysis.over25.score);
   const interpretation = analysis.interpretation;
-  const [selectedMarket, setSelectedMarket] = useState<{key: string; label: string; score: number; rec: string; value: string; kelly: number; matchName: string} | null>(null);
-  const [llmNarrative, setLlmNarrative] = useState<string | null>(null);
-  const [llmLoading, setLlmLoading] = useState(false);
-
-  // 🧠 Fetch LLM analysis when expanded (avec cache)
-  useEffect(() => {
-    if (isExpanded && !llmNarrative && !llmLoading) {
-      const fetchLLMAnalysis = async () => {
-        setLlmLoading(true);
-        try {
-          const smart = generateSmartAnalysis(analysis);
-          const payload = {
-            home_team: analysis.home_team,
-            away_team: analysis.away_team,
-            league: analysis.league || 'Football',
-            xg_home: analysis.poisson.home_xg,
-            xg_away: analysis.poisson.away_xg,
-            xg_total: analysis.poisson.total_xg,
-            context: smart.context,
-            top3: smart.top3,
-            combos: smart.combos,
-            alerts: smart.alerts,
-            markets: {
-              btts: { score: analysis.btts?.score, recommendation: analysis.btts?.recommendation },
-              btts_no: { score: analysis.btts_no?.score, recommendation: analysis.btts_no?.recommendation },
-              over15: { score: analysis.over15?.score, recommendation: analysis.over15?.recommendation },
-              under15: { score: analysis.under15?.score, recommendation: analysis.under15?.recommendation },
-              over25: { score: analysis.over25?.score, recommendation: analysis.over25?.recommendation },
-              under25: { score: analysis.under25?.score, recommendation: analysis.under25?.recommendation },
-              over35: { score: analysis.over35?.score, recommendation: analysis.over35?.recommendation },
-              under35: { score: analysis.under35?.score, recommendation: analysis.under35?.recommendation },
-              dc_1x: { score: analysis.double_chance?.['1x']?.score, recommendation: analysis.double_chance?.['1x']?.recommendation },
-              dc_x2: { score: analysis.double_chance?.['x2']?.score, recommendation: analysis.double_chance?.['x2']?.recommendation },
-              dc_12: { score: analysis.double_chance?.['12']?.score, recommendation: analysis.double_chance?.['12']?.recommendation },
-              dnb_home: { score: analysis.draw_no_bet?.home?.score, recommendation: analysis.draw_no_bet?.home?.recommendation },
-              dnb_away: { score: analysis.draw_no_bet?.away?.score, recommendation: analysis.draw_no_bet?.away?.recommendation },
-            }
-          };
-          const res = await fetch(`http://91.98.131.218:8001/patron-diamond/analyze-llm/${analysis.match_id}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          const data = await res.json();
-          if (data.narrative) {
-            setLlmNarrative(data.narrative);
-          }
-        } catch (err) {
-          console.error('LLM fetch error:', err);
-        } finally {
-          setLlmLoading(false);
-        }
-      };
-      fetchLLMAnalysis();
-    }
-  }, [isExpanded, llmNarrative, llmLoading, analysis]);
-
   
   const getInterestColor = () => {
     if (maxScore >= 70) return 'border-l-purple-500';
@@ -800,85 +549,17 @@ const MatchRow = ({ analysis, onOpenDrawer, isExpanded, onToggleExpand }: { anal
         {isExpanded && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
             <div className="px-4 pb-4 border-t border-slate-700/50">
-              {/* 🏆 ANALYSE SMART 2.0 - 13 Marchés */}
-              {(() => {
-                const smart = generateSmartAnalysis(analysis);
-                return (
-                  <div className="mt-4 space-y-3">
-                    <div className="p-3 bg-gradient-to-r from-slate-800/80 to-slate-900/80 rounded-lg border border-slate-700/50">
-                      <p className="text-sm text-white font-medium">{smart.context}</p>
-                    </div>
-                    
-                    {/* 🧠 Analyse LLM Pro */}
-                    <div className="p-4 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 rounded-lg border border-indigo-500/30">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Brain className="w-4 h-4 text-indigo-400" />
-                        <span className="text-sm font-semibold text-indigo-400">Analyse Pro IA</span>
-                        {llmLoading && <RefreshCw className="w-3 h-3 text-indigo-400 animate-spin" />}
-                      </div>
-                      {llmLoading ? (
-                        <div className="flex items-center gap-2 text-slate-400 text-sm">
-                          <div className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse" />
-                          <span>Génération de l analyse en cours...</span>
-                        </div>
-                      ) : llmNarrative ? (
-                        <div className="text-sm text-slate-300 leading-relaxed whitespace-pre-line">{llmNarrative}</div>
-                      ) : (
-                        <p className="text-sm text-slate-500">Analyse en attente...</p>
-                      )}
-                    </div>
-                    <div className="p-4 bg-gradient-to-r from-emerald-900/30 to-cyan-900/30 rounded-lg border border-emerald-500/30">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Star className="w-4 h-4 text-yellow-400" />
-                        <span className="text-sm font-semibold text-emerald-400">TOP 3 Marchés</span>
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
-                        {smart.top3.map((m, idx) => (
-                          <div key={m.name} className={['p-2 rounded-lg', idx === 0 ? 'bg-yellow-500/20 border border-yellow-500/30' : 'bg-slate-800/50'].join(' ')}>
-                            <div className="flex items-center justify-between">
-                              <span className="text-xs text-slate-400">{idx === 0 ? '🏆' : idx === 1 ? '🥈' : '🥉'} {m.name}</span>
-                              <span className={['font-bold', m.score >= 70 ? 'text-emerald-400' : m.score >= 50 ? 'text-yellow-400' : 'text-red-400'].join(' ')}>{m.score.toFixed(0)}%</span>
-                            </div>
-                            <p className="text-xs text-slate-500 mt-1">{m.reasoning}</p>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="text-sm text-emerald-300 font-medium">{smart.bestBet}</div>
-                      {smart.worstBet && <div className="text-xs text-red-400 mt-1">{smart.worstBet}</div>}
-                    </div>
-                    {smart.combos.length > 0 && (
-                      <div className="p-4 bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-lg border border-purple-500/30">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Zap className="w-4 h-4 text-purple-400" />
-                          <span className="text-sm font-semibold text-purple-400">Combinés Intelligents</span>
-                        </div>
-                        <div className="space-y-2">
-                          {smart.combos.slice(0, 3).map((combo, idx) => (
-                            <div key={combo.name} className={['p-2 rounded-lg', idx === 0 ? 'bg-purple-500/20 border border-purple-500/30' : 'bg-slate-800/30'].join(' ')}>
-                              <div className="flex items-center justify-between">
-                                <span className="text-sm font-medium text-white">{combo.name}</span>
-                                <span className={['text-sm font-bold', combo.confidence >= 65 ? 'text-emerald-400' : 'text-yellow-400'].join(' ')}>{combo.confidence.toFixed(0)}%</span>
-                              </div>
-                              <p className="text-xs text-slate-400 mt-1">{combo.reasoning}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    {smart.alerts.length > 0 && (
-                      <div className="p-3 bg-orange-900/20 rounded-lg border border-orange-500/30">
-                        <div className="flex items-center gap-2 mb-2">
-                          <AlertCircle className="w-4 h-4 text-orange-400" />
-                          <span className="text-xs font-semibold text-orange-400">Alertes</span>
-                        </div>
-                        {smart.alerts.map((alert, idx) => (
-                          <p key={idx} className="text-xs text-orange-300">{alert}</p>
-                        ))}
-                      </div>
-                    )}
+              {/* LLM Analysis - Inline */}
+              {interpretation?.detailed_analysis && (
+                <div className="mt-4 p-4 bg-gradient-to-r from-indigo-900/30 to-purple-900/30 rounded-lg border border-indigo-500/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <MessageSquare className="w-4 h-4 text-indigo-400" />
+                    <span className="text-sm font-semibold text-indigo-400">Analyse IA</span>
+                    <ConfidenceBadge level={interpretation.confidence_level} />
                   </div>
-                );
-              })()}
+                  <p className="text-sm text-slate-300 leading-relaxed">{interpretation.detailed_analysis}</p>
+                </div>
+              )}
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <div className="space-y-2">
@@ -889,17 +570,10 @@ const MatchRow = ({ analysis, onOpenDrawer, isExpanded, onToggleExpand }: { anal
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-xs font-semibold text-slate-500 uppercase">TOP 3 Recommandations</h4>
+                  <h4 className="text-xs font-semibold text-slate-500 uppercase">Recommendations</h4>
                   <div className="space-y-1">
-                    {(() => {
-                      const smart = generateSmartAnalysis(analysis);
-                      return smart.top3.slice(0, 3).map((m, idx) => (
-                        <div key={m.name} className="flex justify-between items-center">
-                          <span className="text-slate-400 text-sm">{idx === 0 ? '🏆' : idx === 1 ? '🥈' : '🥉'} {m.name}</span>
-                          <span className={['text-xs px-2 py-1 rounded font-medium', m.score >= 70 ? 'bg-purple-500/20 text-purple-400' : m.score >= 55 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-yellow-500/20 text-yellow-400'].join(' ')}>{m.score.toFixed(0)}%</span>
-                        </div>
-                      ));
-                    })()}
+                    <div className="flex justify-between items-center"><span className="text-slate-400 text-sm">BTTS</span><RecommendationBadge recommendation={analysis.btts.recommendation} /></div>
+                    <div className="flex justify-between items-center"><span className="text-slate-400 text-sm">Over</span><RecommendationBadge recommendation={analysis.over25.recommendation} /></div>
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -912,125 +586,85 @@ const MatchRow = ({ analysis, onOpenDrawer, isExpanded, onToggleExpand }: { anal
                 </div>
               </div>
 
-              {/* 📊 ANALYSE SMART 2.0 - 13 Markets Grid */}
+              {/* 📊 TOUS LES MARCHÉS - 13 Markets Grid */}
               <div className="mt-4 p-4 bg-slate-900/50 rounded-lg border border-slate-700/30">
                 <h4 className="text-xs font-semibold text-slate-500 uppercase mb-3 flex items-center gap-2">
                   <Layers className="w-4 h-4" />
-                  <span>Analyse Smart 2.0</span>
-                  <span className="text-slate-600">• 13 Marchés</span>
+                  Tous les Marchés (13)
                 </h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
-                  {[
-                    { key: 'btts', label: 'BTTS Oui', data: analysis.btts },
-                    { key: 'btts_no', label: 'BTTS Non', data: analysis.btts_no },
-                    { key: 'over15', label: 'Over 1.5', data: analysis.over15 },
-                    { key: 'under15', label: 'Under 1.5', data: analysis.under15 },
-                    { key: 'over25', label: 'Over 2.5', data: analysis.over25 },
-                    { key: 'under25', label: 'Under 2.5', data: analysis.under25 },
-                    { key: 'over35', label: 'Over 3.5', data: analysis.over35 },
-                    { key: 'under35', label: 'Under 3.5', data: analysis.under35 },
-                    { key: 'dc_1x', label: 'Dom/Nul', data: analysis.double_chance?.['1x'] },
-                    { key: 'dc_x2', label: 'Nul/Ext', data: analysis.double_chance?.['x2'] },
-                    { key: 'dc_12', label: 'Dom/Ext', data: analysis.double_chance?.['12'] },
-                    { key: 'dnb_home', label: 'DNB Dom', data: analysis.draw_no_bet?.home },
-                    { key: 'dnb_away', label: 'DNB Ext', data: analysis.draw_no_bet?.away },
-                  ].map((market) => {
-                    const score = market.data?.score || 0;
-                    const rec = market.data?.recommendation || '-';
-                    const value = market.data?.value_rating || 'N/A';
-                    const kelly = market.data?.kelly_pct || 0;
-                    const isGood = score >= 65;
-                    const isBad = score < 35;
-                    return (
-                      <div
-                        key={market.key}
-                        onClick={() => setSelectedMarket({ ...market, score, rec, value, kelly, odds: market.data?.odds || 0, matchName: `${analysis.home_team} vs ${analysis.away_team}` })}
-                        className={[
-                          'p-2 rounded-lg text-center cursor-pointer transition-all hover:scale-105',
-                          isGood ? 'bg-emerald-900/30 border border-emerald-500/30 hover:border-emerald-400' :
-                          isBad ? 'bg-red-900/20 border border-red-500/20 hover:border-red-400' :
-                          'bg-slate-800/50 border border-slate-700/30 hover:border-cyan-400'
-                        ].join(' ')}
-                      >
-                        <div className="text-xs text-slate-400 flex items-center justify-center gap-1">
-                          {market.label}
-                          {value === '💎 DIAMOND VALUE' && <span title="Diamond Value">💎</span>}
-                          {value === '🔥 STRONG VALUE' && <span title="Strong Value">🔥</span>}
-                        </div>
-                        <div className={['font-bold', isGood ? 'text-emerald-400' : isBad ? 'text-red-400' : 'text-white'].join(' ')}>{score.toFixed(0)}%</div>
-                        <div className={['text-xs', rec === 'DIAMOND PICK' ? 'text-purple-400' : rec === 'STRONG BET' ? 'text-emerald-400' : rec === 'AVOID' ? 'text-red-400' : 'text-slate-500'].join(' ')}>{rec}</div>
-                        {kelly > 0 && <div className="text-xs text-cyan-400 font-medium">K:{kelly.toFixed(1)}%</div>}
-                      </div>
-                    );
-                  })}
+                  {/* BTTS */}
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">BTTS</div>
+                    <div className="font-bold text-white">{analysis.btts?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.btts?.recommendation || '-'}</div>
+                  </div>
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">BTTS No</div>
+                    <div className="font-bold text-white">{analysis.btts_no?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.btts_no?.recommendation || '-'}</div>
+                  </div>
+                  {/* Over/Under */}
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">O1.5</div>
+                    <div className="font-bold text-white">{analysis.over15?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.over15?.recommendation || '-'}</div>
+                  </div>
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">U1.5</div>
+                    <div className="font-bold text-white">{analysis.under15?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.under15?.recommendation || '-'}</div>
+                  </div>
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">O2.5</div>
+                    <div className="font-bold text-white">{analysis.over25?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.over25?.recommendation || '-'}</div>
+                  </div>
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">U2.5</div>
+                    <div className="font-bold text-white">{analysis.under25?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.under25?.recommendation || '-'}</div>
+                  </div>
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">O3.5</div>
+                    <div className="font-bold text-white">{analysis.over35?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.over35?.recommendation || '-'}</div>
+                  </div>
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">U3.5</div>
+                    <div className="font-bold text-white">{analysis.under35?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.under35?.recommendation || '-'}</div>
+                  </div>
+                  {/* Double Chance */}
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">DC 1X</div>
+                    <div className="font-bold text-white">{analysis.double_chance?.['1x']?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.double_chance?.['1x']?.recommendation || '-'}</div>
+                  </div>
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">DC X2</div>
+                    <div className="font-bold text-white">{analysis.double_chance?.['x2']?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.double_chance?.['x2']?.recommendation || '-'}</div>
+                  </div>
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">DC 12</div>
+                    <div className="font-bold text-white">{analysis.double_chance?.['12']?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.double_chance?.['12']?.recommendation || '-'}</div>
+                  </div>
+                  {/* DNB */}
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">DNB H</div>
+                    <div className="font-bold text-white">{analysis.draw_no_bet?.home?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.draw_no_bet?.home?.recommendation || '-'}</div>
+                  </div>
+                  <div className="p-2 bg-slate-800/50 rounded-lg text-center">
+                    <div className="text-xs text-slate-500">DNB A</div>
+                    <div className="font-bold text-white">{analysis.draw_no_bet?.away?.score?.toFixed(0) || '-'}%</div>
+                    <div className="text-xs text-emerald-400">{analysis.draw_no_bet?.away?.recommendation || '-'}</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Modal Détails Marché */}
-      <AnimatePresence>
-        {selectedMarket && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedMarket(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-slate-800 rounded-xl border border-slate-700 p-6 max-w-md w-full shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-white">{selectedMarket.label}</h3>
-                <button onClick={() => setSelectedMarket(null)} className="p-1 rounded-lg hover:bg-slate-700 text-slate-400">
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              <p className="text-sm text-slate-400 mb-4">{selectedMarket.matchName}</p>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg">
-                  <span className="text-slate-400">Score</span>
-                  <span className={['text-2xl font-bold', selectedMarket.score >= 65 ? 'text-emerald-400' : selectedMarket.score < 35 ? 'text-red-400' : 'text-white'].join(' ')}>{selectedMarket.score.toFixed(0)}%</span>
-                </div>
-                <div className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg">
-                  <span className="text-slate-400">Recommandation</span>
-                  <span className={['font-semibold', selectedMarket.rec === 'DIAMOND PICK' ? 'text-purple-400' : selectedMarket.rec === 'STRONG BET' ? 'text-emerald-400' : selectedMarket.rec === 'AVOID' ? 'text-red-400' : 'text-yellow-400'].join(' ')}>{selectedMarket.rec}</span>
-                </div>
-                <div className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg">
-                  <span className="text-slate-400">Value Rating</span>
-                  <span className="text-cyan-400 font-semibold">{selectedMarket.value}</span>
-                </div>
-                <div className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg">
-                  <span className="text-slate-400">Kelly %</span>
-                  <span className="text-emerald-400 font-semibold">{selectedMarket.kelly.toFixed(2)}%</span>
-                </div>
-                <div className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg">
-                  <span className="text-slate-400">Cote</span>
-                  <span className="text-yellow-400 font-semibold">{selectedMarket.odds > 0 ? selectedMarket.odds.toFixed(2) : "N/A"}</span>
-                </div>
-                <div className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg">
-                  <span className="text-slate-400">Edge</span>
-                  <span className={["font-semibold", selectedMarket.odds > 0 && selectedMarket.score > 0 ? (selectedMarket.score/100 - 1/selectedMarket.odds) > 0 ? "text-emerald-400" : "text-red-400" : "text-slate-500"].join(" ")}>
-                    {selectedMarket.odds > 0 && selectedMarket.score > 0 ? ((selectedMarket.score/100 - 1/selectedMarket.odds) * 100).toFixed(1) + "%" : "N/A"}
-                  </span>
-                </div>
-              </div>
-              <div className="mt-4 p-3 bg-gradient-to-r from-purple-900/30 to-cyan-900/30 rounded-lg border border-purple-500/20">
-                <p className="text-xs text-slate-300">
-                  {selectedMarket.score >= 70 ? '💎 Excellente opportunité - Confiance élevée' :
-                   selectedMarket.score >= 55 ? '✅ Bonne opportunité - Confiance moyenne' :
-                   selectedMarket.score >= 40 ? '⚠️ Risqué - Prudence recommandée' :
-                   '❌ Éviter ce marché'}
-                </p>
-              </div>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

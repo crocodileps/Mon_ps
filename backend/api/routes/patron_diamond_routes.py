@@ -675,6 +675,7 @@ async def analyze_match_diamond(
             },
             
             "btts": {
+                "odds": odds_btts or 0,
                 "score": round(btts_score, 1),
                 "probability": poisson['btts_prob'],
                 "recommendation": btts_recommendation,
@@ -687,6 +688,7 @@ async def analyze_match_diamond(
             },
             
             "over25": {
+                "odds": odds_over25 or 0,
                 "score": round(over_score, 1),
                 "probability": poisson['over25_prob'],
                 "expected_goals": round(total_xg, 2),
@@ -699,6 +701,7 @@ async def analyze_match_diamond(
                 "reasoning": over_reasoning
             },
             "btts_no": {
+                "odds": odds_btts_no or 0,
                 "score": round(btts_no_score, 1),
                 "probability": poisson['btts_no_prob'],
                 "recommendation": btts_no_recommendation,
@@ -708,6 +711,7 @@ async def analyze_match_diamond(
                 "reasoning": btts_no_reasoning
             },
             "under25": {
+                "odds": odds_under25 or 0,
                 "score": round(under25_score, 1),
                 "probability": poisson['under25_prob'],
                 "recommendation": under25_recommendation,
@@ -757,6 +761,7 @@ async def analyze_match_diamond(
             },
             
             "over15": {
+                "odds": odds_over15 or 0,
                 "score": round(over15_score, 1),
                 "probability": poisson['over15_prob'],
                 "recommendation": over15_recommendation,
@@ -766,6 +771,7 @@ async def analyze_match_diamond(
                 "reasoning": over15_reasoning
             },
             "under15": {
+                "odds": odds_under15 or 0,
                 "score": round(under15_score, 1),
                 "probability": poisson['under15_prob'],
                 "recommendation": under15_recommendation,
@@ -775,6 +781,7 @@ async def analyze_match_diamond(
                 "reasoning": under15_reasoning
             },
             "over35": {
+                "odds": odds_over35 or 0,
                 "score": round(over35_score, 1),
                 "probability": poisson['over35_prob'],
                 "recommendation": over35_recommendation,
@@ -784,6 +791,7 @@ async def analyze_match_diamond(
                 "reasoning": over35_reasoning
             },
             "under35": {
+                "odds": odds_under35 or 0,
                 "score": round(under35_score, 1),
                 "probability": poisson['under35_prob'],
                 "recommendation": under35_recommendation,
@@ -916,11 +924,13 @@ async def predict_by_teams(
                 "draw_no_bet": poisson['draw_no_bet'][:3]
         },
         "btts": {
+                "odds": odds_btts or 0,
             "score": round(btts_score, 1),
             "recommendation": get_recommendation(btts_score, 70),
             "value_rating": get_value_rating(btts_score, odds_btts) if odds_btts else "N/A"
         },
         "over25": {
+                "odds": odds_over25 or 0,
             "score": round(over_score, 1),
             "recommendation": get_recommendation(over_score, 70),
             "value_rating": get_value_rating(over_score, odds_over25) if odds_over25 else "N/A"
