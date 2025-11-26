@@ -9,7 +9,7 @@ import sys
 # Ajouter le chemin des services
 sys.path.insert(0, '/home/Mon_ps/backend/api/services/fullgain')
 
-from prediction_engine import PredictionEngine
+from prediction_engine_v2 import PredictionEngineV2 as PredictionEngine
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
