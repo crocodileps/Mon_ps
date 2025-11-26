@@ -997,7 +997,7 @@ async def analyze_match_with_llm(match_id: str, data: dict):
     alerts = data.get("alerts", [])
     context = data.get("context", "")
     
-    markets_text = "\n".join([f"- {k}: {v.get('score', 0):.0f}% ({v.get('recommendation', 'N/A')})" for k, v in markets.items() if v and v.get('score', 0) > 0])
+    markets_text = "\n".join([f"- {k}: {v.get('score', 0):.0f}% | {v.get('recommendation', 'N/A')} | Value: {v.get('value_rating', 'N/A')} | Kelly: {v.get('kelly_pct', 0):.1f}%" for k, v in markets.items() if v and v.get('score', 0) > 0])
     top3_text = "\n".join([f"  {i+1}. {m.get('name', '')} - {m.get('score', 0):.0f}% : {m.get('reasoning', '')}" for i, m in enumerate(top3)])
     combos_text = "\n".join([f"  - {c.get('name', '')} ({c.get('confidence', 0):.0f}%): {c.get('reasoning', '')}" for c in combos]) if combos else "Aucun combo détecté"
     alerts_text = "\n".join([f"  - {a}" for a in alerts]) if alerts else "Aucune alerte"
@@ -1025,7 +1025,8 @@ Génère une analyse narrative complète de 300-400 mots. Structure:
 2. Analyse COMPLÈTE des 13 marchés (BTTS, Over/Under 1.5/2.5/3.5, Double Chance, DNB) avec focus sur les TOP 3
 3. Combinés recommandés
 4. Points de vigilance
-5. VERDICT FINAL: meilleur pari unique + meilleur combo
+5. VALUE BETS: Marchés avec Kelly > 3% = meilleures opportunités
+6. VERDICT FINAL: meilleur pari unique + meilleur combo (privilégier value bets)
 
 Style direct, professionnel, avec emojis."""
 
