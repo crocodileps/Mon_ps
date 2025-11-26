@@ -272,3 +272,7 @@ app.include_router(variations_routes.router, prefix="/strategies", tags=["Variat
 # Patron Diamond V3 Routes (Multi-Marchés)
 from api.routes.patron_diamond_routes import router as patron_diamond_router
 app.include_router(patron_diamond_router)
+
+# Tracking CLV Routes (Dashboard Stats)
+from api.routes.tracking_clv_routes import router as tracking_clv_router
+app.include_router(tracking_clv_router)
