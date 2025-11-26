@@ -10,6 +10,7 @@ import math
 import json
 from datetime import datetime
 
+from api.services.odds_retriever import get_match_odds
 router = APIRouter(prefix="/patron-diamond", tags=["Patron Diamond V3"])
 
 # Configuration DB
@@ -318,6 +319,23 @@ async def analyze_match_diamond(
         away_team = match_row['away_team']
         
         cur.close()
+        
+        # 💰 Auto-récupérer les odds de la DB
+        db_odds = get_match_odds(match_id)
+        odds_btts = odds_btts or db_odds.get("odds_btts")
+        odds_btts_no = odds_btts_no or db_odds.get("odds_btts_no")
+        odds_over15 = odds_over15 or db_odds.get("odds_over15")
+        odds_under15 = odds_under15 or db_odds.get("odds_under15")
+        odds_over25 = odds_over25 or db_odds.get("odds_over25")
+        odds_under25 = odds_under25 or db_odds.get("odds_under25")
+        odds_over35 = odds_over35 or db_odds.get("odds_over35")
+        odds_under35 = odds_under35 or db_odds.get("odds_under35")
+        odds_dc_1x = odds_dc_1x or db_odds.get("odds_dc_1x")
+        odds_dc_x2 = odds_dc_x2 or db_odds.get("odds_dc_x2")
+        odds_dc_12 = odds_dc_12 or db_odds.get("odds_dc_12")
+        odds_dnb_home = odds_dnb_home or db_odds.get("odds_dnb_home")
+        odds_dnb_away = odds_dnb_away or db_odds.get("odds_dnb_away")
+
         conn.close()
         
         # Récupérer stats équipes
