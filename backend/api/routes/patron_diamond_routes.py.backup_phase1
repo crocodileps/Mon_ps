@@ -55,26 +55,6 @@ def calculate_poisson(home_xg: float, away_xg: float) -> dict:
             if total > 2: over25 += prob
             if total > 3: over35 += prob
     
-
-    # ===== NOUVEAUX MARCHÉS PHASE 1 =====
-    # Under (inverse des Over)
-    under15 = 1 - over15
-    under25 = 1 - over25
-    under35 = 1 - over35
-    
-    # BTTS No
-    btts_no = 1 - btts
-    
-    # Double Chance
-    dc_1x = home_win + draw
-    dc_x2 = draw + away_win
-    dc_12 = home_win + away_win
-    
-    # Draw No Bet
-    total_no_draw = home_win + away_win
-    dnb_home = home_win / total_no_draw if total_no_draw > 0 else 0.5
-    dnb_away = away_win / total_no_draw if total_no_draw > 0 else 0.5
-    # ===== FIN NOUVEAUX MARCHÉS =====
     sorted_scores = sorted(score_probs.items(), key=lambda x: x[1], reverse=True)[:5]
     
     return {
@@ -87,21 +67,7 @@ def calculate_poisson(home_xg: float, away_xg: float) -> dict:
             'draw': round(draw * 100, 1),
             'away': round(away_win * 100, 1)
         },
-        'most_likely_scores': [(s, round(p * 100, 1)) for s, p in sorted_scores],
-        # NOUVEAUX MARCHÉS
-        'btts_no_prob': round(btts_no * 100, 1),
-        'under15_prob': round(under15 * 100, 1),
-        'under25_prob': round(under25 * 100, 1),
-        'under35_prob': round(under35 * 100, 1),
-        'double_chance': {
-            '1x': round(dc_1x * 100, 1),
-            'x2': round(dc_x2 * 100, 1),
-            '12': round(dc_12 * 100, 1)
-        },
-        'draw_no_bet': {
-            'home': round(dnb_home * 100, 1),
-            'away': round(dnb_away * 100, 1)
-        }
+        'most_likely_scores': [(s, round(p * 100, 1)) for s, p in sorted_scores]
     }
 
 
@@ -469,13 +435,7 @@ async def analyze_match_diamond(
                 "over15_prob": poisson['over15_prob'],
                 "over35_prob": poisson['over35_prob'],
                 "1x2": poisson['1x2'],
-                "most_likely_scores": poisson['most_likely_scores'],
-                "btts_no_prob": poisson['btts_no_prob'],
-                "under15_prob": poisson['under15_prob'],
-                "under25_prob": poisson['under25_prob'],
-                "under35_prob": poisson['under35_prob'],
-                "double_chance": poisson['double_chance'],
-                "draw_no_bet": poisson['draw_no_bet']
+                "most_likely_scores": poisson['most_likely_scores']
             },
             
             "btts": {
@@ -608,13 +568,7 @@ async def predict_by_teams(
             "btts_prob": poisson['btts_prob'],
             "over25_prob": poisson['over25_prob'],
             "1x2": poisson['1x2'],
-            "most_likely_scores": poisson['most_likely_scores'],
-                "btts_no_prob": poisson['btts_no_prob'],
-                "under15_prob": poisson['under15_prob'],
-                "under25_prob": poisson['under25_prob'],
-                "under35_prob": poisson['under35_prob'],
-                "double_chance": poisson['double_chance'],
-                "draw_no_bet": poisson['draw_no_bet'][:3]
+            "most_likely_scores": poisson['most_likely_scores'][:3]
         },
         "btts": {
             "score": round(btts_score, 1),
