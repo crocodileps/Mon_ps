@@ -268,3 +268,7 @@ app.include_router(ferrari_variations_routes.router, prefix="/api/ferrari", tags
 app.include_router(ferrari_monitoring_routes.router, prefix="/api/ferrari", tags=["Ferrari Monitoring"])
 app.include_router(ferrari_matches_routes.router, prefix="/api/ferrari", tags=["Ferrari Matches"])
 app.include_router(variations_routes.router, prefix="/strategies", tags=["Variations"])
+
+# Patron Diamond V3 Routes (Multi-Marchés)
+from api.routes.patron_diamond_routes import router as patron_diamond_router
+app.include_router(patron_diamond_router)
