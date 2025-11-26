@@ -14,6 +14,7 @@ import {
   Shield,
   Lightbulb,
   LucideIcon,
+  Diamond,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -37,6 +38,7 @@ export const navItems: NavItem[] = [
   { id: "compare-agents", label: "Comparer", icon: Users2, href: "/agents-comparison" },
   { id: "agent-strategy", label: "Stratégie", icon: Shield, href: "/agents" },
   { id: "conseil-ultim", label: "Conseil Ultim", icon: Target, href: "/conseil-ultim" },
+  { id: "full-gain", label: "Full Gain 2.0", icon: Diamond, href: "/full-gain" },
   { id: "tips", label: "Astuces", icon: Lightbulb, href: "/tips" },
   { id: "analytics", label: "Analytics", icon: BarChart3, href: "/analytics" },
   { id: "settings", label: "Paramètres", icon: Settings, href: "/settings" },
