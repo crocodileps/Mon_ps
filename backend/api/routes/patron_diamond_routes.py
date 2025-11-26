@@ -272,13 +272,23 @@ async def patron_diamond_health():
         }
     except Exception as e:
         return {"status": "error", "error": str(e)}
-
-
 @router.get("/analyze/{match_id}")
+
 async def analyze_match_diamond(
     match_id: str,
     odds_btts: float = None,
-    odds_over25: float = None
+    odds_btts_no: float = None,
+    odds_over15: float = None,
+    odds_under15: float = None,
+    odds_over25: float = None,
+    odds_under25: float = None,
+    odds_over35: float = None,
+    odds_under35: float = None,
+    odds_dc_1x: float = None,
+    odds_dc_x2: float = None,
+    odds_dc_12: float = None,
+    odds_dnb_home: float = None,
+    odds_dnb_away: float = None
 ):
     """
     Analyse complète d'un match avec Patron Diamond V3
@@ -434,15 +444,15 @@ async def analyze_match_diamond(
         # ========== BTTS NO ANALYSIS ==========
         btts_no_score = 100 - btts_score
         btts_no_recommendation = get_recommendation(btts_no_score, btts_confidence)
-        btts_no_value = "N/A"  # Odds à ajouter plus tard
-        btts_no_kelly = 0
         btts_no_reasoning = f"BTTS No {'probable' if btts_no_score >= 55 else 'incertain'} ({btts_no_score:.0f}%). Inverse de BTTS Yes."
+        btts_no_value = get_value_rating(btts_no_score, odds_btts_no) if odds_btts_no else "N/A"
+        btts_no_kelly = calculate_kelly(btts_no_score, odds_btts_no) if odds_btts_no else 0
 
         # ========== UNDER 2.5 ANALYSIS ==========
         under25_score = 100 - over_score
         under25_recommendation = get_recommendation(under25_score, over_confidence)
-        under25_value = "N/A"
-        under25_kelly = 0
+        under25_value = get_value_rating(under25_score, odds_under25) if odds_under25 else "N/A"
+        under25_kelly = calculate_kelly(under25_score, odds_under25) if odds_under25 else 0
         under25_reasoning = f"Under 2.5 {'probable' if under25_score >= 55 else 'incertain'} ({under25_score:.0f}%). xG: {total_xg:.2f}."
 
         # ========== DOUBLE CHANCE ANALYSIS ==========
@@ -479,11 +489,15 @@ async def analyze_match_diamond(
         over15_score = max(0, min(100, over15_score))
         over15_recommendation = get_recommendation(over15_score, over_confidence)
         over15_reasoning = f"Over 1.5 {'probable' if over15_score >= 55 else 'incertain'} ({over15_score:.0f}%). xG: {total_xg:.2f}."
+        over15_value = get_value_rating(over15_score, odds_over15) if odds_over15 else "N/A"
+        over15_kelly = calculate_kelly(over15_score, odds_over15) if odds_over15 else 0
 
         # ========== UNDER 1.5 ANALYSIS ==========
         under15_score = 100 - over15_score
         under15_recommendation = get_recommendation(under15_score, over_confidence)
         under15_reasoning = f"Under 1.5 {'probable' if under15_score >= 55 else 'incertain'} ({under15_score:.0f}%). Inverse Over 1.5."
+        under15_value = get_value_rating(under15_score, odds_under15) if odds_under15 else "N/A"
+        under15_kelly = calculate_kelly(under15_score, odds_under15) if odds_under15 else 0
 
         # ========== OVER 3.5 ANALYSIS ==========
         over35_score = poisson['over35_prob'] * 0.45
@@ -501,39 +515,79 @@ async def analyze_match_diamond(
         over35_reasoning = f"Over 3.5 {'probable' if over35_score >= 55 else 'incertain'} ({over35_score:.0f}%). xG: {total_xg:.2f}."
 
         # ========== UNDER 3.5 ANALYSIS ==========
+        over35_value = get_value_rating(over35_score, odds_over35) if odds_over35 else "N/A"
+        over35_kelly = calculate_kelly(over35_score, odds_over35) if odds_over35 else 0
         under35_score = 100 - over35_score
         under35_recommendation = get_recommendation(under35_score, over_confidence)
         under35_reasoning = f"Under 3.5 {'probable' if under35_score >= 55 else 'incertain'} ({under35_score:.0f}%). Inverse Over 3.5."
 
-        # ========== ENRICHIR DC avec stats ==========
+        # ========== ENRICHIR DC avec stats + H2H + Form ==========
+        under35_value = get_value_rating(under35_score, odds_under35) if odds_under35 else "N/A"
+        under35_kelly = calculate_kelly(under35_score, odds_under35) if odds_under35 else 0
         if home_stats and away_stats:
             home_win_pct = safe_float(home_stats.get('home_win_pct'), 40)
             away_win_pct = safe_float(away_stats.get('away_win_pct'), 30)
             home_draw_pct = safe_float(home_stats.get('draw_pct'), 25)
             away_draw_pct = safe_float(away_stats.get('draw_pct'), 25)
-            # Enrichir DC 1X
-            dc_1x_score = dc_1x_score * 0.50 + (home_win_pct + home_draw_pct) * 0.50
-            # Enrichir DC X2
-            dc_x2_score = dc_x2_score * 0.50 + (away_win_pct + away_draw_pct) * 0.50
-            # Enrichir DC 12
-            dc_12_score = dc_12_score * 0.50 + (home_win_pct + away_win_pct) * 0.50
-            dc_1x_score = max(0, min(100, dc_1x_score))
-            dc_x2_score = max(0, min(100, dc_x2_score))
-            dc_12_score = max(0, min(100, dc_12_score))
+            # Form last5
+            home_form = safe_float(home_stats.get('last5_form_points'), 7.5) / 15 * 100
+            away_form = safe_float(away_stats.get('last5_form_points'), 7.5) / 15 * 100
+            # Enrichir DC avec pondération: 40% Poisson + 30% stats + 15% form + 15% H2H
+            dc_1x_score = dc_1x_score * 0.40 + (home_win_pct + home_draw_pct) * 0.30 + home_form * 0.15
+            dc_x2_score = dc_x2_score * 0.40 + (away_win_pct + away_draw_pct) * 0.30 + away_form * 0.15
+            dc_12_score = dc_12_score * 0.40 + (home_win_pct + away_win_pct) * 0.30 + ((home_form + away_form) / 2) * 0.15
+        else:
+            dc_1x_score = dc_1x_score * 0.55
+            dc_x2_score = dc_x2_score * 0.55
+            dc_12_score = dc_12_score * 0.55
+        # Ajouter H2H au DC
+        if h2h:
+            h2h_home_win = safe_float(h2h.get('team_a_wins'), 2) / max(1, safe_float(h2h.get('total_matches'), 5)) * 100
+            h2h_away_win = safe_float(h2h.get('team_b_wins'), 2) / max(1, safe_float(h2h.get('total_matches'), 5)) * 100
+            h2h_draws = safe_float(h2h.get('draws'), 1) / max(1, safe_float(h2h.get('total_matches'), 5)) * 100
+            dc_1x_score += (h2h_home_win + h2h_draws) * 0.15
+            dc_x2_score += (h2h_away_win + h2h_draws) * 0.15
+            dc_12_score += (h2h_home_win + h2h_away_win) * 0.15
+        else:
+            dc_1x_score += 50 * 0.15
+            dc_x2_score += 50 * 0.15
+            dc_12_score += 50 * 0.15
+        dc_1x_score = max(0, min(100, dc_1x_score))
+        dc_x2_score = max(0, min(100, dc_x2_score))
+        dc_12_score = max(0, min(100, dc_12_score))
         # Recalculer recommandations DC
         dc_1x_recommendation = get_recommendation(dc_1x_score, dc_confidence)
         dc_x2_recommendation = get_recommendation(dc_x2_score, dc_confidence)
         dc_12_recommendation = get_recommendation(dc_12_score, dc_confidence)
-
-        # ========== ENRICHIR DNB avec stats ==========
+        dc_1x_value = get_value_rating(dc_1x_score, odds_dc_1x) if odds_dc_1x else "N/A"
+        dc_1x_kelly = calculate_kelly(dc_1x_score, odds_dc_1x) if odds_dc_1x else 0
+        dc_x2_value = get_value_rating(dc_x2_score, odds_dc_x2) if odds_dc_x2 else "N/A"
+        dc_x2_kelly = calculate_kelly(dc_x2_score, odds_dc_x2) if odds_dc_x2 else 0
+        dc_12_value = get_value_rating(dc_12_score, odds_dc_12) if odds_dc_12 else "N/A"
+        dc_12_kelly = calculate_kelly(dc_12_score, odds_dc_12) if odds_dc_12 else 0
+        # ========== ENRICHIR DNB avec stats + H2H + Form ==========
         if home_stats and away_stats:
-            dnb_home_score = dnb_home_score * 0.50 + home_win_pct * 0.50
-            dnb_away_score = dnb_away_score * 0.50 + away_win_pct * 0.50
-            dnb_home_score = max(0, min(100, dnb_home_score))
-            dnb_away_score = max(0, min(100, dnb_away_score))
+            dnb_home_score = dnb_home_score * 0.40 + home_win_pct * 0.30 + home_form * 0.15
+            dnb_away_score = dnb_away_score * 0.40 + away_win_pct * 0.30 + away_form * 0.15
+        else:
+            dnb_home_score = dnb_home_score * 0.55
+            dnb_away_score = dnb_away_score * 0.55
+        # Ajouter H2H au DNB
+        if h2h:
+            dnb_home_score += h2h_home_win * 0.15
+            dnb_away_score += h2h_away_win * 0.15
+        else:
+            dnb_home_score += 50 * 0.15
+            dnb_away_score += 50 * 0.15
+        dnb_home_score = max(0, min(100, dnb_home_score))
+        dnb_away_score = max(0, min(100, dnb_away_score))
         # Recalculer recommandations DNB
         dnb_home_recommendation = get_recommendation(dnb_home_score, dc_confidence)
         dnb_away_recommendation = get_recommendation(dnb_away_score, dc_confidence)
+        dnb_home_value = get_value_rating(dnb_home_score, odds_dnb_home) if odds_dnb_home else "N/A"
+        dnb_home_kelly = calculate_kelly(dnb_home_score, odds_dnb_home) if odds_dnb_home else 0
+        dnb_away_value = get_value_rating(dnb_away_score, odds_dnb_away) if odds_dnb_away else "N/A"
+        dnb_away_kelly = calculate_kelly(dnb_away_score, odds_dnb_away) if odds_dnb_away else 0
 
         # ========== BEST/WORST MARKET ==========
         all_markets = [
@@ -631,6 +685,8 @@ async def analyze_match_diamond(
                 "probability": poisson['btts_no_prob'],
                 "recommendation": btts_no_recommendation,
                 "confidence": btts_confidence,
+                "value_rating": btts_no_value,
+                "kelly_pct": round(btts_no_kelly, 2),
                 "reasoning": btts_no_reasoning
             },
             "under25": {
@@ -638,35 +694,47 @@ async def analyze_match_diamond(
                 "probability": poisson['under25_prob'],
                 "recommendation": under25_recommendation,
                 "confidence": over_confidence,
+                "value_rating": under25_value,
+                "kelly_pct": round(under25_kelly, 2),
                 "reasoning": under25_reasoning
             },
             "double_chance": {
                 "1x": {
                     "score": round(dc_1x_score, 1),
                     "recommendation": dc_1x_recommendation,
-                    "confidence": dc_confidence
+                    "confidence": dc_confidence,
+                    "value_rating": dc_1x_value,
+                    "kelly_pct": round(dc_1x_kelly, 2)
                 },
                 "x2": {
                     "score": round(dc_x2_score, 1),
                     "recommendation": dc_x2_recommendation,
-                    "confidence": dc_confidence
+                    "confidence": dc_confidence,
+                    "value_rating": dc_x2_value,
+                    "kelly_pct": round(dc_x2_kelly, 2)
                 },
                 "12": {
                     "score": round(dc_12_score, 1),
                     "recommendation": dc_12_recommendation,
-                    "confidence": dc_confidence
+                    "confidence": dc_confidence,
+                    "value_rating": dc_12_value,
+                    "kelly_pct": round(dc_12_kelly, 2)
                 }
             },
             "draw_no_bet": {
                 "home": {
                     "score": round(dnb_home_score, 1),
                     "recommendation": dnb_home_recommendation,
-                    "confidence": dc_confidence
+                    "confidence": dc_confidence,
+                    "value_rating": dnb_home_value,
+                    "kelly_pct": round(dnb_home_kelly, 2)
                 },
                 "away": {
                     "score": round(dnb_away_score, 1),
                     "recommendation": dnb_away_recommendation,
-                    "confidence": dc_confidence
+                    "confidence": dc_confidence,
+                    "value_rating": dnb_away_value,
+                    "kelly_pct": round(dnb_away_kelly, 2)
                 }
             },
             
@@ -675,6 +743,8 @@ async def analyze_match_diamond(
                 "probability": poisson['over15_prob'],
                 "recommendation": over15_recommendation,
                 "confidence": over_confidence,
+                "value_rating": over15_value,
+                "kelly_pct": round(over15_kelly, 2),
                 "reasoning": over15_reasoning
             },
             "under15": {
@@ -682,6 +752,8 @@ async def analyze_match_diamond(
                 "probability": poisson['under15_prob'],
                 "recommendation": under15_recommendation,
                 "confidence": over_confidence,
+                "value_rating": under15_value,
+                "kelly_pct": round(under15_kelly, 2),
                 "reasoning": under15_reasoning
             },
             "over35": {
@@ -689,6 +761,8 @@ async def analyze_match_diamond(
                 "probability": poisson['over35_prob'],
                 "recommendation": over35_recommendation,
                 "confidence": over_confidence,
+                "value_rating": over35_value,
+                "kelly_pct": round(over35_kelly, 2),
                 "reasoning": over35_reasoning
             },
             "under35": {
@@ -696,6 +770,8 @@ async def analyze_match_diamond(
                 "probability": poisson['under35_prob'],
                 "recommendation": under35_recommendation,
                 "confidence": over_confidence,
+                "value_rating": under35_value,
+                "kelly_pct": round(under35_kelly, 2),
                 "reasoning": under35_reasoning
             },
             "best_market": {
