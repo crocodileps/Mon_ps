@@ -13,6 +13,7 @@ export function Navigation() {
     { href: '/manual-bets', label: 'P&L', icon: BarChart3 },
     { href: '/analytics', label: 'Analytics', icon: LineChart }
     ,{ href: '/agents-comparison', label: 'Comparaison Agents', icon: Users }
+    ,{ href: '/full-gain', label: 'Full Gain 2.0', icon: TrendingUp }
   ]
 
   return (

@@ -1137,6 +1137,15 @@ export default function FullGainPage() {
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-8">
+        {/* Navigation Menu */}
+        <nav className="mb-6 flex items-center gap-4 px-4 py-3 bg-slate-800/50 rounded-xl border border-slate-700/50">
+          <a href="/" className="text-slate-400 hover:text-white transition-colors">Dashboard</a>
+          <a href="/opportunities" className="text-slate-400 hover:text-white transition-colors">Opportunités</a>
+          <a href="/bets" className="text-slate-400 hover:text-white transition-colors">Paris</a>
+          <a href="/agents-comparison" className="text-slate-400 hover:text-white transition-colors">Agents</a>
+          <a href="/analytics" className="text-slate-400 hover:text-white transition-colors">Analytics</a>
+          <a href="/full-gain" className="text-cyan-400 font-semibold">Full Gain 2.0</a>
+        </nav>
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
           <div className="flex items-center justify-between">
             <div>

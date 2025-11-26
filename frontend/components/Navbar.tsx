@@ -15,6 +15,7 @@ export default function Navbar() {
     { href: '/bets', label: 'Paris', icon: WalletIcon },
     { href: '/agents-comparison', label: 'Comparaison Agents', icon: LineChartIcon },
     { href: '/analytics', label: 'Analytics', icon: LineChartIcon },
+    { href: '/full-gain', label: 'Full Gain 2.0', icon: TrendingUpIcon },
   ];
 
   return (
