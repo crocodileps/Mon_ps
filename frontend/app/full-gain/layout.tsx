@@ -1,9 +1,9 @@
-import { AppShell } from '@/components/layout/app-shell'
+import { DashboardLayout } from '@/components/dashboard-layout'
 
 export default function FullGainLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return <AppShell>{children}</AppShell>
+  return <DashboardLayout>{children}</DashboardLayout>
 }
