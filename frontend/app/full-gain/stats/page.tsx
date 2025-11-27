@@ -143,10 +143,72 @@ interface BiasReport {
 }
 
 // ============================================================
+
+// Sweet Spot Types
+interface SweetSpotPick {
+  match_id: string;
+  home_team: string;
+  away_team: string;
+  match_name: string;
+  market_type: string;
+  score: number;
+  odds: number;
+  probability: number;
+  edge_pct: number;
+  kelly_pct: number;
+  recommendation: string;
+  factors: Record<string, any>;
+  commence_time: string;
+}
+
+interface SweetSpotStats {
+  global: {
+    total_picks: number;
+    resolved: number;
+    wins: number;
+    losses: number;
+    win_rate: number;
+    roi_pct: number;
+    avg_score: number;
+    avg_edge: number;
+    avg_odds: number;
+    total_profit: number;
+  };
+  by_market: Array<{
+    market_type: string;
+    total: number;
+    resolved: number;
+    wins: number;
+    win_rate: number;
+    avg_edge: number;
+    profit: number;
+  }>;
+}
+
+interface SweetSpotUpcoming {
+  matches: Array<{
+    match_name: string;
+    home_team: string;
+    away_team: string;
+    commence_time: string;
+    picks: Array<{
+      market_type: string;
+      score: number;
+      odds: number;
+      edge_pct: number;
+      kelly_pct: number;
+      recommendation: string;
+    }>;
+  }>;
+  total_matches: number;
+  total_picks: number;
+}
+
 // CONSTANTS
 // ============================================================
 
 const TABS = [
+  { id: "sweetspot", label: "🎯 Sweet Spot", icon: Target },
   { id: "dashboard", label: "Dashboard", icon: BarChart3 },
   { id: "markets", label: "Par Marché", icon: PieChart },
   { id: "clv", label: "CLV", icon: TrendingUp },
@@ -386,6 +448,12 @@ export default function TrackingCLVStats() {
   const [mcResult, setMcResult] = useState<MonteCarloResult | null>(null);
   const [mcLoading, setMcLoading] = useState(false);
 
+  // Sweet Spot States
+  const [sweetSpotPicks, setSweetSpotPicks] = useState<SweetSpotPick[]>([]);
+  const [sweetSpotStats, setSweetSpotStats] = useState<SweetSpotStats | null>(null);
+  const [sweetSpotUpcoming, setSweetSpotUpcoming] = useState<SweetSpotUpcoming | null>(null);
+  const [sweetSpotLoading, setSweetSpotLoading] = useState(false);
+
   // ============================================================
   // FETCH FUNCTIONS
   // ============================================================
@@ -461,6 +529,38 @@ export default function TrackingCLVStats() {
     }
   }, []);
 
+
+  // Sweet Spot Fetch Functions
+  const fetchSweetSpotData = useCallback(async () => {
+    setSweetSpotLoading(true);
+    try {
+      // Fetch picks
+      const picksRes = await fetch(`${API_BASE}/api/tracking-clv/sweet-spot/picks?hours_ahead=48&limit=50`);
+      if (picksRes.ok) {
+        const picksData = await picksRes.json();
+        setSweetSpotPicks(picksData.picks || []);
+      }
+      
+      // Fetch stats
+      const statsRes = await fetch(`${API_BASE}/api/tracking-clv/sweet-spot/stats?days=${period}`);
+      if (statsRes.ok) {
+        const statsData = await statsRes.json();
+        setSweetSpotStats(statsData);
+      }
+      
+      // Fetch upcoming
+      const upcomingRes = await fetch(`${API_BASE}/api/tracking-clv/sweet-spot/upcoming?hours=24`);
+      if (upcomingRes.ok) {
+        const upcomingData = await upcomingRes.json();
+        setSweetSpotUpcoming(upcomingData);
+      }
+    } catch (error) {
+      console.error('Error fetching sweet spot data:', error);
+    } finally {
+      setSweetSpotLoading(false);
+    }
+  }, [period]);
+
   const calculateKelly = async () => {
     try {
       const params = new URLSearchParams({
@@ -522,7 +622,8 @@ export default function TrackingCLVStats() {
     fetchCorrelations();
     fetchRiskMetrics();
     fetchBiases();
-  }, [fetchDashboard, fetchDailyPerformance, fetchCLVStats, fetchCorrelations, fetchRiskMetrics, fetchBiases]);
+    fetchSweetSpotData();
+  }, [fetchDashboard, fetchDailyPerformance, fetchCLVStats, fetchCorrelations, fetchRiskMetrics, fetchBiases, fetchSweetSpotData]);
 
   useEffect(() => {
     if (!autoRefresh) return;
@@ -590,6 +691,235 @@ export default function TrackingCLVStats() {
   // ============================================================
   // TAB 1: DASHBOARD
   // ============================================================
+
+
+  // ============================================================
+  // 🎯 RENDER SWEET SPOT
+  // ============================================================
+
+  const renderSweetSpot = () => {
+    if (sweetSpotLoading) {
+      return (
+        <div className="flex items-center justify-center h-64">
+          <RefreshCw className="w-8 h-8 animate-spin text-cyan-400" />
+        </div>
+      );
+    }
+
+    return (
+      <div className="space-y-6">
+        {/* Header Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 border border-emerald-500/30 p-4"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <Target className="w-5 h-5 text-emerald-400" />
+              <span className="text-slate-400 text-sm">Sweet Spots</span>
+            </div>
+            <div className="text-2xl font-bold text-white">{sweetSpotStats?.global.total_picks || 0}</div>
+            <div className="text-xs text-slate-500">picks identifiés</div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 border border-cyan-500/30 p-4"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingUp className="w-5 h-5 text-cyan-400" />
+              <span className="text-slate-400 text-sm">Edge Moyen</span>
+            </div>
+            <div className="text-2xl font-bold text-cyan-400">+{sweetSpotStats?.global.avg_edge?.toFixed(1) || 0}%</div>
+            <div className="text-xs text-slate-500">vs closing line</div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-600/10 border border-violet-500/30 p-4"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <Percent className="w-5 h-5 text-violet-400" />
+              <span className="text-slate-400 text-sm">Score Moyen</span>
+            </div>
+            <div className="text-2xl font-bold text-violet-400">{sweetSpotStats?.global.avg_score?.toFixed(0) || 0}</div>
+            <div className="text-xs text-slate-500">/ 100</div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/30 p-4"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <DollarSign className="w-5 h-5 text-amber-400" />
+              <span className="text-slate-400 text-sm">Cote Moyenne</span>
+            </div>
+            <div className="text-2xl font-bold text-amber-400">{sweetSpotStats?.global.avg_odds?.toFixed(2) || 0}</div>
+            <div className="text-xs text-slate-500">sweet spot</div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/30 p-4"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <Trophy className="w-5 h-5 text-green-400" />
+              <span className="text-slate-400 text-sm">Win Rate</span>
+            </div>
+            <div className="text-2xl font-bold text-green-400">{sweetSpotStats?.global.win_rate?.toFixed(1) || 0}%</div>
+            <div className="text-xs text-slate-500">{sweetSpotStats?.global.wins || 0}W / {sweetSpotStats?.global.losses || 0}L</div>
+          </motion.div>
+        </div>
+
+        {/* Upcoming Matches */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="rounded-2xl border border-slate-700/50 bg-slate-800/30 p-6"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+              <Flame className="w-5 h-5 text-orange-400" />
+              🎯 Picks Sweet Spot - Prochains Matchs
+            </h3>
+            <span className="text-sm text-slate-400">
+              {sweetSpotUpcoming?.total_picks || 0} picks sur {sweetSpotUpcoming?.total_matches || 0} matchs
+            </span>
+          </div>
+
+          <div className="space-y-4">
+            {sweetSpotUpcoming?.matches?.slice(0, 10).map((match, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.05 }}
+                className="rounded-xl bg-slate-900/50 border border-slate-700/30 p-4"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <h4 className="font-medium text-white">{match.match_name}</h4>
+                    <span className="text-xs text-slate-500">
+                      {match.commence_time ? new Date(match.commence_time).toLocaleString('fr-FR', {
+                        day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'
+                      }) : 'N/A'}
+                    </span>
+                  </div>
+                  <span className="px-2 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 text-xs">
+                    {match.picks.length} sweet spot{match.picks.length > 1 ? 's' : ''}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                  {match.picks.map((pick, pIdx) => (
+                    <div
+                      key={pIdx}
+                      className="flex items-center justify-between rounded-lg bg-slate-800/50 px-3 py-2"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-medium text-cyan-400 uppercase">
+                          {MARKET_LABELS[pick.market_type] || pick.market_type}
+                        </span>
+                        <span className="text-xs text-slate-500">@{pick.odds.toFixed(2)}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={`text-xs font-bold ${pick.edge_pct >= 15 ? 'text-green-400' : pick.edge_pct >= 10 ? 'text-cyan-400' : 'text-slate-300'}`}>
+                          +{pick.edge_pct.toFixed(1)}%
+                        </span>
+                        <span className="text-xs px-1.5 py-0.5 rounded bg-violet-500/20 text-violet-400">
+                          {pick.score}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+
+            {(!sweetSpotUpcoming?.matches || sweetSpotUpcoming.matches.length === 0) && (
+              <div className="text-center py-8 text-slate-500">
+                <Target className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                <p>Aucun pick sweet spot pour les prochaines 24h</p>
+              </div>
+            )}
+          </div>
+        </motion.div>
+
+        {/* Performance par Marché */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="rounded-2xl border border-slate-700/50 bg-slate-800/30 p-6"
+        >
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+            <BarChart3 className="w-5 h-5 text-cyan-400" />
+            Performance Sweet Spot par Marché
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {sweetSpotStats?.by_market?.map((market, idx) => (
+              <motion.div
+                key={market.market_type}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: idx * 0.05 }}
+                className="rounded-xl bg-slate-900/50 border border-slate-700/30 p-4"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-medium text-white">
+                    {MARKET_LABELS[market.market_type] || market.market_type}
+                  </span>
+                  <span className={`text-sm font-bold ${market.avg_edge >= 10 ? 'text-green-400' : 'text-cyan-400'}`}>
+                    +{market.avg_edge.toFixed(1)}%
+                  </span>
+                </div>
+                <div className="flex items-center justify-between text-xs text-slate-400">
+                  <span>{market.total} picks</span>
+                  <span>{market.win_rate > 0 ? `${market.win_rate.toFixed(0)}% WR` : 'En attente'}</span>
+                </div>
+                <div className="mt-2 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-full"
+                    style={{ width: `${Math.min(market.avg_edge * 5, 100)}%` }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Info Box */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-4"
+        >
+          <div className="flex items-start gap-3">
+            <Info className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+            <div>
+              <h4 className="font-medium text-cyan-400 mb-1">Qu'est-ce que le Sweet Spot ?</h4>
+              <p className="text-sm text-slate-300">
+                Les picks <strong>Sweet Spot</strong> sont identifiés par notre algorithme V7 comme ayant le meilleur rapport risque/rendement.
+                Critères : Score entre 60-79 + Cotes inférieures à 2.5. Ces picks ont historiquement montré le meilleur ROI (+19.1 sur le score 60-69).
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    );
+  };
 
   const renderDashboard = () => (
     <div className="space-y-6">
@@ -1298,6 +1628,7 @@ export default function TrackingCLVStats() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
           >
+            {activeTab === "sweetspot" && renderSweetSpot()}
             {activeTab === "dashboard" && renderDashboard()}
             {activeTab === "markets" && renderMarkets()}
             {activeTab === "clv" && renderCLV()}
