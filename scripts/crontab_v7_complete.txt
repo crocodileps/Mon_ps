@@ -1,0 +1,44 @@
+# FULL GAIN 2.0 - Cron Jobs
+# Import quotidien à 06h00
+0 6 * * * cd /home/Mon_ps && /usr/bin/python3 backend/scripts/fullgain_daily_import.py >> /home/Mon_ps/logs/fullgain_cron.log 2>&1
+
+# Refresh stats à 06h30
+30 6 * * * /home/Mon_ps/backend/scripts/fullgain_refresh_stats.sh >> /home/Mon_ps/logs/fullgain_cron.log 2>&1
+0 8,14,20 * * * /home/Mon_ps/backend/scripts/cron_collect_odds.sh
+
+# ============================================================
+# 🤖 CLV TRACKER - CRON SMART
+# ============================================================
+
+# Collecte: toutes les 2h entre 8h et 22h (avant les matchs)
+
+# Résolution: toutes les heures entre 22h et 2h (après les matchs)
+
+# Rapport quotidien: 6h du matin
+
+0 */2 * * * /home/Mon_ps/backend/agents/clv_tracker/cron_master.sh
+# ══════════════════════════════════════════════════════════════════════════
+# 🤖 CRON V7 - CLV TRACKING INTELLIGENT
+# ══════════════════════════════════════════════════════════════════════════
+
+# Mode SMART - Toutes les 4 heures
+0 */4 * * * /home/Mon_ps/backend/agents/clv_tracker/cron_v7_master.sh smart >> /home/Mon_ps/logs/clv_v7/cron_output.log 2>&1
+
+# Auto-learning quotidien à 6h00
+0 6 * * * /home/Mon_ps/backend/agents/clv_tracker/cron_v7_master.sh learn >> /home/Mon_ps/logs/clv_v7/cron_output.log 2>&1
+
+# Health check toutes les heures
+30 * * * * /home/Mon_ps/backend/agents/clv_tracker/cron_v7_master.sh health >> /home/Mon_ps/logs/clv_v7/health.log 2>&1
+
+# Cleanup hebdomadaire (dimanche 3h00)
+0 3 * * 0 /home/Mon_ps/backend/agents/clv_tracker/cron_v7_master.sh cleanup >> /home/Mon_ps/logs/clv_v7/cron_output.log 2>&1
+
+# ══════════════════════════════════════════════════════════════
+# RÉSOLUTION AUTOMATIQUE DES PICKS
+# ══════════════════════════════════════════════════════════════
+
+# Collecte des résultats de matchs (3x/jour : 8h, 14h, 23h)
+0 8,14,23 * * * cd /home/Mon_ps && python3 backend/scripts/fetch_results_api_football.py >> /home/Mon_ps/logs/clv_v7/results.log 2>&1
+
+# Résolution des picks (après collecte résultats : 8h30, 14h30, 23h30)
+30 8,14,23 * * * /home/Mon_ps/backend/agents/clv_tracker/cron_v7_master.sh resolve >> /home/Mon_ps/logs/clv_v7/resolver.log 2>&1

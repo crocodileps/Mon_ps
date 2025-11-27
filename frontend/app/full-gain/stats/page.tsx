@@ -224,16 +224,19 @@ const PERIODS = [
 ];
 
 const MARKET_LABELS: Record<string, string> = {
+  home: "Victoire Dom", away: "Victoire Ext", draw: "Match Nul",
+  dc_1x: "DC 1X", dc_x2: "DC X2", dc_12: "DC 12",
+  btts_yes: "BTTS Oui", btts_no: "BTTS Non",
   over_15: "Over 1.5", under_15: "Under 1.5",
   over_25: "Over 2.5", under_25: "Under 2.5",
   over_35: "Over 3.5", under_35: "Under 3.5",
-  btts_yes: "BTTS Oui", btts_no: "BTTS Non",
-  dc_1x: "DC 1X", dc_x2: "DC X2", dc_12: "DC 12",
+  over15: "Over 1.5", under15: "Under 1.5",
+  over25: "Over 2.5", under25: "Under 2.5",
+  over35: "Over 3.5", under35: "Under 3.5",
   dnb_home: "DNB Dom", dnb_away: "DNB Ext",
 };
 
 const MARKETS_LIST = Object.keys(MARKET_LABELS);
-
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://91.98.131.218:8001";
 
 // ============================================================
@@ -453,6 +456,9 @@ export default function TrackingCLVStats() {
   const [sweetSpotStats, setSweetSpotStats] = useState<SweetSpotStats | null>(null);
   const [sweetSpotUpcoming, setSweetSpotUpcoming] = useState<SweetSpotUpcoming | null>(null);
   const [sweetSpotLoading, setSweetSpotLoading] = useState(false);
+  // Markets 2.0 States
+  const [marketSortBy, setMarketSortBy] = useState<"roi" | "winrate" | "picks">("roi");
+  const [selectedMarket, setSelectedMarket] = useState<MarketPerformance | null>(null);
 
   // ============================================================
   // FETCH FUNCTIONS
@@ -1048,44 +1054,286 @@ export default function TrackingCLVStats() {
   );
 
   // ============================================================
-  // TAB 2: MARKETS
   // ============================================================
+  // TAB 2: MARKETS 2.0
+  // ============================================================
+  
+  // Fonction de tri des marchés
+  const getSortedMarkets = () => {
+    if (!marketPerf) return [];
+    return [...marketPerf].sort((a, b) => {
+      switch (marketSortBy) {
+        case "roi": return (b.roi_pct || 0) - (a.roi_pct || 0);
+        case "winrate": return (b.win_rate || 0) - (a.win_rate || 0);
+        case "picks": return (b.resolved || 0) - (a.resolved || 0);
+        default: return 0;
+      }
+    });
+  };
+
+  // Déterminer le badge d'un marché
+  const getMarketBadge = (market: MarketPerformance) => {
+    if ((market.resolved || 0) < 3) return null; // Pas assez de données
+    if ((market.roi_pct || 0) >= 20 && (market.win_rate || 0) >= 50) return { type: "top", label: "🏆 TOP" };
+    if ((market.roi_pct || 0) <= -20 || (market.win_rate || 0) < 35) return { type: "avoid", label: "⚠️ À ÉVITER" };
+    if ((market.roi_pct || 0) >= 10) return { type: "good", label: "✅ BON" };
+    return null;
+  };
 
   const renderMarkets = () => (
     <div className="space-y-6">
-      <h2 className="text-xl font-bold text-white">Détail par Marché</h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {marketPerf.map((market) => (
-          <motion.div key={market.market_type} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-            className="bg-gray-900/50 rounded-2xl border border-gray-800/50 p-5 hover:border-cyan-500/30 transition-all">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-lg text-white">{MARKET_LABELS[market.market_type]}</h3>
-              <span className={`text-xl font-bold ${(market.roi_pct || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
-                {(market.roi_pct || 0) >= 0 ? "+" : ""}{market.roi_pct?.toFixed(1)}%
-              </span>
-            </div>
-            <div className="grid grid-cols-2 gap-3 text-sm">
-              <div><span className="text-gray-400">Win Rate</span><p className="font-medium text-white">{market.win_rate?.toFixed(1)}%</p></div>
-              <div><span className="text-gray-400">CLV</span>
-                <p className={`font-medium ${(market.avg_clv || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
-                  {(market.avg_clv || 0) >= 0 ? "+" : ""}{market.avg_clv?.toFixed(2)}%
-                </p>
-              </div>
-              <div><span className="text-gray-400">Picks</span><p className="font-medium text-white">{market.resolved}</p></div>
-              <div><span className="text-gray-400">Kelly</span><p className="font-medium text-white">{market.avg_kelly?.toFixed(1)}%</p></div>
-            </div>
-            {/* Mini progress bar */}
-            <div className="mt-4 h-2 bg-gray-800 rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-cyan-500 to-violet-500 rounded-full"
-                style={{ width: `${Math.min((market.win_rate || 0), 100)}%` }} />
-            </div>
-          </motion.div>
-        ))}
+      {/* Header avec titre et tri */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <h2 className="text-xl font-bold text-white flex items-center gap-2">
+          <PieChart className="w-6 h-6 text-cyan-400" />
+          Détail par Marché
+          <span className="text-sm font-normal text-gray-400">({marketPerf?.length || 0} marchés)</span>
+        </h2>
+        
+        {/* Boutons de tri */}
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-gray-400">Trier par:</span>
+          {[
+            { key: "roi", label: "ROI", icon: TrendingUp },
+            { key: "winrate", label: "Win Rate", icon: Target },
+            { key: "picks", label: "Picks", icon: BarChart3 },
+          ].map(({ key, label, icon: Icon }) => (
+            <button
+              key={key}
+              onClick={() => setMarketSortBy(key as "roi" | "winrate" | "picks")}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                marketSortBy === key
+                  ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/50"
+                  : "bg-gray-800/50 text-gray-400 border border-gray-700/50 hover:border-gray-600"
+              }`}
+            >
+              <Icon className="w-4 h-4" />
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
+
+      {/* Grille des marchés */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {getSortedMarkets().map((market, index) => {
+          const badge = getMarketBadge(market);
+          const isTopPerformer = badge?.type === "top";
+          const isToAvoid = badge?.type === "avoid";
+          
+          return (
+            <motion.div
+              key={market.market_type}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: index * 0.03 }}
+              onClick={() => setSelectedMarket(market)}
+              className={`relative bg-gray-900/50 rounded-2xl border p-5 cursor-pointer transition-all hover:scale-[1.02] ${
+                isTopPerformer
+                  ? "border-green-500/50 hover:border-green-400 shadow-lg shadow-green-500/10"
+                  : isToAvoid
+                  ? "border-red-500/30 hover:border-red-400"
+                  : "border-gray-800/50 hover:border-cyan-500/30"
+              }`}
+            >
+              {/* Badge */}
+              {badge && (
+                <div className={`absolute -top-2 -right-2 px-2 py-0.5 rounded-full text-xs font-bold ${
+                  badge.type === "top" ? "bg-green-500/20 text-green-400 border border-green-500/50" :
+                  badge.type === "avoid" ? "bg-red-500/20 text-red-400 border border-red-500/50" :
+                  "bg-cyan-500/20 text-cyan-400 border border-cyan-500/50"
+                }`}>
+                  {badge.label}
+                </div>
+              )}
+
+              {/* En-tête */}
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-semibold text-lg text-white">
+                  {MARKET_LABELS[market.market_type] || market.market_type}
+                </h3>
+                <span className={`text-xl font-bold ${(market.roi_pct || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
+                  {(market.roi_pct || 0) >= 0 ? "+" : ""}{(market.roi_pct || 0).toFixed(1)}%
+                </span>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div>
+                  <span className="text-gray-400">Win Rate</span>
+                  <p className="font-medium text-white">{(market.win_rate || 0).toFixed(1)}%</p>
+                </div>
+                <div>
+                  <span className="text-gray-400">CLV</span>
+                  <p className={`font-medium ${(market.avg_clv || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
+                    {(market.avg_clv || 0) >= 0 ? "+" : ""}{(market.avg_clv || 0).toFixed(2)}%
+                  </p>
+                </div>
+                <div>
+                  <span className="text-gray-400">Picks</span>
+                  <p className="font-medium text-white">
+                    {market.resolved || 0}
+                    <span className="text-gray-500 text-xs"> / {market.total_predictions || 0}</span>
+                  </p>
+                </div>
+                <div>
+                  <span className="text-gray-400">Kelly</span>
+                  <p className="font-medium text-white">{(market.avg_kelly || 0).toFixed(1)}%</p>
+                </div>
+              </div>
+
+              {/* Progress bar Win Rate */}
+              <div className="mt-4 h-2 bg-gray-800 rounded-full overflow-hidden">
+                <div
+                  className={`h-full rounded-full transition-all ${
+                    isTopPerformer ? "bg-gradient-to-r from-green-500 to-emerald-400" :
+                    isToAvoid ? "bg-gradient-to-r from-red-500 to-orange-400" :
+                    "bg-gradient-to-r from-cyan-500 to-violet-500"
+                  }`}
+                  style={{ width: `${Math.min((market.win_rate || 0), 100)}%` }}
+                />
+              </div>
+
+              {/* Indicateur cliquable */}
+              <div className="mt-3 text-center">
+                <span className="text-xs text-gray-500 hover:text-cyan-400 transition-colors">
+                  Cliquer pour détails →
+                </span>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Modal détails marché */}
+      <AnimatePresence>
+        {selectedMarket && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedMarket(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-gray-900 rounded-2xl border border-gray-700 p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto"
+            >
+              {/* Header Modal */}
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-white">
+                  {MARKET_LABELS[selectedMarket.market_type] || selectedMarket.market_type}
+                </h3>
+                <button
+                  onClick={() => setSelectedMarket(null)}
+                  className="p-2 rounded-full hover:bg-gray-800 transition-colors"
+                >
+                  <RotateCcw className="w-5 h-5 text-gray-400" />
+                </button>
+              </div>
+
+              {/* Stats détaillées */}
+              <div className="space-y-4">
+                {/* ROI & Win Rate */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-gray-800/50 rounded-xl p-4 text-center">
+                    <div className="text-gray-400 text-sm mb-1">ROI</div>
+                    <div className={`text-3xl font-bold ${(selectedMarket.roi_pct || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
+                      {(selectedMarket.roi_pct || 0) >= 0 ? "+" : ""}{(selectedMarket.roi_pct || 0).toFixed(1)}%
+                    </div>
+                  </div>
+                  <div className="bg-gray-800/50 rounded-xl p-4 text-center">
+                    <div className="text-gray-400 text-sm mb-1">Win Rate</div>
+                    <div className="text-3xl font-bold text-white">{(selectedMarket.win_rate || 0).toFixed(1)}%</div>
+                  </div>
+                </div>
+
+                {/* Picks détails */}
+                <div className="bg-gray-800/50 rounded-xl p-4">
+                  <div className="text-gray-400 text-sm mb-3">Répartition des picks</div>
+                  <div className="flex items-center justify-between">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-white">{selectedMarket.total_predictions || 0}</div>
+                      <div className="text-xs text-gray-500">Total</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-cyan-400">{selectedMarket.resolved || 0}</div>
+                      <div className="text-xs text-gray-500">Résolus</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-green-400">{selectedMarket.wins || 0}</div>
+                      <div className="text-xs text-gray-500">Gagnés</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-red-400">{selectedMarket.losses || 0}</div>
+                      <div className="text-xs text-gray-500">Perdus</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Métriques avancées */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-gray-800/50 rounded-xl p-4">
+                    <div className="text-gray-400 text-sm mb-1">CLV Moyen</div>
+                    <div className={`text-xl font-bold ${(selectedMarket.avg_clv || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
+                      {(selectedMarket.avg_clv || 0) >= 0 ? "+" : ""}{(selectedMarket.avg_clv || 0).toFixed(3)}%
+                    </div>
+                  </div>
+                  <div className="bg-gray-800/50 rounded-xl p-4">
+                    <div className="text-gray-400 text-sm mb-1">Kelly Optimal</div>
+                    <div className="text-xl font-bold text-violet-400">{(selectedMarket.avg_kelly || 0).toFixed(2)}%</div>
+                  </div>
+                </div>
+
+                {/* Streak */}
+                <div className="bg-gray-800/50 rounded-xl p-4">
+                  <div className="text-gray-400 text-sm mb-1">Série actuelle</div>
+                  <div className={`text-xl font-bold ${(selectedMarket.current_streak || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
+                    {(selectedMarket.current_streak || 0) >= 0 ? `🔥 ${selectedMarket.current_streak || 0}W` : `❄️ ${Math.abs(selectedMarket.current_streak || 0)}L`}
+                  </div>
+                </div>
+
+                {/* Recommandation */}
+                <div className={`rounded-xl p-4 ${
+                  (selectedMarket.roi_pct || 0) >= 10 ? "bg-green-500/10 border border-green-500/30" :
+                  (selectedMarket.roi_pct || 0) <= -10 ? "bg-red-500/10 border border-red-500/30" :
+                  "bg-gray-800/50"
+                }`}>
+                  <div className="text-gray-400 text-sm mb-1">💡 Recommandation</div>
+                  <div className="text-white">
+                    {(selectedMarket.roi_pct || 0) >= 20 && (selectedMarket.win_rate || 0) >= 50
+                      ? "🏆 Marché très performant - Continuer à exploiter"
+                      : (selectedMarket.roi_pct || 0) >= 10
+                      ? "✅ Bon marché - Maintenir les positions"
+                      : (selectedMarket.roi_pct || 0) <= -20
+                      ? "⚠️ Marché en difficulté - Réduire l'exposition"
+                      : (selectedMarket.resolved || 0) < 5
+                      ? "📊 Données insuffisantes - Attendre plus de résultats"
+                      : "�� Marché neutre - Surveiller l'évolution"
+                    }
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="mt-6 pt-4 border-t border-gray-800">
+                <button
+                  onClick={() => setSelectedMarket(null)}
+                  className="w-full py-3 bg-cyan-500/20 text-cyan-400 rounded-xl hover:bg-cyan-500/30 transition-colors font-medium"
+                >
+                  Fermer
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 
-  // ============================================================
   // TAB 3: CLV (COMPLET)
   // ============================================================
 
