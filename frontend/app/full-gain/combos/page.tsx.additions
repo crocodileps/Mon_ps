@@ -1,0 +1,33 @@
+// Ces fonctions seront intégrées dans la prochaine version du frontend
+
+// Bouton Analyse IA
+const analyzeWithAI = async (comboId: number) => {
+  try {
+    const response = await fetch(`${API_BASE}/api/combos/analyze-ai/${comboId}`, {
+      method: 'POST'
+    });
+    const data = await response.json();
+    if (data.analysis) {
+      alert(`🤖 Analyse IA:\n\n${data.analysis}`);
+      fetchData(); // Refresh
+    } else {
+      alert(`❌ Erreur: ${data.error}`);
+    }
+  } catch (error) {
+    console.error('Erreur analyse IA:', error);
+  }
+};
+
+// Auto-résolution manuelle
+const triggerAutoResolve = async () => {
+  try {
+    const response = await fetch(`${API_BASE}/api/combos/auto-resolve`, {
+      method: 'POST'
+    });
+    const data = await response.json();
+    alert(`✅ ${data.resolved_count} combos résolus`);
+    fetchData();
+  } catch (error) {
+    console.error('Erreur auto-resolve:', error);
+  }
+};
