@@ -943,3 +943,74 @@ def generate_insights(by_risk: list, by_ev: list) -> list:
         insights.append("📊 Pas assez de données pour générer des insights (besoin de plus de combos résolus)")
     
     return insights
+
+
+# ════════════════════════════════════════════════════════════
+# 🏎️ FERRARI COMBO INTEGRATION
+# ════════════════════════════════════════════════════════════
+
+from api.services.ferrari_combo_integration import get_ferrari_combo_service
+
+@router.get("/ferrari/analyze/{combo_id}")
+async def analyze_combo_ferrari(combo_id: int):
+    """
+    🏎️ Analyse FERRARI d'un combo
+    Détecte les pièges et calcule le risque
+    """
+    service = get_ferrari_combo_service()
+    analysis = service.analyze_combo(combo_id)
+    
+    if not analysis:
+        return {"error": f"Combo #{combo_id} non trouvé"}
+    
+    from dataclasses import asdict
+    return asdict(analysis)
+
+
+@router.get("/ferrari/analyze-all")
+async def analyze_all_combos_ferrari():
+    """
+    🏎️ Analyse FERRARI de tous les combos pending
+    """
+    service = get_ferrari_combo_service()
+    analyses = service.analyze_all_pending()
+    
+    # Résumé
+    total = len(analyses)
+    safe = sum(1 for a in analyses if a.get('total_traps', 0) == 0)
+    risky = total - safe
+    
+    return {
+        "total_combos": total,
+        "safe_combos": safe,
+        "risky_combos": risky,
+        "analyses": analyses
+    }
+
+
+@router.get("/ferrari/safe-combos")
+async def get_safe_combos():
+    """
+    🏎️ Retourne uniquement les combos SAFE (sans pièges)
+    """
+    service = get_ferrari_combo_service()
+    safe = service.get_safe_combos()
+    
+    return {
+        "count": len(safe),
+        "combos": safe
+    }
+
+
+@router.get("/ferrari/risky-combos")
+async def get_risky_combos():
+    """
+    🏎️ Retourne les combos avec des pièges détectés
+    """
+    service = get_ferrari_combo_service()
+    risky = service.get_risky_combos()
+    
+    return {
+        "count": len(risky),
+        "combos": risky
+    }
