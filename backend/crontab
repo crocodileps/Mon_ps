@@ -1,3 +1,7 @@
+# ════════════════════════════════════════════════════════════
+# MON_PS CRONTAB - Tâches automatisées
+# ════════════════════════════════════════════════════════════
+
 # Settlement et CLV - 2x par jour (matin et soir)
 0 8 * * * cd /app && bash scripts/daily_settlement.sh >> /var/log/settlement.log 2>&1
 0 20 * * * cd /app && bash scripts/daily_settlement.sh >> /var/log/settlement.log 2>&1
@@ -5,8 +9,20 @@
 # CLV uniquement - toutes les 4h pour capturer closing odds
 0 */4 * * * cd /app && python3 scripts/auto_clv.py >> /var/log/clv.log 2>&1
 
-# Ferrari V3 A/B Testing - quotidien à 10h00 (après settlement matin)
+# ════════════════════════════════════════════════════════════
+# 🏎️ FERRARI 2.0 CRONS
+# ════════════════════════════════════════════════════════════
+
+# Team Intelligence - quotidien à 06:00 (avant settlement)
+0 6 * * * cd /app && python3 scripts/ferrari/cron/update_team_intelligence.py >> /var/log/ferrari/team_intelligence.log 2>&1
+
+# Scorer Intelligence - quotidien à 07:00 (après team intelligence)
+0 7 * * * cd /app && python3 scripts/ferrari/cron/update_scorer_intelligence.py >> /var/log/ferrari/scorer_intelligence.log 2>&1
+
+# Ferrari V3 A/B Testing - quotidien à 10:00 (après settlement matin)
 0 10 * * * cd /app && API_FOOTBALL_KEY=122c7380779a7a5b381c4d0896e33c3d bash scripts/run_ferrari_ab_test.sh >> /var/log/ferrari/cron.log 2>&1
 
-# Meta-Learning GPT-4o - quotidien à 11h00 (après Ferrari A/B test)
+# Meta-Learning GPT-4o - quotidien à 11:00 (après Ferrari A/B test)
 0 11 * * * cd /app && python3 scripts/meta_learning_gpt4o.py >> /var/log/meta_learning.log 2>&1
+
+# ════════════════════════════════════════════════════════════

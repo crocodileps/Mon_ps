@@ -32,7 +32,7 @@ logging.basicConfig(
     format='%(asctime)s [%(levelname)s] %(message)s',
     handlers=[
         logging.StreamHandler(),
-        logging.FileHandler('/home/Mon_ps/logs/ferrari_populate_v3.log')
+        logging.FileHandler('/var/log/ferrari/ferrari_populate_v3.log')
     ]
 )
 logger = logging.getLogger(__name__)

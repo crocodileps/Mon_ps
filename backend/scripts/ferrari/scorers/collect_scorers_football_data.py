@@ -32,7 +32,7 @@ logging.basicConfig(
     format='%(asctime)s [%(levelname)s] %(message)s',
     handlers=[
         logging.StreamHandler(),
-        logging.FileHandler('/home/Mon_ps/logs/ferrari_scorers.log')
+        logging.FileHandler('/var/log/ferrari/ferrari_scorers.log')
     ]
 )
 logger = logging.getLogger(__name__)
