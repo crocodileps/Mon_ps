@@ -268,3 +268,59 @@ async def get_top_teams(limit: int = 20, min_matches: int = 10):
     except Exception as e:
         logger.error(f"Erreur get_top_teams: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ════════════════════════════════════════════════════════════════════════
+# INTÉGRATION PATRON + FERRARI
+# ════════════════════════════════════════════════════════════════════════
+
+@router.get("/analyze-enriched/{home_team}/{away_team}")
+async def analyze_match_enriched(home_team: str, away_team: str, 
+                                  match_id: str = "auto"):
+    """
+    Analyse complète enrichie PATRON Diamond + FERRARI Intelligence
+    
+    Combine:
+    - Analyse PATRON (Poisson, xG, probabilités)
+    - Intelligence FERRARI (profils, pièges, alertes)
+    - Scores ajustés et recommandations contextuelles
+    """
+    try:
+        from api.services.patron_ferrari_integration import get_patron_ferrari
+        
+        pf = get_patron_ferrari()
+        result = pf.analyze_match_enriched(
+            match_id=match_id,
+            home_team=home_team,
+            away_team=away_team
+        )
+        
+        return result
+        
+    except Exception as e:
+        logger.error(f"Erreur analyze_match_enriched: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/quick-check/{home_team}/{away_team}/{market}")
+async def quick_market_check(home_team: str, away_team: str, market: str):
+    """
+    Check rapide d'un marché avant de parier
+    
+    Retourne:
+    - safe_to_bet: bool
+    - trap_detected: bool
+    - recommendation: str
+    - context des équipes
+    """
+    try:
+        from api.services.patron_ferrari_integration import get_patron_ferrari
+        
+        pf = get_patron_ferrari()
+        result = pf.get_market_recommendation(home_team, away_team, market)
+        
+        return result
+        
+    except Exception as e:
+        logger.error(f"Erreur quick_market_check: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
