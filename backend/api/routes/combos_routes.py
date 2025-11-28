@@ -792,21 +792,36 @@ async def save_combo(combo_data: dict):
     cur = conn.cursor(cursor_factory=RealDictCursor)
     
     try:
-        selections = combo_data.get('selections', [])
+        selections_list = combo_data.get('selections', [])
         total_odds = combo_data.get('total_odds', 1.0)
         stake = combo_data.get('stake', 10.0)
+        match_name = combo_data.get('match_name', '')
         
-        if len(selections) < 2:
+        if len(selections_list) < 2:
             return {"error": "Minimum 2 sélections"}
         
+        # Calculer probabilité combinée
         combined_prob = 1.0
-        for sel in selections:
-            if sel.get('win_rate'):
-                combined_prob *= sel['win_rate'] / 100
+        for sel in selections_list:
+            wr = sel.get('win_rate', sel.get('score', 50))
+            if wr and wr > 1:
+                combined_prob *= wr / 100
         combined_prob *= 100
         
         ev = (combined_prob / 100) * total_odds
         kelly = calculate_kelly(combined_prob / 100, total_odds)
+        
+        # Formater selections comme un dict (comme les suggestions auto)
+        if not match_name and selections_list:
+            match_name = selections_list[0].get('match', 'Unknown')
+        
+        formatted_selections = {
+            'match': match_name,
+            'picks': selections_list,
+            'league': combo_data.get('league', 'Unknown'),
+            'risk_level': combo_data.get('risk_level', 'MEDIUM'),
+            'recommendation': combo_data.get('recommendation', '')
+        }
         
         cur.execute("""
             INSERT INTO fg_combo_tracking 
@@ -815,9 +830,9 @@ async def save_combo(combo_data: dict):
             VALUES (%s, %s, %s, %s, %s, %s, %s, 'pending')
             RETURNING id, combo_id
         """, (
-            json.dumps(selections),
+            json.dumps(formatted_selections),
             total_odds,
-            len(selections),
+            len(selections_list),
             round(combined_prob, 2),
             round(kelly, 2),
             round(ev, 2),

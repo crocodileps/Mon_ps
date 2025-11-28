@@ -208,6 +208,8 @@ export default function CombosPage() {
   const [stake, setStake] = useState<number>(10);
   const [selectedPicks, setSelectedPicks] = useState<any[]>([]);
   const [saving, setSaving] = useState(false);
+  const [analyzingId, setAnalyzingId] = useState<number | null>(null);
+  const [aiAnalysis, setAiAnalysis] = useState<{id: number, text: string} | null>(null);
 
   // Fetch data
   const fetchData = useCallback(async () => {
@@ -251,6 +253,45 @@ export default function CombosPage() {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  // Analyser une suggestion avec GPT-4o
+  const analyzeWithAI = async (suggestionIdx: number) => {
+    setAnalyzingId(suggestionIdx);
+    setAiAnalysis(null);
+    try {
+      const suggestion = suggestions[suggestionIdx];
+      const saveRes = await fetch(API_BASE + '/api/combos/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          selections: suggestion.picks.map(p => ({
+            match: suggestion.match_name,
+            market: p.market,
+            odds: p.odds,
+            score: p.score
+          })),
+          total_odds: suggestion.combined_odds,
+          stake: 10
+        })
+      });
+      const saveData = await saveRes.json();
+      if (saveData.id) {
+        const response = await fetch(API_BASE + '/api/combos/analyze-ai/' + saveData.id, {
+          method: 'POST'
+        });
+        const data = await response.json();
+        if (data.analysis) {
+          setAiAnalysis({ id: suggestionIdx, text: data.analysis });
+        } else {
+          alert('Erreur: ' + (data.error || 'Analyse impossible'));
+        }
+      }
+    } catch (error) {
+      console.error('Erreur analyse IA:', error);
+    } finally {
+      setAnalyzingId(null);
+    }
+  };
 
   // Calculer les stats du combo builder
   const comboStats = {
@@ -513,6 +554,36 @@ export default function CombosPage() {
                       <div className="mt-3 p-3 bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-lg border border-purple-500/20">
                         <p className="text-sm text-slate-300">{suggestion.recommendation}</p>
                       </div>
+
+                      {/* Bouton Analyse IA */}
+                      <div className="mt-3 flex items-center gap-3">
+                        <button
+                          onClick={() => analyzeWithAI(idx)}
+                          disabled={analyzingId === idx}
+                          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600/30 to-pink-600/30 border border-purple-500/40 text-purple-300 rounded-lg hover:from-purple-600/50 hover:to-pink-600/50 transition-all disabled:opacity-50"
+                        >
+                          {analyzingId === idx ? (
+                            <RefreshCw className="w-4 h-4 animate-spin" />
+                          ) : (
+                            <Brain className="w-4 h-4" />
+                          )}
+                          {analyzingId === idx ? 'Analyse...' : 'Analyse IA'}
+                        </button>
+                        {aiAnalysis?.id === idx && (
+                          <button onClick={() => setAiAnalysis(null)} className="text-slate-400 hover:text-white text-sm">
+                            Fermer
+                          </button>
+                        )}
+                      </div>
+                      {aiAnalysis?.id === idx && (
+                        <div className="mt-3 p-4 bg-gradient-to-r from-purple-900/40 to-pink-900/40 rounded-xl border border-purple-500/30">
+                          <div className="flex items-center gap-2 mb-3">
+                            <Brain className="w-5 h-5 text-purple-400" />
+                            <span className="text-purple-300 font-bold">Analyse GPT-4o</span>
+                          </div>
+                          <div className="text-slate-200 text-sm whitespace-pre-wrap leading-relaxed">{aiAnalysis.text}</div>
+                        </div>
+                      )}
                     </motion.div>
                   ))
                 )}
