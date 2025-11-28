@@ -280,3 +280,7 @@ app.include_router(tracking_clv_router)
 # Combinés Intelligents Routes
 from api.routes import combos_routes
 app.include_router(combos_routes.router)
+
+# Ferrari Intelligence Routes (FERRARI 2.0 ULTIMATE)
+from api.routes.ferrari_intelligence_routes import router as ferrari_intelligence_router
+app.include_router(ferrari_intelligence_router)
