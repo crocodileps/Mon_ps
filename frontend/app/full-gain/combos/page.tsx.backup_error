@@ -60,7 +60,7 @@ interface ComboSuggestion {
   commence_time: string;
   picks: ComboPick[];
   combined_odds: number;
-  combined_probability: number;
+  expected_win_rate: number;
   correlation_score: number;
   recommendation: string;
   risk_level: string;
@@ -313,7 +313,7 @@ export default function CombosPage() {
       market: MARKET_LABELS[p.market] || p.market,
       odds: p.odds,
       score: p.score,
-      win_rate: suggestion.combined_probability / suggestion.picks.length
+      win_rate: suggestion.expected_win_rate / suggestion.picks.length
     }));
     
     setSelectedPicks(prev => {
@@ -482,7 +482,7 @@ export default function CombosPage() {
                             <span className="text-slate-300 text-sm font-medium">
                               {MARKET_LABELS[pick.market] || pick.market}
                             </span>
-                            <span className="text-cyan-400 font-bold">@{(pick.odds ?? 0).toFixed(2)}</span>
+                            <span className="text-cyan-400 font-bold">@{pick.odds.toFixed(2)}</span>
                             {pick.score >= 70 && <Star className="w-3 h-3 text-yellow-400" />}
                           </div>
                         ))}
@@ -492,21 +492,21 @@ export default function CombosPage() {
                       <div className="grid grid-cols-4 gap-4 p-3 bg-slate-900/50 rounded-lg">
                         <div>
                           <p className="text-slate-500 text-xs">Cote</p>
-                          <p className="text-xl font-bold text-cyan-400">{(suggestion.combined_odds ?? 0).toFixed(2)}</p>
+                          <p className="text-xl font-bold text-cyan-400">{suggestion.combined_odds.toFixed(2)}</p>
                         </div>
                         <div>
                           <p className="text-slate-500 text-xs">Win Rate</p>
-                          <p className="text-xl font-bold text-emerald-400">{(suggestion.combined_probability ?? 0).toFixed(1)}%</p>
+                          <p className="text-xl font-bold text-emerald-400">{suggestion.expected_win_rate.toFixed(1)}%</p>
                         </div>
                         <div>
                           <p className="text-slate-500 text-xs">Corrélation</p>
                           <p className={`text-xl font-bold ${suggestion.correlation_score < 0.4 ? 'text-emerald-400' : suggestion.correlation_score < 0.6 ? 'text-amber-400' : 'text-red-400'}`}>
-                            {(((suggestion.correlation_score ?? 0) * 100)).toFixed(0)}%
+                            {(suggestion.correlation_score * 100).toFixed(0)}%
                           </p>
                         </div>
                         <div>
                           <p className="text-slate-500 text-xs">Gain (10€)</p>
-                          <p className="text-xl font-bold text-purple-400">{((10 * (suggestion.combined_odds ?? 0))).toFixed(2)}€</p>
+                          <p className="text-xl font-bold text-purple-400">{(10 * suggestion.combined_odds).toFixed(2)}€</p>
                         </div>
                       </div>
 
@@ -545,7 +545,7 @@ export default function CombosPage() {
                           <p className="text-slate-400 text-sm">{pick.market}</p>
                         </div>
                         <div className="flex items-center gap-3">
-                          <span className="text-cyan-400 font-bold">@{(pick.odds ?? 0).toFixed(2)}</span>
+                          <span className="text-cyan-400 font-bold">@{pick.odds.toFixed(2)}</span>
                           <button
                             onClick={() => setSelectedPicks(prev => prev.filter(p => p.id !== pick.id))}
                             className="p-1.5 bg-red-500/20 text-red-400 rounded hover:bg-red-500/30"
@@ -591,12 +591,12 @@ export default function CombosPage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-slate-400">Cote Totale</span>
-                      <span className="text-cyan-400 font-bold">{(comboStats.totalOdds ?? 0).toFixed(2)}</span>
+                      <span className="text-cyan-400 font-bold">{comboStats.totalOdds.toFixed(2)}</span>
                     </div>
                     <hr className="border-slate-700" />
                     <div className="flex justify-between">
                       <span className="text-slate-300 font-medium">Gain Potentiel</span>
-                      <span className="text-2xl font-bold text-yellow-400">{(comboStats.potentialWin ?? 0).toFixed(2)}€</span>
+                      <span className="text-2xl font-bold text-yellow-400">{comboStats.potentialWin.toFixed(2)}€</span>
                     </div>
                   </div>
 
@@ -685,7 +685,7 @@ export default function CombosPage() {
                       
                       {/* Sélections */}
                       <div className="flex flex-wrap gap-2 mb-3">
-                        {(typeof combo.selections === 'string' ? JSON.parse(combo.selections).picks : combo.selections.picks || []).map((sel: any, sidx: number) => (
+                        {(typeof combo.selections === 'string' ? JSON.parse(combo.selections) : combo.selections).map((sel: any, sidx: number) => (
                           <span key={sidx} className="text-xs bg-slate-700/50 px-2 py-1 rounded text-slate-300">
                             {sel.match} - {sel.market}
                           </span>
