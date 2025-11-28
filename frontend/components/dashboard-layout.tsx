@@ -23,6 +23,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     { href: '/manual-bets', label: 'Paris & CLV', icon: Calculator },
     { href: '/conseil-ultim', label: 'Conseil Ultim', icon: Activity },
     { href: '/full-gain', label: 'Full Gain 2.0', icon: TrendingUp },
+    { href: '/full-gain/combos', label: 'Combos 2.0', icon: Layers },
     { href: '/full-gain/stats', label: 'Tracking CLV', icon: BarChart3 },
   ]
 
