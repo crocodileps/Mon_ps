@@ -1,3 +1,4 @@
+import json
 """
 🔗 COMBINÉS INTELLIGENTS
 Suggestions de paris combinés basées sur les corrélations et performances réelles
@@ -249,5 +250,366 @@ async def get_market_correlations():
             'low': '< 0.3 - Idéal pour combinés',
             'medium': '0.3-0.6 - Acceptable',
             'high': '> 0.6 - Éviter dans le même combiné'
+        }
+    }
+
+
+# ============================================================
+# 🆕 NOUVELLES ROUTES V2 - DYNAMIQUES + HISTORIQUE
+# ============================================================
+
+@router.get("/stats-dynamic")
+async def get_dynamic_market_stats():
+    """
+    Récupère les stats des marchés DYNAMIQUEMENT depuis la base
+    (Remplace les valeurs hardcodées)
+    """
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    
+    cur.execute("""
+        SELECT 
+            market_type,
+            COUNT(*) as total_picks,
+            COUNT(*) FILTER (WHERE is_winner = true) as wins,
+            COUNT(*) FILTER (WHERE is_winner = false) as losses,
+            ROUND(COUNT(*) FILTER (WHERE is_winner)::numeric / NULLIF(COUNT(*), 0) * 100, 1) as win_rate,
+            ROUND(AVG(odds_taken)::numeric, 2) as avg_odds,
+            ROUND(SUM(profit_loss)::numeric, 2) as total_profit,
+            ROUND(AVG(clv_percentage)::numeric, 2) as avg_clv
+        FROM tracking_clv_picks
+        WHERE is_resolved = true
+        AND market_type IS NOT NULL
+        GROUP BY market_type
+        HAVING COUNT(*) >= 5
+        ORDER BY total_profit DESC
+    """)
+    
+    markets = cur.fetchall()
+    
+    # Classifier dynamiquement
+    for m in markets:
+        profit = float(m['total_profit'] or 0)
+        wr = float(m['win_rate'] or 0)
+        
+        if profit > 10 and wr > 60:
+            m['tier'] = 'S'
+            m['status'] = '🏆 ELITE'
+        elif profit > 5:
+            m['tier'] = 'S'
+            m['status'] = '🥇 TOP'
+        elif profit > 0:
+            m['tier'] = 'A'
+            m['status'] = '✅ RENTABLE'
+        elif profit > -5:
+            m['tier'] = 'B'
+            m['status'] = '⚠️ NEUTRE'
+        else:
+            m['tier'] = 'C'
+            m['status'] = '❌ À ÉVITER'
+    
+    cur.close()
+    conn.close()
+    
+    return {
+        'count': len(markets),
+        'markets': markets,
+        'source': 'DYNAMIC - tracking_clv_picks',
+        'updated_at': datetime.now().isoformat()
+    }
+
+
+@router.post("/save")
+async def save_combo(combo_data: dict):
+    """
+    Sauvegarde un combo pour tracking et analyse future
+    """
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    
+    try:
+        selections = combo_data.get('selections', [])
+        total_odds = combo_data.get('total_odds', 1.0)
+        stake = combo_data.get('stake', 10.0)
+        
+        if len(selections) < 2:
+            return {"error": "Minimum 2 sélections requises"}
+        
+        # Calculer probabilité combinée
+        combined_prob = 1.0
+        for sel in selections:
+            if sel.get('win_rate'):
+                combined_prob *= sel['win_rate'] / 100
+        combined_prob *= 100
+        
+        # Expected Value
+        ev = (combined_prob / 100) * total_odds
+        
+        # Kelly combo
+        if total_odds > 1:
+            kelly = ((combined_prob / 100) * total_odds - 1) / (total_odds - 1) * 100
+            kelly = max(0, min(kelly, 25))  # Cap à 25%
+        else:
+            kelly = 0
+        
+        cur.execute("""
+            INSERT INTO fg_combo_tracking 
+            (selections, total_odds, num_selections, combined_probability, 
+             kelly_combo, expected_value, stake, status)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, 'pending')
+            RETURNING id, combo_id
+        """, (
+            json.dumps(selections),
+            total_odds,
+            len(selections),
+            round(combined_prob, 2),
+            round(kelly, 2),
+            round(ev, 2),
+            stake
+        ))
+        
+        result = cur.fetchone()
+        conn.commit()
+        
+        return {
+            "success": True,
+            "combo_id": str(result['combo_id']),
+            "id": result['id'],
+            "stats": {
+                "total_odds": total_odds,
+                "combined_probability": round(combined_prob, 2),
+                "expected_value": round(ev, 2),
+                "kelly_pct": round(kelly, 2),
+                "potential_win": round(stake * total_odds, 2)
+            }
+        }
+        
+    except Exception as e:
+        conn.rollback()
+        return {"error": str(e)}
+    finally:
+        cur.close()
+        conn.close()
+
+
+@router.get("/history")
+async def get_combo_history(
+    status: str = "all",
+    limit: int = 50
+):
+    """
+    Récupère l'historique des combos avec stats
+    """
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    
+    query = """
+        SELECT 
+            id, combo_id, selections, total_odds, num_selections,
+            combined_probability, kelly_combo, expected_value,
+            status, outcome, winning_selections, stake, profit_loss,
+            created_at, resolved_at
+        FROM fg_combo_tracking
+    """
+    
+    params = []
+    if status != "all":
+        query += " WHERE status = %s"
+        params.append(status)
+    
+    query += " ORDER BY created_at DESC LIMIT %s"
+    params.append(limit)
+    
+    cur.execute(query, params)
+    combos = cur.fetchall()
+    
+    # Stats globales
+    cur.execute("""
+        SELECT 
+            COUNT(*) as total_combos,
+            COUNT(*) FILTER (WHERE status = 'won') as won,
+            COUNT(*) FILTER (WHERE status = 'lost') as lost,
+            COUNT(*) FILTER (WHERE status = 'pending') as pending,
+            ROUND(SUM(profit_loss)::numeric, 2) as total_profit,
+            ROUND(AVG(total_odds)::numeric, 2) as avg_odds,
+            ROUND(AVG(num_selections)::numeric, 1) as avg_selections
+        FROM fg_combo_tracking
+        WHERE status != 'pending' OR status = 'pending'
+    """)
+    stats = cur.fetchone()
+    
+    cur.close()
+    conn.close()
+    
+    # Formater les résultats
+    for combo in combos:
+        combo['created_at'] = str(combo['created_at']) if combo['created_at'] else None
+        combo['resolved_at'] = str(combo['resolved_at']) if combo['resolved_at'] else None
+        combo['combo_id'] = str(combo['combo_id']) if combo['combo_id'] else None
+    
+    return {
+        "count": len(combos),
+        "combos": combos,
+        "stats": {
+            "total": stats['total_combos'] or 0,
+            "won": stats['won'] or 0,
+            "lost": stats['lost'] or 0,
+            "pending": stats['pending'] or 0,
+            "win_rate": round((stats['won'] or 0) / max(1, (stats['won'] or 0) + (stats['lost'] or 0)) * 100, 1),
+            "total_profit": float(stats['total_profit'] or 0),
+            "avg_odds": float(stats['avg_odds'] or 0),
+            "avg_selections": float(stats['avg_selections'] or 0)
+        }
+    }
+
+
+@router.post("/resolve/{combo_id}")
+async def resolve_combo(combo_id: str, result: dict):
+    """
+    Résout un combo (won/lost/partial)
+    """
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    
+    try:
+        outcome = result.get('outcome', 'lost')  # won, lost, partial
+        winning_selections = result.get('winning_selections', 0)
+        
+        # Récupérer le combo
+        cur.execute("""
+            SELECT stake, total_odds, num_selections 
+            FROM fg_combo_tracking 
+            WHERE combo_id = %s OR id::text = %s
+        """, (combo_id, combo_id))
+        
+        combo = cur.fetchone()
+        if not combo:
+            return {"error": "Combo non trouvé"}
+        
+        # Calculer profit/loss
+        stake = float(combo['stake'] or 10)
+        total_odds = float(combo['total_odds'] or 1)
+        
+        if outcome == 'won':
+            profit_loss = stake * total_odds - stake
+            status = 'won'
+        elif outcome == 'partial':
+            # Calcul partiel basé sur les sélections gagnantes
+            partial_odds = 1.0  # À améliorer avec les vraies cotes
+            profit_loss = stake * partial_odds - stake
+            status = 'partial'
+        else:
+            profit_loss = -stake
+            status = 'lost'
+        
+        cur.execute("""
+            UPDATE fg_combo_tracking
+            SET status = %s,
+                outcome = %s,
+                winning_selections = %s,
+                profit_loss = %s,
+                resolved_at = NOW()
+            WHERE combo_id = %s OR id::text = %s
+            RETURNING id
+        """, (status, outcome, winning_selections, round(profit_loss, 2), combo_id, combo_id))
+        
+        conn.commit()
+        
+        return {
+            "success": True,
+            "combo_id": combo_id,
+            "status": status,
+            "profit_loss": round(profit_loss, 2)
+        }
+        
+    except Exception as e:
+        conn.rollback()
+        return {"error": str(e)}
+    finally:
+        cur.close()
+        conn.close()
+
+
+@router.get("/correlations-dynamic")
+async def get_dynamic_correlations():
+    """
+    Calcule les corrélations RÉELLES entre marchés depuis l'historique
+    """
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    
+    # Calculer les co-occurrences de victoires
+    cur.execute("""
+        WITH market_results AS (
+            SELECT 
+                home_team, away_team, commence_time::date as match_date,
+                market_type,
+                is_winner
+            FROM tracking_clv_picks
+            WHERE is_resolved = true
+        ),
+        pair_analysis AS (
+            SELECT 
+                a.market_type as market_a,
+                b.market_type as market_b,
+                COUNT(*) as sample_size,
+                COUNT(*) FILTER (WHERE a.is_winner AND b.is_winner) as both_win,
+                COUNT(*) FILTER (WHERE a.is_winner) as a_wins,
+                COUNT(*) FILTER (WHERE b.is_winner) as b_wins
+            FROM market_results a
+            JOIN market_results b ON 
+                a.home_team = b.home_team 
+                AND a.away_team = b.away_team 
+                AND a.match_date = b.match_date
+                AND a.market_type < b.market_type
+            GROUP BY a.market_type, b.market_type
+            HAVING COUNT(*) >= 10
+        )
+        SELECT 
+            market_a, market_b, sample_size,
+            ROUND(a_wins::numeric / sample_size * 100, 1) as wr_a,
+            ROUND(b_wins::numeric / sample_size * 100, 1) as wr_b,
+            ROUND(both_win::numeric / sample_size * 100, 1) as both_wr,
+            ROUND((both_win::numeric / NULLIF(a_wins * b_wins / sample_size::numeric, 0)), 2) as lift
+        FROM pair_analysis
+        ORDER BY lift DESC
+    """)
+    
+    correlations = cur.fetchall()
+    
+    # Identifier les meilleurs et pires combos
+    best_combos = []
+    avoid_combos = []
+    
+    for c in correlations:
+        lift = float(c['lift'] or 1)
+        both_wr = float(c['both_wr'] or 0)
+        
+        if lift > 1.2 and both_wr > 30:
+            best_combos.append({
+                'pair': f"{c['market_a']} + {c['market_b']}",
+                'win_rate': both_wr,
+                'lift': lift,
+                'sample': c['sample_size']
+            })
+        elif lift < 0.8 or both_wr < 15:
+            avoid_combos.append({
+                'pair': f"{c['market_a']} + {c['market_b']}",
+                'win_rate': both_wr,
+                'lift': lift,
+                'reason': 'Corrélation négative' if lift < 0.8 else 'Win rate trop faible'
+            })
+    
+    cur.close()
+    conn.close()
+    
+    return {
+        'correlations': correlations,
+        'best_combos': sorted(best_combos, key=lambda x: x['win_rate'], reverse=True)[:5],
+        'avoid_combos': avoid_combos[:5],
+        'interpretation': {
+            'lift > 1.2': 'Synergie positive - Bon pour combos',
+            'lift 0.8-1.2': 'Indépendant - Neutre',
+            'lift < 0.8': 'Anti-corrélation - À éviter ensemble'
         }
     }
