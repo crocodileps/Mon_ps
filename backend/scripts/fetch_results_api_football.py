@@ -19,7 +19,7 @@ RAPIDAPI_KEY = "cac3fcc086msb2cc89f67315743ap1d5517jsn18b7640fa578"
 RAPIDAPI_HOST = "api-football-v1.p.rapidapi.com"
 
 DB_CONFIG = {
-    "host": "monps_postgres",
+    "host": "localhost",
     "database": "monps_db",
     "user": "monps_user",
     "password": "monps_secure_password_2024"

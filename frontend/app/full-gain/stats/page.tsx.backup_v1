@@ -1,0 +1,672 @@
+"use client";
+
+import React, { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  TrendingUp, TrendingDown, Target, Percent, DollarSign,
+  BarChart3, PieChart, Activity, AlertTriangle, RefreshCw,
+  Zap, Brain, GitBranch, Calculator, Flame, Snowflake,
+  Trophy, AlertCircle, ArrowUpRight, ArrowDownRight, Minus,
+  CheckCircle
+} from "lucide-react";
+import {
+  BarChart, Bar, AreaChart, Area, XAxis, YAxis,
+  CartesianGrid, Tooltip, ResponsiveContainer, Cell
+} from "recharts";
+
+// Types
+interface GlobalPerformance {
+  total_matches: number;
+  total_predictions: number;
+  resolved_predictions: number;
+  wins: number;
+  losses: number;
+  win_rate: number;
+  roi_pct: number;
+  total_profit: number;
+  avg_clv: number;
+  clv_positive_rate: number;
+}
+
+interface MarketPerformance {
+  market_type: string;
+  total_predictions: number;
+  resolved: number;
+  wins: number;
+  losses: number;
+  win_rate: number;
+  roi_pct: number;
+  avg_clv: number;
+  avg_kelly: number;
+  current_streak: number;
+}
+
+interface DailyPerformance {
+  date: string;
+  wins: number;
+  losses: number;
+  total_profit: number;
+  cumulative_profit: number;
+}
+
+interface Alert {
+  alert_type: string;
+  subject: string;
+  message: string;
+  severity: string;
+}
+
+interface Combo {
+  market_a: string;
+  market_b: string;
+  both_win_rate: number;
+  correlation: number;
+}
+
+interface CLVStats {
+  avg_clv: number;
+  positive_rate: number;
+  beat_closing_rate: number;
+  clv_sharpe: number;
+}
+
+interface RiskMetrics {
+  sharpe_ratio: number;
+  sortino_ratio: number;
+  max_drawdown_pct: number;
+  current_drawdown_pct: number;
+  profit_factor: number;
+  kelly_optimal: number;
+}
+
+// Constants
+const TABS = [
+  { id: "dashboard", label: "Dashboard", icon: BarChart3 },
+  { id: "markets", label: "Par Marché", icon: PieChart },
+  { id: "clv", label: "CLV", icon: TrendingUp },
+  { id: "correlations", label: "Corrélations", icon: GitBranch },
+  { id: "pro", label: "Pro Tools", icon: Brain },
+];
+
+const PERIODS = [
+  { value: 7, label: "7j" },
+  { value: 30, label: "30j" },
+  { value: 90, label: "90j" },
+  { value: 365, label: "1an" },
+];
+
+const MARKET_LABELS: Record<string, string> = {
+  over_15: "Over 1.5", under_15: "Under 1.5",
+  over_25: "Over 2.5", under_25: "Under 2.5",
+  over_35: "Over 3.5", under_35: "Under 3.5",
+  btts_yes: "BTTS Oui", btts_no: "BTTS Non",
+  dc_1x: "DC 1X", dc_x2: "DC X2", dc_12: "DC 12",
+  dnb_home: "DNB Dom", dnb_away: "DNB Ext",
+};
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://91.108.131.218:8000";
+
+// KPI Card Component
+interface KPICardProps {
+  title: string;
+  value: string | number;
+  subtitle?: string;
+  trend?: number;
+  icon: React.ElementType;
+  color: string;
+  loading?: boolean;
+}
+
+const KPICard: React.FC<KPICardProps> = ({ title, value, subtitle, trend, icon: Icon, color, loading }) => {
+  const colorClasses: Record<string, string> = {
+    cyan: "from-cyan-500/20 to-cyan-600/10 border-cyan-500/30",
+    violet: "from-violet-500/20 to-violet-600/10 border-violet-500/30",
+    green: "from-green-500/20 to-green-600/10 border-green-500/30",
+    emerald: "from-emerald-500/20 to-emerald-600/10 border-emerald-500/30",
+    amber: "from-amber-500/20 to-amber-600/10 border-amber-500/30",
+    red: "from-red-500/20 to-red-600/10 border-red-500/30",
+  };
+
+  const iconColors: Record<string, string> = {
+    cyan: "text-cyan-400 bg-cyan-500/20",
+    violet: "text-violet-400 bg-violet-500/20",
+    green: "text-green-400 bg-green-500/20",
+    emerald: "text-emerald-400 bg-emerald-500/20",
+    amber: "text-amber-400 bg-amber-500/20",
+    red: "text-red-400 bg-red-500/20",
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={`relative overflow-hidden rounded-2xl p-5 bg-gradient-to-br ${colorClasses[color]} border backdrop-blur-xl`}
+    >
+      <div className={`inline-flex p-2.5 rounded-xl ${iconColors[color]} mb-3`}>
+        <Icon className="w-5 h-5" />
+      </div>
+      <p className="text-gray-400 text-sm font-medium mb-1">{title}</p>
+      {loading ? (
+        <div className="h-8 w-24 bg-gray-700 animate-pulse rounded" />
+      ) : (
+        <div className="flex items-end gap-2">
+          <p className="text-2xl font-bold text-white">{value}</p>
+          {trend !== undefined && (
+            trend > 0 ? <ArrowUpRight className="w-4 h-4 text-green-400" /> :
+            trend < 0 ? <ArrowDownRight className="w-4 h-4 text-red-400" /> :
+            <Minus className="w-4 h-4 text-gray-400" />
+          )}
+        </div>
+      )}
+      {subtitle && <p className="text-gray-500 text-xs mt-1">{subtitle}</p>}
+    </motion.div>
+  );
+};
+
+// Alert Card Component
+const AlertCard: React.FC<{ alert: Alert }> = ({ alert }) => {
+  const severityStyles: Record<string, string> = {
+    high: "border-red-500/50 bg-red-500/10",
+    medium: "border-yellow-500/50 bg-yellow-500/10",
+    info: "border-cyan-500/50 bg-cyan-500/10",
+  };
+
+  const Icon = alert.severity === "high" ? AlertTriangle : AlertCircle;
+
+  return (
+    <div className={`p-3 rounded-xl border ${severityStyles[alert.severity] || severityStyles.info} flex items-start gap-3`}>
+      <Icon className={`w-4 h-4 mt-0.5 ${
+        alert.severity === "high" ? "text-red-400" :
+        alert.severity === "medium" ? "text-yellow-400" : "text-cyan-400"
+      }`} />
+      <div>
+        <p className="font-medium text-white text-sm">{alert.subject}</p>
+        <p className="text-gray-400 text-xs mt-0.5">{alert.message}</p>
+      </div>
+    </div>
+  );
+};
+
+// Market Row Component
+const MarketRow: React.FC<{ market: MarketPerformance; rank: number }> = ({ market, rank }) => {
+  const streak = market.current_streak || 0;
+  const hasHotStreak = streak >= 5;
+  const hasColdStreak = streak <= -5;
+
+  return (
+    <tr className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors">
+      <td className="py-3 px-4 text-gray-500 text-sm">#{rank}</td>
+      <td className="py-3 px-4">
+        <div className="flex items-center gap-2">
+          <span className="font-medium text-white">
+            {MARKET_LABELS[market.market_type] || market.market_type}
+          </span>
+          {hasHotStreak && <Flame className="w-4 h-4 text-orange-400" />}
+          {hasColdStreak && <Snowflake className="w-4 h-4 text-blue-400" />}
+        </div>
+      </td>
+      <td className="py-3 px-4 text-center text-gray-300">{market.resolved || 0}</td>
+      <td className="py-3 px-4 text-center">
+        <span className="text-green-400">{market.wins || 0}</span>
+        <span className="text-gray-600 mx-1">/</span>
+        <span className="text-red-400">{market.losses || 0}</span>
+      </td>
+      <td className="py-3 px-4 text-center">
+        <span className={`font-medium ${
+          (market.win_rate || 0) >= 55 ? "text-green-400" :
+          (market.win_rate || 0) >= 50 ? "text-cyan-400" : "text-red-400"
+        }`}>
+          {market.win_rate?.toFixed(1) || "0.0"}%
+        </span>
+      </td>
+      <td className="py-3 px-4 text-center">
+        <span className={`font-bold ${
+          (market.roi_pct || 0) >= 5 ? "text-green-400" :
+          (market.roi_pct || 0) >= 0 ? "text-cyan-400" :
+          (market.roi_pct || 0) >= -5 ? "text-yellow-400" : "text-red-400"
+        }`}>
+          {(market.roi_pct || 0) >= 0 ? "+" : ""}{market.roi_pct?.toFixed(1) || "0.0"}%
+        </span>
+      </td>
+      <td className="py-3 px-4 text-center">
+        <span className={(market.avg_clv || 0) > 0 ? "text-green-400" : "text-red-400"}>
+          {(market.avg_clv || 0) >= 0 ? "+" : ""}{market.avg_clv?.toFixed(2) || "0.00"}%
+        </span>
+      </td>
+      <td className="py-3 px-4 text-center text-gray-400">
+        {market.avg_kelly?.toFixed(1) || "0.0"}%
+      </td>
+    </tr>
+  );
+};
+
+// Main Component
+export default function TrackingCLVStats() {
+  const [activeTab, setActiveTab] = useState("dashboard");
+  const [period, setPeriod] = useState(30);
+  const [loading, setLoading] = useState(true);
+  const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
+  const [autoRefresh, setAutoRefresh] = useState(true);
+
+  // Data States
+  const [globalPerf, setGlobalPerf] = useState<GlobalPerformance | null>(null);
+  const [marketPerf, setMarketPerf] = useState<MarketPerformance[]>([]);
+  const [dailyPerf, setDailyPerf] = useState<DailyPerformance[]>([]);
+  const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [combos, setCombos] = useState<Combo[]>([]);
+  const [clvStats, setClvStats] = useState<CLVStats | null>(null);
+  const [riskMetrics, setRiskMetrics] = useState<RiskMetrics | null>(null);
+
+  // Fetch Dashboard
+  const fetchDashboard = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_BASE}/api/tracking-clv/dashboard`);
+      const data = await response.json();
+      setGlobalPerf(data.global);
+      setMarketPerf(data.by_market || []);
+      setAlerts(data.alerts || []);
+      setCombos(data.best_combos || []);
+      setLastUpdate(new Date());
+    } catch (error) {
+      console.error("Error fetching dashboard:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  // Fetch Daily Performance
+  const fetchDailyPerformance = useCallback(async () => {
+    try {
+      const startDate = new Date(Date.now() - period * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+      const endDate = new Date().toISOString().split('T')[0];
+      const response = await fetch(
+        `${API_BASE}/api/tracking-clv/performance/by-date?start_date=${startDate}&end_date=${endDate}`
+      );
+      const data = await response.json();
+      setDailyPerf(data || []);
+    } catch (error) {
+      console.error("Error fetching daily performance:", error);
+    }
+  }, [period]);
+
+  // Fetch CLV Stats
+  const fetchCLVStats = useCallback(async () => {
+    try {
+      const response = await fetch(`${API_BASE}/api/tracking-clv/clv/stats?days=${period}`);
+      const data = await response.json();
+      setClvStats(data.global_stats);
+    } catch (error) {
+      console.error("Error fetching CLV stats:", error);
+    }
+  }, [period]);
+
+  // Fetch Risk Metrics
+  const fetchRiskMetrics = useCallback(async () => {
+    try {
+      const response = await fetch(`${API_BASE}/api/tracking-clv/risk/metrics?days=${period}`);
+      const data = await response.json();
+      setRiskMetrics(data);
+    } catch (error) {
+      console.error("Error fetching risk metrics:", error);
+    }
+  }, [period]);
+
+  // Initial Load & Auto Refresh
+  useEffect(() => {
+    fetchDashboard();
+    fetchDailyPerformance();
+    fetchCLVStats();
+    fetchRiskMetrics();
+  }, [fetchDashboard, fetchDailyPerformance, fetchCLVStats, fetchRiskMetrics]);
+
+  useEffect(() => {
+    if (!autoRefresh) return;
+    const interval = setInterval(fetchDashboard, 5 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, [autoRefresh, fetchDashboard]);
+
+  useEffect(() => {
+    fetchDailyPerformance();
+    fetchCLVStats();
+    fetchRiskMetrics();
+  }, [period, fetchDailyPerformance, fetchCLVStats, fetchRiskMetrics]);
+
+  // Render Header
+  const renderHeader = () => (
+    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
+      <div>
+        <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+          <Activity className="w-7 h-7 text-cyan-400" />
+          Tracking CLV 2.0
+        </h1>
+        <p className="text-gray-400 text-sm mt-1">Performance et analyses • 13 marchés</p>
+      </div>
+      <div className="flex items-center gap-3">
+        <div className="flex bg-gray-800/50 rounded-xl p-1">
+          {PERIODS.map((p) => (
+            <button
+              key={p.value}
+              onClick={() => setPeriod(p.value)}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                period === p.value ? "bg-cyan-500 text-white" : "text-gray-400 hover:text-white"
+              }`}
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
+        <button
+          onClick={() => setAutoRefresh(!autoRefresh)}
+          className={`p-2.5 rounded-xl transition-all ${
+            autoRefresh ? "bg-cyan-500/20 text-cyan-400" : "bg-gray-800/50 text-gray-400"
+          }`}
+          title={autoRefresh ? "Auto-refresh ON" : "Auto-refresh OFF"}
+        >
+          <RefreshCw className={`w-4 h-4 ${autoRefresh ? "animate-spin" : ""}`} style={{ animationDuration: "3s" }} />
+        </button>
+        <span className="text-xs text-gray-500">Màj: {lastUpdate.toLocaleTimeString()}</span>
+      </div>
+    </div>
+  );
+
+  // Render Tabs
+  const renderTabs = () => (
+    <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+      {TABS.map((tab) => {
+        const Icon = tab.icon;
+        return (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all whitespace-nowrap ${
+              activeTab === tab.id
+                ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-lg shadow-cyan-500/25"
+                : "bg-gray-800/50 text-gray-400 hover:bg-gray-700/50 hover:text-white"
+            }`}
+          >
+            <Icon className="w-4 h-4" />
+            {tab.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+
+  // Render Dashboard Tab
+  const renderDashboard = () => (
+    <div className="space-y-6">
+      {/* KPI Cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        <KPICard
+          title="Win Rate"
+          value={`${globalPerf?.win_rate?.toFixed(1) || "0.0"}%`}
+          subtitle={`${globalPerf?.wins || 0}W / ${globalPerf?.losses || 0}L`}
+          icon={Target}
+          color="cyan"
+          loading={loading}
+        />
+        <KPICard
+          title="ROI"
+          value={`${(globalPerf?.roi_pct || 0) >= 0 ? "+" : ""}${globalPerf?.roi_pct?.toFixed(1) || "0.0"}%`}
+          icon={Percent}
+          color="violet"
+          loading={loading}
+        />
+        <KPICard
+          title="Profit"
+          value={`${(globalPerf?.total_profit || 0) >= 0 ? "+" : ""}${globalPerf?.total_profit?.toFixed(1) || "0.0"}u`}
+          icon={DollarSign}
+          color="green"
+          loading={loading}
+        />
+        <KPICard
+          title="CLV Moyen"
+          value={`${(globalPerf?.avg_clv || 0) >= 0 ? "+" : ""}${globalPerf?.avg_clv?.toFixed(2) || "0.00"}%`}
+          subtitle={`${globalPerf?.clv_positive_rate?.toFixed(0) || "0"}% positif`}
+          icon={TrendingUp}
+          color="emerald"
+          loading={loading}
+        />
+        <KPICard
+          title="Picks"
+          value={globalPerf?.resolved_predictions || 0}
+          subtitle={`sur ${globalPerf?.total_predictions || 0} total`}
+          icon={BarChart3}
+          color="amber"
+          loading={loading}
+        />
+      </div>
+
+      {/* Charts Row */}
+      <div className="grid lg:grid-cols-2 gap-6">
+        {/* P&L Curve */}
+        <div className="bg-gray-900/50 rounded-2xl border border-gray-800/50 p-5">
+          <h3 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
+            <TrendingUp className="w-5 h-5 text-cyan-400" />
+            Évolution P&L
+          </h3>
+          <ResponsiveContainer width="100%" height={220}>
+            <AreaChart data={dailyPerf.slice().reverse()}>
+              <defs>
+                <linearGradient id="profitGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="#06b6d4" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+              <XAxis dataKey="date" stroke="#6b7280" tick={{ fontSize: 10 }}
+                tickFormatter={(v) => new Date(v).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' })} />
+              <YAxis stroke="#6b7280" tick={{ fontSize: 10 }} />
+              <Tooltip contentStyle={{ backgroundColor: "#1f2937", border: "1px solid #374151", borderRadius: "8px" }}
+                formatter={(value: number) => [`${value.toFixed(2)}u`, "P&L Cumulé"]} />
+              <Area type="monotone" dataKey="cumulative_profit" stroke="#06b6d4" fill="url(#profitGradient)" strokeWidth={2} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* ROI by Market */}
+        <div className="bg-gray-900/50 rounded-2xl border border-gray-800/50 p-5">
+          <h3 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
+            <BarChart3 className="w-5 h-5 text-violet-400" />
+            ROI par Marché
+          </h3>
+          <ResponsiveContainer width="100%" height={220}>
+            <BarChart data={marketPerf.slice(0, 8)} layout="vertical" margin={{ left: 50 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+              <XAxis type="number" stroke="#6b7280" tick={{ fontSize: 10 }} />
+              <YAxis type="category" dataKey="market_type" stroke="#6b7280" tick={{ fontSize: 10 }}
+                tickFormatter={(v) => MARKET_LABELS[v] || v} />
+              <Tooltip contentStyle={{ backgroundColor: "#1f2937", border: "1px solid #374151", borderRadius: "8px" }}
+                formatter={(value: number) => [`${value.toFixed(1)}%`, "ROI"]} />
+              <Bar dataKey="roi_pct" radius={[0, 4, 4, 0]}>
+                {marketPerf.slice(0, 8).map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={(entry.roi_pct || 0) >= 0 ? "#06b6d4" : "#ef4444"} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Tables Row */}
+      <div className="grid lg:grid-cols-3 gap-6">
+        {/* Performance Table */}
+        <div className="lg:col-span-2 bg-gray-900/50 rounded-2xl border border-gray-800/50 p-5">
+          <h3 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
+            <Trophy className="w-5 h-5 text-amber-400" />
+            Performance par Marché
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="text-gray-400 text-xs uppercase border-b border-gray-800">
+                  <th className="py-2 px-4 text-left">#</th>
+                  <th className="py-2 px-4 text-left">Marché</th>
+                  <th className="py-2 px-4 text-center">Picks</th>
+                  <th className="py-2 px-4 text-center">W/L</th>
+                  <th className="py-2 px-4 text-center">Win%</th>
+                  <th className="py-2 px-4 text-center">ROI</th>
+                  <th className="py-2 px-4 text-center">CLV</th>
+                  <th className="py-2 px-4 text-center">Kelly</th>
+                </tr>
+              </thead>
+              <tbody>
+                {marketPerf.slice(0, 8).map((market, index) => (
+                  <MarketRow key={market.market_type} market={market} rank={index + 1} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Alerts */}
+        <div className="bg-gray-900/50 rounded-2xl border border-gray-800/50 p-5">
+          <h3 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
+            <AlertTriangle className="w-5 h-5 text-amber-400" />
+            Alertes
+          </h3>
+          <div className="space-y-2">
+            {alerts.length > 0 ? (
+              alerts.slice(0, 5).map((alert, index) => (
+                <AlertCard key={index} alert={alert} />
+              ))
+            ) : (
+              <p className="text-gray-500 text-center py-6 text-sm">Aucune alerte active</p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Best Combos */}
+      <div className="bg-gray-900/50 rounded-2xl border border-gray-800/50 p-5">
+        <h3 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
+          <GitBranch className="w-5 h-5 text-violet-400" />
+          Meilleurs Combos
+        </h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-3">
+          {combos.slice(0, 5).map((combo, index) => (
+            <div key={index} className="p-3 rounded-xl bg-gray-800/30 border border-gray-700/30">
+              <div className="text-sm font-medium text-white mb-1">
+                {MARKET_LABELS[combo.market_a]} + {MARKET_LABELS[combo.market_b]}
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-cyan-400 font-bold">{(combo.both_win_rate * 100).toFixed(0)}%</span>
+                <span className={`text-xs px-2 py-0.5 rounded ${
+                  combo.correlation < 0.3 ? "bg-green-500/20 text-green-400" :
+                  combo.correlation < 0.5 ? "bg-yellow-500/20 text-yellow-400" :
+                  "bg-red-500/20 text-red-400"
+                }`}>
+                  r={combo.correlation?.toFixed(2)}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  // Render Markets Tab
+  const renderMarkets = () => (
+    <div className="space-y-6">
+      <h2 className="text-xl font-bold text-white">Détail par Marché</h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {marketPerf.map((market) => (
+          <motion.div key={market.market_type} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+            className="bg-gray-900/50 rounded-2xl border border-gray-800/50 p-5">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold text-lg text-white">{MARKET_LABELS[market.market_type] || market.market_type}</h3>
+              <span className={`text-xl font-bold ${(market.roi_pct || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
+                {(market.roi_pct || 0) >= 0 ? "+" : ""}{market.roi_pct?.toFixed(1)}%
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              <div><span className="text-gray-400">Win Rate</span><p className="font-medium text-white">{market.win_rate?.toFixed(1)}%</p></div>
+              <div><span className="text-gray-400">CLV Moyen</span>
+                <p className={`font-medium ${(market.avg_clv || 0) >= 0 ? "text-green-400" : "text-red-400"}`}>
+                  {(market.avg_clv || 0) >= 0 ? "+" : ""}{market.avg_clv?.toFixed(2)}%
+                </p>
+              </div>
+              <div><span className="text-gray-400">Picks</span><p className="font-medium text-white">{market.resolved}</p></div>
+              <div><span className="text-gray-400">Kelly</span><p className="font-medium text-white">{market.avg_kelly?.toFixed(1)}%</p></div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+
+  // Render CLV Tab
+  const renderCLV = () => (
+    <div className="space-y-6">
+      <h2 className="text-xl font-bold text-white">Analyse CLV</h2>
+      <div className="grid md:grid-cols-4 gap-4">
+        <KPICard title="CLV Moyen" value={`${(clvStats?.avg_clv || 0) >= 0 ? "+" : ""}${clvStats?.avg_clv?.toFixed(2) || "0.00"}%`} icon={TrendingUp} color="cyan" />
+        <KPICard title="CLV Positif" value={`${clvStats?.positive_rate?.toFixed(0) || "0"}%`} subtitle="des picks" icon={CheckCircle} color="green" />
+        <KPICard title="Beat Closing" value={`${clvStats?.beat_closing_rate?.toFixed(0) || "0"}%`} icon={Target} color="violet" />
+        <KPICard title="CLV Sharpe" value={clvStats?.clv_sharpe?.toFixed(2) || "0.00"} icon={Activity} color="amber" />
+      </div>
+      <div className="bg-gray-900/50 rounded-2xl border border-gray-800/50 p-6">
+        <p className="text-gray-400">Graphiques CLV détaillés disponibles prochainement...</p>
+      </div>
+    </div>
+  );
+
+  // Render Correlations Tab
+  const renderCorrelations = () => (
+    <div className="space-y-6">
+      <h2 className="text-xl font-bold text-white">Corrélations & Combos</h2>
+      <div className="bg-gray-900/50 rounded-2xl border border-gray-800/50 p-6">
+        <h3 className="font-semibold text-white mb-4">Matrice de Corrélation</h3>
+        <p className="text-gray-400">Heatmap interactive disponible prochainement...</p>
+      </div>
+    </div>
+  );
+
+  // Render Pro Tools Tab
+  const renderProTools = () => (
+    <div className="space-y-6">
+      <h2 className="text-xl font-bold text-white">Pro Tools</h2>
+      <div className="grid md:grid-cols-3 gap-4">
+        <KPICard title="Sharpe Ratio" value={riskMetrics?.sharpe_ratio?.toFixed(2) || "0.00"} icon={Activity} color="cyan" />
+        <KPICard title="Max Drawdown" value={`${riskMetrics?.max_drawdown_pct?.toFixed(1) || "0.0"}%`} icon={TrendingDown} color="red" />
+        <KPICard title="Profit Factor" value={riskMetrics?.profit_factor?.toFixed(2) || "0.00"} icon={DollarSign} color="green" />
+      </div>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="bg-gray-900/50 rounded-2xl border border-gray-800/50 p-6">
+          <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
+            <Calculator className="w-5 h-5 text-cyan-400" />Kelly Calculator
+          </h3>
+          <p className="text-gray-400">Calculateur interactif disponible prochainement...</p>
+        </div>
+        <div className="bg-gray-900/50 rounded-2xl border border-gray-800/50 p-6">
+          <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
+            <Zap className="w-5 h-5 text-violet-400" />EV Calculator
+          </h3>
+          <p className="text-gray-400">Calculateur interactif disponible prochainement...</p>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Main Return
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 p-4 md:p-6">
+      <div className="max-w-7xl mx-auto">
+        {renderHeader()}
+        {renderTabs()}
+        <AnimatePresence mode="wait">
+          <motion.div key={activeTab} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.2 }}>
+            {activeTab === "dashboard" && renderDashboard()}
+            {activeTab === "markets" && renderMarkets()}
+            {activeTab === "clv" && renderCLV()}
+            {activeTab === "correlations" && renderCorrelations()}
+            {activeTab === "pro" && renderProTools()}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
