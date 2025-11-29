@@ -15,6 +15,7 @@ import {
   Lightbulb,
   LucideIcon,
   Diamond,
+  Car,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -39,6 +40,7 @@ export const navItems: NavItem[] = [
   { id: "agent-strategy", label: "Stratégie", icon: Shield, href: "/agents" },
   { id: "conseil-ultim", label: "Conseil Ultim", icon: Target, href: "/conseil-ultim" },
   { id: "full-gain", label: "Full Gain 2.0", icon: Diamond, href: "/full-gain" },
+  { id: "ferrari", label: "FERRARI", icon: Car, href: "/ferrari" },
   { id: "tracking-stats", label: "Tracking CLV", icon: BarChart3, href: "/full-gain/stats" },
   { id: "tips", label: "Astuces", icon: Lightbulb, href: "/tips" },
   { id: "analytics", label: "Analytics", icon: BarChart3, href: "/analytics" },
