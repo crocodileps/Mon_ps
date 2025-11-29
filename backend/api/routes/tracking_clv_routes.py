@@ -376,3 +376,207 @@ def monte_carlo(
 def bias_detection():
     """Détection des biais"""
     return []
+
+
+# ============================================================
+# 🎯 SWEET SPOT V7 - NOUVELLES ROUTES
+# ============================================================
+
+@router.get("/sweet-spot/picks")
+def get_sweet_spot_picks(
+    hours_ahead: int = Query(48, description="Heures à regarder"),
+    limit: int = Query(50, description="Nombre max de picks")
+):
+    """Récupère les picks Sweet Spot (score 60-79 + cotes < 2.5)"""
+    try:
+        with get_cursor() as cursor:
+            cursor.execute("""
+                SELECT 
+                    match_id,
+                    home_team,
+                    away_team,
+                    market_type,
+                    diamond_score as score,
+                    odds_taken as odds,
+                    probability,
+                    edge_pct,
+                    kelly_pct,
+                    value_rating as recommendation,
+                    factors,
+                    commence_time,
+                    created_at
+                FROM tracking_clv_picks
+                WHERE source = 'orchestrator_v7_smart'
+                AND (factors->>'is_sweet_spot')::boolean = true
+                AND commence_time > NOW()
+                AND commence_time < NOW() + INTERVAL '%s hours'
+                ORDER BY edge_pct DESC
+                LIMIT %s
+            """, (hours_ahead, limit))
+            
+            picks = cursor.fetchall()
+            
+            result = []
+            for p in picks:
+                result.append({
+                    'match_id': p['match_id'],
+                    'home_team': p['home_team'],
+                    'away_team': p['away_team'],
+                    'match_name': f"{p['home_team']} vs {p['away_team']}",
+                    'market_type': p['market_type'],
+                    'score': p['score'] or 0,
+                    'odds': float(p['odds']) if p['odds'] else 0,
+                    'probability': float(p['probability']) if p['probability'] else 0,
+                    'edge_pct': float(p['edge_pct']) if p['edge_pct'] else 0,
+                    'kelly_pct': float(p['kelly_pct']) if p['kelly_pct'] else 0,
+                    'recommendation': p['recommendation'] or '',
+                    'factors': p['factors'] or {},
+                    'commence_time': p['commence_time'].isoformat() if p['commence_time'] else None,
+                    'created_at': p['created_at'].isoformat() if p['created_at'] else None
+                })
+            
+            return {
+                'picks': result,
+                'count': len(result),
+                'hours_ahead': hours_ahead
+            }
+    except Exception as e:
+        logger.error(f"Error fetching sweet spot picks: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/sweet-spot/stats")
+def get_sweet_spot_stats(days: int = Query(30, description="Période en jours")):
+    """Statistiques des picks Sweet Spot"""
+    try:
+        with get_cursor() as cursor:
+            # Stats globales sweet spot
+            cursor.execute("""
+                SELECT 
+                    COUNT(*) as total_picks,
+                    COUNT(*) FILTER (WHERE is_resolved) as resolved,
+                    COUNT(*) FILTER (WHERE is_resolved AND is_winner) as wins,
+                    COUNT(*) FILTER (WHERE is_resolved AND NOT is_winner) as losses,
+                    COALESCE(AVG(diamond_score), 0) as avg_score,
+                    COALESCE(AVG(edge_pct), 0) as avg_edge,
+                    COALESCE(AVG(odds_taken), 0) as avg_odds,
+                    COALESCE(SUM(profit_loss), 0) as total_profit
+                FROM tracking_clv_picks
+                WHERE source = 'orchestrator_v7_smart'
+                AND (factors->>'is_sweet_spot')::boolean = true
+                AND created_at > NOW() - INTERVAL '%s days'
+            """, (days,))
+            
+            stats = cursor.fetchone()
+            
+            resolved = stats['resolved'] or 0
+            wins = stats['wins'] or 0
+            
+            # Stats par marché sweet spot
+            cursor.execute("""
+                SELECT 
+                    market_type,
+                    COUNT(*) as total,
+                    COUNT(*) FILTER (WHERE is_resolved) as resolved,
+                    COUNT(*) FILTER (WHERE is_resolved AND is_winner) as wins,
+                    COALESCE(AVG(edge_pct), 0) as avg_edge,
+                    COALESCE(SUM(profit_loss), 0) as profit
+                FROM tracking_clv_picks
+                WHERE source = 'orchestrator_v7_smart'
+                AND (factors->>'is_sweet_spot')::boolean = true
+                AND created_at > NOW() - INTERVAL '%s days'
+                GROUP BY market_type
+                ORDER BY COUNT(*) DESC
+            """, (days,))
+            
+            by_market = []
+            for m in cursor.fetchall():
+                res = m['resolved'] or 0
+                w = m['wins'] or 0
+                by_market.append({
+                    'market_type': m['market_type'],
+                    'total': m['total'],
+                    'resolved': res,
+                    'wins': w,
+                    'win_rate': round(w / res * 100, 1) if res > 0 else 0,
+                    'avg_edge': round(float(m['avg_edge']), 2),
+                    'profit': round(float(m['profit']), 2)
+                })
+            
+            return {
+                'global': {
+                    'total_picks': stats['total_picks'] or 0,
+                    'resolved': resolved,
+                    'wins': wins,
+                    'losses': stats['losses'] or 0,
+                    'win_rate': round(wins / resolved * 100, 1) if resolved > 0 else 0,
+                    'roi_pct': round(float(stats['total_profit']) / resolved * 100, 1) if resolved > 0 else 0,
+                    'avg_score': round(float(stats['avg_score']), 1),
+                    'avg_edge': round(float(stats['avg_edge']), 2),
+                    'avg_odds': round(float(stats['avg_odds']), 2),
+                    'total_profit': round(float(stats['total_profit']), 2)
+                },
+                'by_market': by_market,
+                'period_days': days
+            }
+    except Exception as e:
+        logger.error(f"Error fetching sweet spot stats: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/sweet-spot/upcoming")
+def get_sweet_spot_upcoming(hours: int = Query(24, description="Heures à venir")):
+    """Picks Sweet Spot pour les prochaines heures"""
+    try:
+        with get_cursor() as cursor:
+            cursor.execute("""
+                SELECT 
+                    home_team,
+                    away_team,
+                    market_type,
+                    diamond_score as score,
+                    odds_taken as odds,
+                    edge_pct,
+                    kelly_pct,
+                    value_rating,
+                    commence_time,
+                    factors
+                FROM tracking_clv_picks
+                WHERE source = 'orchestrator_v7_smart'
+                AND (factors->>'is_sweet_spot')::boolean = true
+                AND commence_time BETWEEN NOW() AND NOW() + INTERVAL '%s hours'
+                ORDER BY commence_time ASC, edge_pct DESC
+            """, (hours,))
+            
+            picks = cursor.fetchall()
+            
+            # Grouper par match
+            matches = {}
+            for p in picks:
+                key = f"{p['home_team']} vs {p['away_team']}"
+                if key not in matches:
+                    matches[key] = {
+                        'match_name': key,
+                        'home_team': p['home_team'],
+                        'away_team': p['away_team'],
+                        'commence_time': p['commence_time'].isoformat() if p['commence_time'] else None,
+                        'picks': []
+                    }
+                matches[key]['picks'].append({
+                    'market_type': p['market_type'],
+                    'score': p['score'] or 0,
+                    'odds': float(p['odds']) if p['odds'] else 0,
+                    'edge_pct': float(p['edge_pct']) if p['edge_pct'] else 0,
+                    'kelly_pct': float(p['kelly_pct']) if p['kelly_pct'] else 0,
+                    'recommendation': p['value_rating'] or ''
+                })
+            
+            return {
+                'matches': list(matches.values()),
+                'total_matches': len(matches),
+                'total_picks': len(picks),
+                'hours': hours
+            }
+    except Exception as e:
+        logger.error(f"Error fetching upcoming sweet spots: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
