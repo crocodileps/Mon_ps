@@ -276,3 +276,7 @@ app.include_router(patron_diamond_router)
 # Tracking CLV Routes (Dashboard Stats)
 from api.routes.tracking_clv_routes import router as tracking_clv_router
 app.include_router(tracking_clv_router)
+
+# ALGO V4 - Data-Driven Betting
+from api.routes import algo_v4_routes
+app.include_router(algo_v4_routes.router)
