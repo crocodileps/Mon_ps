@@ -88,9 +88,9 @@ export default function FerrariPage() {
     try {
       // Fetch stats
       const [teamsRes, patternsRes, scorersRes] = await Promise.all([
-        fetch(`${API_BASE}/ferrari/top-teams?limit=20`).catch(() => null),
-        fetch(`${API_BASE}/api/patterns/profitable`).catch(() => null),
-        fetch(`${API_BASE}/api/scorers/top?limit=20`).catch(() => null),
+        fetch(`${API_BASE}/api/ferrari/top-teams?limit=20`).catch(() => null),
+        fetch(`${API_BASE}/api/ferrari/patterns/all`).catch(() => null),
+        fetch(`${API_BASE}/api/ferrari/scorers/top?limit=20`).catch(() => null),
       ]);
 
       if (teamsRes?.ok) {
@@ -362,7 +362,7 @@ function TeamsTab({ teams, loading }: { teams: TeamIntelligence[]; loading: bool
             {teams.length === 0 ? (
               <tr>
                 <td colSpan={7} className="py-8 text-center text-slate-500">
-                  Utilisez l'API /ferrari/top-teams pour charger les données
+                  Utilisez l'API /api/ferrari/top-teams pour charger les données
                 </td>
               </tr>
             ) : (

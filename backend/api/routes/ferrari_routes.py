@@ -363,3 +363,110 @@ async def compare_variations(var_a_id: int, var_b_id: int):
         logger.error(f"Erreur compare variations: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+
+
+# ════════════════════════════════════════════════════════════
+# ENDPOINTS POUR DASHBOARD FRONTEND
+# ════════════════════════════════════════════════════════════
+
+@router.get("/dashboard-stats")
+async def get_dashboard_stats():
+    """Stats globales pour le dashboard FERRARI"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        stats = {}
+        
+        # Count teams
+        cur.execute("SELECT COUNT(*) FROM team_intelligence")
+        stats['teams'] = cur.fetchone()['count']
+        
+        # Count scorers
+        cur.execute("SELECT COUNT(*) FROM scorer_intelligence")
+        stats['scorers'] = cur.fetchone()['count']
+        
+        # Count patterns
+        cur.execute("SELECT COUNT(*) FROM market_patterns")
+        stats['patterns'] = cur.fetchone()['count']
+        
+        # Count profitable patterns
+        cur.execute("SELECT COUNT(*) FROM market_patterns WHERE is_profitable = true")
+        stats['profitable_patterns'] = cur.fetchone()['count']
+        
+        # Value alerts (hardcoded for now)
+        stats['value_alerts'] = 26
+        
+        cur.close()
+        conn.close()
+        
+        return stats
+        
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@router.get("/patterns/all")
+async def get_all_patterns(limit: int = 50):
+    """Tous les patterns avec filtres"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        cur.execute("""
+            SELECT pattern_name, pattern_code, market_type, league,
+                   win_rate, roi, sample_size, recommendation, is_profitable
+            FROM market_patterns
+            ORDER BY roi DESC
+            LIMIT %s
+        """, (limit,))
+        
+        patterns = cur.fetchall()
+        cur.close()
+        conn.close()
+        
+        return {
+            "patterns": patterns,
+            "total": len(patterns)
+        }
+        
+    except Exception as e:
+        return {"error": str(e), "patterns": []}
+
+
+@router.get("/scorers/top")
+async def get_top_scorers(limit: int = 20):
+    """Top buteurs"""
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        cur.execute("""
+            SELECT player_name, current_team, season_goals, 
+                   goals_per_match, is_penalty_taker, tags
+            FROM scorer_intelligence
+            WHERE season_goals IS NOT NULL
+            ORDER BY season_goals DESC
+            LIMIT %s
+        """, (limit,))
+        
+        scorers = cur.fetchall()
+        cur.close()
+        conn.close()
+        
+        # Parse tags JSON
+        for s in scorers:
+            if s['tags'] and isinstance(s['tags'], str):
+                import json
+                try:
+                    s['tags'] = json.loads(s['tags'])
+                except:
+                    s['tags'] = []
+        
+        return {
+            "scorers": scorers,
+            "total": len(scorers)
+        }
+        
+    except Exception as e:
+        return {"error": str(e), "scorers": []}
