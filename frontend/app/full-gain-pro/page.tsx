@@ -13,9 +13,9 @@ import {
 interface SweetSpot {
   market_type: string
   prediction: string
-  odds_taken: number
-  diamond_score: number
-  value_rating: string
+  odds: number
+  score: number
+  recommendation: string
   probability: number
   kelly_pct: number
   recommendation: string
@@ -246,26 +246,26 @@ const MatchModal = ({
               <div
                 key={idx}
                 className={`p-3 rounded-lg border ${
-                  spot.diamond_score >= 90 ? 'bg-yellow-500/10 border-yellow-500/50' :
-                  spot.diamond_score >= 80 ? 'bg-purple-500/10 border-purple-500/50' :
-                  spot.diamond_score >= 60 ? 'bg-blue-500/10 border-blue-500/50' :
+                  spot.score >= 90 ? 'bg-yellow-500/10 border-yellow-500/50' :
+                  spot.score >= 80 ? 'bg-purple-500/10 border-purple-500/50' :
+                  spot.score >= 60 ? 'bg-blue-500/10 border-blue-500/50' :
                   'bg-gray-700/50 border-gray-600'
                 }`}
               >
                 <div className="flex justify-between items-start">
-                  <span className="font-medium text-white">{spot.market_type.toUpperCase()}</span>
+                  <span className="font-medium text-white">{(spot.market_type || "unknown").toUpperCase()}</span>
                   <span className={`text-sm font-bold ${
-                    spot.diamond_score >= 90 ? 'text-yellow-400' :
-                    spot.diamond_score >= 80 ? 'text-purple-400' :
+                    spot.score >= 90 ? 'text-yellow-400' :
+                    spot.score >= 80 ? 'text-purple-400' :
                     'text-gray-400'
                   }`}>
-                    {spot.diamond_score}
+                    {spot.score}
                   </span>
                 </div>
                 <div className="mt-1 text-sm text-gray-400">
-                  @{spot.odds_taken?.toFixed(2) || 'N/A'} • {spot.probability?.toFixed(1) || 0}%
+                  @{spot.odds?.toFixed(2) || 'N/A'} • {spot.probability?.toFixed(1) || 0}%
                 </div>
-                <div className="mt-1 text-xs">{spot.value_rating}</div>
+                <div className="mt-1 text-xs">{spot.recommendation}</div>
               </div>
             ))}
           </div>
@@ -358,8 +358,8 @@ const MatchCard = ({
   onToggleExpand: () => void
   isExpanded: boolean
 }) => {
-  const topPicks = match.sweet_spots.filter(s => s.diamond_score >= 80).slice(0, 3)
-  const bestScore = match.sweet_spots[0]?.diamond_score || 0
+  const topPicks = match.sweet_spots.filter(s => s.score >= 80).slice(0, 3)
+  const bestScore = match.sweet_spots[0]?.score || 0
   
   const tier = bestScore >= 100 ? 'ELITE' : bestScore >= 90 ? 'ELITE' : bestScore >= 80 ? 'DIAMOND' : 'STANDARD'
   const colors = tierColors[tier] || tierColors['STANDARD']
@@ -441,10 +441,10 @@ const MatchCard = ({
                 key={idx}
                 className={`
                   px-2 py-1 rounded text-xs font-medium
-                  ${pick.diamond_score >= 90 ? 'bg-yellow-500/20 text-yellow-400' : 'bg-purple-500/20 text-purple-400'}
+                  ${pick.score >= 90 ? 'bg-yellow-500/20 text-yellow-400' : 'bg-purple-500/20 text-purple-400'}
                 `}
               >
-                {pick.market_type.toUpperCase()} @{pick.odds_taken?.toFixed(2) || 'N/A'} ({pick.diamond_score})
+                {(pick.market_type || "unknown").toUpperCase()} @{pick.odds?.toFixed(2) || 'N/A'} ({pick.score})
               </span>
             ))}
           </div>
@@ -469,25 +469,25 @@ const MatchCard = ({
                     key={idx}
                     className={`
                       p-3 rounded-lg border transition-all
-                      ${spot.diamond_score >= 90 ? 'bg-yellow-500/10 border-yellow-500/30 hover:border-yellow-500' : ''}
-                      ${spot.diamond_score >= 80 && spot.diamond_score < 90 ? 'bg-purple-500/10 border-purple-500/30 hover:border-purple-500' : ''}
-                      ${spot.diamond_score < 80 ? 'bg-gray-800/50 border-gray-700/30 hover:border-gray-600' : ''}
+                      ${spot.score >= 90 ? 'bg-yellow-500/10 border-yellow-500/30 hover:border-yellow-500' : ''}
+                      ${spot.score >= 80 && spot.score < 90 ? 'bg-purple-500/10 border-purple-500/30 hover:border-purple-500' : ''}
+                      ${spot.score < 80 ? 'bg-gray-800/50 border-gray-700/30 hover:border-gray-600' : ''}
                     `}
                   >
                     <div className="flex justify-between items-center">
-                      <span className="font-medium text-white text-sm">{spot.market_type.toUpperCase()}</span>
+                      <span className="font-medium text-white text-sm">{(spot.market_type || "unknown").toUpperCase()}</span>
                       <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${
-                        spot.diamond_score >= 90 ? 'bg-yellow-500/30 text-yellow-400' :
-                        spot.diamond_score >= 80 ? 'bg-purple-500/30 text-purple-400' :
+                        spot.score >= 90 ? 'bg-yellow-500/30 text-yellow-400' :
+                        spot.score >= 80 ? 'bg-purple-500/30 text-purple-400' :
                         'bg-gray-600/30 text-gray-400'
                       }`}>
-                        {spot.diamond_score}
+                        {spot.score}
                       </span>
                     </div>
                     <div className="text-xs text-gray-400 mt-1">
-                      @{spot.odds_taken?.toFixed(2) || 'N/A'}
+                      @{spot.odds?.toFixed(2) || 'N/A'}
                     </div>
-                    <div className="text-xs mt-1">{spot.value_rating}</div>
+                    <div className="text-xs mt-1">{spot.recommendation}</div>
                   </div>
                 ))}
               </div>
@@ -535,14 +535,23 @@ export default function FullGainProPage() {
     
     try {
       // Fetch sweet spots elite
-      const eliteRes = await fetch(`${API_BASE}/api/pro/sweet-spots/elite`)
+      const eliteRes = await fetch(`${API_BASE}/api/tracking-clv/sweet-spot/upcoming`)
       const eliteData = await eliteRes.json()
       
       // Fetch today stats
-      const statsRes = await fetch(`${API_BASE}/api/pro/sweet-spots/today?min_score=0`)
+      const statsRes = await fetch(`${API_BASE}/api/tracking-clv/sweet-spot/picks`)
       const statsData = await statsRes.json()
       
-      setStats(statsData.stats)
+      // Calculer les stats depuis les picks
+      const allPicks = statsData.picks || []
+      const calculatedStats = {
+        total_picks: allPicks.length,
+        elite_100: allPicks.filter((p: any) => p.score === 100).length,
+        elite_90: allPicks.filter((p: any) => p.score >= 90).length,
+        diamond_plus: allPicks.filter((p: any) => p.score >= 80).length,
+        avg_score: allPicks.length > 0 ? allPicks.reduce((acc: number, p: any) => acc + (p.score || 0), 0) / allPicks.length : 0
+      }
+      setStats(calculatedStats)
       
       // Transform elite matches
       const matchesMap = new Map<string, MatchData>()
@@ -559,9 +568,9 @@ export default function FullGainProPage() {
             sweet_spots: match.picks.map((p: any) => ({
               market_type: p.market,
               prediction: p.prediction,
-              odds_taken: p.odds,
-              diamond_score: p.score,
-              value_rating: p.value_rating,
+              odds: p.odds,
+              score: p.score,
+              recommendation: p.recommendation,
               probability: 0,
               kelly_pct: 0,
               recommendation: '',
@@ -572,7 +581,7 @@ export default function FullGainProPage() {
       }
       
       // Also fetch all diamond+ picks to enrich
-      const diamondRes = await fetch(`${API_BASE}/api/pro/sweet-spots/today?min_score=80`)
+      const diamondRes = await fetch(`${API_BASE}/api/tracking-clv/sweet-spot/picks?min_score=80`)
       const diamondData = await diamondRes.json()
       
       for (const pick of diamondData.picks || []) {
@@ -590,16 +599,16 @@ export default function FullGainProPage() {
         
         const match = matchesMap.get(key)!
         const exists = match.sweet_spots.some(s => 
-          s.market_type === pick.market_type && s.diamond_score === pick.diamond_score
+          s.market_type === pick.market_type && s.score === pick.score
         )
         
         if (!exists) {
           match.sweet_spots.push({
             market_type: pick.market_type,
             prediction: pick.prediction,
-            odds_taken: pick.odds_taken,
-            diamond_score: pick.diamond_score,
-            value_rating: pick.value_rating,
+            odds: pick.odds,
+            score: pick.score,
+            recommendation: pick.recommendation,
             probability: pick.probability,
             kelly_pct: pick.kelly_pct,
             recommendation: pick.recommendation,
@@ -612,11 +621,11 @@ export default function FullGainProPage() {
       const sortedMatches = Array.from(matchesMap.values())
         .map(m => ({
           ...m,
-          sweet_spots: m.sweet_spots.sort((a, b) => b.diamond_score - a.diamond_score)
+          sweet_spots: m.sweet_spots.sort((a, b) => b.score - a.score)
         }))
         .sort((a, b) => {
-          const aScore = a.sweet_spots[0]?.diamond_score || 0
-          const bScore = b.sweet_spots[0]?.diamond_score || 0
+          const aScore = a.sweet_spots[0]?.score || 0
+          const bScore = b.sweet_spots[0]?.score || 0
           return bScore - aScore
         })
       
@@ -634,7 +643,7 @@ export default function FullGainProPage() {
   const fetchProScore = async (match: MatchData) => {
     try {
       const res = await fetch(
-        `${API_BASE}/api/pro/sweet-spots/match/${encodeURIComponent(match.home_team)}/${encodeURIComponent(match.away_team)}`
+        `${API_BASE}/api/tracking-clv/sweet-spot/picks/${encodeURIComponent(match.home_team)}/${encodeURIComponent(match.away_team)}`
       )
       const data = await res.json()
       
@@ -676,7 +685,7 @@ export default function FullGainProPage() {
 
   // Filter matches
   const filteredMatches = matches.filter(m => {
-    const bestScore = m.sweet_spots[0]?.diamond_score || 0
+    const bestScore = m.sweet_spots[0]?.score || 0
     if (filter === 'elite') return bestScore >= 90
     if (filter === 'diamond') return bestScore >= 80
     return true
@@ -796,7 +805,7 @@ return (
                 : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
             }`}
           >
-            🏆 Elite ({matches.filter(m => (m.sweet_spots[0]?.diamond_score || 0) >= 90).length})
+            🏆 Elite ({matches.filter(m => (m.sweet_spots[0]?.score || 0) >= 90).length})
           </button>
           <button
             onClick={() => setFilter('diamond')}
@@ -806,7 +815,7 @@ return (
                 : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
             }`}
           >
-            💎 Diamond+ ({matches.filter(m => (m.sweet_spots[0]?.diamond_score || 0) >= 80).length})
+            💎 Diamond+ ({matches.filter(m => (m.sweet_spots[0]?.score || 0) >= 80).length})
           </button>
         </div>
 
