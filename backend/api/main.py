@@ -20,24 +20,34 @@ from api.config import settings
 from api.services.logging import logger
 
 from api.routes import bets, odds, opportunities, stats, metrics
+from api.routes import btts_routes
 
 from api.routes import agents_routes
+from api.routes import btts_routes
 
 from api.routes import metrics_collector_routes
+from api.routes import btts_routes
 
 from api.routes import settings as settings_route
+from api.routes import btts_routes
 
 from api.routes import metrics_routes
+from api.routes import btts_routes
 
 from api.routes import manual_bets_routes
+from api.routes import btts_routes
 
 from api.routes import bets_routes
+from api.routes import btts_routes
 
 from api.routes import agents_stats_routes
+from api.routes import btts_routes
 
 from api.routes import agents_comparison_routes
+from api.routes import btts_routes
 
 from api.routes import settlement_routes
+from api.routes import btts_routes
 
 
 
@@ -150,24 +160,34 @@ async def log_requests(request: Request, call_next):
 # Routes
 
 app.include_router(bets.router, prefix="/bets", tags=["bets"])
+app.include_router(btts_routes.router)
 
 app.include_router(odds.router, prefix="/odds", tags=["odds"])
+app.include_router(btts_routes.router)
 
 app.include_router(opportunities.router, prefix="/opportunities", tags=["opportunities"])
+app.include_router(btts_routes.router)
 
 app.include_router(stats.router, prefix="/stats", tags=["stats"])
+app.include_router(btts_routes.router)
 
 app.include_router(metrics.router, tags=["metrics"])
+app.include_router(btts_routes.router)
 
 app.include_router(settings_route.router, prefix="/settings", tags=["settings"])
+app.include_router(btts_routes.router)
 
 app.include_router(metrics_routes.router)
+app.include_router(btts_routes.router)
 
 app.include_router(agents_routes.router)
+app.include_router(btts_routes.router)
 
 app.include_router(manual_bets_routes.router)
+app.include_router(btts_routes.router)
 
 app.include_router(
+app.include_router(btts_routes.router)
 
     metrics_collector_routes.router,
 
@@ -176,12 +196,16 @@ app.include_router(
 )
 
 app.include_router(bets_routes.router)
+app.include_router(btts_routes.router)
 
 app.include_router(agents_stats_routes.router)
+app.include_router(btts_routes.router)
 
 app.include_router(agents_comparison_routes.router)
+app.include_router(btts_routes.router)
 
 app.include_router(settlement_routes.router)
+app.include_router(btts_routes.router)
 
 
 
@@ -226,61 +250,95 @@ def health():
 
 # Telegram Bot Routes
 from api.routes.telegram_routes import router as telegram_router
+from api.routes import btts_routes
 app.include_router(telegram_router)
+app.include_router(btts_routes.router)
 
 # Agent Telegram Test Routes
 from api.routes.agent_telegram_test import router as agent_telegram_router
+from api.routes import btts_routes
 app.include_router(agent_telegram_router)
+app.include_router(btts_routes.router)
 
 
 
 
 # Telegram Stats Routes (HTML)
 from api.routes.telegram_stats_routes import router as telegram_stats_router
+from api.routes import btts_routes
 app.include_router(telegram_stats_router)
+app.include_router(btts_routes.router)
 
 # Briefing Routes
 from api.routes.briefing_routes import router as briefing_router
+from api.routes import btts_routes
 app.include_router(briefing_router)
+app.include_router(btts_routes.router)
 
 # Stats routes (Learning System)
 from api.routes import stats_routes
+from api.routes import btts_routes
 app.include_router(stats_routes.router, prefix="/stats", tags=["stats"])
+app.include_router(btts_routes.router)
 
 # Results routes (Scraper n8n)
 from api.routes import results_routes
+from api.routes import btts_routes
 app.include_router(results_routes.router, prefix="/results", tags=["results"])
+app.include_router(btts_routes.router)
 
 # Strategies routes (Meta-learning)
 from api.routes import strategies_routes
+from api.routes import btts_routes
 from api.routes import ferrari_routes
+from api.routes import btts_routes
 from api.routes import ferrari_variations_routes
+from api.routes import btts_routes
 from api.routes import variations_routes
+from api.routes import btts_routes
 app.include_router(strategies_routes.router, prefix="/strategies", tags=["strategies"])
+app.include_router(btts_routes.router)
 
 # Results routes (Récupération résultats matchs)
 from api.routes import results_routes
+from api.routes import btts_routes
 from api.routes import ferrari_monitoring_routes
+from api.routes import btts_routes
 from api.routes import ferrari_matches_routes
+from api.routes import btts_routes
 app.include_router(results_routes.router, prefix="/results", tags=["results"])
+app.include_router(btts_routes.router)
 app.include_router(ferrari_routes.router, prefix="/api/ferrari", tags=["Ferrari 2.0"])
+app.include_router(btts_routes.router)
 app.include_router(ferrari_variations_routes.router, prefix="/api/ferrari", tags=["Ferrari Variations Real"])
+app.include_router(btts_routes.router)
 app.include_router(ferrari_monitoring_routes.router, prefix="/api/ferrari", tags=["Ferrari Monitoring"])
+app.include_router(btts_routes.router)
 app.include_router(ferrari_matches_routes.router, prefix="/api/ferrari", tags=["Ferrari Matches"])
+app.include_router(btts_routes.router)
 app.include_router(variations_routes.router, prefix="/strategies", tags=["Variations"])
+app.include_router(btts_routes.router)
 
 # Patron Diamond V3 Routes (Multi-Marchés)
 from api.routes.patron_diamond_routes import router as patron_diamond_router
+from api.routes import btts_routes
 app.include_router(patron_diamond_router)
+app.include_router(btts_routes.router)
 
 # Tracking CLV Routes (Dashboard Stats)
 from api.routes.tracking_clv_routes import router as tracking_clv_router
+from api.routes import btts_routes
 app.include_router(tracking_clv_router)
+app.include_router(btts_routes.router)
 
 # ALGO V4 - Data-Driven Betting
 from api.routes import algo_v4_routes
+from api.routes import btts_routes
 app.include_router(algo_v4_routes.router)
+app.include_router(btts_routes.router)
 
 # Dynamic Intelligence V5.1
 from api.routes import dynamic_intelligence_routes
+from api.routes import btts_routes
 app.include_router(dynamic_intelligence_routes.router)
+app.include_router(btts_routes.router)
