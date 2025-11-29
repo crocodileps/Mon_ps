@@ -38,6 +38,7 @@ from api.routes import agents_stats_routes
 from api.routes import agents_comparison_routes
 
 from api.routes import settlement_routes
+from api.routes import pro_score_v3_routes
 
 
 
@@ -284,3 +285,4 @@ app.include_router(combos_routes.router)
 # Ferrari Intelligence Routes (FERRARI 2.0 ULTIMATE)
 from api.routes.ferrari_intelligence_routes import router as ferrari_intelligence_router
 app.include_router(ferrari_intelligence_router)
+app.include_router(pro_score_v3_routes.router)
