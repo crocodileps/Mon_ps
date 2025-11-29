@@ -650,3 +650,111 @@ async def get_stats_summary():
     finally:
         db_pool.release_connection(conn)
 
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SWEET SPOTS ENDPOINTS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+from api.services.pro_score_v3_service import SweetSpotIntegration
+
+@router.get("/sweet-spots/today")
+async def get_today_sweet_spots(
+    min_score: int = Query(80, description="Score minimum (80=Diamond, 90=Elite, 100=Perfect)")
+):
+    """
+    Récupère les Sweet Spots du jour
+    
+    643 picks aujourd'hui dont 69 ELITE!
+    """
+    try:
+        integration = SweetSpotIntegration()
+        
+        # Stats du jour
+        stats = integration.get_today_stats()
+        
+        # Picks élite
+        picks = integration.get_today_elite_picks(min_score=min_score)
+        
+        return {
+            "date": str(datetime.now().date()),
+            "stats": {
+                "total_picks": stats.get('total', 0),
+                "elite_100": stats.get('elite_100', 0),
+                "elite_90": stats.get('elite_90', 0),
+                "diamond_plus": stats.get('diamond_plus', 0),
+                "avg_score": round(float(stats.get('avg_score') or 0), 1),
+                "avg_edge": round(float(stats.get('avg_edge') or 0), 2)
+            },
+            "filter": f"score >= {min_score}",
+            "count": len(picks),
+            "picks": picks
+        }
+    except Exception as e:
+        logger.error("sweet_spots_today_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/sweet-spots/match/{home_team}/{away_team}")
+async def get_match_sweet_spots(home_team: str, away_team: str):
+    """
+    Récupère les Sweet Spots pour un match spécifique
+    """
+    try:
+        integration = SweetSpotIntegration()
+        spots = integration.get_match_sweet_spots(home_team, away_team)
+        boost, boost_info = integration.calculate_sweet_spot_boost(spots)
+        
+        return {
+            "match": f"{home_team} vs {away_team}",
+            "sweet_spots_found": len(spots),
+            "boost": boost,
+            "boost_info": boost_info,
+            "picks": spots
+        }
+    except Exception as e:
+        logger.error("match_sweet_spots_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/sweet-spots/elite")
+async def get_elite_sweet_spots():
+    """
+    Récupère uniquement les picks ELITE (score = 100)
+    Ce sont les meilleures opportunités!
+    """
+    try:
+        integration = SweetSpotIntegration()
+        picks = integration.get_today_elite_picks(min_score=100)
+        
+        # Grouper par match
+        matches = {}
+        for pick in picks:
+            match_name = pick.get('match_name', 'Unknown')
+            if match_name not in matches:
+                matches[match_name] = {
+                    "match_name": match_name,
+                    "home_team": pick.get('home_team'),
+                    "away_team": pick.get('away_team'),
+                    "league": pick.get('league'),
+                    "commence_time": str(pick.get('commence_time')),
+                    "picks": []
+                }
+            matches[match_name]["picks"].append({
+                "market": pick.get('market_type'),
+                "prediction": pick.get('prediction'),
+                "odds": float(pick.get('odds_taken') or 0),
+                "score": pick.get('diamond_score'),
+                "value_rating": pick.get('value_rating')
+            })
+        
+        return {
+            "tier": "ELITE (Score 100)",
+            "description": "Les meilleures opportunités - Toutes les conditions réunies",
+            "total_picks": len(picks),
+            "total_matches": len(matches),
+            "matches": list(matches.values())
+        }
+    except Exception as e:
+        logger.error("elite_sweet_spots_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))

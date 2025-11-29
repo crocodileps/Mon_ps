@@ -1841,3 +1841,159 @@ __all__ = [
     'db_pool'
 ]
 
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SWEET SPOTS INTEGRATION
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class SweetSpotIntegration:
+    """
+    Intègre les Sweet Spots (tracking_clv_picks) dans le calcul Pro Score
+    2,868 picks disponibles avec 643 aujourd'hui!
+    """
+    
+    def get_match_sweet_spots(self, home_team: str, away_team: str) -> List[Dict]:
+        """
+        Récupère les Sweet Spots pour un match donné
+        """
+        conn = db_pool.get_connection()
+        try:
+            cur = conn.cursor(cursor_factory=RealDictCursor)
+            
+            cur.execute("""
+                SELECT 
+                    market_type,
+                    prediction,
+                    odds_taken,
+                    clv_percentage,
+                    diamond_score,
+                    value_rating,
+                    kelly_pct,
+                    probability,
+                    recommendation,
+                    factors
+                FROM tracking_clv_picks
+                WHERE (home_team ILIKE %s OR match_name ILIKE %s)
+                AND (away_team ILIKE %s OR match_name ILIKE %s)
+                AND commence_time >= NOW()
+                ORDER BY diamond_score DESC
+            """, (f"%{home_team}%", f"%{home_team}%", f"%{away_team}%", f"%{away_team}%"))
+            
+            results = cur.fetchall()
+            cur.close()
+            return [dict(r) for r in results]
+        except Exception as e:
+            logger.error("get_sweet_spots_error", error=str(e))
+            return []
+        finally:
+            db_pool.release_connection(conn)
+    
+    def get_today_elite_picks(self, min_score: int = 90) -> List[Dict]:
+        """
+        Récupère tous les picks ELITE du jour (69 picks score=100!)
+        """
+        conn = db_pool.get_connection()
+        try:
+            cur = conn.cursor(cursor_factory=RealDictCursor)
+            
+            cur.execute("""
+                SELECT 
+                    match_name,
+                    home_team,
+                    away_team,
+                    league,
+                    market_type,
+                    prediction,
+                    odds_taken,
+                    clv_percentage,
+                    diamond_score,
+                    value_rating,
+                    kelly_pct,
+                    probability,
+                    recommendation,
+                    commence_time
+                FROM tracking_clv_picks
+                WHERE DATE(commence_time) = CURRENT_DATE
+                AND diamond_score >= %s
+                ORDER BY diamond_score DESC, commence_time ASC
+            """, (min_score,))
+            
+            results = cur.fetchall()
+            cur.close()
+            return [dict(r) for r in results]
+        except Exception as e:
+            logger.error("get_elite_picks_error", error=str(e))
+            return []
+        finally:
+            db_pool.release_connection(conn)
+    
+    def get_today_stats(self) -> Dict:
+        """
+        Statistiques des Sweet Spots du jour
+        """
+        conn = db_pool.get_connection()
+        try:
+            cur = conn.cursor(cursor_factory=RealDictCursor)
+            
+            cur.execute("""
+                SELECT 
+                    COUNT(*) as total,
+                    COUNT(CASE WHEN diamond_score >= 100 THEN 1 END) as elite_100,
+                    COUNT(CASE WHEN diamond_score >= 90 THEN 1 END) as elite_90,
+                    COUNT(CASE WHEN diamond_score >= 80 THEN 1 END) as diamond_plus,
+                    AVG(diamond_score) as avg_score,
+                    AVG(clv_percentage) as avg_edge
+                FROM tracking_clv_picks
+                WHERE DATE(commence_time) = CURRENT_DATE
+            """)
+            
+            result = cur.fetchone()
+            cur.close()
+            return dict(result) if result else {}
+        except Exception as e:
+            logger.error("get_today_stats_error", error=str(e))
+            return {}
+        finally:
+            db_pool.release_connection(conn)
+    
+    def calculate_sweet_spot_boost(self, sweet_spots: List[Dict]) -> Tuple[float, Dict]:
+        """
+        Calcule le boost basé sur les Sweet Spots
+        
+        Returns:
+            - boost: Multiplicateur (1.0 à 1.15)
+            - info: Détails sur les Sweet Spots
+        """
+        if not sweet_spots:
+            return 1.0, {"found": False, "count": 0}
+        
+        # Compter les picks par qualité
+        elite_count = sum(1 for s in sweet_spots if (s.get('diamond_score') or 0) >= 90)
+        diamond_count = sum(1 for s in sweet_spots if (s.get('diamond_score') or 0) >= 80)
+        
+        # Moyenne des scores
+        avg_score = sum(s.get('diamond_score') or 0 for s in sweet_spots) / len(sweet_spots)
+        
+        # Calcul du boost
+        boost = 1.0
+        if elite_count >= 2:
+            boost = 1.15  # Multiple ELITE picks
+        elif elite_count == 1:
+            boost = 1.10  # Un ELITE pick
+        elif diamond_count >= 2:
+            boost = 1.08  # Multiple DIAMOND
+        elif diamond_count == 1:
+            boost = 1.05  # Un DIAMOND
+        elif avg_score >= 70:
+            boost = 1.03  # Bons picks
+        
+        return boost, {
+            "found": True,
+            "count": len(sweet_spots),
+            "elite_count": elite_count,
+            "diamond_count": diamond_count,
+            "avg_score": round(avg_score, 1),
+            "boost_applied": boost,
+            "top_picks": sweet_spots[:3] if sweet_spots else []
+        }
