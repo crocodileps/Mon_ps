@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BarChart3, TrendingUp, Activity, Zap, Menu, X, Settings, LayoutDashboard, Lightbulb, FolderKanban, Layers, Calculator } from 'lucide-react'
+import { BarChart3, TrendingUp, Activity, Zap, Menu, X, Settings, LayoutDashboard, Lightbulb, FolderKanban, Layers, Calculator, Car } from 'lucide-react'
 import { PortfolioModal } from './portfolio-modal'
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -20,11 +20,12 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     { href: '/strategies', label: 'Stratégies', icon: Lightbulb },
     { href: '/systems', label: 'Systèmes & Combos', icon: Layers },
     { href: '/stats', label: 'Analyse', icon: BarChart3 },
-    { href: '/manual-bets', label: 'Paris & CLV', icon: Calculator },
+    { href: '/manual-bets', label: 'Paris & CLV', icon: Calculator, Car },
     { href: '/conseil-ultim', label: 'Conseil Ultim', icon: Activity },
     { href: '/full-gain', label: 'Full Gain 2.0', icon: TrendingUp },
     { href: '/full-gain/combos', label: 'Combos 2.0', icon: Layers },
     { href: '/full-gain/stats', label: 'Tracking CLV', icon: BarChart3 },
+    { href: '/ferrari', label: 'FERRARI', icon: Car },
   ]
 
   const settingsItems = [
