@@ -280,3 +280,7 @@ app.include_router(tracking_clv_router)
 # ALGO V4 - Data-Driven Betting
 from api.routes import algo_v4_routes
 app.include_router(algo_v4_routes.router)
+
+# Dynamic Intelligence V5.1
+from api.routes import dynamic_intelligence_routes
+app.include_router(dynamic_intelligence_routes.router)
