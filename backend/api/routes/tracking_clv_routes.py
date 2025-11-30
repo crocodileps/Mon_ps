@@ -580,3 +580,145 @@ def get_sweet_spot_upcoming(hours: int = Query(24, description="Heures à venir"
     except Exception as e:
         logger.error(f"Error fetching upcoming sweet spots: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/pro/match-score/{home_team}/{away_team}")
+async def get_pro_match_score(home_team: str, away_team: str):
+    """
+    Calcule le PRO SCORE V3.1 pour un match spécifique
+    Utilisé par la page Full Gain Pro pour les boutons d'analyse
+    """
+    try:
+        with get_cursor() as cursor:
+            # Récupérer les picks pour ce match (dernières 48h)
+            cursor.execute("""
+                SELECT
+                    market_type,
+                    diamond_score,
+                    odds_taken,
+                    probability,
+                    kelly_pct,
+                    recommendation,
+                    factors,
+                    edge_pct,
+                    value_rating
+                FROM tracking_clv_picks
+                WHERE home_team ILIKE %s AND away_team ILIKE %s
+                AND created_at > NOW() - INTERVAL '48 hours'
+                ORDER BY diamond_score DESC NULLS LAST
+            """, (f'%{home_team}%', f'%{away_team}%'))
+
+            picks = cursor.fetchall()
+
+            if not picks:
+                # Retourner un score par défaut si pas de données
+                return {
+                    "final_score": 50.0,
+                    "base_score": 50.0,
+                    "k_risk": 1.0,
+                    "k_trend": 1.0,
+                    "tier": "STANDARD",
+                    "tier_emoji": "✅",
+                    "breakdown": {"s_data": 50.0, "s_value": 50.0, "s_pattern": 50.0, "s_ml": 50.0},
+                    "ml_signal": {"type": "NO_DATA", "status": "UNKNOWN", "consensus_strength": 0, "insight": "Pas de picks pour ce match"},
+                    "risk_factors": [],
+                    "volatility_warnings": []
+                }
+
+            # Extraire les scores
+            scores = [p['diamond_score'] or 0 for p in picks]
+            avg_score = sum(scores) / len(scores) if scores else 0
+            max_score = max(scores) if scores else 0
+            
+            # Calculer les composants du PRO SCORE
+            s_data = min(100, avg_score * 1.1)  # Stats & xG (30%)
+            s_value = min(100, max_score * 0.9)  # CLV & Edge (30%)
+            s_pattern = min(100, len([s for s in scores if s >= 80]) * 15)  # FERRARI patterns (20%)
+            s_ml = min(100, avg_score)  # Agents consensus (20%)
+
+            # Base score (moyenne pondérée)
+            base_score = s_data * 0.3 + s_value * 0.3 + s_pattern * 0.2 + s_ml * 0.2
+
+            # Facteurs de risque
+            k_risk = 1.0
+            risk_factors = []
+            
+            # Vérifier la variance des scores
+            if len(scores) > 1:
+                variance = max(scores) - min(scores)
+                if variance > 30:
+                    k_risk *= 0.95
+                    risk_factors.append({"icon": "⚠️", "reason": "Haute variance entre marchés"})
+
+            # Vérifier si peu de picks à haut score
+            high_score_picks = len([s for s in scores if s >= 80])
+            if high_score_picks < 2:
+                k_risk *= 0.98
+                risk_factors.append({"icon": "📊", "reason": f"Seulement {high_score_picks} pick(s) premium"})
+
+            # K_trend basé sur la tendance des scores
+            if max_score >= 95:
+                k_trend = 1.05
+            elif max_score >= 90:
+                k_trend = 1.02
+            elif max_score < 70:
+                k_trend = 0.95
+            else:
+                k_trend = 1.0
+
+            # Final score
+            final_score = min(100, base_score * k_risk * k_trend)
+
+            # Déterminer le tier
+            if final_score >= 90:
+                tier, tier_emoji = "ELITE", "🏆"
+            elif final_score >= 80:
+                tier, tier_emoji = "DIAMOND", "💎"
+            elif final_score >= 70:
+                tier, tier_emoji = "STRONG", "⭐"
+            elif final_score >= 60:
+                tier, tier_emoji = "STANDARD", "✅"
+            else:
+                tier, tier_emoji = "SKIP", "⚪"
+
+            # Construire le signal ML
+            market_types = [p['market_type'] for p in picks if p.get('market_type')]
+            dominant_market = max(set(market_types), key=market_types.count) if market_types else "UNKNOWN"
+
+            return {
+                "final_score": round(final_score, 1),
+                "base_score": round(base_score, 1),
+                "k_risk": round(k_risk, 2),
+                "k_trend": round(k_trend, 2),
+                "tier": tier,
+                "tier_emoji": tier_emoji,
+                "breakdown": {
+                    "s_data": round(s_data, 1),
+                    "s_value": round(s_value, 1),
+                    "s_pattern": round(s_pattern, 1),
+                    "s_ml": round(s_ml, 1)
+                },
+                "ml_signal": {
+                    "type": dominant_market,
+                    "status": "STRONG" if avg_score >= 80 else "MEDIUM" if avg_score >= 60 else "WEAK",
+                    "consensus_strength": round(avg_score, 1),
+                    "insight": f"Analyse basée sur {len(picks)} pick(s) avec score moyen de {avg_score:.1f}"
+                },
+                "risk_factors": risk_factors,
+                "volatility_warnings": []
+            }
+
+    except Exception as e:
+        logger.error(f"Erreur pro match score: {e}")
+        return {
+            "final_score": 50.0,
+            "base_score": 50.0,
+            "k_risk": 1.0,
+            "k_trend": 1.0,
+            "tier": "STANDARD",
+            "tier_emoji": "⚪",
+            "breakdown": {"s_data": 50.0, "s_value": 50.0, "s_pattern": 50.0, "s_ml": 50.0},
+            "ml_signal": {"type": "ERROR", "status": "UNKNOWN", "consensus_strength": 0, "insight": f"Erreur: {str(e)}"},
+            "risk_factors": [{"icon": "❌", "reason": "Erreur de calcul"}],
+            "volatility_warnings": []
+        }
