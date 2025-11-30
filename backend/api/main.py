@@ -127,7 +127,11 @@ app.include_router(dynamic_intelligence_routes.router)
 
 # BTTS Calculator V2.1 Routes
 from api.routes import btts_routes
+
+# Pro Command Center 3.0
+from api.routes import pro_command_center
 app.include_router(btts_routes.router)
+app.include_router(pro_command_center.router)
 
 @app.on_event("startup")
 async def startup():
