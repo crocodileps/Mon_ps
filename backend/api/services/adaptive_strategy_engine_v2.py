@@ -928,8 +928,8 @@ class AdaptiveStrategyEngineV2:
         final_mult = tier_mult * 0.6 + market_mult * 0.4
         
         # Vérifier le score minimum
-        if score < config.min_score_threshold:
-            return False, f"Score {score} < seuil dynamique {config.min_score_threshold}", 0.0, True
+        if score < 70:
+            return False, f"Score {score} < seuil dynamique {70}", 0.0, True
         
         # Accepté!
         reason = f"✅ Tier: {tier_status}, Market: {market_status}, Mult: {final_mult:.2f}"
