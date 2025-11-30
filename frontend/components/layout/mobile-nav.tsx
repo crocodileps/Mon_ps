@@ -8,15 +8,15 @@ import {
   Target,
   TrendingUp,
   Shield,
-  Lightbulb,
+  Brain,
 } from "lucide-react";
 
 const mobileNavItems = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, href: "/" },
   { id: "opportunities", label: "Opport.", icon: Target, href: "/opportunities" },
   { id: "bets", label: "Paris", icon: TrendingUp, href: "/bets" },
-  { id: "agent-strategy", label: "Stratégie", icon: Shield, href: "/agent-strategy" },
-  { id: "tips", label: "Astuces", icon: Lightbulb, href: "/tips" },
+  { id: "strategy-v2", label: "Strategy", icon: Brain, href: "/strategy-v2" },
+  { id: "agent-strategy", label: "Agents", icon: Shield, href: "/agents" },
 ];
 
 export function MobileNav() {
