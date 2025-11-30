@@ -1250,3 +1250,572 @@ async def get_ultra_match_analysis(home_team: str, away_team: str):
     except Exception as e:
         logger.error(f"Erreur ultra match analysis: {e}")
         return {"error": str(e), "match": f"{home_team} vs {away_team}"}
+
+
+# ============================================================================
+# INTÉGRATION ALGOS V4/V5 + BTTS + PATRON + CONSEIL ULTIM
+# ============================================================================
+
+@router.get("/command-center/algos/{home_team}/{away_team}")
+async def get_all_algos_analysis(home_team: str, away_team: str):
+    """
+    🧠 ANALYSE PAR TOUS LES ALGORITHMES
+    - ALGO V4 Data-Driven
+    - ALGO V5.1 SMART
+    - BTTS V2.1 Agent
+    - PATRON Diamond
+    - Conseil Ultim (GPT-4)
+    """
+    import httpx
+    
+    result = {
+        "match": f"{home_team} vs {away_team}",
+        "generated_at": datetime.now().isoformat(),
+        "algorithms": {}
+    }
+    
+    base_url = "http://localhost:8000"
+    
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        
+        # 1. ALGO V5.1 SMART
+        try:
+            resp = await client.get(f"{base_url}/api/smart/analyze/{home_team}/{away_team}")
+            if resp.status_code == 200:
+                result["algorithms"]["smart_v5"] = resp.json()
+        except Exception as e:
+            result["algorithms"]["smart_v5"] = {"error": str(e)}
+        
+        
+        # 3. BTTS V2.1
+        try:
+            resp = await client.post(
+                f"{base_url}/api/btts/analyze",
+                json={"home_team": home_team, "away_team": away_team}
+            )
+            if resp.status_code == 200:
+                result["algorithms"]["btts_v2"] = resp.json()
+        except Exception as e:
+            result["algorithms"]["btts_v2"] = {"error": str(e)}
+    
+    # 4. Agent Predictions (depuis DB)
+    try:
+        with get_cursor() as cursor:
+            cursor.execute("""
+                SELECT 
+                    agent_name, prediction, confidence, reasoning,
+                    predicted_outcome, predicted_probability
+                FROM agent_predictions
+                WHERE (home_team ILIKE %s AND away_team ILIKE %s)
+                   OR match_id ILIKE %s
+                ORDER BY created_at DESC
+                LIMIT 10
+            """, (f"%{home_team}%", f"%{away_team}%", f"%{home_team}%{away_team}%"))
+            preds = cursor.fetchall()
+            if preds:
+                result["algorithms"]["agent_predictions"] = [dict(p) for p in preds]
+    except Exception as e:
+        result["algorithms"]["agent_predictions"] = {"error": str(e)}
+    
+    # 5. Conseil Ultim History
+    try:
+        with get_cursor() as cursor:
+            cursor.execute("""
+                SELECT 
+                    recommended_outcome, recommended_label,
+                    score, edge_reel, notre_proba, cote_moyenne,
+                    risque, conseil, patron_score, patron_outcome
+                FROM conseil_ultim_history
+                WHERE home_team ILIKE %s AND away_team ILIKE %s
+                ORDER BY created_at DESC
+                LIMIT 1
+            """, (f"%{home_team}%", f"%{away_team}%"))
+            conseil = cursor.fetchone()
+            if conseil:
+                result["algorithms"]["conseil_ultim_gpt4"] = dict(conseil)
+    except Exception as e:
+        result["algorithms"]["conseil_ultim_gpt4"] = {"error": str(e)}
+    
+    # 6. Match Results (historique)
+    try:
+        with get_cursor() as cursor:
+            cursor.execute("""
+                SELECT 
+                    home_team, away_team, home_score, away_score,
+                    match_date, league
+                FROM matches_results
+                WHERE (home_team ILIKE %s OR away_team ILIKE %s
+                   OR home_team ILIKE %s OR away_team ILIKE %s)
+                ORDER BY match_date DESC
+                LIMIT 10
+            """, (f"%{home_team}%", f"%{home_team}%", f"%{away_team}%", f"%{away_team}%"))
+            results = cursor.fetchall()
+            if results:
+                result["historical_results"] = [dict(r) for r in results]
+    except Exception as e:
+        result["historical_results"] = {"error": str(e)}
+    
+    return result
+
+
+@router.get("/command-center/full-analysis/{home_team}/{away_team}")
+async def get_complete_analysis(home_team: str, away_team: str):
+    """
+    🎯 ANALYSE COMPLÈTE ULTIME
+    Combine match-ultra + algos + tout le reste
+    """
+    # Récupérer l'analyse ultra
+    ultra = await get_ultra_match_analysis(home_team, away_team)
+    
+    # Récupérer les algos
+    algos = await get_all_algos_analysis(home_team, away_team)
+    
+    # Fusionner
+    ultra["algorithms"] = algos.get("algorithms", {})
+    ultra["historical_results"] = algos.get("historical_results", [])
+    
+    # Calculer un score global
+    scores = []
+    if ultra.get("pro_score", {}).get("final"):
+        scores.append(ultra["pro_score"]["final"])
+    if ultra.get("algorithms", {}).get("smart_v5", {}).get("score"):
+        scores.append(ultra["algorithms"]["smart_v5"]["score"])
+    if ultra.get("algorithms", {}).get("conseil_ultim_gpt4", {}).get("score"):
+        scores.append(ultra["algorithms"]["conseil_ultim_gpt4"]["score"])
+    
+    if scores:
+        ultra["global_score"] = {
+            "average": round(sum(scores) / len(scores), 1),
+            "max": max(scores),
+            "min": min(scores),
+            "sources_count": len(scores)
+        }
+    
+    return ultra
+
+
+# ============================================================================
+# TEAM NORMALIZER ENDPOINTS
+# ============================================================================
+
+from api.services.team_normalizer import team_normalizer
+
+@router.get("/command-center/normalize/{team_name}")
+async def normalize_team_name(team_name: str):
+    """
+    🔄 Normalise un nom d'équipe vers son nom canonique
+    """
+    canonical = team_normalizer.normalize(team_name)
+    aliases = team_normalizer.get_all_aliases(canonical)
+    
+    return {
+        "input": team_name,
+        "canonical": canonical,
+        "aliases": aliases,
+        "is_normalized": canonical != team_name
+    }
+
+
+@router.get("/command-center/team-mappings")
+async def get_team_mappings_stats():
+    """
+    📊 Stats des mappings d'équipes
+    """
+    try:
+        with get_cursor() as cursor:
+            cursor.execute("""
+                SELECT 
+                    (SELECT COUNT(*) FROM team_mapping) as canonical_teams,
+                    (SELECT COUNT(*) FROM team_aliases) as total_aliases,
+                    (SELECT COUNT(*) FROM team_name_mapping) as source_mappings,
+                    (SELECT COUNT(DISTINCT source_table) FROM team_name_mapping) as source_tables
+            """)
+            stats = cursor.fetchone()
+            
+            # Top équipes avec le plus d'alias
+            cursor.execute("""
+                SELECT tm.team_name, COUNT(ta.id) as alias_count
+                FROM team_mapping tm
+                LEFT JOIN team_aliases ta ON tm.id = ta.team_mapping_id
+                GROUP BY tm.team_name
+                ORDER BY alias_count DESC
+                LIMIT 10
+            """)
+            top_teams = cursor.fetchall()
+            
+            return {
+                "stats": {
+                    "canonical_teams": stats['canonical_teams'],
+                    "total_aliases": stats['total_aliases'],
+                    "source_mappings": stats['source_mappings'],
+                    "source_tables": stats['source_tables']
+                },
+                "top_teams_by_aliases": [
+                    {"team": t['team_name'], "aliases": t['alias_count']}
+                    for t in top_teams
+                ],
+                "cache_size": len(team_normalizer._cache)
+            }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+# ============================================================================
+# BACKTESTING & PERFORMANCE SUMMARY
+# ============================================================================
+
+@router.get("/command-center/performance/summary")
+async def get_performance_summary(days: int = 30):
+    """
+    📊 RÉSUMÉ DES PERFORMANCES DE TOUS LES SYSTÈMES
+    Analyse les prédictions passées vs résultats réels
+    """
+    try:
+        with get_cursor() as cursor:
+            result = {
+                "generated_at": datetime.now().isoformat(),
+                "period_days": days,
+                "systems": {}
+            }
+            
+            # 1. Performance tracking_clv_picks (Sweet Spots)
+            cursor.execute("""
+                SELECT 
+                    COUNT(*) as total,
+                    COUNT(*) FILTER (WHERE is_resolved = true) as resolved,
+                    COUNT(*) FILTER (WHERE is_winner = true) as wins,
+                    COUNT(*) FILTER (WHERE is_winner = false AND is_resolved = true) as losses,
+                    ROUND(AVG(diamond_score)::numeric, 1) as avg_score,
+                    ROUND(SUM(profit_loss)::numeric, 2) as total_profit,
+                    ROUND(
+                        COUNT(*) FILTER (WHERE is_winner = true)::numeric / 
+                        NULLIF(COUNT(*) FILTER (WHERE is_resolved = true), 0) * 100, 1
+                    ) as win_rate,
+                    -- CLV
+                    ROUND(AVG(
+                        CASE WHEN closing_odds > 0 THEN 
+                            (odds_taken / closing_odds - 1) * 100 
+                        ELSE NULL END
+                    )::numeric, 3) as avg_clv,
+                    -- ROI
+                    ROUND(
+                        (SUM(profit_loss) / NULLIF(COUNT(*) FILTER (WHERE is_resolved = true), 0) * 100)::numeric, 
+                    2) as roi_percent
+                FROM tracking_clv_picks
+                WHERE created_at > NOW() - INTERVAL '%s days'
+            """, (days,))
+            sweet_spots = cursor.fetchone()
+            result["systems"]["sweet_spots"] = {
+                "total_picks": sweet_spots['total'],
+                "resolved": sweet_spots['resolved'],
+                "wins": sweet_spots['wins'],
+                "losses": sweet_spots['losses'],
+                "win_rate": float(sweet_spots['win_rate'] or 0),
+                "avg_score": float(sweet_spots['avg_score'] or 0),
+                "profit": float(sweet_spots['total_profit'] or 0),
+                "avg_clv": float(sweet_spots['avg_clv'] or 0),
+                "roi_percent": float(sweet_spots['roi_percent'] or 0)
+            }
+            
+            # 2. Performance par tier
+            cursor.execute("""
+                SELECT 
+                    CASE 
+                        WHEN diamond_score >= 90 THEN 'ELITE 90+'
+                        WHEN diamond_score >= 80 THEN 'DIAMOND 80+'
+                        WHEN diamond_score >= 70 THEN 'STRONG 70+'
+                        ELSE 'STANDARD'
+                    END as tier,
+                    COUNT(*) as total,
+                    COUNT(*) FILTER (WHERE is_resolved = true) as resolved,
+                    COUNT(*) FILTER (WHERE is_winner = true) as wins,
+                    ROUND(
+                        COUNT(*) FILTER (WHERE is_winner = true)::numeric / 
+                        NULLIF(COUNT(*) FILTER (WHERE is_resolved = true), 0) * 100, 1
+                    ) as win_rate,
+                    ROUND(SUM(profit_loss)::numeric, 2) as profit,
+                    ROUND(AVG(
+                        CASE WHEN closing_odds > 0 THEN 
+                            (odds_taken / closing_odds - 1) * 100 
+                        ELSE NULL END
+                    )::numeric, 3) as avg_clv
+                FROM tracking_clv_picks
+                WHERE created_at > NOW() - INTERVAL '%s days'
+                GROUP BY 1
+                ORDER BY tier
+            """, (days,))
+            tiers = cursor.fetchall()
+            result["systems"]["by_tier"] = [
+                {
+                    "tier": t['tier'],
+                    "total": t['total'],
+                    "resolved": t['resolved'],
+                    "wins": t['wins'],
+                    "win_rate": float(t['win_rate'] or 0),
+                    "profit": float(t['profit'] or 0),
+                    "avg_clv": float(t['avg_clv'] or 0)
+                }
+                for t in tiers
+            ]
+            
+            # 3. Performance par type de marché
+            cursor.execute("""
+                SELECT 
+                    COALESCE(market_type, 'unknown') as market,
+                    COUNT(*) as total,
+                    COUNT(*) FILTER (WHERE is_resolved = true) as resolved,
+                    COUNT(*) FILTER (WHERE is_winner = true) as wins,
+                    ROUND(
+                        COUNT(*) FILTER (WHERE is_winner = true)::numeric / 
+                        NULLIF(COUNT(*) FILTER (WHERE is_resolved = true), 0) * 100, 1
+                    ) as win_rate,
+                    ROUND(SUM(profit_loss)::numeric, 2) as profit
+                FROM tracking_clv_picks
+                WHERE created_at > NOW() - INTERVAL '%s days'
+                GROUP BY 1
+                HAVING COUNT(*) >= 5
+                ORDER BY win_rate DESC NULLS LAST
+            """, (days,))
+            markets = cursor.fetchall()
+            result["systems"]["by_market"] = [
+                {
+                    "market": m['market'],
+                    "total": m['total'],
+                    "resolved": m['resolved'],
+                    "wins": m['wins'],
+                    "win_rate": float(m['win_rate'] or 0),
+                    "profit": float(m['profit'] or 0)
+                }
+                for m in markets
+            ]
+            
+            # 4. Performance agent_predictions
+            cursor.execute("""
+                SELECT 
+                    agent_name,
+                    COUNT(*) as total,
+                    COUNT(*) FILTER (WHERE was_correct = true) as correct,
+                    ROUND(
+                        COUNT(*) FILTER (WHERE was_correct = true)::numeric / 
+                        NULLIF(COUNT(*) FILTER (WHERE was_correct IS NOT NULL), 0) * 100, 1
+                    ) as accuracy,
+                    ROUND(AVG(confidence)::numeric, 1) as avg_confidence,
+                    ROUND(SUM(profit_loss)::numeric, 2) as profit
+                FROM agent_predictions
+                WHERE predicted_at > NOW() - INTERVAL '%s days'
+                GROUP BY agent_name
+                ORDER BY accuracy DESC NULLS LAST
+            """, (days,))
+            agents = cursor.fetchall()
+            result["systems"]["agents"] = [
+                {
+                    "agent": a['agent_name'],
+                    "total": a['total'],
+                    "correct": a['correct'],
+                    "accuracy": float(a['accuracy'] or 0),
+                    "avg_confidence": float(a['avg_confidence'] or 0),
+                    "profit": float(a['profit'] or 0)
+                }
+                for a in agents
+            ]
+            
+            # 5. Performance conseil_ultim (GPT-4)
+            cursor.execute("""
+                SELECT 
+                    COUNT(*) as total,
+                    COUNT(*) FILTER (WHERE is_win = true) as wins,
+                    COUNT(*) FILTER (WHERE is_win = false) as losses,
+                    ROUND(
+                        COUNT(*) FILTER (WHERE is_win = true)::numeric / 
+                        NULLIF(COUNT(*) FILTER (WHERE is_win IS NOT NULL), 0) * 100, 1
+                    ) as win_rate,
+                    ROUND(AVG(score)::numeric, 1) as avg_score
+                FROM conseil_ultim_history
+            """)
+            conseil = cursor.fetchone()
+            result["systems"]["conseil_ultim_gpt4"] = {
+                "total": conseil['total'],
+                "wins": conseil['wins'],
+                "losses": conseil['losses'],
+                "win_rate": float(conseil['win_rate'] or 0),
+                "avg_score": float(conseil['avg_score'] or 0)
+            }
+            
+            # 6. Résultats récents du marché (baseline)
+            cursor.execute("""
+                SELECT 
+                    COUNT(*) as total_matches,
+                    COUNT(*) FILTER (WHERE result = 'H') as home_wins,
+                    COUNT(*) FILTER (WHERE result = 'D') as draws,
+                    COUNT(*) FILTER (WHERE result = 'A') as away_wins,
+                    ROUND(AVG(home_goals + away_goals)::numeric, 2) as avg_goals,
+                    ROUND(
+                        COUNT(*) FILTER (WHERE home_goals > 0 AND away_goals > 0)::numeric / 
+                        NULLIF(COUNT(*), 0) * 100, 1
+                    ) as btts_rate,
+                    ROUND(
+                        COUNT(*) FILTER (WHERE home_goals + away_goals > 2)::numeric / 
+                        NULLIF(COUNT(*), 0) * 100, 1
+                    ) as over25_rate
+                FROM matches_results
+                WHERE match_date > CURRENT_DATE - INTERVAL '%s days'
+            """, (days,))
+            recent = cursor.fetchone()
+            
+            if recent['total_matches'] and recent['total_matches'] > 0:
+                result["market_reality"] = {
+                    "matches_analyzed": recent['total_matches'],
+                    "home_win_rate": round(recent['home_wins'] / recent['total_matches'] * 100, 1),
+                    "draw_rate": round(recent['draws'] / recent['total_matches'] * 100, 1),
+                    "away_win_rate": round(recent['away_wins'] / recent['total_matches'] * 100, 1),
+                    "avg_goals": float(recent['avg_goals'] or 0),
+                    "btts_rate": float(recent['btts_rate'] or 0),
+                    "over25_rate": float(recent['over25_rate'] or 0)
+                }
+            else:
+                result["market_reality"] = {"error": "Pas de données récentes"}
+            
+            # 7. Insights automatiques
+            insights = []
+            
+            # Meilleur tier
+            best_tier = max(result["systems"]["by_tier"], key=lambda x: x['win_rate'], default=None)
+            if best_tier and best_tier['resolved'] >= 10:
+                insights.append({
+                    "type": "BEST_TIER",
+                    "icon": "🏆",
+                    "message": f"Meilleur tier: {best_tier['tier']} avec {best_tier['win_rate']}% win rate"
+                })
+            
+            # CLV positif
+            if result["systems"]["sweet_spots"]["avg_clv"] > 0:
+                insights.append({
+                    "type": "CLV_POSITIVE",
+                    "icon": "📈",
+                    "message": f"CLV positif: +{result['systems']['sweet_spots']['avg_clv']}% - Tu bats le marché!"
+                })
+            
+            # Alerte si win rate < 45%
+            if result["systems"]["sweet_spots"]["win_rate"] < 45:
+                insights.append({
+                    "type": "LOW_WIN_RATE",
+                    "icon": "⚠️",
+                    "message": f"Win rate bas: {result['systems']['sweet_spots']['win_rate']}% - Révise la sélection"
+                })
+            
+            result["insights"] = insights
+            
+            return result
+            
+    except Exception as e:
+        logger.error(f"Erreur performance summary: {e}")
+        return {"error": str(e)}
+
+
+@router.get("/command-center/performance/insights")
+async def get_performance_insights(days: int = 30):
+    """
+    💡 INSIGHTS INTELLIGENTS SUR LES PERFORMANCES
+    """
+    try:
+        with get_cursor() as cursor:
+            insights = []
+            
+            # 1. Série perdante en cours
+            cursor.execute("""
+                WITH recent_bets AS (
+                    SELECT 
+                        is_winner,
+                        ROW_NUMBER() OVER (ORDER BY created_at DESC) as rn
+                    FROM tracking_clv_picks
+                    WHERE is_resolved = true
+                    ORDER BY created_at DESC
+                    LIMIT 20
+                )
+                SELECT COUNT(*) as losing_streak
+                FROM recent_bets
+                WHERE is_winner = false
+                AND rn <= (
+                    SELECT COALESCE(MIN(rn) - 1, 20)
+                    FROM recent_bets 
+                    WHERE is_winner = true
+                )
+            """)
+            streak = cursor.fetchone()
+            if streak['losing_streak'] >= 5:
+                insights.append({
+                    "type": "LOSING_STREAK",
+                    "severity": "HIGH" if streak['losing_streak'] >= 8 else "MEDIUM",
+                    "icon": "🛑",
+                    "message": f"Série de {streak['losing_streak']} pertes consécutives",
+                    "action": "Réduire les stakes ou faire une pause"
+                })
+            
+            # 2. Marché sous-performant
+            cursor.execute("""
+                SELECT 
+                    market_type,
+                    ROUND(
+                        COUNT(*) FILTER (WHERE is_winner = true)::numeric / 
+                        NULLIF(COUNT(*) FILTER (WHERE is_resolved = true), 0) * 100, 1
+                    ) as win_rate,
+                    COUNT(*) FILTER (WHERE is_resolved = true) as sample
+                FROM tracking_clv_picks
+                WHERE created_at > NOW() - INTERVAL '%s days'
+                AND market_type IS NOT NULL
+                GROUP BY market_type
+                HAVING COUNT(*) FILTER (WHERE is_resolved = true) >= 10
+                AND COUNT(*) FILTER (WHERE is_winner = true)::numeric / 
+                    NULLIF(COUNT(*) FILTER (WHERE is_resolved = true), 0) * 100 < 40
+            """, (days,))
+            bad_markets = cursor.fetchall()
+            for m in bad_markets:
+                insights.append({
+                    "type": "UNDERPERFORMING_MARKET",
+                    "severity": "MEDIUM",
+                    "icon": "⚠️",
+                    "message": f"'{m['market_type']}' sous-performe: {m['win_rate']}% sur {m['sample']} paris",
+                    "action": f"Éviter ou réduire {m['market_type']}"
+                })
+            
+            # 3. Tier surperformant
+            cursor.execute("""
+                SELECT 
+                    CASE 
+                        WHEN diamond_score >= 90 THEN 'ELITE 90+'
+                        WHEN diamond_score >= 80 THEN 'DIAMOND 80+'
+                        WHEN diamond_score >= 70 THEN 'STRONG 70+'
+                        ELSE 'STANDARD'
+                    END as tier,
+                    ROUND(
+                        COUNT(*) FILTER (WHERE is_winner = true)::numeric / 
+                        NULLIF(COUNT(*) FILTER (WHERE is_resolved = true), 0) * 100, 1
+                    ) as win_rate,
+                    COUNT(*) FILTER (WHERE is_resolved = true) as sample
+                FROM tracking_clv_picks
+                WHERE created_at > NOW() - INTERVAL '%s days'
+                GROUP BY 1
+                HAVING COUNT(*) FILTER (WHERE is_resolved = true) >= 10
+                ORDER BY win_rate DESC
+                LIMIT 1
+            """, (days,))
+            best = cursor.fetchone()
+            if best and best['win_rate'] >= 55:
+                insights.append({
+                    "type": "BEST_PERFORMER",
+                    "severity": "INFO",
+                    "icon": "🏆",
+                    "message": f"Meilleur: {best['tier']} à {best['win_rate']}% win rate ({best['sample']} paris)",
+                    "action": f"Concentrer les stakes sur {best['tier']}"
+                })
+            
+            return {
+                "period_days": days,
+                "insights_count": len(insights),
+                "insights": insights,
+                "generated_at": datetime.now().isoformat()
+            }
+            
+    except Exception as e:
+        logger.error(f"Erreur insights: {e}")
+        return {"error": str(e)}

@@ -130,8 +130,10 @@ from api.routes import btts_routes
 
 # Pro Command Center 3.0
 from api.routes import pro_command_center
+from api.routes import pro_performance_v2
 app.include_router(btts_routes.router)
 app.include_router(pro_command_center.router)
+app.include_router(pro_performance_v2.router)
 
 @app.on_event("startup")
 async def startup():
