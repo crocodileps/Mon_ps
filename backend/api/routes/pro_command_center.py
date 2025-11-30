@@ -2008,7 +2008,7 @@ async def get_optimal_picks_v2():
             cursor.execute("""
                 SELECT 
                     id, home_team, away_team, market_type, prediction,
-                    diamond_score, odds_taken, confidence, clv_percentage,
+                    diamond_score, odds_taken, probability, edge_pct,
                     created_at, commence_time
                 FROM tracking_clv_picks
                 WHERE DATE(commence_time) >= CURRENT_DATE
