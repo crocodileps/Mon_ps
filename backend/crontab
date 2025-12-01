@@ -32,3 +32,8 @@
 # ═══════════════════════════════════════════════════════════
 0 3 * * 0 cd /app && python3 /app/scripts/coach_update_extended.py >> /var/log/coach_update.log 2>&1
 
+
+# SCORES - Collecte 3x/jour via The Odds API (seule source fiable)
+0 6 * * * cd /app && python3 scripts/fetch_match_results.py >> /var/log/scores.log 2>&1
+0 14 * * * cd /app && python3 scripts/fetch_match_results.py >> /var/log/scores.log 2>&1
+0 22 * * * cd /app && python3 scripts/fetch_match_results.py >> /var/log/scores.log 2>&1

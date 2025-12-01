@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Coach Impact Calculator V1.1
+Coach Impact Calculator V3
 Calcule les ajustements xG basés sur les styles tactiques RÉELS des coaches
+MISE À JOUR: Nouveaux styles (struggling, attacking_vulnerable, defensive_weak)
 """
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -17,6 +18,21 @@ DB_CONFIG = {
     'password': 'monps_secure_password_2024'
 }
 
+# STYLE_MULTIPLIERS V3 - Avec nouveaux styles
+STYLE_MULTIPLIERS = {
+    'dominant_offensive':   {'att': 1.25, 'def': 0.85},  # Bayern, City, Arsenal
+    'offensive':            {'att': 1.15, 'def': 1.00},  # Classique offensif
+    'attacking_vulnerable': {'att': 1.20, 'def': 1.30},  # BTTS kings (Spurs, Hoffenheim)
+    'balanced':             {'att': 1.00, 'def': 1.00},  # Neutre
+    'defensive':            {'att': 0.90, 'def': 0.85},  # Solides derrière
+    'defensive_weak':       {'att': 0.75, 'def': 1.00},  # Marque peu mais tient (Getafe)
+    'ultra_defensive':      {'att': 0.80, 'def': 0.70},  # Clean sheet kings (Conte)
+    'struggling':           {'att': 0.65, 'def': 1.40},  # En difficulté (Valencia, Wolves)
+    # Legacy
+    'high_risk_offensive':  {'att': 1.20, 'def': 1.35},
+    'unknown':              {'att': 1.00, 'def': 1.00},
+}
+
 DIRECT_MAPPING = {
     'psg': 'Paris Saint-Germain',
     'om': 'Marseille',
@@ -29,140 +45,156 @@ DIRECT_MAPPING = {
     'juve': 'Juventus',
     'bayern': 'Bayern',
     'dortmund': 'Dortmund',
-    'man city': 'Manchester City',
-    'man united': 'Manchester United',
+    'liverpool': 'Liverpool',
+    'chelsea': 'Chelsea',
+    'arsenal': 'Arsenal',
+    'city': 'Manchester City',
+    'united': 'Manchester United',
+    'tottenham': 'Tottenham',
+    'spurs': 'Tottenham',
 }
 
 
-def clean_team_name(name: str) -> str:
-    """Nettoie les prefixes et suffixes courants"""
-    prefixes = ["SSC ", "AC ", "FC ", "AS ", "US ", "RC "]
-    for prefix in prefixes:
-        if name.startswith(prefix):
-            name = name[len(prefix):].strip()
-            break
-    """Nettoie les suffixes courants des noms d'équipes"""
-    suffixes = [" FC", " AFC", " CF", " SC", " SSC", " AC", " BC"]
-    for suffix in suffixes:
-        if name.endswith(suffix):
-            return name[:-len(suffix)].strip()
-    return name
+def normalize_team_name(name: str) -> str:
+    """Normalise le nom d'équipe pour la recherche DB"""
+    if not name:
+        return ""
+    
+    lower = name.lower().strip()
+    
+    # Check direct mapping
+    if lower in DIRECT_MAPPING:
+        return DIRECT_MAPPING[lower]
+    
+    # Remove common suffixes
+    for suffix in [' fc', ' cf', ' sc', ' ac', ' bc', ' afc']:
+        if lower.endswith(suffix):
+            lower = lower[:-len(suffix)]
+    
+    return lower.strip().title()
 
 
+def get_coach_style(team_name: str) -> dict:
+    """
+    Récupère le style tactique du coach pour une équipe
+    
+    Returns:
+        dict: {'style': str, 'coach': str, 'att': float, 'def': float, 'reliable': bool}
+    """
+    if not team_name:
+        return {'style': 'unknown', 'coach': None, 'att': 1.0, 'def': 1.0, 'reliable': False}
+    
+    normalized = normalize_team_name(team_name)
+    
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        cur.execute("""
+            SELECT coach_name, tactical_style, is_reliable,
+                   avg_goals_per_match, avg_goals_conceded_per_match
+            FROM coach_intelligence
+            WHERE current_team ILIKE %s
+            LIMIT 1
+        """, (f"%{normalized}%",))
+        
+        row = cur.fetchone()
+        cur.close()
+        conn.close()
+        
+        if row:
+            style = row['tactical_style'] or 'balanced'
+            multipliers = STYLE_MULTIPLIERS.get(style, STYLE_MULTIPLIERS['balanced'])
+            
+            return {
+                'style': style,
+                'coach': row['coach_name'],
+                'att': multipliers['att'],
+                'def': multipliers['def'],
+                'reliable': row['is_reliable'] or False,
+                'avg_gf': float(row['avg_goals_per_match'] or 1.0),
+                'avg_ga': float(row['avg_goals_conceded_per_match'] or 1.0)
+            }
+        
+    except Exception as e:
+        logger.error(f"Erreur get_coach_style: {e}")
+    
+    return {'style': 'unknown', 'coach': None, 'att': 1.0, 'def': 1.0, 'reliable': False}
+
+
+def calculate_adjusted_xg(home_team: str, away_team: str, 
+                          base_home_xg: float = 1.5, base_away_xg: float = 1.2) -> dict:
+    """
+    Calcule les xG ajustés selon les styles des coaches
+    
+    Args:
+        home_team: Équipe domicile
+        away_team: Équipe extérieur
+        base_home_xg: xG de base domicile (défaut 1.5)
+        base_away_xg: xG de base extérieur (défaut 1.2)
+    
+    Returns:
+        dict avec home_xg, away_xg, total_xg et détails coaches
+    """
+    home_coach = get_coach_style(home_team)
+    away_coach = get_coach_style(away_team)
+    
+    # Home advantage factor
+    home_advantage = 1.08
+    
+    # Calculate adjusted xG
+    # home_xg = base * home_advantage * home_attack * away_defense_vulnerability
+    # away_xg = base * (1/home_advantage) * away_attack * home_defense_vulnerability
+    
+    home_xg = round(base_home_xg * home_advantage * home_coach['att'] * away_coach['def'], 2)
+    away_xg = round(base_away_xg * (1/home_advantage) * away_coach['att'] * home_coach['def'], 2)
+    
+    # Clamp to reasonable values
+    home_xg = max(0.3, min(5.0, home_xg))
+    away_xg = max(0.2, min(4.5, away_xg))
+    
+    return {
+        'home_xg': home_xg,
+        'away_xg': away_xg,
+        'total_xg': round(home_xg + away_xg, 2),
+        'home_coach': home_coach,
+        'away_coach': away_coach
+    }
+
+
+# Test
+if __name__ == "__main__":
+    tests = [
+        ("Bayern", "Dortmund"),
+        ("Valencia", "Rayo Vallecano"),
+        ("Tottenham", "Liverpool"),
+        ("Arsenal", "Chelsea"),
+    ]
+    
+    print("🧠 COACH IMPACT V3 TEST")
+    print("=" * 60)
+    
+    for home, away in tests:
+        result = calculate_adjusted_xg(home, away)
+        hc = result['home_coach']
+        ac = result['away_coach']
+        
+        print(f"\n⚽ {home} vs {away}")
+        print(f"   🏠 {hc.get('coach', 'Unknown')} ({hc['style']}) ATT:{hc['att']} DEF:{hc['def']}")
+        print(f"   ✈️  {ac.get('coach', 'Unknown')} ({ac['style']}) ATT:{ac['att']} DEF:{ac['def']}")
+        print(f"   📊 xG: {result['home_xg']} - {result['away_xg']} (Total: {result['total_xg']})")
+
+
+# Alias pour compatibilité
 class CoachImpactCalculator:
-    LEAGUE_AVG_GF = 1.31
-    LEAGUE_AVG_GA = 1.43
+    """Wrapper de compatibilité pour les anciens imports"""
     
     def __init__(self, conn=None):
         self.conn = conn
-        self.cache = {}
-        self._load_averages()
-    
-    def _get_conn(self):
-        if self.conn:
-            return self.conn
-        return psycopg2.connect(**DB_CONFIG)
-    
-    def _load_averages(self):
-        try:
-            conn = self._get_conn()
-            cur = conn.cursor()
-            cur.execute("""
-                SELECT AVG(avg_goals_per_match), AVG(avg_goals_conceded_per_match)
-                FROM coach_intelligence WHERE career_matches >= 5
-            """)
-            row = cur.fetchone()
-            if row and row[0]:
-                self.LEAGUE_AVG_GF = float(row[0])
-                self.LEAGUE_AVG_GA = float(row[1])
-            cur.close()
-            if not self.conn:
-                conn.close()
-        except Exception as e:
-            logger.warning(f"Could not load averages: {e}")
     
     def get_coach_factors(self, team_name: str) -> dict:
-        if team_name in self.cache:
-            return self.cache[team_name]
-        
-        factors = {'att': 1.0, 'def': 1.0, 'style': 'unknown', 'coach': None, 'reliable': False}
-        
-        try:
-            conn = self._get_conn()
-            cur = conn.cursor(cursor_factory=RealDictCursor)
-            
-            # Résoudre alias puis nettoyer suffixes
-            search_term = DIRECT_MAPPING.get(team_name.lower().strip(), team_name)
-            search_term = clean_team_name(search_term)
-            
-            cur.execute("""
-                SELECT coach_name, current_team, tactical_style,
-                       avg_goals_per_match, avg_goals_conceded_per_match,
-                       career_matches, is_reliable
-                FROM coach_intelligence
-                WHERE unaccent(current_team) ILIKE unaccent(%s)
-                LIMIT 1
-            """, (f'%{search_term}%',))
-            
-            row = cur.fetchone()
-            if row:
-                gf = float(row['avg_goals_per_match'] or self.LEAGUE_AVG_GF)
-                ga = float(row['avg_goals_conceded_per_match'] or self.LEAGUE_AVG_GA)
-                
-                factors['att'] = max(0.6, min(2.0, gf / self.LEAGUE_AVG_GF))
-                factors['def'] = max(0.4, min(1.8, ga / self.LEAGUE_AVG_GA))
-                factors['style'] = row['tactical_style']
-                factors['coach'] = row['coach_name']
-                factors['reliable'] = row['is_reliable']
-            
-            cur.close()
-            if not self.conn:
-                conn.close()
-                
-        except Exception as e:
-            logger.warning(f"Coach fetch error for {team_name}: {e}")
-        
-        self.cache[team_name] = factors
-        return factors
+        return get_coach_style(team_name)
     
-    def calculate_adjusted_xg(self, home_team: str, away_team: str,
-                               base_home_xg: float, base_away_xg: float,
-                               home_advantage: float = 1.08) -> dict:
-        home_coach = self.get_coach_factors(home_team)
-        away_coach = self.get_coach_factors(away_team)
-        
-        home_xg = base_home_xg * home_advantage * home_coach['att'] * away_coach['def']
-        away_xg = base_away_xg * (1/home_advantage) * away_coach['att'] * home_coach['def']
-        
-        max_home = 4.0 if 'offensive' in (home_coach['style'] or '') else 3.2
-        max_away = 3.5 if 'offensive' in (away_coach['style'] or '') else 2.8
-        
-        home_xg = max(0.3, min(max_home, home_xg))
-        away_xg = max(0.2, min(max_away, away_xg))
-        
-        return {
-            'home_xg': round(home_xg, 2),
-            'away_xg': round(away_xg, 2),
-            'total_xg': round(home_xg + away_xg, 2),
-            'home_coach': home_coach,
-            'away_coach': away_coach,
-        }
-
-
-if __name__ == "__main__":
-    calc = CoachImpactCalculator()
-    print(f"📊 Averages: GF={calc.LEAGUE_AVG_GF:.2f} GA={calc.LEAGUE_AVG_GA:.2f}")
-    
-    tests = [
-        ("Arsenal FC", "Chelsea FC", 1.5, 1.3),
-        ("FC Bayern München", "Borussia Dortmund", 2.0, 1.4),
-        ("SSC Napoli", "FC Internazionale Milano", 1.2, 1.5),
-    ]
-    
-    for h, a, bh, ba in tests:
-        r = calc.calculate_adjusted_xg(h, a, bh, ba)
-        hc, ac = r['home_coach'], r['away_coach']
-        print(f"\n⚽ {h} vs {a}")
-        print(f"   🏠 {hc['coach'] or '?'} ({hc['style']}) ATT:{hc['att']:.2f}")
-        print(f"   ✈️ {ac['coach'] or '?'} ({ac['style']}) ATT:{ac['att']:.2f}")
-        print(f"   📈 {bh:.1f}->{r['home_xg']:.2f} | {ba:.1f}->{r['away_xg']:.2f}")
+    def calculate_adjusted_xg(self, home_team: str, away_team: str, 
+                              base_home_xg: float = 1.5, base_away_xg: float = 1.2) -> dict:
+        return calculate_adjusted_xg(home_team, away_team, base_home_xg, base_away_xg)
