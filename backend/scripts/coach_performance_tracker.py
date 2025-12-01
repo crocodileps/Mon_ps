@@ -80,15 +80,15 @@ def get_coach_recommendation(home_team: str, away_team: str) -> dict:
         return None
 
 
-def record_upcoming_matches():
+def record_odds_history():
     """Enregistre les recommandations pour les matchs à venir"""
     conn = psycopg2.connect(**DB_CONFIG)
     cur = conn.cursor(cursor_factory=RealDictCursor)
     
     # Trouver les matchs des prochaines 24h sans recommandation
     cur.execute("""
-        SELECT DISTINCT home_team, away_team, commence_time, match_id
-        FROM upcoming_matches
+        SELECT DISTINCT ON (home_team, away_team) home_team, away_team, commence_time, match_id
+        FROM odds_history
         WHERE commence_time BETWEEN NOW() AND NOW() + INTERVAL '24 hours'
         AND match_id NOT IN (
             SELECT match_id FROM coach_recommendations_tracking WHERE match_id IS NOT NULL
@@ -295,7 +295,7 @@ if __name__ == "__main__":
     logger.info("="*50)
     
     # 1. Enregistrer les nouveaux matchs
-    record_upcoming_matches()
+    record_odds_history()
     
     # 2. Résoudre les matchs terminés
     resolve_finished_matches()
