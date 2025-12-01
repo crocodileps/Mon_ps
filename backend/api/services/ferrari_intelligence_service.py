@@ -23,6 +23,15 @@ from dataclasses import dataclass
 from enum import Enum
 import logging
 
+# Coach Intelligence Integration
+import sys
+sys.path.insert(0, "/app/agents")
+try:
+    from coach_impact import CoachImpactCalculator
+    COACH_INTELLIGENCE_ENABLED = True
+except ImportError:
+    COACH_INTELLIGENCE_ENABLED = False
+
 logger = logging.getLogger(__name__)
 
 
@@ -95,6 +104,130 @@ class FerrariIntelligenceService:
             'password': os.getenv('DB_PASSWORD', 'monps_secure_password_2024')
         }
         logger.info("🏎️ Ferrari Intelligence Service initialisé")
+
+    def get_coach_enrichment(self, team_name: str) -> Dict:
+        """
+        🧠 Enrichit avec les données Coach Intelligence
+        
+        Returns:
+            {
+                'coach_name': str,
+                'tactical_style': str,
+                'att_multiplier': float,
+                'def_multiplier': float,
+                'is_reliable': bool,
+                'insights': List[str]
+            }
+        """
+        if not COACH_INTELLIGENCE_ENABLED:
+            return {'enabled': False}
+        
+        try:
+            calc = CoachImpactCalculator()
+            factors = calc.get_coach_factors(team_name)
+            
+            insights = []
+            
+            # Générer insights basés sur le style
+            style = factors.get('style', 'unknown')
+            att = factors.get('att', 1.0)
+            def_mult = factors.get('def', 1.0)
+            
+            if 'offensive' in style:
+                insights.append(f"🔥 Coach offensif (ATT x{att:.2f})")
+                if att > 1.5:
+                    insights.append("⚽ Favorise les Over/BTTS")
+            elif 'defensive' in style:
+                insights.append(f"🛡️ Coach défensif (DEF x{def_mult:.2f})")
+                if def_mult < 0.7:
+                    insights.append("🧱 Favorise les Under/Clean Sheet")
+            
+            if def_mult > 1.3:
+                insights.append("⚠️ Défense poreuse - BTTS probable")
+            elif def_mult < 0.6:
+                insights.append("💪 Défense solide - Under probable")
+            
+            return {
+                'enabled': True,
+                'coach_name': factors.get('coach'),
+                'tactical_style': style,
+                'att_multiplier': round(att, 2),
+                'def_multiplier': round(def_mult, 2),
+                'is_reliable': factors.get('reliable', False),
+                'insights': insights
+            }
+        except Exception as e:
+            logger.debug(f"Coach enrichment error: {e}")
+            return {'enabled': False, 'error': str(e)}
+
+    def enrich_match_with_coaches(self, home_team: str, away_team: str) -> Dict:
+        """
+        🧠 Enrichissement complet avec les 2 coaches
+        
+        Returns:
+            {
+                'home_coach': {...},
+                'away_coach': {...},
+                'tactical_matchup': str,
+                'xg_adjustment': {...},
+                'market_insights': {...}
+            }
+        """
+        home_coach = self.get_coach_enrichment(home_team)
+        away_coach = self.get_coach_enrichment(away_team)
+        
+        result = {
+            'home_coach': home_coach,
+            'away_coach': away_coach,
+            'tactical_matchup': 'unknown',
+            'market_insights': {}
+        }
+        
+        if not home_coach.get('enabled') or not away_coach.get('enabled'):
+            return result
+        
+        h_style = home_coach.get('tactical_style', 'unknown')
+        a_style = away_coach.get('tactical_style', 'unknown')
+        h_att = home_coach.get('att_multiplier', 1.0)
+        a_att = away_coach.get('att_multiplier', 1.0)
+        h_def = home_coach.get('def_multiplier', 1.0)
+        a_def = away_coach.get('def_multiplier', 1.0)
+        
+        # Déterminer le type de confrontation
+        if 'offensive' in h_style and 'offensive' in a_style:
+            result['tactical_matchup'] = 'OPEN_GAME'
+            result['market_insights'] = {
+                'over_25': {'boost': 15, 'reason': '2 coaches offensifs = match ouvert'},
+                'btts_yes': {'boost': 10, 'reason': 'Les deux équipes marquent'},
+            }
+        elif 'defensive' in h_style and 'defensive' in a_style:
+            result['tactical_matchup'] = 'CLOSED_GAME'
+            result['market_insights'] = {
+                'under_25': {'boost': 15, 'reason': '2 coaches défensifs = match fermé'},
+                'draw': {'boost': 10, 'reason': 'Équilibre défensif'},
+            }
+        elif 'offensive' in h_style and 'defensive' in a_style:
+            result['tactical_matchup'] = 'HOME_ATTACK_VS_AWAY_BLOCK'
+            result['market_insights'] = {
+                'home_win': {'boost': 5, 'reason': f'{home_coach.get("coach_name")} offensif à domicile'},
+                'under_25': {'boost': 8, 'reason': 'Visiteur défensif'},
+            }
+        elif 'defensive' in h_style and 'offensive' in a_style:
+            result['tactical_matchup'] = 'COUNTER_ATTACK_RISK'
+            result['market_insights'] = {
+                'away_win': {'boost': 5, 'reason': f'{away_coach.get("coach_name")} offensif en déplacement'},
+                'btts_yes': {'boost': 5, 'reason': 'Contre-attaque probable'},
+            }
+        
+        # xG Adjustment preview
+        total_att = h_att * a_def + a_att * h_def
+        if total_att > 3.0:
+            result['market_insights']['over_35'] = {'boost': 10, 'reason': f'xG élevés attendus ({total_att:.1f})'}
+        elif total_att < 2.0:
+            result['market_insights']['under_15'] = {'boost': 10, 'reason': f'xG faibles attendus ({total_att:.1f})'}
+        
+        return result
+
     
     def _get_conn(self):
         return psycopg2.connect(**self.db_config)
