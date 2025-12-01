@@ -26,3 +26,9 @@
 0 11 * * * cd /app && python3 scripts/meta_learning_gpt4o.py >> /var/log/meta_learning.log 2>&1
 
 # ════════════════════════════════════════════════════════════
+
+# ═══════════════════════════════════════════════════════════
+# COACH INTELLIGENCE - Mise à jour hebdomadaire (dimanche 3h)
+# ═══════════════════════════════════════════════════════════
+0 3 * * 0 cd /app && python3 /app/scripts/coach_update_extended.py >> /var/log/coach_update.log 2>&1
+
