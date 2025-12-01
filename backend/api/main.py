@@ -39,6 +39,7 @@ from api.routes import agents_comparison_routes
 
 from api.routes import settlement_routes
 from api.routes import pro_score_v3_routes
+from api.routes import coach_routes
 
 
 
@@ -228,6 +229,9 @@ def health():
 # Telegram Bot Routes
 from api.routes.telegram_routes import router as telegram_router
 app.include_router(telegram_router)
+
+# Coach Intelligence Routes
+app.include_router(coach_routes.router)
 
 # Agent Telegram Test Routes
 from api.routes.agent_telegram_test import router as agent_telegram_router
