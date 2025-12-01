@@ -22,6 +22,15 @@ from dataclasses import dataclass
 from enum import Enum
 import structlog
 
+# Coach Intelligence Integration
+import sys
+sys.path.insert(0, "/app/agents")
+try:
+    from coach_impact import CoachImpactCalculator
+    COACH_INTELLIGENCE_ENABLED = True
+except ImportError:
+    COACH_INTELLIGENCE_ENABLED = False
+
 logger = structlog.get_logger(__name__)
 
 DB_CONFIG = {
@@ -439,6 +448,43 @@ class DynamicIntelligenceService:
         if not away:
             return {"error": f"Équipe non trouvée: {away_team}", "verdict": "❓ UNKNOWN"}
         
+
+        # ═══════════════════════════════════════════════════════════════
+        # 🧠 COACH INTELLIGENCE ENRICHMENT
+        # ═══════════════════════════════════════════════════════════════
+        coach_data = {"enabled": False}
+        if COACH_INTELLIGENCE_ENABLED:
+            try:
+                coach_calc = CoachImpactCalculator()
+                home_coach = coach_calc.get_coach_factors(home_team)
+                away_coach = coach_calc.get_coach_factors(away_team)
+                h_style = home_coach.get("style", "unknown")
+                a_style = away_coach.get("style", "unknown")
+                matchup = "BALANCED"
+                boost = {}
+                if "offensive" in h_style and "offensive" in a_style:
+                    matchup = "OPEN_GAME"
+                    boost = {"over_25": 15, "btts_yes": 10}
+                elif "defensive" in h_style and "defensive" in a_style:
+                    matchup = "CLOSED_GAME"
+                    boost = {"under_25": 15, "draw": 10}
+                elif "offensive" in h_style and "defensive" in a_style:
+                    matchup = "HOME_PUSH"
+                    boost = {"home_win": 5}
+                elif "defensive" in h_style and "offensive" in a_style:
+                    matchup = "COUNTER_RISK"
+                    boost = {"away_win": 5}
+                coach_data = {
+                    "enabled": True,
+                    "home": {"coach": home_coach.get("coach"), "style": h_style, "att": round(home_coach.get("att", 1.0), 2)},
+                    "away": {"coach": away_coach.get("coach"), "style": a_style, "att": round(away_coach.get("att", 1.0), 2)},
+                    "matchup": matchup,
+                    "boost": boost
+                }
+                logger.info("coach_intel", home=home_team, away=away_team, matchup=matchup)
+            except Exception as e:
+                logger.debug("coach_error", error=str(e))
+
         all_alerts = []
         total_penalty = 0
         
@@ -488,6 +534,7 @@ class DynamicIntelligenceService:
             "confidence": confidence,
             "total_penalty": total_penalty,
             "alerts_count": len(all_alerts),
+            "coach_intelligence": coach_data,
             "home_profile": {
                 "team": home.team_name,
                 "quality_score": home.quality_score,
