@@ -21,6 +21,15 @@ from enum import Enum
 import logging
 from functools import lru_cache
 
+# Coach Intelligence Integration
+import sys
+sys.path.insert(0, "/app/agents")
+try:
+    from coach_impact import CoachImpactCalculator
+    COACH_IMPACT_ENABLED = True
+except ImportError:
+    COACH_IMPACT_ENABLED = False
+
 logger = logging.getLogger(__name__)
 
 
@@ -408,37 +417,52 @@ class PredictionEngineDiamond:
     
     def calculate_expected_goals(self, home: TeamAnalysis, away: TeamAnalysis, league: str) -> Tuple[float, float]:
         """
-        Calcule les Expected Goals avec:
-        - Stats offensives/défensives
-        - Home advantage calibré par ligue
-        - Momentum
-        - Pondération temporelle
+        Calcule les Expected Goals avec Coach Intelligence
         """
-        # Home advantage
         ha_factor = HOME_ADVANTAGE.get(league, HOME_ADVANTAGE['default'])
         
-        # xG Home = (home_attack + away_defense) / 2 * home_advantage * momentum
+        # xG de base (stats pures)
         home_attack = (home.specific_avg_scored * 0.6 + home.avg_scored * 0.4)
         away_defense = (away.specific_avg_conceded * 0.6 + away.avg_conceded * 0.4)
+        base_home_xg = ((home_attack + away_defense) / 2) * ha_factor
         
-        home_xg = ((home_attack + away_defense) / 2) * ha_factor
-        
-        # Ajustement momentum
-        home_xg *= (1 + home.momentum * 0.15)
-        
-        # xG Away = (away_attack + home_defense) / 2 / home_advantage * momentum
         away_attack = (away.specific_avg_scored * 0.6 + away.avg_scored * 0.4)
         home_defense = (home.specific_avg_conceded * 0.6 + home.avg_conceded * 0.4)
+        base_away_xg = ((away_attack + home_defense) / 2) / ha_factor
         
-        away_xg = ((away_attack + home_defense) / 2) / ha_factor
+        # 🧠 Coach Intelligence Integration
+        home_xg = base_home_xg
+        away_xg = base_away_xg
+        home_coach = {'style': 'unknown'}
+        away_coach = {'style': 'unknown'}
+        
+        if COACH_IMPACT_ENABLED:
+            try:
+                coach_calc = CoachImpactCalculator()
+                home_coach = coach_calc.get_coach_factors(home.name)
+                away_coach = coach_calc.get_coach_factors(away.name)
+                
+                # Appliquer multiplicateurs tactiques
+                home_xg = base_home_xg * home_coach['att'] * away_coach['def']
+                away_xg = base_away_xg * away_coach['att'] * home_coach['def']
+                
+                if home_coach['style'] != 'unknown' or away_coach['style'] != 'unknown':
+                    logger.info(f"🧠 COACH: {home.name}({home_coach['style']}) xG {base_home_xg:.2f}->{home_xg:.2f} | {away.name}({away_coach['style']}) xG {base_away_xg:.2f}->{away_xg:.2f}")
+            except Exception as e:
+                logger.debug(f"Coach impact: {e}")
+        
+        # Momentum
+        home_xg *= (1 + home.momentum * 0.15)
         away_xg *= (1 + away.momentum * 0.15)
         
-        # Clamp
-        home_xg = max(0.3, min(4.0, home_xg))
-        away_xg = max(0.2, min(3.5, away_xg))
+        # Clamp dynamique
+        max_home = 4.5 if 'offensive' in str(home_coach.get('style', '')) else 4.0
+        max_away = 4.0 if 'offensive' in str(away_coach.get('style', '')) else 3.5
+        home_xg = max(0.3, min(max_home, home_xg))
+        away_xg = max(0.2, min(max_away, away_xg))
         
         return home_xg, away_xg
-    
+
     # ============================================================
     # SCORE BTTS DIAMOND
     # ============================================================
