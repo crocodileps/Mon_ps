@@ -58,6 +58,16 @@ import math
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 
+# Coach Intelligence Integration
+import sys
+sys.path.append("/app/agents")
+try:
+    from coach_impact import CoachImpactCalculator
+    COACH_IMPACT_ENABLED = True
+except ImportError:
+    COACH_IMPACT_ENABLED = False
+    logger.warning("CoachImpact not available - using static xG")
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s | %(levelname)-8s | %(message)s',
@@ -597,11 +607,36 @@ class OrchestratorV7Smart:
                 away_stats = self.get_team_stats(match['away_team'])
                 h2h = self.get_h2h_stats(match['home_team'], match['away_team'])
                 
-                # xG
-                home_xg = (home_stats['home_scored'] + away_stats['away_conceded']) / 2 * 1.08
-                away_xg = (away_stats['away_scored'] + home_stats['home_conceded']) / 2 * 0.92
-                home_xg = max(0.5, min(3.5, home_xg))
-                away_xg = max(0.3, min(3.0, away_xg))
+                # xG avec Coach Intelligence
+                base_home_xg = (home_stats["home_scored"] + away_stats["away_conceded"]) / 2
+                base_away_xg = (away_stats["away_scored"] + home_stats["home_conceded"]) / 2
+                
+                if COACH_IMPACT_ENABLED:
+                    try:
+                        coach_calc = CoachImpactCalculator(self.conn)
+                        coach_result = coach_calc.calculate_adjusted_xg(
+                            match["home_team"], match["away_team"],
+                            base_home_xg, base_away_xg
+                        )
+                        home_xg = coach_result["home_xg"]
+                        away_xg = coach_result["away_xg"]
+                        
+                        # Log si ajustement significatif
+                        hc = coach_result["home_coach"]
+                        ac = coach_result["away_coach"]
+                        if hc["style"] != "unknown" or ac["style"] != "unknown":
+                            logger.info(f"🧠 COACH: {match['home_team']}({hc['style']}) vs {match['away_team']}({ac['style']}) | xG: {base_home_xg:.1f}->{home_xg:.1f} vs {base_away_xg:.1f}->{away_xg:.1f}")
+                    except Exception as e:
+                        logger.warning(f"Coach impact error: {e}")
+                        home_xg = base_home_xg * 1.08
+                        away_xg = base_away_xg * 0.92
+                        home_xg = max(0.5, min(3.5, home_xg))
+                        away_xg = max(0.3, min(3.0, away_xg))
+                else:
+                    home_xg = base_home_xg * 1.08
+                    away_xg = base_away_xg * 0.92
+                    home_xg = max(0.5, min(3.5, home_xg))
+                    away_xg = max(0.3, min(3.0, away_xg))
                 
                 # Probabilités brutes (Poisson)
                 probs_raw = calculate_match_probabilities(home_xg, away_xg)
