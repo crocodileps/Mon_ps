@@ -104,6 +104,13 @@ class PatronFerrariIntegration:
         # ÉTAPE 2: ENRICHISSEMENT FERRARI
         # ════════════════════════════════════════════════════════════
         ferrari_enrichment = self.ferrari.enrich_match_analysis(home_team, away_team)
+
+        # ════════════════════════════════════════════════════════════
+        # ÉTAPE 2.5: ENRICHISSEMENT COACH INTELLIGENCE 🧠
+        # ════════════════════════════════════════════════════════════
+        coach_enrichment = self.ferrari.enrich_match_with_coaches(home_team, away_team)
+        if coach_enrichment.get("home_coach", {}).get("enabled"):
+            logger.info(f"🧠 Coach: {home_team} ({coach_enrichment['home_coach'].get('coach_name')}) vs {away_team} ({coach_enrichment['away_coach'].get('coach_name')})")
         
         # ════════════════════════════════════════════════════════════
         # ÉTAPE 3: ENRICHIR CHAQUE MARCHÉ
@@ -181,7 +188,8 @@ class PatronFerrariIntegration:
                 'style_matchup': ferrari_enrichment.get('style_matchup'),
                 'traps_detected': list(ferrari_enrichment.get('traps', {}).keys()),
                 'recommendations': ferrari_enrichment.get('recommendations', []),
-                'analyzed': ferrari_enrichment.get('ferrari_analyzed', False)
+                'analyzed': ferrari_enrichment.get('ferrari_analyzed', False),
+                'coach_intelligence': coach_enrichment
             },
             
             # Marchés enrichis
