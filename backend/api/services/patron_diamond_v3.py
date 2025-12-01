@@ -20,6 +20,15 @@ from dataclasses import dataclass
 from enum import Enum
 import logging
 
+# Coach Intelligence Integration
+import sys
+sys.path.insert(0, "/app/agents")
+try:
+    from coach_impact import CoachImpactCalculator
+    COACH_IMPACT_ENABLED = True
+except ImportError:
+    COACH_IMPACT_ENABLED = False
+
 logger = logging.getLogger(__name__)
 
 # Ajouter le path pour les services fullgain
@@ -305,31 +314,54 @@ class PatronDiamondV3:
     
     def calculate_expected_goals(self, home_team: str, away_team: str) -> Tuple[float, float]:
         """
-        Calcule les Expected Goals basés sur les stats disponibles
+        Calcule les Expected Goals avec Coach Intelligence
         """
         home_stats = self.get_team_stats(home_team)
         away_stats = self.get_team_stats(away_team)
         
-        # Valeurs par défaut (moyenne ligue)
-        home_xg = 1.5
-        away_xg = 1.2
+        # Valeurs par défaut
+        base_home_xg = 1.5
+        base_away_xg = 1.2
         
         if home_stats:
             home_scored = self._safe_float(home_stats.get('home_avg_scored'), 1.5)
             away_conceded = self._safe_float(away_stats.get('away_avg_conceded'), 1.5) if away_stats else 1.5
-            home_xg = (home_scored + away_conceded) / 2 * 1.15  # Home advantage
+            base_home_xg = (home_scored + away_conceded) / 2 * 1.15
         
         if away_stats:
             away_scored = self._safe_float(away_stats.get('away_avg_scored'), 1.2)
             home_conceded = self._safe_float(home_stats.get('home_avg_conceded'), 1.2) if home_stats else 1.2
-            away_xg = (away_scored + home_conceded) / 2 / 1.15  # Away disadvantage
+            base_away_xg = (away_scored + home_conceded) / 2 / 1.15
         
-        # Clamp
-        home_xg = max(0.5, min(4.0, home_xg))
-        away_xg = max(0.3, min(3.5, away_xg))
+        # 🧠 Coach Intelligence Integration
+        home_xg = base_home_xg
+        away_xg = base_away_xg
+        home_coach = {'style': 'unknown'}
+        away_coach = {'style': 'unknown'}
+        
+        if COACH_IMPACT_ENABLED:
+            try:
+                coach_calc = CoachImpactCalculator()
+                home_coach = coach_calc.get_coach_factors(home_team)
+                away_coach = coach_calc.get_coach_factors(away_team)
+                
+                # Appliquer multiplicateurs tactiques
+                home_xg = base_home_xg * home_coach['att'] * away_coach['def']
+                away_xg = base_away_xg * away_coach['att'] * home_coach['def']
+                
+                if home_coach['style'] != 'unknown' or away_coach['style'] != 'unknown':
+                    logger.info(f"🧠 PATRON COACH: {home_team}({home_coach['style']}) xG {base_home_xg:.2f}->{home_xg:.2f} | {away_team}({away_coach['style']}) xG {base_away_xg:.2f}->{away_xg:.2f}")
+            except Exception as e:
+                logger.debug(f"Coach impact: {e}")
+        
+        # Clamp dynamique
+        max_home = 4.5 if 'offensive' in str(home_coach.get('style', '')) else 4.0
+        max_away = 4.0 if 'offensive' in str(away_coach.get('style', '')) else 3.5
+        home_xg = max(0.5, min(max_home, home_xg))
+        away_xg = max(0.3, min(max_away, away_xg))
         
         return home_xg, away_xg
-    
+
     # ============================================================
     # ANALYSE BTTS
     # ============================================================
