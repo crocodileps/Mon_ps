@@ -73,13 +73,13 @@ ALERT_RULES = {
     "dc_12": [
         {"field": "home_draw_rate", "op": ">=", "val": 50, "level": "TRAP",
          "msg": "{val:.0f}% nuls domicile", "alt": "dc_1x"},
-        {"field": "home_draw_rate", "op": ">=", "val": 40, "level": "CAUTION",
+        {"field": "home_draw_rate", "op": ">=", "val": 48, "level": "CAUTION",
          "msg": "{val:.0f}% nuls domicile", "alt": "dc_1x"},
     ],
     "btts_yes": [
         {"field": "btts_rate", "op": "<=", "val": 30, "level": "TRAP",
          "msg": "Seulement {val:.0f}% BTTS", "alt": "btts_no"},
-        {"field": "btts_rate", "op": "<=", "val": 40, "level": "CAUTION",
+        {"field": "btts_rate", "op": "<=", "val": 35, "level": "CAUTION",
          "msg": "Seulement {val:.0f}% BTTS", "alt": "btts_no"},
         {"field": "clean_sheet_rate", "op": ">=", "val": 55, "level": "TRAP",
          "msg": "{val:.0f}% clean sheets", "alt": "btts_no"},
@@ -101,7 +101,7 @@ ALERT_RULES = {
     "under_25": [
         {"field": "avg_goals_total", "op": ">=", "val": 3.8, "level": "TRAP",
          "msg": "Moyenne {val:.1f} buts", "alt": "over_25"},
-        {"field": "avg_goals_total", "op": ">=", "val": 3.2, "level": "CAUTION",
+        {"field": "avg_goals_total", "op": ">=", "val": 3.5, "level": "CAUTION",
          "msg": "Moyenne {val:.1f} buts", "alt": "over_25"},
     ],
     "home": [
