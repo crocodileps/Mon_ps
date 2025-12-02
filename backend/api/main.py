@@ -232,6 +232,8 @@ app.include_router(telegram_router)
 
 # Coach Intelligence Routes
 app.include_router(coach_routes.router)
+from api.routes.fullgain import router as fullgain_router
+app.include_router(fullgain_router)
 
 # Agent Telegram Test Routes
 from api.routes.agent_telegram_test import router as agent_telegram_router

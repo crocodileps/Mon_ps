@@ -41,7 +41,7 @@ logger = logging.getLogger(__name__)
 # CONFIGURATION
 # ============================================================
 
-MODEL_DIR = Path('/home/Mon_ps/backend/models')
+MODEL_DIR = Path('/app/models')
 MODEL_DIR.mkdir(exist_ok=True)
 
 
