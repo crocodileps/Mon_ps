@@ -55,7 +55,6 @@ import json
 import logging
 import os
 import math
-import sys
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 
@@ -67,16 +66,6 @@ try:
     COACH_IMPACT_ENABLED = True
 except ImportError:
     COACH_IMPACT_ENABLED = False
-
-# Steam Validator Integration
-sys.path.append("/app/scripts")
-try:
-    from steam_validator import validate_prediction, get_steam_score
-    STEAM_VALIDATOR_ENABLED = True
-    print("✅ Steam Validator chargé")
-except ImportError:
-    STEAM_VALIDATOR_ENABLED = False
-    print("⚠️ Steam Validator non disponible")
     logger.warning("CoachImpact not available - using static xG")
 
 logging.basicConfig(
@@ -475,55 +464,6 @@ class OrchestratorV7Smart:
     # 3. STATS ÉQUIPES
     # ================================================================
     
-
-    def validate_with_steam(self, match_id: str, market: str, confidence: str, sweet_score: float) -> dict:
-        """
-        🛡️ Valide un pick avec le Steam Validator (Shadow Mode)
-        
-        Returns:
-            dict avec validated, action, reason, adjusted_confidence, steam_data
-        """
-        if not STEAM_VALIDATOR_ENABLED:
-            return {'validated': True, 'action': 'PROCEED', 'reason': 'Steam Validator désactivé'}
-        
-        try:
-            # Convertir market en direction (home, away, draw)
-            market_to_direction = {
-                'home': 'home',
-                'dc_1x': 'home',
-                'dc_12': 'home',
-                'away': 'away',
-                'dc_x2': 'away',
-                'draw': 'draw',
-                'btts_yes': None,
-                'btts_no': None,
-                'over_15': None,
-                'over_25': None,
-                'over_35': None,
-                'under_15': None,
-                'under_25': None,
-                'under_35': None,
-            }
-            
-            direction = market_to_direction.get(market)
-            
-            # Si marché neutre (BTTS, Over/Under), pas de validation Steam
-            if direction is None:
-                return {'validated': True, 'action': 'PROCEED', 'reason': 'Marché non-directionnel'}
-            
-            # Convertir confidence en score numérique
-            confidence_map = {'very_high': 85, 'high': 75, 'medium': 60, 'low': 45, 'very_low': 30}
-            confidence_score = confidence_map.get(confidence, 50)
-            
-            # Appeler le Steam Validator
-            result = validate_prediction(match_id, direction, confidence_score)
-            
-            return result
-            
-        except Exception as e:
-            logger.warning(f"⚠️ Erreur Steam Validator: {e}")
-            return {'validated': True, 'action': 'PROCEED', 'reason': f'Erreur: {e}'}
-
     def get_team_stats(self, team_name: str) -> Dict:
         if team_name in self.team_cache:
             return self.team_cache[team_name]
@@ -771,35 +711,6 @@ class OrchestratorV7Smart:
                     
                     # Scoring V7 Smart
                     scoring = self.calculate_smart_score(prob_raw, prob_corrected, odds, market)
-
-                    # ═══════════════════════════════════════════════════════════
-                    # 🛡️ STEAM VALIDATOR - MODE OBSERVATION (Shadow Mode)
-                    # Ne bloque pas, mais log et enrichit le pick pour analyse
-                    # ═══════════════════════════════════════════════════════════
-                    steam_result = self.validate_with_steam(
-                        match['match_id'], 
-                        market, 
-                        scoring['confidence'], 
-                        scoring['sweet_score']
-                    )
-                    
-                    steam_action = steam_result.get('action', 'PROCEED')
-                    steam_reason = steam_result.get('reason', 'N/A')
-                    
-                    # Tracker les actions Steam
-                    if 'steam_actions' not in self.stats:
-                        self.stats['steam_actions'] = {'BLOCK': 0, 'REDUCE': 0, 'BOOST': 0, 'PROCEED': 0}
-                    self.stats['steam_actions'][steam_action] = self.stats['steam_actions'].get(steam_action, 0) + 1
-                    
-                    # Logging selon l'action
-                    if steam_action == 'BLOCK':
-                        logger.warning(f"  🛑 STEAM WOULD_BLOCK: {match['home_team']} vs {match['away_team']} - {market} | {steam_reason}")
-                    elif steam_action == 'REDUCE':
-                        logger.info(f"  📉 STEAM REDUCE: {match['home_team']} vs {match['away_team']} - {market} | {steam_reason}")
-                    elif steam_action == 'BOOST':
-                        logger.info(f"  📈 STEAM BOOST: {match['home_team']} vs {match['away_team']} - {market} | {steam_reason}")
-                    # ═══════════════════════════════════════════════════════════
-
                     
                     # Stats
                     if market not in self.stats['by_market']:
@@ -840,13 +751,6 @@ class OrchestratorV7Smart:
                             'correction_factor': factor,
                             'is_sweet_spot': scoring['is_sweet_spot'],
                             **scoring['analysis']
-                        },
-                        'steam_validation': {
-                            'action': steam_action,
-                            'reason': steam_reason,
-                            'validated': steam_result.get('validated', True),
-                            'adjusted_confidence': steam_result.get('adjusted_confidence'),
-                            'steam_data': steam_result.get('steam_data', {})
                         }
                     }
                     
