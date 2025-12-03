@@ -305,3 +305,9 @@ from api.routes import pro_performance_v2
 
 app.include_router(pro_command_center.router)
 app.include_router(pro_performance_v2.router)
+
+# ============================================================================
+# MARKET RECOMMENDATION ROUTES (ML Smart Quant 2.0)
+# ============================================================================
+from api.routes.market_recommendation_routes import router as market_recommendation_router
+app.include_router(market_recommendation_router)
