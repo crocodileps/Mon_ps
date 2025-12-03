@@ -707,7 +707,7 @@ async def analyze_match_diamond(
                       str(over_confidence), over_value, over_kelly,
                       over_factors, over_reasoning)
         
-        return {
+        return _enrich_and_return({
             "match_id": match_id,
             "home_team": home_team,
             "away_team": away_team,
@@ -877,7 +877,7 @@ async def analyze_match_diamond(
             },
             
             "generated_at": datetime.now().isoformat()
-        }
+        })
         
     except HTTPException:
         raise
