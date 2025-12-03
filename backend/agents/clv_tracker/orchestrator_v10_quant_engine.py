@@ -2026,6 +2026,8 @@ class OrchestratorV10Quant:
             'home_xg': self._get_xg_intelligence(home_team),
             'away_xg': self._get_xg_intelligence(away_team),
             'h2h_xg': self._get_h2h_xg_history(home_team, away_team),
+            'home_bc': self._get_big_chances_intelligence(home_team),
+            'away_bc': self._get_big_chances_intelligence(away_team),
             'reality': self._get_reality_check(match_id),
             'home_profile': self._get_team_profile(home_team, 'home'),
             'away_profile': self._get_team_profile(away_team, 'away'),
@@ -2059,6 +2061,69 @@ class OrchestratorV10Quant:
     # ═══════════════════════════════════════════════════════════════════════════
     
 
+
+
+
+    def _get_big_chances_intelligence(self, team_name: str) -> Optional[Dict]:
+        """
+        Récupère les tendances Big Chances d'une équipe.
+        
+        STRATÉGIE CLÉ:
+        - Équipe malchanceuse (luck < -1) → Rebond attendu → Boost xG
+        - Équipe chanceuse (luck > +1) → Régression attendue → Réduire xG
+        """
+        if not self.conn:
+            return None
+            
+        try:
+            variants = self._resolve_team_name(team_name)
+            
+            with self.conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
+                for v in variants[:5]:
+                    cur.execute("""
+                        SELECT * FROM team_big_chances_tendencies 
+                        WHERE LOWER(team_name) LIKE %s
+                        ORDER BY updated_at DESC
+                        LIMIT 1
+                    """, (f'%{v.lower()}%',))
+                    
+                    row = cur.fetchone()
+                    if row:
+                        data = dict(row)
+                        
+                        luck = float(data.get('bc_luck_factor', 0) or 0)
+                        
+                        # Calculer le facteur de régression basé sur la chance
+                        # Malchanceux (luck < -1) → boost attendu
+                        # Chanceux (luck > +1) → baisse attendue
+                        if luck < -1.5:
+                            regression_boost = 0.12  # +12% xG (rebond fort)
+                        elif luck < -0.5:
+                            regression_boost = 0.06  # +6% xG (rebond modéré)
+                        elif luck > 1.5:
+                            regression_boost = -0.12  # -12% xG (régression forte)
+                        elif luck > 0.5:
+                            regression_boost = -0.06  # -6% xG (régression modérée)
+                        else:
+                            regression_boost = 0.0
+                        
+                        return {
+                            'avg_bc_created': float(data.get('avg_bc_created', 0) or 0),
+                            'avg_bc_conceded': float(data.get('avg_bc_conceded', 0) or 0),
+                            'avg_bc_missed': float(data.get('avg_bc_missed', 0) or 0),
+                            'bc_conversion_rate': float(data.get('bc_conversion_rate', 40) or 40),
+                            'bc_luck_factor': luck,
+                            'is_overperforming': data.get('is_overperforming', False),
+                            'is_underperforming': data.get('is_underperforming', False),
+                            'shot_quality': float(data.get('avg_shot_quality', 0.10) or 0.10),
+                            'regression_boost': regression_boost,
+                            'matches_analyzed': data.get('matches_analyzed', 0)
+                        }
+                        
+            return None
+                
+        except Exception as e:
+            return None
 
 
     def _get_xg_intelligence(self, team_name: str) -> Optional[Dict]:
