@@ -961,7 +961,7 @@ async def predict_by_teams(
     
     over_score = max(0, min(100, over_score))
     
-    return {
+    return _enrich_and_return({
         "home_team": home_team,
         "away_team": away_team,
         "poisson": {
@@ -996,7 +996,7 @@ async def predict_by_teams(
             "away_stats": away_stats is not None,
             "h2h": h2h is not None
         }
-    }
+    })
 
 
 @router.get("/top-predictions")
