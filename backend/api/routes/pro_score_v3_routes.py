@@ -32,6 +32,18 @@ from api.services.pro_score_v3_service import (
 
 import structlog
 
+# Reality Check Integration
+try:
+    from agents.reality_check import RealityChecker
+    _reality_checker = RealityChecker()
+    REALITY_CHECK_ENABLED = True
+except ImportError:
+    _reality_checker = None
+    REALITY_CHECK_ENABLED = False
+# Reality Check Helper
+from api.services.reality_check_helper import adjust_prediction, enrich_prediction, quick_adjust
+
+
 logger = structlog.get_logger(__name__)
 
 router = APIRouter(prefix="/api/pro", tags=["Pro Score V3.1"])

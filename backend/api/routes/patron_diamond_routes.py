@@ -11,6 +11,18 @@ import json
 from datetime import datetime
 
 from api.services.odds_retriever import get_match_odds
+
+# Reality Check Integration
+try:
+    from agents.reality_check import RealityChecker
+    _reality_checker = RealityChecker()
+    REALITY_CHECK_ENABLED = True
+except ImportError:
+    _reality_checker = None
+    REALITY_CHECK_ENABLED = False
+# Reality Check Helper
+from api.services.reality_check_helper import enrich_prediction, adjust_probabilities, get_match_warnings
+
 router = APIRouter(prefix="/patron-diamond", tags=["Patron Diamond V3"])
 
 # Configuration DB

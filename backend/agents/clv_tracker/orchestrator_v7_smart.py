@@ -76,6 +76,15 @@ try:
     print("✅ Steam Validator chargé")
 except ImportError:
     STEAM_VALIDATOR_ENABLED = False
+
+# Reality Check Integration
+try:
+    from agents.reality_check import RealityChecker
+    REALITY_CHECK_ENABLED = True
+    print("✅ Reality Check Module loaded")
+except ImportError as e:
+    REALITY_CHECK_ENABLED = False
+    print(f"⚠️ Reality Check not available: {e}")
     print("⚠️ Steam Validator non disponible")
     logger.warning("CoachImpact not available - using static xG")
 
@@ -230,6 +239,15 @@ class OrchestratorV7Smart:
     
     def __init__(self):
         self.conn = None
+        
+        # Reality Check Engine
+        self.reality_checker = None
+        if REALITY_CHECK_ENABLED:
+            try:
+                self.reality_checker = RealityChecker(DB_CONFIG)
+                logger.info("🧠 Reality Check Engine initialized")
+            except Exception as e:
+                logger.warning(f"Reality Check init failed: {e}")
         self.team_cache = {}
         self.dynamic_factors = {}
         self.stats = {
@@ -475,6 +493,86 @@ class OrchestratorV7Smart:
     # 3. STATS ÉQUIPES
     # ================================================================
     
+
+    def apply_reality_check(self, home_team: str, away_team: str, 
+                            raw_score: int, market: str, direction: str) -> dict:
+        """
+        Applique le filtre Reality Check sur un pick.
+        
+        Args:
+            home_team: Équipe domicile
+            away_team: Équipe extérieur
+            raw_score: Score V7 original (0-100)
+            market: Type de marché (h2h, totals, etc.)
+            direction: Direction du pari (home, away, over, under, etc.)
+        
+        Returns:
+            Dict avec score ajusté, warnings et multiplicateur
+        """
+        if not self.reality_checker:
+            return {
+                'adjusted_score': raw_score,
+                'warnings': [],
+                'confidence_mult': 1.0,
+                'reality_score': 50,
+                'convergence': 'unknown'
+            }
+        
+        try:
+            # Analyse Reality Check
+            reality = self.reality_checker.analyze_match(home_team, away_team)
+            
+            # Récupérer le multiplicateur approprié selon la direction
+            mult_map = {
+                'home': 'home_win_mult',
+                'away': 'away_win_mult', 
+                'draw': 'draw_mult',
+                'over': 'over_mult',
+                'under': 'under_mult',
+                'btts_yes': 'btts_mult',
+                'btts_no': 'btts_mult'
+            }
+            mult_key = mult_map.get(direction, 'confidence_correction')
+            confidence_mult = reality.adjustments.get(mult_key, 1.0)
+            
+            # Ajuster le score
+            adjusted_score = raw_score
+            
+            # Bonus/Malus selon convergence
+            if reality.convergence == 'full_convergence':
+                adjusted_score = min(100, int(raw_score * 1.05))  # +5%
+            elif reality.convergence == 'divergence':
+                adjusted_score = int(raw_score * 0.90)  # -10%
+            elif reality.convergence == 'strong_divergence':
+                adjusted_score = int(raw_score * 0.80)  # -20%
+                logger.warning(f"⚠️ STRONG DIVERGENCE: {home_team} vs {away_team}")
+            
+            # Appliquer le multiplicateur de confiance
+            adjusted_score = int(adjusted_score * confidence_mult)
+            adjusted_score = max(0, min(100, adjusted_score))
+            
+            return {
+                'adjusted_score': adjusted_score,
+                'original_score': raw_score,
+                'warnings': reality.warnings,
+                'confidence_mult': round(confidence_mult, 3),
+                'reality_score': reality.reality_score,
+                'convergence': reality.convergence,
+                'tier_gap': reality.tier_gap,
+                'home_tier': reality.home_tier,
+                'away_tier': reality.away_tier
+            }
+            
+        except Exception as e:
+            logger.error(f"Reality Check error for {home_team} vs {away_team}: {e}")
+            return {
+                'adjusted_score': raw_score,
+                'warnings': [f"Reality Check failed: {str(e)}"],
+                'confidence_mult': 1.0,
+                'reality_score': 50,
+                'convergence': 'error'
+            }
+
 
     def validate_with_steam(self, match_id: str, market: str, confidence: str, sweet_score: float) -> dict:
         """

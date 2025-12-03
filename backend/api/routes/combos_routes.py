@@ -17,6 +17,18 @@ import hashlib
 import httpx
 import math
 
+# Reality Check Integration
+try:
+    from agents.reality_check import RealityChecker
+    _reality_checker = RealityChecker()
+    REALITY_CHECK_ENABLED = True
+except ImportError:
+    _reality_checker = None
+    REALITY_CHECK_ENABLED = False
+# Reality Check Helper
+from api.services.reality_check_helper import get_match_warnings, adjust_prediction, get_team_tier
+
+
 router = APIRouter(prefix="/api/combos", tags=["Combinés Intelligents V2"])
 
 DB_CONFIG = {

@@ -18,6 +18,22 @@ from psycopg2.extras import RealDictCursor
 from typing import Optional, Dict, List, Tuple, Any
 from datetime import datetime, timedelta
 from dataclasses import dataclass, field, asdict
+
+# Reality Check Integration
+try:
+    import sys
+    sys.path.insert(0, "/app")
+    from agents.reality_check import RealityChecker
+    REALITY_CHECK_ENABLED = True
+except ImportError:
+    REALITY_CHECK_ENABLED = False
+# Reality Check Helper
+try:
+    from api.services.reality_check_helper import adjust_probabilities, enrich_prediction, get_team_tier
+    REALITY_HELPER_ENABLED = True
+except ImportError:
+    REALITY_HELPER_ENABLED = False
+
 from enum import Enum
 import logging
 from pathlib import Path
