@@ -1,0 +1,28 @@
+{
+    "model": "xgboost",
+    "configurations": {
+        "aggressive": {
+            "description": "Volume élevé, ROI modéré",
+            "min_odds": 1.40,
+            "threshold": 0.55,
+            "expected_roi": 8.96,
+            "expected_wr": 60.0
+        },
+        "balanced": {
+            "description": "Équilibre volume/ROI",
+            "min_odds": 1.70,
+            "threshold": 0.60,
+            "expected_roi": 20.77,
+            "expected_wr": 61.4
+        },
+        "conservative": {
+            "description": "ROI maximal, volume réduit",
+            "min_odds": 2.00,
+            "threshold": 0.55,
+            "expected_roi": 45.19,
+            "expected_wr": 56.2
+        }
+    },
+    "recommended": "balanced",
+    "updated_at": "2025-12-03"
+}

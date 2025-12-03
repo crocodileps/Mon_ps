@@ -1,0 +1,43 @@
+{
+  "model_name": "xgboost",
+  "features": [
+    "implied_prob",
+    "odds_taken",
+    "diamond_score",
+    "edge_pct",
+    "ev_expected",
+    "predicted_prob",
+    "hours_before_match",
+    "odds_value",
+    "clv_positive",
+    "high_diamond",
+    "steam_detected",
+    "prob_x_diamond",
+    "edge_x_odds",
+    "timing_factor",
+    "team_goals_diff",
+    "btts_likelihood",
+    "over25_likelihood",
+    "reality_class_combo",
+    "tier_advantage",
+    "convergence_encoded",
+    "profile_consensus",
+    "profile_profit_sum",
+    "market_encoded",
+    "league_encoded",
+    "source_encoded"
+  ],
+  "metrics": {
+    "accuracy": 0.6321585903083701,
+    "precision": 0.6340425531914894,
+    "recall": 0.6478260869565218,
+    "f1": 0.6408602150537634,
+    "roc_auc": 0.6832686335403726,
+    "brier": 0.23587361822016154,
+    "roi": -0.053217821782178217,
+    "profit": -10.75,
+    "win_rate": 0.6336633663366337
+  },
+  "trained_at": "2025-12-03T13:29:35.431303",
+  "threshold": 0.55
+}
