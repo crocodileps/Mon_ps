@@ -132,6 +132,42 @@ SWEET_SPOTS = {
     'over_35': {'min': 2.20, 'max': 2.60, 'bonus': 5},
 }
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# SMART QUANT 2.0 - HELPER FUNCTIONS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def apply_defense_crusher(opponent_base_xg: float, defense_clean_sheet_rate: float) -> float:
+    """
+    Réduit l'xG adverse basé sur la tendance clean sheet de la défense.
+    
+    Formule exponentielle:
+    - CS < 30%: Pas d'impact (défense normale)
+    - CS = 50%: Facteur ~0.80 (-20%)
+    - CS = 78%: Facteur ~0.45 (-55%)
+    """
+    if defense_clean_sheet_rate < 30:
+        return opponent_base_xg  # Défense normale
+    
+    # Facteur de suppression exponentiel
+    suppression_factor = 1 - (defense_clean_sheet_rate / 140) ** 1.5
+    suppression_factor = max(0.3, suppression_factor)  # Minimum 30% de l'xG original
+    
+    return opponent_base_xg * suppression_factor
+
+
+def calculate_hybrid_probability(mc_prob: float, hist_prob: float, 
+                                  confidence_score: float) -> float:
+    """
+    Mélange simulation Monte Carlo et taux historique.
+    Plus la confiance est haute, plus on écoute l'historique.
+    """
+    # Poids historique: max 50% si confidence = 100
+    weight_hist = min(confidence_score, 100) / 200
+    weight_mc = 1.0 - weight_hist
+    
+    return (mc_prob * weight_mc) + (hist_prob * weight_hist)
+
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # DATA CLASSES
@@ -804,6 +840,20 @@ class LineupImpactEngine:
                 home_defense = float(home_def)
         
         impact.away_base_xg = (away_attack * 0.6) + (home_defense * 0.4)
+
+        # ═══════════════════════════════════════════════════════
+        # SMART QUANT 2.0 - DEFENSE CRUSHER
+        # Suppression xG basée sur clean_sheet_tendency (exponentiel)
+        # ═══════════════════════════════════════════════════════
+        
+        # Récupérer les métriques défensives
+        home_cs_rate = float(home_intel.get('clean_sheet_tendency', 30)) if home_intel else 30
+        away_cs_rate = float(away_intel.get('clean_sheet_tendency', 30)) if away_intel else 30
+        
+        # Appliquer Defense Crusher (Liverpool 78% CS -> -55% xG adverse)
+        impact.away_base_xg = apply_defense_crusher(impact.away_base_xg, home_cs_rate)
+        impact.home_base_xg = apply_defense_crusher(impact.home_base_xg, away_cs_rate)
+
         
         # ═══════════════════════════════════════════════════════
         # V10.3 - LEAGUE TIER ADJUSTMENT
