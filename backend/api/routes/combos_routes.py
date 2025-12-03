@@ -364,11 +364,18 @@ async def get_combo_suggestions(
     cur.close()
     conn.close()
     
+    # 🧠 Enrichir chaque suggestion avec Reality Check
+    enriched_suggestions = []
+    for sug in suggestions:
+        if 'matches' in sug:
+            sug = _enrich_combo_response(sug)
+        enriched_suggestions.append(sug)
+    
     return {
-        'count': len(suggestions),
+        'count': len(enriched_suggestions),
         'saved_count': saved_count,
         'auto_save': auto_save,
-        'suggestions': suggestions,
+        'suggestions': enriched_suggestions,
         'generated_at': datetime.now().isoformat()
     }
 
