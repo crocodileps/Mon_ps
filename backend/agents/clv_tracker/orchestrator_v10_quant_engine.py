@@ -2020,6 +2020,7 @@ class OrchestratorV10Quant:
             'away_class': self._get_team_class(away_team),
             'referee': self._get_referee_data(referee_name, league),
             'h2h': self._get_h2h_data(home_team, away_team),
+            'h2h_intelligence': self._get_h2h_intelligence(home_team, away_team),
             'reality': self._get_reality_check(match_id),
             'home_profile': self._get_team_profile(home_team, 'home'),
             'away_profile': self._get_team_profile(away_team, 'away'),
@@ -2052,6 +2053,110 @@ class OrchestratorV10Quant:
     # SCORE CALCULATIONS
     # ═══════════════════════════════════════════════════════════════════════════
     
+
+    def _get_h2h_intelligence(self, home_team: str, away_team: str) -> Optional[Dict]:
+        """Recupere et analyse les donnees H2H entre deux equipes."""
+        if not self.conn:
+            return None
+            
+        try:
+            with self.conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
+                home_variants = self._resolve_team_name(home_team)
+                away_variants = self._resolve_team_name(away_team)
+                
+                h2h = None
+                home_is_team_a = True
+                
+                for hv in home_variants[:5]:
+                    for av in away_variants[:5]:
+                        cur.execute("""
+                            SELECT * FROM head_to_head 
+                            WHERE (LOWER(team_a) = %s AND LOWER(team_b) = %s)
+                               OR (LOWER(team_a) = %s AND LOWER(team_b) = %s)
+                            LIMIT 1
+                        """, (hv.lower(), av.lower(), av.lower(), hv.lower()))
+                        
+                        row = cur.fetchone()
+                        if row:
+                            h2h = dict(row)
+                            home_is_team_a = h2h['team_a'].lower() in [v.lower() for v in home_variants]
+                            break
+                    if h2h:
+                        break
+                
+                if not h2h:
+                    return None
+                
+                total_matches = h2h.get('total_matches', 0)
+                
+                # Confidence basee sur le nombre de matchs
+                if total_matches >= 10:
+                    confidence = 0.9
+                elif total_matches >= 5:
+                    confidence = 0.7
+                elif total_matches >= 3:
+                    confidence = 0.5
+                else:
+                    confidence = 0.3
+                
+                btts_rate = float(h2h.get('btts_percentage', 50) or 50) / 100
+                over25_rate = float(h2h.get('over_25_percentage', 50) or 50) / 100
+                
+                dominance_factor = float(h2h.get('dominance_factor', 1.0) or 1.0)
+                dominant_team = h2h.get('dominant_team', '')
+                
+                if dominance_factor >= 1.5:
+                    if dominant_team and dominant_team.lower() in [v.lower() for v in home_variants]:
+                        dominance = 'home'
+                        psychological_edge = min(0.15, (dominance_factor - 1) * 0.1)
+                    elif dominant_team and dominant_team.lower() in [v.lower() for v in away_variants]:
+                        dominance = 'away'
+                        psychological_edge = -min(0.15, (dominance_factor - 1) * 0.1)
+                    else:
+                        dominance = 'balanced'
+                        psychological_edge = 0.0
+                else:
+                    dominance = 'balanced'
+                    psychological_edge = 0.0
+                
+                always_goals = h2h.get('always_goals', False)
+                pattern_btts_boost = 0.10 if always_goals else 0.0
+                
+                low_scoring = h2h.get('low_scoring', False)
+                pattern_under_boost = 0.10 if low_scoring else 0.0
+                
+                if btts_rate > 0.70:
+                    pattern_btts_boost += 0.05
+                if over25_rate < 0.40:
+                    pattern_under_boost += 0.05
+                
+                last_5_home_wins = h2h.get('last_5_team_a_wins', 0) if home_is_team_a else h2h.get('last_5_team_b_wins', 0)
+                last_5_away_wins = h2h.get('last_5_team_b_wins', 0) if home_is_team_a else h2h.get('last_5_team_a_wins', 0)
+                
+                recent_momentum = 0.0
+                if last_5_home_wins >= 4:
+                    recent_momentum = 0.05
+                elif last_5_away_wins >= 4:
+                    recent_momentum = -0.05
+                
+                return {
+                    'total_matches': total_matches,
+                    'btts_rate': btts_rate,
+                    'over25_rate': over25_rate,
+                    'dominance': dominance,
+                    'dominance_factor': dominance_factor,
+                    'psychological_edge': psychological_edge + recent_momentum,
+                    'pattern_btts_boost': pattern_btts_boost,
+                    'pattern_under_boost': pattern_under_boost,
+                    'always_goals': always_goals,
+                    'low_scoring': low_scoring,
+                    'confidence': confidence
+                }
+                
+        except Exception as e:
+            return None
+
+
     def _calculate_mc_score(self, pick: QuantPick, mc_result: MonteCarloResult, context: Dict = None) -> int:
         """Score basé sur Monte Carlo"""
         
@@ -2115,6 +2220,31 @@ class OrchestratorV10Quant:
                 away_conf = float(away_intel.get('confidence_overall', 50) or 50)
                 confidence = min(home_conf, away_conf)
                 mc_prob = calculate_hybrid_probability(mc_prob, hist_prob, confidence)
+            
+            # H2H BLEND - Historique confrontations directes
+            h2h_intel = context.get('h2h_intelligence')
+            if h2h_intel and h2h_intel.get('confidence', 0) >= 0.5:
+                h2h_rate = None
+                h2h_boost = 0.0
+                
+                if 'btts' in market:
+                    h2h_rate = h2h_intel.get('btts_rate')
+                    h2h_boost = h2h_intel.get('pattern_btts_boost', 0)
+                    if 'no' in market:
+                        h2h_rate = 1 - h2h_rate if h2h_rate else None
+                        h2h_boost = -h2h_boost
+                        
+                elif 'over_25' in market or 'under_25' in market:
+                    h2h_rate = h2h_intel.get('over25_rate')
+                    if 'under' in market:
+                        h2h_rate = 1 - h2h_rate if h2h_rate else None
+                        h2h_boost = h2h_intel.get('pattern_under_boost', 0)
+                
+                if h2h_rate is not None:
+                    h2h_weight = h2h_intel.get('confidence', 0.5) * 0.25
+                    mc_prob = (mc_prob * (1 - h2h_weight)) + (h2h_rate * h2h_weight)
+                    mc_prob += h2h_boost
+                    mc_prob = max(0.05, min(0.95, mc_prob))
         
         pick.mc_prob = mc_prob
         pick.mc_edge = mc_prob - pick.implied_prob
