@@ -2052,7 +2052,7 @@ class OrchestratorV10Quant:
     # SCORE CALCULATIONS
     # ═══════════════════════════════════════════════════════════════════════════
     
-    def _calculate_mc_score(self, pick: QuantPick, mc_result: MonteCarloResult) -> int:
+    def _calculate_mc_score(self, pick: QuantPick, mc_result: MonteCarloResult, context: Dict = None) -> int:
         """Score basé sur Monte Carlo"""
         
         market = pick.market_type.lower()
@@ -2078,6 +2078,43 @@ class OrchestratorV10Quant:
             mc_prob = mc_result.draw_prob
         else:
             mc_prob = 0.5
+        
+        # ═══════════════════════════════════════════════════════
+        # HYBRID BLENDER - Mélange MC + Historique
+        # ═══════════════════════════════════════════════════════
+        if context:
+            home_intel = context.get('home_intelligence', {}) or {}
+            away_intel = context.get('away_intelligence', {}) or {}
+            
+            # Récupérer taux historiques selon le marché
+            hist_prob = None
+            
+            if 'btts' in market:
+                home_btts = float(home_intel.get('home_btts_rate', 50) or 50)
+                away_btts = float(away_intel.get('away_btts_rate', 50) or 50)
+                hist_btts = (home_btts + away_btts) / 2 / 100  # Convertir en 0-1
+                
+                if 'yes' in market:
+                    hist_prob = hist_btts
+                else:  # btts_no
+                    hist_prob = 1 - hist_btts
+                    
+            elif 'over_25' in market or 'under_25' in market:
+                home_over = float(home_intel.get('home_over25_rate', 50) or 50)
+                away_over = float(away_intel.get('away_over25_rate', 50) or 50)
+                hist_over = (home_over + away_over) / 2 / 100
+                
+                if 'over' in market:
+                    hist_prob = hist_over
+                else:  # under
+                    hist_prob = 1 - hist_over
+            
+            # Appliquer Hybrid Blender si on a les données
+            if hist_prob is not None:
+                home_conf = float(home_intel.get('confidence_overall', 50) or 50)
+                away_conf = float(away_intel.get('confidence_overall', 50) or 50)
+                confidence = min(home_conf, away_conf)
+                mc_prob = calculate_hybrid_probability(mc_prob, hist_prob, confidence)
         
         pick.mc_prob = mc_prob
         pick.mc_edge = mc_prob - pick.implied_prob
@@ -2591,7 +2628,7 @@ class OrchestratorV10Quant:
             pick.market_dynamics = market_dynamics
             
             # 5. Calculate all scores
-            pick.mc_score = self._calculate_mc_score(pick, mc_result)
+            pick.mc_score = self._calculate_mc_score(pick, mc_result, context)
             pick.lineup_score = self._calculate_lineup_score(pick, lineup_impact)
             pick.market_score = self._calculate_market_score(pick, market_dynamics)
             pick.momentum_score = self._calculate_momentum_score(pick, context)
