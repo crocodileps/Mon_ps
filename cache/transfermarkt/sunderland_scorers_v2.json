@@ -1,0 +1,114 @@
+[
+  {
+    "player_name": "Wilson Isidor",
+    "goals": 4,
+    "assists": 0,
+    "matches": 14,
+    "scraped_at": "2025-12-03T22:50:18.173490"
+  },
+  {
+    "player_name": "Enzo Le F\u00e9e",
+    "goals": 2,
+    "assists": 2,
+    "matches": 13,
+    "scraped_at": "2025-12-03T22:50:18.172911"
+  },
+  {
+    "player_name": "Dan Ballard",
+    "goals": 2,
+    "assists": 1,
+    "matches": 11,
+    "scraped_at": "2025-12-03T22:50:18.172269"
+  },
+  {
+    "player_name": "Brian Brobbey",
+    "goals": 2,
+    "assists": 1,
+    "matches": 8,
+    "scraped_at": "2025-12-03T22:50:18.173417"
+  },
+  {
+    "player_name": "Granit Xhaka",
+    "goals": 1,
+    "assists": 4,
+    "matches": 13,
+    "scraped_at": "2025-12-03T22:50:18.172990"
+  },
+  {
+    "player_name": "Chemsdine Talbi",
+    "goals": 1,
+    "assists": 2,
+    "matches": 13,
+    "scraped_at": "2025-12-03T22:50:18.173367"
+  },
+  {
+    "player_name": "Omar Alderete",
+    "goals": 1,
+    "assists": 1,
+    "matches": 9,
+    "scraped_at": "2025-12-03T22:50:18.172318"
+  },
+  {
+    "player_name": "Nordi Mukiele",
+    "goals": 1,
+    "assists": 1,
+    "matches": 12,
+    "scraped_at": "2025-12-03T22:50:18.172359"
+  },
+  {
+    "player_name": "Eliezer Mayenda",
+    "goals": 1,
+    "assists": 0,
+    "matches": 8,
+    "scraped_at": "2025-12-03T22:50:18.173453"
+  },
+  {
+    "player_name": "Marc Guiu",
+    "goals": 1,
+    "assists": 0,
+    "matches": 3,
+    "scraped_at": "2025-12-03T22:50:18.173529"
+  },
+  {
+    "player_name": "Bertrand Traor\u00e9",
+    "goals": 1,
+    "assists": 0,
+    "matches": 8,
+    "scraped_at": "2025-12-03T22:50:18.173641"
+  },
+  {
+    "player_name": "Trai Hume",
+    "goals": 0,
+    "assists": 1,
+    "matches": 13,
+    "scraped_at": "2025-12-03T22:50:18.172219"
+  },
+  {
+    "player_name": "Reinildo Mandava",
+    "goals": 0,
+    "assists": 1,
+    "matches": 10,
+    "scraped_at": "2025-12-03T22:50:18.172447"
+  },
+  {
+    "player_name": "Habib Diarra",
+    "goals": 0,
+    "assists": 1,
+    "matches": 4,
+    "scraped_at": "2025-12-03T22:50:18.172833"
+  },
+  {
+    "player_name": "Milan Aleksic",
+    "goals": 0,
+    "assists": 1,
+    "matches": 1,
+    "scraped_at": "2025-12-03T22:50:18.173101"
+  },
+  {
+    "player_name": "Simon Adingra",
+    "goals": 0,
+    "assists": 1,
+    "matches": 8,
+    "scraped_at": "2025-12-03T22:50:18.173327"
+  }
+]

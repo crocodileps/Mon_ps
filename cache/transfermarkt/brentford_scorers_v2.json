@@ -1,0 +1,100 @@
+[
+  {
+    "player_name": "Igor Thiago",
+    "goals": 12,
+    "assists": 0,
+    "matches": 15,
+    "scraped_at": "2025-12-03T22:50:24.194915"
+  },
+  {
+    "player_name": "Dango Ouattara",
+    "goals": 3,
+    "assists": 4,
+    "matches": 16,
+    "scraped_at": "2025-12-03T22:50:24.194801"
+  },
+  {
+    "player_name": "Mathias Jensen",
+    "goals": 3,
+    "assists": 1,
+    "matches": 14,
+    "scraped_at": "2025-12-03T22:50:24.194336"
+  },
+  {
+    "player_name": "F\u00e1bio Carvalho",
+    "goals": 3,
+    "assists": 1,
+    "matches": 9,
+    "scraped_at": "2025-12-03T22:50:24.194396"
+  },
+  {
+    "player_name": "Kevin Schade",
+    "goals": 3,
+    "assists": 1,
+    "matches": 16,
+    "scraped_at": "2025-12-03T22:50:24.194857"
+  },
+  {
+    "player_name": "Keane Lewis-Potter",
+    "goals": 1,
+    "assists": 2,
+    "matches": 13,
+    "scraped_at": "2025-12-03T22:50:24.194108"
+  },
+  {
+    "player_name": "Mikkel Damsgaard",
+    "goals": 1,
+    "assists": 1,
+    "matches": 13,
+    "scraped_at": "2025-12-03T22:50:24.194052"
+  },
+  {
+    "player_name": "Reiss Nelson",
+    "goals": 1,
+    "assists": 1,
+    "matches": 5,
+    "scraped_at": "2025-12-03T22:50:24.194977"
+  },
+  {
+    "player_name": "Nathan Collins",
+    "goals": 1,
+    "assists": 0,
+    "matches": 17,
+    "scraped_at": "2025-12-03T22:50:24.193530"
+  },
+  {
+    "player_name": "Aaron Hickey",
+    "goals": 1,
+    "assists": 0,
+    "matches": 10,
+    "scraped_at": "2025-12-03T22:50:24.193766"
+  },
+  {
+    "player_name": "Jordan Henderson",
+    "goals": 0,
+    "assists": 3,
+    "matches": 14,
+    "scraped_at": "2025-12-03T22:50:24.194640"
+  },
+  {
+    "player_name": "Kristoffer Ajer",
+    "goals": 0,
+    "assists": 2,
+    "matches": 11,
+    "scraped_at": "2025-12-03T22:50:24.193710"
+  },
+  {
+    "player_name": "Frank Onyeka",
+    "goals": 0,
+    "assists": 2,
+    "matches": 9,
+    "scraped_at": "2025-12-03T22:50:24.194475"
+  },
+  {
+    "player_name": "Yegor Yarmolyuk",
+    "goals": 0,
+    "assists": 1,
+    "matches": 16,
+    "scraped_at": "2025-12-03T22:50:24.194220"
+  }
+]

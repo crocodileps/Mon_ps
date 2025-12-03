@@ -1,0 +1,79 @@
+[
+  {
+    "player_name": "Lucas Paquet\u00e1",
+    "goals": 4,
+    "assists": 0,
+    "matches": 13,
+    "scraped_at": "2025-12-03T22:50:13.755561"
+  },
+  {
+    "player_name": "Callum Wilson",
+    "goals": 4,
+    "assists": 0,
+    "matches": 11,
+    "scraped_at": "2025-12-03T22:50:13.756701"
+  },
+  {
+    "player_name": "Jarrod Bowen",
+    "goals": 3,
+    "assists": 2,
+    "matches": 14,
+    "scraped_at": "2025-12-03T22:50:13.756382"
+  },
+  {
+    "player_name": "Tom\u00e1\u0161 Sou\u010dek",
+    "goals": 3,
+    "assists": 0,
+    "matches": 11,
+    "scraped_at": "2025-12-03T22:50:13.755862"
+  },
+  {
+    "player_name": "Kyle Walker-Peters",
+    "goals": 1,
+    "assists": 1,
+    "matches": 12,
+    "scraped_at": "2025-12-03T22:50:13.755235"
+  },
+  {
+    "player_name": "Mateus Fernandes",
+    "goals": 1,
+    "assists": 1,
+    "matches": 11,
+    "scraped_at": "2025-12-03T22:50:13.755640"
+  },
+  {
+    "player_name": "El Hadji Malick Diouf",
+    "goals": 0,
+    "assists": 3,
+    "matches": 14,
+    "scraped_at": "2025-12-03T22:50:13.754771"
+  },
+  {
+    "player_name": "Crysencio Summerville",
+    "goals": 0,
+    "assists": 2,
+    "matches": 9,
+    "scraped_at": "2025-12-03T22:50:13.756476"
+  },
+  {
+    "player_name": "Alphonse Areola",
+    "goals": 0,
+    "assists": 1,
+    "matches": 10,
+    "scraped_at": "2025-12-03T22:50:13.754507"
+  },
+  {
+    "player_name": "Jean-Clair Todibo",
+    "goals": 0,
+    "assists": 1,
+    "matches": 9,
+    "scraped_at": "2025-12-03T22:50:13.754853"
+  },
+  {
+    "player_name": "Aaron Wan-Bissaka",
+    "goals": 0,
+    "assists": 1,
+    "matches": 9,
+    "scraped_at": "2025-12-03T22:50:13.754932"
+  }
+]

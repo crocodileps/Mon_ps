@@ -1,0 +1,100 @@
+[
+  {
+    "player_name": "Harry Wilson",
+    "goals": 3,
+    "assists": 1,
+    "matches": 15,
+    "scraped_at": "2025-12-03T22:50:31.232827"
+  },
+  {
+    "player_name": "Ra\u00fal Jim\u00e9nez",
+    "goals": 3,
+    "assists": 1,
+    "matches": 16,
+    "scraped_at": "2025-12-03T22:50:31.233050"
+  },
+  {
+    "player_name": "Emile Smith Rowe",
+    "goals": 3,
+    "assists": 0,
+    "matches": 16,
+    "scraped_at": "2025-12-03T22:50:31.231961"
+  },
+  {
+    "player_name": "Samuel Chukwueze",
+    "goals": 2,
+    "assists": 3,
+    "matches": 8,
+    "scraped_at": "2025-12-03T22:50:31.232904"
+  },
+  {
+    "player_name": "Ryan Sessegnon",
+    "goals": 2,
+    "assists": 2,
+    "matches": 15,
+    "scraped_at": "2025-12-03T22:50:31.231352"
+  },
+  {
+    "player_name": "Alex Iwobi",
+    "goals": 2,
+    "assists": 2,
+    "matches": 16,
+    "scraped_at": "2025-12-03T22:50:31.232676"
+  },
+  {
+    "player_name": "Sa\u0161a Luki\u0107",
+    "goals": 1,
+    "assists": 2,
+    "matches": 13,
+    "scraped_at": "2025-12-03T22:50:31.232196"
+  },
+  {
+    "player_name": "Josh King",
+    "goals": 1,
+    "assists": 1,
+    "matches": 17,
+    "scraped_at": "2025-12-03T22:50:31.232287"
+  },
+  {
+    "player_name": "Rodrigo Muniz",
+    "goals": 1,
+    "assists": 1,
+    "matches": 9,
+    "scraped_at": "2025-12-03T22:50:31.232755"
+  },
+  {
+    "player_name": "Kenny Tete",
+    "goals": 1,
+    "assists": 0,
+    "matches": 11,
+    "scraped_at": "2025-12-03T22:50:31.231537"
+  },
+  {
+    "player_name": "Timothy Castagne",
+    "goals": 0,
+    "assists": 1,
+    "matches": 13,
+    "scraped_at": "2025-12-03T22:50:31.231660"
+  },
+  {
+    "player_name": "Harrison Reed",
+    "goals": 0,
+    "assists": 1,
+    "matches": 4,
+    "scraped_at": "2025-12-03T22:50:31.232361"
+  },
+  {
+    "player_name": "Kevin",
+    "goals": 0,
+    "assists": 1,
+    "matches": 13,
+    "scraped_at": "2025-12-03T22:50:31.232600"
+  },
+  {
+    "player_name": "Adama Traor\u00e9",
+    "goals": 0,
+    "assists": 1,
+    "matches": 12,
+    "scraped_at": "2025-12-03T22:50:31.232976"
+  }
+]
