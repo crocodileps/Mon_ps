@@ -41,7 +41,7 @@ except ImportError:
     _reality_checker = None
     REALITY_CHECK_ENABLED = False
 # Reality Check Helper
-from api.services.reality_check_helper import adjust_prediction, enrich_prediction, quick_adjust
+from api.services.reality_check_helper import adjust_prediction, enrich_prediction, quick_adjust, enrich_api_response, get_team_tier
 
 
 logger = structlog.get_logger(__name__)

@@ -26,7 +26,7 @@ except ImportError:
     _reality_checker = None
     REALITY_CHECK_ENABLED = False
 # Reality Check Helper
-from api.services.reality_check_helper import get_match_warnings, adjust_prediction, get_team_tier
+from api.services.reality_check_helper import get_match_warnings, adjust_prediction, get_team_tier, enrich_match_list, enrich_api_response
 
 
 

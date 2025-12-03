@@ -323,3 +323,95 @@ def quick_adjust(home_team: str, away_team: str, score: float, direction: str = 
     """
     result = adjust_prediction(home_team, away_team, score, direction=direction)
     return result['adjusted_score']
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DECORATOR POUR ENRICHISSEMENT AUTOMATIQUE DES RÉPONSES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def with_reality_check(func):
+    """
+    Décorateur qui enrichit automatiquement les réponses avec Reality Check.
+    
+    Usage:
+        @with_reality_check
+        async def my_endpoint(...):
+            return {"home_team": "Arsenal", "away_team": "Chelsea", ...}
+    
+    Le décorateur détecte home_team/away_team dans la réponse et ajoute reality_check.
+    """
+    import functools
+    import asyncio
+    
+    @functools.wraps(func)
+    async def async_wrapper(*args, **kwargs):
+        result = await func(*args, **kwargs)
+        return _enrich_response(result)
+    
+    @functools.wraps(func)
+    def sync_wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return _enrich_response(result)
+    
+    def _enrich_response(result):
+        if not isinstance(result, dict):
+            return result
+        
+        home = result.get('home_team') or result.get('home')
+        away = result.get('away_team') or result.get('away')
+        
+        if home and away and 'reality_check' not in result:
+            try:
+                result = enrich_prediction(home, away, result)
+            except:
+                pass
+        
+        return result
+    
+    if asyncio.iscoroutinefunction(func):
+        return async_wrapper
+    return sync_wrapper
+
+
+def enrich_api_response(response_data: dict) -> dict:
+    """
+    Fonction utilitaire pour enrichir une réponse API avec Reality Check.
+    
+    Usage dans un endpoint:
+        result = {"home_team": "Arsenal", "away_team": "Chelsea", ...}
+        return enrich_api_response(result)
+    """
+    if not isinstance(response_data, dict):
+        return response_data
+    
+    home = response_data.get('home_team') or response_data.get('home')
+    away = response_data.get('away_team') or response_data.get('away')
+    
+    if home and away:
+        # Enrichir avec Reality Check
+        response_data = enrich_prediction(home, away, response_data)
+        
+        # Ajouter les warnings explicites
+        warnings = get_match_warnings(home, away)
+        if warnings:
+            response_data['reality_warnings'] = warnings
+        
+        # Ajouter les Tiers
+        response_data['home_tier'] = get_team_tier(home)
+        response_data['away_tier'] = get_team_tier(away)
+    
+    return response_data
+
+
+def enrich_match_list(matches: list) -> list:
+    """
+    Enrichit une liste de matchs avec Reality Check.
+    
+    Usage:
+        matches = [{"home_team": "Arsenal", "away_team": "Chelsea"}, ...]
+        enriched = enrich_match_list(matches)
+    """
+    enriched = []
+    for match in matches:
+        enriched.append(enrich_api_response(match))
+    return enriched
