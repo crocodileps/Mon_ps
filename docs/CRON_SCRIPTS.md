@@ -47,3 +47,19 @@ Tous les logs dans `/var/log/monps/`:
 - `league_stats.log`
 - `market_reality_gap.log`
 - `momentum_update.log`
+
+## Script ajouté
+
+| Script | Fréquence | Description |
+|--------|-----------|-------------|
+| `populate_team_intelligence_history.py` | 0 7 * * * | Tracking changements équipes |
+
+## Résumé tables peuplées
+
+| Table | Rows | Description |
+|-------|------|-------------|
+| team_intelligence_history | 3213 | Historique changements équipes |
+| reality_check_results | 839 | Analyses Reality Check |
+| market_reality_gap | 135 | Gap market vs reality |
+| fg_league_stats | 7 | Stats par ligue |
+| fg_sharp_money | 6 | Steam moves détectés |
