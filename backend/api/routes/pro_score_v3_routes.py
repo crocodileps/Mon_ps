@@ -350,10 +350,14 @@ async def get_matches_today_enriched(
             "avg_score": sum(m['pro_score']['final_score'] for m in enriched_matches) / len(enriched_matches) if enriched_matches else 0
         }
         
+        # 🧠 Enrichir chaque match avec Reality Check
+        from api.services.reality_check_helper import enrich_match_list
+        reality_enriched_matches = enrich_match_list(enriched_matches)
+        
         return {
             "date": str(today),
             "stats": stats,
-            "matches": enriched_matches
+            "matches": reality_enriched_matches
         }
         
     except Exception as e:
