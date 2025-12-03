@@ -1,0 +1,85 @@
+#!/usr/bin/env python3
+"""Debug: Voir les xG passés au Monte Carlo"""
+
+import sys
+sys.path.insert(0, '/home/Mon_ps/backend/agents/clv_tracker')
+
+from orchestrator_v10_quant_engine import OrchestratorV10Quant
+
+print("="*70)
+print("DEBUG xG → MONTE CARLO")
+print("="*70)
+
+orch = OrchestratorV10Quant()
+
+# Récupérer le contexte
+context = orch._prefetch_context('Liverpool', 'Sunderland', 'League Cup', {})
+
+print("\n1. DONNÉES RÉCUPÉRÉES:")
+home_intel = context.get('home_intel', {})
+away_intel = context.get('away_intel', {})
+
+print(f"   Home Intel présent: {bool(home_intel)}")
+if home_intel:
+    print(f"      scored={home_intel.get('home_goals_scored_avg')}, conceded={home_intel.get('home_goals_conceded_avg')}")
+else:
+    print("      ❌ VIDE!")
+    
+print(f"   Away Intel présent: {bool(away_intel)}")
+if away_intel:
+    print(f"      scored={away_intel.get('away_goals_scored_avg')}, conceded={away_intel.get('away_goals_conceded_avg')}")
+else:
+    print("      ❌ VIDE!")
+
+print(f"\n   Home Class: Tier={context.get('home_class', {}).get('tier')}, Fortress={context.get('home_class', {}).get('home_fortress_factor')}")
+print(f"   Away Class: Tier={context.get('away_class', {}).get('tier')}, Weakness={context.get('away_class', {}).get('away_weakness_factor')}")
+
+# Calculer lineup impact
+lineup = orch.lineup_engine.calculate_impact(
+    'Liverpool', 'Sunderland',
+    home_intel,
+    away_intel,
+    context.get('home_class', {}),
+    context.get('away_class', {}),
+    context.get('home_momentum', {}),
+    context.get('away_momentum', {}),
+    context
+)
+
+print("\n2. xG CALCULÉS PAR LINEUP ENGINE:")
+print(f"   Home base xG: {lineup.home_base_xg:.3f}")
+print(f"   Away base xG: {lineup.away_base_xg:.3f}")
+print(f"   Home FINAL xG: {lineup.home_adjusted_xg:.3f}")
+print(f"   Away FINAL xG: {lineup.away_adjusted_xg:.3f}")
+
+# Monte Carlo
+mc = orch.monte_carlo.simulate_match(
+    lineup.home_adjusted_xg,
+    lineup.away_adjusted_xg,
+    home_style='balanced',
+    away_style='balanced_offensive'
+)
+
+print("\n3. RÉSULTATS MONTE CARLO:")
+print(f"   BTTS: {mc.btts_prob*100:.1f}%")
+print(f"   OVER 2.5: {mc.over_25_prob*100:.1f}%")
+print(f"   UNDER 2.5: {mc.under_25_prob*100:.1f}%")
+
+# Poisson simple
+import math
+def p_score(xg):
+    return 1 - math.exp(-xg)
+
+p_liv = p_score(lineup.home_adjusted_xg)
+p_sun = p_score(lineup.away_adjusted_xg)
+btts_poisson = p_liv * p_sun
+
+print("\n4. VÉRIFICATION POISSON:")
+print(f"   P(Liverpool marque) = {p_liv*100:.1f}%")
+print(f"   P(Sunderland marque) = {p_sun*100:.1f}%")
+print(f"   BTTS Poisson = {btts_poisson*100:.1f}%")
+
+# Vérifier pourquoi team_intel est vide
+print("\n5. DEBUG _get_team_intelligence:")
+ti = orch._get_team_intelligence('Liverpool')
+print(f"   Liverpool direct: {ti}")
