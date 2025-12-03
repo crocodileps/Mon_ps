@@ -20,9 +20,6 @@ try:
 except ImportError:
     _reality_checker = None
     REALITY_CHECK_ENABLED = False
-# Reality Check Helper
-from api.services.reality_check_helper import enrich_prediction, get_match_warnings, quick_adjust
-
 
 
 
@@ -32,8 +29,8 @@ from api.services.reality_check_helper import enrich_prediction, get_match_warni
 
 def _get_reality_context_for_conseil(home_team: str, away_team: str) -> dict:
     """
-    Récupère le contexte Reality Check pour enrichir le conseil ultim.
-    Retourne un dict avec les infos à intégrer dans l'analyse GPT.
+    Recupere le contexte Reality Check pour enrichir le conseil ultim.
+    Retourne un dict avec les infos a integrer dans l analyse GPT.
     """
     try:
         from api.services.reality_check_helper import (
@@ -47,41 +44,40 @@ def _get_reality_context_for_conseil(home_team: str, away_team: str) -> dict:
         if not reality:
             return {'available': False}
         
-        # Construire le contexte textuel pour GPT
         home_tier = get_team_tier(home_team)
         away_tier = get_team_tier(away_team)
-        
-        context_text = f"""
-📊 REALITY CHECK CONTEXT:
-- {home_team}: Tier {home_tier}
-- {away_team}: Tier {away_tier}
-- Gap de classe: {reality.get('tier_gap', 0)} points
-- Reality Score: {reality.get('reality_score', 50)}/100
-- Convergence: {reality.get('convergence', 'unknown')}
-"""
-        
+        tier_gap = reality.get('tier_gap', 0)
+        reality_score = reality.get('reality_score', 50)
+        convergence = reality.get('convergence', 'unknown')
         warnings = reality.get('warnings', [])
-        if warnings:
-            context_text += "
-⚠️ WARNINGS:
-"
-            for w in warnings[:3]:
-                context_text += f"  - {w}
-"
-        
         recommendation = reality.get('recommendation', '')
+        
+        # Construire le contexte textuel pour GPT
+        lines = []
+        lines.append("REALITY CHECK CONTEXT:")
+        lines.append(f"- {home_team}: Tier {home_tier}")
+        lines.append(f"- {away_team}: Tier {away_tier}")
+        lines.append(f"- Gap de classe: {tier_gap} points")
+        lines.append(f"- Reality Score: {reality_score}/100")
+        lines.append(f"- Convergence: {convergence}")
+        
+        if warnings:
+            lines.append("WARNINGS:")
+            for w in warnings[:3]:
+                lines.append(f"  - {w}")
+        
         if recommendation:
-            context_text += f"
-💡 RECOMMANDATION: {recommendation}
-"
+            lines.append(f"RECOMMANDATION: {recommendation}")
+        
+        context_text = "\n".join(lines)
         
         return {
             'available': True,
-            'reality_score': reality.get('reality_score', 50),
-            'convergence': reality.get('convergence', 'unknown'),
+            'reality_score': reality_score,
+            'convergence': convergence,
             'home_tier': home_tier,
             'away_tier': away_tier,
-            'tier_gap': reality.get('tier_gap', 0),
+            'tier_gap': tier_gap,
             'warnings': warnings,
             'context_text': context_text,
             'adjustments': reality.get('adjustments', {})
