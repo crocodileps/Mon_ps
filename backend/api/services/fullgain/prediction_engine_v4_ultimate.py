@@ -34,6 +34,61 @@ try:
 except ImportError:
     REALITY_HELPER_ENABLED = False
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# REALITY CHECK INTEGRATION FOR PREDICTION ENGINE
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _reality_adjust_poisson_probs(home_team: str, away_team: str, probs: dict) -> dict:
+    """
+    Ajuste les probabilités Poisson avec Reality Check.
+    
+    Args:
+        home_team: Équipe domicile
+        away_team: Équipe extérieur
+        probs: Dict avec 'home', 'draw', 'away' (valeurs 0-1)
+    
+    Returns:
+        Dict ajusté et normalisé
+    """
+    try:
+        if not REALITY_HELPER_ENABLED:
+            return probs
+            
+        from api.services.reality_check_helper import adjust_probabilities
+        return adjust_probabilities(home_team, away_team, probs)
+    except:
+        return probs
+
+
+def _reality_check_confidence_adjustment(home_team: str, away_team: str, confidence: float, direction: str) -> tuple:
+    """
+    Ajuste la confiance d'une prédiction avec Reality Check.
+    
+    Returns:
+        Tuple (adjusted_confidence, reality_info_dict)
+    """
+    try:
+        if not REALITY_HELPER_ENABLED:
+            return confidence, {}
+            
+        from api.services.reality_check_helper import adjust_prediction
+        
+        result = adjust_prediction(home_team, away_team, confidence, direction=direction)
+        
+        reality_info = {
+            'reality_applied': result.get('applied', False),
+            'reality_score': result.get('reality_score', 50),
+            'convergence': result.get('convergence', 'unknown'),
+            'adjustment_factor': result.get('adjustment_factor', 1.0),
+            'warnings': result.get('warnings', [])
+        }
+        
+        return result.get('adjusted_score', confidence), reality_info
+    except:
+        return confidence, {}
+
+
+
 from enum import Enum
 import logging
 from pathlib import Path

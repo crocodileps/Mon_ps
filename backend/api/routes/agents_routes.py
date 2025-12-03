@@ -24,6 +24,73 @@ except ImportError:
 from api.services.reality_check_helper import enrich_prediction, get_match_warnings, quick_adjust
 
 
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# REALITY CHECK INTEGRATION FOR CONSEIL ULTIM
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _get_reality_context_for_conseil(home_team: str, away_team: str) -> dict:
+    """
+    Récupère le contexte Reality Check pour enrichir le conseil ultim.
+    Retourne un dict avec les infos à intégrer dans l'analyse GPT.
+    """
+    try:
+        from api.services.reality_check_helper import (
+            analyze_match,
+            get_team_tier,
+            get_tactical_insight
+        )
+        
+        reality = analyze_match(home_team, away_team)
+        
+        if not reality:
+            return {'available': False}
+        
+        # Construire le contexte textuel pour GPT
+        home_tier = get_team_tier(home_team)
+        away_tier = get_team_tier(away_team)
+        
+        context_text = f"""
+📊 REALITY CHECK CONTEXT:
+- {home_team}: Tier {home_tier}
+- {away_team}: Tier {away_tier}
+- Gap de classe: {reality.get('tier_gap', 0)} points
+- Reality Score: {reality.get('reality_score', 50)}/100
+- Convergence: {reality.get('convergence', 'unknown')}
+"""
+        
+        warnings = reality.get('warnings', [])
+        if warnings:
+            context_text += "
+⚠️ WARNINGS:
+"
+            for w in warnings[:3]:
+                context_text += f"  - {w}
+"
+        
+        recommendation = reality.get('recommendation', '')
+        if recommendation:
+            context_text += f"
+💡 RECOMMANDATION: {recommendation}
+"
+        
+        return {
+            'available': True,
+            'reality_score': reality.get('reality_score', 50),
+            'convergence': reality.get('convergence', 'unknown'),
+            'home_tier': home_tier,
+            'away_tier': away_tier,
+            'tier_gap': reality.get('tier_gap', 0),
+            'warnings': warnings,
+            'context_text': context_text,
+            'adjustments': reality.get('adjustments', {})
+        }
+        
+    except Exception as e:
+        return {'available': False, 'error': str(e)}
+
+
 router = APIRouter(prefix="/agents", tags=["Agents ML"])
 
 # Configuration DB

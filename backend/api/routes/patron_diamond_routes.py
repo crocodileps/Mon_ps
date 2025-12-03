@@ -23,6 +23,41 @@ except ImportError:
 # Reality Check Helper
 from api.services.reality_check_helper import enrich_prediction, adjust_probabilities, get_match_warnings
 
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# REALITY CHECK INTEGRATION
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _apply_reality_check_to_prediction(home_team: str, away_team: str, prediction_data: dict) -> dict:
+    """
+    Applique Reality Check à une prédiction et enrichit les données.
+    """
+    try:
+        from api.services.reality_check_helper import (
+            enrich_prediction, 
+            adjust_probabilities,
+            get_match_warnings
+        )
+        
+        # Enrichir avec Reality Check
+        prediction_data = enrich_prediction(home_team, away_team, prediction_data)
+        
+        # Ajuster les probabilités si présentes
+        if 'probabilities' in prediction_data:
+            prediction_data['probabilities_adjusted'] = adjust_probabilities(
+                home_team, away_team, prediction_data['probabilities']
+            )
+        
+        # Ajouter warnings explicites
+        prediction_data['reality_warnings'] = get_match_warnings(home_team, away_team)
+        
+    except Exception as e:
+        prediction_data['reality_check'] = {'enabled': False, 'error': str(e)}
+    
+    return prediction_data
+
+
 router = APIRouter(prefix="/patron-diamond", tags=["Patron Diamond V3"])
 
 # Configuration DB

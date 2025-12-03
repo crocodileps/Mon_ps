@@ -29,6 +29,81 @@ except ImportError:
 from api.services.reality_check_helper import get_match_warnings, adjust_prediction, get_team_tier
 
 
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# REALITY CHECK INTEGRATION FOR COMBOS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _check_combo_reality(matches: list) -> dict:
+    """
+    Vérifie la convergence Reality Check pour un combiné.
+    Retourne un score global et des warnings agrégés.
+    """
+    try:
+        from api.services.reality_check_helper import analyze_match, get_match_warnings
+        
+        total_score = 0
+        all_warnings = []
+        divergences = 0
+        match_details = []
+        
+        for match in matches:
+            home = match.get('home_team', match.get('home', ''))
+            away = match.get('away_team', match.get('away', ''))
+            
+            if home and away:
+                reality = analyze_match(home, away)
+                if reality:
+                    total_score += reality.get('reality_score', 50)
+                    warnings = reality.get('warnings', [])
+                    all_warnings.extend(warnings)
+                    
+                    if reality.get('convergence') in ['divergence', 'strong_divergence']:
+                        divergences += 1
+                    
+                    match_details.append({
+                        'match': f"{home} vs {away}",
+                        'reality_score': reality.get('reality_score', 50),
+                        'convergence': reality.get('convergence', 'unknown'),
+                        'warnings_count': len(warnings)
+                    })
+                else:
+                    total_score += 50  # Score neutre
+                    match_details.append({
+                        'match': f"{home} vs {away}",
+                        'reality_score': 50,
+                        'convergence': 'unknown',
+                        'warnings_count': 0
+                    })
+        
+        num_matches = len(matches) if matches else 1
+        avg_score = total_score / num_matches
+        
+        # Recommandation combiné
+        if divergences >= 2:
+            combo_recommendation = "🚨 ÉVITER - Plusieurs divergences détectées"
+        elif divergences == 1:
+            combo_recommendation = "⚠️ PRUDENCE - Une divergence dans le combiné"
+        elif avg_score >= 60:
+            combo_recommendation = "✅ COHÉRENT - Reality Check favorable"
+        else:
+            combo_recommendation = "⚠️ NEUTRE - Vérifier les warnings"
+        
+        return {
+            'enabled': True,
+            'combo_reality_score': round(avg_score, 1),
+            'divergences_count': divergences,
+            'total_warnings': len(all_warnings),
+            'recommendation': combo_recommendation,
+            'match_details': match_details,
+            'top_warnings': all_warnings[:5]  # Top 5 warnings
+        }
+        
+    except Exception as e:
+        return {'enabled': False, 'error': str(e)}
+
+
 router = APIRouter(prefix="/api/combos", tags=["Combinés Intelligents V2"])
 
 DB_CONFIG = {

@@ -46,6 +46,60 @@ from api.services.reality_check_helper import adjust_prediction, enrich_predicti
 
 logger = structlog.get_logger(__name__)
 
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# REALITY CHECK INTEGRATION
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _enrich_pro_score_with_reality(home_team: str, away_team: str, score_data: dict) -> dict:
+    """
+    Enrichit le Pro Score avec les données Reality Check.
+    Ajuste le score final en fonction de la convergence.
+    """
+    try:
+        from api.services.reality_check_helper import (
+            adjust_prediction,
+            get_match_warnings,
+            get_team_tier,
+            analyze_match
+        )
+        
+        # Analyser le match
+        reality = analyze_match(home_team, away_team)
+        
+        if reality:
+            # Ajuster le score principal si présent
+            if 'pro_score' in score_data and isinstance(score_data['pro_score'], (int, float)):
+                direction = score_data.get('prediction', 'home')
+                adjusted = adjust_prediction(
+                    home_team, away_team, 
+                    score_data['pro_score'], 
+                    direction=direction
+                )
+                score_data['pro_score_original'] = score_data['pro_score']
+                score_data['pro_score'] = adjusted['adjusted_score']
+                score_data['pro_score_adjustment'] = adjusted['adjustment_factor']
+            
+            # Ajouter les données Reality Check
+            score_data['reality_check'] = {
+                'enabled': True,
+                'score': reality.get('reality_score', 50),
+                'convergence': reality.get('convergence', 'unknown'),
+                'home_tier': get_team_tier(home_team),
+                'away_tier': get_team_tier(away_team),
+                'warnings': reality.get('warnings', []),
+                'recommendation': reality.get('recommendation', '')
+            }
+        else:
+            score_data['reality_check'] = {'enabled': False}
+            
+    except Exception as e:
+        score_data['reality_check'] = {'enabled': False, 'error': str(e)}
+    
+    return score_data
+
+
 router = APIRouter(prefix="/api/pro", tags=["Pro Score V3.1"])
 
 # ═══════════════════════════════════════════════════════════════════════════════
