@@ -1,0 +1,760 @@
+"""
+🏎️ PRO SCORE V3.1 API ROUTES
+══════════════════════════════════════════════════════════════════════════════
+
+Endpoints pour FULL GAIN 3.0 PRO:
+- GET /api/pro/match-score/{home}/{away} - Score PRO d'un match
+- GET /api/pro/matches-today - Tous les matchs du jour enrichis
+- GET /api/pro/value-alerts - Alertes VALUE du jour
+- GET /api/pro/elite-picks - Picks ELITE uniquement (score >= 90)
+- POST /api/pro/check-correlation - Vérifier corrélation entre picks
+- POST /api/pro/build-combo - Construire un combo optimisé
+
+VERSION: 3.1.0
+DATE: 29/11/2025
+"""
+
+from fastapi import APIRouter, HTTPException, Query
+from pydantic import BaseModel
+from typing import List, Dict, Optional
+from datetime import datetime, timedelta
+import psycopg2
+from psycopg2.extras import RealDictCursor
+
+# Import du service Pro Score V3.1
+from api.services.pro_score_v3_service import (
+    ProScoreV3Calculator,
+    VolatilityAnalyzer,
+    CorrelationChecker,
+    ComboBuilder,
+    db_pool
+)
+
+import structlog
+
+logger = structlog.get_logger(__name__)
+
+router = APIRouter(prefix="/api/pro", tags=["Pro Score V3.1"])
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# MODÈLES PYDANTIC
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class MatchScoreRequest(BaseModel):
+    home_team: str
+    away_team: str
+    league: Optional[str] = None
+    xg_home: Optional[float] = None
+    xg_away: Optional[float] = None
+    edge_pct: Optional[float] = 0
+    sweet_spot_score: Optional[float] = 50
+    odds_movement: Optional[str] = "stable"
+    agent_a_score: Optional[float] = 50
+    agent_b_score: Optional[float] = 50
+    agent_c_score: Optional[float] = 50
+    agent_d_score: Optional[float] = 50
+    is_b_team: Optional[bool] = False
+    is_dead_rubber: Optional[bool] = False
+    high_stakes: Optional[bool] = False
+
+
+class CorrelationRequest(BaseModel):
+    picks: List[Dict]
+
+
+class ComboRequest(BaseModel):
+    picks: List[Dict]
+    target_odds: Optional[float] = 3.0
+    max_picks: Optional[int] = 3
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# ENDPOINTS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@router.get("/health")
+async def health_check():
+    """Health check endpoint"""
+    return {
+        "status": "healthy",
+        "service": "Pro Score V3.1",
+        "version": "3.1.0",
+        "timestamp": datetime.now().isoformat()
+    }
+
+
+@router.get("/match-score/{home_team}/{away_team}")
+async def get_match_score(
+    home_team: str,
+    away_team: str,
+    league: Optional[str] = None,
+    edge_pct: float = Query(0, description="Edge CLV en %"),
+    sweet_spot_score: float = Query(50, description="Score Sweet Spot 0-100"),
+    odds_movement: str = Query("stable", description="Mouvement de cote"),
+    full_gain_score: float = Query(50, description="Score Full Gain existant")
+):
+    """
+    Calcule le Score PRO V3.1 pour un match
+    
+    Utilise toutes les données FERRARI Intelligence:
+    - team_intelligence (83 colonnes)
+    - scorer_intelligence (153 colonnes)
+    - market_patterns (24 colonnes)
+    """
+    try:
+        calculator = ProScoreV3Calculator()
+        
+        match_data = {
+            "league": league or "",
+            "edge_pct": edge_pct,
+            "sweet_spot_score": sweet_spot_score,
+            "odds_movement": odds_movement,
+            "full_gain_score": full_gain_score,
+            "agent_a_score": 50,
+            "agent_b_score": 50,
+            "agent_c_score": 50,
+            "agent_d_score": 50
+        }
+        
+        result = calculator.calculate_match_score(home_team, away_team, match_data)
+        
+        logger.info("match_score_calculated",
+                   match=f"{home_team} vs {away_team}",
+                   score=result['final_score'])
+        
+        return result
+        
+    except Exception as e:
+        logger.error("match_score_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/calculate-score")
+async def calculate_score(request: MatchScoreRequest):
+    """
+    Calcule le Score PRO V3.1 avec tous les paramètres
+    
+    Body JSON avec:
+    - home_team, away_team
+    - edge_pct, sweet_spot_score
+    - agent scores (A, B, C, D)
+    - risk factors
+    """
+    try:
+        calculator = ProScoreV3Calculator()
+        
+        match_data = {
+            "league": request.league or "",
+            "edge_pct": request.edge_pct,
+            "sweet_spot_score": request.sweet_spot_score,
+            "odds_movement": request.odds_movement,
+            "agent_a_score": request.agent_a_score,
+            "agent_b_score": request.agent_b_score,
+            "agent_c_score": request.agent_c_score,
+            "agent_d_score": request.agent_d_score,
+            "is_b_team": request.is_b_team,
+            "is_dead_rubber": request.is_dead_rubber,
+            "high_stakes": request.high_stakes
+        }
+        
+        result = calculator.calculate_match_score(
+            request.home_team, 
+            request.away_team, 
+            match_data
+        )
+        
+        return result
+        
+    except Exception as e:
+        logger.error("calculate_score_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/matches-today")
+async def get_matches_today_enriched(
+    min_score: int = Query(0, description="Score minimum"),
+    tier: Optional[str] = Query(None, description="Tier filter: ELITE, DIAMOND, STRONG")
+):
+    """
+    Récupère tous les matchs du jour avec Score PRO enrichi
+    
+    Combine:
+    - Données Full Gain 2.0
+    - Sweet Spots CLV
+    - FERRARI Intelligence
+    - Score PRO V3.1
+    """
+    conn = db_pool.get_connection()
+    try:
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Récupérer matchs du jour depuis full_gain_matches ou odds_history
+        today = datetime.now().date()
+        tomorrow = today + timedelta(days=1)
+        
+        cur.execute("""
+            SELECT DISTINCT 
+                home_team,
+                away_team,
+                league,
+                commence_time,
+                xg_home,
+                xg_away,
+                btts_prob,
+                over25_prob,
+                match_id
+            FROM (
+                SELECT 
+                    home_team,
+                    away_team,
+                    sport_key as league,
+                    commence_time,
+                    NULL as xg_home,
+                    NULL as xg_away,
+                    NULL as btts_prob,
+                    NULL as over25_prob,
+                    id as match_id
+                FROM odds_history
+                WHERE DATE(commence_time) = %s
+                AND sport_key LIKE '%%soccer%%'
+            ) matches
+            ORDER BY commence_time
+            LIMIT 50
+        """, (today,))
+        
+        matches = cur.fetchall()
+        cur.close()
+        
+        # Enrichir chaque match avec Score PRO
+        calculator = ProScoreV3Calculator()
+        enriched_matches = []
+        
+        for match in matches:
+            try:
+                match_data = {
+                    "league": match.get('league', ''),
+                    "edge_pct": 0,
+                    "sweet_spot_score": 50,
+                    "odds_movement": "stable",
+                    "agent_a_score": 50,
+                    "agent_b_score": 50,
+                    "agent_c_score": 50,
+                    "agent_d_score": 50
+                }
+                
+                score_result = calculator.calculate_match_score(
+                    match['home_team'],
+                    match['away_team'],
+                    match_data
+                )
+                
+                # Filtrer par score minimum
+                if score_result['final_score'] >= min_score:
+                    # Filtrer par tier si spécifié
+                    if tier is None or score_result['tier'] == tier:
+                        enriched_matches.append({
+                            **dict(match),
+                            "pro_score": score_result
+                        })
+                        
+            except Exception as e:
+                logger.warning("match_enrichment_failed",
+                             match=f"{match.get('home_team')} vs {match.get('away_team')}",
+                             error=str(e))
+                continue
+        
+        # Trier par score décroissant
+        enriched_matches.sort(key=lambda x: x['pro_score']['final_score'], reverse=True)
+        
+        # Stats globales
+        stats = {
+            "total_matches": len(enriched_matches),
+            "elite_count": sum(1 for m in enriched_matches if m['pro_score']['tier'] == 'ELITE'),
+            "diamond_count": sum(1 for m in enriched_matches if m['pro_score']['tier'] == 'DIAMOND'),
+            "strong_count": sum(1 for m in enriched_matches if m['pro_score']['tier'] == 'STRONG'),
+            "avg_score": sum(m['pro_score']['final_score'] for m in enriched_matches) / len(enriched_matches) if enriched_matches else 0
+        }
+        
+        return {
+            "date": str(today),
+            "stats": stats,
+            "matches": enriched_matches
+        }
+        
+    except Exception as e:
+        logger.error("matches_today_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        db_pool.release_connection(conn)
+
+
+@router.get("/elite-picks")
+async def get_elite_picks():
+    """
+    Récupère uniquement les picks ELITE (score >= 90)
+    
+    Ce sont les meilleures opportunités du jour
+    """
+    result = await get_matches_today_enriched(min_score=90, tier="ELITE")
+    
+    return {
+        "tier": "ELITE",
+        "description": "Picks avec score PRO >= 90. Conditions optimales réunies.",
+        "recommended_stake": "2-3% bankroll",
+        "count": result['stats']['elite_count'],
+        "picks": result['matches']
+    }
+
+
+@router.get("/diamond-picks")
+async def get_diamond_picks():
+    """
+    Récupère les picks DIAMOND (score 80-89)
+    """
+    result = await get_matches_today_enriched(min_score=80)
+    
+    # Filtrer pour avoir ELITE + DIAMOND
+    picks = [m for m in result['matches'] if m['pro_score']['tier'] in ['ELITE', 'DIAMOND']]
+    
+    return {
+        "tiers": ["ELITE", "DIAMOND"],
+        "description": "Picks avec score PRO >= 80. Excellentes opportunités.",
+        "recommended_stake": "1.5-2% bankroll",
+        "count": len(picks),
+        "picks": picks
+    }
+
+
+@router.get("/value-alerts")
+async def get_value_alerts():
+    """
+    Récupère les alertes VALUE du jour
+    
+    Combine:
+    - Patterns à haut ROI
+    - Sweet Spots avec edge > 10%
+    - Divergences détectées
+    """
+    conn = db_pool.get_connection()
+    try:
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Patterns profitables
+        cur.execute("""
+            SELECT 
+                pattern_name,
+                market_type,
+                league,
+                win_rate,
+                roi,
+                sample_size,
+                recommendation
+            FROM market_patterns
+            WHERE is_profitable = true
+            AND roi > 10
+            ORDER BY roi DESC
+            LIMIT 10
+        """)
+        
+        patterns = cur.fetchall()
+        cur.close()
+        
+        # Analyser volatilité de chaque pattern
+        alerts = []
+        for p in patterns:
+            volatility = VolatilityAnalyzer.analyze_pattern_volatility(p)
+            
+            alerts.append({
+                **dict(p),
+                "volatility": volatility,
+                "is_safe": not volatility.get('is_high_volatility', False)
+            })
+        
+        # Séparer safe vs volatile
+        safe_alerts = [a for a in alerts if a['is_safe']]
+        volatile_alerts = [a for a in alerts if not a['is_safe']]
+        
+        return {
+            "date": str(datetime.now().date()),
+            "total_alerts": len(alerts),
+            "safe_alerts": safe_alerts,
+            "volatile_alerts": volatile_alerts,
+            "warning": "Les alertes volatiles nécessitent un bankroll important et une tolérance aux pertes consécutives"
+        }
+        
+    except Exception as e:
+        logger.error("value_alerts_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        db_pool.release_connection(conn)
+
+
+@router.get("/divergence-alerts")
+async def get_divergence_alerts():
+    """
+    Récupère les alertes de DIVERGENCE du jour
+    
+    C'est souvent là qu'est l'argent!
+    Quand les sources ne sont pas d'accord, il y a potentiellement
+    une opportunité de trading.
+    """
+    # Récupérer les matchs enrichis
+    result = await get_matches_today_enriched(min_score=0)
+    
+    divergence_matches = []
+    
+    for match in result['matches']:
+        divergences = match['pro_score'].get('divergences', [])
+        if divergences:
+            divergence_matches.append({
+                "match": match['pro_score']['match'],
+                "score": match['pro_score']['final_score'],
+                "divergences": divergences,
+                "ml_signal": match['pro_score'].get('ml_signal', {})
+            })
+    
+    return {
+        "date": str(datetime.now().date()),
+        "description": "Matchs où les sources ne sont pas d'accord. Analyse manuelle recommandée.",
+        "count": len(divergence_matches),
+        "matches": divergence_matches
+    }
+
+
+@router.post("/check-correlation")
+async def check_correlation(request: CorrelationRequest):
+    """
+    Vérifie la corrélation entre plusieurs picks
+    
+    Évite les combos à haute corrélation qui multiplient le risque
+    """
+    try:
+        checker = CorrelationChecker()
+        result = checker.check_picks_correlation(request.picks)
+        
+        return result
+        
+    except Exception as e:
+        logger.error("correlation_check_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/build-combo")
+async def build_combo(request: ComboRequest):
+    """
+    Construit un combo optimisé avec faible corrélation
+    
+    Args:
+        picks: Liste des picks disponibles
+        target_odds: Cote cible du combo
+        max_picks: Nombre max de picks
+    """
+    try:
+        builder = ComboBuilder()
+        result = builder.build_safe_combo(
+            request.picks,
+            target_odds=request.target_odds,
+            max_picks=request.max_picks
+        )
+        
+        return result
+        
+    except Exception as e:
+        logger.error("build_combo_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/team-intelligence/{team_name}")
+async def get_team_intelligence(team_name: str):
+    """
+    Récupère l'intelligence complète d'une équipe
+    
+    83 colonnes de données!
+    """
+    calculator = ProScoreV3Calculator()
+    intel = calculator._get_team_intelligence(team_name)
+    
+    if not intel:
+        raise HTTPException(status_code=404, detail=f"Team '{team_name}' not found")
+    
+    return {
+        "team": team_name,
+        "intelligence": intel,
+        "columns_count": len(intel)
+    }
+
+
+@router.get("/scorer-intelligence/{player_name}")
+async def get_scorer_intelligence(player_name: str):
+    """
+    Récupère l'intelligence complète d'un buteur
+    
+    153 colonnes de données!
+    """
+    conn = db_pool.get_connection()
+    try:
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        cur.execute("""
+            SELECT * FROM scorer_intelligence
+            WHERE player_name ILIKE %s
+            OR player_name_normalized ILIKE %s
+            LIMIT 1
+        """, (f"%{player_name}%", f"%{player_name}%"))
+        
+        result = cur.fetchone()
+        cur.close()
+        
+        if not result:
+            raise HTTPException(status_code=404, detail=f"Scorer '{player_name}' not found")
+        
+        return {
+            "player": player_name,
+            "intelligence": dict(result),
+            "columns_count": len(result)
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error("scorer_intelligence_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        db_pool.release_connection(conn)
+
+
+@router.get("/patterns/profitable")
+async def get_profitable_patterns(
+    league: Optional[str] = None,
+    market_type: Optional[str] = None,
+    min_roi: float = Query(0, description="ROI minimum"),
+    min_sample: int = Query(30, description="Sample size minimum")
+):
+    """
+    Récupère les patterns profitables avec analyse de volatilité
+    """
+    conn = db_pool.get_connection()
+    try:
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        query = """
+            SELECT * FROM market_patterns
+            WHERE is_profitable = true
+            AND roi >= %s
+            AND sample_size >= %s
+        """
+        params = [min_roi, min_sample]
+        
+        if league:
+            query += " AND league ILIKE %s"
+            params.append(f"%{league}%")
+        
+        if market_type:
+            query += " AND market_type ILIKE %s"
+            params.append(f"%{market_type}%")
+        
+        query += " ORDER BY roi DESC LIMIT 50"
+        
+        cur.execute(query, params)
+        patterns = cur.fetchall()
+        cur.close()
+        
+        # Analyser volatilité
+        enriched = []
+        for p in patterns:
+            vol = VolatilityAnalyzer.analyze_pattern_volatility(p)
+            enriched.append({
+                **dict(p),
+                "volatility_analysis": vol
+            })
+        
+        return {
+            "count": len(enriched),
+            "filters": {
+                "league": league,
+                "market_type": market_type,
+                "min_roi": min_roi,
+                "min_sample": min_sample
+            },
+            "patterns": enriched
+        }
+        
+    except Exception as e:
+        logger.error("patterns_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        db_pool.release_connection(conn)
+
+
+@router.get("/stats/summary")
+async def get_stats_summary():
+    """
+    Récupère un résumé des statistiques globales
+    """
+    conn = db_pool.get_connection()
+    try:
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+        
+        # Teams
+        cur.execute("SELECT COUNT(*) FROM team_intelligence")
+        teams_count = cur.fetchone()['count']
+        
+        # Scorers
+        cur.execute("SELECT COUNT(*) FROM scorer_intelligence")
+        scorers_count = cur.fetchone()['count']
+        
+        # Patterns
+        cur.execute("SELECT COUNT(*) FROM market_patterns")
+        patterns_count = cur.fetchone()['count']
+        
+        cur.execute("SELECT COUNT(*) FROM market_patterns WHERE is_profitable = true")
+        profitable_count = cur.fetchone()['count']
+        
+        # Top patterns
+        cur.execute("""
+            SELECT pattern_name, market_type, win_rate, roi
+            FROM market_patterns
+            WHERE is_profitable = true
+            ORDER BY roi DESC
+            LIMIT 5
+        """)
+        top_patterns = cur.fetchall()
+        
+        # Top scorers
+        cur.execute("""
+            SELECT player_name, current_team, season_goals, goals_per_match
+            FROM scorer_intelligence
+            ORDER BY season_goals DESC
+            LIMIT 5
+        """)
+        top_scorers = cur.fetchall()
+        
+        cur.close()
+        
+        return {
+            "data_summary": {
+                "teams_analyzed": teams_count,
+                "scorers_tracked": scorers_count,
+                "patterns_identified": patterns_count,
+                "profitable_patterns": profitable_count
+            },
+            "top_patterns": [dict(p) for p in top_patterns],
+            "top_scorers": [dict(s) for s in top_scorers],
+            "service_version": "3.1.0",
+            "last_updated": datetime.now().isoformat()
+        }
+        
+    except Exception as e:
+        logger.error("stats_summary_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        db_pool.release_connection(conn)
+
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SWEET SPOTS ENDPOINTS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+from api.services.pro_score_v3_service import SweetSpotIntegration
+
+@router.get("/sweet-spots/today")
+async def get_today_sweet_spots(
+    min_score: int = Query(80, description="Score minimum (80=Diamond, 90=Elite, 100=Perfect)")
+):
+    """
+    Récupère les Sweet Spots du jour
+    
+    643 picks aujourd'hui dont 69 ELITE!
+    """
+    try:
+        integration = SweetSpotIntegration()
+        
+        # Stats du jour
+        stats = integration.get_today_stats()
+        
+        # Picks élite
+        picks = integration.get_today_elite_picks(min_score=min_score)
+        
+        return {
+            "date": str(datetime.now().date()),
+            "stats": {
+                "total_picks": stats.get('total', 0),
+                "elite_100": stats.get('elite_100', 0),
+                "elite_90": stats.get('elite_90', 0),
+                "diamond_plus": stats.get('diamond_plus', 0),
+                "avg_score": round(float(stats.get('avg_score') or 0), 1),
+                "avg_edge": round(float(stats.get('avg_edge') or 0), 2)
+            },
+            "filter": f"score >= {min_score}",
+            "count": len(picks),
+            "picks": picks
+        }
+    except Exception as e:
+        logger.error("sweet_spots_today_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/sweet-spots/match/{home_team}/{away_team}")
+async def get_match_sweet_spots(home_team: str, away_team: str):
+    """
+    Récupère les Sweet Spots pour un match spécifique
+    """
+    try:
+        integration = SweetSpotIntegration()
+        spots = integration.get_match_sweet_spots(home_team, away_team)
+        boost, boost_info = integration.calculate_sweet_spot_boost(spots)
+        
+        return {
+            "match": f"{home_team} vs {away_team}",
+            "sweet_spots_found": len(spots),
+            "boost": boost,
+            "boost_info": boost_info,
+            "picks": spots
+        }
+    except Exception as e:
+        logger.error("match_sweet_spots_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/sweet-spots/elite")
+async def get_elite_sweet_spots():
+    """
+    Récupère uniquement les picks ELITE (score = 100)
+    Ce sont les meilleures opportunités!
+    """
+    try:
+        integration = SweetSpotIntegration()
+        picks = integration.get_today_elite_picks(min_score=100)
+        
+        # Grouper par match
+        matches = {}
+        for pick in picks:
+            match_name = pick.get('match_name', 'Unknown')
+            if match_name not in matches:
+                matches[match_name] = {
+                    "match_name": match_name,
+                    "home_team": pick.get('home_team'),
+                    "away_team": pick.get('away_team'),
+                    "league": pick.get('league'),
+                    "commence_time": str(pick.get('commence_time')),
+                    "picks": []
+                }
+            matches[match_name]["picks"].append({
+                "market": pick.get('market_type'),
+                "prediction": pick.get('prediction'),
+                "odds": float(pick.get('odds_taken') or 0),
+                "score": pick.get('diamond_score'),
+                "value_rating": pick.get('value_rating')
+            })
+        
+        return {
+            "tier": "ELITE (Score 100)",
+            "description": "Les meilleures opportunités - Toutes les conditions réunies",
+            "total_picks": len(picks),
+            "total_matches": len(matches),
+            "matches": list(matches.values())
+        }
+    except Exception as e:
+        logger.error("elite_sweet_spots_error", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
