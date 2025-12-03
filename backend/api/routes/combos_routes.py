@@ -28,6 +28,15 @@ except ImportError:
 # Reality Check Helper
 from api.services.reality_check_helper import get_match_warnings, adjust_prediction, get_team_tier, enrich_match_list, enrich_api_response
 
+def _enrich_combo_response(response: dict) -> dict:
+    """Enrichit la réponse combo avec Reality Check pour chaque match."""
+    if 'matches' in response and isinstance(response['matches'], list):
+        response['matches'] = enrich_match_list(response['matches'])
+        # Ajouter le check global du combo
+        response['combo_reality'] = _check_combo_reality(response['matches'])
+    return response
+
+
 
 
 

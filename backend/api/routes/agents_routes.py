@@ -25,6 +25,16 @@ except ImportError:
 # Reality Check Helper
 from api.services.reality_check_helper import enrich_prediction, get_match_warnings, quick_adjust, enrich_api_response
 
+def _enrich_conseil_response(response: dict) -> dict:
+    """Enrichit la réponse conseil avec le contexte Reality Check."""
+    home = response.get('home_team') or response.get('home')
+    away = response.get('away_team') or response.get('away')
+    if home and away:
+        response['reality_context'] = _get_reality_context_for_conseil(home, away)
+        response = enrich_api_response(response)
+    return response
+
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # REALITY CHECK INTEGRATION FOR CONSEIL ULTIM

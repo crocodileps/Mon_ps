@@ -23,6 +23,15 @@ except ImportError:
 # Reality Check Helper
 from api.services.reality_check_helper import enrich_prediction, adjust_probabilities, get_match_warnings, enrich_api_response, get_team_tier
 
+def _enrich_and_return(response: dict) -> dict:
+    """Enrichit la réponse avec Reality Check si home_team et away_team présents."""
+    home = response.get('home_team')
+    away = response.get('away_team')
+    if home and away:
+        return enrich_api_response(response)
+    return response
+
+
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
