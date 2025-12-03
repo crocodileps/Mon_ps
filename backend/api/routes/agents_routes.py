@@ -22,6 +22,9 @@ except ImportError:
     REALITY_CHECK_ENABLED = False
 
 
+# Reality Check Helper
+from api.services.reality_check_helper import enrich_prediction, get_match_warnings, quick_adjust, enrich_api_response
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # REALITY CHECK INTEGRATION FOR CONSEIL ULTIM
@@ -30,14 +33,9 @@ except ImportError:
 def _get_reality_context_for_conseil(home_team: str, away_team: str) -> dict:
     """
     Recupere le contexte Reality Check pour enrichir le conseil ultim.
-    Retourne un dict avec les infos a integrer dans l analyse GPT.
     """
     try:
-        from api.services.reality_check_helper import (
-            analyze_match,
-            get_team_tier,
-            get_tactical_insight
-        )
+        from api.services.reality_check_helper import analyze_match, get_team_tier
         
         reality = analyze_match(home_team, away_team)
         
@@ -46,40 +44,23 @@ def _get_reality_context_for_conseil(home_team: str, away_team: str) -> dict:
         
         home_tier = get_team_tier(home_team)
         away_tier = get_team_tier(away_team)
-        tier_gap = reality.get('tier_gap', 0)
-        reality_score = reality.get('reality_score', 50)
-        convergence = reality.get('convergence', 'unknown')
-        warnings = reality.get('warnings', [])
-        recommendation = reality.get('recommendation', '')
         
-        # Construire le contexte textuel pour GPT
         lines = []
         lines.append("REALITY CHECK CONTEXT:")
         lines.append(f"- {home_team}: Tier {home_tier}")
         lines.append(f"- {away_team}: Tier {away_tier}")
-        lines.append(f"- Gap de classe: {tier_gap} points")
-        lines.append(f"- Reality Score: {reality_score}/100")
-        lines.append(f"- Convergence: {convergence}")
-        
-        if warnings:
-            lines.append("WARNINGS:")
-            for w in warnings[:3]:
-                lines.append(f"  - {w}")
-        
-        if recommendation:
-            lines.append(f"RECOMMANDATION: {recommendation}")
-        
-        context_text = "\n".join(lines)
+        lines.append(f"- Reality Score: {reality.get('reality_score', 50)}/100")
+        lines.append(f"- Convergence: {reality.get('convergence', 'unknown')}")
         
         return {
             'available': True,
-            'reality_score': reality_score,
-            'convergence': convergence,
+            'reality_score': reality.get('reality_score', 50),
+            'convergence': reality.get('convergence', 'unknown'),
             'home_tier': home_tier,
             'away_tier': away_tier,
-            'tier_gap': tier_gap,
-            'warnings': warnings,
-            'context_text': context_text,
+            'tier_gap': reality.get('tier_gap', 0),
+            'warnings': reality.get('warnings', []),
+            'context_text': "\n".join(lines),
             'adjustments': reality.get('adjustments', {})
         }
         
