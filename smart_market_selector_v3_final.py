@@ -43,6 +43,7 @@ SNIPER_SHARPE = 1.5
 NORMAL_SHARPE = 0.8
 SPEC_SHARPE = 0.4
 MIN_EDGE = 0.02
+MAX_ABSOLUTE_ODDS = 10.0  # Filtrer marchés illiquides
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -276,7 +277,7 @@ class SmartMarketSelector:
                 market_key = f'{side}_{line}'
                 prob = probs.get(market_key, 0)
                 
-                if prob > 0 and odds > 1.1:
+                if prob > 0 and odds > 1.1 and odds < MAX_ABSOLUTE_ODDS:
                     if market_key not in markets:
                         markets[market_key] = {
                             'type': side, 'line': line, 'team': None, 'prob': prob,
@@ -313,7 +314,7 @@ class SmartMarketSelector:
             
             prob = probs.get(prob_key, 0)
             
-            if prob > 0 and odds > 1.1:
+            if prob > 0 and odds > 1.1 and odds < MAX_ABSOLUTE_ODDS:
                 if market_key not in markets:
                     markets[market_key] = {
                         'type': mc_type, 'line': spread, 'team': team, 'prob': prob,
