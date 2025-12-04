@@ -7,6 +7,7 @@ Features:
 3. Sharpe Ratio pour classifier les paris
 4. Monte Carlo validation
 5. Kelly adaptatif
+6. Filtre anti-anomalie (cotes > 10)
 
 Sans filtre bookmakers - Meilleure cote disponible.
 """
@@ -43,7 +44,7 @@ SNIPER_SHARPE = 1.5
 NORMAL_SHARPE = 0.8
 SPEC_SHARPE = 0.4
 MIN_EDGE = 0.02
-MAX_ABSOLUTE_ODDS = 10.0  # Filtrer marchés illiquides
+MAX_ABSOLUTE_ODDS = 10.0  # Filtrer marchés illiquides (Matchbook exchange)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -277,6 +278,7 @@ class SmartMarketSelector:
                 market_key = f'{side}_{line}'
                 prob = probs.get(market_key, 0)
                 
+                # FILTRE ANTI-ANOMALIE: rejeter cotes > 10 (marchés illiquides)
                 if prob > 0 and odds > 1.1 and odds < MAX_ABSOLUTE_ODDS:
                     if market_key not in markets:
                         markets[market_key] = {
@@ -292,6 +294,8 @@ class SmartMarketSelector:
                     
                     if is_pinnacle:
                         markets[market_key]['pinnacle'] = odds
+                elif odds >= MAX_ABSOLUTE_ODDS:
+                    debug_info.append(f"🚫 {market_key}: Cote {odds:.2f} > 10 (illiquide)")
         
         # Asian Handicap
         for row in all_odds['spreads']:
@@ -314,6 +318,7 @@ class SmartMarketSelector:
             
             prob = probs.get(prob_key, 0)
             
+            # FILTRE ANTI-ANOMALIE
             if prob > 0 and odds > 1.1 and odds < MAX_ABSOLUTE_ODDS:
                 if market_key not in markets:
                     markets[market_key] = {
