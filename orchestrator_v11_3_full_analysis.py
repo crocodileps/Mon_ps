@@ -506,7 +506,10 @@ class OrchestratorV11_3:
             h_conf = float(h_prof.get('confidence_score') or 0)
             a_conf = float(a_prof.get('confidence_score') or 0)
             
-            if h_market == a_market:
+            # Convergence par FAMILLE (pas par market_type exact)
+            h_family = h_prof.get('market_family', 'other')
+            a_family = a_prof.get('market_family', 'other')
+            if h_family == a_family and h_family != 'other':
                 base = 8.0
                 if h_market in ['over_25', 'btts_yes'] and tactical.get('over25', 50) > 55:
                     base += 4.0
