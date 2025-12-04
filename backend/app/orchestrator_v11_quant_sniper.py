@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
 """
-ORCHESTRATOR V11 - QUANT 2.0 SNIPER (CALIBRATED)
+ORCHESTRATOR V11 - QUANT 2.0 SNIPER (COMPLETE)
 ═══════════════════════════════════════════════════════════════════════════════
-CORRECTIONS APPLIQUÉES (Audit Expert 2025-12-04):
-1. Bonus "Elite Attack" - Pas de régression xG pour équipes power > 85
-2. Convergence parfaite (+100%) = +30 pts au lieu de +20
-3. Seuils ajustés: SNIPER 50, NORMAL 35
-4. Poids xG réduit de 8 à 5 (moins punitif)
-5. Injuries: Seuls les top scorers (goals_per_90 > 0.5) pénalisent
+VERSION: 11.1 - Phase 4 Complete
+DATE: 2025-12-04
+
+LAYERS COMPLETS (8/8):
+✅ Base (10 pts)
+✅ Tactical Matrix (15 pts)
+✅ Team Class (10 pts)
+✅ H2H (8 pts)
+✅ Injuries (-8 pts max)
+✅ xG Regression (5 pts)
+✅ Coach (3 pts) - NEW!
+✅ Referee (2 pts) - NEW!
+✅ Market Convergence (30 pts)
+
+TOTAL MAX THÉORIQUE: ~83 pts
 ═══════════════════════════════════════════════════════════════════════════════
 """
 
@@ -29,29 +38,27 @@ DB_CONFIG = {
 }
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# SEUILS CALIBRÉS (Ajustés après audit expert)
+# SEUILS CALIBRÉS
 # ═══════════════════════════════════════════════════════════════════════════════
-SNIPER_THRESHOLD = 50      # Abaissé de 55 à 50
-NORMAL_THRESHOLD = 35      # Abaissé de 40 à 35
+SNIPER_THRESHOLD = 50
+NORMAL_THRESHOLD = 35
 
-# Poids calibrés
+# Poids calibrés (Phase 4 Complete)
 WEIGHTS = {
     'base': 10,
     'tactical': 15,
     'team_class': 10,
     'h2h': 8,
-    'coach': 3,
-    'referee': 2,
-    'injuries': -8,         # Réduit de -10 à -8
-    'xg': 5,                # Réduit de 8 à 5 (moins punitif)
-    'convergence': 30,      # Augmenté de 25 à 30 (signal le plus fort)
+    'coach': 3,           # NEW - Phase 4
+    'referee': 2,         # NEW - Phase 4
+    'injuries': -8,
+    'xg': 5,
+    'convergence': 30,
 }
 
-# Seuil pour ignorer la régression xG (équipes d'élite)
+# Seuils
 ELITE_POWER_THRESHOLD = 85
-
-# Seuil pour pénaliser une blessure (buteur significatif)
-KEY_SCORER_THRESHOLD = 0.5  # goals_per_90 minimum
+KEY_SCORER_THRESHOLD = 0.5
 
 # Mapping styles
 STYLE_MAPPING = {
@@ -105,7 +112,6 @@ class OrchestratorV11QuantSniper:
         return r['team_name'] if r else None
     
     def _get_team_power(self, team: str) -> float:
-        """Récupère le power index d'une équipe"""
         t = self._find_team(team, 'team_class')
         if t and t in self.cache['team_class']:
             return to_float(self.cache['team_class'][t].get('calculated_power_index'), 50)
@@ -124,7 +130,10 @@ class OrchestratorV11QuantSniper:
         cur.execute("SELECT * FROM referee_intelligence")
         self.cache['referees'] = {r['referee_name']: r for r in cur.fetchall()}
         
-        logger.info(f"Cache: {len(self.cache['tactical'])} tactical, {len(self.cache['team_class'])} teams")
+        cur.execute("SELECT * FROM coach_intelligence")
+        self.cache['coaches'] = {r['current_team']: r for r in cur.fetchall() if r.get('current_team')}
+        
+        logger.info(f"Cache: {len(self.cache['tactical'])} tactical, {len(self.cache['team_class'])} teams, {len(self.cache['coaches'])} coaches, {len(self.cache['referees'])} refs")
     
     def get_team_intel(self, team: str) -> Optional[Dict]:
         team_found = self._find_team(team, 'team_intelligence')
@@ -134,6 +143,9 @@ class OrchestratorV11QuantSniper:
         cur.execute("SELECT * FROM team_intelligence WHERE team_name = %s ORDER BY updated_at DESC LIMIT 1", (team_found,))
         return cur.fetchone()
     
+    # ═══════════════════════════════════════════════════════════════════════════
+    # LAYER 1: TACTICAL MATRIX
+    # ═══════════════════════════════════════════════════════════════════════════
     def analyze_tactical(self, home: str, away: str) -> Dict:
         home_intel = self.get_team_intel(home)
         away_intel = self.get_team_intel(away)
@@ -165,6 +177,9 @@ class OrchestratorV11QuantSniper:
         
         return {'score': 0, 'btts': 50, 'over25': 50, 'reason': f'{h_style} vs {a_style}: No matrix'}
     
+    # ═══════════════════════════════════════════════════════════════════════════
+    # LAYER 2: TEAM CLASS
+    # ═══════════════════════════════════════════════════════════════════════════
     def analyze_team_class(self, home: str, away: str) -> Dict:
         h_name = self._find_team(home, 'team_class')
         a_name = self._find_team(away, 'team_class')
@@ -182,7 +197,6 @@ class OrchestratorV11QuantSniper:
         diff = h_power - a_power
         score = abs(diff) * 0.15 + (h_fortress - 1.0) * 5
         
-        # BONUS: Les deux équipes sont d'élite → match spectaculaire probable
         if h_power > ELITE_POWER_THRESHOLD and a_power > ELITE_POWER_THRESHOLD:
             score += 3
         
@@ -194,6 +208,9 @@ class OrchestratorV11QuantSniper:
             'reason': f'H:{h_power:.0f} vs A:{a_power:.0f} (Δ{diff:+.0f})'
         }
     
+    # ═══════════════════════════════════════════════════════════════════════════
+    # LAYER 3: HEAD TO HEAD
+    # ═══════════════════════════════════════════════════════════════════════════
     def analyze_h2h(self, home: str, away: str) -> Dict:
         cur = self._get_conn().cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         
@@ -207,7 +224,6 @@ class OrchestratorV11QuantSniper:
         h2h = cur.fetchone()
         
         if not h2h or h2h.get('total_matches', 0) < 2:
-            # AMÉLIORATION: Si pas de H2H, donner un petit bonus neutre au lieu de 0
             return {'score': 1, 'reason': 'H2H < 2 matchs (bonus neutre)'}
         
         over_pct = to_float(h2h.get('over_25_percentage'), 50)
@@ -229,6 +245,9 @@ class OrchestratorV11QuantSniper:
             'reason': f'{matches} H2H: O2.5 {over_pct:.0f}%, BTTS {btts_pct:.0f}%'
         }
     
+    # ═══════════════════════════════════════════════════════════════════════════
+    # LAYER 4: INJURIES
+    # ═══════════════════════════════════════════════════════════════════════════
     def analyze_injuries(self, home: str, away: str) -> Dict:
         cur = self._get_conn().cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         
@@ -246,12 +265,11 @@ class OrchestratorV11QuantSniper:
         if not injured:
             return {'score': 0, 'reason': 'No injuries'}
         
-        # AMÉLIORATION: Seuls les TOP scorers (goals_per_90 > 0.5) pénalisent
         penalty = 0
         key_names = []
         for p in injured:
             g90 = to_float(p.get('goals_per_90'), 0)
-            if g90 > KEY_SCORER_THRESHOLD:  # Seulement les vrais buteurs
+            if g90 > KEY_SCORER_THRESHOLD:
                 penalty += min(2.5, g90 * 3)
                 key_names.append(p['player_name'][:12])
         
@@ -263,6 +281,9 @@ class OrchestratorV11QuantSniper:
             'reason': f"KEY: {', '.join(key_names[:2])}"
         }
     
+    # ═══════════════════════════════════════════════════════════════════════════
+    # LAYER 5: XG REGRESSION
+    # ═══════════════════════════════════════════════════════════════════════════
     def analyze_xg(self, home: str, away: str) -> Dict:
         cur = self._get_conn().cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         
@@ -277,7 +298,6 @@ class OrchestratorV11QuantSniper:
         if not data:
             return {'score': 0, 'reason': 'No xG data'}
         
-        # Récupérer les power indexes pour le bonus élite
         home_power = self._get_team_power(home)
         away_power = self._get_team_power(away)
         
@@ -287,17 +307,15 @@ class OrchestratorV11QuantSniper:
         for team_name, team_data in data.items():
             luck = to_float(team_data.get('avg_performance'), 0)
             
-            # AMÉLIORATION: Ignorer régression négative pour équipes d'élite
-            # Les élites surperforment structurellement (Kane, Haaland, etc.)
             is_elite = (team_name.lower() in home.lower() and home_power > ELITE_POWER_THRESHOLD) or \
                        (team_name.lower() in away.lower() and away_power > ELITE_POWER_THRESHOLD)
             
-            if luck > 0.3 and not is_elite:  # Overperforming non-élite
+            if luck > 0.3 and not is_elite:
                 regression -= luck * 3
                 reasons.append(f"{team_name[:10]} lucky +{luck:.2f}")
-            elif luck > 0.3 and is_elite:  # Overperforming élite → normal
+            elif luck > 0.3 and is_elite:
                 reasons.append(f"{team_name[:10]} elite +{luck:.2f} (OK)")
-            elif luck < -0.25:  # Underperforming → regression up
+            elif luck < -0.25:
                 regression += abs(luck) * 4
                 reasons.append(f"{team_name[:10]} unlucky {luck:.2f}")
         
@@ -306,6 +324,181 @@ class OrchestratorV11QuantSniper:
             'reason': '; '.join(reasons) if reasons else 'Normal xG'
         }
     
+    # ═══════════════════════════════════════════════════════════════════════════
+    # LAYER 6: COACH (NEW - Phase 4)
+    # ═══════════════════════════════════════════════════════════════════════════
+    def analyze_coach(self, home: str, away: str, target_market: str = 'over_25') -> Dict:
+        """
+        COACH LAYER - Analyse les tendances des coaches
+        Max: +3 points, Min: -1.5 points
+        """
+        # Chercher coaches dans le cache
+        home_coach = None
+        away_coach = None
+        
+        for team, data in self.cache['coaches'].items():
+            if home.lower() in team.lower():
+                home_coach = data
+            elif away.lower() in team.lower():
+                away_coach = data
+        
+        # Fallback: recherche directe
+        if not home_coach or not away_coach:
+            cur = self._get_conn().cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+            cur.execute("""
+                SELECT * FROM coach_intelligence 
+                WHERE current_team ILIKE %s OR current_team ILIKE %s
+            """, (f'%{home}%', f'%{away}%'))
+            
+            for r in cur.fetchall():
+                if home.lower() in r['current_team'].lower():
+                    home_coach = r
+                elif away.lower() in r['current_team'].lower():
+                    away_coach = r
+        
+        if not home_coach or not away_coach:
+            found = 1 if home_coach else 0
+            found += 1 if away_coach else 0
+            return {'score': 0, 'reason': f'Coaches: {found}/2 found'}
+        
+        h_over25 = to_float(home_coach.get('over25_rate'), 50)
+        a_over25 = to_float(away_coach.get('over25_rate'), 50)
+        h_btts = to_float(home_coach.get('btts_rate'), 50)
+        a_btts = to_float(away_coach.get('btts_rate'), 50)
+        
+        h_name = home_coach.get('coach_name', 'Unknown')[:12]
+        a_name = away_coach.get('coach_name', 'Unknown')[:12]
+        
+        score = 0
+        reasons = []
+        
+        is_over_market = 'over' in target_market.lower() or 'btts' in target_market.lower()
+        
+        if is_over_market:
+            # Bonus si les deux coaches sont offensifs
+            if h_over25 > 55 and a_over25 > 55:
+                score += 1.5
+                reasons.append(f"Both O2.5+: {h_over25:.0f}%/{a_over25:.0f}%")
+            
+            if h_btts > 55 and a_btts > 55:
+                score += 1.0
+                reasons.append("BTTS prone")
+            
+            # Penalty si un coach est très défensif
+            if h_over25 < 40:
+                score -= 1.0
+                reasons.append(f"{h_name} defensive ({h_over25:.0f}%)")
+            if a_over25 < 40:
+                score -= 0.5
+                reasons.append(f"{a_name} defensive ({a_over25:.0f}%)")
+        else:
+            # Marché UNDER
+            if h_over25 < 45 and a_over25 < 45:
+                score += 1.5
+                reasons.append("Both defensive coaches")
+            
+            if h_over25 > 60:
+                score -= 0.5
+            if a_over25 > 60:
+                score -= 0.5
+        
+        return {
+            'score': max(-1.5, min(WEIGHTS['coach'], score)),
+            'h_coach': h_name,
+            'a_coach': a_name,
+            'h_over25': h_over25,
+            'a_over25': a_over25,
+            'reason': '; '.join(reasons) if reasons else f'{h_name} vs {a_name}'
+        }
+    
+    # ═══════════════════════════════════════════════════════════════════════════
+    # LAYER 7: REFEREE (NEW - Phase 4)
+    # ═══════════════════════════════════════════════════════════════════════════
+    def analyze_referee(self, referee_name: str = None, target_market: str = 'over_25') -> Dict:
+        """
+        REFEREE LAYER - Ajustement basé sur l'arbitre
+        Max: +2 points, Min: -1.5 points
+        Range observé: 2.35 → 3.35 goals/match (1 but d'écart!)
+        """
+        if not referee_name:
+            return {'score': 0, 'reason': 'No referee info'}
+        
+        # Chercher dans le cache
+        ref_data = self.cache['referees'].get(referee_name)
+        
+        if not ref_data:
+            # Recherche fuzzy
+            for name, data in self.cache['referees'].items():
+                if referee_name.lower() in name.lower() or name.lower() in referee_name.lower():
+                    ref_data = data
+                    break
+        
+        if not ref_data:
+            cur = self._get_conn().cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+            cur.execute("""
+                SELECT * FROM referee_intelligence 
+                WHERE referee_name ILIKE %s
+                LIMIT 1
+            """, (f'%{referee_name}%',))
+            ref_data = cur.fetchone()
+        
+        if not ref_data:
+            return {'score': 0, 'reason': f'{referee_name[:15]}: not in DB'}
+        
+        avg_goals = to_float(ref_data.get('avg_goals_per_game'), 2.7)
+        total_matches = ref_data.get('total_matches', 0)
+        
+        # Minimum de matchs pour fiabilité
+        if total_matches < 10:
+            return {'score': 0, 'reason': f'{referee_name[:15]}: {total_matches} matchs only'}
+        
+        score = 0
+        is_over_market = 'over' in target_market.lower() or 'btts' in target_market.lower()
+        
+        # Moyenne de référence: ~2.7 goals/match
+        if is_over_market:
+            if avg_goals > 3.0:
+                score = 2.0
+                indicator = "🔥"
+            elif avg_goals > 2.8:
+                score = 1.0
+                indicator = "📈"
+            elif avg_goals < 2.4:
+                score = -1.5
+                indicator = "🛡️"
+            elif avg_goals < 2.5:
+                score = -1.0
+                indicator = "📉"
+            else:
+                indicator = "⚪"
+        else:
+            # Marché UNDER
+            if avg_goals < 2.4:
+                score = 1.5
+                indicator = "🛡️"
+            elif avg_goals < 2.5:
+                score = 1.0
+                indicator = "📉"
+            elif avg_goals > 3.0:
+                score = -1.5
+                indicator = "🔥"
+            elif avg_goals > 2.8:
+                score = -1.0
+                indicator = "📈"
+            else:
+                indicator = "⚪"
+        
+        return {
+            'score': max(-1.5, min(WEIGHTS['referee'], score)),
+            'referee': referee_name,
+            'avg_goals': avg_goals,
+            'matches': total_matches,
+            'reason': f'{referee_name[:15]}: {avg_goals:.2f}g/m {indicator}'
+        }
+    
+    # ═══════════════════════════════════════════════════════════════════════════
+    # LAYER 8: MARKET CONVERGENCE
+    # ═══════════════════════════════════════════════════════════════════════════
     def analyze_convergence(self, home: str, away: str, market: str = None) -> Dict:
         try:
             from market_convergence_engine import MarketConvergenceEngine
@@ -314,9 +507,8 @@ class OrchestratorV11QuantSniper:
             
             base_score = result.get('score_modifier', 0)
             
-            # AMÉLIORATION: Convergence parfaite (action = STRONG_BET) → bonus max
             if result.get('convergence_action') == 'STRONG_BET':
-                base_score = min(WEIGHTS['convergence'], base_score + 10)  # +10 bonus
+                base_score = min(WEIGHTS['convergence'], base_score + 10)
             
             return {
                 'score': base_score,
@@ -329,13 +521,29 @@ class OrchestratorV11QuantSniper:
             logger.warning(f"Convergence error: {e}")
             return {'score': 0, 'reason': str(e)[:30]}
     
-    def analyze_match(self, home: str, away: str, market: str = 'over_25', verbose: bool = True) -> Dict:
+    # ═══════════════════════════════════════════════════════════════════════════
+    # MAIN ANALYSIS
+    # ═══════════════════════════════════════════════════════════════════════════
+    def analyze_match(self, home: str, away: str, market: str = 'over_25', 
+                      referee: str = None, verbose: bool = True) -> Dict:
+        """
+        Analyse complète d'un match avec tous les layers
+        
+        Args:
+            home: Équipe à domicile
+            away: Équipe à l'extérieur
+            market: Marché cible (over_25, btts_yes, under_25, etc.)
+            referee: Nom de l'arbitre (optionnel)
+            verbose: Afficher les résultats
+        """
         layers = {
             'tactical': self.analyze_tactical(home, away),
             'team_class': self.analyze_team_class(home, away),
             'h2h': self.analyze_h2h(home, away),
             'injuries': self.analyze_injuries(home, away),
             'xg': self.analyze_xg(home, away),
+            'coach': self.analyze_coach(home, away, market),
+            'referee': self.analyze_referee(referee, market),
             'convergence': self.analyze_convergence(home, away, market)
         }
         
@@ -386,11 +594,11 @@ class OrchestratorV11QuantSniper:
         
         e = emojis.get(r['action'], '?')
         c = colors.get(r['action'], '')
-        print(f"\n   {e} {c} {r['action']} | Score: {r['score']:.0f}/80 | Conf: {r['confidence']:.0f}%")
+        print(f"\n   {e} {c} {r['action']} | Score: {r['score']:.0f}/83 | Conf: {r['confidence']:.0f}%")
         print(f"   🎯 Marché: {r['recommended_market']}")
         print(f"   📊 BTTS: {r['btts_prob']:.0f}% | Over 2.5: {r['over25_prob']:.0f}%")
         
-        print(f"\n   📈 BREAKDOWN:")
+        print(f"\n   📈 BREAKDOWN (8 layers):")
         print(f"      {'Base':14s}: +{WEIGHTS['base']:.0f}")
         for name, data in r['layers'].items():
             s = data.get('score', 0)
@@ -403,22 +611,23 @@ def test():
     orch = OrchestratorV11QuantSniper()
     
     print("═"*65)
-    print("TEST ORCHESTRATOR V11 QUANT SNIPER (CALIBRATED)")
+    print("TEST ORCHESTRATOR V11 QUANT SNIPER (PHASE 4 COMPLETE)")
     print("═"*65)
     print(f"Seuils: SNIPER={SNIPER_THRESHOLD}, NORMAL={NORMAL_THRESHOLD}")
-    print(f"Weights: convergence={WEIGHTS['convergence']}, xg={WEIGHTS['xg']}")
+    print(f"Layers: 8/8 (Coach + Referee ajoutés)")
     
+    # Matchs avec arbitres connus (si disponibles)
     matches = [
-        ('Liverpool', 'Arsenal', 'over_25'),
-        ('Bayern Munich', 'Barcelona', 'btts_yes'),
-        ('Real Madrid', 'Barcelona', 'over_25'),
-        ('Inter', 'AC Milan', 'btts_yes'),
-        ('Manchester City', 'Chelsea', 'over_25'),
+        ('Liverpool', 'Arsenal', 'over_25', None),
+        ('Bayern Munich', 'Barcelona', 'btts_yes', None),
+        ('Real Madrid', 'Barcelona', 'over_25', None),
+        ('Inter', 'AC Milan', 'btts_yes', None),
+        ('Manchester City', 'Chelsea', 'over_25', None),
     ]
     
     results = []
-    for h, a, m in matches:
-        results.append(orch.analyze_match(h, a, m))
+    for h, a, m, ref in matches:
+        results.append(orch.analyze_match(h, a, m, ref))
     
     print("\n" + "═"*65)
     print("RÉSUMÉ")
@@ -430,9 +639,12 @@ def test():
     
     for r in results:
         e = {'SNIPER_BET': '🎯', 'NORMAL_BET': '✅', 'SKIP': '❌', 'BLOCKED': '🚫'}.get(r['action'], '?')
-        print(f"   {e} {r['home']:17s} vs {r['away']:17s} → {r['action']:11s} ({r['score']:.0f}pts) {r['recommended_market']}")
+        coach_score = r['layers']['coach'].get('score', 0)
+        ref_score = r['layers']['referee'].get('score', 0)
+        print(f"   {e} {r['home']:17s} vs {r['away']:17s} → {r['action']:11s} ({r['score']:.0f}pts) [C:{coach_score:+.1f} R:{ref_score:+.1f}]")
     
     print(f"\n   📊 Stats: {sniper} SNIPER, {normal} NORMAL, {skip} SKIP")
+    print(f"   ✅ Phase 4 Complete: Coach & Referee layers actifs")
 
 
 if __name__ == "__main__":
