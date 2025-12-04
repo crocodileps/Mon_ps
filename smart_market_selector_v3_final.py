@@ -45,6 +45,7 @@ NORMAL_SHARPE = 0.8
 SPEC_SHARPE = 0.4
 MIN_EDGE = 0.02
 MAX_ABSOLUTE_ODDS = 10.0  # Filtrer marchés illiquides (Matchbook exchange)
+PINNACLE_GAP_THRESHOLD = 0.15  # Flag si écart > 15% avec Pinnacle
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -174,6 +175,8 @@ class Recommendation:
     recommendation: str
     kelly: float
     pinnacle_odds: Optional[float]
+    pinnacle_gap: Optional[float] = None  # Écart avec prob Pinnacle
+    market_divergence: bool = False  # True si écart > 15%
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -356,6 +359,22 @@ class SmartMarketSelector:
             
             kelly = max(0, min(0.05, edge * 0.25))
             
+            # Calculer l'écart avec Pinnacle si disponible
+            pinnacle_gap = None
+            market_divergence = False
+            if data['pinnacle']:
+                pinnacle_implied = 1 / data['pinnacle']
+                pinnacle_gap = prob - pinnacle_implied
+                if abs(pinnacle_gap) > PINNACLE_GAP_THRESHOLD:
+                    market_divergence = True
+                    # Dégrader la recommandation si divergence
+                    if mc['recommendation'] == 'SNIPER':
+                        mc['recommendation'] = 'NORMAL'
+                    elif mc['recommendation'] == 'NORMAL':
+                        mc['recommendation'] = 'SPECULATIVE'
+                    elif mc['recommendation'] == 'SPECULATIVE':
+                        mc['recommendation'] = 'HIGH_RISK'
+            
             recommendations.append(Recommendation(
                 market=market_key,
                 line=data['line'],
@@ -369,7 +388,9 @@ class SmartMarketSelector:
                 prob_profit=mc['prob_profit'],
                 recommendation=mc['recommendation'],
                 kelly=kelly,
-                pinnacle_odds=data['pinnacle']
+                pinnacle_odds=data['pinnacle'],
+                pinnacle_gap=pinnacle_gap,
+                market_divergence=market_divergence
             ))
         
         recommendations.sort(key=lambda x: (-x.sharpe, -x.edge))
@@ -446,6 +467,8 @@ if __name__ == "__main__":
                 print(f"\n   {i}. {emoji} {rec.market} @ {rec.odds:.2f} ({rec.bookmaker}){pin}")
                 print(f"      Prob: {rec.model_prob*100:.0f}% | Edge: {rec.edge*100:.1f}% | Sharpe: {rec.sharpe:.2f}")
                 print(f"      P(profit): {rec.prob_profit*100:.0f}% | Kelly: {rec.kelly*100:.1f}% | {rec.recommendation}")
+                if rec.market_divergence:
+                    print(f"      ⚠️ MARKET DIVERGENCE: Écart Pinnacle {rec.pinnacle_gap*100:+.1f}%")
         else:
             print("\n   ⚠️ Aucune opportunité trouvée")
             if result['debug']:
