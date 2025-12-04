@@ -315,3 +315,9 @@ app.include_router(market_recommendation_router)
 # ML Prediction Routes (Smart Quant 2.0)
 from api.routes.ml_prediction_routes import router as ml_prediction_router
 app.include_router(ml_prediction_router)
+
+# ============================================================================
+# ORCHESTRATOR V11 QUANT SNIPER (NEW!)
+# ============================================================================
+from api.routes.orchestrator_v11_routes import router as orchestrator_v11_router
+app.include_router(orchestrator_v11_router, prefix="/api/v11", tags=["Orchestrator V11 Quant Sniper"])
