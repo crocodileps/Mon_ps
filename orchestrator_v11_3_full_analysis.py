@@ -925,6 +925,176 @@ def run_full_analysis():
     print("═" * 90)
 
 
-if __name__ == "__main__":
-    run_full_analysis()
 
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# AJOUT V11.3.1 - SCAN MATCHS FUTURS (odds_history)
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+def scan_upcoming_matches(hours=48):
+    """
+    Scan les matchs à venir depuis odds_history
+    Utilise le même algorithme que le backtest
+    """
+    print("═" * 90)
+    print("    🔮 SCAN MATCHS À VENIR (V11.3.1)")
+    print("═" * 90)
+    print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    print(f"⏰ Horizon: {hours}h")
+    print()
+    
+    # Charger l'orchestrator
+    orch = OrchestratorV11_3()
+    
+    # Récupérer matchs futurs depuis odds_history
+    conn = psycopg2.connect(**DB_CONFIG)
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    
+    cur.execute(f"""
+        SELECT DISTINCT ON (home_team, away_team)
+            home_team, away_team, commence_time, sport as league
+        FROM odds_history
+        WHERE commence_time > NOW()
+          AND commence_time < NOW() + INTERVAL '{hours} hours'
+        ORDER BY home_team, away_team, commence_time
+    """)
+    matches = cur.fetchall()
+    conn.close()
+    
+    print(f"📥 {len(matches)} matchs trouvés\n")
+    
+    # Seuils calibrés (basés sur backtest 30 jours)
+    SNIPER_THRESHOLD = 26  # Zone 100% WR
+    NORMAL_THRESHOLD = 24  # Zone 85%+ WR
+    
+    # Multiplicateurs par ligue (basés sur backtest)
+    LEAGUE_BOOST = {
+        'bundesliga': 1.10,      # +30% ROI
+        'champions': 1.05,       # +18% ROI
+        'premier': 1.00,
+        'ligue_1': 1.00,
+        'la_liga': 0.90,         # -4.5% ROI - pénalité
+        'serie_a': 0.85,         # -7.5% ROI - pénalité
+    }
+    
+    def get_league_mult(league_str):
+        if not league_str:
+            return 1.0
+        l = league_str.lower()
+        for key, mult in LEAGUE_BOOST.items():
+            if key in l:
+                return mult
+        return 1.0
+    
+    # Analyser chaque match
+    opportunities = {'SNIPER': [], 'NORMAL': [], 'SKIP': 0}
+    
+    for m in matches:
+        try:
+            result = orch.analyze_match(m['home_team'], m['away_team'], "over_25")
+            score = result['score']
+            
+            # Ajuster par ligue
+            league = m.get('league', 'Unknown')
+            mult = get_league_mult(league)
+            adjusted_score = score * mult
+            
+            # Classifier
+            if adjusted_score >= SNIPER_THRESHOLD:
+                action = "SNIPER"
+            elif adjusted_score >= NORMAL_THRESHOLD:
+                action = "NORMAL"
+            else:
+                action = "SKIP"
+            
+            if action == "SKIP":
+                opportunities['SKIP'] += 1
+            else:
+                # Déterminer stake (basé sur zone)
+                if adjusted_score >= 32:
+                    stake = 3.0  # Elite
+                elif adjusted_score >= 30:
+                    stake = 2.5  # Gold
+                elif adjusted_score >= 28:
+                    stake = 2.0  # Silver
+                else:
+                    stake = 1.5  # Normal
+                
+                opportunities[action].append({
+                    'home': m['home_team'],
+                    'away': m['away_team'],
+                    'time': m['commence_time'],
+                    'league': league,
+                    'score': score,
+                    'adjusted': adjusted_score,
+                    'market': result['recommended_market'],
+                    'over25': result.get('over25_prob', 50),
+                    'btts': result.get('btts_prob', 50),
+                    'stake': stake,
+                    'mult': mult,
+                })
+        except Exception as e:
+            pass
+    
+    # Affichage SNIPER
+    if opportunities['SNIPER']:
+        print("🎯 SNIPER BETS (Score >= 30)")
+        print("─" * 90)
+        for b in sorted(opportunities['SNIPER'], key=lambda x: -x['adjusted']):
+            time_str = b['time'].strftime('%d/%m %H:%M') if b['time'] else 'N/A'
+            league_short = b['league'][:25] if b['league'] else 'Unknown'
+            mult_str = f"x{b['mult']:.2f}" if b['mult'] != 1.0 else ""
+            print(f"   🎯 {b['home'][:20]:20} vs {b['away'][:20]:20}")
+            print(f"      📅 {time_str} | 🏆 {league_short}")
+            print(f"      📊 Score: {b['score']:.1f} → {b['adjusted']:.1f} {mult_str} | Stake: {b['stake']:.1f}%")
+            print(f"      🎲 {b['market']} | O25:{b['over25']:.0f}% BTTS:{b['btts']:.0f}%")
+            print()
+    
+    # Affichage NORMAL
+    if opportunities['NORMAL']:
+        print("📈 NORMAL BETS (Score 26-30)")
+        print("─" * 90)
+        for b in sorted(opportunities['NORMAL'], key=lambda x: -x['adjusted'])[:15]:
+            time_str = b['time'].strftime('%d/%m %H:%M') if b['time'] else 'N/A'
+            league_short = b['league'][:25] if b['league'] else 'Unknown'
+            mult_str = f"x{b['mult']:.2f}" if b['mult'] != 1.0 else ""
+            print(f"   📈 {b['home'][:20]:20} vs {b['away'][:20]:20}")
+            print(f"      📅 {time_str} | 🏆 {league_short}")
+            print(f"      📊 Score: {b['score']:.1f} → {b['adjusted']:.1f} {mult_str} | Stake: {b['stake']:.1f}%")
+            print(f"      🎲 {b['market']} | O25:{b['over25']:.0f}% BTTS:{b['btts']:.0f}%")
+            print()
+    
+    # Résumé
+    print("═" * 90)
+    print("    📊 RÉSUMÉ")
+    print("═" * 90)
+    print(f"   🎯 SNIPER:  {len(opportunities['SNIPER']):3} opportunités")
+    print(f"   📈 NORMAL:  {len(opportunities['NORMAL']):3} opportunités")
+    print(f"   ⏭️  SKIP:    {opportunities['SKIP']:3} matchs")
+    
+    total_stake = sum(b['stake'] for b in opportunities['SNIPER'] + opportunities['NORMAL'])
+    print(f"\n   💰 Stake total recommandé: {total_stake:.1f}%")
+    print("═" * 90)
+    
+    return opportunities
+
+
+# Modifier le main pour supporter scan
+if __name__ == "__main__":
+    import sys
+    
+    if len(sys.argv) > 1:
+        cmd = sys.argv[1].lower()
+        if cmd == "scan":
+            hours = int(sys.argv[2]) if len(sys.argv) > 2 else 48
+            scan_upcoming_matches(hours)
+        elif cmd == "backtest":
+            run_full_analysis()
+        else:
+            print("Usage: python3 script.py [backtest|scan] [hours]")
+            print("  backtest : Analyse 30 jours passés")
+            print("  scan     : Scan matchs futurs (default 48h)")
+            print("  scan 72  : Scan matchs futurs (72h)")
+    else:
+        # Mode par défaut: backtest
+        run_full_analysis()
