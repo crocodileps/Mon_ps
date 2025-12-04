@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s | %(levelname)s | %(
 logger = logging.getLogger(__name__)
 
 DB_CONFIG = {
-    'host': 'localhost', 'port': 5432, 'dbname': 'monps_db',
+    'host': 'monps_postgres', 'port': 5432, 'dbname': 'monps_db',
     'user': 'monps_user', 'password': 'monps_secure_password_2024'
 }
 
