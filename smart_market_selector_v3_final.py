@@ -45,7 +45,86 @@ NORMAL_SHARPE = 0.8
 SPEC_SHARPE = 0.4
 MIN_EDGE = 0.02
 MAX_ABSOLUTE_ODDS = 10.0  # Filtrer marchés illiquides (Matchbook exchange)
-PINNACLE_GAP_THRESHOLD = 0.15  # Flag si écart > 15% avec Pinnacle
+PINNACLE_GAP_THRESHOLD = 0.15
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# HYBRID CLASSIFIER V2 - RISK-ADJUSTED VOLUME
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class HybridClassifier:
+    """
+    Classificateur Hybride V2 - Risk-Adjusted Volume
+    Combine Edge, Sharpe, V11 Consensus et Divergence Pinnacle
+    
+    Formule: QScore = (Sharpe × 0.7) + (EdgeAdjusted × 10 × 0.3) + Modifiers
+    """
+    
+    # Seuils de classification
+    SNIPER_THRESHOLD = 0.55
+    NORMAL_THRESHOLD = 0.40
+    SPEC_THRESHOLD = 0.28
+    HR_THRESHOLD = 0.20
+    
+    # Filtres absolus
+    MIN_EDGE = 0.02
+    MIN_SHARPE = 0.15
+    MAX_DIVERGENCE = 0.20
+    SUSPECT_EDGE = 0.25
+    
+    @classmethod
+    def classify(cls, edge: float, sharpe: float, 
+                 v11_action: str = "SKIP",
+                 divergence: bool = False, 
+                 pinnacle_gap: float = 0.0) -> tuple:
+        """
+        Classification hybride basée sur Quality Score
+        
+        Returns: (status, kelly_multiplier, q_score, reason)
+        """
+        # Filtres absolus
+        if edge < cls.MIN_EDGE:
+            return ("SKIP", 0.0, 0.0, f"Edge {edge*100:.1f}% < {cls.MIN_EDGE*100}%")
+        if sharpe < cls.MIN_SHARPE:
+            return ("SKIP", 0.0, 0.0, f"Sharpe {sharpe:.2f} < {cls.MIN_SHARPE}")
+        if divergence and abs(pinnacle_gap) > cls.MAX_DIVERGENCE:
+            return ("SKIP", 0.0, 0.0, f"Divergence {pinnacle_gap*100:.1f}% > {cls.MAX_DIVERGENCE*100}%")
+        
+        # Ajustement edge suspect (diminishing returns au-delà de 25%)
+        edge_adj = edge
+        if edge > cls.SUSPECT_EDGE:
+            edge_adj = cls.SUSPECT_EDGE + (edge - cls.SUSPECT_EDGE) * 0.3
+        
+        # Score de base (70% Sharpe, 30% Edge)
+        base_score = (sharpe * 0.7) + (edge_adj * 10 * 0.3)
+        
+        # Modificateurs
+        mod = 0.0
+        if v11_action == "SNIPER_BET":
+            mod += 0.15  # Bonus fort si V11 confirme
+        elif v11_action == "NORMAL_BET":
+            mod += 0.08  # Bonus moyen
+        elif v11_action == "SKIP":
+            mod -= 0.05  # Légère pénalité
+        
+        if divergence:
+            mod -= abs(pinnacle_gap) * 0.5  # Pénalité proportionnelle
+        
+        q_score = base_score + mod
+        
+        # Classification
+        if q_score >= cls.SNIPER_THRESHOLD:
+            return ("SNIPER", 1.0, q_score, f"QScore {q_score:.2f} >= {cls.SNIPER_THRESHOLD}")
+        elif q_score >= cls.NORMAL_THRESHOLD:
+            return ("NORMAL", 0.70, q_score, f"QScore {q_score:.2f} >= {cls.NORMAL_THRESHOLD}")
+        elif q_score >= cls.SPEC_THRESHOLD:
+            return ("SPECULATIVE", 0.40, q_score, f"QScore {q_score:.2f} >= {cls.SPEC_THRESHOLD}")
+        elif q_score >= cls.HR_THRESHOLD:
+            return ("HIGH_RISK", 0.20, q_score, f"QScore {q_score:.2f} >= {cls.HR_THRESHOLD}")
+        else:
+            return ("SKIP", 0.0, q_score, f"QScore {q_score:.2f} < {cls.HR_THRESHOLD}")
+
+
+  # Flag si écart > 15% avec Pinnacle
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -135,16 +214,16 @@ class MonteCarlo:
         std_edge = edges.std()
         sharpe = mean_edge / std_edge if std_edge > 0 else 0
         
-        if sharpe >= SNIPER_SHARPE and mean_edge > 0.05:
-            rec = 'SNIPER'
-        elif sharpe >= NORMAL_SHARPE and mean_edge > 0.03:
-            rec = 'NORMAL'
-        elif sharpe >= SPEC_SHARPE and mean_edge > 0.02:
-            rec = 'SPECULATIVE'
-        elif mean_edge > 0.05:
-            rec = 'HIGH_RISK'
-        else:
-            rec = 'SKIP'
+        # Classification Hybride V2 (Risk-Adjusted Volume)
+        hybrid_status, hybrid_kelly_mult, q_score, hybrid_reason = HybridClassifier.classify(
+            edge=mean_edge,
+            sharpe=sharpe,
+            v11_action="SKIP",  # Sera overridé par V12.1 si disponible
+            divergence=False,   # Sera mis à jour après check Pinnacle
+            pinnacle_gap=0.0
+        )
+        rec = hybrid_status
+        # Note: kelly_mult sera appliqué dans la création de Recommendation
         
         return {
             'mean_edge': mean_edge,
