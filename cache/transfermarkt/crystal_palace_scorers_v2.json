@@ -1,0 +1,93 @@
+[
+  {
+    "player_name": "Jean-Philippe Mateta",
+    "goals": 9,
+    "assists": 2,
+    "matches": 23,
+    "scraped_at": "2025-12-04T06:00:09.920659"
+  },
+  {
+    "player_name": "Isma\u00efla Sarr",
+    "goals": 8,
+    "assists": 2,
+    "matches": 19,
+    "scraped_at": "2025-12-04T06:00:09.920738"
+  },
+  {
+    "player_name": "Daniel Mu\u00f1oz",
+    "goals": 4,
+    "assists": 2,
+    "matches": 23,
+    "scraped_at": "2025-12-04T06:00:09.919263"
+  },
+  {
+    "player_name": "Y\u00e9remy Pino",
+    "goals": 2,
+    "assists": 3,
+    "matches": 18,
+    "scraped_at": "2025-12-04T06:00:09.920817"
+  },
+  {
+    "player_name": "Tyrick Mitchell",
+    "goals": 2,
+    "assists": 0,
+    "matches": 19,
+    "scraped_at": "2025-12-04T06:00:09.919336"
+  },
+  {
+    "player_name": "Eddie Nketiah",
+    "goals": 2,
+    "assists": 0,
+    "matches": 12,
+    "scraped_at": "2025-12-04T06:00:09.920890"
+  },
+  {
+    "player_name": "Marc Gu\u00e9hi",
+    "goals": 1,
+    "assists": 4,
+    "matches": 22,
+    "scraped_at": "2025-12-04T06:00:09.919090"
+  },
+  {
+    "player_name": "Maxence Lacroix",
+    "goals": 1,
+    "assists": 2,
+    "matches": 23,
+    "scraped_at": "2025-12-04T06:00:09.919185"
+  },
+  {
+    "player_name": "Chris Richards",
+    "goals": 1,
+    "assists": 0,
+    "matches": 20,
+    "scraped_at": "2025-12-04T06:00:09.919431"
+  },
+  {
+    "player_name": "Jefferson Lerma",
+    "goals": 0,
+    "assists": 3,
+    "matches": 22,
+    "scraped_at": "2025-12-04T06:00:09.920271"
+  },
+  {
+    "player_name": "Adam Wharton",
+    "goals": 0,
+    "assists": 2,
+    "matches": 19,
+    "scraped_at": "2025-12-04T06:00:09.920050"
+  },
+  {
+    "player_name": "Daichi Kamada",
+    "goals": 0,
+    "assists": 1,
+    "matches": 20,
+    "scraped_at": "2025-12-04T06:00:09.920198"
+  },
+  {
+    "player_name": "Will Hughes",
+    "goals": 0,
+    "assists": 1,
+    "matches": 20,
+    "scraped_at": "2025-12-04T06:00:09.920430"
+  }
+]
