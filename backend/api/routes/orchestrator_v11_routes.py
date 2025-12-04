@@ -10,8 +10,8 @@ import sys
 from decimal import Decimal
 from datetime import datetime
 
-sys.path.insert(0, '/home/Mon_ps/backend/app')
-sys.path.insert(0, '/home/Mon_ps/backend/scripts/analytics')
+sys.path.insert(0, '/app/app')
+sys.path.insert(0, '/app/scripts/analytics')
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
