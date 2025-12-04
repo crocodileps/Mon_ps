@@ -77,6 +77,56 @@ STYLE_MAPPING = {
 }
 
 
+# Mapping noms d'équipes pour coach_intelligence
+COACH_TEAM_MAPPING = {
+    # Allemagne
+    'bayern munich': 'FC Bayern München',
+    'bayern': 'FC Bayern München',
+    'dortmund': 'Borussia Dortmund',
+    'leverkusen': 'Bayer 04 Leverkusen',
+    'leipzig': 'RB Leipzig',
+    'frankfurt': 'Eintracht Frankfurt',
+    'hoffenheim': 'TSG 1899 Hoffenheim',
+    'wolfsburg': 'VfL Wolfsburg',
+    'stuttgart': 'VfB Stuttgart',
+    'freiburg': 'SC Freiburg',
+    'mainz': 'FSV Mainz 05',
+    'gladbach': 'Borussia Mönchengladbach',
+    # Italie
+    'inter': 'FC Internazionale Milano',
+    'inter milan': 'FC Internazionale Milano',
+    'internazionale': 'FC Internazionale Milano',
+    'roma': 'AS Roma',
+    'atalanta': 'Atalanta BC',
+    # Espagne
+    'atletico madrid': 'Club Atlético de Madrid',
+    'atletico': 'Club Atlético de Madrid',
+    'athletic bilbao': 'Athletic Club',
+    'alaves': 'Deportivo Alavés',
+    'osasuna': 'CA Osasuna',
+    # France
+    'psg': 'Paris Saint-Germain FC',
+    'paris': 'Paris Saint-Germain FC',
+    'lens': 'Racing Club de Lens',
+    'rennes': 'Stade Rennais FC 1901',
+    'monaco': 'AS Monaco',
+    # Angleterre
+    'brighton': 'Brighton & Hove Albion FC',
+    'wolves': 'Wolverhampton Wanderers',
+    'tottenham': 'Tottenham Hotspur',
+    'spurs': 'Tottenham Hotspur',
+    'west ham': 'West Ham United',
+}
+
+
+def normalize_team_for_coach(team_name: str) -> str:
+    """Normalise un nom d'équipe pour matcher coach_intelligence"""
+    key = team_name.lower().strip()
+    return COACH_TEAM_MAPPING.get(key, team_name)
+
+
+
+
 def to_float(val, default=0.0):
     if val is None:
         return default
@@ -332,14 +382,20 @@ class OrchestratorV11QuantSniper:
         COACH LAYER - Analyse les tendances des coaches
         Max: +3 points, Min: -1.5 points
         """
-        # Chercher coaches dans le cache
+        # Chercher coaches dans le cache (avec normalisation)
         home_coach = None
         away_coach = None
         
+        # Normaliser les noms d'équipes
+        home_normalized = normalize_team_for_coach(home)
+        away_normalized = normalize_team_for_coach(away)
+        
         for team, data in self.cache['coaches'].items():
-            if home.lower() in team.lower():
+            team_lower = team.lower()
+            # Essayer match exact normalisé d'abord
+            if home_normalized.lower() == team_lower or home.lower() in team_lower or team_lower in home.lower():
                 home_coach = data
-            elif away.lower() in team.lower():
+            if away_normalized.lower() == team_lower or away.lower() in team_lower or team_lower in away.lower():
                 away_coach = data
         
         # Fallback: recherche directe
