@@ -1,0 +1,39 @@
+{
+  "timestamp": "2025-12-05T15:22:28.050814",
+  "global": {
+    "bets": 178,
+    "wins": 131,
+    "profit": 168.6,
+    "stake": 474.0
+  },
+  "by_category": {
+    "MC_CONVERGENCE_HIGH": {
+      "bets": 61,
+      "wins": 41,
+      "profit": 45.0,
+      "unlucky": 19,
+      "bad": 0
+    },
+    "MC_CONVERGENCE_MED": {
+      "bets": 0,
+      "wins": 0,
+      "profit": 0,
+      "unlucky": 0,
+      "bad": 0
+    },
+    "MC_PURE_HIGH": {
+      "bets": 0,
+      "wins": 0,
+      "profit": 0,
+      "unlucky": 0,
+      "bad": 0
+    },
+    "MC_PURE_MED": {
+      "bets": 0,
+      "wins": 0,
+      "profit": 0,
+      "unlucky": 0,
+      "bad": 0
+    }
+  }
+}

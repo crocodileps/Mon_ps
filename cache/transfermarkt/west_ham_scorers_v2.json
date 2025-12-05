@@ -4,76 +4,83 @@
     "goals": 4,
     "assists": 0,
     "matches": 13,
-    "scraped_at": "2025-12-03T22:50:13.755561"
+    "scraped_at": "2025-12-05T06:01:07.816939"
   },
   {
     "player_name": "Callum Wilson",
     "goals": 4,
     "assists": 0,
-    "matches": 11,
-    "scraped_at": "2025-12-03T22:50:13.756701"
+    "matches": 12,
+    "scraped_at": "2025-12-05T06:01:07.818654"
   },
   {
     "player_name": "Jarrod Bowen",
     "goals": 3,
     "assists": 2,
-    "matches": 14,
-    "scraped_at": "2025-12-03T22:50:13.756382"
+    "matches": 15,
+    "scraped_at": "2025-12-05T06:01:07.818219"
   },
   {
     "player_name": "Tom\u00e1\u0161 Sou\u010dek",
     "goals": 3,
     "assists": 0,
-    "matches": 11,
-    "scraped_at": "2025-12-03T22:50:13.755862"
+    "matches": 12,
+    "scraped_at": "2025-12-05T06:01:07.817520"
   },
   {
     "player_name": "Kyle Walker-Peters",
     "goals": 1,
     "assists": 1,
     "matches": 12,
-    "scraped_at": "2025-12-03T22:50:13.755235"
+    "scraped_at": "2025-12-05T06:01:07.816639"
   },
   {
     "player_name": "Mateus Fernandes",
     "goals": 1,
     "assists": 1,
-    "matches": 11,
-    "scraped_at": "2025-12-03T22:50:13.755640"
+    "matches": 12,
+    "scraped_at": "2025-12-05T06:01:07.817068"
+  },
+  {
+    "player_name": "Soungoutou Magassa",
+    "goals": 1,
+    "assists": 0,
+    "matches": 8,
+    "scraped_at": "2025-12-05T06:01:07.817351"
   },
   {
     "player_name": "El Hadji Malick Diouf",
     "goals": 0,
     "assists": 3,
-    "matches": 14,
-    "scraped_at": "2025-12-03T22:50:13.754771"
+    "matches": 15,
+    "scraped_at": "2025-12-05T06:01:07.816177"
   },
   {
     "player_name": "Crysencio Summerville",
     "goals": 0,
     "assists": 2,
     "matches": 9,
-    "scraped_at": "2025-12-03T22:50:13.756476"
+    "scraped_at": "2025-12-05T06:01:07.818313"
   },
   {
     "player_name": "Alphonse Areola",
     "goals": 0,
     "assists": 1,
-    "matches": 10,
-    "scraped_at": "2025-12-03T22:50:13.754507"
+    "matches": 11,
+    "scraped_at": "2025-12-05T06:01:07.815925"
   },
   {
     "player_name": "Jean-Clair Todibo",
     "goals": 0,
     "assists": 1,
-    "matches": 9,
-    "scraped_at": "2025-12-03T22:50:13.754853"
+    "matches": 10,
+    "scraped_at": "2025-12-05T06:01:07.816256"
   },
   {
     "player_name": "Aaron Wan-Bissaka",
     "goals": 0,
     "assists": 1,
-    "matches": 9,
-    "scraped_at": "2025-12-03T22:50:13.754932"
+    "matches": 10,
+    "scraped_at": "2025-12-05T06:01:07.816329"
   }
 ]

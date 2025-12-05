@@ -1,0 +1,36 @@
+{
+  "timestamp": "2025-12-05T14:46:05.209317",
+  "global": {
+    "bets": 244,
+    "wins": 187,
+    "profit": 337.1,
+    "stake": 674.0
+  },
+  "by_category": {
+    "CONVERGENCE_ELITE": {
+      "bets": 41,
+      "wins": 38,
+      "profit": 117.2
+    },
+    "CONVERGENCE_GOLD": {
+      "bets": 61,
+      "wins": 48,
+      "profit": 83.4
+    },
+    "QUANT_SPECIALIST": {
+      "bets": 58,
+      "wins": 48,
+      "profit": 91.0
+    },
+    "CHAOS_SPECIALIST": {
+      "bets": 28,
+      "wins": 22,
+      "profit": 42.8
+    },
+    "STANDARD": {
+      "bets": 56,
+      "wins": 31,
+      "profit": 2.7
+    }
+  }
+}

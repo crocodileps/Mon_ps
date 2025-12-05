@@ -1,0 +1,2040 @@
+{
+  "timestamp": "2025-12-05T16:28:13.856344",
+  "teams": {
+    "Lazio": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 92.3,
+      "roi": 84.6,
+      "pnl": 22.0,
+      "matches": 13,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_UNDER_MC": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 13,
+          "wins": 12,
+          "profit": 22.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 13,
+          "wins": 12,
+          "profit": 22.0
+        }
+      }
+    },
+    "Marseille": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 21.2,
+      "matches": 17,
+      "losses": 0,
+      "unlucky_pct": 0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 10,
+          "wins": 10,
+          "profit": 17.0
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 10,
+          "wins": 10,
+          "profit": 21.2
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 14,
+          "wins": 12,
+          "profit": 16.4
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 11,
+          "wins": 10,
+          "profit": 15.0
+        },
+        "TOTAL_CHAOS": {
+          "bets": 6,
+          "wins": 6,
+          "profit": 12.8
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 14,
+          "wins": 12,
+          "profit": 16.4
+        },
+        "MC_V2_PURE": {
+          "bets": 6,
+          "wins": 6,
+          "profit": 10.2
+        }
+      }
+    },
+    "Barcelona": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 77.3,
+      "roi": 43.0,
+      "pnl": 18.9,
+      "matches": 32,
+      "losses": 5,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 15,
+          "wins": 11,
+          "profit": 10.7
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 15,
+          "wins": 11,
+          "profit": 13.4
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 22,
+          "wins": 17,
+          "profit": 18.9
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 22,
+          "wins": 17,
+          "profit": 18.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 19,
+          "wins": 8,
+          "profit": -5.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 22,
+          "wins": 17,
+          "profit": 18.9
+        },
+        "MC_V2_PURE": {
+          "bets": 15,
+          "wins": 11,
+          "profit": 10.7
+        }
+      }
+    },
+    "Newcastle United": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 90.9,
+      "roi": 68.2,
+      "pnl": 18.8,
+      "matches": 19,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 11,
+          "wins": 10,
+          "profit": 15.0
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 11,
+          "wins": 10,
+          "profit": 18.8
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 17,
+          "wins": 13,
+          "profit": 14.1
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 5,
+          "wins": 5,
+          "profit": 8.5
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.5
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 17,
+          "wins": 13,
+          "profit": 14.1
+        },
+        "MC_V2_PURE": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 1.7
+        }
+      }
+    },
+    "Brighton": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 17.0,
+      "matches": 12,
+      "losses": 0,
+      "unlucky_pct": 0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 8,
+          "wins": 8,
+          "profit": 13.6
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 8,
+          "wins": 8,
+          "profit": 17.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 2.8
+        }
+      }
+    },
+    "Athletic Club": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 75.0,
+      "roi": 50.0,
+      "pnl": 16.0,
+      "matches": 19,
+      "losses": 4,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_UNDER_MC": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 16,
+          "wins": 12,
+          "profit": 16.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 6,
+          "wins": 3,
+          "profit": -0.6
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.1
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 16,
+          "wins": 12,
+          "profit": 16.0
+        }
+      }
+    },
+    "Manchester City": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 78.6,
+      "roi": 45.4,
+      "pnl": 15.9,
+      "matches": 19,
+      "losses": 3,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 14,
+          "wins": 11,
+          "profit": 12.7
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 14,
+          "wins": 11,
+          "profit": 15.9
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 7.6
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 5.6
+        },
+        "MC_V2_PURE": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 3.4
+        }
+      }
+    },
+    "Leeds": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 84.6,
+      "roi": 56.5,
+      "pnl": 14.7,
+      "matches": 13,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 11,
+          "wins": 9,
+          "profit": 11.3
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 12.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 13,
+          "wins": 11,
+          "profit": 14.7
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 4,
+          "wins": 4,
+          "profit": 6.8
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 13,
+          "wins": 11,
+          "profit": 14.7
+        }
+      }
+    },
+    "Monaco": {
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 70.0,
+      "roi": 57.0,
+      "pnl": 14.2,
+      "matches": 17,
+      "losses": 3,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 2.5
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 3.1
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 6.8
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 3.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 10,
+          "wins": 7,
+          "profit": 14.2
+        },
+        "MC_V2_PURE": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 4.5
+        }
+      }
+    },
+    "Nice": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 87.5,
+      "roi": 61.9,
+      "pnl": 12.4,
+      "matches": 13,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 8,
+          "wins": 7,
+          "profit": 9.9
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 8,
+          "wins": 7,
+          "profit": 12.4
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 8.8
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 2.8
+        },
+        "MC_V2_PURE": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.1
+        }
+      }
+    },
+    "Brentford": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 80.0,
+      "roi": 48.0,
+      "pnl": 12.0,
+      "matches": 12,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 9.6
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 12.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 5.6
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 9,
+          "wins": 6,
+          "profit": 4.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.9
+        },
+        "MC_V2_PURE": {
+          "bets": 3,
+          "wins": 3,
+          "profit": 5.1
+        }
+      }
+    },
+    "Angers": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 75.0,
+      "roi": 50.0,
+      "pnl": 12.0,
+      "matches": 13,
+      "losses": 3,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 9,
+          "profit": 12.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 6,
+          "wins": 3,
+          "profit": -0.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 1,
+          "profit": -0.4
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 9,
+          "profit": 12.0
+        }
+      }
+    },
+    "Rayo Vallecano": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 80.0,
+      "roi": 60.0,
+      "pnl": 12.0,
+      "matches": 14,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "QUANT_BEST_MARKET": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 12.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 5,
+          "wins": 2,
+          "profit": -2.6
+        },
+        "TOTAL_CHAOS": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 1.8
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 12.0
+        }
+      }
+    },
+    "Paris FC": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 83.3,
+      "roi": 50.0,
+      "pnl": 12.0,
+      "matches": 13,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 7,
+          "wins": 4,
+          "profit": 0.8
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 7,
+          "wins": 4,
+          "profit": 1.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 10,
+          "profit": 12.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 11,
+          "wins": 6,
+          "profit": 0.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 8,
+          "wins": 4,
+          "profit": 1.2
+        },
+        "MC_V2_PURE": {
+          "bets": 6,
+          "wins": 3,
+          "profit": -0.9
+        }
+      }
+    },
+    "Real Sociedad": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 83.3,
+      "roi": 50.0,
+      "pnl": 12.0,
+      "matches": 13,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 7.8
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 10,
+          "profit": 12.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 4.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 1,
+          "profit": -0.4
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 10,
+          "profit": 12.0
+        },
+        "MC_V2_PURE": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 3.4
+        }
+      }
+    },
+    "Chelsea": {
+      "best_strategy": "MONTE_CARLO_PURE",
+      "wr": 88.9,
+      "roi": 64.4,
+      "pnl": 11.6,
+      "matches": 17,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 7.8
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 9,
+          "wins": 8,
+          "profit": 11.6
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 0,
+          "profit": -5.0
+        },
+        "MC_V2_PURE": {
+          "bets": 2,
+          "wins": 1,
+          "profit": -0.3
+        }
+      }
+    },
+    "Tottenham": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 73.3,
+      "roi": 35.7,
+      "pnl": 10.7,
+      "matches": 18,
+      "losses": 4,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 7.6
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 7,
+          "wins": 4,
+          "profit": 1.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 15,
+          "wins": 11,
+          "profit": 10.7
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 15,
+          "wins": 11,
+          "profit": 10.7
+        }
+      }
+    },
+    "Augsburg": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 10.6,
+      "matches": 11,
+      "losses": 0,
+      "unlucky_pct": 0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 5,
+          "wins": 5,
+          "profit": 8.5
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 5,
+          "wins": 5,
+          "profit": 10.6
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 6.5
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.2
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "MC_V2_PURE": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 3.4
+        }
+      }
+    },
+    "Fulham": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 10.6,
+      "matches": 12,
+      "losses": 0,
+      "unlucky_pct": 0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 8,
+          "wins": 7,
+          "profit": 9.9
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 5,
+          "wins": 5,
+          "profit": 10.6
+        }
+      }
+    },
+    "Bournemouth": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 85.7,
+      "roi": 58.6,
+      "pnl": 10.2,
+      "matches": 12,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 8.2
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 10.2
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.1
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.1
+        },
+        "MC_V2_PURE": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 1.7
+        }
+      }
+    },
+    "Brest": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 85.7,
+      "roi": 58.6,
+      "pnl": 10.2,
+      "matches": 11,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 8.2
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 10.2
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 8.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 4,
+          "wins": 4,
+          "profit": 8.5
+        },
+        "MC_V2_PURE": {
+          "bets": 4,
+          "wins": 4,
+          "profit": 6.8
+        }
+      }
+    },
+    "Manchester United": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 85.7,
+      "roi": 58.6,
+      "pnl": 10.2,
+      "matches": 12,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 8.2
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 10.2
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 5.6
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 10,
+          "wins": 7,
+          "profit": 5.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 1.8
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 5.6
+        },
+        "MC_V2_PURE": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 1.4
+        }
+      }
+    },
+    "Roma": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 69.2,
+      "roi": 38.5,
+      "pnl": 10.0,
+      "matches": 14,
+      "losses": 4,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "QUANT_BEST_MARKET": {
+          "bets": 13,
+          "wins": 9,
+          "profit": 10.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 13,
+          "wins": 9,
+          "profit": 10.0
+        }
+      }
+    },
+    "Real Oviedo": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 72.7,
+      "roi": 45.5,
+      "pnl": 10.0,
+      "matches": 13,
+      "losses": 3,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_UNDER_MC": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 10.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 1.4
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 1,
+          "profit": -0.4
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 10.0
+        }
+      }
+    },
+    "Villarreal": {
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 100.0,
+      "roi": 98.8,
+      "pnl": 9.9,
+      "matches": 18,
+      "losses": 0,
+      "unlucky_pct": 0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 10,
+          "wins": 7,
+          "profit": 5.9
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 10,
+          "wins": 7,
+          "profit": 7.4
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 7.6
+        },
+        "TOTAL_CHAOS": {
+          "bets": 4,
+          "wins": 4,
+          "profit": 9.9
+        },
+        "MC_V2_PURE": {
+          "bets": 3,
+          "wins": 3,
+          "profit": 5.1
+        }
+      }
+    },
+    "Metz": {
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 80.0,
+      "roi": 70.0,
+      "pnl": 8.8,
+      "matches": 11,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 6.5
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 8.1
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 8.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 8.8
+        },
+        "MC_V2_PURE": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.1
+        }
+      }
+    },
+    "Inter": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 8.5,
+      "matches": 17,
+      "losses": 0,
+      "unlucky_pct": 0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 4,
+          "wins": 4,
+          "profit": 6.8
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 4,
+          "wins": 4,
+          "profit": 8.5
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 3,
+          "wins": 3,
+          "profit": 5.1
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.1
+        },
+        "MC_V2_PURE": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 1.7
+        }
+      }
+    },
+    "Sevilla": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 83.3,
+      "roi": 54.2,
+      "pnl": 8.1,
+      "matches": 13,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 8.1
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 3.9
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 4,
+          "wins": 4,
+          "profit": 6.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 3.5
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 3.9
+        },
+        "MC_V2_PURE": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 1.7
+        }
+      }
+    },
+    "Genoa": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 83.3,
+      "roi": 54.2,
+      "pnl": 8.1,
+      "matches": 12,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 6.5
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 8.1
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 4.5
+        }
+      }
+    },
+    "Hoffenheim": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 83.3,
+      "roi": 54.2,
+      "pnl": 8.1,
+      "matches": 11,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 6.5
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 8.1
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 3.5
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "MC_V2_PURE": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 4.8
+        }
+      }
+    },
+    "Getafe": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 70.0,
+      "roi": 40.0,
+      "pnl": 8.0,
+      "matches": 13,
+      "losses": 3,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_UNDER_MC": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 2.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 10,
+          "wins": 7,
+          "profit": 8.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.7
+        }
+      }
+    },
+    "Wolverhampton Wanderers": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 66.7,
+      "roi": 33.3,
+      "pnl": 8.0,
+      "matches": 12,
+      "losses": 4,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_UNDER_MC": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 8.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 1.7
+        }
+      }
+    },
+    "Como": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 66.7,
+      "roi": 33.3,
+      "pnl": 8.0,
+      "matches": 12,
+      "losses": 4,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_UNDER_MC": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 8.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 8.0
+        }
+      }
+    },
+    "Sunderland": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 66.7,
+      "roi": 33.3,
+      "pnl": 8.0,
+      "matches": 12,
+      "losses": 4,
+      "unlucky_pct": 75.0,
+      "all_strategies": {
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 8.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.0
+        }
+      }
+    },
+    "VfB Stuttgart": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 77.8,
+      "roi": 43.9,
+      "pnl": 7.9,
+      "matches": 12,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.1
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.9
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.5
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "MC_V2_PURE": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.0
+        }
+      }
+    },
+    "Lens": {
+      "best_strategy": "MONTE_CARLO_PURE",
+      "wr": 77.8,
+      "roi": 43.9,
+      "pnl": 7.9,
+      "matches": 11,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 2.8
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 3.5
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 8,
+          "wins": 2,
+          "profit": -9.4
+        },
+        "MC_V2_PURE": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 2.8
+        }
+      }
+    },
+    "Aston Villa": {
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "wr": 77.8,
+      "roi": 43.9,
+      "pnl": 7.9,
+      "matches": 14,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 3.5
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 2,
+          "wins": 1,
+          "profit": -0.3
+        }
+      }
+    },
+    "Strasbourg": {
+      "best_strategy": "MONTE_CARLO_PURE",
+      "wr": 77.8,
+      "roi": 43.9,
+      "pnl": 7.9,
+      "matches": 12,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 4.8
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 6.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.4
+        },
+        "MC_V2_PURE": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 1.4
+        }
+      }
+    },
+    "Lorient": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 75.0,
+      "roi": 38.8,
+      "pnl": 7.8,
+      "matches": 13,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 7.8
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 4.9
+        },
+        "MC_V2_PURE": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 6.5
+        }
+      }
+    },
+    "Bologna": {
+      "best_strategy": "MONTE_CARLO_PURE",
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 6.8,
+      "matches": 13,
+      "losses": 0,
+      "unlucky_pct": 0,
+      "all_strategies": {
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 0.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 4,
+          "wins": 4,
+          "profit": 6.8
+        }
+      }
+    },
+    "Cremonese": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 69.2,
+      "roi": 24.6,
+      "pnl": 6.4,
+      "matches": 13,
+      "losses": 4,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 3,
+          "wins": 1,
+          "profit": -2.3
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 3,
+          "wins": 1,
+          "profit": -2.9
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 13,
+          "wins": 9,
+          "profit": 6.4
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.1
+        }
+      }
+    },
+    "Freiburg": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 75.0,
+      "roi": 38.8,
+      "pnl": 6.2,
+      "matches": 12,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.1
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.4
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 4.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.1
+        },
+        "MC_V2_PURE": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 1.7
+        }
+      }
+    },
+    "Everton": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 61.5,
+      "roi": 23.1,
+      "pnl": 6.0,
+      "matches": 13,
+      "losses": 5,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "QUANT_BEST_MARKET": {
+          "bets": 13,
+          "wins": 8,
+          "profit": 6.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 6,
+          "wins": 2,
+          "profit": -4.6
+        }
+      }
+    },
+    "Atalanta": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 60.0,
+      "roi": 20.0,
+      "pnl": 6.0,
+      "matches": 18,
+      "losses": 6,
+      "unlucky_pct": 83.3,
+      "all_strategies": {
+        "CONVERGENCE_UNDER_MC": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 15,
+          "wins": 9,
+          "profit": 6.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 15,
+          "wins": 9,
+          "profit": 6.0
+        }
+      }
+    },
+    "Crystal Palace": {
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 80.0,
+      "roi": 48.0,
+      "pnl": 6.0,
+      "matches": 12,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 0.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 10,
+          "wins": 6,
+          "profit": 2.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 6.0
+        }
+      }
+    },
+    "Lyon": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 80.0,
+      "roi": 48.0,
+      "pnl": 6.0,
+      "matches": 12,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 4.8
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 6.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.1
+        }
+      }
+    },
+    "Nantes": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 63.6,
+      "roi": 27.3,
+      "pnl": 6.0,
+      "matches": 12,
+      "losses": 4,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "QUANT_BEST_MARKET": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 6.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 3,
+          "wins": 1,
+          "profit": -2.3
+        }
+      }
+    },
+    "Real Betis": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 71.4,
+      "roi": 32.1,
+      "pnl": 5.6,
+      "matches": 13,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 9,
+          "wins": 5,
+          "profit": 0.5
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 5.6
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 4,
+          "wins": 2,
+          "profit": -0.6
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.5
+        },
+        "MC_V2_PURE": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.0
+        }
+      }
+    },
+    "FC Heidenheim": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 71.4,
+      "roi": 32.1,
+      "pnl": 5.6,
+      "matches": 11,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 4.5
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 5.6
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 9,
+          "wins": 6,
+          "profit": 4.2
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 2.5
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 1,
+          "profit": 1.0
+        },
+        "MC_V2_PURE": {
+          "bets": 2,
+          "wins": 1,
+          "profit": -0.3
+        }
+      }
+    },
+    "Fiorentina": {
+      "best_strategy": "MONTE_CARLO_PURE",
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 5.1,
+      "matches": 14,
+      "losses": 0,
+      "unlucky_pct": 0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 3.4
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.2
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 3,
+          "wins": 3,
+          "profit": 5.1
+        }
+      }
+    },
+    "Elche": {
+      "best_strategy": "MONTE_CARLO_PURE",
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 5.1,
+      "matches": 13,
+      "losses": 0,
+      "unlucky_pct": 0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 2.8
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.4
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 3,
+          "wins": 3,
+          "profit": 5.1
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 5.6
+        },
+        "MC_V2_PURE": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 3.4
+        }
+      }
+    },
+    "Real Madrid": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 63.6,
+      "roi": 17.7,
+      "pnl": 4.9,
+      "matches": 19,
+      "losses": 4,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 3.9
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 4.9
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 15,
+          "wins": 9,
+          "profit": 3.3
+        },
+        "TOTAL_CHAOS": {
+          "bets": 10,
+          "wins": 3,
+          "profit": -8.4
+        },
+        "MC_V2_PURE": {
+          "bets": 8,
+          "wins": 4,
+          "profit": -1.2
+        }
+      }
+    },
+    "Union Berlin": {
+      "best_strategy": "MONTE_CARLO_PURE",
+      "wr": 80.0,
+      "roi": 48.0,
+      "pnl": 4.8,
+      "matches": 12,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 2.8
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 3.5
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 4.8
+        }
+      }
+    },
+    "Mallorca": {
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "wr": 71.4,
+      "roi": 32.1,
+      "pnl": 4.5,
+      "matches": 13,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 4.5
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 3.5
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.1
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.1
+        },
+        "MC_V2_PURE": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 1.7
+        }
+      }
+    },
+    "Levante": {
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 60.0,
+      "roi": 33.0,
+      "pnl": 4.1,
+      "matches": 12,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.1
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.9
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 9,
+          "wins": 4,
+          "profit": -3.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 4.1
+        },
+        "MC_V2_PURE": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 1.4
+        }
+      }
+    },
+    "Auxerre": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 60.0,
+      "roi": 20.0,
+      "pnl": 4.0,
+      "matches": 12,
+      "losses": 4,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "QUANT_BEST_MARKET": {
+          "bets": 10,
+          "wins": 6,
+          "profit": 4.0
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 6,
+          "wins": 3,
+          "profit": -0.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.1
+        }
+      }
+    },
+    "Juventus": {
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 56.2,
+      "roi": 12.5,
+      "pnl": 4.0,
+      "matches": 18,
+      "losses": 7,
+      "unlucky_pct": 85.7,
+      "all_strategies": {
+        "QUANT_BEST_MARKET": {
+          "bets": 16,
+          "wins": 9,
+          "profit": 4.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 16,
+          "wins": 9,
+          "profit": 4.0
+        }
+      }
+    },
+    "Werder Bremen": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 75.0,
+      "roi": 38.8,
+      "pnl": 3.9,
+      "matches": 12,
+      "losses": 1,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.1
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.9
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 6,
+          "wins": 3,
+          "profit": -0.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 0,
+          "profit": -5.0
+        },
+        "MC_V2_PURE": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 1.7
+        }
+      }
+    },
+    "Liverpool": {
+      "best_strategy": "MONTE_CARLO_PURE",
+      "wr": 61.5,
+      "roi": 13.8,
+      "pnl": 3.6,
+      "matches": 17,
+      "losses": 5,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 10,
+          "wins": 5,
+          "profit": -1.5
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 10,
+          "wins": 5,
+          "profit": -1.9
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 13,
+          "wins": 8,
+          "profit": 3.6
+        },
+        "TOTAL_CHAOS": {
+          "bets": 5,
+          "wins": 1,
+          "profit": -7.9
+        },
+        "MC_V2_PURE": {
+          "bets": 4,
+          "wins": 0,
+          "profit": -8.0
+        }
+      }
+    },
+    "Toulouse": {
+      "best_strategy": "CONVERGENCE_OVER_MC",
+      "wr": 66.7,
+      "roi": 23.3,
+      "pnl": 3.5,
+      "matches": 13,
+      "losses": 2,
+      "unlucky_pct": 100.0,
+      "all_strategies": {
+        "CONVERGENCE_OVER_PURE": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 2.8
+        },
+        "CONVERGENCE_OVER_MC": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 3.5
+        },
+        "MONTE_CARLO_PURE": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.1
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.5
+        },
+        "MC_V2_PURE": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.0
+        }
+      }
+    }
+  }
+}

@@ -2,19 +2,16 @@
   {
     "player_name": "Adam Webster",
     "injury_type": "30",
-    "expected_return": "01/06/2026",
-    "scraped_at": "2025-12-03T22:39:16.631887"
+    "scraped_at": "2025-12-05T06:00:55.351429"
   },
   {
     "player_name": "Solly March",
     "injury_type": "31",
-    "expected_return": "13/12/2025",
-    "scraped_at": "2025-12-03T22:39:16.632050"
+    "scraped_at": "2025-12-05T06:00:55.351529"
   },
   {
     "player_name": "James Milner",
     "injury_type": "39",
-    "expected_return": "07/12/2025",
-    "scraped_at": "2025-12-03T22:39:16.632183"
+    "scraped_at": "2025-12-05T06:00:55.351608"
   }
 ]

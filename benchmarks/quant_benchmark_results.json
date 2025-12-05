@@ -1,0 +1,42 @@
+{
+  "timestamp": "2025-12-04T22:34:43.473727",
+  "matches_tested": 712,
+  "teams_with_profiles": 98,
+  "results": {
+    "strategy_best_market": {
+      "bets": 736,
+      "wins": 500,
+      "win_rate": 67.9,
+      "roi": 29.5,
+      "profit": 357.4
+    },
+    "strategy_avoid_traps": {
+      "bets": 433,
+      "wins": 287,
+      "win_rate": 66.3,
+      "roi": 22.6,
+      "profit": 195.9
+    },
+    "strategy_high_confidence": {
+      "bets": 620,
+      "wins": 458,
+      "win_rate": 73.9,
+      "roi": 34.1,
+      "profit": 422.4
+    },
+    "strategy_combined": {
+      "bets": 867,
+      "wins": 597,
+      "win_rate": 68.9,
+      "roi": 32.5,
+      "profit": 739.4
+    },
+    "baseline_over25_all": {
+      "bets": 712,
+      "wins": 398,
+      "win_rate": 55.9,
+      "roi": 3.4,
+      "profit": 48.6
+    }
+  }
+}

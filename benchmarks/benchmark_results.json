@@ -1,0 +1,72 @@
+{
+  "timestamp": "2025-12-04T22:13:06.224199",
+  "total_matches": 712,
+  "results": {
+    "V13 Multi-Strike": {
+      "name": "V13 Multi-Strike (REF)",
+      "matches_analyzed": 0,
+      "bets_placed": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0,
+      "roi": 0.0,
+      "total_stake": 0.0,
+      "profit": 0.0
+    },
+    "V11.4 God Tier": {
+      "name": "V11.4 God Tier",
+      "matches_analyzed": 0,
+      "bets_placed": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0,
+      "roi": 0.0,
+      "total_stake": 0.0,
+      "profit": 0.0
+    },
+    "V7 Smart": {
+      "name": "V7 Smart (Sweet Spot)",
+      "matches_analyzed": 0,
+      "bets_placed": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0,
+      "roi": 0.0,
+      "total_stake": 0.0,
+      "profit": 0.0
+    },
+    "Tactical Pure": {
+      "name": "Tactical Matrix Pure",
+      "matches_analyzed": 712,
+      "bets_placed": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0,
+      "roi": 0.0,
+      "total_stake": 0.0,
+      "profit": 0.0
+    },
+    "xG Based": {
+      "name": "xG Based",
+      "matches_analyzed": 712,
+      "bets_placed": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0,
+      "roi": 0.0,
+      "total_stake": 0.0,
+      "profit": 0.0
+    },
+    "H2H Pure": {
+      "name": "H2H Pure",
+      "matches_analyzed": 712,
+      "bets_placed": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0,
+      "roi": 0.0,
+      "total_stake": 0.0,
+      "profit": 0.0
+    }
+  }
+}

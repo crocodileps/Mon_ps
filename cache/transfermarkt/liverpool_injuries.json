@@ -2,25 +2,16 @@
   {
     "player_name": "Stefan Bajcetic",
     "injury_type": "21",
-    "expected_return": "01/04/2026",
-    "scraped_at": "2025-12-03T22:37:58.805549"
+    "scraped_at": "2025-12-05T06:00:05.171749"
   },
   {
     "player_name": "Giovanni Leoni",
     "injury_type": "18",
-    "expected_return": "01/08/2026",
-    "scraped_at": "2025-12-03T22:37:58.805718"
-  },
-  {
-    "player_name": "Jeremie Frimpong",
-    "injury_type": "24",
-    "expected_return": "05/12/2025",
-    "scraped_at": "2025-12-03T22:37:58.805866"
+    "scraped_at": "2025-12-05T06:00:05.171891"
   },
   {
     "player_name": "Conor Bradley",
     "injury_type": "22",
-    "expected_return": "12/12/2025",
-    "scraped_at": "2025-12-03T22:37:58.806007"
+    "scraped_at": "2025-12-05T06:00:05.171978"
   }
 ]

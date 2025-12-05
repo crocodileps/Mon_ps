@@ -1,20 +1,7 @@
 [
   {
-    "player_name": "Benjamin Sesko",
-    "injury_type": "22",
-    "expected_return": "05/12/2025",
-    "scraped_at": "2025-12-03T22:38:43.324523"
-  },
-  {
-    "player_name": "Matheus Cunha",
-    "injury_type": "26",
-    "expected_return": "04/12/2025",
-    "scraped_at": "2025-12-03T22:38:43.324684"
-  },
-  {
     "player_name": "Harry Maguire",
     "injury_type": "32",
-    "expected_return": "06/12/2025",
-    "scraped_at": "2025-12-03T22:38:43.324817"
+    "scraped_at": "2025-12-05T06:00:30.945330"
   }
 ]

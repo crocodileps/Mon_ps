@@ -1,0 +1,3050 @@
+{
+  "timestamp": "2025-12-05T14:15:28.437950",
+  "teams": {
+    "Bournemouth": {
+      "league": "Premier League",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 85.7,
+      "roi": 58.6,
+      "profit": 12.3,
+      "total_losses": 14,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 9,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 12.3
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.2
+        },
+        "ADCM_SNIPER": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 12.3
+        },
+        "ADCM_NORMAL": {
+          "bets": 12,
+          "wins": 9,
+          "profit": 9.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 3,
+          "profit": -12.0
+        }
+      }
+    },
+    "Burnley": {
+      "league": "Premier League",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 62.5,
+      "roi": 15.6,
+      "profit": 3.8,
+      "total_losses": 20,
+      "unlucky_losses": 14,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 3.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 6,
+          "wins": 3,
+          "profit": -1.1
+        },
+        "ADCM_SNIPER": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 3.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 12,
+          "wins": 7,
+          "profit": 1.7
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 0.0
+        }
+      }
+    },
+    "Strasbourg": {
+      "league": "Ligue 1",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 80.0,
+      "roi": 48.0,
+      "profit": 7.2,
+      "total_losses": 13,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 7.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 3.5
+        },
+        "ADCM_SNIPER": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 7.2
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 4.4
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 10,
+          "wins": 3,
+          "profit": -8.0
+        }
+      }
+    },
+    "Brest": {
+      "league": "Ligue 1",
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 100.0,
+      "roi": 85.0,
+      "profit": 12.8,
+      "total_losses": 9,
+      "unlucky_losses": 3,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 12.3
+        },
+        "TOTAL_CHAOS": {
+          "bets": 6,
+          "wins": 6,
+          "profit": 12.8
+        },
+        "ADCM_SNIPER": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 12.3
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 8.2
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 10,
+          "wins": 4,
+          "profit": -4.0
+        }
+      }
+    },
+    "Hoffenheim": {
+      "league": "Bundesliga",
+      "best_strategy": "ADCM_NORMAL",
+      "wr": 85.7,
+      "roi": 57.9,
+      "profit": 8.1,
+      "total_losses": 15,
+      "unlucky_losses": 9,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 9.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 9.1
+        },
+        "ADCM_SNIPER": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 9.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 8.1
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 7.8
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 8,
+          "wins": 2,
+          "profit": -8.0
+        }
+      }
+    },
+    "Nottingham Forest": {
+      "league": "Premier League",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 58.3,
+      "roi": 18.5,
+      "profit": 5.0,
+      "total_losses": 14,
+      "unlucky_losses": 9,
+      "bad_analysis_losses": 5,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.1
+        },
+        "ADCM_NORMAL": {
+          "bets": 12,
+          "wins": 3,
+          "profit": -13.2
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 7,
+          "profit": 5.0
+        }
+      }
+    },
+    "Nice": {
+      "league": "Ligue 1",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 87.5,
+      "roi": 61.9,
+      "profit": 14.9,
+      "total_losses": 15,
+      "unlucky_losses": 7,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 8,
+          "wins": 7,
+          "profit": 14.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 7.0
+        },
+        "ADCM_SNIPER": {
+          "bets": 8,
+          "wins": 7,
+          "profit": 14.9
+        },
+        "ADCM_NORMAL": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 8.8
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 10,
+          "wins": 3,
+          "profit": -8.0
+        }
+      }
+    },
+    "Leeds": {
+      "league": "Premier League",
+      "best_strategy": "ADAPTIVE_ENGINE",
+      "wr": 84.6,
+      "roi": 56.5,
+      "profit": 14.7,
+      "total_losses": 21,
+      "unlucky_losses": 10,
+      "bad_analysis_losses": 11,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 11,
+          "wins": 9,
+          "profit": 17.0
+        },
+        "ADCM_SNIPER": {
+          "bets": 11,
+          "wins": 9,
+          "profit": 17.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 13,
+          "wins": 11,
+          "profit": 14.5
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 13,
+          "wins": 11,
+          "profit": 14.7
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 13,
+          "wins": 11,
+          "profit": 18.4
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 2,
+          "profit": -18.0
+        }
+      }
+    },
+    "Marseille": {
+      "league": "Ligue 1",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 100.0,
+      "roi": 85.0,
+      "profit": 25.5,
+      "total_losses": 17,
+      "unlucky_losses": 4,
+      "bad_analysis_losses": 12,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 10,
+          "wins": 10,
+          "profit": 25.5
+        },
+        "TOTAL_CHAOS": {
+          "bets": 9,
+          "wins": 8,
+          "profit": 14.5
+        },
+        "ADCM_SNIPER": {
+          "bets": 10,
+          "wins": 10,
+          "profit": 25.5
+        },
+        "ADCM_NORMAL": {
+          "bets": 10,
+          "wins": 10,
+          "profit": 17.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 14,
+          "wins": 12,
+          "profit": 16.4
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 14,
+          "wins": 12,
+          "profit": 20.5
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 14,
+          "wins": 2,
+          "profit": -20.0
+        }
+      }
+    },
+    "Brentford": {
+      "league": "Premier League",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 80.0,
+      "roi": 48.0,
+      "profit": 14.4,
+      "total_losses": 22,
+      "unlucky_losses": 14,
+      "bad_analysis_losses": 8,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 14.4
+        },
+        "TOTAL_CHAOS": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 3.5
+        },
+        "ADCM_SNIPER": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 14.4
+        },
+        "ADCM_NORMAL": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 5.6
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 5.6
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 4,
+          "profit": -8.0
+        }
+      }
+    },
+    "Brighton": {
+      "league": "Premier League",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 100.0,
+      "roi": 85.0,
+      "profit": 20.4,
+      "total_losses": 12,
+      "unlucky_losses": 4,
+      "bad_analysis_losses": 8,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 8,
+          "wins": 8,
+          "profit": 20.4
+        },
+        "TOTAL_CHAOS": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 1.8
+        },
+        "ADCM_SNIPER": {
+          "bets": 8,
+          "wins": 8,
+          "profit": 20.4
+        },
+        "ADCM_NORMAL": {
+          "bets": 12,
+          "wins": 9,
+          "profit": 9.2
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 4,
+          "profit": -8.0
+        }
+      }
+    },
+    "Augsburg": {
+      "league": "Bundesliga",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 100.0,
+      "roi": 85.0,
+      "profit": 12.8,
+      "total_losses": 12,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 5,
+          "wins": 5,
+          "profit": 12.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.2
+        },
+        "ADCM_SNIPER": {
+          "bets": 5,
+          "wins": 5,
+          "profit": 12.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 8.1
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 9.9
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 9,
+          "wins": 2,
+          "profit": -10.0
+        }
+      }
+    },
+    "Liverpool": {
+      "league": "Premier League",
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 63.6,
+      "roi": 17.7,
+      "profit": 4.9,
+      "total_losses": 28,
+      "unlucky_losses": 20,
+      "bad_analysis_losses": 8,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 10,
+          "wins": 5,
+          "profit": -2.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 4.9
+        },
+        "ADCM_SNIPER": {
+          "bets": 10,
+          "wins": 5,
+          "profit": -2.2
+        },
+        "ADCM_NORMAL": {
+          "bets": 14,
+          "wins": 8,
+          "profit": 1.3
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 14,
+          "wins": 6,
+          "profit": -4.0
+        }
+      }
+    },
+    "Torino": {
+      "league": "Premier League",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 30.8,
+      "roi": -38.5,
+      "profit": -10.0,
+      "total_losses": 9,
+      "unlucky_losses": 0,
+      "bad_analysis_losses": 9,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.6
+        },
+        "ADCM_SNIPER": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.6
+        },
+        "ADCM_NORMAL": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 1.7
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 4,
+          "profit": -10.0
+        }
+      }
+    },
+    "Valencia": {
+      "league": "La Liga",
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 75.0,
+      "roi": 66.2,
+      "profit": 6.6,
+      "total_losses": 10,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 5,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 6.6
+        },
+        "ADCM_NORMAL": {
+          "bets": 9,
+          "wins": 5,
+          "profit": 0.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 6,
+          "profit": 4.0
+        }
+      }
+    },
+    "Fulham": {
+      "league": "Premier League",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 87.5,
+      "roi": 61.9,
+      "profit": 14.9,
+      "total_losses": 11,
+      "unlucky_losses": 3,
+      "bad_analysis_losses": 8,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 8,
+          "wins": 7,
+          "profit": 14.9
+        },
+        "ADCM_SNIPER": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 9.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 8,
+          "wins": 7,
+          "profit": 9.9
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 4,
+          "profit": -8.0
+        }
+      }
+    },
+    "Levante": {
+      "league": "La Liga",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 75.0,
+      "roi": 38.8,
+      "profit": 4.7,
+      "total_losses": 11,
+      "unlucky_losses": 7,
+      "bad_analysis_losses": 3,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 4.7
+        },
+        "TOTAL_CHAOS": {
+          "bets": 6,
+          "wins": 3,
+          "profit": 1.6
+        },
+        "ADCM_SNIPER": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 4.7
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 4,
+          "profit": 0.7
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 9,
+          "wins": 6,
+          "profit": 6.0
+        }
+      }
+    },
+    "Girona": {
+      "league": "La Liga",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 60.0,
+      "roi": 20.0,
+      "profit": 4.0,
+      "total_losses": 25,
+      "unlucky_losses": 17,
+      "bad_analysis_losses": 4,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 7,
+          "wins": 2,
+          "profit": -9.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 7,
+          "wins": 1,
+          "profit": -11.5
+        },
+        "ADCM_SNIPER": {
+          "bets": 7,
+          "wins": 2,
+          "profit": -9.9
+        },
+        "ADCM_NORMAL": {
+          "bets": 9,
+          "wins": 4,
+          "profit": -3.4
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 10,
+          "wins": 6,
+          "profit": 4.0
+        }
+      }
+    },
+    "Auxerre": {
+      "league": "Ligue 1",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 70.0,
+      "roi": 45.5,
+      "profit": 10.0,
+      "total_losses": 7,
+      "unlucky_losses": 0,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.2
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 10,
+          "wins": 6,
+          "profit": 4.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 10,
+          "wins": 7,
+          "profit": 10.0
+        }
+      }
+    },
+    "Cremonese": {
+      "league": "Serie A",
+      "best_strategy": "ADAPTIVE_ENGINE",
+      "wr": 69.2,
+      "roi": 24.6,
+      "profit": 6.4,
+      "total_losses": 17,
+      "unlucky_losses": 11,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 3,
+          "wins": 1,
+          "profit": -3.4
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.1
+        },
+        "ADCM_SNIPER": {
+          "bets": 3,
+          "wins": 1,
+          "profit": -3.4
+        },
+        "ADCM_NORMAL": {
+          "bets": 9,
+          "wins": 6,
+          "profit": 3.7
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 13,
+          "wins": 9,
+          "profit": 6.4
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 7,
+          "profit": 2.0
+        }
+      }
+    },
+    "Paris FC": {
+      "league": "Ligue 1",
+      "best_strategy": "ADAPTIVE_ENGINE",
+      "wr": 83.3,
+      "roi": 50.0,
+      "profit": 12.0,
+      "total_losses": 22,
+      "unlucky_losses": 13,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 7,
+          "wins": 4,
+          "profit": 1.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 9,
+          "wins": 5,
+          "profit": 3.4
+        },
+        "ADCM_SNIPER": {
+          "bets": 7,
+          "wins": 4,
+          "profit": 1.2
+        },
+        "ADCM_NORMAL": {
+          "bets": 9,
+          "wins": 6,
+          "profit": 4.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 10,
+          "profit": 12.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 5,
+          "profit": -4.0
+        }
+      }
+    },
+    "Como": {
+      "league": "Serie A",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 66.7,
+      "roi": 44.8,
+      "profit": 13.0,
+      "total_losses": 16,
+      "unlucky_losses": 4,
+      "bad_analysis_losses": 12,
+      "all_strategies": {
+        "ADCM_NORMAL": {
+          "bets": 5,
+          "wins": 1,
+          "profit": -6.4
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 8.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 10.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 13.0
+        }
+      }
+    },
+    "Bologna": {
+      "league": "Serie A",
+      "best_strategy": "ADAPTIVE_ENGINE",
+      "wr": 50.0,
+      "roi": 0.0,
+      "profit": 0.0,
+      "total_losses": 19,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 14,
+      "all_strategies": {
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 2,
+          "profit": -6.8
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 0.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 4,
+          "profit": -9.0
+        }
+      }
+    },
+    "FC Heidenheim": {
+      "league": "Bundesliga",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 71.4,
+      "roi": 32.1,
+      "profit": 6.8,
+      "total_losses": 16,
+      "unlucky_losses": 10,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 6.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 1,
+          "profit": 1.0
+        },
+        "ADCM_SNIPER": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 6.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 4.5
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 9,
+          "wins": 6,
+          "profit": 4.2
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 9,
+          "wins": 3,
+          "profit": -6.0
+        }
+      }
+    },
+    "Manchester United": {
+      "league": "Premier League",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 85.7,
+      "roi": 58.6,
+      "profit": 12.3,
+      "total_losses": 23,
+      "unlucky_losses": 15,
+      "bad_analysis_losses": 8,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 12.3
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 1,
+          "profit": -0.4
+        },
+        "ADCM_SNIPER": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 12.3
+        },
+        "ADCM_NORMAL": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 5.4
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 5.6
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 7.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 4,
+          "profit": -8.0
+        }
+      }
+    },
+    "AC Milan": {
+      "league": "Serie A",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 61.5,
+      "roi": 22.2,
+      "profit": 8.0,
+      "total_losses": 12,
+      "unlucky_losses": 7,
+      "bad_analysis_losses": 5,
+      "all_strategies": {
+        "ADCM_NORMAL": {
+          "bets": 9,
+          "wins": 2,
+          "profit": -10.8
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 8,
+          "profit": 8.0
+        }
+      }
+    },
+    "Real Madrid": {
+      "league": "La Liga",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 63.6,
+      "roi": 17.7,
+      "profit": 5.9,
+      "total_losses": 30,
+      "unlucky_losses": 18,
+      "bad_analysis_losses": 8,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 5.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 10,
+          "wins": 4,
+          "profit": -5.1
+        },
+        "ADCM_SNIPER": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 5.9
+        },
+        "ADCM_NORMAL": {
+          "bets": 15,
+          "wins": 7,
+          "profit": -4.1
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 14,
+          "wins": 6,
+          "profit": -4.0
+        }
+      }
+    },
+    "Barcelona": {
+      "league": "La Liga",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 77.3,
+      "roi": 43.0,
+      "profit": 23.6,
+      "total_losses": 51,
+      "unlucky_losses": 25,
+      "bad_analysis_losses": 16,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 15,
+          "wins": 11,
+          "profit": 16.1
+        },
+        "TOTAL_CHAOS": {
+          "bets": 21,
+          "wins": 10,
+          "profit": -0.8
+        },
+        "ADCM_SNIPER": {
+          "bets": 15,
+          "wins": 11,
+          "profit": 16.1
+        },
+        "ADCM_NORMAL": {
+          "bets": 18,
+          "wins": 12,
+          "profit": 8.3
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 22,
+          "wins": 17,
+          "profit": 18.9
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 22,
+          "wins": 17,
+          "profit": 23.6
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 20,
+          "wins": 4,
+          "profit": -24.0
+        }
+      }
+    },
+    "Osasuna": {
+      "league": "La Liga",
+      "best_strategy": "ADCM_NORMAL",
+      "wr": 60.0,
+      "roi": 8.0,
+      "profit": 1.6,
+      "total_losses": 17,
+      "unlucky_losses": 3,
+      "bad_analysis_losses": 14,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -3.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 10,
+          "wins": 6,
+          "profit": 1.6
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 11,
+          "wins": 5,
+          "profit": -2.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 5,
+          "profit": -1.0
+        }
+      }
+    },
+    "Inter": {
+      "league": "Serie A",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 100.0,
+      "roi": 85.0,
+      "profit": 10.2,
+      "total_losses": 11,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 4,
+          "wins": 4,
+          "profit": 10.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.2
+        },
+        "ADCM_SNIPER": {
+          "bets": 4,
+          "wins": 4,
+          "profit": 10.2
+        },
+        "ADCM_NORMAL": {
+          "bets": 11,
+          "wins": 6,
+          "profit": 0.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 0.0
+        }
+      }
+    },
+    "Fiorentina": {
+      "league": "Serie A",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 46.2,
+      "roi": -7.7,
+      "profit": -2.0,
+      "total_losses": 7,
+      "unlucky_losses": 0,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 5.1
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.2
+        },
+        "ADCM_SNIPER": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 5.1
+        },
+        "ADCM_NORMAL": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 3.4
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 6,
+          "profit": -2.0
+        }
+      }
+    },
+    "Manchester City": {
+      "league": "Premier League",
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 100.0,
+      "roi": 103.3,
+      "profit": 7.8,
+      "total_losses": 23,
+      "unlucky_losses": 11,
+      "bad_analysis_losses": 12,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 14,
+          "wins": 11,
+          "profit": 19.1
+        },
+        "TOTAL_CHAOS": {
+          "bets": 3,
+          "wins": 3,
+          "profit": 7.8
+        },
+        "ADCM_SNIPER": {
+          "bets": 14,
+          "wins": 11,
+          "profit": 19.1
+        },
+        "ADCM_NORMAL": {
+          "bets": 18,
+          "wins": 13,
+          "profit": 11.9
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 18,
+          "wins": 6,
+          "profit": -12.0
+        }
+      }
+    },
+    "Hamburger SV": {
+      "league": "Bundesliga",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 50.0,
+      "roi": 0.0,
+      "profit": 0.0,
+      "total_losses": 5,
+      "unlucky_losses": 1,
+      "bad_analysis_losses": 4,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.5
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 8,
+          "wins": 4,
+          "profit": 0.0
+        }
+      }
+    },
+    "Sunderland": {
+      "league": "Premier League",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 66.7,
+      "roi": 37.9,
+      "profit": 11.0,
+      "total_losses": 13,
+      "unlucky_losses": 3,
+      "bad_analysis_losses": 10,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 2,
+          "wins": 1,
+          "profit": 0.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 10,
+          "wins": 6,
+          "profit": 2.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 8.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 11.0
+        }
+      }
+    },
+    "Cagliari": {
+      "league": "Serie A",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 50.0,
+      "roi": 6.2,
+      "profit": 2.0,
+      "total_losses": 18,
+      "unlucky_losses": 4,
+      "bad_analysis_losses": 14,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -3.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 9,
+          "wins": 4,
+          "profit": -3.6
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 0.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 2.0
+        }
+      }
+    },
+    "Angers": {
+      "league": "Ligue 1",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 75.0,
+      "roi": 53.8,
+      "profit": 14.0,
+      "total_losses": 11,
+      "unlucky_losses": 2,
+      "bad_analysis_losses": 9,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 4,
+          "wins": 2,
+          "profit": -0.8
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 9,
+          "profit": 12.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 9,
+          "profit": 15.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 9,
+          "profit": 14.0
+        }
+      }
+    },
+    "Freiburg": {
+      "league": "Bundesliga",
+      "best_strategy": "ADAPTIVE_ENGINE",
+      "wr": 75.0,
+      "roi": 38.8,
+      "profit": 6.2,
+      "total_losses": 17,
+      "unlucky_losses": 11,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.7
+        },
+        "TOTAL_CHAOS": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 3.9
+        },
+        "ADCM_SNIPER": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.7
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 3,
+          "profit": -2.9
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 8,
+          "wins": 2,
+          "profit": -8.0
+        }
+      }
+    },
+    "Newcastle United": {
+      "league": "Premier League",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 90.9,
+      "roi": 68.2,
+      "profit": 22.5,
+      "total_losses": 26,
+      "unlucky_losses": 13,
+      "bad_analysis_losses": 13,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 11,
+          "wins": 10,
+          "profit": 22.5
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.2
+        },
+        "ADCM_SNIPER": {
+          "bets": 11,
+          "wins": 10,
+          "profit": 22.5
+        },
+        "ADCM_NORMAL": {
+          "bets": 16,
+          "wins": 13,
+          "profit": 15.8
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 17,
+          "wins": 13,
+          "profit": 14.1
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 17,
+          "wins": 13,
+          "profit": 17.6
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 17,
+          "wins": 4,
+          "profit": -18.0
+        }
+      }
+    },
+    "Wolverhampton Wanderers": {
+      "league": "Premier League",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 66.7,
+      "roi": 40.7,
+      "profit": 11.0,
+      "total_losses": 12,
+      "unlucky_losses": 4,
+      "bad_analysis_losses": 8,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 3.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 9,
+          "wins": 5,
+          "profit": 0.4
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 8.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 8,
+          "profit": 11.0
+        }
+      }
+    },
+    "Napoli": {
+      "league": "Serie A",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 53.3,
+      "roi": 7.7,
+      "profit": 3.0,
+      "total_losses": 11,
+      "unlucky_losses": 4,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 3.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 8,
+          "wins": 4,
+          "profit": -1.2
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 15,
+          "wins": 8,
+          "profit": 3.0
+        }
+      }
+    },
+    "Pisa": {
+      "league": "Serie A",
+      "best_strategy": "ADAPTIVE_ENGINE",
+      "wr": 54.5,
+      "roi": 9.1,
+      "profit": 2.0,
+      "total_losses": 15,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 10,
+      "all_strategies": {
+        "ADCM_NORMAL": {
+          "bets": 8,
+          "wins": 3,
+          "profit": -5.2
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 11,
+          "wins": 6,
+          "profit": 2.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 6,
+          "profit": 1.0
+        }
+      }
+    },
+    "Nantes": {
+      "league": "Ligue 1",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 63.6,
+      "roi": 33.3,
+      "profit": 8.0,
+      "total_losses": 8,
+      "unlucky_losses": 0,
+      "bad_analysis_losses": 8,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.1
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 6.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 8.0
+        }
+      }
+    },
+    "VfB Stuttgart": {
+      "league": "Bundesliga",
+      "best_strategy": "ADCM_NORMAL",
+      "wr": 83.3,
+      "roi": 52.5,
+      "profit": 6.3,
+      "total_losses": 14,
+      "unlucky_losses": 7,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 4.7
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.2
+        },
+        "ADCM_SNIPER": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 4.7
+        },
+        "ADCM_NORMAL": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 6.3
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 9.9
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 9,
+          "wins": 2,
+          "profit": -10.0
+        }
+      }
+    },
+    "Chelsea": {
+      "league": "Premier League",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 75.0,
+      "roi": 38.8,
+      "profit": 9.3,
+      "total_losses": 19,
+      "unlucky_losses": 9,
+      "bad_analysis_losses": 9,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 9.3
+        },
+        "TOTAL_CHAOS": {
+          "bets": 4,
+          "wins": 2,
+          "profit": -0.8
+        },
+        "ADCM_SNIPER": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 9.3
+        },
+        "ADCM_NORMAL": {
+          "bets": 13,
+          "wins": 9,
+          "profit": 7.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 4,
+          "profit": -10.0
+        }
+      }
+    },
+    "Athletic Club": {
+      "league": "La Liga",
+      "best_strategy": "ADAPTIVE_ENGINE",
+      "wr": 75.0,
+      "roi": 50.0,
+      "profit": 16.0,
+      "total_losses": 14,
+      "unlucky_losses": 0,
+      "bad_analysis_losses": 14,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 6.0
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.2
+        },
+        "ADCM_NORMAL": {
+          "bets": 2,
+          "wins": 2,
+          "profit": 4.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 16,
+          "wins": 12,
+          "profit": 16.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 16,
+          "wins": 12,
+          "profit": 20.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 16,
+          "wins": 10,
+          "profit": 11.0
+        }
+      }
+    },
+    "Lazio": {
+      "league": "Serie A",
+      "best_strategy": "CONVERGENCE_UNDER",
+      "wr": 100.0,
+      "roi": 100.0,
+      "profit": 9.0,
+      "total_losses": 10,
+      "unlucky_losses": 6,
+      "bad_analysis_losses": 4,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 3,
+          "wins": 3,
+          "profit": 9.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 9,
+          "wins": 3,
+          "profit": -6.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 13,
+          "wins": 12,
+          "profit": 22.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 13,
+          "wins": 12,
+          "profit": 27.5
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 11,
+          "profit": 27.0
+        }
+      }
+    },
+    "Mallorca": {
+      "league": "La Liga",
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 75.0,
+      "roi": 52.5,
+      "profit": 5.2,
+      "total_losses": 16,
+      "unlucky_losses": 8,
+      "bad_analysis_losses": 8,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 6.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 5.2
+        },
+        "ADCM_SNIPER": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 6.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 10,
+          "wins": 7,
+          "profit": 5.7
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 3,
+          "profit": -10.0
+        }
+      }
+    },
+    "West Ham": {
+      "league": "Premier League",
+      "best_strategy": "ADCM_NORMAL",
+      "wr": 58.3,
+      "roi": 7.1,
+      "profit": 1.7,
+      "total_losses": 35,
+      "unlucky_losses": 29,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 9,
+          "wins": 5,
+          "profit": 0.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 7,
+          "wins": 3,
+          "profit": -3.6
+        },
+        "ADCM_SNIPER": {
+          "bets": 9,
+          "wins": 5,
+          "profit": 0.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 12,
+          "wins": 7,
+          "profit": 1.7
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 6,
+          "profit": -1.8
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 6,
+          "profit": -2.2
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 0.0
+        }
+      }
+    },
+    "Getafe": {
+      "league": "La Liga",
+      "best_strategy": "ADAPTIVE_ENGINE",
+      "wr": 70.0,
+      "roi": 40.0,
+      "profit": 8.0,
+      "total_losses": 13,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 8,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 3.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 10,
+          "wins": 4,
+          "profit": -4.8
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 10,
+          "wins": 7,
+          "profit": 8.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 10,
+          "wins": 7,
+          "profit": 9.0
+        }
+      }
+    },
+    "Roma": {
+      "league": "Serie A",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 69.2,
+      "roi": 43.8,
+      "profit": 14.0,
+      "total_losses": 12,
+      "unlucky_losses": 0,
+      "bad_analysis_losses": 12,
+      "all_strategies": {
+        "ADAPTIVE_ENGINE": {
+          "bets": 13,
+          "wins": 9,
+          "profit": 10.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 13,
+          "wins": 9,
+          "profit": 12.5
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 9,
+          "profit": 14.0
+        }
+      }
+    },
+    "Borussia Dortmund": {
+      "league": "Bundesliga",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 50.0,
+      "roi": 0.0,
+      "profit": 0.0,
+      "total_losses": 9,
+      "unlucky_losses": 4,
+      "bad_analysis_losses": 5,
+      "all_strategies": {
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 3,
+          "profit": -3.2
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 10,
+          "wins": 5,
+          "profit": 0.0
+        }
+      }
+    },
+    "Toulouse": {
+      "league": "Ligue 1",
+      "best_strategy": "ADCM_NORMAL",
+      "wr": 71.4,
+      "roi": 31.4,
+      "profit": 4.4,
+      "total_losses": 14,
+      "unlucky_losses": 8,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 4.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.4
+        },
+        "ADCM_SNIPER": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 4.2
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 5,
+          "profit": 4.4
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 0.0
+        }
+      }
+    },
+    "Sevilla": {
+      "league": "La Liga",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 77.8,
+      "roi": 43.9,
+      "profit": 11.9,
+      "total_losses": 25,
+      "unlucky_losses": 14,
+      "bad_analysis_losses": 9,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 11.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 3,
+          "wins": 1,
+          "profit": -2.9
+        },
+        "ADCM_SNIPER": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 11.9
+        },
+        "ADCM_NORMAL": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 3.9
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 3.9
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 4.9
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 4,
+          "profit": -6.0
+        }
+      }
+    },
+    "Mainz 05": {
+      "league": "Bundesliga",
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 50.0,
+      "roi": -7.5,
+      "profit": -1.1,
+      "total_losses": 12,
+      "unlucky_losses": 7,
+      "bad_analysis_losses": 5,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 6,
+          "wins": 3,
+          "profit": -1.1
+        },
+        "ADCM_NORMAL": {
+          "bets": 8,
+          "wins": 4,
+          "profit": -1.6
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 9,
+          "wins": 4,
+          "profit": -2.0
+        }
+      }
+    },
+    "Aston Villa": {
+      "league": "Premier League",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 77.8,
+      "roi": 43.9,
+      "profit": 11.9,
+      "total_losses": 13,
+      "unlucky_losses": 6,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 11.9
+        },
+        "ADCM_SNIPER": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 9.3
+        },
+        "ADCM_NORMAL": {
+          "bets": 9,
+          "wins": 7,
+          "profit": 7.9
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 6,
+          "profit": -2.0
+        }
+      }
+    },
+    "Lille": {
+      "league": "Ligue 1",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 58.3,
+      "roi": 28.6,
+      "profit": 8.0,
+      "total_losses": 14,
+      "unlucky_losses": 7,
+      "bad_analysis_losses": 5,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 9,
+          "wins": 4,
+          "profit": 0.1
+        },
+        "ADCM_NORMAL": {
+          "bets": 8,
+          "wins": 4,
+          "profit": -1.6
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 7,
+          "profit": 8.0
+        }
+      }
+    },
+    "Elche": {
+      "league": "La Liga",
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 75.0,
+      "roi": 52.5,
+      "profit": 5.2,
+      "total_losses": 13,
+      "unlucky_losses": 8,
+      "bad_analysis_losses": 4,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 4.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 5.2
+        },
+        "ADCM_SNIPER": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 4.2
+        },
+        "ADCM_NORMAL": {
+          "bets": 9,
+          "wins": 5,
+          "profit": 0.4
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 6.0
+        }
+      }
+    },
+    "Parma Calcio 1913": {
+      "league": "Serie A",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 50.0,
+      "roi": 3.2,
+      "profit": 1.0,
+      "total_losses": 12,
+      "unlucky_losses": 0,
+      "bad_analysis_losses": 12,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 3.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 0.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 1.0
+        }
+      }
+    },
+    "Lyon": {
+      "league": "Ligue 1",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 80.0,
+      "roi": 48.0,
+      "profit": 7.2,
+      "total_losses": 10,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 5,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 7.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 1,
+          "profit": -0.4
+        },
+        "ADCM_SNIPER": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 7.2
+        },
+        "ADCM_NORMAL": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 2.8
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 9,
+          "wins": 4,
+          "profit": -2.0
+        }
+      }
+    },
+    "Juventus": {
+      "league": "Serie A",
+      "best_strategy": "ADCM_NORMAL",
+      "wr": 72.7,
+      "roi": 32.7,
+      "profit": 7.2,
+      "total_losses": 24,
+      "unlucky_losses": 3,
+      "bad_analysis_losses": 21,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 3.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 7.2
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 16,
+          "wins": 9,
+          "profit": 4.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 16,
+          "wins": 9,
+          "profit": 5.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 16,
+          "wins": 9,
+          "profit": 4.0
+        }
+      }
+    },
+    "Villarreal": {
+      "league": "Premier League",
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 83.3,
+      "roi": 54.2,
+      "profit": 8.1,
+      "total_losses": 24,
+      "unlucky_losses": 12,
+      "bad_analysis_losses": 11,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 10,
+          "wins": 7,
+          "profit": 8.9
+        },
+        "TOTAL_CHAOS": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 8.1
+        },
+        "ADCM_SNIPER": {
+          "bets": 10,
+          "wins": 7,
+          "profit": 8.9
+        },
+        "ADCM_NORMAL": {
+          "bets": 15,
+          "wins": 9,
+          "profit": 3.1
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 16,
+          "wins": 5,
+          "profit": -12.0
+        }
+      }
+    },
+    "Wolfsburg": {
+      "league": "Bundesliga",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 66.7,
+      "roi": 23.3,
+      "profit": 4.2,
+      "total_losses": 14,
+      "unlucky_losses": 10,
+      "bad_analysis_losses": 4,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 4.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 6,
+          "wins": 3,
+          "profit": -1.1
+        },
+        "ADCM_SNIPER": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 4.2
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 4,
+          "profit": 0.8
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 8,
+          "wins": 4,
+          "profit": 0.0
+        }
+      }
+    },
+    "Rayo Vallecano": {
+      "league": "La Liga",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 80.0,
+      "roi": 68.0,
+      "profit": 17.0,
+      "total_losses": 14,
+      "unlucky_losses": 7,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 3,
+          "wins": 1,
+          "profit": -2.9
+        },
+        "ADCM_NORMAL": {
+          "bets": 8,
+          "wins": 2,
+          "profit": -8.8
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 12.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 15.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 10,
+          "wins": 8,
+          "profit": 17.0
+        }
+      }
+    },
+    "Werder Bremen": {
+      "league": "Bundesliga",
+      "best_strategy": "ADCM_NORMAL",
+      "wr": 80.0,
+      "roi": 47.0,
+      "profit": 4.7,
+      "total_losses": 8,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 3,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 4.7
+        },
+        "TOTAL_CHAOS": {
+          "bets": 4,
+          "wins": 2,
+          "profit": -0.8
+        },
+        "ADCM_SNIPER": {
+          "bets": 4,
+          "wins": 3,
+          "profit": 4.7
+        },
+        "ADCM_NORMAL": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 4.7
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 6,
+          "wins": 3,
+          "profit": 0.0
+        }
+      }
+    },
+    "Crystal Palace": {
+      "league": "Premier League",
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 62.5,
+      "roi": 15.6,
+      "profit": 3.1,
+      "total_losses": 21,
+      "unlucky_losses": 9,
+      "bad_analysis_losses": 12,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 3.1
+        },
+        "ADCM_NORMAL": {
+          "bets": 12,
+          "wins": 6,
+          "profit": -2.4
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 0.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 2.0
+        }
+      }
+    },
+    "Lecce": {
+      "league": "Serie A",
+      "best_strategy": "CONVERGENCE_UNDER",
+      "wr": 57.1,
+      "roi": 14.3,
+      "profit": 3.0,
+      "total_losses": 18,
+      "unlucky_losses": 0,
+      "bad_analysis_losses": 18,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 7,
+          "wins": 4,
+          "profit": 3.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 4,
+          "profit": 2.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 13,
+          "wins": 7,
+          "profit": 2.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 7,
+          "profit": 2.0
+        }
+      }
+    },
+    "Atalanta": {
+      "league": "Serie A",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 60.0,
+      "roi": 21.1,
+      "profit": 8.0,
+      "total_losses": 20,
+      "unlucky_losses": 0,
+      "bad_analysis_losses": 20,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -3.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 15,
+          "wins": 9,
+          "profit": 6.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 15,
+          "wins": 9,
+          "profit": 7.5
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 15,
+          "wins": 9,
+          "profit": 8.0
+        }
+      }
+    },
+    "Monaco": {
+      "league": "Ligue 1",
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 63.6,
+      "roi": 42.7,
+      "profit": 11.8,
+      "total_losses": 23,
+      "unlucky_losses": 15,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 3.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 11,
+          "wins": 7,
+          "profit": 11.8
+        },
+        "ADCM_SNIPER": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 3.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 2.5
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 6.8
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 4,
+          "profit": -6.0
+        }
+      }
+    },
+    "Real Sociedad": {
+      "league": "La Liga",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "wr": 83.3,
+      "roi": 50.0,
+      "profit": 15.0,
+      "total_losses": 21,
+      "unlucky_losses": 11,
+      "bad_analysis_losses": 9,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 9.3
+        },
+        "TOTAL_CHAOS": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 1.8
+        },
+        "ADCM_SNIPER": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 9.3
+        },
+        "ADCM_NORMAL": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 7.4
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 12,
+          "wins": 10,
+          "profit": 12.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 12,
+          "wins": 10,
+          "profit": 15.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 3,
+          "profit": -12.0
+        }
+      }
+    },
+    "Eintracht Frankfurt": {
+      "league": "Bundesliga",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 60.0,
+      "roi": 20.0,
+      "profit": 4.0,
+      "total_losses": 28,
+      "unlucky_losses": 24,
+      "bad_analysis_losses": 4,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 6,
+          "wins": 3,
+          "profit": -1.3
+        },
+        "TOTAL_CHAOS": {
+          "bets": 7,
+          "wins": 2,
+          "profit": -8.2
+        },
+        "ADCM_SNIPER": {
+          "bets": 6,
+          "wins": 3,
+          "profit": -1.3
+        },
+        "ADCM_NORMAL": {
+          "bets": 8,
+          "wins": 3,
+          "profit": -4.9
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 10,
+          "wins": 6,
+          "profit": 1.6
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 10,
+          "wins": 6,
+          "profit": 2.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 10,
+          "wins": 6,
+          "profit": 4.0
+        }
+      }
+    },
+    "Union Berlin": {
+      "league": "Bundesliga",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 66.7,
+      "roi": 23.3,
+      "profit": 4.2,
+      "total_losses": 11,
+      "unlucky_losses": 7,
+      "bad_analysis_losses": 4,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 4.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 1.8
+        },
+        "ADCM_SNIPER": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 4.2
+        },
+        "ADCM_NORMAL": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 2.8
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 9,
+          "wins": 5,
+          "profit": 2.0
+        }
+      }
+    },
+    "Sassuolo": {
+      "league": "Serie A",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 66.7,
+      "roi": 23.3,
+      "profit": 2.1,
+      "total_losses": 11,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 2.1
+        },
+        "ADCM_SNIPER": {
+          "bets": 3,
+          "wins": 2,
+          "profit": 2.1
+        },
+        "ADCM_NORMAL": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 2.2
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 5,
+          "profit": -2.0
+        }
+      }
+    },
+    "Verona": {
+      "league": "Serie A",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 60.0,
+      "roi": 11.0,
+      "profit": 1.7,
+      "total_losses": 13,
+      "unlucky_losses": 6,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.7
+        },
+        "ADCM_SNIPER": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.7
+        },
+        "ADCM_NORMAL": {
+          "bets": 5,
+          "wins": 3,
+          "profit": 1.1
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 6,
+          "profit": -2.0
+        }
+      }
+    },
+    "Metz": {
+      "league": "Ligue 1",
+      "best_strategy": "TOTAL_CHAOS",
+      "wr": 80.0,
+      "roi": 70.0,
+      "profit": 8.8,
+      "total_losses": 10,
+      "unlucky_losses": 3,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 9.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 5,
+          "wins": 4,
+          "profit": 8.8
+        },
+        "ADCM_SNIPER": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 9.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 6,
+          "profit": 8.1
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 10,
+          "wins": 4,
+          "profit": -4.0
+        }
+      }
+    },
+    "Udinese": {
+      "league": "Serie A",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 54.5,
+      "roi": 9.7,
+      "profit": 3.0,
+      "total_losses": 10,
+      "unlucky_losses": 3,
+      "bad_analysis_losses": 7,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -3.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 8,
+          "wins": 4,
+          "profit": -1.6
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 6,
+          "profit": 3.0
+        }
+      }
+    },
+    "Everton": {
+      "league": "Premier League",
+      "best_strategy": "ADAPTIVE_ENGINE",
+      "wr": 61.5,
+      "roi": 23.1,
+      "profit": 6.0,
+      "total_losses": 15,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 10,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.1
+        },
+        "ADCM_NORMAL": {
+          "bets": 11,
+          "wins": 6,
+          "profit": -0.4
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 13,
+          "wins": 8,
+          "profit": 6.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 13,
+          "wins": 8,
+          "profit": 6.0
+        }
+      }
+    },
+    "Arsenal": {
+      "league": "Premier League",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 64.3,
+      "roi": 25.0,
+      "profit": 8.0,
+      "total_losses": 26,
+      "unlucky_losses": 5,
+      "bad_analysis_losses": 21,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 2,
+          "wins": 1,
+          "profit": 0.0
+        },
+        "ADCM_NORMAL": {
+          "bets": 13,
+          "wins": 7,
+          "profit": -0.4
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 14,
+          "wins": 7,
+          "profit": 0.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 14,
+          "wins": 7,
+          "profit": 0.0
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 14,
+          "wins": 9,
+          "profit": 8.0
+        }
+      }
+    },
+    "Le Havre": {
+      "league": "Ligue 1",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 90.0,
+      "roi": 83.3,
+      "profit": 20.0,
+      "total_losses": 1,
+      "unlucky_losses": 0,
+      "bad_analysis_losses": 1,
+      "all_strategies": {
+        "MONTE_CARLO_ADCM": {
+          "bets": 10,
+          "wins": 9,
+          "profit": 20.0
+        }
+      }
+    },
+    "Real Betis": {
+      "league": "La Liga",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 54.5,
+      "roi": 9.1,
+      "profit": 2.0,
+      "total_losses": 20,
+      "unlucky_losses": 15,
+      "bad_analysis_losses": 5,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 9,
+          "wins": 5,
+          "profit": 0.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 4,
+          "wins": 2,
+          "profit": -0.8
+        },
+        "ADCM_SNIPER": {
+          "bets": 9,
+          "wins": 5,
+          "profit": 0.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 11,
+          "wins": 6,
+          "profit": 0.1
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 6,
+          "profit": 2.0
+        }
+      }
+    },
+    "Real Oviedo": {
+      "league": "La Liga",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 72.7,
+      "roi": 50.0,
+      "profit": 14.0,
+      "total_losses": 10,
+      "unlucky_losses": 1,
+      "bad_analysis_losses": 9,
+      "all_strategies": {
+        "CONVERGENCE_UNDER": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 3.0
+        },
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 1,
+          "profit": -0.4
+        },
+        "ADCM_NORMAL": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.0
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 10.0
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 12.5
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 14.0
+        }
+      }
+    },
+    "Genoa": {
+      "league": "Serie A",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 83.3,
+      "roi": 54.2,
+      "profit": 9.8,
+      "total_losses": 12,
+      "unlucky_losses": 3,
+      "bad_analysis_losses": 9,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 9.8
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 1,
+          "profit": 2.1
+        },
+        "ADCM_SNIPER": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 9.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 6,
+          "wins": 5,
+          "profit": 6.5
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 3,
+          "profit": -12.0
+        }
+      }
+    },
+    "Lens": {
+      "league": "Ligue 1",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 66.7,
+      "roi": 23.3,
+      "profit": 4.2,
+      "total_losses": 19,
+      "unlucky_losses": 7,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 4.2
+        },
+        "TOTAL_CHAOS": {
+          "bets": 9,
+          "wins": 3,
+          "profit": -7.2
+        },
+        "ADCM_SNIPER": {
+          "bets": 6,
+          "wins": 4,
+          "profit": 4.2
+        },
+        "ADCM_NORMAL": {
+          "bets": 7,
+          "wins": 4,
+          "profit": 0.8
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 8,
+          "wins": 2,
+          "profit": -8.0
+        }
+      }
+    },
+    "Tottenham": {
+      "league": "Premier League",
+      "best_strategy": "ADAPTIVE_ENGINE",
+      "wr": 73.3,
+      "roi": 35.7,
+      "profit": 10.7,
+      "total_losses": 30,
+      "unlucky_losses": 17,
+      "bad_analysis_losses": 13,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 11,
+          "wins": 8,
+          "profit": 11.4
+        },
+        "TOTAL_CHAOS": {
+          "bets": 1,
+          "wins": 0,
+          "profit": -2.5
+        },
+        "ADCM_SNIPER": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 3.8
+        },
+        "ADCM_NORMAL": {
+          "bets": 15,
+          "wins": 11,
+          "profit": 10.4
+        },
+        "ADAPTIVE_ENGINE": {
+          "bets": 15,
+          "wins": 11,
+          "profit": 10.7
+        },
+        "QUANT_BEST_MARKET": {
+          "bets": 15,
+          "wins": 11,
+          "profit": 13.4
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 15,
+          "wins": 4,
+          "profit": -14.0
+        }
+      }
+    },
+    "Lorient": {
+      "league": "Ligue 1",
+      "best_strategy": "CONVERGENCE_OVER",
+      "wr": 75.0,
+      "roi": 38.8,
+      "profit": 9.3,
+      "total_losses": 15,
+      "unlucky_losses": 8,
+      "bad_analysis_losses": 6,
+      "all_strategies": {
+        "CONVERGENCE_OVER": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 9.3
+        },
+        "TOTAL_CHAOS": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 4.5
+        },
+        "ADCM_SNIPER": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 9.3
+        },
+        "ADCM_NORMAL": {
+          "bets": 8,
+          "wins": 6,
+          "profit": 6.2
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 12,
+          "wins": 6,
+          "profit": 0.0
+        }
+      }
+    },
+    "St. Pauli": {
+      "league": "Bundesliga",
+      "best_strategy": "MONTE_CARLO_ADCM",
+      "wr": 62.5,
+      "roi": 25.0,
+      "profit": 4.0,
+      "total_losses": 4,
+      "unlucky_losses": 1,
+      "bad_analysis_losses": 3,
+      "all_strategies": {
+        "TOTAL_CHAOS": {
+          "bets": 2,
+          "wins": 1,
+          "profit": -0.4
+        },
+        "MONTE_CARLO_ADCM": {
+          "bets": 8,
+          "wins": 5,
+          "profit": 4.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-12-04T23:38:14.157900",
+  "global": {
+    "bets": 498,
+    "wins": 323,
+    "profit": 277.6,
+    "stake": 960.5
+  },
+  "by_action": {
+    "SNIPER": {
+      "bets": 217,
+      "wins": 153,
+      "profit": 202.0
+    },
+    "NORMAL": {
+      "bets": 90,
+      "wins": 64,
+      "profit": 60.1
+    },
+    "SPECULATIVE": {
+      "bets": 191,
+      "wins": 106,
+      "profit": 15.5
+    }
+  },
+  "by_scenario": {
+    "CONVERGENCE_OVER": {
+      "bets": 176,
+      "wins": 131,
+      "profit": 196.5
+    },
+    "CONVERGENCE_UNDER": {
+      "bets": 88,
+      "wins": 61,
+      "profit": 52.0
+    },
+    "STYLE_CLASH": {
+      "bets": 191,
+      "wins": 106,
+      "profit": 15.5
+    },
+    "TOTAL_CHAOS": {
+      "bets": 43,
+      "wins": 25,
+      "profit": 13.6
+    }
+  }
+}

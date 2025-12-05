@@ -1,0 +1,37 @@
+{
+  "timestamp": "2025-12-04T22:44:10.486654",
+  "results": {
+    "hybrid_conservative": {
+      "bets": 896,
+      "wins": 626,
+      "stake": 1354.0,
+      "profit": 397.77499999999844,
+      "wr": 69.9,
+      "roi": 29.4
+    },
+    "hybrid_aggressive": {
+      "bets": 1243,
+      "wins": 860,
+      "stake": 1293.0,
+      "profit": 357.8000000000012,
+      "wr": 69.2,
+      "roi": 27.7
+    },
+    "hybrid_smart": {
+      "bets": 0,
+      "wins": 0,
+      "stake": 0,
+      "profit": 0,
+      "wr": 0,
+      "roi": 0
+    },
+    "quant_only": {
+      "bets": 955,
+      "wins": 673,
+      "stake": 1910.0,
+      "profit": 586.0000000000019,
+      "wr": 70.5,
+      "roi": 30.7
+    }
+  }
+}

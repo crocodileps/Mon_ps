@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-12-05T15:57:50.961450",
+  "global": {
+    "bets": 186,
+    "wins": 137,
+    "profit": 229.5,
+    "stake": 518.5
+  },
+  "by_category": {
+    "ELITE_MC": {
+      "bets": 41,
+      "wins": 38,
+      "profit": 117.2
+    },
+    "GOLD_MC": {
+      "bets": 50,
+      "wins": 40,
+      "profit": 72.0
+    },
+    "QUANT_MC": {
+      "bets": 7,
+      "wins": 6,
+      "profit": 10.0
+    },
+    "CHAOS_MC": {
+      "bets": 22,
+      "wins": 14,
+      "profit": 18.0
+    },
+    "CONVERGENCE_PURE": {
+      "bets": 66,
+      "wins": 39,
+      "profit": 12.3
+    },
+    "CONVERGENCE_UNDER": {
+      "bets": 0,
+      "wins": 0,
+      "profit": 0
+    }
+  }
+}
