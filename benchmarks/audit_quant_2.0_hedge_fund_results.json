@@ -1,0 +1,5073 @@
+{
+  "timestamp": "2025-12-05T17:40:42.051988",
+  "strategies_count": 27,
+  "teams_count": 692,
+  "total_summary": {
+    "bets": 994,
+    "wins": 831,
+    "pnl": 1152.0,
+    "wr": 57.1,
+    "unlucky_pct": 82.8,
+    "bad_analysis_pct": 17.2
+  },
+  "strategy_ranking": [
+    {
+      "rank": 1,
+      "strategy": "SCORE_GOOD_28",
+      "teams": 98,
+      "bets": 457,
+      "wins": 331,
+      "wr": 72.4,
+      "pnl": 388.4,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 2,
+      "strategy": "SCORE_SNIPER_34",
+      "teams": 55,
+      "bets": 173,
+      "wins": 143,
+      "wr": 82.7,
+      "pnl": 366.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 3,
+      "strategy": "UNDER_35_PURE",
+      "teams": 168,
+      "bets": 1119,
+      "wins": 824,
+      "wr": 73.6,
+      "pnl": 316.4,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 4,
+      "strategy": "QUANT_BEST_MARKET",
+      "teams": 43,
+      "bets": 541,
+      "wins": 360,
+      "wr": 66.5,
+      "pnl": 286.8,
+      "unlucky_pct": 47.5,
+      "bad_pct": 52.5
+    },
+    {
+      "rank": 5,
+      "strategy": "COMBO_CONV_MC_SCORE",
+      "teams": 76,
+      "bets": 315,
+      "wins": 214,
+      "wr": 67.9,
+      "pnl": 283.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 6,
+      "strategy": "SCORE_HIGH_32",
+      "teams": 70,
+      "bets": 246,
+      "wins": 182,
+      "wr": 74.0,
+      "pnl": 272.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 7,
+      "strategy": "QUANT_ROI_30",
+      "teams": 19,
+      "bets": 261,
+      "wins": 189,
+      "wr": 72.4,
+      "pnl": 238.0,
+      "unlucky_pct": 72.2,
+      "bad_pct": 27.8
+    },
+    {
+      "rank": 8,
+      "strategy": "CONVERGENCE_OVER_MC_55",
+      "teams": 88,
+      "bets": 489,
+      "wins": 312,
+      "wr": 63.8,
+      "pnl": 220.5,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 9,
+      "strategy": "CONVERGENCE_OVER_PURE",
+      "teams": 132,
+      "bets": 675,
+      "wins": 423,
+      "wr": 62.7,
+      "pnl": 215.1,
+      "unlucky_pct": 99.6,
+      "bad_pct": 0.4
+    },
+    {
+      "rank": 10,
+      "strategy": "CONVERGENCE_OVER_MC_60",
+      "teams": 69,
+      "bets": 267,
+      "wins": 175,
+      "wr": 65.5,
+      "pnl": 170.3,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 11,
+      "strategy": "MC_PURE_60",
+      "teams": 94,
+      "bets": 498,
+      "wins": 313,
+      "wr": 62.9,
+      "pnl": 162.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 12,
+      "strategy": "MC_PURE_65",
+      "teams": 48,
+      "bets": 187,
+      "wins": 128,
+      "wr": 68.4,
+      "pnl": 124.5,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 13,
+      "strategy": "TOTAL_CHAOS",
+      "teams": 48,
+      "bets": 187,
+      "wins": 128,
+      "wr": 68.4,
+      "pnl": 124.5,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 14,
+      "strategy": "QUANT_ROI_40",
+      "teams": 4,
+      "bets": 62,
+      "wins": 50,
+      "wr": 80.6,
+      "pnl": 104.6,
+      "unlucky_pct": 41.7,
+      "bad_pct": 58.3
+    },
+    {
+      "rank": 15,
+      "strategy": "MC_NO_CLASH",
+      "teams": 45,
+      "bets": 153,
+      "wins": 105,
+      "wr": 68.6,
+      "pnl": 103.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 16,
+      "strategy": "ULTIMATE_SNIPER",
+      "teams": 13,
+      "bets": 53,
+      "wins": 37,
+      "wr": 69.8,
+      "pnl": 77.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 17,
+      "strategy": "LEAGUE_PREMIER",
+      "teams": 24,
+      "bets": 217,
+      "wins": 134,
+      "wr": 61.8,
+      "pnl": 61.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 18,
+      "strategy": "LOW_CONFIDENCE_PARADOX",
+      "teams": 130,
+      "bets": 592,
+      "wins": 335,
+      "wr": 56.6,
+      "pnl": 55.5,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 19,
+      "strategy": "MC_PURE_70",
+      "teams": 14,
+      "bets": 38,
+      "wins": 30,
+      "wr": 78.9,
+      "pnl": 52.5,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 20,
+      "strategy": "LEAGUE_BUNDESLIGA",
+      "teams": 22,
+      "bets": 155,
+      "wins": 89,
+      "wr": 57.4,
+      "pnl": 24.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 21,
+      "strategy": "LEAGUE_CHAMPIONS",
+      "teams": 28,
+      "bets": 74,
+      "wins": 43,
+      "wr": 58.1,
+      "pnl": 16.7,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    },
+    {
+      "rank": 22,
+      "strategy": "BTTS_NO_PURE",
+      "teams": 2,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "pnl": 4.0,
+      "unlucky_pct": 0,
+      "bad_pct": 0
+    },
+    {
+      "rank": 23,
+      "strategy": "CHAOS_EXTREME",
+      "teams": 3,
+      "bets": 3,
+      "wins": 1,
+      "wr": 33.3,
+      "pnl": -1.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0
+    }
+  ],
+  "teams": [
+    {
+      "rank": 1,
+      "name": "Barcelona",
+      "best_strategy": "ULTIMATE_SNIPER",
+      "style": "offensive",
+      "league": "",
+      "matches": 32,
+      "bets": 16,
+      "wins": 15,
+      "wr": 93.8,
+      "roi": 73.4,
+      "pnl": 58.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "ULTIMATE_SNIPER",
+          58.8
+        ],
+        [
+          "SCORE_SNIPER_34",
+          41.2
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          40.1
+        ]
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Lazio",
+      "best_strategy": "QUANT_ROI_40",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 13,
+      "bets": 13,
+      "wins": 12,
+      "wr": 92.3,
+      "roi": 84.6,
+      "pnl": 33.0,
+      "unlucky_pct": 0.0,
+      "bad_pct": 100.0,
+      "top3": [
+        [
+          "QUANT_ROI_40",
+          33.0
+        ],
+        [
+          "QUANT_ROI_30",
+          27.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          22.0
+        ]
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "Marseille",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "offensive",
+      "league": "",
+      "matches": 17,
+      "bets": 8,
+      "wins": 8,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 27.2,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          27.2
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          26.3
+        ],
+        [
+          "QUANT_ROI_30",
+          24.8
+        ]
+      ]
+    },
+    {
+      "rank": 4,
+      "name": "Newcastle United",
+      "best_strategy": "QUANT_ROI_30",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 19,
+      "bets": 19,
+      "wins": 15,
+      "wr": 78.9,
+      "roi": 46.1,
+      "pnl": 21.9,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          21.9
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          17.9
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          17.5
+        ]
+      ]
+    },
+    {
+      "rank": 5,
+      "name": "Rayo Vallecano",
+      "best_strategy": "QUANT_ROI_40",
+      "style": "balanced",
+      "league": "",
+      "matches": 14,
+      "bets": 11,
+      "wins": 9,
+      "wr": 81.8,
+      "roi": 63.6,
+      "pnl": 21.0,
+      "unlucky_pct": 0.0,
+      "bad_pct": 100.0,
+      "top3": [
+        [
+          "QUANT_ROI_40",
+          21.0
+        ],
+        [
+          "QUANT_ROI_30",
+          17.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          14.0
+        ]
+      ]
+    },
+    {
+      "rank": 6,
+      "name": "Nice",
+      "best_strategy": "ULTIMATE_SNIPER",
+      "style": "defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 7,
+      "wins": 6,
+      "wr": 85.7,
+      "roi": 58.6,
+      "pnl": 20.5,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "ULTIMATE_SNIPER",
+          20.5
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          20.3
+        ],
+        [
+          "SCORE_SNIPER_34",
+          19.8
+        ]
+      ]
+    },
+    {
+      "rank": 7,
+      "name": "Brest",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 11,
+      "bets": 6,
+      "wins": 6,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 20.4,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          20.4
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          14.4
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          12.3
+        ]
+      ]
+    },
+    {
+      "rank": 8,
+      "name": "Brentford",
+      "best_strategy": "COMBO_CONV_MC_SCORE",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 9,
+      "wins": 8,
+      "wr": 88.9,
+      "roi": 64.4,
+      "pnl": 20.3,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "COMBO_CONV_MC_SCORE",
+          20.3
+        ],
+        [
+          "SCORE_SNIPER_34",
+          19.8
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          14.9
+        ]
+      ]
+    },
+    {
+      "rank": 9,
+      "name": "Leeds",
+      "best_strategy": "QUANT_ROI_30",
+      "style": "balanced",
+      "league": "",
+      "matches": 13,
+      "bets": 13,
+      "wins": 11,
+      "wr": 84.6,
+      "roi": 56.5,
+      "pnl": 18.4,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          18.4
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          14.7
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          7.9
+        ]
+      ]
+    },
+    {
+      "rank": 10,
+      "name": "Leeds United",
+      "best_strategy": "QUANT_ROI_30",
+      "style": "defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 13,
+      "wins": 11,
+      "wr": 84.6,
+      "roi": 56.5,
+      "pnl": 18.4,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          18.4
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          14.7
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          7.9
+        ]
+      ]
+    },
+    {
+      "rank": 11,
+      "name": "Chelsea",
+      "best_strategy": "COMBO_CONV_MC_SCORE",
+      "style": "offensive",
+      "league": "",
+      "matches": 17,
+      "bets": 8,
+      "wins": 7,
+      "wr": 87.5,
+      "roi": 61.9,
+      "pnl": 17.3,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "COMBO_CONV_MC_SCORE",
+          17.3
+        ],
+        [
+          "SCORE_GOOD_28",
+          12.4
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          9.8
+        ]
+      ]
+    },
+    {
+      "rank": 12,
+      "name": "Lorient",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 5,
+      "wins": 5,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 17.0,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          17.0
+        ],
+        [
+          "MC_PURE_65",
+          10.2
+        ],
+        [
+          "MC_NO_CLASH",
+          10.2
+        ]
+      ]
+    },
+    {
+      "rank": 13,
+      "name": "Metz",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "defensive",
+      "league": "",
+      "matches": 11,
+      "bets": 5,
+      "wins": 5,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 17.0,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          17.0
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          14.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          12.8
+        ]
+      ]
+    },
+    {
+      "rank": 14,
+      "name": "Tottenham",
+      "best_strategy": "QUANT_ROI_30",
+      "style": "balanced",
+      "league": "",
+      "matches": 18,
+      "bets": 16,
+      "wins": 12,
+      "wr": 75.0,
+      "roi": 38.8,
+      "pnl": 15.5,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          15.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          12.4
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          11.3
+        ]
+      ]
+    },
+    {
+      "rank": 15,
+      "name": "Tottenham Hotspur",
+      "best_strategy": "QUANT_ROI_30",
+      "style": "balanced",
+      "league": "",
+      "matches": 18,
+      "bets": 16,
+      "wins": 12,
+      "wr": 75.0,
+      "roi": 38.8,
+      "pnl": 15.5,
+      "unlucky_pct": 75.0,
+      "bad_pct": 25.0,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          15.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          12.4
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          11.3
+        ]
+      ]
+    },
+    {
+      "rank": 16,
+      "name": "Strasbourg",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 12,
+      "bets": 4,
+      "wins": 4,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 13.6,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          13.6
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          11.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          10.2
+        ]
+      ]
+    },
+    {
+      "rank": 17,
+      "name": "Brighton",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 12,
+      "bets": 8,
+      "wins": 8,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 13.6,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          13.6
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          8.5
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          6.8
+        ]
+      ]
+    },
+    {
+      "rank": 18,
+      "name": "Getafe",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 13,
+      "bets": 11,
+      "wins": 11,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 12.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          12.1
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          6.0
+        ],
+        [
+          "BTTS_NO_PURE",
+          2.0
+        ]
+      ]
+    },
+    {
+      "rank": 19,
+      "name": "Como",
+      "best_strategy": "QUANT_ROI_40",
+      "style": "offensive",
+      "league": "",
+      "matches": 12,
+      "bets": 12,
+      "wins": 8,
+      "wr": 66.7,
+      "roi": 33.3,
+      "pnl": 12.0,
+      "unlucky_pct": 0.0,
+      "bad_pct": 100.0,
+      "top3": [
+        [
+          "QUANT_ROI_40",
+          12.0
+        ],
+        [
+          "QUANT_ROI_30",
+          10.0
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          8.0
+        ]
+      ]
+    },
+    {
+      "rank": 20,
+      "name": "Paris FC",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 12,
+      "wins": 10,
+      "wr": 83.3,
+      "roi": 50.0,
+      "pnl": 12.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          12.0
+        ],
+        [
+          "SCORE_GOOD_28",
+          5.2
+        ],
+        [
+          "MC_PURE_65",
+          3.1
+        ]
+      ]
+    },
+    {
+      "rank": 21,
+      "name": "Sevilla",
+      "best_strategy": "COMBO_CONV_MC_SCORE",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 4,
+      "wins": 4,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 11.9,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "COMBO_CONV_MC_SCORE",
+          11.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          10.6
+        ],
+        [
+          "SCORE_GOOD_28",
+          10.6
+        ]
+      ]
+    },
+    {
+      "rank": 22,
+      "name": "Aston Villa",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 14,
+      "bets": 9,
+      "wins": 8,
+      "wr": 88.9,
+      "roi": 64.4,
+      "pnl": 11.6,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          11.6
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          8.2
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          8.1
+        ]
+      ]
+    },
+    {
+      "rank": 23,
+      "name": "Manchester City",
+      "best_strategy": "LEAGUE_PREMIER",
+      "style": "offensive",
+      "league": "",
+      "matches": 19,
+      "bets": 13,
+      "wins": 10,
+      "wr": 76.9,
+      "roi": 42.3,
+      "pnl": 11.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LEAGUE_PREMIER",
+          11.0
+        ],
+        [
+          "SCORE_GOOD_28",
+          9.9
+        ],
+        [
+          "MC_PURE_60",
+          7.6
+        ]
+      ]
+    },
+    {
+      "rank": 24,
+      "name": "VfB Stuttgart II",
+      "best_strategy": "LEAGUE_BUNDESLIGA",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 5,
+      "wins": 5,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 10.6,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "LEAGUE_BUNDESLIGA",
+          10.6
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          9.9
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          6.5
+        ]
+      ]
+    },
+    {
+      "rank": 25,
+      "name": "Bournemouth",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 7,
+      "wins": 6,
+      "wr": 85.7,
+      "roi": 58.6,
+      "pnl": 10.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          10.2
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          8.4
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          8.1
+        ]
+      ]
+    },
+    {
+      "rank": 26,
+      "name": "Heidenheim",
+      "best_strategy": "LEAGUE_BUNDESLIGA",
+      "style": "defensive",
+      "league": "",
+      "matches": 11,
+      "bets": 7,
+      "wins": 6,
+      "wr": 85.7,
+      "roi": 58.6,
+      "pnl": 10.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LEAGUE_BUNDESLIGA",
+          10.2
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          8.1
+        ],
+        [
+          "SCORE_GOOD_28",
+          8.1
+        ]
+      ]
+    },
+    {
+      "rank": 27,
+      "name": "Manchester United",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 7,
+      "wins": 6,
+      "wr": 85.7,
+      "roi": 58.6,
+      "pnl": 10.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          10.2
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          8.4
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          8.1
+        ]
+      ]
+    },
+    {
+      "rank": 28,
+      "name": "Augsburg",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "defensive",
+      "league": "",
+      "matches": 11,
+      "bets": 7,
+      "wins": 6,
+      "wr": 85.7,
+      "roi": 58.6,
+      "pnl": 10.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          10.2
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          9.9
+        ],
+        [
+          "QUANT_ROI_30",
+          9.5
+        ]
+      ]
+    },
+    {
+      "rank": 29,
+      "name": "1. FC Heidenheim",
+      "best_strategy": "LEAGUE_BUNDESLIGA",
+      "style": "balanced",
+      "league": "",
+      "matches": 11,
+      "bets": 7,
+      "wins": 6,
+      "wr": 85.7,
+      "roi": 58.6,
+      "pnl": 10.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LEAGUE_BUNDESLIGA",
+          10.2
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          8.1
+        ],
+        [
+          "SCORE_GOOD_28",
+          8.1
+        ]
+      ]
+    },
+    {
+      "rank": 30,
+      "name": "Genoa",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 6,
+      "wins": 6,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 10.2,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          10.2
+        ],
+        [
+          "UNDER_35_PURE",
+          9.0
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          8.1
+        ]
+      ]
+    },
+    {
+      "rank": 31,
+      "name": "Inter",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "balanced",
+      "league": "",
+      "matches": 17,
+      "bets": 8,
+      "wins": 7,
+      "wr": 87.5,
+      "roi": 61.9,
+      "pnl": 9.9,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          9.9
+        ],
+        [
+          "SCORE_GOOD_28",
+          8.5
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          6.4
+        ]
+      ]
+    },
+    {
+      "rank": 32,
+      "name": "VfB Stuttgart",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 12,
+      "bets": 8,
+      "wins": 7,
+      "wr": 87.5,
+      "roi": 61.9,
+      "pnl": 9.9,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          9.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          8.5
+        ],
+        [
+          "LEAGUE_BUNDESLIGA",
+          8.1
+        ]
+      ]
+    },
+    {
+      "rank": 33,
+      "name": "Liverpool",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "balanced",
+      "league": "",
+      "matches": 17,
+      "bets": 5,
+      "wins": 4,
+      "wr": 80.0,
+      "roi": 48.0,
+      "pnl": 9.6,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          9.6
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          6.8
+        ],
+        [
+          "MC_PURE_60",
+          3.6
+        ]
+      ]
+    },
+    {
+      "rank": 34,
+      "name": "Atalanta BC",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 18,
+      "bets": 17,
+      "wins": 14,
+      "wr": 82.4,
+      "roi": 27.6,
+      "pnl": 9.4,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          9.4
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          3.0
+        ],
+        [
+          "SCORE_GOOD_28",
+          1.8
+        ]
+      ]
+    },
+    {
+      "rank": 35,
+      "name": "Atalanta",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 18,
+      "bets": 17,
+      "wins": 14,
+      "wr": 82.4,
+      "roi": 27.6,
+      "pnl": 9.4,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          9.4
+        ],
+        [
+          "SCORE_GOOD_28",
+          3.9
+        ],
+        [
+          "MC_PURE_60",
+          -0.3
+        ]
+      ]
+    },
+    {
+      "rank": 36,
+      "name": "AS Roma",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 14,
+      "bets": 14,
+      "wins": 12,
+      "wr": 85.7,
+      "roi": 32.9,
+      "pnl": 9.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          9.2
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          1.4
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 37,
+      "name": "Roma",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 14,
+      "bets": 14,
+      "wins": 12,
+      "wr": 85.7,
+      "roi": 32.9,
+      "pnl": 9.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          9.2
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          1.8
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 38,
+      "name": "Athletic Club",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 19,
+      "bets": 14,
+      "wins": 12,
+      "wr": 85.7,
+      "roi": 32.9,
+      "pnl": 9.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          9.2
+        ],
+        [
+          "SCORE_SNIPER_34",
+          6.8
+        ],
+        [
+          "SCORE_HIGH_32",
+          5.1
+        ]
+      ]
+    },
+    {
+      "rank": 39,
+      "name": "Villarreal",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 18,
+      "bets": 14,
+      "wins": 10,
+      "wr": 71.4,
+      "roi": 32.1,
+      "pnl": 9.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          9.0
+        ],
+        [
+          "MC_PURE_60",
+          7.6
+        ],
+        [
+          "MC_PURE_65",
+          4.2
+        ]
+      ]
+    },
+    {
+      "rank": 40,
+      "name": "Racing Club",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 11,
+      "bets": 8,
+      "wins": 8,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 8.8,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          8.8
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          8.4
+        ],
+        [
+          "SCORE_GOOD_28",
+          6.0
+        ]
+      ]
+    },
+    {
+      "rank": 41,
+      "name": "Club Brugge",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "defensive",
+      "league": "",
+      "matches": 5,
+      "bets": 4,
+      "wins": 4,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 8.5,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          8.5
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          6.8
+        ],
+        [
+          "SCORE_SNIPER_34",
+          6.8
+        ]
+      ]
+    },
+    {
+      "rank": 42,
+      "name": "Lille",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "offensive",
+      "league": "",
+      "matches": 14,
+      "bets": 4,
+      "wins": 4,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 8.5,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          8.5
+        ],
+        [
+          "UNDER_35_PURE",
+          3.3
+        ],
+        [
+          "MC_PURE_70",
+          2.6
+        ]
+      ]
+    },
+    {
+      "rank": 43,
+      "name": "Pisa",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "defensive",
+      "league": "",
+      "matches": 11,
+      "bets": 5,
+      "wins": 5,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 8.5,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          8.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          2.0
+        ],
+        [
+          "UNDER_35_PURE",
+          -3.4
+        ]
+      ]
+    },
+    {
+      "rank": 44,
+      "name": "Lyon",
+      "best_strategy": "COMBO_CONV_MC_SCORE",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 12,
+      "bets": 5,
+      "wins": 4,
+      "wr": 80.0,
+      "roi": 48.0,
+      "pnl": 8.4,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "COMBO_CONV_MC_SCORE",
+          8.4
+        ],
+        [
+          "SCORE_GOOD_28",
+          8.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          6.5
+        ]
+      ]
+    },
+    {
+      "rank": 45,
+      "name": "Fulham",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 7,
+      "wins": 6,
+      "wr": 85.7,
+      "roi": 58.6,
+      "pnl": 8.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          8.2
+        ],
+        [
+          "LEAGUE_PREMIER",
+          8.2
+        ],
+        [
+          "SCORE_GOOD_28",
+          6.4
+        ]
+      ]
+    },
+    {
+      "rank": 46,
+      "name": "Lens",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "offensive",
+      "league": "",
+      "matches": 11,
+      "bets": 6,
+      "wins": 5,
+      "wr": 83.3,
+      "roi": 54.2,
+      "pnl": 8.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          8.1
+        ],
+        [
+          "MC_PURE_60",
+          7.9
+        ],
+        [
+          "MC_PURE_70",
+          7.7
+        ]
+      ]
+    },
+    {
+      "rank": 47,
+      "name": "FC Heidenheim",
+      "best_strategy": "CONVERGENCE_OVER_MC_55",
+      "style": "balanced",
+      "league": "",
+      "matches": 11,
+      "bets": 6,
+      "wins": 5,
+      "wr": 83.3,
+      "roi": 54.2,
+      "pnl": 8.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_MC_55",
+          8.1
+        ],
+        [
+          "SCORE_GOOD_28",
+          8.1
+        ],
+        [
+          "LEAGUE_BUNDESLIGA",
+          8.1
+        ]
+      ]
+    },
+    {
+      "rank": 48,
+      "name": "Hellas Verona",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 13,
+      "bets": 13,
+      "wins": 11,
+      "wr": 84.6,
+      "roi": 31.2,
+      "pnl": 8.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          8.1
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -0.6
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          -0.8
+        ]
+      ]
+    },
+    {
+      "rank": 49,
+      "name": "Everton",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 13,
+      "wins": 11,
+      "wr": 84.6,
+      "roi": 31.2,
+      "pnl": 8.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          8.1
+        ],
+        [
+          "MC_PURE_60",
+          -0.3
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          -0.5
+        ]
+      ]
+    },
+    {
+      "rank": 50,
+      "name": "AC Milan",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "offensive",
+      "league": "",
+      "matches": 13,
+      "bets": 13,
+      "wins": 11,
+      "wr": 84.6,
+      "roi": 31.2,
+      "pnl": 8.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          8.1
+        ],
+        [
+          "MC_PURE_60",
+          1.7
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -0.3
+        ]
+      ]
+    },
+    {
+      "rank": 51,
+      "name": "Verona",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 13,
+      "wins": 11,
+      "wr": 84.6,
+      "roi": 31.2,
+      "pnl": 8.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          8.1
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -0.6
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          -0.8
+        ]
+      ]
+    },
+    {
+      "rank": 52,
+      "name": "Eintracht Frankfurt",
+      "best_strategy": "QUANT_ROI_30",
+      "style": "balanced",
+      "league": "",
+      "matches": 17,
+      "bets": 13,
+      "wins": 9,
+      "wr": 69.2,
+      "roi": 24.6,
+      "pnl": 8.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          8.0
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          6.4
+        ],
+        [
+          "SCORE_HIGH_32",
+          5.9
+        ]
+      ]
+    },
+    {
+      "rank": 53,
+      "name": "Sunderland",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 12,
+      "bets": 12,
+      "wins": 8,
+      "wr": 66.7,
+      "roi": 33.3,
+      "pnl": 8.0,
+      "unlucky_pct": 0.0,
+      "bad_pct": 100.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          8.0
+        ],
+        [
+          "UNDER_35_PURE",
+          3.9
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.4
+        ]
+      ]
+    },
+    {
+      "rank": 54,
+      "name": "Wolverhampton Wanderers",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 12,
+      "wins": 8,
+      "wr": 66.7,
+      "roi": 33.3,
+      "pnl": 8.0,
+      "unlucky_pct": 0.0,
+      "bad_pct": 100.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          8.0
+        ],
+        [
+          "UNDER_35_PURE",
+          7.0
+        ],
+        [
+          "MC_PURE_60",
+          1.7
+        ]
+      ]
+    },
+    {
+      "rank": 55,
+      "name": "Wolverhampton",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "style": "defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 12,
+      "wins": 8,
+      "wr": 66.7,
+      "roi": 33.3,
+      "pnl": 8.0,
+      "unlucky_pct": 0.0,
+      "bad_pct": 100.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          8.0
+        ],
+        [
+          "UNDER_35_PURE",
+          7.0
+        ],
+        [
+          "LEAGUE_PREMIER",
+          -0.9
+        ]
+      ]
+    },
+    {
+      "rank": 56,
+      "name": "Le Havre",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 10,
+      "wins": 9,
+      "wr": 90.0,
+      "roi": 39.5,
+      "pnl": 7.9,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          7.9
+        ],
+        [
+          "MC_PURE_60",
+          -2.3
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -6.3
+        ]
+      ]
+    },
+    {
+      "rank": 57,
+      "name": "Nantes",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 10,
+      "wins": 9,
+      "wr": 90.0,
+      "roi": 39.5,
+      "pnl": 7.9,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          7.9
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          6.0
+        ],
+        [
+          "MC_PURE_65",
+          2.1
+        ]
+      ]
+    },
+    {
+      "rank": 58,
+      "name": "Wolfsburg",
+      "best_strategy": "COMBO_CONV_MC_SCORE",
+      "style": "defensive",
+      "league": "",
+      "matches": 11,
+      "bets": 7,
+      "wins": 5,
+      "wr": 71.4,
+      "roi": 32.1,
+      "pnl": 7.9,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "COMBO_CONV_MC_SCORE",
+          7.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          3.1
+        ],
+        [
+          "SCORE_GOOD_28",
+          3.1
+        ]
+      ]
+    },
+    {
+      "rank": 59,
+      "name": "VfL Wolfsburg",
+      "best_strategy": "COMBO_CONV_MC_SCORE",
+      "style": "balanced",
+      "league": "",
+      "matches": 11,
+      "bets": 7,
+      "wins": 5,
+      "wr": 71.4,
+      "roi": 32.1,
+      "pnl": 7.9,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "COMBO_CONV_MC_SCORE",
+          7.9
+        ],
+        [
+          "SCORE_GOOD_28",
+          5.6
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          3.1
+        ]
+      ]
+    },
+    {
+      "rank": 60,
+      "name": "AS Monaco",
+      "best_strategy": "MC_PURE_65",
+      "style": "balanced",
+      "league": "",
+      "matches": 17,
+      "bets": 8,
+      "wins": 6,
+      "wr": 75.0,
+      "roi": 38.8,
+      "pnl": 7.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "MC_PURE_65",
+          7.8
+        ],
+        [
+          "TOTAL_CHAOS",
+          7.8
+        ],
+        [
+          "MC_PURE_70",
+          7.2
+        ]
+      ]
+    },
+    {
+      "rank": 61,
+      "name": "Auxerre",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 7,
+      "wins": 7,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 7.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          7.7
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          4.0
+        ],
+        [
+          "MC_PURE_65",
+          2.1
+        ]
+      ]
+    },
+    {
+      "rank": 62,
+      "name": "FC St. Pauli",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 7,
+      "wins": 7,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 7.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          7.7
+        ],
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -0.6
+        ]
+      ]
+    },
+    {
+      "rank": 63,
+      "name": "Espanyol",
+      "best_strategy": "SCORE_HIGH_32",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 3,
+      "wins": 3,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 7.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_HIGH_32",
+          7.7
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          5.4
+        ],
+        [
+          "UNDER_35_PURE",
+          4.6
+        ]
+      ]
+    },
+    {
+      "rank": 64,
+      "name": "Monaco",
+      "best_strategy": "MC_PURE_70",
+      "style": "balanced",
+      "league": "",
+      "matches": 17,
+      "bets": 5,
+      "wins": 4,
+      "wr": 80.0,
+      "roi": 48.0,
+      "pnl": 7.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "MC_PURE_70",
+          7.2
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          6.4
+        ],
+        [
+          "SCORE_SNIPER_34",
+          5.6
+        ]
+      ]
+    },
+    {
+      "rank": 65,
+      "name": "Arsenal",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "offensive",
+      "league": "",
+      "matches": 18,
+      "bets": 15,
+      "wins": 12,
+      "wr": 80.0,
+      "roi": 24.0,
+      "pnl": 7.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          7.2
+        ],
+        [
+          "QUANT_ROI_30",
+          2.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          2.0
+        ]
+      ]
+    },
+    {
+      "rank": 66,
+      "name": "Athletic Club (MG)",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 19,
+      "bets": 12,
+      "wins": 10,
+      "wr": 83.3,
+      "roi": 29.2,
+      "pnl": 7.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          7.0
+        ],
+        [
+          "SCORE_SNIPER_34",
+          6.8
+        ],
+        [
+          "SCORE_HIGH_32",
+          5.1
+        ]
+      ]
+    },
+    {
+      "rank": 67,
+      "name": "Parma Calcio 1913",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 12,
+      "wins": 10,
+      "wr": 83.3,
+      "roi": 29.2,
+      "pnl": 7.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          7.0
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          0.0
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -0.3
+        ]
+      ]
+    },
+    {
+      "rank": 68,
+      "name": "Nottingham Forest",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 12,
+      "wins": 10,
+      "wr": 83.3,
+      "roi": 29.2,
+      "pnl": 7.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          7.0
+        ],
+        [
+          "MC_PURE_60",
+          3.1
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -1.2
+        ]
+      ]
+    },
+    {
+      "rank": 69,
+      "name": "Cagliari",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 12,
+      "wins": 10,
+      "wr": 83.3,
+      "roi": 29.2,
+      "pnl": 7.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          7.0
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          0.0
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -2.3
+        ]
+      ]
+    },
+    {
+      "rank": 70,
+      "name": "Parma",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 12,
+      "wins": 10,
+      "wr": 83.3,
+      "roi": 29.2,
+      "pnl": 7.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          7.0
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.7
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          0.0
+        ]
+      ]
+    },
+    {
+      "rank": 71,
+      "name": "Real Madrid",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "offensive",
+      "league": "",
+      "matches": 19,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 6.8,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          6.8
+        ],
+        [
+          "SCORE_GOOD_28",
+          5.2
+        ],
+        [
+          "SCORE_HIGH_32",
+          5.1
+        ]
+      ]
+    },
+    {
+      "rank": 72,
+      "name": "Ajax",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "defensive",
+      "league": "",
+      "matches": 5,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 6.8,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          6.8
+        ],
+        [
+          "SCORE_GOOD_28",
+          6.4
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          6.0
+        ]
+      ]
+    },
+    {
+      "rank": 73,
+      "name": "Alavés",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 6.8,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          6.8
+        ],
+        [
+          "UNDER_35_PURE",
+          6.8
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          6.0
+        ]
+      ]
+    },
+    {
+      "rank": 74,
+      "name": "Fiorentina",
+      "best_strategy": "MC_PURE_60",
+      "style": "defensive",
+      "league": "",
+      "matches": 14,
+      "bets": 4,
+      "wins": 4,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 6.8,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "MC_PURE_60",
+          6.8
+        ],
+        [
+          "UNDER_35_PURE",
+          5.0
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          2.6
+        ]
+      ]
+    },
+    {
+      "rank": 75,
+      "name": "Oviedo",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 13,
+      "bets": 9,
+      "wins": 8,
+      "wr": 88.9,
+      "roi": 37.8,
+      "pnl": 6.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          6.8
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          6.0
+        ],
+        [
+          "SCORE_GOOD_28",
+          4.2
+        ]
+      ]
+    },
+    {
+      "rank": 76,
+      "name": "Real Oviedo",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 9,
+      "wins": 8,
+      "wr": 88.9,
+      "roi": 37.8,
+      "pnl": 6.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          6.8
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          6.0
+        ],
+        [
+          "SCORE_GOOD_28",
+          4.2
+        ]
+      ]
+    },
+    {
+      "rank": 77,
+      "name": "Burnley",
+      "best_strategy": "SCORE_HIGH_32",
+      "style": "defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 7,
+      "wins": 5,
+      "wr": 71.4,
+      "roi": 32.1,
+      "pnl": 6.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "SCORE_HIGH_32",
+          6.8
+        ],
+        [
+          "MC_NO_CLASH",
+          6.4
+        ],
+        [
+          "SCORE_SNIPER_34",
+          5.6
+        ]
+      ]
+    },
+    {
+      "rank": 78,
+      "name": "St. Pauli",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 6,
+      "wins": 6,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 6.6,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          6.6
+        ],
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -0.6
+        ]
+      ]
+    },
+    {
+      "rank": 79,
+      "name": "Real Sociedad",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "balanced",
+      "league": "",
+      "matches": 13,
+      "bets": 6,
+      "wins": 5,
+      "wr": 83.3,
+      "roi": 54.2,
+      "pnl": 6.5,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          6.5
+        ],
+        [
+          "MC_PURE_60",
+          3.4
+        ],
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ]
+      ]
+    },
+    {
+      "rank": 80,
+      "name": "Cremonese",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "style": "balanced",
+      "league": "",
+      "matches": 13,
+      "bets": 13,
+      "wins": 9,
+      "wr": 69.2,
+      "roi": 24.6,
+      "pnl": 6.4,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          6.4
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          4.5
+        ],
+        [
+          "MC_PURE_60",
+          3.1
+        ]
+      ]
+    },
+    {
+      "rank": 81,
+      "name": "Remo",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "style": "balanced",
+      "league": "",
+      "matches": 13,
+      "bets": 13,
+      "wins": 9,
+      "wr": 69.2,
+      "roi": 24.6,
+      "pnl": 6.4,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          6.4
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          4.5
+        ],
+        [
+          "UNDER_35_PURE",
+          2.8
+        ]
+      ]
+    },
+    {
+      "rank": 82,
+      "name": "Hoffenheim",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "offensive",
+      "league": "",
+      "matches": 11,
+      "bets": 3,
+      "wins": 3,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 6.4,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          6.4
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          6.0
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          4.2
+        ]
+      ]
+    },
+    {
+      "rank": 83,
+      "name": "Toulouse",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "balanced",
+      "league": "",
+      "matches": 13,
+      "bets": 4,
+      "wins": 3,
+      "wr": 75.0,
+      "roi": 38.8,
+      "pnl": 6.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          6.2
+        ],
+        [
+          "UNDER_35_PURE",
+          4.6
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          3.5
+        ]
+      ]
+    },
+    {
+      "rank": 84,
+      "name": "Crystal Palace",
+      "best_strategy": "MC_PURE_65",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 12,
+      "bets": 5,
+      "wins": 4,
+      "wr": 80.0,
+      "roi": 48.0,
+      "pnl": 6.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "MC_PURE_65",
+          6.0
+        ],
+        [
+          "TOTAL_CHAOS",
+          6.0
+        ],
+        [
+          "MC_PURE_60",
+          4.2
+        ]
+      ]
+    },
+    {
+      "rank": 85,
+      "name": "Real Betis",
+      "best_strategy": "COMBO_CONV_MC_SCORE",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 13,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 6.0,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "COMBO_CONV_MC_SCORE",
+          6.0
+        ],
+        [
+          "SCORE_GOOD_28",
+          4.2
+        ],
+        [
+          "UNDER_35_PURE",
+          3.7
+        ]
+      ]
+    },
+    {
+      "rank": 86,
+      "name": "Bologna",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "offensive",
+      "league": "",
+      "matches": 13,
+      "bets": 10,
+      "wins": 7,
+      "wr": 70.0,
+      "roi": 29.5,
+      "pnl": 5.9,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          5.9
+        ],
+        [
+          "MC_PURE_60",
+          4.8
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 87,
+      "name": "Valencia",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 8,
+      "wins": 7,
+      "wr": 87.5,
+      "roi": 35.6,
+      "pnl": 5.7,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          5.7
+        ],
+        [
+          "SCORE_GOOD_28",
+          4.2
+        ],
+        [
+          "MC_NO_CLASH",
+          2.1
+        ]
+      ]
+    },
+    {
+      "rank": 88,
+      "name": "Mallorca",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 7,
+      "wins": 5,
+      "wr": 71.4,
+      "roi": 32.1,
+      "pnl": 5.6,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          5.6
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          4.8
+        ],
+        [
+          "MC_PURE_60",
+          3.1
+        ]
+      ]
+    },
+    {
+      "rank": 89,
+      "name": "SC Freiburg",
+      "best_strategy": "LEAGUE_BUNDESLIGA",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 7,
+      "wins": 5,
+      "wr": 71.4,
+      "roi": 32.1,
+      "pnl": 5.6,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LEAGUE_BUNDESLIGA",
+          5.6
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          4.2
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          3.5
+        ]
+      ]
+    },
+    {
+      "rank": 90,
+      "name": "Girona",
+      "best_strategy": "MC_PURE_70",
+      "style": "defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 5.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "MC_PURE_70",
+          5.1
+        ],
+        [
+          "SCORE_HIGH_32",
+          5.1
+        ],
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ]
+      ]
+    },
+    {
+      "rank": 91,
+      "name": "Levante",
+      "best_strategy": "MC_PURE_70",
+      "style": "defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 5.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "MC_PURE_70",
+          5.1
+        ],
+        [
+          "SCORE_HIGH_32",
+          5.1
+        ],
+        [
+          "MC_NO_CLASH",
+          4.2
+        ]
+      ]
+    },
+    {
+      "rank": 92,
+      "name": "Borussia Dortmund",
+      "best_strategy": "LEAGUE_CHAMPIONS",
+      "style": "offensive",
+      "league": "",
+      "matches": 16,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 5.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "LEAGUE_CHAMPIONS",
+          5.1
+        ],
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ],
+        [
+          "MC_PURE_60",
+          1.4
+        ]
+      ]
+    },
+    {
+      "rank": 93,
+      "name": "Elche",
+      "best_strategy": "MC_PURE_60",
+      "style": "balanced",
+      "league": "",
+      "matches": 13,
+      "bets": 3,
+      "wins": 3,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 5.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "MC_PURE_60",
+          5.1
+        ],
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          3.0
+        ]
+      ]
+    },
+    {
+      "rank": 94,
+      "name": "Portugal",
+      "best_strategy": "LEAGUE_CHAMPIONS",
+      "style": "balanced",
+      "league": "",
+      "matches": 5,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 5.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "LEAGUE_CHAMPIONS",
+          5.1
+        ],
+        [
+          "UNDER_35_PURE",
+          4.4
+        ],
+        [
+          "SCORE_GOOD_28",
+          4.2
+        ]
+      ]
+    },
+    {
+      "rank": 95,
+      "name": "Union Berlin",
+      "best_strategy": "SCORE_HIGH_32",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 5.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_HIGH_32",
+          5.1
+        ],
+        [
+          "UNDER_35_PURE",
+          4.6
+        ],
+        [
+          "SCORE_GOOD_28",
+          3.5
+        ]
+      ]
+    },
+    {
+      "rank": 96,
+      "name": "Lecce",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 13,
+      "wins": 10,
+      "wr": 76.9,
+      "roi": 19.2,
+      "pnl": 5.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          5.0
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          2.0
+        ]
+      ]
+    },
+    {
+      "rank": 97,
+      "name": "Juventus",
+      "best_strategy": "QUANT_ROI_30",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 18,
+      "bets": 18,
+      "wins": 10,
+      "wr": 55.6,
+      "roi": 11.1,
+      "pnl": 5.0,
+      "unlucky_pct": 0.0,
+      "bad_pct": 100.0,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          5.0
+        ],
+        [
+          "UNDER_35_PURE",
+          4.3
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          4.0
+        ]
+      ]
+    },
+    {
+      "rank": 98,
+      "name": "1. FC Köln",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 5,
+      "wins": 4,
+      "wr": 80.0,
+      "roi": 48.0,
+      "pnl": 4.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          4.8
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          0.5
+        ],
+        [
+          "SCORE_SNIPER_34",
+          -0.6
+        ]
+      ]
+    },
+    {
+      "rank": 99,
+      "name": "Sassuolo",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 11,
+      "bets": 10,
+      "wins": 8,
+      "wr": 80.0,
+      "roi": 24.0,
+      "pnl": 4.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          4.8
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          3.0
+        ],
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ]
+      ]
+    },
+    {
+      "rank": 100,
+      "name": "Angers",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 10,
+      "wins": 8,
+      "wr": 80.0,
+      "roi": 24.0,
+      "pnl": 4.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          4.8
+        ],
+        [
+          "SCORE_GOOD_28",
+          -0.4
+        ],
+        [
+          "SCORE_HIGH_32",
+          -0.4
+        ]
+      ]
+    },
+    {
+      "rank": 101,
+      "name": "Werder Bremen",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 7,
+      "wins": 6,
+      "wr": 85.7,
+      "roi": 32.9,
+      "pnl": 4.6,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          4.6
+        ],
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ],
+        [
+          "SCORE_HIGH_32",
+          2.6
+        ]
+      ]
+    },
+    {
+      "rank": 102,
+      "name": "West Ham",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 4,
+      "wins": 4,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 4.4,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          4.4
+        ],
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 103,
+      "name": "PSV Eindhoven",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "offensive",
+      "league": "",
+      "matches": 5,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 4.2,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          4.2
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          3.4
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          3.4
+        ]
+      ]
+    },
+    {
+      "rank": 104,
+      "name": "Union Saint-Gilloise",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "defensive",
+      "league": "",
+      "matches": 5,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 4.2,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          4.2
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.4
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.4
+        ]
+      ]
+    },
+    {
+      "rank": 105,
+      "name": "Torino",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 4.2,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          4.2
+        ],
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          3.0
+        ]
+      ]
+    },
+    {
+      "rank": 106,
+      "name": "Freiburg",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 9,
+      "wins": 6,
+      "wr": 66.7,
+      "roi": 23.3,
+      "pnl": 4.2,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          4.2
+        ],
+        [
+          "LEAGUE_BUNDESLIGA",
+          3.5
+        ],
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ]
+      ]
+    },
+    {
+      "rank": 107,
+      "name": "Hamburger SV",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 11,
+      "bets": 9,
+      "wins": 7,
+      "wr": 77.8,
+      "roi": 20.6,
+      "pnl": 3.7,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          3.7
+        ],
+        [
+          "LEAGUE_BUNDESLIGA",
+          2.8
+        ],
+        [
+          "MC_PURE_60",
+          -4.0
+        ]
+      ]
+    },
+    {
+      "rank": 108,
+      "name": "Elche CF",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 3.4,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ],
+        [
+          "MC_PURE_60",
+          3.1
+        ],
+        [
+          "SCORE_HIGH_32",
+          2.6
+        ]
+      ]
+    },
+    {
+      "rank": 109,
+      "name": "Galatasaray",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "balanced",
+      "league": "",
+      "matches": 5,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 3.4,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ],
+        [
+          "SCORE_HIGH_32",
+          2.6
+        ],
+        [
+          "SCORE_GOOD_28",
+          1.8
+        ]
+      ]
+    },
+    {
+      "rank": 110,
+      "name": "FC Porto",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 3.4,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ],
+        [
+          "COMBO_CONV_MC_SCORE",
+          3.0
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          2.6
+        ]
+      ]
+    },
+    {
+      "rank": 111,
+      "name": "West Ham United",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 3.4,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ],
+        [
+          "UNDER_35_PURE",
+          3.3
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 112,
+      "name": "RB Leipzig",
+      "best_strategy": "SCORE_SNIPER_34",
+      "style": "offensive",
+      "league": "",
+      "matches": 12,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 3.4,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_SNIPER_34",
+          3.4
+        ],
+        [
+          "SCORE_HIGH_32",
+          2.6
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 113,
+      "name": "Benfica",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "defensive",
+      "league": "",
+      "matches": 5,
+      "bets": 3,
+      "wins": 3,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 3.3,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          3.3
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          -0.4
+        ],
+        [
+          "LEAGUE_CHAMPIONS",
+          -0.4
+        ]
+      ]
+    },
+    {
+      "rank": 114,
+      "name": "FSV Mainz 05",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "balanced",
+      "league": "",
+      "matches": 12,
+      "bets": 4,
+      "wins": 3,
+      "wr": 75.0,
+      "roi": 38.8,
+      "pnl": 3.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          3.1
+        ],
+        [
+          "LEAGUE_BUNDESLIGA",
+          -1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -1.2
+        ]
+      ]
+    },
+    {
+      "rank": 115,
+      "name": "Mainz 05",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "defensive",
+      "league": "",
+      "matches": 12,
+      "bets": 4,
+      "wins": 3,
+      "wr": 75.0,
+      "roi": 38.8,
+      "pnl": 3.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          3.1
+        ],
+        [
+          "LEAGUE_BUNDESLIGA",
+          1.0
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          -1.1
+        ]
+      ]
+    },
+    {
+      "rank": 116,
+      "name": "Bodø/Glimt",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 5,
+      "bets": 4,
+      "wins": 3,
+      "wr": 75.0,
+      "roi": 38.8,
+      "pnl": 3.1,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          3.1
+        ],
+        [
+          "MC_PURE_60",
+          -2.0
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          -2.5
+        ]
+      ]
+    },
+    {
+      "rank": 117,
+      "name": "Porto",
+      "best_strategy": "COMBO_CONV_MC_SCORE",
+      "style": "offensive",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 3.0,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "COMBO_CONV_MC_SCORE",
+          3.0
+        ],
+        [
+          "SCORE_HIGH_32",
+          2.6
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          2.1
+        ]
+      ]
+    },
+    {
+      "rank": 118,
+      "name": "Udinese",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 11,
+      "bets": 11,
+      "wins": 8,
+      "wr": 72.7,
+      "roi": 12.7,
+      "pnl": 2.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          2.8
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.4
+        ]
+      ]
+    },
+    {
+      "rank": 119,
+      "name": "Slavia Praha",
+      "best_strategy": "LEAGUE_CHAMPIONS",
+      "style": "balanced",
+      "league": "",
+      "matches": 5,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 2.6,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "LEAGUE_CHAMPIONS",
+          2.6
+        ],
+        [
+          "UNDER_35_PURE",
+          2.4
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 120,
+      "name": "Celtic",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 2.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.7
+        ]
+      ]
+    },
+    {
+      "rank": 121,
+      "name": "KRC Genk",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "offensive",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 2.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.7
+        ]
+      ]
+    },
+    {
+      "rank": 122,
+      "name": "Genk",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 2.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.7
+        ]
+      ]
+    },
+    {
+      "rank": 123,
+      "name": "Feyenoord",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "offensive",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 2.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.7
+        ]
+      ]
+    },
+    {
+      "rank": 124,
+      "name": "Celta Vigo",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 2.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ],
+        [
+          "QUANT_ROI_30",
+          2.0
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ]
+      ]
+    },
+    {
+      "rank": 125,
+      "name": "PFC Ludogorets Razgrad",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "offensive",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 2.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 126,
+      "name": "FC Basel",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 2.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.7
+        ]
+      ]
+    },
+    {
+      "rank": 127,
+      "name": "Maccabi Tel Aviv",
+      "best_strategy": "SCORE_GOOD_28",
+      "style": "offensive",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 2.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "SCORE_GOOD_28",
+          2.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 128,
+      "name": "Panathinaikos",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 129,
+      "name": "Raków Częstochowa",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 130,
+      "name": "Panathinaikos FC",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "offensive",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 131,
+      "name": "BSC Young Boys",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 132,
+      "name": "Osasuna",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "balanced",
+      "league": "",
+      "matches": 13,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          -0.3
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 133,
+      "name": "FC Midtjylland",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 134,
+      "name": "SK Sturm Graz",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 135,
+      "name": "CA Osasuna",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "balanced_defensive",
+      "league": "",
+      "matches": 13,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          -0.3
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 136,
+      "name": "Breiðablik",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 137,
+      "name": "Young Boys",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 138,
+      "name": "Rapid Wien",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 139,
+      "name": "Go Ahead Eagles",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 140,
+      "name": "Dinamo Zagreb",
+      "best_strategy": "MC_PURE_60",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "MC_PURE_60",
+          1.7
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 141,
+      "name": "Samsunspor",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 142,
+      "name": "FC Utrecht",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 143,
+      "name": "Sturm Graz",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 85.0,
+      "pnl": 1.7,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          1.7
+        ],
+        [
+          "UNDER_35_PURE",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 144,
+      "name": "PAOK",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "offensive",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 145,
+      "name": "SK Brann",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 146,
+      "name": "Red Star Belgrade",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 147,
+      "name": "AEK Athens",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 148,
+      "name": "Rangers FC",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "offensive",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 149,
+      "name": "Fenerbahce",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "offensive",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 150,
+      "name": "Malmo FF",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ]
+      ]
+    },
+    {
+      "rank": 151,
+      "name": "Rangers",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 152,
+      "name": "FC Drita",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 153,
+      "name": "Jagiellonia Białystok",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 154,
+      "name": "Ferencváros TC",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 155,
+      "name": "FC Noah",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 156,
+      "name": "PAOK Thessaloniki",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 157,
+      "name": "HNK Rijeka",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 158,
+      "name": "KF Shkëndija",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 159,
+      "name": "Viktoria Plzeň",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ],
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 160,
+      "name": "FCSB",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 161,
+      "name": "KuPS Kuopio",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 162,
+      "name": "SC Braga",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 163,
+      "name": "Red Star",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 164,
+      "name": "AEK Larnaca",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 165,
+      "name": "Lech Poznań",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 166,
+      "name": "FC Lausanne-Sport",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 167,
+      "name": "Aberdeen",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 168,
+      "name": "Braga",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "roi": 55.0,
+      "pnl": 1.1,
+      "unlucky_pct": 0,
+      "bad_pct": 0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 169,
+      "name": "Napoli",
+      "best_strategy": "LOW_CONFIDENCE_PARADOX",
+      "style": "balanced_offensive",
+      "league": "",
+      "matches": 18,
+      "bets": 7,
+      "wins": 4,
+      "wr": 57.1,
+      "roi": 5.7,
+      "pnl": 0.8,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "LOW_CONFIDENCE_PARADOX",
+          0.8
+        ],
+        [
+          "UNDER_35_PURE",
+          0.1
+        ],
+        [
+          "MC_PURE_60",
+          -0.3
+        ]
+      ]
+    },
+    {
+      "rank": 170,
+      "name": "Salzburg",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 0,
+      "wr": 0.0,
+      "roi": -100.0,
+      "pnl": -2.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 171,
+      "name": "RB Salzburg",
+      "best_strategy": "UNDER_35_PURE",
+      "style": "balanced",
+      "league": "",
+      "matches": 1,
+      "bets": 1,
+      "wins": 0,
+      "wr": 0.0,
+      "roi": -100.0,
+      "pnl": -2.0,
+      "unlucky_pct": 100.0,
+      "bad_pct": 0.0,
+      "top3": [
+        [
+          "UNDER_35_PURE",
+          -2.0
+        ]
+      ]
+    }
+  ]
+}

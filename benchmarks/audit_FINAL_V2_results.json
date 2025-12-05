@@ -1,0 +1,1269 @@
+{
+  "date": "2025-12-05T19:02:04.456604",
+  "summary": {
+    "total_bets": 73383,
+    "total_wins": 39056,
+    "total_profit": -22398.9898,
+    "teams": 245
+  },
+  "strategies": {
+    "CONVERGENCE_XG_HIGH": {
+      "bets": 1206,
+      "wins": 700,
+      "wr": 58.043117744610285,
+      "pnl": -590.6676000000006
+    },
+    "CONVERGENCE_XG_MEDIUM": {
+      "bets": 2534,
+      "wins": 1376,
+      "wr": 54.30149960536701,
+      "pnl": -869.8899999999992
+    },
+    "PROB_HIGH_40": {
+      "bets": 3366,
+      "wins": 1934,
+      "wr": 57.45692216280452,
+      "pnl": -903.4398000000022
+    },
+    "PROB_MEDIUM_30": {
+      "bets": 3708,
+      "wins": 2068,
+      "wr": 55.77130528586839,
+      "pnl": -649.4848000000004
+    },
+    "PROB_LOW_25": {
+      "bets": 4032,
+      "wins": 2154,
+      "wr": 53.422619047619044,
+      "pnl": -734.5648000000001
+    },
+    "DIAMOND_SNIPER_30": {
+      "bets": 2886,
+      "wins": 1642,
+      "wr": 56.8953568953569,
+      "pnl": -1707.787999999999
+    },
+    "DIAMOND_HIGH_25": {
+      "bets": 3072,
+      "wins": 1714,
+      "wr": 55.794270833333336,
+      "pnl": -1447.1538000000023
+    },
+    "DIAMOND_GOOD_20": {
+      "bets": 3268,
+      "wins": 1798,
+      "wr": 55.01835985312118,
+      "pnl": -1305.9114999999983
+    },
+    "DIAMOND_MEDIUM_15": {
+      "bets": 3518,
+      "wins": 1894,
+      "wr": 53.83740761796475,
+      "pnl": -1174.5691999999992
+    },
+    "QUANT_BEST_MARKET": {
+      "bets": 929,
+      "wins": 506,
+      "wr": 54.467168998923576,
+      "pnl": 293.4268000000003
+    },
+    "QUANT_ROI_25": {
+      "bets": 202,
+      "wins": 112,
+      "wr": 55.44554455445545,
+      "pnl": 160.7999999999999
+    },
+    "QUANT_ROI_30": {
+      "bets": 78,
+      "wins": 46,
+      "wr": 58.97435897435898,
+      "pnl": 89.44000000000003
+    },
+    "QUANT_ROI_40": {
+      "bets": 32,
+      "wins": 20,
+      "wr": 62.5,
+      "pnl": 55.67999999999999
+    },
+    "QUANT_ROI_50": {
+      "bets": 32,
+      "wins": 20,
+      "wr": 62.5,
+      "pnl": 55.67999999999999
+    },
+    "XG_SNIPER_4": {
+      "bets": 188,
+      "wins": 98,
+      "wr": 52.12765957446809,
+      "pnl": -202.9512
+    },
+    "XG_HIGH_35": {
+      "bets": 782,
+      "wins": 402,
+      "wr": 51.406649616368284,
+      "pnl": -493.60500000000036
+    },
+    "XG_GOOD_3": {
+      "bets": 1772,
+      "wins": 920,
+      "wr": 51.91873589164786,
+      "pnl": -727.3229999999993
+    },
+    "XG_MEDIUM_25": {
+      "bets": 3400,
+      "wins": 1724,
+      "wr": 50.70588235294118,
+      "pnl": -1082.81
+    },
+    "STYLE_OFFENSIVE": {
+      "bets": 1316,
+      "wins": 651,
+      "wr": 49.46808510638298,
+      "pnl": -390.36879999999996
+    },
+    "STYLE_BALANCED_OFFENSIVE": {
+      "bets": 3164,
+      "wins": 1605,
+      "wr": 50.72692793931732,
+      "pnl": -863.1186000000002
+    },
+    "MARKET_OVER25": {
+      "bets": 438,
+      "wins": 240,
+      "wr": 54.794520547945204,
+      "pnl": -36.37119999999998
+    },
+    "MARKET_UNDER25": {
+      "bets": 448,
+      "wins": 202,
+      "wr": 45.089285714285715,
+      "pnl": -104.19840000000005
+    },
+    "MARKET_BTTS": {
+      "bets": 742,
+      "wins": 366,
+      "wr": 49.32614555256065,
+      "pnl": -24.200000000000074
+    },
+    "MARKET_HOME": {
+      "bets": 432,
+      "wins": 198,
+      "wr": 45.83333333333333,
+      "pnl": -85.80000000000018
+    },
+    "MARKET_AWAY": {
+      "bets": 318,
+      "wins": 86,
+      "wr": 27.044025157232703,
+      "pnl": -130.44000000000003
+    },
+    "LEAGUE_TOP": {
+      "bets": 222,
+      "wins": 112,
+      "wr": 50.45045045045045,
+      "pnl": -107.04440000000002
+    },
+    "LEAGUE_TIER1": {
+      "bets": 324,
+      "wins": 136,
+      "wr": 41.9753086419753,
+      "pnl": -282.33600000000007
+    },
+    "LEAGUE_TIER2": {
+      "bets": 1178,
+      "wins": 560,
+      "wr": 47.53820033955857,
+      "pnl": -922.6891999999998
+    },
+    "UNDER_35_PURE": {
+      "bets": 502,
+      "wins": 242,
+      "wr": 48.20717131474104,
+      "pnl": -203.45040000000006
+    },
+    "OVER_15_SAFE": {
+      "bets": 530,
+      "wins": 292,
+      "wr": 55.094339622641506,
+      "pnl": -178.79119999999998
+    },
+    "BTTS_NO_PURE": {
+      "bets": 324,
+      "wins": 136,
+      "wr": 41.9753086419753,
+      "pnl": 29.880000000000067
+    },
+    "VALUE_STRONG": {
+      "bets": 318,
+      "wins": 194,
+      "wr": 61.0062893081761,
+      "pnl": 107.58239999999998
+    },
+    "VALUE_GOOD": {
+      "bets": 544,
+      "wins": 282,
+      "wr": 51.83823529411765,
+      "pnl": -41.5
+    },
+    "VALUE_MARGINAL": {
+      "bets": 3064,
+      "wins": 1694,
+      "wr": 55.287206266318535,
+      "pnl": -1036.1691999999994
+    },
+    "EDGE_POSITIVE": {
+      "bets": 2538,
+      "wins": 1200,
+      "wr": 47.28132387706856,
+      "pnl": -462.82480000000066
+    },
+    "EDGE_HIGH_5": {
+      "bets": 1790,
+      "wins": 834,
+      "wr": 46.59217877094972,
+      "pnl": -437.64000000000067
+    },
+    "EDGE_MEDIUM_0": {
+      "bets": 2986,
+      "wins": 1432,
+      "wr": 47.95713328868051,
+      "pnl": -1246.8248000000008
+    },
+    "COMBO_DIAMOND_XG": {
+      "bets": 1206,
+      "wins": 700,
+      "wr": 58.043117744610285,
+      "pnl": -393.7784000000001
+    },
+    "COMBO_PROB_VALUE": {
+      "bets": 2262,
+      "wins": 1166,
+      "wr": 51.5473032714412,
+      "pnl": -219.82480000000015
+    },
+    "TRIPLE_VALIDATION": {
+      "bets": 2166,
+      "wins": 1218,
+      "wr": 56.232686980609415,
+      "pnl": -442.09000000000003
+    },
+    "TIER_1_SNIPER": {
+      "bets": 394,
+      "wins": 260,
+      "wr": 65.98984771573603,
+      "pnl": -83.08000000000001
+    },
+    "TIER_2_ELITE": {
+      "bets": 1124,
+      "wins": 670,
+      "wr": 59.60854092526691,
+      "pnl": -526.3476000000004
+    },
+    "TIER_3_GOLD": {
+      "bets": 2388,
+      "wins": 1316,
+      "wr": 55.10887772194305,
+      "pnl": -1010.6124999999988
+    },
+    "TIER_4_STANDARD": {
+      "bets": 4384,
+      "wins": 2242,
+      "wr": 51.1405109489051,
+      "pnl": -1387.4892
+    },
+    "ULTIMATE_SNIPER": {
+      "bets": 294,
+      "wins": 192,
+      "wr": 65.3061224489796,
+      "pnl": 49.36880000000005
+    },
+    "ULTIMATE_HYBRID": {
+      "bets": 2982,
+      "wins": 1702,
+      "wr": 57.075788061703555,
+      "pnl": -733.6995999999995
+    }
+  },
+  "teams": {
+    "Samsunspor": {
+      "best": "EDGE_POSITIVE",
+      "pnl": 22.5
+    },
+    "Alanyaspor": {
+      "best": "MARKET_UNDER25",
+      "pnl": 5.54
+    },
+    "Athletic Bilbao": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 6.28
+    },
+    "Real Madrid": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 14.969999999999999
+    },
+    "Brighton and Hove Albion": {
+      "best": "MARKET_AWAY",
+      "pnl": 7.640000000000001
+    },
+    "Aston Villa": {
+      "best": "MARKET_OVER25",
+      "pnl": 3.1275999999999997
+    },
+    "Birmingham City": {
+      "best": "MARKET_OVER25",
+      "pnl": 4.16
+    },
+    "Watford": {
+      "best": "MARKET_OVER25",
+      "pnl": 4.16
+    },
+    "Wolverhampton Wanderers": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 8.07
+    },
+    "Nottingham Forest": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 17.459999999999997
+    },
+    "Liverpool": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 13.44
+    },
+    "Sunderland": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 46.61999999999999
+    },
+    "Bologna": {
+      "best": "VALUE_GOOD",
+      "pnl": 24.125000000000004
+    },
+    "Cremonese": {
+      "best": "MARKET_AWAY",
+      "pnl": 22.0
+    },
+    "Rayo Vallecano": {
+      "best": "MARKET_UNDER25",
+      "pnl": 4.68
+    },
+    "Valencia": {
+      "best": "MARKET_UNDER25",
+      "pnl": 4.68
+    },
+    "Arsenal": {
+      "best": "CONVERGENCE_XG_HIGH",
+      "pnl": 5.550000000000001
+    },
+    "Brentford": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 18.080000000000002
+    },
+    "Bournemouth": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 29.400000000000002
+    },
+    "Everton": {
+      "best": "MARKET_AWAY",
+      "pnl": 13.3
+    },
+    "Burnley": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 18.16
+    },
+    "Crystal Palace": {
+      "best": "MARKET_AWAY",
+      "pnl": 5.16
+    },
+    "Blackburn Rovers": {
+      "best": "MARKET_UNDER25",
+      "pnl": 3.36
+    },
+    "Ipswich Town": {
+      "best": "MARKET_UNDER25",
+      "pnl": 3.36
+    },
+    "Leeds United": {
+      "best": "MARKET_HOME",
+      "pnl": 6.5
+    },
+    "Chelsea": {
+      "best": "MARKET_HOME",
+      "pnl": 4.0
+    },
+    "Fenerbahce": {
+      "best": "MARKET_UNDER25",
+      "pnl": 12.46
+    },
+    "Galatasaray": {
+      "best": "MARKET_UNDER25",
+      "pnl": 4.8
+    },
+    "Fulham": {
+      "best": "MARKET_AWAY",
+      "pnl": 7.46
+    },
+    "Manchester City": {
+      "best": "OVER_15_SAFE",
+      "pnl": 4.92
+    },
+    "Newcastle United": {
+      "best": "MARKET_OVER25",
+      "pnl": 5.04
+    },
+    "Tottenham Hotspur": {
+      "best": "MARKET_OVER25",
+      "pnl": 4.8
+    },
+    "Arouca": {
+      "best": "MARKET_OVER25",
+      "pnl": 5.18
+    },
+    "Braga": {
+      "best": "MARKET_OVER25",
+      "pnl": 5.18
+    },
+    "Barcelona": {
+      "best": "OVER_15_SAFE",
+      "pnl": 8.4
+    },
+    "Atl\u00e9tico Madrid": {
+      "best": "TIER_1_SNIPER",
+      "pnl": 16.48
+    },
+    "FC Porto": {
+      "best": "MARKET_UNDER25",
+      "pnl": 2.72
+    },
+    "Estoril": {
+      "best": "MARKET_UNDER25",
+      "pnl": 2.72
+    },
+    "Celta Vigo": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 57.78
+    },
+    "Espanyol": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 12.09
+    },
+    "Ajax": {
+      "best": "MARKET_UNDER25",
+      "pnl": 2.44
+    },
+    "Groningen": {
+      "best": "MARKET_UNDER25",
+      "pnl": 2.44
+    },
+    "Lorient": {
+      "best": "ULTIMATE_SNIPER",
+      "pnl": 16.84
+    },
+    "Nice": {
+      "best": "ULTIMATE_SNIPER",
+      "pnl": 16.84
+    },
+    "Fatih Karag\u00fcmr\u00fck": {
+      "best": "MARKET_UNDER25",
+      "pnl": 2.6
+    },
+    "Besiktas JK": {
+      "best": "MARKET_UNDER25",
+      "pnl": 2.6
+    },
+    "Girona": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 22.199999999999996
+    },
+    "Anderlecht": {
+      "best": "EDGE_POSITIVE",
+      "pnl": 5.319999999999999
+    },
+    "Union Saint-Gilloise": {
+      "best": "EDGE_POSITIVE",
+      "pnl": 5.319999999999999
+    },
+    "SC Freiburg": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 21.330000000000002
+    },
+    "FSV Mainz 05": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 7.12
+    },
+    "AS Roma": {
+      "best": "TIER_1_SNIPER",
+      "pnl": 6.719999999999999
+    },
+    "Napoli": {
+      "best": "MARKET_AWAY",
+      "pnl": 4.5
+    },
+    "Atalanta BC": {
+      "best": "VALUE_GOOD",
+      "pnl": 3.4749999999999996
+    },
+    "Fiorentina": {
+      "best": "VALUE_GOOD",
+      "pnl": 3.4749999999999996
+    },
+    "Gent": {
+      "best": "VALUE_GOOD",
+      "pnl": 1.5
+    },
+    "Sint Truiden": {
+      "best": "VALUE_GOOD",
+      "pnl": 1.5
+    },
+    "Eintracht Frankfurt": {
+      "best": "MARKET_UNDER25",
+      "pnl": 6.675000000000001
+    },
+    "VfL Wolfsburg": {
+      "best": "MARKET_UNDER25",
+      "pnl": 6.675000000000001
+    },
+    "Angers": {
+      "best": "MARKET_OVER25",
+      "pnl": 1.62
+    },
+    "RC Lens": {
+      "best": "MARKET_OVER25",
+      "pnl": 1.62
+    },
+    "Lyon": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 13.64
+    },
+    "Nantes": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 3.22
+    },
+    "Sporting Lisbon": {
+      "best": "PROB_HIGH_40",
+      "pnl": 6.308400000000001
+    },
+    "CF Estrela": {
+      "best": "PROB_HIGH_40",
+      "pnl": 6.308400000000001
+    },
+    "Le Havre": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 2.56
+    },
+    "Lille": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 15.8
+    },
+    "Real Sociedad": {
+      "best": "MARKET_OVER25",
+      "pnl": 3.62
+    },
+    "Villarreal": {
+      "best": "MARKET_OVER25",
+      "pnl": 3.62
+    },
+    "Hamburger SV": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 7.5
+    },
+    "VfB Stuttgart": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 12.66
+    },
+    "Sevilla": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 3.8600000000000003
+    },
+    "Real Betis": {
+      "best": "MARKET_OVER25",
+      "pnl": 1.3594000000000004
+    },
+    "Club Brugge": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 9.899999999999999
+    },
+    "Royal Antwerp": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 9.899999999999999
+    },
+    "Antalyaspor": {
+      "best": "MARKET_OVER25",
+      "pnl": 2.48
+    },
+    "Goztepe": {
+      "best": "MARKET_OVER25",
+      "pnl": 2.48
+    },
+    "Go Ahead Eagles": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 16.66
+    },
+    "FC Utrecht": {
+      "best": "MARKET_OVER25",
+      "pnl": 7.7706
+    },
+    "Genk": {
+      "best": "MARKET_OVER25",
+      "pnl": 1.52
+    },
+    "Leuven": {
+      "best": "MARKET_OVER25",
+      "pnl": 1.52
+    },
+    "FC Twente Enschede": {
+      "best": "MARKET_UNDER25",
+      "pnl": 5.3666
+    },
+    "AZ Alkmaar": {
+      "best": "MARKET_UNDER25",
+      "pnl": 5.3666
+    },
+    "Pisa": {
+      "best": "COMBO_PROB_VALUE",
+      "pnl": 5.3708
+    },
+    "Inter Milan": {
+      "best": "COMBO_PROB_VALUE",
+      "pnl": 5.3708
+    },
+    "SC Telstar": {
+      "best": "MARKET_OVER25",
+      "pnl": 0.88
+    },
+    "Feyenoord": {
+      "best": "MARKET_AWAY",
+      "pnl": 22.6
+    },
+    "Strasbourg": {
+      "best": "MARKET_AWAY",
+      "pnl": 6.46
+    },
+    "Brest": {
+      "best": "MARKET_AWAY",
+      "pnl": 6.46
+    },
+    "West Ham United": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 5.26
+    },
+    "Rio Ave FC": {
+      "best": "MARKET_UNDER25",
+      "pnl": 1.12
+    },
+    "Santa Clara": {
+      "best": "MARKET_UNDER25",
+      "pnl": 1.12
+    },
+    "PSV Eindhoven": {
+      "best": "MARKET_OVER25",
+      "pnl": 0.6
+    },
+    "FC Volendam": {
+      "best": "MARKET_OVER25",
+      "pnl": 0.6
+    },
+    "Lecce": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 13.0
+    },
+    "Torino": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 13.0
+    },
+    "Manchester United": {
+      "best": "DIAMOND_MEDIUM_15",
+      "pnl": 4.259999999999999
+    },
+    "Marseille": {
+      "best": "MARKET_OVER25",
+      "pnl": 3.36
+    },
+    "Toulouse": {
+      "best": "MARKET_OVER25",
+      "pnl": 3.36
+    },
+    "Gil Vicente": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 6.039999999999999
+    },
+    "Tondela": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 6.039999999999999
+    },
+    "Oviedo": {
+      "best": "PROB_HIGH_40",
+      "pnl": 10.440000000000001
+    },
+    "AC Milan": {
+      "best": "CONVERGENCE_XG_HIGH",
+      "pnl": 9.0
+    },
+    "Lazio": {
+      "best": "PROB_HIGH_40",
+      "pnl": 5.879999999999999
+    },
+    "Charleroi": {
+      "best": "MARKET_BTTS",
+      "pnl": 2.2
+    },
+    "RAAL La Louvi\u00e8re": {
+      "best": "MARKET_BTTS",
+      "pnl": 2.2
+    },
+    "NEC Nijmegen": {
+      "best": "OVER_15_SAFE",
+      "pnl": 3.1599999999999997
+    },
+    "Sparta Rotterdam": {
+      "best": "OVER_15_SAFE",
+      "pnl": 3.1599999999999997
+    },
+    "SV Zulte-Waregem": {
+      "best": "MARKET_UNDER25",
+      "pnl": 2.56
+    },
+    "Cercle Brugge KSV": {
+      "best": "MARKET_UNDER25",
+      "pnl": 2.56
+    },
+    "Bayer Leverkusen": {
+      "best": "MARKET_AWAY",
+      "pnl": 3.3
+    },
+    "Borussia Dortmund": {
+      "best": "MARKET_AWAY",
+      "pnl": 3.3
+    },
+    "Paris FC": {
+      "best": "MARKET_UNDER25",
+      "pnl": 3.92
+    },
+    "Auxerre": {
+      "best": "MARKET_UNDER25",
+      "pnl": 3.92
+    },
+    "Levante": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 3.0999999999999996
+    },
+    "Nacional": {
+      "best": "MARKET_OVER25",
+      "pnl": 1.36
+    },
+    "Benfica": {
+      "best": "MARKET_OVER25",
+      "pnl": 1.36
+    },
+    "Fortuna Sittard": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 4.56
+    },
+    "Heracles Almelo": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 4.56
+    },
+    "Juventus": {
+      "best": "MARKET_OVER25",
+      "pnl": 3.74
+    },
+    "Cagliari": {
+      "best": "MARKET_OVER25",
+      "pnl": 3.74
+    },
+    "Kasimpasa SK": {
+      "best": "MARKET_OVER25",
+      "pnl": 1.62
+    },
+    "Basaksehir": {
+      "best": "MARKET_OVER25",
+      "pnl": 1.62
+    },
+    "Trabzonspor": {
+      "best": "VALUE_GOOD",
+      "pnl": 1.675
+    },
+    "Torku Konyaspor": {
+      "best": "VALUE_GOOD",
+      "pnl": 1.675
+    },
+    "Dender": {
+      "best": "VALUE_GOOD",
+      "pnl": 1.6
+    },
+    "Westerlo": {
+      "best": "VALUE_GOOD",
+      "pnl": 1.6
+    },
+    "Gazi\u015fehir Gaziantep": {
+      "best": "MARKET_OVER25",
+      "pnl": 1.72
+    },
+    "Ey\u00fcpspor": {
+      "best": "MARKET_OVER25",
+      "pnl": 1.72
+    },
+    "Alav\u00e9s": {
+      "best": "OVER_15_SAFE",
+      "pnl": 2.56
+    },
+    "Mallorca": {
+      "best": "MARKET_OVER25",
+      "pnl": 5.9778
+    },
+    "CA Osasuna": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 7.500000000000001
+    },
+    "Werder Bremen": {
+      "best": "UNDER_35_PURE",
+      "pnl": 8.1
+    },
+    "1. FC K\u00f6ln": {
+      "best": "UNDER_35_PURE",
+      "pnl": 8.1
+    },
+    "Casa Pia": {
+      "best": "MARKET_BTTS",
+      "pnl": 2.14
+    },
+    "Alverca": {
+      "best": "MARKET_BTTS",
+      "pnl": 2.14
+    },
+    "Union Berlin": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 22.170000000000005
+    },
+    "1. FC Heidenheim": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 22.170000000000005
+    },
+    "Genoa": {
+      "best": "MARKET_OVER25",
+      "pnl": 3.24
+    },
+    "Hellas Verona": {
+      "best": "MARKET_OVER25",
+      "pnl": 3.24
+    },
+    "FC Energie Cottbus": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 7.680000000000001
+    },
+    "FC Viktoria K\u00f6ln 1904": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 7.680000000000001
+    },
+    "Excelsior": {
+      "best": "PROB_HIGH_40",
+      "pnl": 5.010000000000002
+    },
+    "NAC Breda": {
+      "best": "PROB_HIGH_40",
+      "pnl": 5.010000000000002
+    },
+    "TSG Hoffenheim": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 4.88
+    },
+    "Augsburg": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 4.88
+    },
+    "Moreirense FC": {
+      "best": "MARKET_OVER25",
+      "pnl": 2.4
+    },
+    "Famalic\u00e3o": {
+      "best": "MARKET_OVER25",
+      "pnl": 2.4
+    },
+    "Red Star Belgrade": {
+      "best": "COMBO_PROB_VALUE",
+      "pnl": 16.560000000000002
+    },
+    "FCSB": {
+      "best": "COMBO_PROB_VALUE",
+      "pnl": 16.560000000000002
+    },
+    "Parma": {
+      "best": "MARKET_AWAY",
+      "pnl": 3.68
+    },
+    "Udinese": {
+      "best": "MARKET_AWAY",
+      "pnl": 3.68
+    },
+    "AS Monaco": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 48.879999999999995
+    },
+    "Paris Saint Germain": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 48.879999999999995
+    },
+    "Bayern Munich": {
+      "best": "OVER_15_SAFE",
+      "pnl": 1.8022
+    },
+    "FC St. Pauli": {
+      "best": "OVER_15_SAFE",
+      "pnl": 1.8022
+    },
+    "Getafe": {
+      "best": "UNDER_35_PURE",
+      "pnl": 12.1874
+    },
+    "Elche CF": {
+      "best": "UNDER_35_PURE",
+      "pnl": 8.1874
+    },
+    "PAOK": {
+      "best": "QUANT_BEST_MARKET",
+      "pnl": 10.34
+    },
+    "SK Brann": {
+      "best": "QUANT_BEST_MARKET",
+      "pnl": 10.34
+    },
+    "Viktoria Plze\u0148": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 16.830000000000002
+    },
+    "Malmo FF": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 12.919999999999998
+    },
+    "FC Drita": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 19.08
+    },
+    "KF Shk\u00ebndija": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 19.08
+    },
+    "Celtic": {
+      "best": "MARKET_AWAY",
+      "pnl": 22.6
+    },
+    "Rangers FC": {
+      "best": "PROB_LOW_25",
+      "pnl": 11.020000000000001
+    },
+    "SC Braga": {
+      "best": "PROB_LOW_25",
+      "pnl": 11.020000000000001
+    },
+    "Young Boys": {
+      "best": "MARKET_OVER25",
+      "pnl": 3.2876
+    },
+    "FC Zwolle": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 22.5
+    },
+    "Heerenveen": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 22.5
+    },
+    "Maccabi Tel Aviv": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 10.639999999999999
+    },
+    "Ferencv\u00e1ros TC": {
+      "best": "EDGE_POSITIVE",
+      "pnl": 13.199999999999998
+    },
+    "Metz": {
+      "best": "MARKET_UNDER25",
+      "pnl": 9.1266
+    },
+    "Rennes": {
+      "best": "MARKET_UNDER25",
+      "pnl": 9.1266
+    },
+    "Lech Pozna\u0144": {
+      "best": "EDGE_POSITIVE",
+      "pnl": 5.4
+    },
+    "FC Lausanne-Sport": {
+      "best": "EDGE_POSITIVE",
+      "pnl": 5.4
+    },
+    "Dinamo Zagreb": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 21.52
+    },
+    "Como": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 7.38
+    },
+    "Sassuolo": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 7.38
+    },
+    "HNK Rijeka": {
+      "best": "VALUE_STRONG",
+      "pnl": -1.1800000000000002
+    },
+    "AEK Larnaca": {
+      "best": "VALUE_STRONG",
+      "pnl": -1.1800000000000002
+    },
+    "Aberdeen": {
+      "best": "XG_GOOD_3",
+      "pnl": 1.3750000000000009
+    },
+    "FC Noah": {
+      "best": "XG_GOOD_3",
+      "pnl": 1.3750000000000009
+    },
+    "Panathinaikos FC": {
+      "best": "TIER_1_SNIPER",
+      "pnl": 9.24
+    },
+    "SK Sturm Graz": {
+      "best": "TIER_1_SNIPER",
+      "pnl": 9.24
+    },
+    "Jagiellonia Bia\u0142ystok": {
+      "best": "MARKET_HOME",
+      "pnl": 3.12
+    },
+    "KuPS Kuopio": {
+      "best": "MARKET_HOME",
+      "pnl": 3.12
+    },
+    "Brei\u00f0ablik": {
+      "best": "EDGE_POSITIVE",
+      "pnl": 18.060000000000002
+    },
+    "Borussia Monchengladbach": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 31.17
+    },
+    "RB Leipzig": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 31.17
+    },
+    "Vit\u00f3ria SC": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 17.48
+    },
+    "AVS Futebol SAD": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 17.48
+    },
+    "Salzburg": {
+      "best": "VALUE_GOOD",
+      "pnl": 4.775
+    },
+    "\u00c7aykur Rizespor": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 6.8999999999999995
+    },
+    "Kayserispor": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 6.8999999999999995
+    },
+    "KV Mechelen": {
+      "best": "MARKET_UNDER25",
+      "pnl": 5.84
+    },
+    "Standard Liege": {
+      "best": "MARKET_UNDER25",
+      "pnl": 5.84
+    },
+    "PFC Ludogorets Razgrad": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 45.69
+    },
+    "KRC Genk": {
+      "best": "EDGE_POSITIVE",
+      "pnl": 10.219999999999999
+    },
+    "FC Basel": {
+      "best": "EDGE_POSITIVE",
+      "pnl": 10.219999999999999
+    },
+    "Porto": {
+      "best": "BTTS_NO_PURE",
+      "pnl": 9.7
+    },
+    "Kocaelispor": {
+      "best": "PROB_HIGH_40",
+      "pnl": 10.2
+    },
+    "Genclerbirligi SK": {
+      "best": "PROB_HIGH_40",
+      "pnl": 10.2
+    },
+    "FC Midtjylland": {
+      "best": "TIER_1_SNIPER",
+      "pnl": 14.719999999999999
+    },
+    "FC St. Pauli 1910": {
+      "best": "VALUE_STRONG",
+      "pnl": 0.76
+    },
+    "1. FC Union Berlin": {
+      "best": "VALUE_STRONG",
+      "pnl": 0.76
+    },
+    "SS Lazio": {
+      "best": "MARKET_AWAY",
+      "pnl": -2.0
+    },
+    "US Lecce": {
+      "best": "MARKET_AWAY",
+      "pnl": -2.0
+    },
+    "Paris Saint-Germain FC": {
+      "best": "MARKET_BTTS",
+      "pnl": 5.4
+    },
+    "Le Havre AC": {
+      "best": "MARKET_BTTS",
+      "pnl": 5.4
+    },
+    "FC Nantes": {
+      "best": "MARKET_BTTS",
+      "pnl": 1.76
+    },
+    "FC Lorient": {
+      "best": "MARKET_BTTS",
+      "pnl": 1.76
+    },
+    "Manchester United FC": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 9.96
+    },
+    "Everton FC": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 9.96
+    },
+    "Real Madrid CF": {
+      "best": "VALUE_STRONG",
+      "pnl": 12.739999999999998
+    },
+    "Villarreal CF": {
+      "best": "MARKET_UNDER25",
+      "pnl": -2.0
+    },
+    "RCD Mallorca": {
+      "best": "MARKET_UNDER25",
+      "pnl": -2.0
+    },
+    "US Cremonese": {
+      "best": "MARKET_HOME",
+      "pnl": -2.0
+    },
+    "ACF Fiorentina": {
+      "best": "PROB_MEDIUM_30",
+      "pnl": -2.0
+    },
+    "Juventus FC": {
+      "best": "PROB_MEDIUM_30",
+      "pnl": -2.0
+    },
+    "FC Barcelona": {
+      "best": "MARKET_BTTS",
+      "pnl": 4.76
+    },
+    "Athletic Club": {
+      "best": "MARKET_BTTS",
+      "pnl": 4.76
+    },
+    "Hellas Verona FC": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 11.0
+    },
+    "Parma Calcio 1913": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 11.0
+    },
+    "Real Sociedad de F\u00fatbol": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 11.440000000000001
+    },
+    "Arsenal FC": {
+      "best": "MARKET_AWAY",
+      "pnl": -2.0
+    },
+    "Tottenham Hotspur FC": {
+      "best": "MARKET_AWAY",
+      "pnl": -2.0
+    },
+    "Toulouse FC": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 30.52
+    },
+    "Angers SCO": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 30.52
+    },
+    "Newcastle United FC": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 7.260000000000002
+    },
+    "Manchester City FC": {
+      "best": "EDGE_HIGH_5",
+      "pnl": 7.260000000000002
+    },
+    "Real Oviedo": {
+      "best": "VALUE_STRONG",
+      "pnl": 3.46
+    },
+    "Rayo Vallecano de Madrid": {
+      "best": "VALUE_STRONG",
+      "pnl": 3.46
+    },
+    "Leeds United FC": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 5.16
+    },
+    "Aston Villa FC": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 5.16
+    },
+    "RCD Espanyol de Barcelona": {
+      "best": "PROB_HIGH_40",
+      "pnl": 6.27
+    },
+    "Sevilla FC": {
+      "best": "PROB_HIGH_40",
+      "pnl": 6.27
+    },
+    "Lille OSC": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 2.72
+    },
+    "Torino FC": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 5.68
+    },
+    "Como 1907": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 5.68
+    },
+    "FC Internazionale Milano": {
+      "best": "DIAMOND_SNIPER_30",
+      "pnl": 12.0
+    },
+    "Real Betis Balompi\u00e9": {
+      "best": "CONVERGENCE_XG_MEDIUM",
+      "pnl": -2.0
+    },
+    "Girona FC": {
+      "best": "CONVERGENCE_XG_MEDIUM",
+      "pnl": -2.0
+    },
+    "Getafe CF": {
+      "best": "MARKET_BTTS",
+      "pnl": 1.7
+    },
+    "Club Atl\u00e9tico de Madrid": {
+      "best": "MARKET_BTTS",
+      "pnl": 1.7
+    }
+  }
+}

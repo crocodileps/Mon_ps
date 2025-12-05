@@ -1,0 +1,2299 @@
+{
+  "timestamp": "2025-12-05T17:47:46.674525",
+  "strategies_count": 27,
+  "teams_count": 99,
+  "total": {
+    "bets": 819,
+    "wins": 590,
+    "pnl": 820.8
+  },
+  "strategy_ranking": [
+    {
+      "rank": 1,
+      "strategy": "QUANT_BEST_MARKET",
+      "teams": 43,
+      "bets": 626,
+      "wins": 430,
+      "wr": 68.7,
+      "pnl": 399.3
+    },
+    {
+      "rank": 2,
+      "strategy": "QUANT_ROI_30",
+      "teams": 23,
+      "bets": 352,
+      "wins": 252,
+      "wr": 71.6,
+      "pnl": 324.6
+    },
+    {
+      "rank": 3,
+      "strategy": "TRIPLE_VALIDATION",
+      "teams": 46,
+      "bets": 256,
+      "wins": 185,
+      "wr": 72.3,
+      "pnl": 301.9
+    },
+    {
+      "rank": 4,
+      "strategy": "CONV_MC_COMBO",
+      "teams": 46,
+      "bets": 287,
+      "wins": 204,
+      "wr": 71.1,
+      "pnl": 271.2
+    },
+    {
+      "rank": 5,
+      "strategy": "SWEET_SPOT_60_79",
+      "teams": 79,
+      "bets": 580,
+      "wins": 370,
+      "wr": 63.8,
+      "pnl": 261.2
+    },
+    {
+      "rank": 6,
+      "strategy": "ADAPTIVE_ENGINE",
+      "teams": 23,
+      "bets": 352,
+      "wins": 252,
+      "wr": 71.6,
+      "pnl": 259.7
+    },
+    {
+      "rank": 7,
+      "strategy": "CONVERGENCE_OVER_MC_60",
+      "teams": 46,
+      "bets": 256,
+      "wins": 185,
+      "wr": 72.3,
+      "pnl": 258.8
+    },
+    {
+      "rank": 8,
+      "strategy": "TEAM_WR_70",
+      "teams": 22,
+      "bets": 323,
+      "wins": 239,
+      "wr": 74.0,
+      "pnl": 252.9
+    },
+    {
+      "rank": 9,
+      "strategy": "XG_HIGH_30",
+      "teams": 78,
+      "bets": 484,
+      "wins": 316,
+      "wr": 65.3,
+      "pnl": 251.5
+    },
+    {
+      "rank": 10,
+      "strategy": "CONVERGENCE_OVER_MC_55",
+      "teams": 47,
+      "bets": 333,
+      "wins": 234,
+      "wr": 70.3,
+      "pnl": 249.8
+    },
+    {
+      "rank": 11,
+      "strategy": "MC_PURE_60",
+      "teams": 79,
+      "bets": 580,
+      "wins": 370,
+      "wr": 63.8,
+      "pnl": 209.0
+    },
+    {
+      "rank": 12,
+      "strategy": "CONVERGENCE_OVER_PURE",
+      "teams": 47,
+      "bets": 353,
+      "wins": 247,
+      "wr": 70.0,
+      "pnl": 207.9
+    },
+    {
+      "rank": 13,
+      "strategy": "TEAM_WR_75",
+      "teams": 11,
+      "bets": 154,
+      "wins": 119,
+      "wr": 77.3,
+      "pnl": 183.9
+    },
+    {
+      "rank": 14,
+      "strategy": "QUANT_ROI_40",
+      "teams": 7,
+      "bets": 111,
+      "wins": 86,
+      "wr": 77.5,
+      "pnl": 174.0
+    },
+    {
+      "rank": 15,
+      "strategy": "MC_PURE_65",
+      "teams": 50,
+      "bets": 233,
+      "wins": 158,
+      "wr": 67.8,
+      "pnl": 148.2
+    },
+    {
+      "rank": 16,
+      "strategy": "TOTAL_CHAOS",
+      "teams": 50,
+      "bets": 233,
+      "wins": 158,
+      "wr": 67.8,
+      "pnl": 148.2
+    },
+    {
+      "rank": 17,
+      "strategy": "XG_HIGH_28",
+      "teams": 85,
+      "bets": 645,
+      "wins": 387,
+      "wr": 60.0,
+      "pnl": 141.9
+    },
+    {
+      "rank": 18,
+      "strategy": "MC_V2_NO_CLASH",
+      "teams": 46,
+      "bets": 172,
+      "wins": 122,
+      "wr": 70.9,
+      "pnl": 134.2
+    },
+    {
+      "rank": 19,
+      "strategy": "SWEET_SPOT_CONSERVATIVE",
+      "teams": 50,
+      "bets": 227,
+      "wins": 153,
+      "wr": 67.4,
+      "pnl": 112.1
+    },
+    {
+      "rank": 20,
+      "strategy": "SNIPER_ELITE",
+      "teams": 14,
+      "bets": 57,
+      "wins": 43,
+      "wr": 75.4,
+      "pnl": 90.2
+    },
+    {
+      "rank": 21,
+      "strategy": "TEAM_WR_80",
+      "teams": 2,
+      "bets": 42,
+      "wins": 34,
+      "wr": 81.0,
+      "pnl": 69.0
+    },
+    {
+      "rank": 22,
+      "strategy": "QUANT_MC_COMBO",
+      "teams": 36,
+      "bets": 419,
+      "wins": 240,
+      "wr": 57.3,
+      "pnl": 62.5
+    },
+    {
+      "rank": 23,
+      "strategy": "MC_PURE_70",
+      "teams": 16,
+      "bets": 44,
+      "wins": 31,
+      "wr": 70.5,
+      "pnl": 40.0
+    },
+    {
+      "rank": 24,
+      "strategy": "CONVERGENCE_UNDER_MC",
+      "teams": 16,
+      "bets": 32,
+      "wins": 19,
+      "wr": 59.4,
+      "pnl": 12.0
+    },
+    {
+      "rank": 25,
+      "strategy": "CHAOS_EXTREME",
+      "teams": 3,
+      "bets": 5,
+      "wins": 2,
+      "wr": 40.0,
+      "pnl": -0.6
+    }
+  ],
+  "teams": [
+    {
+      "rank": 1,
+      "name": "Lazio",
+      "best_strategy": "QUANT_ROI_40",
+      "matches": 15,
+      "bets": 15,
+      "wins": 14,
+      "wr": 93.3,
+      "pnl": 39.0,
+      "top3": [
+        [
+          "QUANT_ROI_40",
+          39.0
+        ],
+        [
+          "TEAM_WR_80",
+          39.0
+        ],
+        [
+          "QUANT_ROI_30",
+          32.5
+        ]
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Barcelona",
+      "best_strategy": "SNIPER_ELITE",
+      "matches": 38,
+      "bets": 15,
+      "wins": 13,
+      "wr": 86.7,
+      "pnl": 36.2,
+      "top3": [
+        [
+          "SNIPER_ELITE",
+          36.2
+        ],
+        [
+          "TRIPLE_VALIDATION",
+          31.7
+        ],
+        [
+          "QUANT_ROI_40",
+          30.0
+        ]
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "Real Oviedo",
+      "best_strategy": "QUANT_ROI_40",
+      "matches": 16,
+      "bets": 14,
+      "wins": 11,
+      "wr": 78.6,
+      "pnl": 24.0,
+      "top3": [
+        [
+          "QUANT_ROI_40",
+          24.0
+        ],
+        [
+          "QUANT_ROI_30",
+          20.0
+        ],
+        [
+          "TEAM_WR_75",
+          20.0
+        ]
+      ]
+    },
+    {
+      "rank": 4,
+      "name": "Marseille",
+      "best_strategy": "TRIPLE_VALIDATION",
+      "matches": 20,
+      "bets": 8,
+      "wins": 8,
+      "wr": 100.0,
+      "pnl": 23.8,
+      "top3": [
+        [
+          "TRIPLE_VALIDATION",
+          23.8
+        ],
+        [
+          "XG_HIGH_30",
+          20.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          20.4
+        ]
+      ]
+    },
+    {
+      "rank": 5,
+      "name": "Roma",
+      "best_strategy": "QUANT_ROI_40",
+      "matches": 16,
+      "bets": 15,
+      "wins": 11,
+      "wr": 73.3,
+      "pnl": 21.0,
+      "top3": [
+        [
+          "QUANT_ROI_40",
+          21.0
+        ],
+        [
+          "QUANT_ROI_30",
+          17.5
+        ],
+        [
+          "TEAM_WR_75",
+          17.5
+        ]
+      ]
+    },
+    {
+      "rank": 6,
+      "name": "Rayo Vallecano",
+      "best_strategy": "QUANT_ROI_40",
+      "matches": 17,
+      "bets": 13,
+      "wins": 10,
+      "wr": 76.9,
+      "pnl": 21.0,
+      "top3": [
+        [
+          "QUANT_ROI_40",
+          21.0
+        ],
+        [
+          "QUANT_ROI_30",
+          17.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          14.0
+        ]
+      ]
+    },
+    {
+      "rank": 7,
+      "name": "Angers",
+      "best_strategy": "QUANT_ROI_40",
+      "matches": 16,
+      "bets": 13,
+      "wins": 10,
+      "wr": 76.9,
+      "pnl": 21.0,
+      "top3": [
+        [
+          "QUANT_ROI_40",
+          21.0
+        ],
+        [
+          "QUANT_ROI_30",
+          17.5
+        ],
+        [
+          "TEAM_WR_75",
+          17.5
+        ]
+      ]
+    },
+    {
+      "rank": 8,
+      "name": "Newcastle United",
+      "best_strategy": "XG_HIGH_30",
+      "matches": 22,
+      "bets": 11,
+      "wins": 10,
+      "wr": 90.9,
+      "pnl": 18.8,
+      "top3": [
+        [
+          "XG_HIGH_30",
+          18.8
+        ],
+        [
+          "CONV_MC_COMBO",
+          15.3
+        ],
+        [
+          "TRIPLE_VALIDATION",
+          14.9
+        ]
+      ]
+    },
+    {
+      "rank": 9,
+      "name": "Como",
+      "best_strategy": "QUANT_ROI_40",
+      "matches": 14,
+      "bets": 14,
+      "wins": 10,
+      "wr": 71.4,
+      "pnl": 18.0,
+      "top3": [
+        [
+          "QUANT_ROI_40",
+          18.0
+        ],
+        [
+          "QUANT_ROI_30",
+          15.0
+        ],
+        [
+          "TEAM_WR_75",
+          15.0
+        ]
+      ]
+    },
+    {
+      "rank": 10,
+      "name": "Augsburg",
+      "best_strategy": "TRIPLE_VALIDATION",
+      "matches": 13,
+      "bets": 6,
+      "wins": 6,
+      "wr": 100.0,
+      "pnl": 17.9,
+      "top3": [
+        [
+          "TRIPLE_VALIDATION",
+          17.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          15.3
+        ],
+        [
+          "CONV_MC_COMBO",
+          15.3
+        ]
+      ]
+    },
+    {
+      "rank": 11,
+      "name": "Athletic Club",
+      "best_strategy": "QUANT_ROI_30",
+      "matches": 22,
+      "bets": 19,
+      "wins": 13,
+      "wr": 68.4,
+      "pnl": 17.5,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          17.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          14.0
+        ],
+        [
+          "ADAPTIVE_ENGINE",
+          14.0
+        ]
+      ]
+    },
+    {
+      "rank": 12,
+      "name": "Metz",
+      "best_strategy": "TRIPLE_VALIDATION",
+      "matches": 14,
+      "bets": 8,
+      "wins": 7,
+      "wr": 87.5,
+      "pnl": 17.3,
+      "top3": [
+        [
+          "TRIPLE_VALIDATION",
+          17.3
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          14.9
+        ],
+        [
+          "CONV_MC_COMBO",
+          14.9
+        ]
+      ]
+    },
+    {
+      "rank": 13,
+      "name": "Hoffenheim",
+      "best_strategy": "SNIPER_ELITE",
+      "matches": 13,
+      "bets": 5,
+      "wins": 5,
+      "wr": 100.0,
+      "pnl": 17.0,
+      "top3": [
+        [
+          "SNIPER_ELITE",
+          17.0
+        ],
+        [
+          "TRIPLE_VALIDATION",
+          14.4
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          12.3
+        ]
+      ]
+    },
+    {
+      "rank": 14,
+      "name": "Real Sociedad",
+      "best_strategy": "QUANT_ROI_30",
+      "matches": 16,
+      "bets": 15,
+      "wins": 12,
+      "wr": 80.0,
+      "pnl": 16.5,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          16.5
+        ],
+        [
+          "TEAM_WR_75",
+          16.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          13.2
+        ]
+      ]
+    },
+    {
+      "rank": 15,
+      "name": "Leeds",
+      "best_strategy": "QUANT_ROI_30",
+      "matches": 16,
+      "bets": 16,
+      "wins": 12,
+      "wr": 75.0,
+      "pnl": 15.5,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          15.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          12.4
+        ],
+        [
+          "ADAPTIVE_ENGINE",
+          12.4
+        ]
+      ]
+    },
+    {
+      "rank": 16,
+      "name": "Brighton",
+      "best_strategy": "TRIPLE_VALIDATION",
+      "matches": 15,
+      "bets": 5,
+      "wins": 5,
+      "wr": 100.0,
+      "pnl": 14.9,
+      "top3": [
+        [
+          "TRIPLE_VALIDATION",
+          14.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          14.5
+        ],
+        [
+          "XG_HIGH_28",
+          13.3
+        ]
+      ]
+    },
+    {
+      "rank": 17,
+      "name": "Brest",
+      "best_strategy": "MC_PURE_65",
+      "matches": 14,
+      "bets": 7,
+      "wins": 7,
+      "wr": 100.0,
+      "pnl": 14.9,
+      "top3": [
+        [
+          "MC_PURE_65",
+          14.9
+        ],
+        [
+          "TOTAL_CHAOS",
+          14.9
+        ],
+        [
+          "SWEET_SPOT_60_79",
+          14.5
+        ]
+      ]
+    },
+    {
+      "rank": 18,
+      "name": "Manchester City",
+      "best_strategy": "QUANT_MC_COMBO",
+      "matches": 22,
+      "bets": 20,
+      "wins": 14,
+      "wr": 70.0,
+      "pnl": 14.8,
+      "top3": [
+        [
+          "QUANT_MC_COMBO",
+          14.8
+        ],
+        [
+          "XG_HIGH_30",
+          12.6
+        ],
+        [
+          "SWEET_SPOT_60_79",
+          11.2
+        ]
+      ]
+    },
+    {
+      "rank": 19,
+      "name": "Brentford",
+      "best_strategy": "CONV_MC_COMBO",
+      "matches": 15,
+      "bets": 10,
+      "wins": 8,
+      "wr": 80.0,
+      "pnl": 14.4,
+      "top3": [
+        [
+          "CONV_MC_COMBO",
+          14.4
+        ],
+        [
+          "TRIPLE_VALIDATION",
+          13.8
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          12.0
+        ]
+      ]
+    },
+    {
+      "rank": 20,
+      "name": "Chelsea",
+      "best_strategy": "TRIPLE_VALIDATION",
+      "matches": 20,
+      "bets": 9,
+      "wins": 7,
+      "wr": 77.8,
+      "pnl": 13.8,
+      "top3": [
+        [
+          "TRIPLE_VALIDATION",
+          13.8
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          11.9
+        ],
+        [
+          "SWEET_SPOT_60_79",
+          9.5
+        ]
+      ]
+    },
+    {
+      "rank": 21,
+      "name": "Nice",
+      "best_strategy": "TRIPLE_VALIDATION",
+      "matches": 16,
+      "bets": 9,
+      "wins": 7,
+      "wr": 77.8,
+      "pnl": 13.8,
+      "top3": [
+        [
+          "TRIPLE_VALIDATION",
+          13.8
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          11.9
+        ],
+        [
+          "CONV_MC_COMBO",
+          11.9
+        ]
+      ]
+    },
+    {
+      "rank": 22,
+      "name": "Paris FC",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 16,
+      "bets": 15,
+      "wins": 12,
+      "wr": 80.0,
+      "pnl": 13.2,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          13.2
+        ],
+        [
+          "TEAM_WR_70",
+          13.2
+        ],
+        [
+          "MC_PURE_65",
+          5.2
+        ]
+      ]
+    },
+    {
+      "rank": 23,
+      "name": "Villarreal",
+      "best_strategy": "XG_HIGH_30",
+      "matches": 21,
+      "bets": 17,
+      "wins": 12,
+      "wr": 70.6,
+      "pnl": 13.0,
+      "top3": [
+        [
+          "XG_HIGH_30",
+          13.0
+        ],
+        [
+          "SWEET_SPOT_60_79",
+          11.2
+        ],
+        [
+          "QUANT_MC_COMBO",
+          10.5
+        ]
+      ]
+    },
+    {
+      "rank": 24,
+      "name": "Lens",
+      "best_strategy": "MC_PURE_70",
+      "matches": 14,
+      "bets": 5,
+      "wins": 5,
+      "wr": 100.0,
+      "pnl": 12.8,
+      "top3": [
+        [
+          "MC_PURE_70",
+          12.8
+        ],
+        [
+          "SWEET_SPOT_60_79",
+          11.6
+        ],
+        [
+          "QUANT_MC_COMBO",
+          11.6
+        ]
+      ]
+    },
+    {
+      "rank": 25,
+      "name": "Atalanta",
+      "best_strategy": "QUANT_ROI_30",
+      "matches": 20,
+      "bets": 17,
+      "wins": 11,
+      "wr": 64.7,
+      "pnl": 12.5,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          12.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          10.0
+        ],
+        [
+          "ADAPTIVE_ENGINE",
+          10.0
+        ]
+      ]
+    },
+    {
+      "rank": 26,
+      "name": "VfB Stuttgart",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 14,
+      "bets": 8,
+      "wins": 7,
+      "wr": 87.5,
+      "pnl": 12.4,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          12.4
+        ],
+        [
+          "QUANT_ROI_30",
+          12.0
+        ],
+        [
+          "QUANT_MC_COMBO",
+          12.0
+        ]
+      ]
+    },
+    {
+      "rank": 27,
+      "name": "Lorient",
+      "best_strategy": "MC_PURE_65",
+      "matches": 16,
+      "bets": 8,
+      "wins": 7,
+      "wr": 87.5,
+      "pnl": 12.4,
+      "top3": [
+        [
+          "MC_PURE_65",
+          12.4
+        ],
+        [
+          "TOTAL_CHAOS",
+          12.4
+        ],
+        [
+          "MC_V2_NO_CLASH",
+          10.2
+        ]
+      ]
+    },
+    {
+      "rank": 28,
+      "name": "Manchester United",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 15,
+      "bets": 10,
+      "wins": 8,
+      "wr": 80.0,
+      "pnl": 12.0,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          12.0
+        ],
+        [
+          "TRIPLE_VALIDATION",
+          11.4
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          9.8
+        ]
+      ]
+    },
+    {
+      "rank": 29,
+      "name": "Strasbourg",
+      "best_strategy": "TRIPLE_VALIDATION",
+      "matches": 15,
+      "bets": 6,
+      "wins": 5,
+      "wr": 83.3,
+      "pnl": 11.4,
+      "top3": [
+        [
+          "TRIPLE_VALIDATION",
+          11.4
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          9.8
+        ],
+        [
+          "CONV_MC_COMBO",
+          9.8
+        ]
+      ]
+    },
+    {
+      "rank": 30,
+      "name": "Union Berlin",
+      "best_strategy": "TRIPLE_VALIDATION",
+      "matches": 14,
+      "bets": 6,
+      "wins": 5,
+      "wr": 83.3,
+      "pnl": 11.4,
+      "top3": [
+        [
+          "TRIPLE_VALIDATION",
+          11.4
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          9.8
+        ],
+        [
+          "CONV_MC_COMBO",
+          9.8
+        ]
+      ]
+    },
+    {
+      "rank": 31,
+      "name": "FC Heidenheim",
+      "best_strategy": "TRIPLE_VALIDATION",
+      "matches": 13,
+      "bets": 8,
+      "wins": 6,
+      "wr": 75.0,
+      "pnl": 10.9,
+      "top3": [
+        [
+          "TRIPLE_VALIDATION",
+          10.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          9.3
+        ],
+        [
+          "CONV_MC_COMBO",
+          9.3
+        ]
+      ]
+    },
+    {
+      "rank": 32,
+      "name": "Tottenham",
+      "best_strategy": "QUANT_ROI_30",
+      "matches": 21,
+      "bets": 18,
+      "wins": 12,
+      "wr": 66.7,
+      "pnl": 10.5,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          10.5
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          9.3
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          8.4
+        ]
+      ]
+    },
+    {
+      "rank": 33,
+      "name": "Nantes",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 15,
+      "bets": 13,
+      "wins": 9,
+      "wr": 69.2,
+      "pnl": 10.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          10.0
+        ],
+        [
+          "MC_PURE_60",
+          -0.6
+        ],
+        [
+          "SWEET_SPOT_60_79",
+          -0.8
+        ]
+      ]
+    },
+    {
+      "rank": 34,
+      "name": "Juventus",
+      "best_strategy": "QUANT_ROI_30",
+      "matches": 20,
+      "bets": 18,
+      "wins": 11,
+      "wr": 61.1,
+      "pnl": 10.0,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          10.0
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          8.0
+        ],
+        [
+          "ADAPTIVE_ENGINE",
+          8.0
+        ]
+      ]
+    },
+    {
+      "rank": 35,
+      "name": "Wolverhampton Wanderers",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 15,
+      "bets": 15,
+      "wins": 10,
+      "wr": 66.7,
+      "pnl": 10.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          10.0
+        ],
+        [
+          "CONVERGENCE_UNDER_MC",
+          2.0
+        ],
+        [
+          "XG_HIGH_30",
+          -0.4
+        ]
+      ]
+    },
+    {
+      "rank": 36,
+      "name": "Cremonese",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 15,
+      "bets": 15,
+      "wins": 11,
+      "wr": 73.3,
+      "pnl": 9.6,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          9.6
+        ],
+        [
+          "SWEET_SPOT_60_79",
+          3.9
+        ],
+        [
+          "MC_PURE_60",
+          3.1
+        ]
+      ]
+    },
+    {
+      "rank": 37,
+      "name": "Liverpool",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 20,
+      "bets": 15,
+      "wins": 10,
+      "wr": 66.7,
+      "pnl": 8.8,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          8.8
+        ],
+        [
+          "MC_PURE_60",
+          7.0
+        ],
+        [
+          "TRIPLE_VALIDATION",
+          3.9
+        ]
+      ]
+    },
+    {
+      "rank": 38,
+      "name": "Bologna",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 15,
+      "bets": 4,
+      "wins": 4,
+      "wr": 100.0,
+      "pnl": 8.5,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          8.5
+        ],
+        [
+          "MC_PURE_60",
+          6.8
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          4.0
+        ]
+      ]
+    },
+    {
+      "rank": 39,
+      "name": "Werder Bremen",
+      "best_strategy": "TRIPLE_VALIDATION",
+      "matches": 14,
+      "bets": 5,
+      "wins": 4,
+      "wr": 80.0,
+      "pnl": 8.4,
+      "top3": [
+        [
+          "TRIPLE_VALIDATION",
+          8.4
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          7.2
+        ],
+        [
+          "CONV_MC_COMBO",
+          7.2
+        ]
+      ]
+    },
+    {
+      "rank": 40,
+      "name": "Genoa",
+      "best_strategy": "CONVERGENCE_OVER_MC_55",
+      "matches": 14,
+      "bets": 6,
+      "wins": 5,
+      "wr": 83.3,
+      "pnl": 8.1,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_MC_55",
+          8.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          6.5
+        ],
+        [
+          "XG_HIGH_28",
+          6.5
+        ]
+      ]
+    },
+    {
+      "rank": 41,
+      "name": "Freiburg",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 14,
+      "bets": 6,
+      "wins": 5,
+      "wr": 83.3,
+      "pnl": 8.1,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          8.1
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          7.9
+        ],
+        [
+          "MC_PURE_60",
+          6.5
+        ]
+      ]
+    },
+    {
+      "rank": 42,
+      "name": "Sevilla",
+      "best_strategy": "XG_HIGH_30",
+      "matches": 16,
+      "bets": 6,
+      "wins": 5,
+      "wr": 83.3,
+      "pnl": 8.1,
+      "top3": [
+        [
+          "XG_HIGH_30",
+          8.1
+        ],
+        [
+          "CONV_MC_COMBO",
+          7.2
+        ],
+        [
+          "QUANT_ROI_30",
+          6.6
+        ]
+      ]
+    },
+    {
+      "rank": 43,
+      "name": "Mallorca",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 16,
+      "bets": 6,
+      "wins": 5,
+      "wr": 83.3,
+      "pnl": 8.1,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          8.1
+        ],
+        [
+          "XG_HIGH_28",
+          7.9
+        ],
+        [
+          "MC_PURE_60",
+          6.5
+        ]
+      ]
+    },
+    {
+      "rank": 44,
+      "name": "Bournemouth",
+      "best_strategy": "XG_HIGH_30",
+      "matches": 15,
+      "bets": 6,
+      "wins": 5,
+      "wr": 83.3,
+      "pnl": 8.1,
+      "top3": [
+        [
+          "XG_HIGH_30",
+          8.1
+        ],
+        [
+          "XG_HIGH_28",
+          7.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          7.8
+        ]
+      ]
+    },
+    {
+      "rank": 45,
+      "name": "Getafe",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 16,
+      "bets": 12,
+      "wins": 8,
+      "wr": 66.7,
+      "pnl": 8.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          8.0
+        ],
+        [
+          "SWEET_SPOT_60_79",
+          2.1
+        ],
+        [
+          "MC_PURE_60",
+          1.7
+        ]
+      ]
+    },
+    {
+      "rank": 46,
+      "name": "Everton",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 16,
+      "bets": 16,
+      "wins": 10,
+      "wr": 62.5,
+      "pnl": 8.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          8.0
+        ],
+        [
+          "XG_HIGH_30",
+          -0.4
+        ],
+        [
+          "XG_HIGH_28",
+          -0.6
+        ]
+      ]
+    },
+    {
+      "rank": 47,
+      "name": "Monaco",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 20,
+      "bets": 14,
+      "wins": 10,
+      "wr": 71.4,
+      "pnl": 8.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          8.0
+        ],
+        [
+          "TEAM_WR_70",
+          8.0
+        ],
+        [
+          "MC_V2_NO_CLASH",
+          7.8
+        ]
+      ]
+    },
+    {
+      "rank": 48,
+      "name": "Burnley",
+      "best_strategy": "TRIPLE_VALIDATION",
+      "matches": 15,
+      "bets": 7,
+      "wins": 5,
+      "wr": 71.4,
+      "pnl": 7.9,
+      "top3": [
+        [
+          "TRIPLE_VALIDATION",
+          7.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_60",
+          6.8
+        ],
+        [
+          "XG_HIGH_28",
+          5.9
+        ]
+      ]
+    },
+    {
+      "rank": 49,
+      "name": "Inter",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 19,
+      "bets": 8,
+      "wins": 6,
+      "wr": 75.0,
+      "pnl": 7.8,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          7.8
+        ],
+        [
+          "MC_PURE_60",
+          6.2
+        ],
+        [
+          "MC_PURE_65",
+          4.2
+        ]
+      ]
+    },
+    {
+      "rank": 50,
+      "name": "Levante",
+      "best_strategy": "MC_PURE_70",
+      "matches": 15,
+      "bets": 3,
+      "wins": 3,
+      "wr": 100.0,
+      "pnl": 7.7,
+      "top3": [
+        [
+          "MC_PURE_70",
+          7.7
+        ],
+        [
+          "MC_V2_NO_CLASH",
+          6.4
+        ],
+        [
+          "MC_PURE_65",
+          6.0
+        ]
+      ]
+    },
+    {
+      "rank": 51,
+      "name": "Arsenal",
+      "best_strategy": "QUANT_ROI_30",
+      "matches": 21,
+      "bets": 17,
+      "wins": 10,
+      "wr": 58.8,
+      "pnl": 7.5,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          7.5
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          6.0
+        ],
+        [
+          "ADAPTIVE_ENGINE",
+          6.0
+        ]
+      ]
+    },
+    {
+      "rank": 52,
+      "name": "Wolfsburg",
+      "best_strategy": "CONV_MC_COMBO",
+      "matches": 13,
+      "bets": 7,
+      "wins": 5,
+      "wr": 71.4,
+      "pnl": 6.8,
+      "top3": [
+        [
+          "CONV_MC_COMBO",
+          6.8
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          5.6
+        ],
+        [
+          "XG_HIGH_30",
+          5.6
+        ]
+      ]
+    },
+    {
+      "rank": 53,
+      "name": "Espanyol",
+      "best_strategy": "CONV_MC_COMBO",
+      "matches": 15,
+      "bets": 7,
+      "wins": 5,
+      "wr": 71.4,
+      "pnl": 6.8,
+      "top3": [
+        [
+          "CONV_MC_COMBO",
+          6.8
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          5.6
+        ],
+        [
+          "TRIPLE_VALIDATION",
+          4.9
+        ]
+      ]
+    },
+    {
+      "rank": 54,
+      "name": "Lyon",
+      "best_strategy": "CONV_MC_COMBO",
+      "matches": 15,
+      "bets": 7,
+      "wins": 5,
+      "wr": 71.4,
+      "pnl": 6.8,
+      "top3": [
+        [
+          "CONV_MC_COMBO",
+          6.8
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          5.6
+        ],
+        [
+          "TRIPLE_VALIDATION",
+          4.9
+        ]
+      ]
+    },
+    {
+      "rank": 55,
+      "name": "Sassuolo",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 13,
+      "bets": 3,
+      "wins": 3,
+      "wr": 100.0,
+      "pnl": 6.4,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          6.4
+        ],
+        [
+          "XG_HIGH_30",
+          6.4
+        ],
+        [
+          "TRIPLE_VALIDATION",
+          6.0
+        ]
+      ]
+    },
+    {
+      "rank": 56,
+      "name": "Eintracht Frankfurt",
+      "best_strategy": "QUANT_ROI_30",
+      "matches": 19,
+      "bets": 12,
+      "wins": 8,
+      "wr": 66.7,
+      "pnl": 6.0,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          6.0
+        ],
+        [
+          "TEAM_WR_75",
+          6.0
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          4.8
+        ]
+      ]
+    },
+    {
+      "rank": 57,
+      "name": "Sunderland",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 15,
+      "bets": 15,
+      "wins": 9,
+      "wr": 60.0,
+      "pnl": 6.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          6.0
+        ],
+        [
+          "CONVERGENCE_UNDER_MC",
+          0.0
+        ],
+        [
+          "QUANT_MC_COMBO",
+          -1.1
+        ]
+      ]
+    },
+    {
+      "rank": 58,
+      "name": "Pisa",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 13,
+      "bets": 13,
+      "wins": 8,
+      "wr": 61.5,
+      "pnl": 6.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          6.0
+        ],
+        [
+          "MC_PURE_60",
+          -2.0
+        ],
+        [
+          "SWEET_SPOT_60_79",
+          -2.5
+        ]
+      ]
+    },
+    {
+      "rank": 59,
+      "name": "Lecce",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 15,
+      "bets": 15,
+      "wins": 9,
+      "wr": 60.0,
+      "pnl": 6.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          6.0
+        ],
+        [
+          "CONVERGENCE_UNDER_MC",
+          2.0
+        ]
+      ]
+    },
+    {
+      "rank": 60,
+      "name": "Auxerre",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 15,
+      "bets": 13,
+      "wins": 8,
+      "wr": 61.5,
+      "pnl": 6.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          6.0
+        ],
+        [
+          "MC_PURE_65",
+          2.1
+        ],
+        [
+          "MC_V2_NO_CLASH",
+          2.1
+        ]
+      ]
+    },
+    {
+      "rank": 61,
+      "name": "Aston Villa",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "matches": 17,
+      "bets": 10,
+      "wins": 7,
+      "wr": 70.0,
+      "pnl": 5.9,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          5.9
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          3.1
+        ],
+        [
+          "XG_HIGH_28",
+          2.2
+        ]
+      ]
+    },
+    {
+      "rank": 62,
+      "name": "Real Madrid",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 22,
+      "bets": 18,
+      "wins": 11,
+      "wr": 61.1,
+      "pnl": 5.9,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          5.9
+        ],
+        [
+          "XG_HIGH_30",
+          5.9
+        ],
+        [
+          "MC_PURE_60",
+          4.7
+        ]
+      ]
+    },
+    {
+      "rank": 63,
+      "name": "Lille",
+      "best_strategy": "MC_PURE_65",
+      "matches": 17,
+      "bets": 11,
+      "wins": 7,
+      "wr": 63.6,
+      "pnl": 4.9,
+      "top3": [
+        [
+          "MC_PURE_65",
+          4.9
+        ],
+        [
+          "TOTAL_CHAOS",
+          4.9
+        ],
+        [
+          "SWEET_SPOT_CONSERVATIVE",
+          3.9
+        ]
+      ]
+    },
+    {
+      "rank": 64,
+      "name": "AC Milan",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 15,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "pnl": 4.2,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          4.2
+        ],
+        [
+          "MC_PURE_60",
+          3.4
+        ],
+        [
+          "XG_HIGH_30",
+          -2.5
+        ]
+      ]
+    },
+    {
+      "rank": 65,
+      "name": "Valencia",
+      "best_strategy": "MC_PURE_65",
+      "matches": 15,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "pnl": 4.2,
+      "top3": [
+        [
+          "MC_PURE_65",
+          4.2
+        ],
+        [
+          "TOTAL_CHAOS",
+          4.2
+        ],
+        [
+          "SWEET_SPOT_CONSERVATIVE",
+          3.4
+        ]
+      ]
+    },
+    {
+      "rank": 66,
+      "name": "West Ham",
+      "best_strategy": "QUANT_ROI_30",
+      "matches": 15,
+      "bets": 15,
+      "wins": 9,
+      "wr": 60.0,
+      "pnl": 4.1,
+      "top3": [
+        [
+          "QUANT_ROI_30",
+          4.1
+        ],
+        [
+          "QUANT_MC_COMBO",
+          4.1
+        ],
+        [
+          "CONV_MC_COMBO",
+          3.3
+        ]
+      ]
+    },
+    {
+      "rank": 67,
+      "name": "Osasuna",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 16,
+      "bets": 14,
+      "wins": 8,
+      "wr": 57.1,
+      "pnl": 4.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          4.0
+        ],
+        [
+          "XG_HIGH_30",
+          -0.4
+        ],
+        [
+          "CONVERGENCE_UNDER_MC",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 68,
+      "name": "Parma Calcio 1913",
+      "best_strategy": "CONVERGENCE_UNDER_MC",
+      "matches": 14,
+      "bets": 2,
+      "wins": 2,
+      "wr": 100.0,
+      "pnl": 4.0,
+      "top3": [
+        [
+          "CONVERGENCE_UNDER_MC",
+          4.0
+        ],
+        [
+          "QUANT_BEST_MARKET",
+          4.0
+        ],
+        [
+          "XG_HIGH_28",
+          -0.6
+        ]
+      ]
+    },
+    {
+      "rank": 69,
+      "name": "Cagliari",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 14,
+      "bets": 14,
+      "wins": 8,
+      "wr": 57.1,
+      "pnl": 4.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          4.0
+        ],
+        [
+          "CONVERGENCE_UNDER_MC",
+          -2.0
+        ],
+        [
+          "MC_PURE_60",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 70,
+      "name": "Real Betis",
+      "best_strategy": "XG_HIGH_28",
+      "matches": 17,
+      "bets": 8,
+      "wins": 5,
+      "wr": 62.5,
+      "pnl": 2.5,
+      "top3": [
+        [
+          "XG_HIGH_28",
+          2.5
+        ],
+        [
+          "XG_HIGH_30",
+          1.4
+        ],
+        [
+          "CONVERGENCE_OVER_MC_55",
+          1.0
+        ]
+      ]
+    },
+    {
+      "rank": 71,
+      "name": "Fulham",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "matches": 15,
+      "bets": 10,
+      "wins": 6,
+      "wr": 60.0,
+      "pnl": 2.2,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          2.2
+        ],
+        [
+          "XG_HIGH_30",
+          1.0
+        ],
+        [
+          "XG_HIGH_28",
+          0.5
+        ]
+      ]
+    },
+    {
+      "rank": 72,
+      "name": "Elche",
+      "best_strategy": "MC_PURE_65",
+      "matches": 16,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "pnl": 2.1,
+      "top3": [
+        [
+          "MC_PURE_65",
+          2.1
+        ],
+        [
+          "MC_V2_NO_CLASH",
+          2.1
+        ],
+        [
+          "TOTAL_CHAOS",
+          2.1
+        ]
+      ]
+    },
+    {
+      "rank": 73,
+      "name": "Udinese",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 13,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "pnl": 2.1,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          2.1
+        ],
+        [
+          "XG_HIGH_30",
+          2.1
+        ],
+        [
+          "MC_PURE_60",
+          1.7
+        ]
+      ]
+    },
+    {
+      "rank": 74,
+      "name": "Fiorentina",
+      "best_strategy": "MC_PURE_65",
+      "matches": 16,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "pnl": 2.1,
+      "top3": [
+        [
+          "MC_PURE_65",
+          2.1
+        ],
+        [
+          "MC_V2_NO_CLASH",
+          2.1
+        ],
+        [
+          "TOTAL_CHAOS",
+          2.1
+        ]
+      ]
+    },
+    {
+      "rank": 75,
+      "name": "Crystal Palace",
+      "best_strategy": "QUANT_BEST_MARKET",
+      "matches": 15,
+      "bets": 15,
+      "wins": 8,
+      "wr": 53.3,
+      "pnl": 2.0,
+      "top3": [
+        [
+          "QUANT_BEST_MARKET",
+          2.0
+        ],
+        [
+          "MC_PURE_60",
+          -0.1
+        ],
+        [
+          "SWEET_SPOT_60_79",
+          -0.1
+        ]
+      ]
+    },
+    {
+      "rank": 76,
+      "name": "Napoli",
+      "best_strategy": "CONVERGENCE_UNDER_MC",
+      "matches": 20,
+      "bets": 1,
+      "wins": 1,
+      "wr": 100.0,
+      "pnl": 2.0,
+      "top3": [
+        [
+          "CONVERGENCE_UNDER_MC",
+          2.0
+        ],
+        [
+          "XG_HIGH_28",
+          -1.5
+        ],
+        [
+          "MC_PURE_60",
+          -2.3
+        ]
+      ]
+    },
+    {
+      "rank": 77,
+      "name": "Torino",
+      "best_strategy": "XG_HIGH_30",
+      "matches": 15,
+      "bets": 3,
+      "wins": 2,
+      "wr": 66.7,
+      "pnl": 1.8,
+      "top3": [
+        [
+          "XG_HIGH_30",
+          1.8
+        ],
+        [
+          "XG_HIGH_28",
+          1.4
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -0.3
+        ]
+      ]
+    },
+    {
+      "rank": 78,
+      "name": "Verona",
+      "best_strategy": "CONVERGENCE_OVER_MC_55",
+      "matches": 15,
+      "bets": 3,
+      "wins": 2,
+      "wr": 66.7,
+      "pnl": 1.8,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_MC_55",
+          1.8
+        ],
+        [
+          "XG_HIGH_28",
+          1.1
+        ],
+        [
+          "CONVERGENCE_OVER_PURE",
+          -0.6
+        ]
+      ]
+    },
+    {
+      "rank": 79,
+      "name": "Le Havre",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 16,
+      "bets": 5,
+      "wins": 3,
+      "wr": 60.0,
+      "pnl": 1.4,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          1.4
+        ],
+        [
+          "MC_PURE_60",
+          1.1
+        ],
+        [
+          "XG_HIGH_28",
+          -2.3
+        ]
+      ]
+    },
+    {
+      "rank": 80,
+      "name": "Borussia Dortmund",
+      "best_strategy": "XG_HIGH_28",
+      "matches": 18,
+      "bets": 5,
+      "wins": 3,
+      "wr": 60.0,
+      "pnl": 1.1,
+      "top3": [
+        [
+          "XG_HIGH_28",
+          1.1
+        ],
+        [
+          "XG_HIGH_30",
+          -0.8
+        ],
+        [
+          "MC_PURE_60",
+          -2.0
+        ]
+      ]
+    },
+    {
+      "rank": 81,
+      "name": "Hamburger SV",
+      "best_strategy": "SWEET_SPOT_60_79",
+      "matches": 13,
+      "bets": 7,
+      "wins": 4,
+      "wr": 57.1,
+      "pnl": 1.0,
+      "top3": [
+        [
+          "SWEET_SPOT_60_79",
+          1.0
+        ],
+        [
+          "MC_PURE_60",
+          0.8
+        ],
+        [
+          "XG_HIGH_28",
+          -2.3
+        ]
+      ]
+    },
+    {
+      "rank": 82,
+      "name": "Girona",
+      "best_strategy": "MC_PURE_65",
+      "matches": 16,
+      "bets": 7,
+      "wins": 4,
+      "wr": 57.1,
+      "pnl": 1.0,
+      "top3": [
+        [
+          "MC_PURE_65",
+          1.0
+        ],
+        [
+          "TOTAL_CHAOS",
+          1.0
+        ],
+        [
+          "SWEET_SPOT_CONSERVATIVE",
+          -0.9
+        ]
+      ]
+    },
+    {
+      "rank": 83,
+      "name": "Mainz 05",
+      "best_strategy": "XG_HIGH_28",
+      "matches": 14,
+      "bets": 2,
+      "wins": 1,
+      "wr": 50.0,
+      "pnl": -0.3,
+      "top3": [
+        [
+          "XG_HIGH_28",
+          -0.3
+        ],
+        [
+          "XG_HIGH_30",
+          -0.4
+        ],
+        [
+          "MC_PURE_60",
+          -1.5
+        ]
+      ]
+    },
+    {
+      "rank": 84,
+      "name": "St. Pauli",
+      "best_strategy": "XG_HIGH_28",
+      "matches": 14,
+      "bets": 2,
+      "wins": 1,
+      "wr": 50.0,
+      "pnl": -0.3,
+      "top3": [
+        [
+          "XG_HIGH_28",
+          -0.3
+        ],
+        [
+          "MC_PURE_60",
+          -2.3
+        ],
+        [
+          "XG_HIGH_30",
+          -2.5
+        ]
+      ]
+    },
+    {
+      "rank": 85,
+      "name": "Toulouse",
+      "best_strategy": "CONVERGENCE_OVER_PURE",
+      "matches": 16,
+      "bets": 8,
+      "wins": 4,
+      "wr": 50.0,
+      "pnl": -1.2,
+      "top3": [
+        [
+          "CONVERGENCE_OVER_PURE",
+          -1.2
+        ],
+        [
+          "MC_PURE_60",
+          -1.2
+        ],
+        [
+          "XG_HIGH_28",
+          -1.2
+        ]
+      ]
+    },
+    {
+      "rank": 86,
+      "name": "Nottingham Forest",
+      "best_strategy": "XG_HIGH_28",
+      "matches": 16,
+      "bets": 3,
+      "wins": 1,
+      "wr": 33.3,
+      "pnl": -2.3,
+      "top3": [
+        [
+          "XG_HIGH_28",
+          -2.3
+        ],
+        [
+          "XG_HIGH_30",
+          -2.5
+        ],
+        [
+          "MC_PURE_60",
+          -2.9
+        ]
+      ]
+    }
+  ]
+}
