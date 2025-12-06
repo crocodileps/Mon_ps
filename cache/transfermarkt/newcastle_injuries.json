@@ -1,12 +1,12 @@
 [
   {
-    "player_name": "Yoane Wissa",
-    "injury_type": "29",
-    "scraped_at": "2025-12-05T06:00:42.583465"
-  },
-  {
     "player_name": "Kieran Trippier",
     "injury_type": "35",
-    "scraped_at": "2025-12-05T06:00:42.583570"
+    "scraped_at": "2025-12-06T06:00:47.385075"
+  },
+  {
+    "player_name": "Sven Botman",
+    "injury_type": "25",
+    "scraped_at": "2025-12-06T06:00:47.385197"
   }
 ]
