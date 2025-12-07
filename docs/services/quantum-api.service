@@ -1,0 +1,28 @@
+[Unit]
+Description=Quantum Rule Engine API - Mon_PS
+After=network.target postgresql.service docker.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/Mon_ps
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+Environment="PYTHONPATH=/home/Mon_ps"
+ExecStart=/usr/bin/python3 -m uvicorn quantum.api:app --host 0.0.0.0 --port 8002
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/Mon_ps/logs/quantum_api.log
+StandardError=append:/home/Mon_ps/logs/quantum_api_error.log
+
+# Sécurité
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/home/Mon_ps/logs
+
+# Limites
+TimeoutStartSec=30
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
