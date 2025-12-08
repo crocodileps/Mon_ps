@@ -27,6 +27,16 @@ from typing import List, Dict, Optional
 from enum import Enum
 
 logger = logging.getLogger("BetValidator")
+# Mapping V7 markets <-> odds_dict keys
+MARKET_MAPPING = {
+    "home": "home_win", "away": "away_win", "draw": "draw",
+    "over_25": "over_25", "over_35": "over_35", 
+    "under_25": "under_25", "under_35": "under_35",
+    "btts_yes": "btts_yes", "btts_no": "btts_no",
+    "dc_12": "dc_12", "dc_1x": "dc_1x", "dc_x2": "dc_x2"
+}
+ODDS_TO_V7 = {v: k for k, v in MARKET_MAPPING.items()}
+
 
 
 class BetDecision(Enum):
@@ -110,7 +120,7 @@ class BetValidatorV72:
     
     async def initialize(self):
         """Initialise connexion et charge données"""
-        self.pool = await asyncpg.create_pool(**self.db_config)
+        self.pool = await asyncpg.create_pool(**self.db_config.asyncpg_params if hasattr(self.db_config, "asyncpg_params") else self.db_config)
         await self._load_elite_teams()
         await self._load_team_strategies()
         logger.info(f"✅ BetValidator V7.2 ADAPTATIF initialisé")
@@ -201,8 +211,10 @@ class BetValidatorV72:
         
         strategy = self.team_strategies.get(team)
         
+        market_v7 = ODDS_TO_V7.get(market, market)
+        
         # 1. MARKET_FOCUS: +20%
-        if strategy and market in strategy.markets_focus:
+        if strategy and market_v7 in strategy.markets_focus:
             multiplier += self.BOOST_MARKET_FOCUS
             result.is_focus_market = True
             result.confidence_score += 20
@@ -210,7 +222,7 @@ class BetValidatorV72:
             self._track('boost_focus')
         
         # 2. PÉPITE: +25%
-        if strategy and market in strategy.pepites:
+        if strategy and market_v7 in strategy.pepites:
             multiplier += self.BOOST_PEPITE
             result.is_pepite = True
             result.confidence_score += 25
@@ -230,7 +242,7 @@ class BetValidatorV72:
         # ═══════════════════════════════════════════════════════════════
         
         # 4. MARKET_AVOID: -30% (mais PAS de blocage - l'équipe peut évoluer)
-        if strategy and market in strategy.markets_avoid:
+        if strategy and market_v7 in strategy.markets_avoid:
             multiplier += self.PENALTY_MARKET_AVOID
             result.is_avoid_market = True
             result.confidence_score -= 20
