@@ -3,91 +3,91 @@
     "player_name": "Jean-Philippe Mateta",
     "goals": 9,
     "assists": 2,
-    "matches": 23,
-    "scraped_at": "2025-12-06T06:01:49.549002"
+    "matches": 24,
+    "scraped_at": "2025-12-08T06:01:47.545059"
   },
   {
     "player_name": "Isma\u00efla Sarr",
     "goals": 8,
     "assists": 2,
     "matches": 19,
-    "scraped_at": "2025-12-06T06:01:49.549077"
+    "scraped_at": "2025-12-08T06:01:47.545136"
   },
   {
     "player_name": "Daniel Mu\u00f1oz",
     "goals": 4,
     "assists": 2,
     "matches": 23,
-    "scraped_at": "2025-12-06T06:01:49.547589"
+    "scraped_at": "2025-12-08T06:01:47.543655"
+  },
+  {
+    "player_name": "Eddie Nketiah",
+    "goals": 3,
+    "assists": 0,
+    "matches": 13,
+    "scraped_at": "2025-12-08T06:01:47.545288"
+  },
+  {
+    "player_name": "Marc Gu\u00e9hi",
+    "goals": 2,
+    "assists": 4,
+    "matches": 23,
+    "scraped_at": "2025-12-08T06:01:47.543468"
   },
   {
     "player_name": "Y\u00e9remy Pino",
     "goals": 2,
-    "assists": 3,
-    "matches": 18,
-    "scraped_at": "2025-12-06T06:01:49.549154"
+    "assists": 4,
+    "matches": 19,
+    "scraped_at": "2025-12-08T06:01:47.545213"
   },
   {
     "player_name": "Tyrick Mitchell",
     "goals": 2,
     "assists": 0,
-    "matches": 19,
-    "scraped_at": "2025-12-06T06:01:49.547663"
-  },
-  {
-    "player_name": "Eddie Nketiah",
-    "goals": 2,
-    "assists": 0,
-    "matches": 12,
-    "scraped_at": "2025-12-06T06:01:49.549228"
-  },
-  {
-    "player_name": "Marc Gu\u00e9hi",
-    "goals": 1,
-    "assists": 4,
-    "matches": 22,
-    "scraped_at": "2025-12-06T06:01:49.547423"
+    "matches": 20,
+    "scraped_at": "2025-12-08T06:01:47.543729"
   },
   {
     "player_name": "Maxence Lacroix",
     "goals": 1,
     "assists": 2,
-    "matches": 23,
-    "scraped_at": "2025-12-06T06:01:49.547515"
+    "matches": 24,
+    "scraped_at": "2025-12-08T06:01:47.543573"
   },
   {
     "player_name": "Chris Richards",
     "goals": 1,
     "assists": 0,
+    "matches": 21,
+    "scraped_at": "2025-12-08T06:01:47.543804"
+  },
+  {
+    "player_name": "Adam Wharton",
+    "goals": 0,
+    "assists": 3,
     "matches": 20,
-    "scraped_at": "2025-12-06T06:01:49.547739"
+    "scraped_at": "2025-12-08T06:01:47.544439"
   },
   {
     "player_name": "Jefferson Lerma",
     "goals": 0,
     "assists": 3,
-    "matches": 22,
-    "scraped_at": "2025-12-06T06:01:49.548622"
-  },
-  {
-    "player_name": "Adam Wharton",
-    "goals": 0,
-    "assists": 2,
-    "matches": 19,
-    "scraped_at": "2025-12-06T06:01:49.548381"
+    "matches": 23,
+    "scraped_at": "2025-12-08T06:01:47.544666"
   },
   {
     "player_name": "Daichi Kamada",
     "goals": 0,
     "assists": 1,
-    "matches": 20,
-    "scraped_at": "2025-12-06T06:01:49.548548"
+    "matches": 21,
+    "scraped_at": "2025-12-08T06:01:47.544590"
   },
   {
     "player_name": "Will Hughes",
     "goals": 0,
     "assists": 1,
     "matches": 20,
-    "scraped_at": "2025-12-06T06:01:49.548764"
+    "scraped_at": "2025-12-08T06:01:47.544816"
   }
 ]

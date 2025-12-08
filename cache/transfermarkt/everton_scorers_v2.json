@@ -1,79 +1,93 @@
 [
   {
-    "player_name": "Iliman Ndiaye",
+    "player_name": "Kiernan Dewsbury-Hall",
     "goals": 4,
-    "assists": 1,
-    "matches": 16,
-    "scraped_at": "2025-12-06T06:01:57.351216"
+    "assists": 2,
+    "matches": 15,
+    "scraped_at": "2025-12-08T06:01:54.586593"
   },
   {
-    "player_name": "Kiernan Dewsbury-Hall",
-    "goals": 3,
+    "player_name": "Iliman Ndiaye",
+    "goals": 4,
     "assists": 2,
-    "matches": 14,
-    "scraped_at": "2025-12-06T06:01:57.350618"
+    "matches": 17,
+    "scraped_at": "2025-12-08T06:01:54.586916"
   },
   {
     "player_name": "Jack Grealish",
     "goals": 2,
     "assists": 4,
-    "matches": 15,
-    "scraped_at": "2025-12-06T06:01:57.351462"
+    "matches": 16,
+    "scraped_at": "2025-12-08T06:01:54.587054"
   },
   {
     "player_name": "Michael Keane",
     "goals": 2,
     "assists": 0,
-    "matches": 15,
-    "scraped_at": "2025-12-06T06:01:57.350298"
+    "matches": 16,
+    "scraped_at": "2025-12-08T06:01:54.586381"
   },
   {
     "player_name": "Idrissa Gueye",
     "goals": 2,
     "assists": 0,
     "matches": 12,
-    "scraped_at": "2025-12-06T06:01:57.351005"
+    "scraped_at": "2025-12-08T06:01:54.586802"
   },
   {
     "player_name": "Beto",
     "goals": 2,
     "assists": 0,
-    "matches": 16,
-    "scraped_at": "2025-12-06T06:01:57.351605"
+    "matches": 17,
+    "scraped_at": "2025-12-08T06:01:54.587126"
   },
   {
     "player_name": "James Garner",
     "goals": 1,
     "assists": 2,
-    "matches": 16,
-    "scraped_at": "2025-12-06T06:01:57.350692"
+    "matches": 17,
+    "scraped_at": "2025-12-08T06:01:54.586638"
   },
   {
     "player_name": "Carlos Alcaraz",
     "goals": 1,
     "assists": 1,
-    "matches": 13,
-    "scraped_at": "2025-12-06T06:01:57.350847"
+    "matches": 14,
+    "scraped_at": "2025-12-08T06:01:54.586724"
+  },
+  {
+    "player_name": "Thierno Barry",
+    "goals": 1,
+    "assists": 0,
+    "matches": 17,
+    "scraped_at": "2025-12-08T06:01:54.587005"
   },
   {
     "player_name": "Tim Iroegbunam",
     "goals": 0,
     "assists": 2,
     "matches": 13,
-    "scraped_at": "2025-12-06T06:01:57.350932"
+    "scraped_at": "2025-12-08T06:01:54.586763"
   },
   {
     "player_name": "Harrison Armstrong",
     "goals": 0,
     "assists": 2,
     "matches": 2,
-    "scraped_at": "2025-12-06T06:01:57.351075"
+    "scraped_at": "2025-12-08T06:01:54.586841"
+  },
+  {
+    "player_name": "Jake O'Brien",
+    "goals": 0,
+    "assists": 1,
+    "matches": 17,
+    "scraped_at": "2025-12-08T06:01:54.586192"
   },
   {
     "player_name": "James Tarkowski",
     "goals": 0,
     "assists": 1,
-    "matches": 16,
-    "scraped_at": "2025-12-06T06:01:57.350134"
+    "matches": 17,
+    "scraped_at": "2025-12-08T06:01:54.586303"
   }
 ]

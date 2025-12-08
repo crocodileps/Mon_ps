@@ -1,0 +1,100 @@
+{
+  "generated_at": "2025-12-07T13:16:45.256668",
+  "market": "over_25",
+  "odds": 1.85,
+  "variants": {
+    "CONVERGENCE_BASELINE": {
+      "name": "CONVERGENCE (Baseline)",
+      "bets": 1262,
+      "wins": 703,
+      "win_rate": 55.71,
+      "profit": 38.55,
+      "roi": 3.05
+    },
+    "CONV_MOMENTUM_HOT": {
+      "name": "CONV + Momentum HOT+",
+      "bets": 211,
+      "wins": 129,
+      "win_rate": 61.14,
+      "profit": 27.65,
+      "roi": 13.1
+    },
+    "CONV_MOMENTUM_WARMING": {
+      "name": "CONV + Momentum WARMING+",
+      "bets": 443,
+      "wins": 259,
+      "win_rate": 58.47,
+      "profit": 36.15,
+      "roi": 8.16
+    },
+    "CONV_MOMENTUM_60": {
+      "name": "CONV + Momentum Score>60",
+      "bets": 773,
+      "wins": 434,
+      "win_rate": 56.14,
+      "profit": 29.9,
+      "roi": 3.87
+    },
+    "CONV_MOMENTUM_50": {
+      "name": "CONV + Momentum Score>50",
+      "bets": 910,
+      "wins": 510,
+      "win_rate": 56.04,
+      "profit": 33.5,
+      "roi": 3.68
+    },
+    "CONV_NO_COLD": {
+      "name": "CONV + Exclure COLD/FREEZING",
+      "bets": 962,
+      "wins": 538,
+      "win_rate": 55.93,
+      "profit": 33.3,
+      "roi": 3.46
+    },
+    "CONV_ACCELERATION_POS": {
+      "name": "CONV + Acceleration>0",
+      "bets": 667,
+      "wins": 371,
+      "win_rate": 55.62,
+      "profit": 19.35,
+      "roi": 2.9
+    }
+  },
+  "trend_breakdown": {
+    "NEUTRAL": {
+      "bets": 630,
+      "wins": 348,
+      "profit": 13.800000000000002
+    },
+    "COOLING": {
+      "bets": 163,
+      "wins": 86,
+      "profit": -3.900000000000025
+    },
+    "WARMING": {
+      "bets": 232,
+      "wins": 130,
+      "profit": 8.499999999999996
+    },
+    "HOT": {
+      "bets": 94,
+      "wins": 62,
+      "profit": 20.700000000000006
+    },
+    "BLAZING": {
+      "bets": 117,
+      "wins": 67,
+      "profit": 6.949999999999985
+    },
+    "FREEZING": {
+      "bets": 25,
+      "wins": 10,
+      "profit": -6.500000000000002
+    },
+    "COLD": {
+      "bets": 1,
+      "wins": 0,
+      "profit": -1.0
+    }
+  }
+}

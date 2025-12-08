@@ -20,7 +20,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 
 # Configuration
-API_KEY = os.getenv('ODDS_API_KEY', 'e50e00abc0f9d9b0fee34ee348f9cab8')
+API_KEY = os.getenv('ODDS_API_KEY', '')
 API_BASE_URL = 'https://api.the-odds-api.com/v4'
 
 # TOUS les sports à collecter

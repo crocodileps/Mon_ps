@@ -1,128 +1,128 @@
 [
   {
     "player_name": "Hugo Ekitik\u00e9",
-    "goals": 6,
+    "goals": 8,
     "assists": 1,
-    "matches": 20,
-    "scraped_at": "2025-12-06T06:00:09.179591"
+    "matches": 21,
+    "scraped_at": "2025-12-08T06:00:10.401547"
   },
   {
     "player_name": "Cody Gakpo",
     "goals": 5,
     "assists": 4,
-    "matches": 20,
-    "scraped_at": "2025-12-06T06:00:09.179629"
+    "matches": 21,
+    "scraped_at": "2025-12-08T06:00:10.401584"
   },
   {
     "player_name": "Mohamed Salah",
     "goals": 5,
     "assists": 3,
     "matches": 19,
-    "scraped_at": "2025-12-06T06:00:09.179667"
+    "scraped_at": "2025-12-08T06:00:10.401622"
   },
   {
     "player_name": "Dominik Szoboszlai",
-    "goals": 3,
+    "goals": 4,
     "assists": 5,
-    "matches": 20,
-    "scraped_at": "2025-12-06T06:00:09.179200"
+    "matches": 21,
+    "scraped_at": "2025-12-08T06:00:10.401153"
   },
   {
     "player_name": "Ryan Gravenberch",
     "goals": 3,
-    "assists": 2,
-    "matches": 16,
-    "scraped_at": "2025-12-06T06:00:09.179163"
+    "assists": 3,
+    "matches": 17,
+    "scraped_at": "2025-12-08T06:00:10.401115"
   },
   {
     "player_name": "Federico Chiesa",
     "goals": 2,
     "assists": 3,
     "matches": 15,
-    "scraped_at": "2025-12-06T06:00:09.179742"
+    "scraped_at": "2025-12-08T06:00:10.401701"
   },
   {
     "player_name": "Alexander Isak",
     "goals": 2,
     "assists": 1,
-    "matches": 12,
-    "scraped_at": "2025-12-06T06:00:09.179550"
+    "matches": 13,
+    "scraped_at": "2025-12-08T06:00:10.401505"
   },
   {
     "player_name": "Virgil van Dijk",
     "goals": 2,
     "assists": 0,
-    "matches": 20,
-    "scraped_at": "2025-12-06T06:00:09.178773"
+    "matches": 21,
+    "scraped_at": "2025-12-08T06:00:10.400713"
   },
   {
     "player_name": "Alexis Mac Allister",
     "goals": 1,
     "assists": 2,
-    "matches": 20,
-    "scraped_at": "2025-12-06T06:00:09.179124"
+    "matches": 21,
+    "scraped_at": "2025-12-08T06:00:10.401072"
   },
   {
     "player_name": "Andrew Robertson",
     "goals": 1,
     "assists": 1,
     "matches": 15,
-    "scraped_at": "2025-12-06T06:00:09.178850"
+    "scraped_at": "2025-12-08T06:00:10.400791"
   },
   {
     "player_name": "Ibrahima Konat\u00e9",
     "goals": 1,
     "assists": 0,
-    "matches": 20,
-    "scraped_at": "2025-12-06T06:00:09.178547"
+    "matches": 21,
+    "scraped_at": "2025-12-08T06:00:10.400487"
   },
   {
     "player_name": "Milos Kerkez",
     "goals": 1,
     "assists": 0,
-    "matches": 20,
-    "scraped_at": "2025-12-06T06:00:09.178606"
+    "matches": 21,
+    "scraped_at": "2025-12-08T06:00:10.400542"
   },
   {
     "player_name": "Jeremie Frimpong",
     "goals": 1,
     "assists": 0,
     "matches": 9,
-    "scraped_at": "2025-12-06T06:00:09.178651"
+    "scraped_at": "2025-12-08T06:00:10.400591"
   },
   {
     "player_name": "Rio Ngumoha",
     "goals": 1,
     "assists": 0,
     "matches": 8,
-    "scraped_at": "2025-12-06T06:00:09.179783"
+    "scraped_at": "2025-12-08T06:00:10.401743"
   },
   {
     "player_name": "Florian Wirtz",
     "goals": 0,
     "assists": 4,
-    "matches": 18,
-    "scraped_at": "2025-12-06T06:00:09.179085"
+    "matches": 19,
+    "scraped_at": "2025-12-08T06:00:10.401033"
   },
   {
     "player_name": "Conor Bradley",
     "goals": 0,
     "assists": 1,
-    "matches": 14,
-    "scraped_at": "2025-12-06T06:00:09.178691"
+    "matches": 15,
+    "scraped_at": "2025-12-08T06:00:10.400632"
   },
   {
     "player_name": "Joe Gomez",
     "goals": 0,
     "assists": 1,
-    "matches": 9,
-    "scraped_at": "2025-12-06T06:00:09.178812"
+    "matches": 10,
+    "scraped_at": "2025-12-08T06:00:10.400753"
   },
   {
     "player_name": "Wataru Endo",
     "goals": 0,
     "assists": 1,
-    "matches": 7,
-    "scraped_at": "2025-12-06T06:00:09.179350"
+    "matches": 8,
+    "scraped_at": "2025-12-08T06:00:10.401307"
   }
 ]

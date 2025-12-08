@@ -1,0 +1,441 @@
+{
+  "summary": {
+    "period": "2025-11-01 → 2025-12-06",
+    "total_matches": 152,
+    "matches_with_dna": 94,
+    "total_picks": 61,
+    "wins": 45,
+    "losses": 16,
+    "win_rate": 73.8,
+    "roi": 46.4,
+    "pnl": 28.31
+  },
+  "by_zone": {
+    "VALUE": {
+      "picks": 19,
+      "wins": 13,
+      "pnl": 8.75,
+      "wr": 68.4
+    },
+    "BANKER": {
+      "picks": 15,
+      "wins": 10,
+      "pnl": -1.16,
+      "wr": 66.7
+    },
+    "SWEET_SPOT": {
+      "picks": 17,
+      "wins": 13,
+      "pnl": 5.62,
+      "wr": 76.5
+    },
+    "SPECULATIVE": {
+      "picks": 10,
+      "wins": 9,
+      "pnl": 15.1,
+      "wr": 90.0
+    }
+  },
+  "by_market": {
+    "btts_no": {
+      "picks": 8,
+      "wins": 7,
+      "pnl": 9.399999999999999,
+      "wr": 87.5
+    },
+    "btts_yes": {
+      "picks": 6,
+      "wins": 6,
+      "pnl": 5.6,
+      "wr": 100.0
+    },
+    "over_25": {
+      "picks": 15,
+      "wins": 10,
+      "pnl": 4.530000000000001,
+      "wr": 66.7
+    },
+    "under_25": {
+      "picks": 5,
+      "wins": 5,
+      "pnl": 4.18,
+      "wr": 100.0
+    },
+    "away": {
+      "picks": 4,
+      "wins": 3,
+      "pnl": 3.6100000000000003,
+      "wr": 75.0
+    },
+    "over_35": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 2.0,
+      "wr": 100.0
+    },
+    "under_35": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 1.42,
+      "wr": 100.0
+    },
+    "under_15": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 1.38,
+      "wr": 100.0
+    },
+    "dc_1x": {
+      "picks": 10,
+      "wins": 5,
+      "pnl": -1.1099999999999999,
+      "wr": 50.0
+    },
+    "home": {
+      "picks": 4,
+      "wins": 2,
+      "pnl": -1.19,
+      "wr": 50.0
+    },
+    "dc_12": {
+      "picks": 4,
+      "wins": 2,
+      "pnl": -1.51,
+      "wr": 50.0
+    }
+  },
+  "by_strategy": {
+    "CONVERGENCE_OVER_MC (SINGLE)": {
+      "picks": 20,
+      "wins": 17,
+      "pnl": 14.309999999999999,
+      "wr": 85.0
+    },
+    "MONTE_CARLO_PURE (SINGLE)": {
+      "picks": 13,
+      "wins": 10,
+      "pnl": 8.510000000000002,
+      "wr": 76.9
+    },
+    "TOTAL_CHAOS (SINGLE)": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 3.17,
+      "wr": 100.0
+    },
+    "MONTE_CARLO_PURE (SYNERGY_UNDER)": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 2.11,
+      "wr": 100.0
+    },
+    "CONVERGENCE_UNDER_MC (SINGLE)": {
+      "picks": 3,
+      "wins": 3,
+      "pnl": 2.0700000000000003,
+      "wr": 100.0
+    },
+    "QUANT_BEST_MARKET (SINGLE)": {
+      "picks": 14,
+      "wins": 9,
+      "pnl": 2.04,
+      "wr": 64.3
+    },
+    "CONVERGENCE_OVER_PURE (SINGLE)": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.89,
+      "wr": 100.0
+    },
+    "MC_V2_PURE (SINGLE)": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.21,
+      "wr": 100.0
+    },
+    "QUANT_BEST_MARKET (SYNERGY_OVER)": {
+      "picks": 1,
+      "wins": 0,
+      "pnl": -1.0,
+      "wr": 0.0
+    },
+    "DEFAULT (SINGLE)": {
+      "picks": 4,
+      "wins": 0,
+      "pnl": -4.0,
+      "wr": 0.0
+    }
+  },
+  "by_team": {
+    "Nottingham Forest": {
+      "picks": 3,
+      "wins": 3,
+      "pnl": 4.1899999999999995,
+      "roi": -107.5,
+      "strategy": "MONTE_CARLO_PURE",
+      "style": "defens",
+      "best_market": "btts_no"
+    },
+    "Lille": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 3.17,
+      "roi": 7.1,
+      "strategy": "TOTAL_CHAOS",
+      "style": "offens",
+      "best_market": "btts_no"
+    },
+    "Lyon": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 3.04,
+      "roi": 120.0,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "balanc",
+      "best_market": "btts_no"
+    },
+    "Fulham": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 3.0100000000000002,
+      "roi": 212.0,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "balanc",
+      "best_market": "away"
+    },
+    "Osasuna": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 2.76,
+      "roi": 170.0,
+      "strategy": "MONTE_CARLO_PURE",
+      "style": "balanc",
+      "best_market": "N/A"
+    },
+    "Barcelona": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 2.0,
+      "roi": 85.9,
+      "strategy": "QUANT_BEST_MARKET",
+      "style": "offens",
+      "best_market": "over_35"
+    },
+    "Union Berlin": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 1.82,
+      "roi": 96.0,
+      "strategy": "MONTE_CARLO_PURE",
+      "style": "balanc",
+      "best_market": "btts_yes"
+    },
+    "Genoa": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 1.62,
+      "roi": 135.0,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "balanc",
+      "best_market": "N/A"
+    },
+    "Everton": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 1.6,
+      "roi": 46.2,
+      "strategy": "QUANT_BEST_MARKET",
+      "style": "balanc",
+      "best_market": "away"
+    },
+    "Nice": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 1.58,
+      "roi": 155.0,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "defens",
+      "best_market": "over_25"
+    },
+    "Torino": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 1.5,
+      "roi": 210.0,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "defens",
+      "best_market": "N/A"
+    },
+    "Getafe": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 1.38,
+      "roi": 80.0,
+      "strategy": "QUANT_BEST_MARKET",
+      "style": "balanc",
+      "best_market": "under_15"
+    },
+    "Metz": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 1.19,
+      "roi": 117.1,
+      "strategy": "MONTE_CARLO_PURE",
+      "style": "defens",
+      "best_market": "under_25"
+    },
+    "Real Madrid": {
+      "picks": 2,
+      "wins": 1,
+      "pnl": 1.1099999999999999,
+      "roi": 44.5,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "offens",
+      "best_market": "dc_1x"
+    },
+    "FC Heidenheim": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 1.06,
+      "roi": 77.5,
+      "strategy": "MONTE_CARLO_PURE",
+      "style": "defens",
+      "best_market": "N/A"
+    },
+    "Freiburg": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 0.91,
+      "roi": 77.5,
+      "strategy": "QUANT_BEST_MARKET",
+      "style": "balanc",
+      "best_market": "N/A"
+    },
+    "Chelsea": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.9,
+      "roi": 123.8,
+      "strategy": "MONTE_CARLO_PURE",
+      "style": "offens",
+      "best_market": "N/A"
+    },
+    "Aston Villa": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.89,
+      "roi": 87.8,
+      "strategy": "CONVERGENCE_OVER_PURE",
+      "style": "balanc",
+      "best_market": "under_35"
+    },
+    "Arsenal": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.87,
+      "roi": 200.0,
+      "strategy": "CONVERGENCE_UNDER_MC",
+      "style": "offens",
+      "best_market": "N/A"
+    },
+    "Brentford": {
+      "picks": 2,
+      "wins": 2,
+      "pnl": 0.81,
+      "roi": 120.0,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "balanc",
+      "best_market": "home"
+    },
+    "Villarreal": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.78,
+      "roi": 77.5,
+      "strategy": "MONTE_CARLO_PURE",
+      "style": "balanc",
+      "best_market": "btts_yes"
+    },
+    "Brest": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.74,
+      "roi": 145.7,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "balanc",
+      "best_market": "N/A"
+    },
+    "Manchester United": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.72,
+      "roi": 145.7,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "balanc",
+      "best_market": "N/A"
+    },
+    "Marseille": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.68,
+      "roi": 212.0,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "offens",
+      "best_market": "btts_yes"
+    },
+    "Parma Calcio 1913": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.64,
+      "roi": 200.0,
+      "strategy": "CONVERGENCE_UNDER_MC",
+      "style": "balanc",
+      "best_market": "N/A"
+    },
+    "Real Oviedo": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.64,
+      "roi": 90.9,
+      "strategy": "QUANT_BEST_MARKET",
+      "style": "defens",
+      "best_market": "N/A"
+    },
+    "Napoli": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.56,
+      "roi": 200.0,
+      "strategy": "CONVERGENCE_UNDER_MC",
+      "style": "balanc",
+      "best_market": "N/A"
+    },
+    "Real Betis": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.53,
+      "roi": 80.0,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "balanc",
+      "best_market": "under_35"
+    },
+    "Augsburg": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.53,
+      "roi": 212.0,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "defens",
+      "best_market": "N/A"
+    },
+    "Manchester City": {
+      "picks": 1,
+      "wins": 1,
+      "pnl": 0.44,
+      "roi": 113.6,
+      "strategy": "CONVERGENCE_OVER_MC",
+      "style": "offens",
+      "best_market": "over_25"
+    }
+  }
+}

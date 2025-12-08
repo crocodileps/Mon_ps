@@ -1,0 +1,1 @@
+2025-12-07-quantum-v34-momentum-conflict.md - V3.3 Bayesian + V3.4.2 Momentum L5 Smart Conflict Resolution

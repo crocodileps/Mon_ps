@@ -3,140 +3,140 @@
     "player_name": "Danny Welbeck",
     "goals": 7,
     "assists": 1,
-    "matches": 16,
-    "scraped_at": "2025-12-06T06:01:05.003220"
+    "matches": 17,
+    "scraped_at": "2025-12-08T06:01:06.978768"
   },
   {
     "player_name": "Diego G\u00f3mez",
     "goals": 7,
     "assists": 0,
-    "matches": 16,
-    "scraped_at": "2025-12-06T06:01:05.002169"
+    "matches": 17,
+    "scraped_at": "2025-12-08T06:01:06.977767"
   },
   {
     "player_name": "Stefanos Tzimas",
     "goals": 3,
     "assists": 2,
     "matches": 12,
-    "scraped_at": "2025-12-06T06:01:05.002973"
+    "scraped_at": "2025-12-08T06:01:06.978532"
   },
   {
     "player_name": "Jan Paul van Hecke",
     "goals": 3,
-    "assists": 0,
-    "matches": 16,
-    "scraped_at": "2025-12-06T06:01:05.000845"
+    "assists": 1,
+    "matches": 17,
+    "scraped_at": "2025-12-08T06:01:06.976456"
   },
   {
     "player_name": "Brajan Gruda",
     "goals": 2,
     "assists": 2,
-    "matches": 11,
-    "scraped_at": "2025-12-06T06:01:05.002699"
+    "matches": 12,
+    "scraped_at": "2025-12-08T06:01:06.978287"
   },
   {
     "player_name": "Maxim De Cuyper",
     "goals": 2,
     "assists": 0,
-    "matches": 13,
-    "scraped_at": "2025-12-06T06:01:05.001112"
+    "matches": 14,
+    "scraped_at": "2025-12-08T06:01:06.976708"
   },
   {
     "player_name": "Yasin Ayari",
     "goals": 2,
     "assists": 0,
     "matches": 15,
-    "scraped_at": "2025-12-06T06:01:05.001865"
+    "scraped_at": "2025-12-08T06:01:06.977476"
   },
   {
     "player_name": "Yankuba Minteh",
     "goals": 1,
     "assists": 4,
-    "matches": 15,
-    "scraped_at": "2025-12-06T06:01:05.002478"
+    "matches": 16,
+    "scraped_at": "2025-12-08T06:01:06.978063"
+  },
+  {
+    "player_name": "Georginio Rutter",
+    "goals": 1,
+    "assists": 3,
+    "matches": 14,
+    "scraped_at": "2025-12-08T06:01:06.978212"
   },
   {
     "player_name": "Tom Watson",
     "goals": 1,
     "assists": 3,
     "matches": 5,
-    "scraped_at": "2025-12-06T06:01:05.003066"
+    "scraped_at": "2025-12-08T06:01:06.978624"
   },
   {
     "player_name": "Jack Hinshelwood",
     "goals": 1,
     "assists": 2,
-    "matches": 7,
-    "scraped_at": "2025-12-06T06:01:05.002019"
+    "matches": 8,
+    "scraped_at": "2025-12-08T06:01:06.977621"
   },
   {
     "player_name": "Harry Howell",
     "goals": 1,
     "assists": 2,
     "matches": 2,
-    "scraped_at": "2025-12-06T06:01:05.002383"
+    "scraped_at": "2025-12-08T06:01:06.977988"
   },
   {
     "player_name": "James Milner",
     "goals": 1,
     "assists": 1,
     "matches": 9,
-    "scraped_at": "2025-12-06T06:01:05.002243"
+    "scraped_at": "2025-12-08T06:01:06.977838"
   },
   {
     "player_name": "Kaoru Mitoma",
     "goals": 1,
     "assists": 1,
     "matches": 6,
-    "scraped_at": "2025-12-06T06:01:05.002552"
+    "scraped_at": "2025-12-08T06:01:06.978137"
   },
   {
     "player_name": "Olivier Boscagli",
     "goals": 1,
     "assists": 0,
-    "matches": 4,
-    "scraped_at": "2025-12-06T06:01:05.001031"
+    "matches": 5,
+    "scraped_at": "2025-12-08T06:01:06.976626"
   },
   {
     "player_name": "Matt O'Riley",
     "goals": 1,
     "assists": 0,
     "matches": 2,
-    "scraped_at": "2025-12-06T06:01:05.002095"
+    "scraped_at": "2025-12-08T06:01:06.977693"
   },
   {
     "player_name": "Charalampos Kostoulas",
     "goals": 1,
     "assists": 0,
-    "matches": 8,
-    "scraped_at": "2025-12-06T06:01:05.002824"
+    "matches": 9,
+    "scraped_at": "2025-12-08T06:01:06.978389"
   },
   {
     "player_name": "Mats Wieffer",
     "goals": 0,
     "assists": 3,
-    "matches": 13,
-    "scraped_at": "2025-12-06T06:01:05.001948"
-  },
-  {
-    "player_name": "Georginio Rutter",
-    "goals": 0,
-    "assists": 3,
-    "matches": 13,
-    "scraped_at": "2025-12-06T06:01:05.002624"
+    "matches": 14,
+    "scraped_at": "2025-12-08T06:01:06.977546"
   },
   {
     "player_name": "Diego Coppola",
     "goals": 0,
     "assists": 2,
     "matches": 6,
-    "scraped_at": "2025-12-06T06:01:05.001335"
+    "scraped_at": "2025-12-08T06:01:06.976936"
   },
   {
     "player_name": "Jo\u00ebl Veltman",
     "goals": 0,
     "assists": 1,
     "matches": 10,
-    "scraped_at": "2025-12-06T06:01:05.001580"
+    "scraped_at": "2025-12-08T06:01:06.977166"
   }
 ]

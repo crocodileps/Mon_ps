@@ -1,107 +1,107 @@
 [
   {
     "player_name": "Richarlison",
-    "goals": 6,
+    "goals": 7,
     "assists": 2,
-    "matches": 22,
-    "scraped_at": "2025-12-06T06:00:43.542238"
+    "matches": 23,
+    "scraped_at": "2025-12-08T06:00:45.638506"
   },
   {
     "player_name": "Micky van de Ven",
     "goals": 6,
     "assists": 0,
-    "matches": 19,
-    "scraped_at": "2025-12-06T06:00:43.541105"
+    "matches": 20,
+    "scraped_at": "2025-12-08T06:00:45.637360"
   },
   {
     "player_name": "Jo\u00e3o Palhinha",
     "goals": 4,
     "assists": 3,
-    "matches": 21,
-    "scraped_at": "2025-12-06T06:00:43.541810"
+    "matches": 22,
+    "scraped_at": "2025-12-08T06:00:45.638076"
   },
   {
     "player_name": "Brennan Johnson",
     "goals": 4,
     "assists": 0,
     "matches": 19,
-    "scraped_at": "2025-12-06T06:00:43.542119"
+    "scraped_at": "2025-12-08T06:00:45.638377"
   },
   {
     "player_name": "Cristian Romero",
     "goals": 3,
     "assists": 2,
-    "matches": 15,
-    "scraped_at": "2025-12-06T06:00:43.541055"
+    "matches": 16,
+    "scraped_at": "2025-12-08T06:00:45.637312"
   },
   {
     "player_name": "Mohammed Kudus",
     "goals": 2,
     "assists": 6,
-    "matches": 19,
-    "scraped_at": "2025-12-06T06:00:43.542044"
+    "matches": 20,
+    "scraped_at": "2025-12-08T06:00:45.638301"
   },
   {
     "player_name": "Pape Matar Sarr",
     "goals": 2,
     "assists": 2,
-    "matches": 20,
-    "scraped_at": "2025-12-06T06:00:43.541766"
+    "matches": 21,
+    "scraped_at": "2025-12-08T06:00:45.638034"
   },
   {
     "player_name": "Randal Kolo Muani",
     "goals": 2,
     "assists": 2,
-    "matches": 12,
-    "scraped_at": "2025-12-06T06:00:43.542200"
+    "matches": 13,
+    "scraped_at": "2025-12-08T06:00:45.638468"
   },
   {
     "player_name": "Mathys Tel",
     "goals": 2,
     "assists": 0,
     "matches": 13,
-    "scraped_at": "2025-12-06T06:00:43.542160"
+    "scraped_at": "2025-12-08T06:00:45.638428"
   },
   {
     "player_name": "Lucas Bergvall",
     "goals": 1,
     "assists": 4,
     "matches": 18,
-    "scraped_at": "2025-12-06T06:00:43.541653"
+    "scraped_at": "2025-12-08T06:00:45.637911"
+  },
+  {
+    "player_name": "Xavi Simons",
+    "goals": 1,
+    "assists": 3,
+    "matches": 19,
+    "scraped_at": "2025-12-08T06:00:45.637830"
   },
   {
     "player_name": "Wilson Odobert",
     "goals": 1,
     "assists": 2,
-    "matches": 18,
-    "scraped_at": "2025-12-06T06:00:43.542275"
+    "matches": 19,
+    "scraped_at": "2025-12-08T06:00:45.638546"
   },
   {
     "player_name": "Rodrigo Bentancur",
     "goals": 1,
     "assists": 1,
-    "matches": 21,
-    "scraped_at": "2025-12-06T06:00:43.541849"
+    "matches": 22,
+    "scraped_at": "2025-12-08T06:00:45.638114"
   },
   {
     "player_name": "Pedro Porro",
     "goals": 0,
     "assists": 3,
-    "matches": 22,
-    "scraped_at": "2025-12-06T06:00:43.541184"
-  },
-  {
-    "player_name": "Xavi Simons",
-    "goals": 0,
-    "assists": 2,
-    "matches": 18,
-    "scraped_at": "2025-12-06T06:00:43.541577"
+    "matches": 23,
+    "scraped_at": "2025-12-08T06:00:45.637449"
   },
   {
     "player_name": "Destiny Udogie",
     "goals": 0,
     "assists": 1,
     "matches": 15,
-    "scraped_at": "2025-12-06T06:00:43.541146"
+    "scraped_at": "2025-12-08T06:00:45.637411"
   }
 ]
