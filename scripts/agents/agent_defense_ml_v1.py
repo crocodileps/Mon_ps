@@ -544,7 +544,7 @@ class DefenseMLModels:
     
     def save(self, path: str = MODEL_PATH):
         """Sauvegarde les modèles"""
-        with open(os.path.join(path, 'models.pkl'), 'wb') as f:
+        with open(os.path.join(path, 'models_v1.1.pkl'), 'wb') as f:
             pickle.dump({
                 'models': self.models,
                 'scalers': self.scalers,
@@ -556,7 +556,7 @@ class DefenseMLModels:
     
     def load(self, path: str = MODEL_PATH):
         """Charge les modèles"""
-        model_file = os.path.join(path, 'models.pkl')
+        model_file = os.path.join(path, 'models_v1.1.pkl')
         if os.path.exists(model_file):
             with open(model_file, 'rb') as f:
                 data = pickle.load(f)
