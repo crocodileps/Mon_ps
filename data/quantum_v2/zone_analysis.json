@@ -1,0 +1,5021 @@
+{
+  "Bournemouth": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 1,
+        "saves": 5,
+        "xG": 0.46,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      },
+      "penalty_area_center": {
+        "shots": 31,
+        "goals": 14,
+        "saves": 17,
+        "xG": 6.714,
+        "conversion": 45.2,
+        "save_rate": 54.8
+      },
+      "edge_box_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.149,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.504,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 4,
+        "saves": 2,
+        "xG": 2.199,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "edge_box_center": {
+        "shots": 12,
+        "goals": 4,
+        "saves": 8,
+        "xG": 0.618,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Liverpool": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 30,
+        "goals": 15,
+        "saves": 15,
+        "xG": 8.7,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_center": {
+        "shots": 15,
+        "goals": 4,
+        "saves": 11,
+        "xG": 0.432,
+        "conversion": 26.7,
+        "save_rate": 73.3
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 4,
+        "saves": 2,
+        "xG": 3.422,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.175,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Newcastle United": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 24,
+        "goals": 10,
+        "saves": 14,
+        "xG": 5.882,
+        "conversion": 41.7,
+        "save_rate": 58.3
+      },
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.375,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 8,
+        "goals": 0,
+        "saves": 8,
+        "xG": 0.347,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 2,
+        "saves": 9,
+        "xG": 0.424,
+        "conversion": 18.2,
+        "save_rate": 81.8
+      },
+      "six_yard_center": {
+        "shots": 7,
+        "goals": 5,
+        "saves": 2,
+        "xG": 3.884,
+        "conversion": 71.4,
+        "save_rate": 28.6
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Aston Villa": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 25,
+        "goals": 5,
+        "saves": 20,
+        "xG": 5.967,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "edge_box_center": {
+        "shots": 15,
+        "goals": 1,
+        "saves": 14,
+        "xG": 0.9,
+        "conversion": 6.7,
+        "save_rate": 93.3
+      },
+      "six_yard_center": {
+        "shots": 7,
+        "goals": 6,
+        "saves": 1,
+        "xG": 3.402,
+        "conversion": 85.7,
+        "save_rate": 14.3
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.233,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "six_yard_center"
+  },
+  "Fulham": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 10,
+        "goals": 3,
+        "saves": 7,
+        "xG": 0.345,
+        "conversion": 30.0,
+        "save_rate": 70.0
+      },
+      "penalty_area_center": {
+        "shots": 20,
+        "goals": 10,
+        "saves": 10,
+        "xG": 5.987,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "penalty_area_left": {
+        "shots": 7,
+        "goals": 1,
+        "saves": 6,
+        "xG": 0.406,
+        "conversion": 14.3,
+        "save_rate": 85.7
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.127,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 12,
+        "goals": 7,
+        "saves": 5,
+        "xG": 5.202,
+        "conversion": 58.3,
+        "save_rate": 41.7
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.136,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Brighton": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 12,
+        "goals": 8,
+        "saves": 4,
+        "xG": 6.099,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "edge_box_center": {
+        "shots": 9,
+        "goals": 3,
+        "saves": 6,
+        "xG": 0.388,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.058,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_center": {
+        "shots": 20,
+        "goals": 6,
+        "saves": 14,
+        "xG": 4.806,
+        "conversion": 30.0,
+        "save_rate": 70.0
+      },
+      "penalty_area_right": {
+        "shots": 9,
+        "goals": 1,
+        "saves": 8,
+        "xG": 0.609,
+        "conversion": 11.1,
+        "save_rate": 88.9
+      },
+      "six_yard_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.194,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "six_yard_center"
+  },
+  "West Ham": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 7,
+        "goals": 0,
+        "saves": 7,
+        "xG": 0.748,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 15,
+        "goals": 9,
+        "saves": 6,
+        "xG": 7.063,
+        "conversion": 60.0,
+        "save_rate": 40.0
+      },
+      "penalty_area_center": {
+        "shots": 43,
+        "goals": 18,
+        "saves": 25,
+        "xG": 10.358,
+        "conversion": 41.9,
+        "save_rate": 58.1
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.181,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_center": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.145,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Sunderland": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.314,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 30,
+        "goals": 7,
+        "saves": 23,
+        "xG": 5.703,
+        "conversion": 23.3,
+        "save_rate": 76.7
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.643,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_center": {
+        "shots": 10,
+        "goals": 2,
+        "saves": 8,
+        "xG": 0.295,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 3,
+        "saves": 5,
+        "xG": 2.859,
+        "conversion": 37.5,
+        "save_rate": 62.5
+      },
+      "edge_box_right": {
+        "shots": 6,
+        "goals": 1,
+        "saves": 5,
+        "xG": 0.173,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.072,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Burnley": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 10,
+        "goals": 8,
+        "saves": 2,
+        "xG": 5.689,
+        "conversion": 80.0,
+        "save_rate": 20.0
+      },
+      "penalty_area_center": {
+        "shots": 42,
+        "goals": 18,
+        "saves": 24,
+        "xG": 13.279,
+        "conversion": 42.9,
+        "save_rate": 57.1
+      },
+      "six_yard_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.346,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_center": {
+        "shots": 12,
+        "goals": 0,
+        "saves": 12,
+        "xG": 0.399,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.35,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.101,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.319,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.049,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Tottenham": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 1,
+        "saves": 7,
+        "xG": 0.259,
+        "conversion": 12.5,
+        "save_rate": 87.5
+      },
+      "penalty_area_center": {
+        "shots": 26,
+        "goals": 7,
+        "saves": 19,
+        "xG": 5.101,
+        "conversion": 26.9,
+        "save_rate": 73.1
+      },
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.167,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "penalty_area_right": {
+        "shots": 6,
+        "goals": 2,
+        "saves": 4,
+        "xG": 0.907,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 4,
+        "saves": 2,
+        "xG": 3.194,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "six_yard_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.17,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.256,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 3,
+        "saves": 1,
+        "xG": 0.105,
+        "conversion": 75.0,
+        "save_rate": 25.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Manchester City": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 24,
+        "goals": 10,
+        "saves": 14,
+        "xG": 5.512,
+        "conversion": 41.7,
+        "save_rate": 58.3
+      },
+      "edge_box_center": {
+        "shots": 6,
+        "goals": 3,
+        "saves": 3,
+        "xG": 0.505,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 3,
+        "saves": 2,
+        "xG": 3.007,
+        "conversion": 60.0,
+        "save_rate": 40.0
+      },
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.122,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "edge_box_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Wolverhampton Wanderers": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 5,
+        "saves": 3,
+        "xG": 4.367,
+        "conversion": 62.5,
+        "save_rate": 37.5
+      },
+      "penalty_area_right": {
+        "shots": 7,
+        "goals": 4,
+        "saves": 3,
+        "xG": 0.689,
+        "conversion": 57.1,
+        "save_rate": 42.9
+      },
+      "penalty_area_center": {
+        "shots": 23,
+        "goals": 11,
+        "saves": 12,
+        "xG": 4.925,
+        "conversion": 47.8,
+        "save_rate": 52.2
+      },
+      "edge_box_center": {
+        "shots": 15,
+        "goals": 7,
+        "saves": 8,
+        "xG": 0.729,
+        "conversion": 46.7,
+        "save_rate": 53.3
+      },
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.118,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.107,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_right",
+      "penalty_area_center",
+      "edge_box_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Crystal Palace": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.316,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 20,
+        "goals": 7,
+        "saves": 13,
+        "xG": 3.755,
+        "conversion": 35.0,
+        "save_rate": 65.0
+      },
+      "six_yard_center": {
+        "shots": 10,
+        "goals": 3,
+        "saves": 7,
+        "xG": 5.474,
+        "conversion": 30.0,
+        "save_rate": 70.0
+      },
+      "edge_box_center": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.14,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.346,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Chelsea": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 14,
+        "goals": 3,
+        "saves": 11,
+        "xG": 2.221,
+        "conversion": 21.4,
+        "save_rate": 78.6
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.077,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 1,
+        "saves": 7,
+        "xG": 0.349,
+        "conversion": 12.5,
+        "save_rate": 87.5
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.41,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 12,
+        "goals": 10,
+        "saves": 2,
+        "xG": 6.293,
+        "conversion": 83.3,
+        "save_rate": 16.7
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "six_yard_center"
+  },
+  "Brentford": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 28,
+        "goals": 16,
+        "saves": 12,
+        "xG": 8.173,
+        "conversion": 57.1,
+        "save_rate": 42.9
+      },
+      "six_yard_center": {
+        "shots": 7,
+        "goals": 4,
+        "saves": 3,
+        "xG": 3.841,
+        "conversion": 57.1,
+        "save_rate": 42.9
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.063,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 14,
+        "goals": 2,
+        "saves": 12,
+        "xG": 0.522,
+        "conversion": 14.3,
+        "save_rate": 85.7
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Nottingham Forest": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 14,
+        "goals": 6,
+        "saves": 8,
+        "xG": 0.696,
+        "conversion": 42.9,
+        "save_rate": 57.1
+      },
+      "penalty_area_center": {
+        "shots": 32,
+        "goals": 13,
+        "saves": 19,
+        "xG": 9.371,
+        "conversion": 40.6,
+        "save_rate": 59.4
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.122,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 2,
+        "saves": 4,
+        "xG": 2.454,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 2,
+        "saves": 2,
+        "xG": 0.153,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.072,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "edge_box_center",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Arsenal": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 17,
+        "goals": 5,
+        "saves": 12,
+        "xG": 3.215,
+        "conversion": 29.4,
+        "save_rate": 70.6
+      },
+      "edge_box_center": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.134,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 1.381,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      }
+    },
+    "vulnerable_zones": [],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Manchester United": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 6,
+        "saves": 2,
+        "xG": 4.839,
+        "conversion": 75.0,
+        "save_rate": 25.0
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.436,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 7,
+        "goals": 2,
+        "saves": 5,
+        "xG": 0.333,
+        "conversion": 28.6,
+        "save_rate": 71.4
+      },
+      "penalty_area_center": {
+        "shots": 28,
+        "goals": 13,
+        "saves": 15,
+        "xG": 6.988,
+        "conversion": 46.4,
+        "save_rate": 53.6
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Everton": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 10,
+        "goals": 5,
+        "saves": 5,
+        "xG": 3.962,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "penalty_area_center": {
+        "shots": 26,
+        "goals": 8,
+        "saves": 18,
+        "xG": 6.303,
+        "conversion": 30.8,
+        "save_rate": 69.2
+      },
+      "edge_box_center": {
+        "shots": 10,
+        "goals": 1,
+        "saves": 9,
+        "xG": 0.438,
+        "conversion": 10.0,
+        "save_rate": 90.0
+      },
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 3,
+        "saves": 3,
+        "xG": 0.53,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.599,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_left"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Leeds": {
+    "zones": {
+      "six_yard_left": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.371,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "six_yard_center": {
+        "shots": 11,
+        "goals": 8,
+        "saves": 3,
+        "xG": 4.008,
+        "conversion": 72.7,
+        "save_rate": 27.3
+      },
+      "penalty_area_center": {
+        "shots": 33,
+        "goals": 14,
+        "saves": 19,
+        "xG": 8.055,
+        "conversion": 42.4,
+        "save_rate": 57.6
+      },
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.126,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 3,
+        "saves": 5,
+        "xG": 0.48,
+        "conversion": 37.5,
+        "save_rate": 62.5
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.153,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Rayo Vallecano": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 20,
+        "goals": 11,
+        "saves": 9,
+        "xG": 6.38,
+        "conversion": 55.0,
+        "save_rate": 45.0
+      },
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 3,
+        "saves": 8,
+        "xG": 0.717,
+        "conversion": 27.3,
+        "save_rate": 72.7
+      },
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.376,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 8,
+        "goals": 0,
+        "saves": 8,
+        "xG": 0.439,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 4,
+        "goals": 2,
+        "saves": 2,
+        "xG": 2.178,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Girona": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 10,
+        "goals": 8,
+        "saves": 2,
+        "xG": 5.568,
+        "conversion": 80.0,
+        "save_rate": 20.0
+      },
+      "penalty_area_center": {
+        "shots": 43,
+        "goals": 15,
+        "saves": 28,
+        "xG": 11.46,
+        "conversion": 34.9,
+        "save_rate": 65.1
+      },
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.2,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.069,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 7,
+        "goals": 0,
+        "saves": 7,
+        "xG": 0.343,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 2,
+        "saves": 9,
+        "xG": 0.409,
+        "conversion": 18.2,
+        "save_rate": 81.8
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.086,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Real Oviedo": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.29,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 14,
+        "goals": 2,
+        "saves": 12,
+        "xG": 0.647,
+        "conversion": 14.3,
+        "save_rate": 85.7
+      },
+      "penalty_area_center": {
+        "shots": 40,
+        "goals": 12,
+        "saves": 28,
+        "xG": 7.712,
+        "conversion": 30.0,
+        "save_rate": 70.0
+      },
+      "six_yard_center": {
+        "shots": 14,
+        "goals": 7,
+        "saves": 7,
+        "xG": 6.248,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "penalty_area_right": {
+        "shots": 7,
+        "goals": 0,
+        "saves": 7,
+        "xG": 0.382,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.068,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.468,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "six_yard_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.427,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_right": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.158,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Villarreal": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 21,
+        "goals": 7,
+        "saves": 14,
+        "xG": 5.445,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_right": {
+        "shots": 6,
+        "goals": 1,
+        "saves": 5,
+        "xG": 0.168,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      },
+      "penalty_area_right": {
+        "shots": 6,
+        "goals": 2,
+        "saves": 4,
+        "xG": 0.239,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.492,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 1.842,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "edge_box_center": {
+        "shots": 3,
+        "goals": 2,
+        "saves": 1,
+        "xG": 0.161,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      }
+    },
+    "vulnerable_zones": [],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Barcelona": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 33,
+        "goals": 12,
+        "saves": 21,
+        "xG": 11.386,
+        "conversion": 36.4,
+        "save_rate": 63.6
+      },
+      "penalty_area_left": {
+        "shots": 8,
+        "goals": 1,
+        "saves": 7,
+        "xG": 0.608,
+        "conversion": 12.5,
+        "save_rate": 87.5
+      },
+      "six_yard_center": {
+        "shots": 7,
+        "goals": 4,
+        "saves": 3,
+        "xG": 3.569,
+        "conversion": 57.1,
+        "save_rate": 42.9
+      },
+      "edge_box_center": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.214,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Mallorca": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 13,
+        "goals": 8,
+        "saves": 5,
+        "xG": 6.89,
+        "conversion": 61.5,
+        "save_rate": 38.5
+      },
+      "edge_box_center": {
+        "shots": 16,
+        "goals": 4,
+        "saves": 12,
+        "xG": 0.683,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "penalty_area_center": {
+        "shots": 26,
+        "goals": 8,
+        "saves": 18,
+        "xG": 7.061,
+        "conversion": 30.8,
+        "save_rate": 69.2
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.604,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.056,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.112,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "six_yard_center"
+  },
+  "Levante": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 10,
+        "goals": 7,
+        "saves": 3,
+        "xG": 4.916,
+        "conversion": 70.0,
+        "save_rate": 30.0
+      },
+      "penalty_area_center": {
+        "shots": 39,
+        "goals": 12,
+        "saves": 27,
+        "xG": 9.024,
+        "conversion": 30.8,
+        "save_rate": 69.2
+      },
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 2,
+        "saves": 9,
+        "xG": 0.376,
+        "conversion": 18.2,
+        "save_rate": 81.8
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.08,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.108,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.174,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Alaves": {
+    "zones": {
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.186,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 4,
+        "goals": 2,
+        "saves": 2,
+        "xG": 1.568,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "penalty_area_center": {
+        "shots": 26,
+        "goals": 12,
+        "saves": 14,
+        "xG": 5.681,
+        "conversion": 46.2,
+        "save_rate": 53.8
+      },
+      "edge_box_center": {
+        "shots": 9,
+        "goals": 1,
+        "saves": 8,
+        "xG": 0.302,
+        "conversion": 11.1,
+        "save_rate": 88.9
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Real Sociedad": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 23,
+        "goals": 11,
+        "saves": 12,
+        "xG": 5.531,
+        "conversion": 47.8,
+        "save_rate": 52.2
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.164,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 6,
+        "saves": 2,
+        "xG": 3.939,
+        "conversion": 75.0,
+        "save_rate": 25.0
+      },
+      "edge_box_center": {
+        "shots": 12,
+        "goals": 3,
+        "saves": 9,
+        "xG": 0.725,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.152,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Valencia": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 10,
+        "goals": 2,
+        "saves": 8,
+        "xG": 0.386,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "penalty_area_right": {
+        "shots": 14,
+        "goals": 2,
+        "saves": 12,
+        "xG": 1.005,
+        "conversion": 14.3,
+        "save_rate": 85.7
+      },
+      "penalty_area_center": {
+        "shots": 20,
+        "goals": 10,
+        "saves": 10,
+        "xG": 6.305,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "six_yard_center": {
+        "shots": 10,
+        "goals": 6,
+        "saves": 4,
+        "xG": 4.278,
+        "conversion": 60.0,
+        "save_rate": 40.0
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.078,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.475,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Getafe": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 7,
+        "goals": 2,
+        "saves": 5,
+        "xG": 2.149,
+        "conversion": 28.6,
+        "save_rate": 71.4
+      },
+      "edge_box_left": {
+        "shots": 6,
+        "goals": 2,
+        "saves": 4,
+        "xG": 0.185,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_center": {
+        "shots": 27,
+        "goals": 8,
+        "saves": 19,
+        "xG": 6.155,
+        "conversion": 29.6,
+        "save_rate": 70.4
+      },
+      "edge_box_center": {
+        "shots": 12,
+        "goals": 1,
+        "saves": 11,
+        "xG": 0.97,
+        "conversion": 8.3,
+        "save_rate": 91.7
+      },
+      "penalty_area_left": {
+        "shots": 9,
+        "goals": 1,
+        "saves": 8,
+        "xG": 1.372,
+        "conversion": 11.1,
+        "save_rate": 88.9
+      }
+    },
+    "vulnerable_zones": [],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Celta Vigo": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 31,
+        "goals": 13,
+        "saves": 18,
+        "xG": 8.658,
+        "conversion": 41.9,
+        "save_rate": 58.1
+      },
+      "edge_box_center": {
+        "shots": 10,
+        "goals": 0,
+        "saves": 10,
+        "xG": 0.453,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 8,
+        "goals": 0,
+        "saves": 8,
+        "xG": 0.752,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.061,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.287,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "six_yard_center": {
+        "shots": 9,
+        "goals": 4,
+        "saves": 5,
+        "xG": 3.055,
+        "conversion": 44.4,
+        "save_rate": 55.6
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Sevilla": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 38,
+        "goals": 17,
+        "saves": 21,
+        "xG": 12.561,
+        "conversion": 44.7,
+        "save_rate": 55.3
+      },
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 2.856,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.065,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.396,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 3,
+        "saves": 5,
+        "xG": 0.713,
+        "conversion": 37.5,
+        "save_rate": 62.5
+      },
+      "six_yard_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.128,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.098,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 2,
+        "saves": 2,
+        "xG": 0.665,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Athletic Club": {
+    "zones": {
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.391,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "penalty_area_center": {
+        "shots": 23,
+        "goals": 8,
+        "saves": 15,
+        "xG": 5.059,
+        "conversion": 34.8,
+        "save_rate": 65.2
+      },
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 2,
+        "saves": 9,
+        "xG": 0.748,
+        "conversion": 18.2,
+        "save_rate": 81.8
+      },
+      "six_yard_center": {
+        "shots": 11,
+        "goals": 5,
+        "saves": 6,
+        "xG": 4.911,
+        "conversion": 45.5,
+        "save_rate": 54.5
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.281,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 2,
+        "saves": 1,
+        "xG": 0.067,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Atletico Madrid": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 25,
+        "goals": 8,
+        "saves": 17,
+        "xG": 6.432,
+        "conversion": 32.0,
+        "save_rate": 68.0
+      },
+      "six_yard_center": {
+        "shots": 4,
+        "goals": 3,
+        "saves": 1,
+        "xG": 2.177,
+        "conversion": 75.0,
+        "save_rate": 25.0
+      },
+      "edge_box_center": {
+        "shots": 6,
+        "goals": 1,
+        "saves": 5,
+        "xG": 0.209,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      }
+    },
+    "vulnerable_zones": [],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Espanyol": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 22,
+        "goals": 7,
+        "saves": 15,
+        "xG": 5.063,
+        "conversion": 31.8,
+        "save_rate": 68.2
+      },
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.094,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "edge_box_center": {
+        "shots": 17,
+        "goals": 2,
+        "saves": 15,
+        "xG": 0.686,
+        "conversion": 11.8,
+        "save_rate": 88.2
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.511,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 2,
+        "saves": 3,
+        "xG": 0.312,
+        "conversion": 40.0,
+        "save_rate": 60.0
+      },
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 3,
+        "saves": 2,
+        "xG": 1.649,
+        "conversion": 60.0,
+        "save_rate": 40.0
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.098,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_right",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Real Betis": {
+    "zones": {
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.087,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_center": {
+        "shots": 24,
+        "goals": 9,
+        "saves": 15,
+        "xG": 6.885,
+        "conversion": 37.5,
+        "save_rate": 62.5
+      },
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.107,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 10,
+        "goals": 1,
+        "saves": 9,
+        "xG": 0.713,
+        "conversion": 10.0,
+        "save_rate": 90.0
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 3,
+        "saves": 2,
+        "xG": 1.009,
+        "conversion": 60.0,
+        "save_rate": 40.0
+      },
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 3,
+        "saves": 5,
+        "xG": 0.32,
+        "conversion": 37.5,
+        "save_rate": 62.5
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_left"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Elche": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 8,
+        "goals": 0,
+        "saves": 8,
+        "xG": 0.38,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 25,
+        "goals": 7,
+        "saves": 18,
+        "xG": 6.609,
+        "conversion": 28.0,
+        "save_rate": 72.0
+      },
+      "edge_box_center": {
+        "shots": 12,
+        "goals": 4,
+        "saves": 8,
+        "xG": 0.596,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 2,
+        "saves": 2,
+        "xG": 0.464,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.096,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 7,
+        "goals": 4,
+        "saves": 3,
+        "xG": 2.506,
+        "conversion": 57.1,
+        "save_rate": 42.9
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Osasuna": {
+    "zones": {
+      "long_range_center": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.03,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_center": {
+        "shots": 31,
+        "goals": 11,
+        "saves": 20,
+        "xG": 8.119,
+        "conversion": 35.5,
+        "save_rate": 64.5
+      },
+      "edge_box_center": {
+        "shots": 17,
+        "goals": 3,
+        "saves": 14,
+        "xG": 0.779,
+        "conversion": 17.6,
+        "save_rate": 82.4
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 3,
+        "saves": 3,
+        "xG": 2.019,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.086,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.419,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Real Madrid": {
+    "zones": {
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.078,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 10,
+        "goals": 2,
+        "saves": 8,
+        "xG": 0.676,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "penalty_area_center": {
+        "shots": 26,
+        "goals": 8,
+        "saves": 18,
+        "xG": 6.606,
+        "conversion": 30.8,
+        "save_rate": 69.2
+      },
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 4,
+        "saves": 1,
+        "xG": 3.397,
+        "conversion": 80.0,
+        "save_rate": 20.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "RasenBallsport Leipzig": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.397,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 21,
+        "goals": 9,
+        "saves": 12,
+        "xG": 4.115,
+        "conversion": 42.9,
+        "save_rate": 57.1
+      },
+      "six_yard_center": {
+        "shots": 3,
+        "goals": 2,
+        "saves": 1,
+        "xG": 1.857,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 2,
+        "saves": 3,
+        "xG": 0.355,
+        "conversion": 40.0,
+        "save_rate": 60.0
+      },
+      "edge_box_center": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.147,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "penalty_area_right"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Bayern Munich": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 6,
+        "goals": 3,
+        "saves": 3,
+        "xG": 0.901,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_center": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.112,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 3,
+        "saves": 2,
+        "xG": 0.56,
+        "conversion": 60.0,
+        "save_rate": 40.0
+      },
+      "six_yard_center": {
+        "shots": 3,
+        "goals": 3,
+        "saves": 0,
+        "xG": 1.304,
+        "conversion": 100.0,
+        "save_rate": 0.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "penalty_area_right"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Wolfsburg": {
+    "zones": {
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.107,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_center": {
+        "shots": 38,
+        "goals": 17,
+        "saves": 21,
+        "xG": 9.592,
+        "conversion": 44.7,
+        "save_rate": 55.3
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 3,
+        "saves": 3,
+        "xG": 2.101,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 2,
+        "saves": 6,
+        "xG": 0.731,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.371,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "FC Heidenheim": {
+    "zones": {
+      "edge_box_left": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.105,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "edge_box_center": {
+        "shots": 10,
+        "goals": 2,
+        "saves": 8,
+        "xG": 0.536,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "penalty_area_center": {
+        "shots": 25,
+        "goals": 16,
+        "saves": 9,
+        "xG": 8.327,
+        "conversion": 64.0,
+        "save_rate": 36.0
+      },
+      "six_yard_center": {
+        "shots": 10,
+        "goals": 6,
+        "saves": 4,
+        "xG": 4.796,
+        "conversion": 60.0,
+        "save_rate": 40.0
+      },
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.556,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.808,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Hoffenheim": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 22,
+        "goals": 12,
+        "saves": 10,
+        "xG": 6.522,
+        "conversion": 54.5,
+        "save_rate": 45.5
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 5,
+        "saves": 3,
+        "xG": 5.369,
+        "conversion": 62.5,
+        "save_rate": 37.5
+      },
+      "penalty_area_right": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.584,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.067,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 7,
+        "goals": 0,
+        "saves": 7,
+        "xG": 0.154,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.22,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Bayer Leverkusen": {
+    "zones": {
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.193,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "edge_box_left": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.399,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "edge_box_center": {
+        "shots": 9,
+        "goals": 1,
+        "saves": 8,
+        "xG": 0.285,
+        "conversion": 11.1,
+        "save_rate": 88.9
+      },
+      "penalty_area_center": {
+        "shots": 25,
+        "goals": 12,
+        "saves": 13,
+        "xG": 5.619,
+        "conversion": 48.0,
+        "save_rate": 52.0
+      },
+      "six_yard_center": {
+        "shots": 4,
+        "goals": 3,
+        "saves": 1,
+        "xG": 1.711,
+        "conversion": 75.0,
+        "save_rate": 25.0
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.412,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "VfB Stuttgart": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 5,
+        "goals": 2,
+        "saves": 3,
+        "xG": 0.184,
+        "conversion": 40.0,
+        "save_rate": 60.0
+      },
+      "penalty_area_center": {
+        "shots": 28,
+        "goals": 14,
+        "saves": 14,
+        "xG": 7.629,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 4,
+        "saves": 4,
+        "xG": 3.521,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.132,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 6,
+        "goals": 1,
+        "saves": 5,
+        "xG": 0.519,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      },
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.353,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "edge_box_center",
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Union Berlin": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 31,
+        "goals": 17,
+        "saves": 14,
+        "xG": 8.262,
+        "conversion": 54.8,
+        "save_rate": 45.2
+      },
+      "edge_box_center": {
+        "shots": 6,
+        "goals": 1,
+        "saves": 5,
+        "xG": 0.209,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      },
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.073,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 2,
+        "saves": 4,
+        "xG": 2.022,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 1,
+        "saves": 5,
+        "xG": 0.776,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      },
+      "edge_box_left": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.104,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Werder Bremen": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 9,
+        "goals": 2,
+        "saves": 7,
+        "xG": 0.292,
+        "conversion": 22.2,
+        "save_rate": 77.8
+      },
+      "penalty_area_center": {
+        "shots": 32,
+        "goals": 17,
+        "saves": 15,
+        "xG": 9.452,
+        "conversion": 53.1,
+        "save_rate": 46.9
+      },
+      "penalty_area_right": {
+        "shots": 7,
+        "goals": 2,
+        "saves": 5,
+        "xG": 0.692,
+        "conversion": 28.6,
+        "save_rate": 71.4
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.476,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 4,
+        "goals": 2,
+        "saves": 2,
+        "xG": 1.643,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.082,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_right": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.133,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Eintracht Frankfurt": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 29,
+        "goals": 15,
+        "saves": 14,
+        "xG": 8.246,
+        "conversion": 51.7,
+        "save_rate": 48.3
+      },
+      "edge_box_center": {
+        "shots": 7,
+        "goals": 3,
+        "saves": 4,
+        "xG": 0.337,
+        "conversion": 42.9,
+        "save_rate": 57.1
+      },
+      "edge_box_left": {
+        "shots": 7,
+        "goals": 3,
+        "saves": 4,
+        "xG": 0.212,
+        "conversion": 42.9,
+        "save_rate": 57.1
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.614,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "six_yard_center": {
+        "shots": 7,
+        "goals": 6,
+        "saves": 1,
+        "xG": 3.416,
+        "conversion": 85.7,
+        "save_rate": 14.3
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "edge_box_center",
+      "edge_box_left",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Augsburg": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 35,
+        "goals": 20,
+        "saves": 15,
+        "xG": 11.583,
+        "conversion": 57.1,
+        "save_rate": 42.9
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.26,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.319,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 2,
+        "saves": 6,
+        "xG": 0.456,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Freiburg": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 22,
+        "goals": 11,
+        "saves": 11,
+        "xG": 5.514,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 8,
+        "saves": 0,
+        "xG": 3.734,
+        "conversion": 100.0,
+        "save_rate": 0.0
+      },
+      "edge_box_center": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.198,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.143,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.714,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "edge_box_right": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.134,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Borussia Dortmund": {
+    "zones": {
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.676,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 18,
+        "goals": 6,
+        "saves": 12,
+        "xG": 2.589,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_center": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.163,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 4,
+        "saves": 2,
+        "xG": 2.71,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.206,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "St. Pauli": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.315,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 9,
+        "goals": 4,
+        "saves": 5,
+        "xG": 4.438,
+        "conversion": 44.4,
+        "save_rate": 55.6
+      },
+      "penalty_area_center": {
+        "shots": 38,
+        "goals": 18,
+        "saves": 20,
+        "xG": 12.372,
+        "conversion": 47.4,
+        "save_rate": 52.6
+      },
+      "edge_box_center": {
+        "shots": 9,
+        "goals": 2,
+        "saves": 7,
+        "xG": 0.94,
+        "conversion": 22.2,
+        "save_rate": 77.8
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.19,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "FC Cologne": {
+    "zones": {
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.12,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "penalty_area_center": {
+        "shots": 35,
+        "goals": 10,
+        "saves": 25,
+        "xG": 9.484,
+        "conversion": 28.6,
+        "save_rate": 71.4
+      },
+      "six_yard_center": {
+        "shots": 10,
+        "goals": 7,
+        "saves": 3,
+        "xG": 5.191,
+        "conversion": 70.0,
+        "save_rate": 30.0
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 2,
+        "saves": 3,
+        "xG": 0.231,
+        "conversion": 40.0,
+        "save_rate": 60.0
+      },
+      "edge_box_center": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.175,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_right"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Mainz 05": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 37,
+        "goals": 14,
+        "saves": 23,
+        "xG": 8.46,
+        "conversion": 37.8,
+        "save_rate": 62.2
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 2,
+        "saves": 1,
+        "xG": 0.15,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 0,
+        "saves": 11,
+        "xG": 0.343,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.081,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 3,
+        "saves": 2,
+        "xG": 2.988,
+        "conversion": 60.0,
+        "save_rate": 40.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Hamburger SV": {
+    "zones": {
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.169,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 2,
+        "saves": 3,
+        "xG": 0.243,
+        "conversion": 40.0,
+        "save_rate": 60.0
+      },
+      "edge_box_center": {
+        "shots": 13,
+        "goals": 2,
+        "saves": 11,
+        "xG": 0.686,
+        "conversion": 15.4,
+        "save_rate": 84.6
+      },
+      "penalty_area_center": {
+        "shots": 25,
+        "goals": 12,
+        "saves": 13,
+        "xG": 7.588,
+        "conversion": 48.0,
+        "save_rate": 52.0
+      },
+      "six_yard_center": {
+        "shots": 4,
+        "goals": 2,
+        "saves": 2,
+        "xG": 1.459,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_right": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.129,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_left",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Borussia M.Gladbach": {
+    "zones": {
+      "edge_box_right": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.15,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.448,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "edge_box_center": {
+        "shots": 7,
+        "goals": 1,
+        "saves": 6,
+        "xG": 0.233,
+        "conversion": 14.3,
+        "save_rate": 85.7
+      },
+      "penalty_area_center": {
+        "shots": 24,
+        "goals": 11,
+        "saves": 13,
+        "xG": 6.451,
+        "conversion": 45.8,
+        "save_rate": 54.2
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 5,
+        "saves": 3,
+        "xG": 2.869,
+        "conversion": 62.5,
+        "save_rate": 37.5
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.707,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.067,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Lecce": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 30,
+        "goals": 13,
+        "saves": 17,
+        "xG": 8.713,
+        "conversion": 43.3,
+        "save_rate": 56.7
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 2,
+        "saves": 6,
+        "xG": 2.975,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "edge_box_center": {
+        "shots": 9,
+        "goals": 1,
+        "saves": 8,
+        "xG": 0.489,
+        "conversion": 11.1,
+        "save_rate": 88.9
+      },
+      "penalty_area_left": {
+        "shots": 7,
+        "goals": 1,
+        "saves": 6,
+        "xG": 0.366,
+        "conversion": 14.3,
+        "save_rate": 85.7
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 1.012,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Genoa": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 27,
+        "goals": 11,
+        "saves": 16,
+        "xG": 5.337,
+        "conversion": 40.7,
+        "save_rate": 59.3
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.266,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.086,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.518,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "six_yard_center": {
+        "shots": 10,
+        "goals": 7,
+        "saves": 3,
+        "xG": 5.491,
+        "conversion": 70.0,
+        "save_rate": 30.0
+      },
+      "six_yard_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.406,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Napoli": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 7,
+        "goals": 0,
+        "saves": 7,
+        "xG": 0.21,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.188,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "penalty_area_center": {
+        "shots": 15,
+        "goals": 6,
+        "saves": 9,
+        "xG": 5.859,
+        "conversion": 40.0,
+        "save_rate": 60.0
+      },
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 4,
+        "saves": 1,
+        "xG": 2.355,
+        "conversion": 80.0,
+        "save_rate": 20.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Sassuolo": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 28,
+        "goals": 11,
+        "saves": 17,
+        "xG": 7.664,
+        "conversion": 39.3,
+        "save_rate": 60.7
+      },
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 1,
+        "saves": 10,
+        "xG": 0.485,
+        "conversion": 9.1,
+        "save_rate": 90.9
+      },
+      "six_yard_center": {
+        "shots": 7,
+        "goals": 3,
+        "saves": 4,
+        "xG": 4.092,
+        "conversion": 42.9,
+        "save_rate": 57.1
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.305,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.352,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.095,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Cremonese": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 4,
+        "goals": 3,
+        "saves": 1,
+        "xG": 1.244,
+        "conversion": 75.0,
+        "save_rate": 25.0
+      },
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 1.005,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 18,
+        "goals": 1,
+        "saves": 17,
+        "xG": 0.621,
+        "conversion": 5.6,
+        "save_rate": 94.4
+      },
+      "penalty_area_center": {
+        "shots": 28,
+        "goals": 12,
+        "saves": 16,
+        "xG": 8.329,
+        "conversion": 42.9,
+        "save_rate": 57.1
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.708,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.258,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.118,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.077,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "AC Milan": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.129,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_center": {
+        "shots": 15,
+        "goals": 5,
+        "saves": 10,
+        "xG": 4.586,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 0,
+        "saves": 8,
+        "xG": 0.251,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.058,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 7,
+        "goals": 1,
+        "saves": 6,
+        "xG": 0.324,
+        "conversion": 14.3,
+        "save_rate": 85.7
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 2,
+        "saves": 4,
+        "xG": 2.333,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      }
+    },
+    "vulnerable_zones": [],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Bologna": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 1,
+        "saves": 7,
+        "xG": 0.747,
+        "conversion": 12.5,
+        "save_rate": 87.5
+      },
+      "penalty_area_center": {
+        "shots": 21,
+        "goals": 6,
+        "saves": 15,
+        "xG": 3.957,
+        "conversion": 28.6,
+        "save_rate": 71.4
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 4,
+        "saves": 4,
+        "xG": 3.469,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.079,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Roma": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 7,
+        "goals": 0,
+        "saves": 7,
+        "xG": 0.349,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 17,
+        "goals": 5,
+        "saves": 12,
+        "xG": 5.776,
+        "conversion": 29.4,
+        "save_rate": 70.6
+      },
+      "edge_box_center": {
+        "shots": 16,
+        "goals": 1,
+        "saves": 15,
+        "xG": 0.837,
+        "conversion": 6.2,
+        "save_rate": 93.8
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.166,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 1.819,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.209,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Fiorentina": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 30,
+        "goals": 11,
+        "saves": 19,
+        "xG": 8.121,
+        "conversion": 36.7,
+        "save_rate": 63.3
+      },
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 2,
+        "saves": 4,
+        "xG": 0.821,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_center": {
+        "shots": 16,
+        "goals": 3,
+        "saves": 13,
+        "xG": 0.574,
+        "conversion": 18.8,
+        "save_rate": 81.2
+      },
+      "six_yard_center": {
+        "shots": 9,
+        "goals": 4,
+        "saves": 5,
+        "xG": 3.941,
+        "conversion": 44.4,
+        "save_rate": 55.6
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 2,
+        "saves": 1,
+        "xG": 0.038,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Cagliari": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 28,
+        "goals": 12,
+        "saves": 16,
+        "xG": 6.363,
+        "conversion": 42.9,
+        "save_rate": 57.1
+      },
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 1,
+        "saves": 10,
+        "xG": 0.367,
+        "conversion": 9.1,
+        "save_rate": 90.9
+      },
+      "six_yard_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.204,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.111,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.054,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "six_yard_center": {
+        "shots": 9,
+        "goals": 4,
+        "saves": 5,
+        "xG": 4.811,
+        "conversion": 44.4,
+        "save_rate": 55.6
+      },
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.087,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Lazio": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 24,
+        "goals": 4,
+        "saves": 20,
+        "xG": 4.137,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      },
+      "penalty_area_left": {
+        "shots": 12,
+        "goals": 0,
+        "saves": 12,
+        "xG": 0.603,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 1,
+        "saves": 10,
+        "xG": 0.392,
+        "conversion": 9.1,
+        "save_rate": 90.9
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 5,
+        "saves": 1,
+        "xG": 3.533,
+        "conversion": 83.3,
+        "save_rate": 16.7
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.456,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.051,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "six_yard_center"
+  },
+  "Como": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 20,
+        "goals": 8,
+        "saves": 12,
+        "xG": 5.907,
+        "conversion": 40.0,
+        "save_rate": 60.0
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.218,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 10,
+        "goals": 2,
+        "saves": 8,
+        "xG": 0.274,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "penalty_area_right": {
+        "shots": 7,
+        "goals": 0,
+        "saves": 7,
+        "xG": 0.827,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.909,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.076,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Pisa": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 27,
+        "goals": 11,
+        "saves": 16,
+        "xG": 5.845,
+        "conversion": 40.7,
+        "save_rate": 59.3
+      },
+      "six_yard_center": {
+        "shots": 7,
+        "goals": 2,
+        "saves": 5,
+        "xG": 2.021,
+        "conversion": 28.6,
+        "save_rate": 71.4
+      },
+      "edge_box_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.153,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 14,
+        "goals": 4,
+        "saves": 10,
+        "xG": 0.463,
+        "conversion": 28.6,
+        "save_rate": 71.4
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.115,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.498,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Atalanta": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 21,
+        "goals": 9,
+        "saves": 12,
+        "xG": 6.706,
+        "conversion": 42.9,
+        "save_rate": 57.1
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 2,
+        "saves": 4,
+        "xG": 3.26,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_center": {
+        "shots": 15,
+        "goals": 4,
+        "saves": 11,
+        "xG": 0.71,
+        "conversion": 26.7,
+        "save_rate": 73.3
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.122,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.105,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Parma Calcio 1913": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 26,
+        "goals": 7,
+        "saves": 19,
+        "xG": 7.62,
+        "conversion": 26.9,
+        "save_rate": 73.1
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.051,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 17,
+        "goals": 3,
+        "saves": 14,
+        "xG": 0.66,
+        "conversion": 17.6,
+        "save_rate": 82.4
+      },
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 4,
+        "saves": 1,
+        "xG": 2.557,
+        "conversion": 80.0,
+        "save_rate": 20.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Juventus": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 18,
+        "goals": 7,
+        "saves": 11,
+        "xG": 3.465,
+        "conversion": 38.9,
+        "save_rate": 61.1
+      },
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 4,
+        "saves": 7,
+        "xG": 0.328,
+        "conversion": 36.4,
+        "save_rate": 63.6
+      },
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.174,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 3,
+        "goals": 3,
+        "saves": 0,
+        "xG": 1.843,
+        "conversion": 100.0,
+        "save_rate": 0.0
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.252,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Verona": {
+    "zones": {
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.104,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 19,
+        "goals": 11,
+        "saves": 8,
+        "xG": 5.453,
+        "conversion": 57.9,
+        "save_rate": 42.1
+      },
+      "six_yard_center": {
+        "shots": 7,
+        "goals": 5,
+        "saves": 2,
+        "xG": 3.398,
+        "conversion": 71.4,
+        "save_rate": 28.6
+      },
+      "edge_box_left": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.115,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 10,
+        "goals": 2,
+        "saves": 8,
+        "xG": 0.421,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.565,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.926,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Udinese": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 0,
+        "saves": 11,
+        "xG": 0.343,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 9,
+        "goals": 7,
+        "saves": 2,
+        "xG": 4.199,
+        "conversion": 77.8,
+        "save_rate": 22.2
+      },
+      "penalty_area_center": {
+        "shots": 24,
+        "goals": 11,
+        "saves": 13,
+        "xG": 7.58,
+        "conversion": 45.8,
+        "save_rate": 54.2
+      },
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.292,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.273,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Torino": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 9,
+        "goals": 6,
+        "saves": 3,
+        "xG": 3.045,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 2,
+        "saves": 2,
+        "xG": 0.799,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_center": {
+        "shots": 12,
+        "goals": 2,
+        "saves": 10,
+        "xG": 0.451,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      },
+      "penalty_area_center": {
+        "shots": 25,
+        "goals": 13,
+        "saves": 12,
+        "xG": 7.364,
+        "conversion": 52.0,
+        "save_rate": 48.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Inter": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 2,
+        "saves": 3,
+        "xG": 1.991,
+        "conversion": 40.0,
+        "save_rate": 60.0
+      },
+      "penalty_area_center": {
+        "shots": 14,
+        "goals": 7,
+        "saves": 7,
+        "xG": 3.237,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 2,
+        "saves": 9,
+        "xG": 0.485,
+        "conversion": 18.2,
+        "save_rate": 81.8
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.132,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.459,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.199,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Marseille": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.369,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "penalty_area_center": {
+        "shots": 21,
+        "goals": 10,
+        "saves": 11,
+        "xG": 5.452,
+        "conversion": 47.6,
+        "save_rate": 52.4
+      },
+      "edge_box_center": {
+        "shots": 10,
+        "goals": 1,
+        "saves": 9,
+        "xG": 0.31,
+        "conversion": 10.0,
+        "save_rate": 90.0
+      },
+      "penalty_area_right": {
+        "shots": 8,
+        "goals": 1,
+        "saves": 7,
+        "xG": 0.597,
+        "conversion": 12.5,
+        "save_rate": 87.5
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.13,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 1.745,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Rennes": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 5,
+        "goals": 3,
+        "saves": 2,
+        "xG": 2.418,
+        "conversion": 60.0,
+        "save_rate": 40.0
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.23,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 29,
+        "goals": 16,
+        "saves": 13,
+        "xG": 9.755,
+        "conversion": 55.2,
+        "save_rate": 44.8
+      },
+      "edge_box_right": {
+        "shots": 5,
+        "goals": 0,
+        "saves": 5,
+        "xG": 0.088,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.082,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "edge_box_center": {
+        "shots": 7,
+        "goals": 2,
+        "saves": 5,
+        "xG": 1.15,
+        "conversion": 28.6,
+        "save_rate": 71.4
+      },
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 1,
+        "saves": 5,
+        "xG": 0.923,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Lyon": {
+    "zones": {
+      "penalty_area_right": {
+        "shots": 9,
+        "goals": 2,
+        "saves": 7,
+        "xG": 0.73,
+        "conversion": 22.2,
+        "save_rate": 77.8
+      },
+      "penalty_area_center": {
+        "shots": 21,
+        "goals": 6,
+        "saves": 15,
+        "xG": 4.891,
+        "conversion": 28.6,
+        "save_rate": 71.4
+      },
+      "edge_box_center": {
+        "shots": 6,
+        "goals": 1,
+        "saves": 5,
+        "xG": 0.218,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 4,
+        "saves": 2,
+        "xG": 3.133,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.085,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Lens": {
+    "zones": {
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.136,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 26,
+        "goals": 6,
+        "saves": 20,
+        "xG": 7.244,
+        "conversion": 23.1,
+        "save_rate": 76.9
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.06,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 7,
+        "goals": 2,
+        "saves": 5,
+        "xG": 0.197,
+        "conversion": 28.6,
+        "save_rate": 71.4
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.086,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 4,
+        "saves": 4,
+        "xG": 3.364,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Le Havre": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 25,
+        "goals": 11,
+        "saves": 14,
+        "xG": 7.818,
+        "conversion": 44.0,
+        "save_rate": 56.0
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 7,
+        "saves": 1,
+        "xG": 4.525,
+        "conversion": 87.5,
+        "save_rate": 12.5
+      },
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.792,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 0,
+        "saves": 8,
+        "xG": 0.306,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.428,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.071,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Monaco": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 0,
+        "saves": 11,
+        "xG": 0.36,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 6,
+        "goals": 3,
+        "saves": 3,
+        "xG": 0.52,
+        "conversion": 50.0,
+        "save_rate": 50.0
+      },
+      "penalty_area_center": {
+        "shots": 30,
+        "goals": 16,
+        "saves": 14,
+        "xG": 10.3,
+        "conversion": 53.3,
+        "save_rate": 46.7
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.208,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 4,
+        "saves": 2,
+        "xG": 2.274,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.081,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_right",
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Toulouse": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 1,
+        "saves": 7,
+        "xG": 0.324,
+        "conversion": 12.5,
+        "save_rate": 87.5
+      },
+      "penalty_area_center": {
+        "shots": 23,
+        "goals": 11,
+        "saves": 12,
+        "xG": 7.922,
+        "conversion": 47.8,
+        "save_rate": 52.2
+      },
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 5,
+        "saves": 1,
+        "xG": 2.566,
+        "conversion": 83.3,
+        "save_rate": 16.7
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.192,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Nice": {
+    "zones": {
+      "penalty_area_left": {
+        "shots": 5,
+        "goals": 3,
+        "saves": 2,
+        "xG": 0.611,
+        "conversion": 60.0,
+        "save_rate": 40.0
+      },
+      "penalty_area_center": {
+        "shots": 31,
+        "goals": 12,
+        "saves": 19,
+        "xG": 10.491,
+        "conversion": 38.7,
+        "save_rate": 61.3
+      },
+      "penalty_area_right": {
+        "shots": 5,
+        "goals": 1,
+        "saves": 4,
+        "xG": 0.49,
+        "conversion": 20.0,
+        "save_rate": 80.0
+      },
+      "edge_box_center": {
+        "shots": 25,
+        "goals": 2,
+        "saves": 23,
+        "xG": 0.984,
+        "conversion": 8.0,
+        "save_rate": 92.0
+      },
+      "six_yard_center": {
+        "shots": 14,
+        "goals": 8,
+        "saves": 6,
+        "xG": 6.359,
+        "conversion": 57.1,
+        "save_rate": 42.9
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.051,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_left",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Lille": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 25,
+        "goals": 10,
+        "saves": 15,
+        "xG": 8.08,
+        "conversion": 40.0,
+        "save_rate": 60.0
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.244,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 5,
+        "saves": 3,
+        "xG": 4.208,
+        "conversion": 62.5,
+        "save_rate": 37.5
+      },
+      "edge_box_center": {
+        "shots": 8,
+        "goals": 1,
+        "saves": 7,
+        "xG": 0.292,
+        "conversion": 12.5,
+        "save_rate": 87.5
+      },
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.164,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Brest": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 35,
+        "goals": 16,
+        "saves": 19,
+        "xG": 9.165,
+        "conversion": 45.7,
+        "save_rate": 54.3
+      },
+      "edge_box_center": {
+        "shots": 9,
+        "goals": 1,
+        "saves": 8,
+        "xG": 0.474,
+        "conversion": 11.1,
+        "save_rate": 88.9
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 5,
+        "saves": 3,
+        "xG": 3.944,
+        "conversion": 62.5,
+        "save_rate": 37.5
+      },
+      "edge_box_right": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.102,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.218,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Lorient": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 10,
+        "goals": 4,
+        "saves": 6,
+        "xG": 0.261,
+        "conversion": 40.0,
+        "save_rate": 60.0
+      },
+      "penalty_area_center": {
+        "shots": 27,
+        "goals": 14,
+        "saves": 13,
+        "xG": 8.33,
+        "conversion": 51.9,
+        "save_rate": 48.1
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.432,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      },
+      "six_yard_center": {
+        "shots": 10,
+        "goals": 6,
+        "saves": 4,
+        "xG": 5.341,
+        "conversion": 60.0,
+        "save_rate": 40.0
+      }
+    },
+    "vulnerable_zones": [
+      "edge_box_center",
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Auxerre": {
+    "zones": {
+      "penalty_area_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.696,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 32,
+        "goals": 12,
+        "saves": 20,
+        "xG": 8.39,
+        "conversion": 37.5,
+        "save_rate": 62.5
+      },
+      "edge_box_center": {
+        "shots": 15,
+        "goals": 1,
+        "saves": 14,
+        "xG": 0.512,
+        "conversion": 6.7,
+        "save_rate": 93.3
+      },
+      "six_yard_center": {
+        "shots": 9,
+        "goals": 6,
+        "saves": 3,
+        "xG": 3.863,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.053,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Paris FC": {
+    "zones": {
+      "penalty_area_center": {
+        "shots": 32,
+        "goals": 17,
+        "saves": 15,
+        "xG": 9.581,
+        "conversion": 53.1,
+        "save_rate": 46.9
+      },
+      "six_yard_center": {
+        "shots": 8,
+        "goals": 5,
+        "saves": 3,
+        "xG": 4.13,
+        "conversion": 62.5,
+        "save_rate": 37.5
+      },
+      "edge_box_center": {
+        "shots": 9,
+        "goals": 2,
+        "saves": 7,
+        "xG": 0.355,
+        "conversion": 22.2,
+        "save_rate": 77.8
+      },
+      "edge_box_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.119,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Angers": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 12,
+        "goals": 1,
+        "saves": 11,
+        "xG": 0.412,
+        "conversion": 8.3,
+        "save_rate": 91.7
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 0,
+        "saves": 4,
+        "xG": 0.169,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 42,
+        "goals": 10,
+        "saves": 32,
+        "xG": 9.819,
+        "conversion": 23.8,
+        "save_rate": 76.2
+      },
+      "six_yard_center": {
+        "shots": 9,
+        "goals": 6,
+        "saves": 3,
+        "xG": 4.163,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "penalty_area_right": {
+        "shots": 8,
+        "goals": 0,
+        "saves": 8,
+        "xG": 0.429,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Strasbourg": {
+    "zones": {
+      "six_yard_center": {
+        "shots": 6,
+        "goals": 4,
+        "saves": 2,
+        "xG": 2.544,
+        "conversion": 66.7,
+        "save_rate": 33.3
+      },
+      "penalty_area_left": {
+        "shots": 6,
+        "goals": 0,
+        "saves": 6,
+        "xG": 0.791,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 30,
+        "goals": 13,
+        "saves": 17,
+        "xG": 9.171,
+        "conversion": 43.3,
+        "save_rate": 56.7
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.056,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "edge_box_center": {
+        "shots": 7,
+        "goals": 1,
+        "saves": 6,
+        "xG": 0.19,
+        "conversion": 14.3,
+        "save_rate": 85.7
+      }
+    },
+    "vulnerable_zones": [
+      "six_yard_center",
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Metz": {
+    "zones": {
+      "edge_box_left": {
+        "shots": 3,
+        "goals": 0,
+        "saves": 3,
+        "xG": 0.07,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_center": {
+        "shots": 41,
+        "goals": 23,
+        "saves": 18,
+        "xG": 11.973,
+        "conversion": 56.1,
+        "save_rate": 43.9
+      },
+      "edge_box_center": {
+        "shots": 17,
+        "goals": 4,
+        "saves": 13,
+        "xG": 0.981,
+        "conversion": 23.5,
+        "save_rate": 76.5
+      },
+      "six_yard_center": {
+        "shots": 9,
+        "goals": 5,
+        "saves": 4,
+        "xG": 5.009,
+        "conversion": 55.6,
+        "save_rate": 44.4
+      },
+      "penalty_area_left": {
+        "shots": 8,
+        "goals": 0,
+        "saves": 8,
+        "xG": 1.074,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "penalty_area_right": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.859,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center",
+      "six_yard_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Paris Saint Germain": {
+    "zones": {
+      "edge_box_center": {
+        "shots": 11,
+        "goals": 3,
+        "saves": 8,
+        "xG": 0.497,
+        "conversion": 27.3,
+        "save_rate": 72.7
+      },
+      "six_yard_center": {
+        "shots": 4,
+        "goals": 3,
+        "saves": 1,
+        "xG": 1.836,
+        "conversion": 75.0,
+        "save_rate": 25.0
+      },
+      "penalty_area_center": {
+        "shots": 16,
+        "goals": 5,
+        "saves": 11,
+        "xG": 4.481,
+        "conversion": 31.2,
+        "save_rate": 68.8
+      },
+      "penalty_area_left": {
+        "shots": 4,
+        "goals": 1,
+        "saves": 3,
+        "xG": 0.601,
+        "conversion": 25.0,
+        "save_rate": 75.0
+      }
+    },
+    "vulnerable_zones": [],
+    "most_dangerous_zone": "penalty_area_center"
+  },
+  "Nantes": {
+    "zones": {
+      "penalty_area_right": {
+        "shots": 8,
+        "goals": 1,
+        "saves": 7,
+        "xG": 0.43,
+        "conversion": 12.5,
+        "save_rate": 87.5
+      },
+      "penalty_area_center": {
+        "shots": 33,
+        "goals": 15,
+        "saves": 18,
+        "xG": 8.636,
+        "conversion": 45.5,
+        "save_rate": 54.5
+      },
+      "edge_box_center": {
+        "shots": 12,
+        "goals": 2,
+        "saves": 10,
+        "xG": 0.843,
+        "conversion": 16.7,
+        "save_rate": 83.3
+      },
+      "edge_box_right": {
+        "shots": 3,
+        "goals": 1,
+        "saves": 2,
+        "xG": 0.303,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      },
+      "penalty_area_left": {
+        "shots": 9,
+        "goals": 0,
+        "saves": 9,
+        "xG": 0.698,
+        "conversion": 0.0,
+        "save_rate": 100.0
+      },
+      "six_yard_center": {
+        "shots": 9,
+        "goals": 3,
+        "saves": 6,
+        "xG": 4.059,
+        "conversion": 33.3,
+        "save_rate": 66.7
+      }
+    },
+    "vulnerable_zones": [
+      "penalty_area_center"
+    ],
+    "most_dangerous_zone": "penalty_area_center"
+  }
+}

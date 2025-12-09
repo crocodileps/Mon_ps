@@ -1,0 +1,6321 @@
+{
+  "Aston Villa": {
+    "team": "Aston Villa",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Matthew Cash",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 58.1,
+        "xGChain_90": 0.242,
+        "xA_90": 0.123,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Ezri Konsa Ngoyo",
+        "profile": "BALANCED",
+        "impact": 0.0,
+        "offensive_score": 24.0,
+        "xGChain_90": 0.197,
+        "xA_90": 0.009,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Lucas Digne",
+        "profile": "BALANCED",
+        "impact": 1.66,
+        "offensive_score": 48.6,
+        "xGChain_90": 0.187,
+        "xA_90": 0.101,
+        "clean_sheet_rate": 41.7
+      },
+      {
+        "name": "Pau Torres",
+        "profile": "BALANCED",
+        "impact": 0.0,
+        "offensive_score": 11.9,
+        "xGChain_90": 0.174,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 27.3
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.42,
+    "avg_offensive_score": 35.6,
+    "total_xGChain_90": 0.8,
+    "total_xA_90": 0.233,
+    "avg_clean_sheet_rate": 34.5,
+    "avg_cards_90": 0.114,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [],
+    "exploit_paths": [],
+    "defensive_rating": 1.6
+  },
+  "Everton": {
+    "team": "Everton",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "James Garner",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0,
+        "offensive_score": 63.7,
+        "xGChain_90": 0.325,
+        "xA_90": 0.094,
+        "clean_sheet_rate": 40.0
+      },
+      {
+        "name": "James Tarkowski",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 41.2,
+        "xGChain_90": 0.167,
+        "xA_90": 0.078,
+        "clean_sheet_rate": 40.0
+      },
+      {
+        "name": "Michael Keane",
+        "profile": "WEAK_LINK",
+        "impact": -1.21,
+        "offensive_score": 20.9,
+        "xGChain_90": 0.185,
+        "xA_90": 0.007,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Jake O&#039;Brien",
+        "profile": "WEAK_LINK",
+        "impact": -1.21,
+        "offensive_score": 31.8,
+        "xGChain_90": 0.195,
+        "xA_90": 0.021,
+        "clean_sheet_rate": 35.7
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 2,
+    "avg_impact": -0.6,
+    "avg_offensive_score": 39.4,
+    "total_xGChain_90": 0.872,
+    "total_xA_90": 0.2,
+    "avg_clean_sheet_rate": 37.8,
+    "avg_cards_90": 0.135,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "OVERALL_WEAK_DEFENSE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Michael Keane, Jake O&#039;Brien",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -4.42
+  },
+  "Bournemouth": {
+    "team": "Bournemouth",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Adrien Truffert",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 52.0,
+        "xGChain_90": 0.265,
+        "xA_90": 0.069,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Marcos Senesi",
+        "profile": "WEAK_LINK",
+        "impact": -0.64,
+        "offensive_score": 69.5,
+        "xGChain_90": 0.335,
+        "xA_90": 0.124,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Bafode Diakite",
+        "profile": "BALANCED",
+        "impact": 0.09,
+        "offensive_score": 34.6,
+        "xGChain_90": 0.299,
+        "xA_90": 0.007,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Alejandro Jiménez",
+        "profile": "ANCHOR",
+        "impact": 0.59,
+        "offensive_score": 19.6,
+        "xGChain_90": 0.164,
+        "xA_90": 0.01,
+        "clean_sheet_rate": 42.9
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.01,
+    "avg_offensive_score": 43.9,
+    "total_xGChain_90": 1.063,
+    "total_xA_90": 0.21,
+    "avg_clean_sheet_rate": 36.3,
+    "avg_cards_90": 0.305,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Marcos Senesi",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.11
+  },
+  "Sunderland": {
+    "team": "Sunderland",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Trai Hume",
+        "profile": "BALANCED",
+        "impact": 0.93,
+        "offensive_score": 41.7,
+        "xGChain_90": 0.198,
+        "xA_90": 0.052,
+        "clean_sheet_rate": 28.6
+      },
+      {
+        "name": "Nordi Mukiele",
+        "profile": "STANDARD",
+        "impact": -0.15,
+        "offensive_score": 45.1,
+        "xGChain_90": 0.196,
+        "xA_90": 0.073,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Dan Ballard",
+        "profile": "WEAK_LINK",
+        "impact": -0.52,
+        "offensive_score": 41.2,
+        "xGChain_90": 0.145,
+        "xA_90": 0.099,
+        "clean_sheet_rate": 18.2
+      },
+      {
+        "name": "Omar Alderete",
+        "profile": "WEAK_LINK",
+        "impact": -0.2,
+        "offensive_score": 14.4,
+        "xGChain_90": 0.118,
+        "xA_90": 0.01,
+        "clean_sheet_rate": 30.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": 0.02,
+    "avg_offensive_score": 35.6,
+    "total_xGChain_90": 0.657,
+    "total_xA_90": 0.234,
+    "avg_clean_sheet_rate": 25.0,
+    "avg_cards_90": 0.163,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Dan Ballard, Omar Alderete",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -2.69
+  },
+  "Crystal Palace": {
+    "team": "Crystal Palace",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Tyrick Mitchell",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 52.2,
+        "xGChain_90": 0.267,
+        "xA_90": 0.067,
+        "clean_sheet_rate": 46.7
+      },
+      {
+        "name": "Maxence Lacroix",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 58.2,
+        "xGChain_90": 0.315,
+        "xA_90": 0.067,
+        "clean_sheet_rate": 46.7
+      },
+      {
+        "name": "Chris Richards",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 34.0,
+        "xGChain_90": 0.214,
+        "xA_90": 0.021,
+        "clean_sheet_rate": 46.7
+      },
+      {
+        "name": "Daniel Muñoz",
+        "profile": "PISTON",
+        "impact": 0.21,
+        "offensive_score": 81.9,
+        "xGChain_90": 0.396,
+        "xA_90": 0.193,
+        "clean_sheet_rate": 50.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.05,
+    "avg_offensive_score": 56.6,
+    "total_xGChain_90": 1.192,
+    "total_xA_90": 0.348,
+    "avg_clean_sheet_rate": 47.5,
+    "avg_cards_90": 0.122,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [],
+    "defensive_rating": 0.62
+  },
+  "Chelsea": {
+    "team": "Chelsea",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Marc Cucurella",
+        "profile": "PISTON",
+        "impact": 1.07,
+        "offensive_score": 84.6,
+        "xGChain_90": 0.475,
+        "xA_90": 0.155,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Trevoh Chalobah",
+        "profile": "BALL_PLAYER",
+        "impact": 0.0,
+        "offensive_score": 47.7,
+        "xGChain_90": 0.379,
+        "xA_90": 0.012,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Reece James",
+        "profile": "PISTON",
+        "impact": 0.3,
+        "offensive_score": 91.9,
+        "xGChain_90": 0.517,
+        "xA_90": 0.245,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Malo Gusto",
+        "profile": "PISTON",
+        "impact": 1.33,
+        "offensive_score": 87.3,
+        "xGChain_90": 0.77,
+        "xA_90": 0.118,
+        "clean_sheet_rate": 62.5
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 3,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.68,
+    "avg_offensive_score": 77.9,
+    "total_xGChain_90": 2.141,
+    "total_xA_90": 0.53,
+    "avg_clean_sheet_rate": 53.1,
+    "avg_cards_90": 0.186,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS",
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": 2.57
+  },
+  "West Ham": {
+    "team": "West Ham",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "El Hadji Malick Diouf",
+        "profile": "BALANCED",
+        "impact": 0.07,
+        "offensive_score": 28.9,
+        "xGChain_90": 0.104,
+        "xA_90": 0.048,
+        "clean_sheet_rate": 7.1
+      },
+      {
+        "name": "Max Kilman",
+        "profile": "WEAK_LINK",
+        "impact": -0.5,
+        "offensive_score": 13.5,
+        "xGChain_90": 0.074,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 7.7
+      },
+      {
+        "name": "Aaron Wan-Bissaka",
+        "profile": "WEAK_LINK",
+        "impact": -0.5,
+        "offensive_score": 31.9,
+        "xGChain_90": 0.126,
+        "xA_90": 0.053,
+        "clean_sheet_rate": 0.0
+      },
+      {
+        "name": "Jean-Clair Todibo",
+        "profile": "WEAK_LINK",
+        "impact": -0.5,
+        "offensive_score": 21.0,
+        "xGChain_90": 0.078,
+        "xA_90": 0.025,
+        "clean_sheet_rate": 0.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 3,
+    "avg_impact": -0.36,
+    "avg_offensive_score": 23.8,
+    "total_xGChain_90": 0.382,
+    "total_xA_90": 0.137,
+    "avg_clean_sheet_rate": 7.4,
+    "avg_cards_90": 0.194,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "OVERALL_WEAK_DEFENSE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Max Kilman, Aaron Wan-Bissaka, Jean-Clair Todibo",
+        "edge": 7.0
+      }
+    ],
+    "defensive_rating": -5.51
+  },
+  "Tottenham": {
+    "team": "Tottenham",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Micky van de Ven",
+        "profile": "ANCHOR",
+        "impact": 0.86,
+        "offensive_score": 23.7,
+        "xGChain_90": 0.196,
+        "xA_90": 0.009,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Pedro Porro",
+        "profile": "PISTON",
+        "impact": 1.5,
+        "offensive_score": 77.4,
+        "xGChain_90": 0.396,
+        "xA_90": 0.14,
+        "clean_sheet_rate": 38.5
+      },
+      {
+        "name": "Cristian Romero",
+        "profile": "BALANCED",
+        "impact": 0.07,
+        "offensive_score": 59.5,
+        "xGChain_90": 0.362,
+        "xA_90": 0.051,
+        "clean_sheet_rate": 36.4
+      },
+      {
+        "name": "Djed Spence",
+        "profile": "BALANCED",
+        "impact": 0.75,
+        "offensive_score": 46.0,
+        "xGChain_90": 0.235,
+        "xA_90": 0.056,
+        "clean_sheet_rate": 45.5
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.8,
+    "avg_offensive_score": 51.6,
+    "total_xGChain_90": 1.189,
+    "total_xA_90": 0.256,
+    "avg_clean_sheet_rate": 39.0,
+    "avg_cards_90": 0.316,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [],
+    "defensive_rating": 3.79
+  },
+  "Arsenal": {
+    "team": "Arsenal",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Riccardo Calafiori",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 58.5,
+        "xGChain_90": 0.414,
+        "xA_90": 0.029,
+        "clean_sheet_rate": 53.3
+      },
+      {
+        "name": "Jurriën Timber",
+        "profile": "WEAK_LINK",
+        "impact": -0.64,
+        "offensive_score": 70.2,
+        "xGChain_90": 0.423,
+        "xA_90": 0.076,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Gabriel",
+        "profile": "PISTON",
+        "impact": 0.55,
+        "offensive_score": 74.8,
+        "xGChain_90": 0.35,
+        "xA_90": 0.156,
+        "clean_sheet_rate": 63.6
+      },
+      {
+        "name": "William Saliba",
+        "profile": "BALL_PLAYER",
+        "impact": 0.39,
+        "offensive_score": 46.4,
+        "xGChain_90": 0.38,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 66.7
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.08,
+    "avg_offensive_score": 62.5,
+    "total_xGChain_90": 1.567,
+    "total_xA_90": 0.272,
+    "avg_clean_sheet_rate": 58.4,
+    "avg_cards_90": 0.153,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Jurriën Timber",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.68
+  },
+  "Newcastle United": {
+    "team": "Newcastle United",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Dan Burn",
+        "profile": "WEAK_LINK",
+        "impact": -0.29,
+        "offensive_score": 25.1,
+        "xGChain_90": 0.157,
+        "xA_90": 0.021,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Malick Thiaw",
+        "profile": "WEAK_LINK",
+        "impact": -0.7,
+        "offensive_score": 38.3,
+        "xGChain_90": 0.172,
+        "xA_90": 0.057,
+        "clean_sheet_rate": 18.2
+      },
+      {
+        "name": "Valentino Livramento",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.8,
+        "offensive_score": 66.2,
+        "xGChain_90": 0.431,
+        "xA_90": 0.051,
+        "clean_sheet_rate": 40.0
+      },
+      {
+        "name": "Kieran Trippier",
+        "profile": "BALANCED",
+        "impact": 0.31,
+        "offensive_score": 59.0,
+        "xGChain_90": 0.313,
+        "xA_90": 0.071,
+        "clean_sheet_rate": 50.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 2,
+    "avg_impact": 0.03,
+    "avg_offensive_score": 47.2,
+    "total_xGChain_90": 1.073,
+    "total_xA_90": 0.2,
+    "avg_clean_sheet_rate": 36.0,
+    "avg_cards_90": 0.153,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Dan Burn, Malick Thiaw",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -2.55
+  },
+  "Liverpool": {
+    "team": "Liverpool",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Dominik Szoboszlai",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 91.1,
+        "xGChain_90": 0.642,
+        "xA_90": 0.168,
+        "clean_sheet_rate": 26.7
+      },
+      {
+        "name": "Virgil van Dijk",
+        "profile": "BALL_PLAYER",
+        "impact": 0,
+        "offensive_score": 41.6,
+        "xGChain_90": 0.372,
+        "xA_90": 0.007,
+        "clean_sheet_rate": 26.7
+      },
+      {
+        "name": "Ibrahima Konaté",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 49.3,
+        "xGChain_90": 0.283,
+        "xA_90": 0.043,
+        "clean_sheet_rate": 26.7
+      },
+      {
+        "name": "Milos Kerkez",
+        "profile": "WEAK_LINK",
+        "impact": -0.82,
+        "offensive_score": 79.2,
+        "xGChain_90": 0.506,
+        "xA_90": 0.101,
+        "clean_sheet_rate": 18.2
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": -0.2,
+    "avg_offensive_score": 65.3,
+    "total_xGChain_90": 1.803,
+    "total_xA_90": 0.319,
+    "avg_clean_sheet_rate": 24.6,
+    "avg_cards_90": 0.223,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Milos Kerkez",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -1.85
+  },
+  "Manchester City": {
+    "team": "Manchester City",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Rúben Dias",
+        "profile": "BALANCED",
+        "impact": 1.0,
+        "offensive_score": 58.3,
+        "xGChain_90": 0.727,
+        "xA_90": 0.009,
+        "clean_sheet_rate": 42.9
+      },
+      {
+        "name": "Matheus Nunes",
+        "profile": "WEAK_LINK",
+        "impact": -0.43,
+        "offensive_score": 80.6,
+        "xGChain_90": 0.819,
+        "xA_90": 0.072,
+        "clean_sheet_rate": 36.4
+      },
+      {
+        "name": "Nico O&#039;Reilly",
+        "profile": "PISTON",
+        "impact": 0.25,
+        "offensive_score": 96.6,
+        "xGChain_90": 0.83,
+        "xA_90": 0.216,
+        "clean_sheet_rate": 45.5
+      },
+      {
+        "name": "Josko Gvardiol",
+        "profile": "OFFENSIVE_DEF",
+        "impact": -0.09,
+        "offensive_score": 69.9,
+        "xGChain_90": 0.613,
+        "xA_90": 0.037,
+        "clean_sheet_rate": 36.4
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 0.18,
+    "avg_offensive_score": 76.4,
+    "total_xGChain_90": 2.989,
+    "total_xA_90": 0.334,
+    "avg_clean_sheet_rate": 40.3,
+    "avg_cards_90": 0.133,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Matheus Nunes",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.56
+  },
+  "Manchester United": {
+    "team": "Manchester United",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Luke Shaw",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 42.3,
+        "xGChain_90": 0.231,
+        "xA_90": 0.043,
+        "clean_sheet_rate": 6.7
+      },
+      {
+        "name": "Matthijs de Ligt",
+        "profile": "WEAK_LINK",
+        "impact": -0.54,
+        "offensive_score": 38.9,
+        "xGChain_90": 0.218,
+        "xA_90": 0.033,
+        "clean_sheet_rate": 7.7
+      },
+      {
+        "name": "Amad Diallo Traore",
+        "profile": "PISTON",
+        "impact": 0.62,
+        "offensive_score": 93.4,
+        "xGChain_90": 0.574,
+        "xA_90": 0.238,
+        "clean_sheet_rate": 7.7
+      },
+      {
+        "name": "Diogo Dalot",
+        "profile": "PISTON",
+        "impact": 0.2,
+        "offensive_score": 85.1,
+        "xGChain_90": 0.439,
+        "xA_90": 0.188,
+        "clean_sheet_rate": 10.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 2,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.07,
+    "avg_offensive_score": 64.9,
+    "total_xGChain_90": 1.462,
+    "total_xA_90": 0.502,
+    "avg_clean_sheet_rate": 8.0,
+    "avg_cards_90": 0.055,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Matthijs de Ligt",
+        "edge": 5.0
+      },
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": -1.21
+  },
+  "Burnley": {
+    "team": "Burnley",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Kyle Walker",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 49.1,
+        "xGChain_90": 0.281,
+        "xA_90": 0.043,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Maxime Estève",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 26.8,
+        "xGChain_90": 0.071,
+        "xA_90": 0.046,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Quilindschy Hartman",
+        "profile": "BALANCED",
+        "impact": 0.0,
+        "offensive_score": 53.1,
+        "xGChain_90": 0.19,
+        "xA_90": 0.128,
+        "clean_sheet_rate": 14.3
+      },
+      {
+        "name": "Hjalmar Ekdal",
+        "profile": "BALANCED",
+        "impact": 0.0,
+        "offensive_score": 23.0,
+        "xGChain_90": 0.155,
+        "xA_90": 0.016,
+        "clean_sheet_rate": 12.5
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.0,
+    "avg_offensive_score": 38.0,
+    "total_xGChain_90": 0.697,
+    "total_xA_90": 0.233,
+    "avg_clean_sheet_rate": 13.4,
+    "avg_cards_90": 0.101,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [],
+    "exploit_paths": [],
+    "defensive_rating": 0.13
+  },
+  "Brighton": {
+    "team": "Brighton",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Jan Paul van Hecke",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 58.3,
+        "xGChain_90": 0.411,
+        "xA_90": 0.029,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "Lewis Dunk",
+        "profile": "WEAK_LINK",
+        "impact": -0.43,
+        "offensive_score": 35.0,
+        "xGChain_90": 0.338,
+        "xA_90": 0.003,
+        "clean_sheet_rate": 21.4
+      },
+      {
+        "name": "Ferdi Kadioglu",
+        "profile": "STANDARD",
+        "impact": -0.09,
+        "offensive_score": 46.0,
+        "xGChain_90": 0.295,
+        "xA_90": 0.027,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Mats Wieffer",
+        "profile": "PISTON",
+        "impact": 0.14,
+        "offensive_score": 84.9,
+        "xGChain_90": 0.433,
+        "xA_90": 0.194,
+        "clean_sheet_rate": 27.3
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": -0.1,
+    "avg_offensive_score": 56.0,
+    "total_xGChain_90": 1.477,
+    "total_xA_90": 0.253,
+    "avg_clean_sheet_rate": 23.4,
+    "avg_cards_90": 0.293,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Lewis Dunk",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -1.57
+  },
+  "Fulham": {
+    "team": "Fulham",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Calvin Bassey",
+        "profile": "WEAK_LINK",
+        "impact": -0.64,
+        "offensive_score": 28.0,
+        "xGChain_90": 0.265,
+        "xA_90": 0.005,
+        "clean_sheet_rate": 21.4
+      },
+      {
+        "name": "Joachim Andersen",
+        "profile": "BALL_PLAYER",
+        "impact": -0.12,
+        "offensive_score": 49.3,
+        "xGChain_90": 0.339,
+        "xA_90": 0.022,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Ryan Sessegnon",
+        "profile": "OFFENSIVE_DEF",
+        "impact": -0.12,
+        "offensive_score": 70.4,
+        "xGChain_90": 0.375,
+        "xA_90": 0.105,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Kenny Tete",
+        "profile": "ANCHOR",
+        "impact": 0.91,
+        "offensive_score": 28.8,
+        "xGChain_90": 0.173,
+        "xA_90": 0.022,
+        "clean_sheet_rate": 25.0
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 1,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 0.01,
+    "avg_offensive_score": 44.1,
+    "total_xGChain_90": 1.152,
+    "total_xA_90": 0.154,
+    "avg_clean_sheet_rate": 23.2,
+    "avg_cards_90": 0.075,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Calvin Bassey",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.24
+  },
+  "Wolverhampton Wanderers": {
+    "team": "Wolverhampton Wanderers",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Emmanuel Agbadou",
+        "profile": "STANDARD",
+        "impact": -0.05,
+        "offensive_score": 22.8,
+        "xGChain_90": 0.163,
+        "xA_90": 0.013,
+        "clean_sheet_rate": 0.0
+      },
+      {
+        "name": "Ladislav Krejcí",
+        "profile": "WEAK_LINK",
+        "impact": -0.3,
+        "offensive_score": 48.2,
+        "xGChain_90": 0.223,
+        "xA_90": 0.073,
+        "clean_sheet_rate": 0.0
+      },
+      {
+        "name": "Toti",
+        "profile": "WEAK_LINK",
+        "impact": -0.61,
+        "offensive_score": 16.1,
+        "xGChain_90": 0.122,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 0.0
+      },
+      {
+        "name": "Hugo Bueno",
+        "profile": "BALANCED",
+        "impact": 0.17,
+        "offensive_score": 49.4,
+        "xGChain_90": 0.231,
+        "xA_90": 0.078,
+        "clean_sheet_rate": 0.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": -0.2,
+    "avg_offensive_score": 34.1,
+    "total_xGChain_90": 0.739,
+    "total_xA_90": 0.175,
+    "avg_clean_sheet_rate": 0,
+    "avg_cards_90": 0.18,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Ladislav Krejcí, Toti",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -3.6
+  },
+  "Brentford": {
+    "team": "Brentford",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Sepp van den Berg",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 29.7,
+        "xGChain_90": 0.152,
+        "xA_90": 0.036,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Michael Kayode",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0,
+        "offensive_score": 62.1,
+        "xGChain_90": 0.284,
+        "xA_90": 0.113,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Nathan Collins",
+        "profile": "ANCHOR",
+        "impact": 0.43,
+        "offensive_score": 33.5,
+        "xGChain_90": 0.143,
+        "xA_90": 0.054,
+        "clean_sheet_rate": 14.3
+      },
+      {
+        "name": "Kristoffer Ajer",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.05,
+        "offensive_score": 61.4,
+        "xGChain_90": 0.299,
+        "xA_90": 0.097,
+        "clean_sheet_rate": 14.3
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 2,
+    "weak_links_count": 0,
+    "avg_impact": 0.12,
+    "avg_offensive_score": 46.7,
+    "total_xGChain_90": 0.878,
+    "total_xA_90": 0.3,
+    "avg_clean_sheet_rate": 13.8,
+    "avg_cards_90": 0.142,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [],
+    "exploit_paths": [],
+    "defensive_rating": 1.5
+  },
+  "Leeds": {
+    "team": "Leeds",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Joe Rodon",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 27.1,
+        "xGChain_90": 0.173,
+        "xA_90": 0.018,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Jayden Bogle",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 43.8,
+        "xGChain_90": 0.244,
+        "xA_90": 0.042,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Gabriel Gudmundsson",
+        "profile": "BALANCED",
+        "impact": 0.08,
+        "offensive_score": 55.0,
+        "xGChain_90": 0.194,
+        "xA_90": 0.143,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Pascal Struijk",
+        "profile": "ANCHOR",
+        "impact": 0.5,
+        "offensive_score": 10.8,
+        "xGChain_90": 0.102,
+        "xA_90": 0.007,
+        "clean_sheet_rate": 16.7
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.14,
+    "avg_offensive_score": 34.2,
+    "total_xGChain_90": 0.713,
+    "total_xA_90": 0.21,
+    "avg_clean_sheet_rate": 14.7,
+    "avg_cards_90": 0.184,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [],
+    "exploit_paths": [],
+    "defensive_rating": 1.57
+  },
+  "Nottingham Forest": {
+    "team": "Nottingham Forest",
+    "league": "EPL",
+    "starters": [
+      {
+        "name": "Neco Williams",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 55.4,
+        "xGChain_90": 0.27,
+        "xA_90": 0.08,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Nikola Milenkovic",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 13.5,
+        "xGChain_90": 0.128,
+        "xA_90": 0.008,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Nicolò Savona",
+        "profile": "BALANCED",
+        "impact": 0.0,
+        "offensive_score": 33.5,
+        "xGChain_90": 0.269,
+        "xA_90": 0.01,
+        "clean_sheet_rate": 22.2
+      },
+      {
+        "name": "Murillo",
+        "profile": "BALL_PLAYER",
+        "impact": 0.09,
+        "offensive_score": 45.8,
+        "xGChain_90": 0.4,
+        "xA_90": 0.008,
+        "clean_sheet_rate": 12.5
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.02,
+    "avg_offensive_score": 37.0,
+    "total_xGChain_90": 1.067,
+    "total_xA_90": 0.106,
+    "avg_clean_sheet_rate": 15.3,
+    "avg_cards_90": 0.208,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [],
+    "exploit_paths": [],
+    "defensive_rating": 0.21
+  },
+  "Sevilla": {
+    "team": "Sevilla",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "José Ángel Carmona",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.5,
+        "offensive_score": 63.1,
+        "xGChain_90": 0.302,
+        "xA_90": 0.103,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Gabriel Suazo",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.6,
+        "offensive_score": 60.4,
+        "xGChain_90": 0.256,
+        "xA_90": 0.124,
+        "clean_sheet_rate": 30.0
+      },
+      {
+        "name": "Marcão",
+        "profile": "BALANCED",
+        "impact": 0.0,
+        "offensive_score": 7.7,
+        "xGChain_90": 0.151,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "Juanlu Sanchez",
+        "profile": "WEAK_LINK",
+        "impact": -0.9,
+        "offensive_score": 52.0,
+        "xGChain_90": 0.247,
+        "xA_90": 0.078,
+        "clean_sheet_rate": 20.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 2,
+    "weak_links_count": 1,
+    "avg_impact": 0.05,
+    "avg_offensive_score": 45.8,
+    "total_xGChain_90": 0.956,
+    "total_xA_90": 0.305,
+    "avg_clean_sheet_rate": 23.8,
+    "avg_cards_90": 0.295,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Juanlu Sanchez",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -1.11
+  },
+  "Real Sociedad": {
+    "team": "Real Sociedad",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Jon Aramburu",
+        "profile": "ANCHOR",
+        "impact": 0.62,
+        "offensive_score": 36.5,
+        "xGChain_90": 0.242,
+        "xA_90": 0.02,
+        "clean_sheet_rate": 7.7
+      },
+      {
+        "name": "Igor Zubeldia",
+        "profile": "ANCHOR",
+        "impact": 0.25,
+        "offensive_score": 35.3,
+        "xGChain_90": 0.236,
+        "xA_90": 0.019,
+        "clean_sheet_rate": 8.3
+      },
+      {
+        "name": "Sergio Gómez",
+        "profile": "WEAK_LINK",
+        "impact": -0.3,
+        "offensive_score": 82.9,
+        "xGChain_90": 0.388,
+        "xA_90": 0.232,
+        "clean_sheet_rate": 9.1
+      },
+      {
+        "name": "Duje Caleta-Car",
+        "profile": "BALANCED",
+        "impact": 0.34,
+        "offensive_score": 47.3,
+        "xGChain_90": 0.32,
+        "xA_90": 0.022,
+        "clean_sheet_rate": 11.1
+      }
+    ],
+    "anchors_count": 2,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.23,
+    "avg_offensive_score": 50.5,
+    "total_xGChain_90": 1.186,
+    "total_xA_90": 0.293,
+    "avg_clean_sheet_rate": 9.0,
+    "avg_cards_90": 0.264,
+    "line_character": "FORTRESS",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "ROCK_SOLID"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Sergio Gómez",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 1.28
+  },
+  "Espanyol": {
+    "team": "Espanyol",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Leandro Cabrera",
+        "profile": "WEAK_LINK",
+        "impact": -1.14,
+        "offensive_score": 40.2,
+        "xGChain_90": 0.258,
+        "xA_90": 0.023,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Carlos Romero",
+        "profile": "PISTON",
+        "impact": 1.0,
+        "offensive_score": 72.0,
+        "xGChain_90": 0.342,
+        "xA_90": 0.139,
+        "clean_sheet_rate": 42.9
+      },
+      {
+        "name": "Omar El Hilali",
+        "profile": "WEAK_LINK",
+        "impact": -0.5,
+        "offensive_score": 44.6,
+        "xGChain_90": 0.161,
+        "xA_90": 0.104,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Fernando Calero",
+        "profile": "ANCHOR",
+        "impact": 0.44,
+        "offensive_score": 13.5,
+        "xGChain_90": 0.165,
+        "xA_90": 0.003,
+        "clean_sheet_rate": 44.4
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": -0.05,
+    "avg_offensive_score": 42.6,
+    "total_xGChain_90": 0.926,
+    "total_xA_90": 0.269,
+    "avg_clean_sheet_rate": 39.1,
+    "avg_cards_90": 0.152,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Leandro Cabrera, Omar El Hilali",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -1.76
+  },
+  "Getafe": {
+    "team": "Getafe",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Juan Iglesias",
+        "profile": "ANCHOR",
+        "impact": 0.42,
+        "offensive_score": 30.8,
+        "xGChain_90": 0.178,
+        "xA_90": 0.026,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Diego Rico",
+        "profile": "STANDARD",
+        "impact": -0.17,
+        "offensive_score": 26.7,
+        "xGChain_90": 0.067,
+        "xA_90": 0.046,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Domingos Duarte",
+        "profile": "WEAK_LINK",
+        "impact": -0.73,
+        "offensive_score": 1.8,
+        "xGChain_90": 0.023,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Djené Dakonam",
+        "profile": "ANCHOR",
+        "impact": 0.25,
+        "offensive_score": 8.9,
+        "xGChain_90": 0.079,
+        "xA_90": 0.006,
+        "clean_sheet_rate": 33.3
+      }
+    ],
+    "anchors_count": 2,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": -0.06,
+    "avg_offensive_score": 17.0,
+    "total_xGChain_90": 0.347,
+    "total_xA_90": 0.078,
+    "avg_clean_sheet_rate": 26.1,
+    "avg_cards_90": 0.183,
+    "line_character": "FORTRESS",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "ROCK_SOLID"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Domingos Duarte",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 0.58
+  },
+  "Atletico Madrid": {
+    "team": "Atletico Madrid",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "David Hancko",
+        "profile": "WEAK_LINK",
+        "impact": -1.08,
+        "offensive_score": 82.8,
+        "xGChain_90": 0.483,
+        "xA_90": 0.136,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Marcos Llorente",
+        "profile": "PISTON",
+        "impact": 0.08,
+        "offensive_score": 97.6,
+        "xGChain_90": 0.792,
+        "xA_90": 0.251,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Robin Le Normand",
+        "profile": "WEAK_LINK",
+        "impact": -0.2,
+        "offensive_score": 39.5,
+        "xGChain_90": 0.416,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 30.0
+      },
+      {
+        "name": "Nicolás González",
+        "profile": "PISTON",
+        "impact": 0.39,
+        "offensive_score": 86.5,
+        "xGChain_90": 0.581,
+        "xA_90": 0.138,
+        "clean_sheet_rate": 55.6
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 2,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": -0.2,
+    "avg_offensive_score": 76.6,
+    "total_xGChain_90": 2.272,
+    "total_xA_90": 0.525,
+    "avg_clean_sheet_rate": 37.4,
+    "avg_cards_90": 0.164,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler David Hancko, Robin Le Normand",
+        "edge": 6.0
+      },
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": -3.23
+  },
+  "Rayo Vallecano": {
+    "team": "Rayo Vallecano",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Andrei Ratiu",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 86.9,
+        "xGChain_90": 0.462,
+        "xA_90": 0.19,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Florian Lejeune",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 37.2,
+        "xGChain_90": 0.288,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Pep Chavarría",
+        "profile": "PISTON",
+        "impact": -0.07,
+        "offensive_score": 83.5,
+        "xGChain_90": 0.466,
+        "xA_90": 0.146,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Pathé Ciss",
+        "profile": "WEAK_LINK",
+        "impact": -0.39,
+        "offensive_score": 61.9,
+        "xGChain_90": 0.553,
+        "xA_90": 0.018,
+        "clean_sheet_rate": 22.2
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 2,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": -0.12,
+    "avg_offensive_score": 67.4,
+    "total_xGChain_90": 1.769,
+    "total_xA_90": 0.365,
+    "avg_clean_sheet_rate": 31.1,
+    "avg_cards_90": 0.249,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Pathé Ciss",
+        "edge": 5.0
+      },
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": -1.55
+  },
+  "Valencia": {
+    "team": "Valencia",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "César Tárrega",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 10.9,
+        "xGChain_90": 0.118,
+        "xA_90": 0.006,
+        "clean_sheet_rate": 26.7
+      },
+      {
+        "name": "José Gayá",
+        "profile": "WEAK_LINK",
+        "impact": -0.67,
+        "offensive_score": 53.8,
+        "xGChain_90": 0.218,
+        "xA_90": 0.113,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Copete",
+        "profile": "WEAK_LINK",
+        "impact": -0.73,
+        "offensive_score": 5.4,
+        "xGChain_90": 0.084,
+        "xA_90": 0.002,
+        "clean_sheet_rate": 18.2
+      },
+      {
+        "name": "Thierry Correia",
+        "profile": "BALANCED",
+        "impact": 0.33,
+        "offensive_score": 47.6,
+        "xGChain_90": 0.269,
+        "xA_90": 0.043,
+        "clean_sheet_rate": 25.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": -0.27,
+    "avg_offensive_score": 29.4,
+    "total_xGChain_90": 0.689,
+    "total_xA_90": 0.164,
+    "avg_clean_sheet_rate": 23.7,
+    "avg_cards_90": 0.359,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "CARD_PRONE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler José Gayá, Copete",
+        "edge": 6.0
+      },
+      {
+        "market": "Cards Over",
+        "trigger": "Attaquants techniques",
+        "edge": 3.0
+      }
+    ],
+    "defensive_rating": -3.57
+  },
+  "Athletic Club": {
+    "team": "Athletic Club",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Yuri",
+        "profile": "ANCHOR",
+        "impact": 0.77,
+        "offensive_score": 38.1,
+        "xGChain_90": 0.21,
+        "xA_90": 0.033,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Dani Vivian",
+        "profile": "WEAK_LINK",
+        "impact": -0.36,
+        "offensive_score": 37.6,
+        "xGChain_90": 0.178,
+        "xA_90": 0.05,
+        "clean_sheet_rate": 28.6
+      },
+      {
+        "name": "Jesús Areso",
+        "profile": "BALANCED",
+        "impact": 0.71,
+        "offensive_score": 44.4,
+        "xGChain_90": 0.147,
+        "xA_90": 0.12,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Aymeric Laporte",
+        "profile": "WEAK_LINK",
+        "impact": -0.56,
+        "offensive_score": 35.3,
+        "xGChain_90": 0.192,
+        "xA_90": 0.032,
+        "clean_sheet_rate": 22.2
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": 0.14,
+    "avg_offensive_score": 38.8,
+    "total_xGChain_90": 0.727,
+    "total_xA_90": 0.235,
+    "avg_clean_sheet_rate": 26.6,
+    "avg_cards_90": 0.2,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Dani Vivian, Aymeric Laporte",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -1.31
+  },
+  "Barcelona": {
+    "team": "Barcelona",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Eric Garcia",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 1.58,
+        "offensive_score": 78.7,
+        "xGChain_90": 0.842,
+        "xA_90": 0.059,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Pau Cubarsí",
+        "profile": "WEAK_LINK",
+        "impact": -0.52,
+        "offensive_score": 70.0,
+        "xGChain_90": 0.732,
+        "xA_90": 0.03,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Jules Koundé",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.1,
+        "offensive_score": 79.3,
+        "xGChain_90": 0.656,
+        "xA_90": 0.078,
+        "clean_sheet_rate": 30.0
+      },
+      {
+        "name": "Álex Balde",
+        "profile": "PISTON",
+        "impact": 0.1,
+        "offensive_score": 91.5,
+        "xGChain_90": 0.718,
+        "xA_90": 0.158,
+        "clean_sheet_rate": 20.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 2,
+    "weak_links_count": 1,
+    "avg_impact": 0.32,
+    "avg_offensive_score": 79.9,
+    "total_xGChain_90": 2.948,
+    "total_xA_90": 0.325,
+    "avg_clean_sheet_rate": 27.0,
+    "avg_cards_90": 0.111,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Pau Cubarsí",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.27
+  },
+  "Real Madrid": {
+    "team": "Real Madrid",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Álvaro Fernández",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.14,
+        "offensive_score": 76.9,
+        "xGChain_90": 0.653,
+        "xA_90": 0.066,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Federico Valverde",
+        "profile": "PISTON",
+        "impact": 0.73,
+        "offensive_score": 85.8,
+        "xGChain_90": 0.625,
+        "xA_90": 0.123,
+        "clean_sheet_rate": 53.8
+      },
+      {
+        "name": "Eder Militão",
+        "profile": "OFFENSIVE_DEF",
+        "impact": -0.16,
+        "offensive_score": 76.2,
+        "xGChain_90": 0.453,
+        "xA_90": 0.098,
+        "clean_sheet_rate": 45.5
+      },
+      {
+        "name": "Dean Huijsen",
+        "profile": "WEAK_LINK",
+        "impact": -0.7,
+        "offensive_score": 75.6,
+        "xGChain_90": 0.49,
+        "xA_90": 0.082,
+        "clean_sheet_rate": 40.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 2,
+    "weak_links_count": 1,
+    "avg_impact": 0.0,
+    "avg_offensive_score": 78.6,
+    "total_xGChain_90": 2.221,
+    "total_xA_90": 0.369,
+    "avg_clean_sheet_rate": 47.3,
+    "avg_cards_90": 0.249,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Dean Huijsen",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -1.03
+  },
+  "Levante": {
+    "team": "Levante",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Jeremy Toljan",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 71.7,
+        "xGChain_90": 0.325,
+        "xA_90": 0.154,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Manuel Sánchez",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 2.29,
+        "offensive_score": 65.1,
+        "xGChain_90": 0.387,
+        "xA_90": 0.067,
+        "clean_sheet_rate": 14.3
+      },
+      {
+        "name": "Unai Elgezabal",
+        "profile": "WEAK_LINK",
+        "impact": -0.5,
+        "offensive_score": 19.7,
+        "xGChain_90": 0.14,
+        "xA_90": 0.013,
+        "clean_sheet_rate": 9.1
+      },
+      {
+        "name": "Adrián De la Fuente",
+        "profile": "WEAK_LINK",
+        "impact": -0.61,
+        "offensive_score": 21.7,
+        "xGChain_90": 0.192,
+        "xA_90": 0.007,
+        "clean_sheet_rate": 11.1
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 1,
+    "weak_links_count": 2,
+    "avg_impact": 0.3,
+    "avg_offensive_score": 44.6,
+    "total_xGChain_90": 1.044,
+    "total_xA_90": 0.241,
+    "avg_clean_sheet_rate": 12.0,
+    "avg_cards_90": 0.225,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Unai Elgezabal, Adrián De la Fuente",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -1.98
+  },
+  "Celta Vigo": {
+    "team": "Celta Vigo",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Sergio Carreira",
+        "profile": "BALANCED",
+        "impact": 0.5,
+        "offensive_score": 60.0,
+        "xGChain_90": 0.53,
+        "xA_90": 0.015,
+        "clean_sheet_rate": 16.7
+      },
+      {
+        "name": "Marcos Alonso",
+        "profile": "WEAK_LINK",
+        "impact": -0.36,
+        "offensive_score": 54.9,
+        "xGChain_90": 0.386,
+        "xA_90": 0.026,
+        "clean_sheet_rate": 18.2
+      },
+      {
+        "name": "Javier Rodríguez",
+        "profile": "BALL_PLAYER",
+        "impact": 1.1,
+        "offensive_score": 44.3,
+        "xGChain_90": 0.339,
+        "xA_90": 0.012,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "Óscar Mingueza",
+        "profile": "WEAK_LINK",
+        "impact": -0.44,
+        "offensive_score": 96.2,
+        "xGChain_90": 0.655,
+        "xA_90": 0.285,
+        "clean_sheet_rate": 11.1
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": 0.2,
+    "avg_offensive_score": 63.8,
+    "total_xGChain_90": 1.91,
+    "total_xA_90": 0.338,
+    "avg_clean_sheet_rate": 16.5,
+    "avg_cards_90": 0.142,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Marcos Alonso, Óscar Mingueza",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -2.24
+  },
+  "Real Betis": {
+    "team": "Real Betis",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Natan",
+        "profile": "BALL_PLAYER",
+        "impact": 0,
+        "offensive_score": 41.6,
+        "xGChain_90": 0.328,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 26.7
+      },
+      {
+        "name": "Héctor Bellerín",
+        "profile": "PISTON",
+        "impact": 1.33,
+        "offensive_score": 90.7,
+        "xGChain_90": 0.525,
+        "xA_90": 0.209,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Marc Bartra",
+        "profile": "BALL_PLAYER",
+        "impact": -0.1,
+        "offensive_score": 36.5,
+        "xGChain_90": 0.369,
+        "xA_90": 0.002,
+        "clean_sheet_rate": 30.0
+      },
+      {
+        "name": "Valentín Gómez",
+        "profile": "WEAK_LINK",
+        "impact": -0.5,
+        "offensive_score": 38.4,
+        "xGChain_90": 0.231,
+        "xA_90": 0.029,
+        "clean_sheet_rate": 25.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 2,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.18,
+    "avg_offensive_score": 51.8,
+    "total_xGChain_90": 1.453,
+    "total_xA_90": 0.251,
+    "avg_clean_sheet_rate": 26.7,
+    "avg_cards_90": 0.224,
+    "line_character": "POSSESSION",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Valentín Gómez",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.69
+  },
+  "Villarreal": {
+    "team": "Villarreal",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Rafa Marín",
+        "profile": "WEAK_LINK",
+        "impact": -0.5,
+        "offensive_score": 50.0,
+        "xGChain_90": 0.43,
+        "xA_90": 0.01,
+        "clean_sheet_rate": 36.4
+      },
+      {
+        "name": "Renato Veiga",
+        "profile": "BALL_PLAYER",
+        "impact": -0.1,
+        "offensive_score": 45.0,
+        "xGChain_90": 0.449,
+        "xA_90": 0.003,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Santiago Mouriño",
+        "profile": "STANDARD",
+        "impact": -0.1,
+        "offensive_score": 50.6,
+        "xGChain_90": 0.451,
+        "xA_90": 0.009,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Sergi Cardona",
+        "profile": "PISTON",
+        "impact": 0.22,
+        "offensive_score": 93.8,
+        "xGChain_90": 0.663,
+        "xA_90": 0.204,
+        "clean_sheet_rate": 55.6
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": -0.12,
+    "avg_offensive_score": 59.8,
+    "total_xGChain_90": 1.993,
+    "total_xA_90": 0.226,
+    "avg_clean_sheet_rate": 48.0,
+    "avg_cards_90": 0.2,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Rafa Marín",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -1.38
+  },
+  "Osasuna": {
+    "team": "Osasuna",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Enzo Boyomo",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 37.0,
+        "xGChain_90": 0.171,
+        "xA_90": 0.052,
+        "clean_sheet_rate": 26.7
+      },
+      {
+        "name": "Jon Moncayola",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0,
+        "offensive_score": 66.8,
+        "xGChain_90": 0.267,
+        "xA_90": 0.173,
+        "clean_sheet_rate": 26.7
+      },
+      {
+        "name": "Alejandro Catena",
+        "profile": "ANCHOR",
+        "impact": 0.86,
+        "offensive_score": 20.2,
+        "xGChain_90": 0.123,
+        "xA_90": 0.016,
+        "clean_sheet_rate": 28.6
+      },
+      {
+        "name": "Abel Bretones",
+        "profile": "WEAK_LINK",
+        "impact": -0.81,
+        "offensive_score": 23.8,
+        "xGChain_90": 0.112,
+        "xA_90": 0.028,
+        "clean_sheet_rate": 23.1
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 0.01,
+    "avg_offensive_score": 37.0,
+    "total_xGChain_90": 0.673,
+    "total_xA_90": 0.269,
+    "avg_clean_sheet_rate": 26.3,
+    "avg_cards_90": 0.268,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Abel Bretones",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.21
+  },
+  "Alaves": {
+    "team": "Alaves",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Jonny",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 53.6,
+        "xGChain_90": 0.297,
+        "xA_90": 0.053,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "Nahuel Tenaglia",
+        "profile": "BALANCED",
+        "impact": 0.0,
+        "offensive_score": 13.3,
+        "xGChain_90": 0.134,
+        "xA_90": 0.007,
+        "clean_sheet_rate": 21.4
+      },
+      {
+        "name": "Jon Pacheco Dozagarat",
+        "profile": "BALANCED",
+        "impact": 0.0,
+        "offensive_score": 14.9,
+        "xGChain_90": 0.106,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Youssef Lekhedim",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.26,
+        "offensive_score": 62.7,
+        "xGChain_90": 0.31,
+        "xA_90": 0.096,
+        "clean_sheet_rate": 14.3
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 0,
+    "avg_impact": 0.06,
+    "avg_offensive_score": 36.1,
+    "total_xGChain_90": 0.847,
+    "total_xA_90": 0.167,
+    "avg_clean_sheet_rate": 20.2,
+    "avg_cards_90": 0.218,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [],
+    "exploit_paths": [],
+    "defensive_rating": 0.38
+  },
+  "Elche": {
+    "team": "Elche",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Álvaro Núñez",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 75.1,
+        "xGChain_90": 0.412,
+        "xA_90": 0.114,
+        "clean_sheet_rate": 26.7
+      },
+      {
+        "name": "David Affengruber",
+        "profile": "WEAK_LINK",
+        "impact": -0.73,
+        "offensive_score": 48.7,
+        "xGChain_90": 0.37,
+        "xA_90": 0.015,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "German Valera",
+        "profile": "PISTON",
+        "impact": 0.25,
+        "offensive_score": 77.2,
+        "xGChain_90": 0.364,
+        "xA_90": 0.174,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Pedro Bigas",
+        "profile": "BALL_PLAYER",
+        "impact": 0.16,
+        "offensive_score": 48.6,
+        "xGChain_90": 0.374,
+        "xA_90": 0.014,
+        "clean_sheet_rate": 36.4
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 2,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": -0.08,
+    "avg_offensive_score": 62.4,
+    "total_xGChain_90": 1.52,
+    "total_xA_90": 0.317,
+    "avg_clean_sheet_rate": 29.9,
+    "avg_cards_90": 0.157,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler David Affengruber",
+        "edge": 5.0
+      },
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": -1.44
+  },
+  "Girona": {
+    "team": "Girona",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Álex Moreno",
+        "profile": "BALANCED",
+        "impact": 2.38,
+        "offensive_score": 56.4,
+        "xGChain_90": 0.353,
+        "xA_90": 0.042,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Vitor Reis",
+        "profile": "BALANCED",
+        "impact": 0.08,
+        "offensive_score": 54.2,
+        "xGChain_90": 0.307,
+        "xA_90": 0.05,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Daley Blind",
+        "profile": "WEAK_LINK",
+        "impact": -0.75,
+        "offensive_score": 50.1,
+        "xGChain_90": 0.354,
+        "xA_90": 0.021,
+        "clean_sheet_rate": 16.7
+      },
+      {
+        "name": "Arnau Martinez",
+        "profile": "BALL_PLAYER",
+        "impact": 0.43,
+        "offensive_score": 45.8,
+        "xGChain_90": 0.393,
+        "xA_90": 0.009,
+        "clean_sheet_rate": 9.1
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.54,
+    "avg_offensive_score": 51.6,
+    "total_xGChain_90": 1.407,
+    "total_xA_90": 0.122,
+    "avg_clean_sheet_rate": 14.2,
+    "avg_cards_90": 0.214,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Daley Blind",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 0.26
+  },
+  "Mallorca": {
+    "team": "Mallorca",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Raíllo",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 21.6,
+        "xGChain_90": 0.191,
+        "xA_90": 0.007,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "Martin Valjent",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 24.4,
+        "xGChain_90": 0.256,
+        "xA_90": 0.002,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "Johan Mojica",
+        "profile": "PISTON",
+        "impact": -0.17,
+        "offensive_score": 70.4,
+        "xGChain_90": 0.304,
+        "xA_90": 0.158,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Pablo Maffeo",
+        "profile": "BALL_PLAYER",
+        "impact": 0.8,
+        "offensive_score": 44.9,
+        "xGChain_90": 0.365,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 30.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.16,
+    "avg_offensive_score": 40.3,
+    "total_xGChain_90": 1.116,
+    "total_xA_90": 0.178,
+    "avg_clean_sheet_rate": 23.8,
+    "avg_cards_90": 0.187,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [],
+    "exploit_paths": [],
+    "defensive_rating": 0.72
+  },
+  "Real Oviedo": {
+    "team": "Real Oviedo",
+    "league": "La_Liga",
+    "starters": [
+      {
+        "name": "Nacho Vidal",
+        "profile": "ANCHOR",
+        "impact": 0.73,
+        "offensive_score": 24.0,
+        "xGChain_90": 0.22,
+        "xA_90": 0.006,
+        "clean_sheet_rate": 36.4
+      },
+      {
+        "name": "Rahim Alhassane",
+        "profile": "WEAK_LINK",
+        "impact": -0.4,
+        "offensive_score": 51.2,
+        "xGChain_90": 0.24,
+        "xA_90": 0.081,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "David Carmo",
+        "profile": "STANDARD",
+        "impact": -0.1,
+        "offensive_score": 35.8,
+        "xGChain_90": 0.273,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "David Costas",
+        "profile": "ANCHOR",
+        "impact": 0.61,
+        "offensive_score": 25.6,
+        "xGChain_90": 0.182,
+        "xA_90": 0.012,
+        "clean_sheet_rate": 44.4
+      }
+    ],
+    "anchors_count": 2,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.21,
+    "avg_offensive_score": 34.2,
+    "total_xGChain_90": 0.915,
+    "total_xA_90": 0.11,
+    "avg_clean_sheet_rate": 30.2,
+    "avg_cards_90": 0.149,
+    "line_character": "FORTRESS",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "ROCK_SOLID"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Rahim Alhassane",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 1.43
+  },
+  "Bayern Munich": {
+    "team": "Bayern Munich",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Konrad Laimer",
+        "profile": "PISTON",
+        "impact": 0.36,
+        "offensive_score": 98.8,
+        "xGChain_90": 1.088,
+        "xA_90": 0.257,
+        "clean_sheet_rate": 54.5
+      },
+      {
+        "name": "Jonathan Tah",
+        "profile": "WEAK_LINK",
+        "impact": -0.82,
+        "offensive_score": 55.3,
+        "xGChain_90": 0.472,
+        "xA_90": 0.012,
+        "clean_sheet_rate": 45.5
+      },
+      {
+        "name": "Dayotchanculle Upamecano",
+        "profile": "OFFENSIVE_DEF",
+        "impact": -0.03,
+        "offensive_score": 73.9,
+        "xGChain_90": 0.544,
+        "xA_90": 0.062,
+        "clean_sheet_rate": 60.0
+      },
+      {
+        "name": "Tom Bischof",
+        "profile": "PISTON",
+        "impact": 0.36,
+        "offensive_score": 98.8,
+        "xGChain_90": 0.879,
+        "xA_90": 0.284,
+        "clean_sheet_rate": 66.7
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 2,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": -0.03,
+    "avg_offensive_score": 81.7,
+    "total_xGChain_90": 2.983,
+    "total_xA_90": 0.615,
+    "avg_clean_sheet_rate": 56.7,
+    "avg_cards_90": 0.304,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Jonathan Tah",
+        "edge": 5.0
+      },
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": -1.02
+  },
+  "Hamburger SV": {
+    "team": "Hamburger SV",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Nicolai Remberg",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 49.5,
+        "xGChain_90": 0.272,
+        "xA_90": 0.047,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Miro Muheim",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.5,
+        "offensive_score": 61.2,
+        "xGChain_90": 0.231,
+        "xA_90": 0.163,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Luka Vuskovic",
+        "profile": "WEAK_LINK",
+        "impact": -0.64,
+        "offensive_score": 45.1,
+        "xGChain_90": 0.29,
+        "xA_90": 0.026,
+        "clean_sheet_rate": 18.2
+      },
+      {
+        "name": "Nicolás Capaldo",
+        "profile": "BALANCED",
+        "impact": 0.17,
+        "offensive_score": 55.2,
+        "xGChain_90": 0.265,
+        "xA_90": 0.085,
+        "clean_sheet_rate": 20.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 0.01,
+    "avg_offensive_score": 52.8,
+    "total_xGChain_90": 1.058,
+    "total_xA_90": 0.321,
+    "avg_clean_sheet_rate": 21.6,
+    "avg_cards_90": 0.285,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Luka Vuskovic",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -1.25
+  },
+  "Bayer Leverkusen": {
+    "team": "Bayer Leverkusen",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Edmond Tapsoba",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0,
+        "offensive_score": 74.7,
+        "xGChain_90": 0.541,
+        "xA_90": 0.068,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Álex Grimaldo",
+        "profile": "PISTON",
+        "impact": 1.23,
+        "offensive_score": 97.8,
+        "xGChain_90": 0.734,
+        "xA_90": 0.314,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Loic Bade",
+        "profile": "BALANCED",
+        "impact": 1.23,
+        "offensive_score": 59.5,
+        "xGChain_90": 0.557,
+        "xA_90": 0.013,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Robert Andrich",
+        "profile": "WEAK_LINK",
+        "impact": -1.47,
+        "offensive_score": 56.2,
+        "xGChain_90": 0.404,
+        "xA_90": 0.024,
+        "clean_sheet_rate": 10.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 0.25,
+    "avg_offensive_score": 72.0,
+    "total_xGChain_90": 2.236,
+    "total_xA_90": 0.419,
+    "avg_clean_sheet_rate": 21.9,
+    "avg_cards_90": 0.231,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Robert Andrich",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.53
+  },
+  "Hoffenheim": {
+    "team": "Hoffenheim",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Vladimir Coufal",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 87.1,
+        "xGChain_90": 0.439,
+        "xA_90": 0.223,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Bernardo",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 29.4,
+        "xGChain_90": 0.179,
+        "xA_90": 0.021,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Robin Hranác",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 25.0,
+        "xGChain_90": 0.262,
+        "xA_90": 0.002,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Bazoumana Touré",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 86.5,
+        "xGChain_90": 0.445,
+        "xA_90": 0.206,
+        "clean_sheet_rate": 15.4
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 2,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.0,
+    "avg_offensive_score": 57.0,
+    "total_xGChain_90": 1.325,
+    "total_xA_90": 0.452,
+    "avg_clean_sheet_rate": 15.4,
+    "avg_cards_90": 0.178,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": 0.15
+  },
+  "Augsburg": {
+    "team": "Augsburg",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Chrislain Matsima",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 31.6,
+        "xGChain_90": 0.151,
+        "xA_90": 0.045,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Robin Fellhauer",
+        "profile": "ANCHOR",
+        "impact": 1.09,
+        "offensive_score": 35.7,
+        "xGChain_90": 0.189,
+        "xA_90": 0.034,
+        "clean_sheet_rate": 18.2
+      },
+      {
+        "name": "Dimitris Giannoulis",
+        "profile": "PISTON",
+        "impact": 0.77,
+        "offensive_score": 72.5,
+        "xGChain_90": 0.3,
+        "xA_90": 0.199,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "Kristijan Jakic",
+        "profile": "ANCHOR",
+        "impact": 0.2,
+        "offensive_score": 38.4,
+        "xGChain_90": 0.218,
+        "xA_90": 0.032,
+        "clean_sheet_rate": 12.5
+      }
+    ],
+    "anchors_count": 2,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.52,
+    "avg_offensive_score": 44.6,
+    "total_xGChain_90": 0.858,
+    "total_xA_90": 0.31,
+    "avg_clean_sheet_rate": 16.5,
+    "avg_cards_90": 0.272,
+    "line_character": "FORTRESS",
+    "vulnerabilities": [],
+    "strengths": [
+      "ROCK_SOLID",
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [],
+    "defensive_rating": 3.72
+  },
+  "Werder Bremen": {
+    "team": "Werder Bremen",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Marco Friedl",
+        "profile": "ANCHOR",
+        "impact": 1.25,
+        "offensive_score": 29.7,
+        "xGChain_90": 0.199,
+        "xA_90": 0.014,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Karim Coulibaly",
+        "profile": "ANCHOR",
+        "impact": 2.33,
+        "offensive_score": 18.7,
+        "xGChain_90": 0.152,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Yukinari Sugawara",
+        "profile": "BALANCED",
+        "impact": 2.33,
+        "offensive_score": 54.8,
+        "xGChain_90": 0.272,
+        "xA_90": 0.076,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Amos Pieper",
+        "profile": "ANCHOR",
+        "impact": 0.9,
+        "offensive_score": 13.5,
+        "xGChain_90": 0.161,
+        "xA_90": 0.004,
+        "clean_sheet_rate": 14.3
+      }
+    ],
+    "anchors_count": 3,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 1.7,
+    "avg_offensive_score": 29.2,
+    "total_xGChain_90": 0.784,
+    "total_xA_90": 0.105,
+    "avg_clean_sheet_rate": 22.3,
+    "avg_cards_90": 0.223,
+    "line_character": "FORTRESS",
+    "vulnerabilities": [],
+    "strengths": [
+      "ROCK_SOLID",
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [],
+    "defensive_rating": 8.32
+  },
+  "Mainz 05": {
+    "team": "Mainz 05",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Philipp Mwene",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 46.6,
+        "xGChain_90": 0.241,
+        "xA_90": 0.054,
+        "clean_sheet_rate": 0.0
+      },
+      {
+        "name": "Danny da Costa",
+        "profile": "WEAK_LINK",
+        "impact": -1.0,
+        "offensive_score": 27.7,
+        "xGChain_90": 0.177,
+        "xA_90": 0.018,
+        "clean_sheet_rate": 0.0
+      },
+      {
+        "name": "Dominik Kohr",
+        "profile": "BALANCED",
+        "impact": 0.63,
+        "offensive_score": 50.9,
+        "xGChain_90": 0.193,
+        "xA_90": 0.113,
+        "clean_sheet_rate": 0.0
+      },
+      {
+        "name": "Andreas Hanche-Olsen",
+        "profile": "BALANCED",
+        "impact": 0.9,
+        "offensive_score": 49.2,
+        "xGChain_90": 0.212,
+        "xA_90": 0.085,
+        "clean_sheet_rate": 0.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.13,
+    "avg_offensive_score": 43.6,
+    "total_xGChain_90": 0.823,
+    "total_xA_90": 0.27,
+    "avg_clean_sheet_rate": 0,
+    "avg_cards_90": 0.333,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Danny da Costa",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -1.11
+  },
+  "Borussia Dortmund": {
+    "team": "Borussia Dortmund",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Waldemar Anton",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 40.3,
+        "xGChain_90": 0.313,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 53.8
+      },
+      {
+        "name": "Daniel Svensson",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.77,
+        "offensive_score": 78.9,
+        "xGChain_90": 0.479,
+        "xA_90": 0.104,
+        "clean_sheet_rate": 54.5
+      },
+      {
+        "name": "Nico Schlotterbeck",
+        "profile": "STANDARD",
+        "impact": -0.14,
+        "offensive_score": 54.3,
+        "xGChain_90": 0.29,
+        "xA_90": 0.06,
+        "clean_sheet_rate": 44.4
+      },
+      {
+        "name": "Ramy Bensebaini",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.9,
+        "offensive_score": 64.4,
+        "xGChain_90": 0.529,
+        "xA_90": 0.027,
+        "clean_sheet_rate": 75.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 2,
+    "weak_links_count": 0,
+    "avg_impact": 0.38,
+    "avg_offensive_score": 59.5,
+    "total_xGChain_90": 1.611,
+    "total_xA_90": 0.202,
+    "avg_clean_sheet_rate": 56.9,
+    "avg_cards_90": 0.163,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [],
+    "defensive_rating": 1.71
+  },
+  "Borussia M.Gladbach": {
+    "team": "Borussia M.Gladbach",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Nico Elvedi",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 24.8,
+        "xGChain_90": 0.239,
+        "xA_90": 0.005,
+        "clean_sheet_rate": 46.2
+      },
+      {
+        "name": "Kevin Diks",
+        "profile": "WEAK_LINK",
+        "impact": -1.58,
+        "offensive_score": 39.8,
+        "xGChain_90": 0.299,
+        "xA_90": 0.012,
+        "clean_sheet_rate": 41.7
+      },
+      {
+        "name": "Joe Scally",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 2.41,
+        "offensive_score": 61.1,
+        "xGChain_90": 0.33,
+        "xA_90": 0.076,
+        "clean_sheet_rate": 54.5
+      },
+      {
+        "name": "Philipp Sander",
+        "profile": "STANDARD",
+        "impact": -0.1,
+        "offensive_score": 51.6,
+        "xGChain_90": 0.487,
+        "xA_90": 0.008,
+        "clean_sheet_rate": 37.5
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 0.18,
+    "avg_offensive_score": 44.3,
+    "total_xGChain_90": 1.355,
+    "total_xA_90": 0.101,
+    "avg_clean_sheet_rate": 45.0,
+    "avg_cards_90": 0.249,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Kevin Diks",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.51
+  },
+  "Wolfsburg": {
+    "team": "Wolfsburg",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Konstantinos Koulierakis",
+        "profile": "BALANCED",
+        "impact": 0.86,
+        "offensive_score": 47.6,
+        "xGChain_90": 0.323,
+        "xA_90": 0.022,
+        "clean_sheet_rate": 9.1
+      },
+      {
+        "name": "Aaron Zehnter",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.33,
+        "offensive_score": 70.5,
+        "xGChain_90": 0.416,
+        "xA_90": 0.081,
+        "clean_sheet_rate": 11.1
+      },
+      {
+        "name": "Moritz Jenz",
+        "profile": "WEAK_LINK",
+        "impact": -0.28,
+        "offensive_score": 24.4,
+        "xGChain_90": 0.199,
+        "xA_90": 0.009,
+        "clean_sheet_rate": 0.0
+      },
+      {
+        "name": "Kilian Fischer",
+        "profile": "STANDARD",
+        "impact": -0.19,
+        "offensive_score": 54.9,
+        "xGChain_90": 0.284,
+        "xA_90": 0.069,
+        "clean_sheet_rate": 0.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 0.18,
+    "avg_offensive_score": 49.4,
+    "total_xGChain_90": 1.222,
+    "total_xA_90": 0.181,
+    "avg_clean_sheet_rate": 10.1,
+    "avg_cards_90": 0.159,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Moritz Jenz",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.86
+  },
+  "Eintracht Frankfurt": {
+    "team": "Eintracht Frankfurt",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Robin Koch",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 36.4,
+        "xGChain_90": 0.266,
+        "xA_90": 0.013,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Arthur Theate",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0,
+        "offensive_score": 60.3,
+        "xGChain_90": 0.49,
+        "xA_90": 0.02,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Nathaniel Brown",
+        "profile": "WEAK_LINK",
+        "impact": -1.45,
+        "offensive_score": 75.7,
+        "xGChain_90": 0.383,
+        "xA_90": 0.141,
+        "clean_sheet_rate": 18.2
+      },
+      {
+        "name": "Rasmus Kristensen",
+        "profile": "PISTON",
+        "impact": 1.9,
+        "offensive_score": 89.0,
+        "xGChain_90": 0.562,
+        "xA_90": 0.16,
+        "clean_sheet_rate": 25.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 0.11,
+    "avg_offensive_score": 65.4,
+    "total_xGChain_90": 1.701,
+    "total_xA_90": 0.334,
+    "avg_clean_sheet_rate": 18.5,
+    "avg_cards_90": 0.195,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Nathaniel Brown",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.98
+  },
+  "VfB Stuttgart": {
+    "team": "VfB Stuttgart",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Maximilian Mittelstädt",
+        "profile": "WEAK_LINK",
+        "impact": -0.47,
+        "offensive_score": 85.3,
+        "xGChain_90": 0.476,
+        "xA_90": 0.158,
+        "clean_sheet_rate": 40.0
+      },
+      {
+        "name": "Julian Chabot",
+        "profile": "BALL_PLAYER",
+        "impact": 0.44,
+        "offensive_score": 39.8,
+        "xGChain_90": 0.388,
+        "xA_90": 0.003,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Joshua Vagnoman",
+        "profile": "WEAK_LINK",
+        "impact": -1.12,
+        "offensive_score": 62.6,
+        "xGChain_90": 0.337,
+        "xA_90": 0.079,
+        "clean_sheet_rate": 12.5
+      },
+      {
+        "name": "Ramon Hendriks",
+        "profile": "WEAK_LINK",
+        "impact": -0.26,
+        "offensive_score": 12.0,
+        "xGChain_90": 0.131,
+        "xA_90": 0.006,
+        "clean_sheet_rate": 33.3
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 3,
+    "avg_impact": -0.35,
+    "avg_offensive_score": 49.9,
+    "total_xGChain_90": 1.332,
+    "total_xA_90": 0.246,
+    "avg_clean_sheet_rate": 29.8,
+    "avg_cards_90": 0.158,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "OVERALL_WEAK_DEFENSE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Maximilian Mittelstädt, Joshua Vagnoman, Ramon Hendriks",
+        "edge": 7.0
+      }
+    ],
+    "defensive_rating": -5.25
+  },
+  "FC Cologne": {
+    "team": "FC Cologne",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Jakub Kaminski",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 90.3,
+        "xGChain_90": 0.523,
+        "xA_90": 0.207,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Eric Martel",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 73.9,
+        "xGChain_90": 0.389,
+        "xA_90": 0.119,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Sebastian Sebulonsen",
+        "profile": "PISTON",
+        "impact": 0.45,
+        "offensive_score": 79.9,
+        "xGChain_90": 0.408,
+        "xA_90": 0.155,
+        "clean_sheet_rate": 18.2
+      },
+      {
+        "name": "Joël Schmied",
+        "profile": "WEAK_LINK",
+        "impact": -0.89,
+        "offensive_score": 37.8,
+        "xGChain_90": 0.263,
+        "xA_90": 0.016,
+        "clean_sheet_rate": 22.2
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 3,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": -0.11,
+    "avg_offensive_score": 70.5,
+    "total_xGChain_90": 1.583,
+    "total_xA_90": 0.497,
+    "avg_clean_sheet_rate": 17.8,
+    "avg_cards_90": 0.238,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Joël Schmied",
+        "edge": 5.0
+      },
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": -1.65
+  },
+  "Freiburg": {
+    "team": "Freiburg",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Matthias Ginter",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0,
+        "offensive_score": 69.2,
+        "xGChain_90": 0.386,
+        "xA_90": 0.091,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Philipp Lienhart",
+        "profile": "BALL_PLAYER",
+        "impact": 0.83,
+        "offensive_score": 48.8,
+        "xGChain_90": 0.382,
+        "xA_90": 0.013,
+        "clean_sheet_rate": 30.0
+      },
+      {
+        "name": "Lukas Kübler",
+        "profile": "STANDARD",
+        "impact": -0.15,
+        "offensive_score": 50.4,
+        "xGChain_90": 0.289,
+        "xA_90": 0.044,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Philipp Treu",
+        "profile": "BALANCED",
+        "impact": 0.5,
+        "offensive_score": 41.9,
+        "xGChain_90": 0.238,
+        "xA_90": 0.038,
+        "clean_sheet_rate": 37.5
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 0,
+    "avg_impact": 0.3,
+    "avg_offensive_score": 52.6,
+    "total_xGChain_90": 1.295,
+    "total_xA_90": 0.186,
+    "avg_clean_sheet_rate": 30.8,
+    "avg_cards_90": 0.102,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [],
+    "exploit_paths": [],
+    "defensive_rating": 1.21
+  },
+  "RasenBallsport Leipzig": {
+    "team": "RasenBallsport Leipzig",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "David Raum",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 94.8,
+        "xGChain_90": 0.612,
+        "xA_90": 0.252,
+        "clean_sheet_rate": 53.8
+      },
+      {
+        "name": "Willi Orban",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 57.7,
+        "xGChain_90": 0.382,
+        "xA_90": 0.036,
+        "clean_sheet_rate": 53.8
+      },
+      {
+        "name": "Castello Lukeba",
+        "profile": "BALANCED",
+        "impact": 2.17,
+        "offensive_score": 52.3,
+        "xGChain_90": 0.426,
+        "xA_90": 0.012,
+        "clean_sheet_rate": 58.3
+      },
+      {
+        "name": "Bote Baku",
+        "profile": "WEAK_LINK",
+        "impact": -1.08,
+        "offensive_score": 91.6,
+        "xGChain_90": 0.556,
+        "xA_90": 0.208,
+        "clean_sheet_rate": 50.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.27,
+    "avg_offensive_score": 74.1,
+    "total_xGChain_90": 1.976,
+    "total_xA_90": 0.508,
+    "avg_clean_sheet_rate": 54.0,
+    "avg_cards_90": 0.16,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Bote Baku",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -0.15
+  },
+  "Union Berlin": {
+    "team": "Union Berlin",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Danilho Doekhi",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 24.3,
+        "xGChain_90": 0.113,
+        "xA_90": 0.029,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Leopold Querfeld",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 44.3,
+        "xGChain_90": 0.118,
+        "xA_90": 0.138,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Christopher Trimmel",
+        "profile": "WEAK_LINK",
+        "impact": -0.9,
+        "offensive_score": 64.0,
+        "xGChain_90": 0.221,
+        "xA_90": 0.223,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "Diogo Leite",
+        "profile": "ANCHOR",
+        "impact": 1.53,
+        "offensive_score": 11.9,
+        "xGChain_90": 0.073,
+        "xA_90": 0.01,
+        "clean_sheet_rate": 33.3
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.16,
+    "avg_offensive_score": 36.1,
+    "total_xGChain_90": 0.525,
+    "total_xA_90": 0.4,
+    "avg_clean_sheet_rate": 24.9,
+    "avg_cards_90": 0.252,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Christopher Trimmel",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 0.23
+  },
+  "FC Heidenheim": {
+    "team": "FC Heidenheim",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Patrick Mainka",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 43.6,
+        "xGChain_90": 0.209,
+        "xA_90": 0.056,
+        "clean_sheet_rate": 0.0
+      },
+      {
+        "name": "Jonas Föhrenbach",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 50.0,
+        "xGChain_90": 0.179,
+        "xA_90": 0.12,
+        "clean_sheet_rate": 0.0
+      },
+      {
+        "name": "Omar Traoré",
+        "profile": "WEAK_LINK",
+        "impact": -0.9,
+        "offensive_score": 62.9,
+        "xGChain_90": 0.251,
+        "xA_90": 0.154,
+        "clean_sheet_rate": 0.0
+      },
+      {
+        "name": "Tim Siersleben",
+        "profile": "WEAK_LINK",
+        "impact": -0.9,
+        "offensive_score": 18.7,
+        "xGChain_90": 0.118,
+        "xA_90": 0.014,
+        "clean_sheet_rate": 0.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": -0.45,
+    "avg_offensive_score": 43.8,
+    "total_xGChain_90": 0.757,
+    "total_xA_90": 0.344,
+    "avg_clean_sheet_rate": 0,
+    "avg_cards_90": 0.147,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "OVERALL_WEAK_DEFENSE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Omar Traoré, Tim Siersleben",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -4.35
+  },
+  "St. Pauli": {
+    "team": "St. Pauli",
+    "league": "Bundesliga",
+    "starters": [
+      {
+        "name": "Eric Smith",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 26.4,
+        "xGChain_90": 0.182,
+        "xA_90": 0.013,
+        "clean_sheet_rate": 7.7
+      },
+      {
+        "name": "Louis Oppie",
+        "profile": "BALANCED",
+        "impact": 1.17,
+        "offensive_score": 47.2,
+        "xGChain_90": 0.257,
+        "xA_90": 0.047,
+        "clean_sheet_rate": 8.3
+      },
+      {
+        "name": "Hauke Wahl",
+        "profile": "ANCHOR",
+        "impact": 1.17,
+        "offensive_score": 11.0,
+        "xGChain_90": 0.073,
+        "xA_90": 0.009,
+        "clean_sheet_rate": 8.3
+      },
+      {
+        "name": "Arkadiusz Pyrka",
+        "profile": "ANCHOR",
+        "impact": 0.83,
+        "offensive_score": 30.9,
+        "xGChain_90": 0.157,
+        "xA_90": 0.039,
+        "clean_sheet_rate": 11.1
+      }
+    ],
+    "anchors_count": 2,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.79,
+    "avg_offensive_score": 28.9,
+    "total_xGChain_90": 0.669,
+    "total_xA_90": 0.108,
+    "avg_clean_sheet_rate": 8.8,
+    "avg_cards_90": 0.102,
+    "line_character": "FORTRESS",
+    "vulnerabilities": [],
+    "strengths": [
+      "ROCK_SOLID",
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [],
+    "defensive_rating": 4.46
+  },
+  "Verona": {
+    "team": "Verona",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Victor Nelsson",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 3.8,
+        "xGChain_90": 0.097,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 21.4
+      },
+      {
+        "name": "Rafik Belghali",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.22,
+        "offensive_score": 73.5,
+        "xGChain_90": 0.416,
+        "xA_90": 0.099,
+        "clean_sheet_rate": 18.2
+      },
+      {
+        "name": "Martin Frese",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.64,
+        "offensive_score": 60.1,
+        "xGChain_90": 0.249,
+        "xA_90": 0.126,
+        "clean_sheet_rate": 18.2
+      },
+      {
+        "name": "Domagoj Bradaric",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.0,
+        "offensive_score": 64.3,
+        "xGChain_90": 0.292,
+        "xA_90": 0.122,
+        "clean_sheet_rate": 20.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 3,
+    "weak_links_count": 0,
+    "avg_impact": 0.22,
+    "avg_offensive_score": 50.4,
+    "total_xGChain_90": 1.054,
+    "total_xA_90": 0.347,
+    "avg_clean_sheet_rate": 19.4,
+    "avg_cards_90": 0.258,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [],
+    "exploit_paths": [],
+    "defensive_rating": 0.85
+  },
+  "Roma": {
+    "team": "Roma",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Gianluca Mancini",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 55.9,
+        "xGChain_90": 0.302,
+        "xA_90": 0.06,
+        "clean_sheet_rate": 42.9
+      },
+      {
+        "name": "Evan Ndicka",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 33.6,
+        "xGChain_90": 0.299,
+        "xA_90": 0.006,
+        "clean_sheet_rate": 42.9
+      },
+      {
+        "name": "Wesley",
+        "profile": "PISTON",
+        "impact": -0.08,
+        "offensive_score": 86.9,
+        "xGChain_90": 0.505,
+        "xA_90": 0.163,
+        "clean_sheet_rate": 41.7
+      },
+      {
+        "name": "Mehmet Zeki Çelik",
+        "profile": "WEAK_LINK",
+        "impact": -0.31,
+        "offensive_score": 71.6,
+        "xGChain_90": 0.456,
+        "xA_90": 0.07,
+        "clean_sheet_rate": 36.4
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": -0.1,
+    "avg_offensive_score": 62.0,
+    "total_xGChain_90": 1.562,
+    "total_xA_90": 0.299,
+    "avg_clean_sheet_rate": 41.0,
+    "avg_cards_90": 0.221,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Mehmet Zeki Çelik",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -1.39
+  },
+  "Lazio": {
+    "team": "Lazio",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Mario Gila",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 23.5,
+        "xGChain_90": 0.217,
+        "xA_90": 0.006,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Adam Marusic",
+        "profile": "BALANCED",
+        "impact": 1.12,
+        "offensive_score": 45.4,
+        "xGChain_90": 0.242,
+        "xA_90": 0.049,
+        "clean_sheet_rate": 54.5
+      },
+      {
+        "name": "Alessio Romagnoli",
+        "profile": "ANCHOR",
+        "impact": 0.25,
+        "offensive_score": 10.7,
+        "xGChain_90": 0.151,
+        "xA_90": 0.003,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Nuno Tavares",
+        "profile": "WEAK_LINK",
+        "impact": -0.71,
+        "offensive_score": 41.5,
+        "xGChain_90": 0.24,
+        "xA_90": 0.034,
+        "clean_sheet_rate": 28.6
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.17,
+    "avg_offensive_score": 30.3,
+    "total_xGChain_90": 0.85,
+    "total_xA_90": 0.092,
+    "avg_clean_sheet_rate": 45.8,
+    "avg_cards_90": 0.164,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Nuno Tavares",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 0.47
+  },
+  "Bologna": {
+    "team": "Bologna",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Torbjørn Heggem",
+        "profile": "ANCHOR",
+        "impact": 0.6,
+        "offensive_score": 24.4,
+        "xGChain_90": 0.242,
+        "xA_90": 0.004,
+        "clean_sheet_rate": 45.5
+      },
+      {
+        "name": "Juan Miranda",
+        "profile": "WEAK_LINK",
+        "impact": -0.5,
+        "offensive_score": 89.9,
+        "xGChain_90": 0.581,
+        "xA_90": 0.165,
+        "clean_sheet_rate": 40.0
+      },
+      {
+        "name": "Jhon Lucumí",
+        "profile": "WEAK_LINK",
+        "impact": -0.71,
+        "offensive_score": 35.8,
+        "xGChain_90": 0.273,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Nadir Zortea",
+        "profile": "PISTON",
+        "impact": 0.05,
+        "offensive_score": 82.1,
+        "xGChain_90": 0.42,
+        "xA_90": 0.161,
+        "clean_sheet_rate": 50.0
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": -0.14,
+    "avg_offensive_score": 58.0,
+    "total_xGChain_90": 1.516,
+    "total_xA_90": 0.341,
+    "avg_clean_sheet_rate": 42.2,
+    "avg_cards_90": 0.127,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Juan Miranda, Jhon Lucumí",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -2.0
+  },
+  "Juventus": {
+    "team": "Juventus",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Pierre Kalulu Kyatengwa",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0,
+        "offensive_score": 69.5,
+        "xGChain_90": 0.34,
+        "xA_90": 0.12,
+        "clean_sheet_rate": 28.6
+      },
+      {
+        "name": "Lloyd Kelly",
+        "profile": "WEAK_LINK",
+        "impact": -0.58,
+        "offensive_score": 32.3,
+        "xGChain_90": 0.247,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Andrea Cambiaso",
+        "profile": "PISTON",
+        "impact": 0.42,
+        "offensive_score": 81.4,
+        "xGChain_90": 0.417,
+        "xA_90": 0.158,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Teun Koopmeiners",
+        "profile": "WEAK_LINK",
+        "impact": -0.93,
+        "offensive_score": 64.2,
+        "xGChain_90": 0.409,
+        "xA_90": 0.051,
+        "clean_sheet_rate": 11.1
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 1,
+    "weak_links_count": 2,
+    "avg_impact": -0.27,
+    "avg_offensive_score": 61.8,
+    "total_xGChain_90": 1.413,
+    "total_xA_90": 0.34,
+    "avg_clean_sheet_rate": 23.0,
+    "avg_cards_90": 0.232,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Lloyd Kelly, Teun Koopmeiners",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -3.58
+  },
+  "Udinese": {
+    "team": "Udinese",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Oumar Solet",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0,
+        "offensive_score": 62.4,
+        "xGChain_90": 0.317,
+        "xA_90": 0.09,
+        "clean_sheet_rate": 21.4
+      },
+      {
+        "name": "Christian Kabasele",
+        "profile": "BALANCED",
+        "impact": 0.04,
+        "offensive_score": 16.6,
+        "xGChain_90": 0.159,
+        "xA_90": 0.008,
+        "clean_sheet_rate": 22.2
+      },
+      {
+        "name": "Alessandro Zanoli",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.45,
+        "offensive_score": 61.6,
+        "xGChain_90": 0.268,
+        "xA_90": 0.123,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Nicolò Bertola",
+        "profile": "BALANCED",
+        "impact": 1.05,
+        "offensive_score": 52.2,
+        "xGChain_90": 0.305,
+        "xA_90": 0.043,
+        "clean_sheet_rate": 37.5
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 2,
+    "weak_links_count": 0,
+    "avg_impact": 0.38,
+    "avg_offensive_score": 48.2,
+    "total_xGChain_90": 1.049,
+    "total_xA_90": 0.264,
+    "avg_clean_sheet_rate": 26.5,
+    "avg_cards_90": 0.094,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [],
+    "exploit_paths": [],
+    "defensive_rating": 1.41
+  },
+  "Genoa": {
+    "team": "Genoa",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Johan Vásquez",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 27.4,
+        "xGChain_90": 0.208,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 14.3
+      },
+      {
+        "name": "Brooke Norton-Cuffy",
+        "profile": "WEAK_LINK",
+        "impact": -0.54,
+        "offensive_score": 55.9,
+        "xGChain_90": 0.281,
+        "xA_90": 0.077,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Leo Østigard",
+        "profile": "WEAK_LINK",
+        "impact": -0.64,
+        "offensive_score": 48.6,
+        "xGChain_90": 0.257,
+        "xA_90": 0.053,
+        "clean_sheet_rate": 9.1
+      },
+      {
+        "name": "Aarón Martín",
+        "profile": "WEAK_LINK",
+        "impact": -0.22,
+        "offensive_score": 80.4,
+        "xGChain_90": 0.342,
+        "xA_90": 0.316,
+        "clean_sheet_rate": 9.1
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 3,
+    "avg_impact": -0.35,
+    "avg_offensive_score": 53.1,
+    "total_xGChain_90": 1.088,
+    "total_xA_90": 0.457,
+    "avg_clean_sheet_rate": 12.0,
+    "avg_cards_90": 0.218,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "OVERALL_WEAK_DEFENSE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Brooke Norton-Cuffy, Leo Østigard, Aarón Martín",
+        "edge": 7.0
+      }
+    ],
+    "defensive_rating": -5.43
+  },
+  "Sassuolo": {
+    "team": "Sassuolo",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Jay Idzes",
+        "profile": "ANCHOR",
+        "impact": 0.85,
+        "offensive_score": 9.1,
+        "xGChain_90": 0.159,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Sebastian Walukiewicz",
+        "profile": "BALANCED",
+        "impact": 0.85,
+        "offensive_score": 46.8,
+        "xGChain_90": 0.21,
+        "xA_90": 0.073,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Tarik Muharemovic",
+        "profile": "WEAK_LINK",
+        "impact": -0.69,
+        "offensive_score": 41.5,
+        "xGChain_90": 0.178,
+        "xA_90": 0.07,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Josh Doig",
+        "profile": "WEAK_LINK",
+        "impact": -0.27,
+        "offensive_score": 58.5,
+        "xGChain_90": 0.272,
+        "xA_90": 0.097,
+        "clean_sheet_rate": 27.3
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": 0.18,
+    "avg_offensive_score": 39.0,
+    "total_xGChain_90": 0.819,
+    "total_xA_90": 0.24,
+    "avg_clean_sheet_rate": 29.0,
+    "avg_cards_90": 0.206,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Tarik Muharemovic, Josh Doig",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -1.17
+  },
+  "Napoli": {
+    "team": "Napoli",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Giovanni Di Lorenzo",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 79.7,
+        "xGChain_90": 0.439,
+        "xA_90": 0.126,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Alessandro Buongiorno",
+        "profile": "STANDARD",
+        "impact": -0.09,
+        "offensive_score": 31.9,
+        "xGChain_90": 0.179,
+        "xA_90": 0.028,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Sam Beukema",
+        "profile": "WEAK_LINK",
+        "impact": -0.29,
+        "offensive_score": 37.2,
+        "xGChain_90": 0.266,
+        "xA_90": 0.014,
+        "clean_sheet_rate": 14.3
+      },
+      {
+        "name": "Juan Jesus",
+        "profile": "BALL_PLAYER",
+        "impact": 0.29,
+        "offensive_score": 38.5,
+        "xGChain_90": 0.355,
+        "xA_90": 0.005,
+        "clean_sheet_rate": 42.9
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": -0.02,
+    "avg_offensive_score": 46.8,
+    "total_xGChain_90": 1.239,
+    "total_xA_90": 0.173,
+    "avg_clean_sheet_rate": 31.6,
+    "avg_cards_90": 0.224,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Sam Beukema",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -1.24
+  },
+  "Inter": {
+    "team": "Inter",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Alessandro Bastoni",
+        "profile": "PISTON",
+        "impact": 0.08,
+        "offensive_score": 81.8,
+        "xGChain_90": 0.519,
+        "xA_90": 0.117,
+        "clean_sheet_rate": 53.8
+      },
+      {
+        "name": "Manuel Akanji",
+        "profile": "BALANCED",
+        "impact": 0.08,
+        "offensive_score": 57.4,
+        "xGChain_90": 0.505,
+        "xA_90": 0.013,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Federico Dimarco",
+        "profile": "PISTON",
+        "impact": 0.94,
+        "offensive_score": 99.3,
+        "xGChain_90": 0.796,
+        "xA_90": 0.522,
+        "clean_sheet_rate": 54.5
+      },
+      {
+        "name": "Francesco Acerbi",
+        "profile": "WEAK_LINK",
+        "impact": -0.6,
+        "offensive_score": 56.5,
+        "xGChain_90": 0.311,
+        "xA_90": 0.058,
+        "clean_sheet_rate": 50.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 2,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.12,
+    "avg_offensive_score": 73.8,
+    "total_xGChain_90": 2.131,
+    "total_xA_90": 0.71,
+    "avg_clean_sheet_rate": 52.1,
+    "avg_cards_90": 0.109,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Francesco Acerbi",
+        "edge": 5.0
+      },
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": -0.62
+  },
+  "Atalanta": {
+    "team": "Atalanta",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Isak Hien",
+        "profile": "WEAK_LINK",
+        "impact": -0.83,
+        "offensive_score": 32.9,
+        "xGChain_90": 0.3,
+        "xA_90": 0.005,
+        "clean_sheet_rate": 16.7
+      },
+      {
+        "name": "Berat Gjimshiti",
+        "profile": "BALANCED",
+        "impact": 0.58,
+        "offensive_score": 41.5,
+        "xGChain_90": 0.281,
+        "xA_90": 0.019,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Raoul Bellanova",
+        "profile": "WEAK_LINK",
+        "impact": -0.65,
+        "offensive_score": 69.5,
+        "xGChain_90": 0.348,
+        "xA_90": 0.116,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "Davide Zappacosta",
+        "profile": "WEAK_LINK",
+        "impact": -0.3,
+        "offensive_score": 70.9,
+        "xGChain_90": 0.37,
+        "xA_90": 0.116,
+        "clean_sheet_rate": 30.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 3,
+    "avg_impact": -0.3,
+    "avg_offensive_score": 53.7,
+    "total_xGChain_90": 1.299,
+    "total_xA_90": 0.256,
+    "avg_clean_sheet_rate": 23.5,
+    "avg_cards_90": 0.136,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "OVERALL_WEAK_DEFENSE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Isak Hien, Raoul Bellanova, Davide Zappacosta",
+        "edge": 7.0
+      }
+    ],
+    "defensive_rating": -5.16
+  },
+  "Fiorentina": {
+    "team": "Fiorentina",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Dodô",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 50.5,
+        "xGChain_90": 0.245,
+        "xA_90": 0.071,
+        "clean_sheet_rate": 14.3
+      },
+      {
+        "name": "Marin Pongracic",
+        "profile": "ANCHOR",
+        "impact": 1.5,
+        "offensive_score": 28.8,
+        "xGChain_90": 0.095,
+        "xA_90": 0.05,
+        "clean_sheet_rate": 16.7
+      },
+      {
+        "name": "Luca Ranieri",
+        "profile": "BALANCED",
+        "impact": 1.38,
+        "offensive_score": 40.1,
+        "xGChain_90": 0.182,
+        "xA_90": 0.055,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Pablo Marí",
+        "profile": "WEAK_LINK",
+        "impact": -0.49,
+        "offensive_score": 28.4,
+        "xGChain_90": 0.197,
+        "xA_90": 0.013,
+        "clean_sheet_rate": 11.1
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.6,
+    "avg_offensive_score": 37.0,
+    "total_xGChain_90": 0.719,
+    "total_xA_90": 0.189,
+    "avg_clean_sheet_rate": 14.4,
+    "avg_cards_90": 0.31,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Pablo Marí",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 1.44
+  },
+  "AC Milan": {
+    "team": "AC Milan",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Matteo Gabbia",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 21.0,
+        "xGChain_90": 0.21,
+        "xA_90": 0.004,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Alexis Saelemaekers",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0,
+        "offensive_score": 82.4,
+        "xGChain_90": 0.626,
+        "xA_90": 0.1,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Strahinja Pavlovic",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 58.8,
+        "xGChain_90": 0.403,
+        "xA_90": 0.032,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Fikayo Tomori",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.69,
+        "offensive_score": 67.8,
+        "xGChain_90": 0.383,
+        "xA_90": 0.083,
+        "clean_sheet_rate": 54.5
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 2,
+    "weak_links_count": 0,
+    "avg_impact": 0.17,
+    "avg_offensive_score": 57.5,
+    "total_xGChain_90": 1.622,
+    "total_xA_90": 0.219,
+    "avg_clean_sheet_rate": 51.1,
+    "avg_cards_90": 0.143,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [],
+    "defensive_rating": 1.02
+  },
+  "Torino": {
+    "team": "Torino",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Saúl Coco",
+        "profile": "ANCHOR",
+        "impact": 3.38,
+        "offensive_score": 24.0,
+        "xGChain_90": 0.181,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 38.5
+      },
+      {
+        "name": "Guillermo Maripán",
+        "profile": "ANCHOR",
+        "impact": 3.38,
+        "offensive_score": 14.2,
+        "xGChain_90": 0.138,
+        "xA_90": 0.008,
+        "clean_sheet_rate": 38.5
+      },
+      {
+        "name": "Valentino Lazaro",
+        "profile": "WEAK_LINK",
+        "impact": -1.55,
+        "offensive_score": 41.6,
+        "xGChain_90": 0.163,
+        "xA_90": 0.083,
+        "clean_sheet_rate": 30.0
+      },
+      {
+        "name": "Marcus Pedersen",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.9,
+        "offensive_score": 67.8,
+        "xGChain_90": 0.347,
+        "xA_90": 0.103,
+        "clean_sheet_rate": 40.0
+      }
+    ],
+    "anchors_count": 2,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 1.53,
+    "avg_offensive_score": 36.9,
+    "total_xGChain_90": 0.829,
+    "total_xA_90": 0.205,
+    "avg_clean_sheet_rate": 36.8,
+    "avg_cards_90": 0.115,
+    "line_character": "FORTRESS",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "ROCK_SOLID",
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Valentino Lazaro",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 5.46
+  },
+  "Cagliari": {
+    "team": "Cagliari",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Michael Folorunsho",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 32.4,
+        "xGChain_90": 0.198,
+        "xA_90": 0.021,
+        "clean_sheet_rate": 21.4
+      },
+      {
+        "name": "Marco Palestra",
+        "profile": "WEAK_LINK",
+        "impact": -1.0,
+        "offensive_score": 72.1,
+        "xGChain_90": 0.295,
+        "xA_90": 0.206,
+        "clean_sheet_rate": 16.7
+      },
+      {
+        "name": "Adam Obert",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 1.33,
+        "offensive_score": 67.0,
+        "xGChain_90": 0.291,
+        "xA_90": 0.144,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Sebastiano Luperto",
+        "profile": "ANCHOR",
+        "impact": 0.4,
+        "offensive_score": 15.8,
+        "xGChain_90": 0.163,
+        "xA_90": 0.006,
+        "clean_sheet_rate": 27.3
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 0.18,
+    "avg_offensive_score": 46.8,
+    "total_xGChain_90": 0.947,
+    "total_xA_90": 0.377,
+    "avg_clean_sheet_rate": 22.6,
+    "avg_cards_90": 0.215,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Marco Palestra",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 0.27
+  },
+  "Parma Calcio 1913": {
+    "team": "Parma Calcio 1913",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Enrico Del Prato",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 18.6,
+        "xGChain_90": 0.16,
+        "xA_90": 0.01,
+        "clean_sheet_rate": 28.6
+      },
+      {
+        "name": "Adrián Bernabé",
+        "profile": "WEAK_LINK",
+        "impact": -1.31,
+        "offensive_score": 67.4,
+        "xGChain_90": 0.344,
+        "xA_90": 0.101,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Lautaro Valenti",
+        "profile": "WEAK_LINK",
+        "impact": -0.3,
+        "offensive_score": 60.6,
+        "xGChain_90": 0.279,
+        "xA_90": 0.104,
+        "clean_sheet_rate": 30.0
+      },
+      {
+        "name": "Alessandro Circati",
+        "profile": "ANCHOR",
+        "impact": 0.6,
+        "offensive_score": 25.9,
+        "xGChain_90": 0.171,
+        "xA_90": 0.016,
+        "clean_sheet_rate": 33.3
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": -0.25,
+    "avg_offensive_score": 43.1,
+    "total_xGChain_90": 0.954,
+    "total_xA_90": 0.231,
+    "avg_clean_sheet_rate": 28.8,
+    "avg_cards_90": 0.106,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Adrián Bernabé, Lautaro Valenti",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -2.46
+  },
+  "Lecce": {
+    "team": "Lecce",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Kialonda Gaspar",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 12.9,
+        "xGChain_90": 0.179,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Antonino Gallo",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 34.4,
+        "xGChain_90": 0.177,
+        "xA_90": 0.038,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Tiago Gabriel",
+        "profile": "ANCHOR",
+        "impact": 2.85,
+        "offensive_score": 3.5,
+        "xGChain_90": 0.09,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 38.5
+      },
+      {
+        "name": "Danilo Veiga",
+        "profile": "ANCHOR",
+        "impact": 1.67,
+        "offensive_score": 29.9,
+        "xGChain_90": 0.163,
+        "xA_90": 0.03,
+        "clean_sheet_rate": 45.5
+      }
+    ],
+    "anchors_count": 2,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 1.13,
+    "avg_offensive_score": 20.2,
+    "total_xGChain_90": 0.609,
+    "total_xA_90": 0.068,
+    "avg_clean_sheet_rate": 38.8,
+    "avg_cards_90": 0.193,
+    "line_character": "FORTRESS",
+    "vulnerabilities": [],
+    "strengths": [
+      "ROCK_SOLID",
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [],
+    "defensive_rating": 5.78
+  },
+  "Cremonese": {
+    "team": "Cremonese",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Federico Baschirotto",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 2.0,
+        "xGChain_90": 0.039,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 28.6
+      },
+      {
+        "name": "Filippo Terracciano",
+        "profile": "ANCHOR",
+        "impact": 3.0,
+        "offensive_score": 31.4,
+        "xGChain_90": 0.227,
+        "xA_90": 0.013,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Matteo Bianchetti",
+        "profile": "WEAK_LINK",
+        "impact": -0.23,
+        "offensive_score": 32.0,
+        "xGChain_90": 0.166,
+        "xA_90": 0.034,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Giuseppe Pezzella",
+        "profile": "STANDARD",
+        "impact": -0.08,
+        "offensive_score": 35.4,
+        "xGChain_90": 0.216,
+        "xA_90": 0.024,
+        "clean_sheet_rate": 25.0
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.67,
+    "avg_offensive_score": 25.2,
+    "total_xGChain_90": 0.648,
+    "total_xA_90": 0.071,
+    "avg_clean_sheet_rate": 28.8,
+    "avg_cards_90": 0.206,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Matteo Bianchetti",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 1.8
+  },
+  "Como": {
+    "team": "Como",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Jacobo Ramón",
+        "profile": "WEAK_LINK",
+        "impact": -0.58,
+        "offensive_score": 47.2,
+        "xGChain_90": 0.235,
+        "xA_90": 0.064,
+        "clean_sheet_rate": 36.4
+      },
+      {
+        "name": "Diego Carlos",
+        "profile": "STANDARD",
+        "impact": -0.15,
+        "offensive_score": 11.1,
+        "xGChain_90": 0.133,
+        "xA_90": 0.005,
+        "clean_sheet_rate": 45.5
+      },
+      {
+        "name": "Álex Valle",
+        "profile": "WEAK_LINK",
+        "impact": -0.75,
+        "offensive_score": 52.8,
+        "xGChain_90": 0.322,
+        "xA_90": 0.04,
+        "clean_sheet_rate": 30.0
+      },
+      {
+        "name": "Ivan Smolcic",
+        "profile": "BALANCED",
+        "impact": 0.67,
+        "offensive_score": 47.4,
+        "xGChain_90": 0.14,
+        "xA_90": 0.147,
+        "clean_sheet_rate": 50.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": -0.2,
+    "avg_offensive_score": 39.6,
+    "total_xGChain_90": 0.83,
+    "total_xA_90": 0.256,
+    "avg_clean_sheet_rate": 40.5,
+    "avg_cards_90": 0.38,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "CARD_PRONE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Jacobo Ramón, Álex Valle",
+        "edge": 6.0
+      },
+      {
+        "market": "Cards Over",
+        "trigger": "Attaquants techniques",
+        "edge": 3.0
+      }
+    ],
+    "defensive_rating": -3.2
+  },
+  "Pisa": {
+    "team": "Pisa",
+    "league": "Serie_A",
+    "starters": [
+      {
+        "name": "Antonio Caracciolo",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 3.4,
+        "xGChain_90": 0.088,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 28.6
+      },
+      {
+        "name": "Simone Canestrelli",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 11.6,
+        "xGChain_90": 0.084,
+        "xA_90": 0.009,
+        "clean_sheet_rate": 28.6
+      },
+      {
+        "name": "Idrissa Touré",
+        "profile": "PISTON",
+        "impact": 1.24,
+        "offensive_score": 85.0,
+        "xGChain_90": 0.419,
+        "xA_90": 0.209,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Samuele Angori",
+        "profile": "PISTON",
+        "impact": 0.83,
+        "offensive_score": 88.0,
+        "xGChain_90": 0.479,
+        "xA_90": 0.196,
+        "clean_sheet_rate": 25.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 2,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.52,
+    "avg_offensive_score": 47.0,
+    "total_xGChain_90": 1.07,
+    "total_xA_90": 0.414,
+    "avg_clean_sheet_rate": 27.4,
+    "avg_cards_90": 0.116,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": 1.83
+  },
+  "Lille": {
+    "team": "Lille",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Romain Perraud",
+        "profile": "PISTON",
+        "impact": 0.25,
+        "offensive_score": 90.6,
+        "xGChain_90": 0.553,
+        "xA_90": 0.196,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Aissa Mandi",
+        "profile": "OFFENSIVE_DEF",
+        "impact": -0.18,
+        "offensive_score": 62.7,
+        "xGChain_90": 0.428,
+        "xA_90": 0.038,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Nathan Ngoy",
+        "profile": "WEAK_LINK",
+        "impact": -0.52,
+        "offensive_score": 71.7,
+        "xGChain_90": 0.42,
+        "xA_90": 0.084,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Thomas Meunier",
+        "profile": "PISTON",
+        "impact": 1.18,
+        "offensive_score": 85.8,
+        "xGChain_90": 0.508,
+        "xA_90": 0.152,
+        "clean_sheet_rate": 45.5
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 2,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 0.18,
+    "avg_offensive_score": 77.7,
+    "total_xGChain_90": 1.909,
+    "total_xA_90": 0.47,
+    "avg_clean_sheet_rate": 33.3,
+    "avg_cards_90": 0.22,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Nathan Ngoy",
+        "edge": 5.0
+      },
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": -0.63
+  },
+  "Paris Saint Germain": {
+    "team": "Paris Saint Germain",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Warren Zaïre-Emery",
+        "profile": "PISTON",
+        "impact": 0.81,
+        "offensive_score": 91.6,
+        "xGChain_90": 0.651,
+        "xA_90": 0.174,
+        "clean_sheet_rate": 53.8
+      },
+      {
+        "name": "Illia Zabarnyi",
+        "profile": "WEAK_LINK",
+        "impact": -0.41,
+        "offensive_score": 47.1,
+        "xGChain_90": 0.344,
+        "xA_90": 0.015,
+        "clean_sheet_rate": 54.5
+      },
+      {
+        "name": "Senny Mayulu",
+        "profile": "PISTON",
+        "impact": 0.0,
+        "offensive_score": 95.2,
+        "xGChain_90": 0.699,
+        "xA_90": 0.221,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Lucas Hernández",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.05,
+        "offensive_score": 71.9,
+        "xGChain_90": 0.651,
+        "xA_90": 0.043,
+        "clean_sheet_rate": 55.6
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 2,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": 0.11,
+    "avg_offensive_score": 76.4,
+    "total_xGChain_90": 2.345,
+    "total_xA_90": 0.453,
+    "avg_clean_sheet_rate": 53.5,
+    "avg_cards_90": 0.13,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Illia Zabarnyi",
+        "edge": 5.0
+      },
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": -0.63
+  },
+  "Rennes": {
+    "team": "Rennes",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Jérémy Jacquet",
+        "profile": "BALL_PLAYER",
+        "impact": 0,
+        "offensive_score": 49.1,
+        "xGChain_90": 0.378,
+        "xA_90": 0.014,
+        "clean_sheet_rate": 26.7
+      },
+      {
+        "name": "Mahdi Camara",
+        "profile": "PISTON",
+        "impact": -0.05,
+        "offensive_score": 82.7,
+        "xGChain_90": 0.46,
+        "xA_90": 0.143,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Quentin Merlin",
+        "profile": "PISTON",
+        "impact": 0.4,
+        "offensive_score": 79.6,
+        "xGChain_90": 0.385,
+        "xA_90": 0.175,
+        "clean_sheet_rate": 30.0
+      },
+      {
+        "name": "Mousa Al Tamari",
+        "profile": "PISTON",
+        "impact": 1.06,
+        "offensive_score": 88.0,
+        "xGChain_90": 0.493,
+        "xA_90": 0.184,
+        "clean_sheet_rate": 44.4
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 3,
+    "offensive_defs_count": 0,
+    "weak_links_count": 0,
+    "avg_impact": 0.35,
+    "avg_offensive_score": 74.8,
+    "total_xGChain_90": 1.716,
+    "total_xA_90": 0.516,
+    "avg_clean_sheet_rate": 32.1,
+    "avg_cards_90": 0.213,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": 1.37
+  },
+  "Marseille": {
+    "team": "Marseille",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Emerson",
+        "profile": "PISTON",
+        "impact": 0.0,
+        "offensive_score": 89.1,
+        "xGChain_90": 0.69,
+        "xA_90": 0.142,
+        "clean_sheet_rate": 40.0
+      },
+      {
+        "name": "Benjamin Pavard",
+        "profile": "PISTON",
+        "impact": 0.6,
+        "offensive_score": 92.7,
+        "xGChain_90": 0.685,
+        "xA_90": 0.18,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Naif Aguerd",
+        "profile": "BALANCED",
+        "impact": 0.0,
+        "offensive_score": 54.2,
+        "xGChain_90": 0.751,
+        "xA_90": 0.004,
+        "clean_sheet_rate": 40.0
+      },
+      {
+        "name": "Timothy Weah",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.0,
+        "offensive_score": 83.5,
+        "xGChain_90": 0.725,
+        "xA_90": 0.097,
+        "clean_sheet_rate": 30.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 2,
+    "offensive_defs_count": 1,
+    "weak_links_count": 0,
+    "avg_impact": 0.15,
+    "avg_offensive_score": 79.9,
+    "total_xGChain_90": 2.851,
+    "total_xA_90": 0.423,
+    "avg_clean_sheet_rate": 40.0,
+    "avg_cards_90": 0.178,
+    "line_character": "ATTACKING",
+    "vulnerabilities": [
+      "COUNTER_VULNERABLE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals on counter-attack",
+        "trigger": "Équipes rapides en transition",
+        "edge": 4.5
+      }
+    ],
+    "defensive_rating": 0.85
+  },
+  "Angers": {
+    "team": "Angers",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Jordan Lefort",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 48.9,
+        "xGChain_90": 0.306,
+        "xA_90": 0.03,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Ousmane Camara",
+        "profile": "ANCHOR",
+        "impact": 4.14,
+        "offensive_score": 32.6,
+        "xGChain_90": 0.269,
+        "xA_90": 0.009,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Carlens Arcus",
+        "profile": "WEAK_LINK",
+        "impact": -1.21,
+        "offensive_score": 61.9,
+        "xGChain_90": 0.394,
+        "xA_90": 0.046,
+        "clean_sheet_rate": 28.6
+      },
+      {
+        "name": "Jacques Ekomie",
+        "profile": "WEAK_LINK",
+        "impact": -0.86,
+        "offensive_score": 55.3,
+        "xGChain_90": 0.236,
+        "xA_90": 0.112,
+        "clean_sheet_rate": 27.3
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": 0.52,
+    "avg_offensive_score": 49.7,
+    "total_xGChain_90": 1.205,
+    "total_xA_90": 0.197,
+    "avg_clean_sheet_rate": 31.2,
+    "avg_cards_90": 0.154,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Carlens Arcus, Jacques Ekomie",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -0.13
+  },
+  "Nantes": {
+    "team": "Nantes",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Kelvin Adou",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 40.6,
+        "xGChain_90": 0.181,
+        "xA_90": 0.059,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Chidozie Awaziem",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 27.0,
+        "xGChain_90": 0.174,
+        "xA_90": 0.017,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Tylel Tati",
+        "profile": "WEAK_LINK",
+        "impact": -1.71,
+        "offensive_score": 11.6,
+        "xGChain_90": 0.163,
+        "xA_90": 0.001,
+        "clean_sheet_rate": 7.1
+      },
+      {
+        "name": "Junior Mwanga",
+        "profile": "WEAK_LINK",
+        "impact": -0.3,
+        "offensive_score": 46.9,
+        "xGChain_90": 0.274,
+        "xA_90": 0.036,
+        "clean_sheet_rate": 10.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": -0.5,
+    "avg_offensive_score": 31.5,
+    "total_xGChain_90": 0.792,
+    "total_xA_90": 0.113,
+    "avg_clean_sheet_rate": 10.9,
+    "avg_cards_90": 0.221,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "OVERALL_WEAK_DEFENSE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Tylel Tati, Junior Mwanga",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -4.39
+  },
+  "Nice": {
+    "team": "Nice",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Melvin Bard",
+        "profile": "WEAK_LINK",
+        "impact": -0.35,
+        "offensive_score": 50.5,
+        "xGChain_90": 0.294,
+        "xA_90": 0.043,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Kojo Peprah Oppong",
+        "profile": "WEAK_LINK",
+        "impact": -0.86,
+        "offensive_score": 46.8,
+        "xGChain_90": 0.262,
+        "xA_90": 0.045,
+        "clean_sheet_rate": 14.3
+      },
+      {
+        "name": "Antoine Mendy",
+        "profile": "ANCHOR",
+        "impact": 0.23,
+        "offensive_score": 26.5,
+        "xGChain_90": 0.266,
+        "xA_90": 0.003,
+        "clean_sheet_rate": 7.7
+      },
+      {
+        "name": "Jonathan Clauss",
+        "profile": "WEAK_LINK",
+        "impact": -0.75,
+        "offensive_score": 89.9,
+        "xGChain_90": 0.461,
+        "xA_90": 0.252,
+        "clean_sheet_rate": 9.1
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 3,
+    "avg_impact": -0.43,
+    "avg_offensive_score": 53.4,
+    "total_xGChain_90": 1.283,
+    "total_xA_90": 0.343,
+    "avg_clean_sheet_rate": 11.6,
+    "avg_cards_90": 0.153,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "OVERALL_WEAK_DEFENSE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Melvin Bard, Kojo Peprah Oppong, Jonathan Clauss",
+        "edge": 7.0
+      }
+    ],
+    "defensive_rating": -4.67
+  },
+  "Monaco": {
+    "team": "Monaco",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Jordan Teze",
+        "profile": "WEAK_LINK",
+        "impact": -1.42,
+        "offensive_score": 71.5,
+        "xGChain_90": 0.369,
+        "xA_90": 0.12,
+        "clean_sheet_rate": 7.7
+      },
+      {
+        "name": "Mohammed Salisu",
+        "profile": "BALL_PLAYER",
+        "impact": 0.1,
+        "offensive_score": 46.0,
+        "xGChain_90": 0.337,
+        "xA_90": 0.015,
+        "clean_sheet_rate": 20.0
+      },
+      {
+        "name": "Caio Henrique",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.44,
+        "offensive_score": 66.8,
+        "xGChain_90": 0.334,
+        "xA_90": 0.109,
+        "clean_sheet_rate": 11.1
+      },
+      {
+        "name": "Thilo Kehrer",
+        "profile": "BALL_PLAYER",
+        "impact": -0.11,
+        "offensive_score": 39.2,
+        "xGChain_90": 0.415,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 22.2
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 2,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": -0.25,
+    "avg_offensive_score": 55.9,
+    "total_xGChain_90": 1.455,
+    "total_xA_90": 0.244,
+    "avg_clean_sheet_rate": 15.2,
+    "avg_cards_90": 0.306,
+    "line_character": "POSSESSION",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Jordan Teze",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -2.1
+  },
+  "Toulouse": {
+    "team": "Toulouse",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Charlie Cresswell",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 35.7,
+        "xGChain_90": 0.204,
+        "xA_90": 0.029,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Mark McKenzie",
+        "profile": "WEAK_LINK",
+        "impact": -1.46,
+        "offensive_score": 35.5,
+        "xGChain_90": 0.153,
+        "xA_90": 0.059,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Aron Dønnum",
+        "profile": "WEAK_LINK",
+        "impact": -0.88,
+        "offensive_score": 73.7,
+        "xGChain_90": 0.294,
+        "xA_90": 0.244,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Rasmus Nicolaisen",
+        "profile": "WEAK_LINK",
+        "impact": -1.46,
+        "offensive_score": 6.6,
+        "xGChain_90": 0.095,
+        "xA_90": 0.003,
+        "clean_sheet_rate": 23.1
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 3,
+    "avg_impact": -0.95,
+    "avg_offensive_score": 37.9,
+    "total_xGChain_90": 0.746,
+    "total_xA_90": 0.335,
+    "avg_clean_sheet_rate": 27.6,
+    "avg_cards_90": 0.243,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "OVERALL_WEAK_DEFENSE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Mark McKenzie, Aron Dønnum, Rasmus Nicolaisen",
+        "edge": 7.0
+      }
+    ],
+    "defensive_rating": -7.07
+  },
+  "Lyon": {
+    "team": "Lyon",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Moussa Niakhate",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 2.07,
+        "offensive_score": 65.8,
+        "xGChain_90": 0.487,
+        "xA_90": 0.036,
+        "clean_sheet_rate": 57.1
+      },
+      {
+        "name": "Clinton Mata",
+        "profile": "WEAK_LINK",
+        "impact": -1.14,
+        "offensive_score": 39.9,
+        "xGChain_90": 0.375,
+        "xA_90": 0.005,
+        "clean_sheet_rate": 50.0
+      },
+      {
+        "name": "Ainsley Maitland-Niles",
+        "profile": "WEAK_LINK",
+        "impact": -0.65,
+        "offensive_score": 79.5,
+        "xGChain_90": 0.396,
+        "xA_90": 0.157,
+        "clean_sheet_rate": 53.8
+      },
+      {
+        "name": "Tanner Tessmann",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.93,
+        "offensive_score": 84.5,
+        "xGChain_90": 0.661,
+        "xA_90": 0.106,
+        "clean_sheet_rate": 63.6
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 2,
+    "weak_links_count": 2,
+    "avg_impact": 0.3,
+    "avg_offensive_score": 67.4,
+    "total_xGChain_90": 1.919,
+    "total_xA_90": 0.304,
+    "avg_clean_sheet_rate": 56.1,
+    "avg_cards_90": 0.128,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "CLEAN_SHEET_SPECIALISTS"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Clinton Mata, Ainsley Maitland-Niles",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -1.54
+  },
+  "Lorient": {
+    "team": "Lorient",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Montassar Talbi",
+        "profile": "BALANCED",
+        "impact": 0,
+        "offensive_score": 31.2,
+        "xGChain_90": 0.276,
+        "xA_90": 0.006,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Arsène Kouassi",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0,
+        "offensive_score": 63.1,
+        "xGChain_90": 0.243,
+        "xA_90": 0.164,
+        "clean_sheet_rate": 13.3
+      },
+      {
+        "name": "Théo Le Bris",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.77,
+        "offensive_score": 61.3,
+        "xGChain_90": 0.318,
+        "xA_90": 0.082,
+        "clean_sheet_rate": 11.1
+      },
+      {
+        "name": "Bamo Meïté",
+        "profile": "BALANCED",
+        "impact": 0.5,
+        "offensive_score": 49.0,
+        "xGChain_90": 0.2,
+        "xA_90": 0.093,
+        "clean_sheet_rate": 11.1
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 2,
+    "weak_links_count": 0,
+    "avg_impact": 0.32,
+    "avg_offensive_score": 51.2,
+    "total_xGChain_90": 1.037,
+    "total_xA_90": 0.345,
+    "avg_clean_sheet_rate": 12.2,
+    "avg_cards_90": 0.11,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [],
+    "exploit_paths": [],
+    "defensive_rating": 1.08
+  },
+  "Metz": {
+    "team": "Metz",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Jean-Philippe Gbamin",
+        "profile": "ANCHOR",
+        "impact": 0.79,
+        "offensive_score": 39.4,
+        "xGChain_90": 0.19,
+        "xA_90": 0.049,
+        "clean_sheet_rate": 21.4
+      },
+      {
+        "name": "Koffi Kouao",
+        "profile": "WEAK_LINK",
+        "impact": -0.31,
+        "offensive_score": 27.2,
+        "xGChain_90": 0.139,
+        "xA_90": 0.032,
+        "clean_sheet_rate": 23.1
+      },
+      {
+        "name": "Terry Yegbe",
+        "profile": "ANCHOR",
+        "impact": 0.66,
+        "offensive_score": 32.4,
+        "xGChain_90": 0.172,
+        "xA_90": 0.033,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Giorgi Tsitaishvili",
+        "profile": "PISTON",
+        "impact": 1.0,
+        "offensive_score": 72.9,
+        "xGChain_90": 0.296,
+        "xA_90": 0.22,
+        "clean_sheet_rate": 18.2
+      }
+    ],
+    "anchors_count": 2,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.54,
+    "avg_offensive_score": 43.0,
+    "total_xGChain_90": 0.797,
+    "total_xA_90": 0.334,
+    "avg_clean_sheet_rate": 22.5,
+    "avg_cards_90": 0.06,
+    "line_character": "FORTRESS",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [
+      "ROCK_SOLID",
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Koffi Kouao",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 2.35
+  },
+  "Lens": {
+    "team": "Lens",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Matthieu Udol",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 94.7,
+        "xGChain_90": 0.555,
+        "xA_90": 0.398,
+        "clean_sheet_rate": 26.7
+      },
+      {
+        "name": "Malang Sarr",
+        "profile": "BALL_PLAYER",
+        "impact": 1.21,
+        "offensive_score": 36.9,
+        "xGChain_90": 0.388,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 28.6
+      },
+      {
+        "name": "Samson Baidoo",
+        "profile": "BALANCED",
+        "impact": 0.15,
+        "offensive_score": 54.4,
+        "xGChain_90": 0.358,
+        "xA_90": 0.032,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Ruben Aguilar",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 1.21,
+        "offensive_score": 77.4,
+        "xGChain_90": 0.445,
+        "xA_90": 0.111,
+        "clean_sheet_rate": 28.6
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 1,
+    "offensive_defs_count": 1,
+    "weak_links_count": 0,
+    "avg_impact": 0.64,
+    "avg_offensive_score": 65.8,
+    "total_xGChain_90": 1.746,
+    "total_xA_90": 0.541,
+    "avg_clean_sheet_rate": 28.7,
+    "avg_cards_90": 0.146,
+    "line_character": "BALANCED",
+    "vulnerabilities": [],
+    "strengths": [
+      "HIGH_IMPACT_DEFENSE"
+    ],
+    "exploit_paths": [],
+    "defensive_rating": 2.21
+  },
+  "Strasbourg": {
+    "team": "Strasbourg",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Mamadou Sarr",
+        "profile": "BALL_PLAYER",
+        "impact": 1.25,
+        "offensive_score": 35.5,
+        "xGChain_90": 0.341,
+        "xA_90": 0.003,
+        "clean_sheet_rate": 41.7
+      },
+      {
+        "name": "Diego Moreira",
+        "profile": "WEAK_LINK",
+        "impact": -0.83,
+        "offensive_score": 96.9,
+        "xGChain_90": 0.66,
+        "xA_90": 0.373,
+        "clean_sheet_rate": 33.3
+      },
+      {
+        "name": "Guela Doué",
+        "profile": "WEAK_LINK",
+        "impact": -0.5,
+        "offensive_score": 79.5,
+        "xGChain_90": 0.448,
+        "xA_90": 0.123,
+        "clean_sheet_rate": 30.0
+      },
+      {
+        "name": "Lucas Høgsberg",
+        "profile": "WEAK_LINK",
+        "impact": -0.5,
+        "offensive_score": 31.4,
+        "xGChain_90": 0.335,
+        "xA_90": 0.0,
+        "clean_sheet_rate": 40.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 1,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 3,
+    "avg_impact": -0.14,
+    "avg_offensive_score": 60.8,
+    "total_xGChain_90": 1.784,
+    "total_xA_90": 0.499,
+    "avg_clean_sheet_rate": 36.2,
+    "avg_cards_90": 0.202,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Diego Moreira, Guela Doué, Lucas Høgsberg",
+        "edge": 7.0
+      }
+    ],
+    "defensive_rating": -4.56
+  },
+  "Brest": {
+    "team": "Brest",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Kenny Lala",
+        "profile": "PISTON",
+        "impact": 0,
+        "offensive_score": 74.2,
+        "xGChain_90": 0.394,
+        "xA_90": 0.117,
+        "clean_sheet_rate": 26.7
+      },
+      {
+        "name": "Brendan Chardonnet",
+        "profile": "BALANCED",
+        "impact": 1.62,
+        "offensive_score": 49.3,
+        "xGChain_90": 0.287,
+        "xA_90": 0.042,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Bradley Locko",
+        "profile": "WEAK_LINK",
+        "impact": -0.3,
+        "offensive_score": 64.2,
+        "xGChain_90": 0.335,
+        "xA_90": 0.093,
+        "clean_sheet_rate": 30.0
+      },
+      {
+        "name": "Michel Diaz",
+        "profile": "ANCHOR",
+        "impact": 0.32,
+        "offensive_score": 8.5,
+        "xGChain_90": 0.11,
+        "xA_90": 0.004,
+        "clean_sheet_rate": 28.6
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 1,
+    "offensive_defs_count": 0,
+    "weak_links_count": 1,
+    "avg_impact": 0.41,
+    "avg_offensive_score": 49.0,
+    "total_xGChain_90": 1.126,
+    "total_xA_90": 0.256,
+    "avg_clean_sheet_rate": 29.0,
+    "avg_cards_90": 0.111,
+    "line_character": "BALANCED",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Bradley Locko",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": 1.02
+  },
+  "Auxerre": {
+    "team": "Auxerre",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Clément Akpa",
+        "profile": "WEAK_LINK",
+        "impact": -0.46,
+        "offensive_score": 23.1,
+        "xGChain_90": 0.124,
+        "xA_90": 0.023,
+        "clean_sheet_rate": 15.4
+      },
+      {
+        "name": "Gideon Mensah",
+        "profile": "ANCHOR",
+        "impact": 0.75,
+        "offensive_score": 35.2,
+        "xGChain_90": 0.169,
+        "xA_90": 0.046,
+        "clean_sheet_rate": 25.0
+      },
+      {
+        "name": "Marvin Senaya",
+        "profile": "WEAK_LINK",
+        "impact": -0.91,
+        "offensive_score": 21.6,
+        "xGChain_90": 0.169,
+        "xA_90": 0.011,
+        "clean_sheet_rate": 16.7
+      },
+      {
+        "name": "Josué Casimir",
+        "profile": "WEAK_LINK",
+        "impact": -0.9,
+        "offensive_score": 28.7,
+        "xGChain_90": 0.185,
+        "xA_90": 0.016,
+        "clean_sheet_rate": 10.0
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 3,
+    "avg_impact": -0.38,
+    "avg_offensive_score": 27.2,
+    "total_xGChain_90": 0.647,
+    "total_xA_90": 0.096,
+    "avg_clean_sheet_rate": 16.8,
+    "avg_cards_90": 0.218,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK",
+      "OVERALL_WEAK_DEFENSE"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Clément Akpa, Marvin Senaya, Josué Casimir",
+        "edge": 7.0
+      }
+    ],
+    "defensive_rating": -4.47
+  },
+  "Le Havre": {
+    "team": "Le Havre",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Ayumu Seko",
+        "profile": "WEAK_LINK",
+        "impact": -0.43,
+        "offensive_score": 27.4,
+        "xGChain_90": 0.16,
+        "xA_90": 0.025,
+        "clean_sheet_rate": 35.7
+      },
+      {
+        "name": "Arouna Sangante",
+        "profile": "WEAK_LINK",
+        "impact": -1.5,
+        "offensive_score": 13.3,
+        "xGChain_90": 0.148,
+        "xA_90": 0.006,
+        "clean_sheet_rate": 28.6
+      },
+      {
+        "name": "Gautier Lloris",
+        "profile": "ANCHOR",
+        "impact": 1.85,
+        "offensive_score": 36.2,
+        "xGChain_90": 0.125,
+        "xA_90": 0.078,
+        "clean_sheet_rate": 30.8
+      },
+      {
+        "name": "Loïc Négo",
+        "profile": "BALANCED",
+        "impact": 0.12,
+        "offensive_score": 47.9,
+        "xGChain_90": 0.207,
+        "xA_90": 0.082,
+        "clean_sheet_rate": 30.8
+      }
+    ],
+    "anchors_count": 1,
+    "ball_players_count": 0,
+    "pistons_count": 0,
+    "offensive_defs_count": 0,
+    "weak_links_count": 2,
+    "avg_impact": 0.01,
+    "avg_offensive_score": 31.2,
+    "total_xGChain_90": 0.64,
+    "total_xA_90": 0.191,
+    "avg_clean_sheet_rate": 31.5,
+    "avg_cards_90": 0.146,
+    "line_character": "FRAGILE",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Ayumu Seko, Arouna Sangante",
+        "edge": 6.0
+      }
+    ],
+    "defensive_rating": -1.66
+  },
+  "Paris FC": {
+    "team": "Paris FC",
+    "league": "Ligue_1",
+    "starters": [
+      {
+        "name": "Mamadou Mbow",
+        "profile": "BALL_PLAYER",
+        "impact": 0.29,
+        "offensive_score": 42.1,
+        "xGChain_90": 0.392,
+        "xA_90": 0.005,
+        "clean_sheet_rate": 21.4
+      },
+      {
+        "name": "Otávio",
+        "profile": "BALL_PLAYER",
+        "impact": 1.05,
+        "offensive_score": 40.4,
+        "xGChain_90": 0.393,
+        "xA_90": 0.003,
+        "clean_sheet_rate": 27.3
+      },
+      {
+        "name": "Samir Chergui",
+        "profile": "WEAK_LINK",
+        "impact": -1.68,
+        "offensive_score": 51.8,
+        "xGChain_90": 0.399,
+        "xA_90": 0.014,
+        "clean_sheet_rate": 9.1
+      },
+      {
+        "name": "Thibault De Smet",
+        "profile": "OFFENSIVE_DEF",
+        "impact": 0.1,
+        "offensive_score": 64.4,
+        "xGChain_90": 0.459,
+        "xA_90": 0.036,
+        "clean_sheet_rate": 10.0
+      }
+    ],
+    "anchors_count": 0,
+    "ball_players_count": 2,
+    "pistons_count": 0,
+    "offensive_defs_count": 1,
+    "weak_links_count": 1,
+    "avg_impact": -0.06,
+    "avg_offensive_score": 49.7,
+    "total_xGChain_90": 1.643,
+    "total_xA_90": 0.058,
+    "avg_clean_sheet_rate": 17.0,
+    "avg_cards_90": 0.248,
+    "line_character": "POSSESSION",
+    "vulnerabilities": [
+      "HAS_WEAK_LINK"
+    ],
+    "strengths": [],
+    "exploit_paths": [
+      {
+        "market": "Goals Over / Anytime Scorer",
+        "trigger": "Cibler Samir Chergui",
+        "edge": 5.0
+      }
+    ],
+    "defensive_rating": -1.51
+  }
+}

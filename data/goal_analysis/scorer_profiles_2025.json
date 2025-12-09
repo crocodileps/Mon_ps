@@ -1,0 +1,4210 @@
+[
+  {
+    "scorer": "Harry Kane",
+    "team": "Bayern Munich",
+    "total_goals": 17,
+    "total_xG": 7.94,
+    "goals_1H": 5,
+    "goals_2H": 12,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 59.1
+  },
+  {
+    "scorer": "Kylian Mbappe-Lottin",
+    "team": "Real Madrid",
+    "total_goals": 16,
+    "total_xG": 6.58,
+    "goals_1H": 7,
+    "goals_2H": 9,
+    "first_goals": 7,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 45.9
+  },
+  {
+    "scorer": "Erling Haaland",
+    "team": "Manchester City",
+    "total_goals": 15,
+    "total_xG": 5.66,
+    "goals_1H": 8,
+    "goals_2H": 7,
+    "first_goals": 8,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 43.5
+  },
+  {
+    "scorer": "Thiago",
+    "team": "Brentford",
+    "total_goals": 11,
+    "total_xG": 6.42,
+    "goals_1H": 4,
+    "goals_2H": 7,
+    "first_goals": 5,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 58.5
+  },
+  {
+    "scorer": "Ferrán Torres",
+    "team": "Barcelona",
+    "total_goals": 11,
+    "total_xG": 4.0,
+    "goals_1H": 7,
+    "goals_2H": 4,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 38.5
+  },
+  {
+    "scorer": "Mason Greenwood",
+    "team": "Marseille",
+    "total_goals": 10,
+    "total_xG": 4.22,
+    "goals_1H": 6,
+    "goals_2H": 4,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 40.7
+  },
+  {
+    "scorer": "Joaquín Panichelli",
+    "team": "Strasbourg",
+    "total_goals": 9,
+    "total_xG": 4.21,
+    "goals_1H": 4,
+    "goals_2H": 5,
+    "first_goals": 5,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 53.0
+  },
+  {
+    "scorer": "Robert Lewandowski",
+    "team": "Barcelona",
+    "total_goals": 8,
+    "total_xG": 3.04,
+    "goals_1H": 3,
+    "goals_2H": 5,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 50.9
+  },
+  {
+    "scorer": "Vedat Muriqi",
+    "team": "Mallorca",
+    "total_goals": 8,
+    "total_xG": 2.95,
+    "goals_1H": 3,
+    "goals_2H": 5,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 51.8
+  },
+  {
+    "scorer": "Jonathan Burkardt",
+    "team": "Eintracht Frankfurt",
+    "total_goals": 8,
+    "total_xG": 4.25,
+    "goals_1H": 4,
+    "goals_2H": 4,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 47.9
+  },
+  {
+    "scorer": "Esteban Lepaul",
+    "team": "Rennes",
+    "total_goals": 8,
+    "total_xG": 3.65,
+    "goals_1H": 5,
+    "goals_2H": 3,
+    "first_goals": 4,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 31.6
+  },
+  {
+    "scorer": "Jean-Philippe Mateta",
+    "team": "Crystal Palace",
+    "total_goals": 7,
+    "total_xG": 4.08,
+    "goals_1H": 4,
+    "goals_2H": 3,
+    "first_goals": 4,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1,
+      "FromCorner": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 49.6
+  },
+  {
+    "scorer": "Danny Welbeck",
+    "team": "Brighton",
+    "total_goals": 7,
+    "total_xG": 2.54,
+    "goals_1H": 2,
+    "goals_2H": 5,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 64.4
+  },
+  {
+    "scorer": "Julián Álvarez",
+    "team": "Atletico Madrid",
+    "total_goals": 7,
+    "total_xG": 2.92,
+    "goals_1H": 2,
+    "goals_2H": 5,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 56.0
+  },
+  {
+    "scorer": "Luis Díaz",
+    "team": "Bayern Munich",
+    "total_goals": 7,
+    "total_xG": 2.43,
+    "goals_1H": 4,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 45.6
+  },
+  {
+    "scorer": "Haris Tabakovic",
+    "team": "Borussia M.Gladbach",
+    "total_goals": 7,
+    "total_xG": 3.0,
+    "goals_1H": 3,
+    "goals_2H": 4,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 52.9
+  },
+  {
+    "scorer": "Deniz Undav",
+    "team": "VfB Stuttgart",
+    "total_goals": 7,
+    "total_xG": 1.97,
+    "goals_1H": 1,
+    "goals_2H": 6,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 64.9
+  },
+  {
+    "scorer": "Lautaro Martínez",
+    "team": "Inter",
+    "total_goals": 7,
+    "total_xG": 2.48,
+    "goals_1H": 4,
+    "goals_2H": 3,
+    "first_goals": 5,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 32.3
+  },
+  {
+    "scorer": "Antoine Semenyo",
+    "team": "Bournemouth",
+    "total_goals": 6,
+    "total_xG": 1.97,
+    "goals_1H": 1,
+    "goals_2H": 5,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 65.8
+  },
+  {
+    "scorer": "Phil Foden",
+    "team": "Manchester City",
+    "total_goals": 6,
+    "total_xG": 1.61,
+    "goals_1H": 3,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 43.5
+  },
+  {
+    "scorer": "Richarlison",
+    "team": "Tottenham",
+    "total_goals": 6,
+    "total_xG": 1.71,
+    "goals_1H": 3,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 46.3
+  },
+  {
+    "scorer": "Lamine Yamal",
+    "team": "Barcelona",
+    "total_goals": 6,
+    "total_xG": 2.37,
+    "goals_1H": 3,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 42.2
+  },
+  {
+    "scorer": "Alberto Moleiro",
+    "team": "Villarreal",
+    "total_goals": 6,
+    "total_xG": 1.43,
+    "goals_1H": 0,
+    "goals_2H": 6,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 66.7
+  },
+  {
+    "scorer": "Etta Eyong",
+    "team": "Levante",
+    "total_goals": 6,
+    "total_xG": 3.3,
+    "goals_1H": 4,
+    "goals_2H": 2,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 37.3
+  },
+  {
+    "scorer": "Rafa Mir",
+    "team": "Elche",
+    "total_goals": 6,
+    "total_xG": 1.18,
+    "goals_1H": 3,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 45.8
+  },
+  {
+    "scorer": "Juan Camilo Hernández",
+    "team": "Real Betis",
+    "total_goals": 6,
+    "total_xG": 1.36,
+    "goals_1H": 2,
+    "goals_2H": 4,
+    "first_goals": 2,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 50.7
+  },
+  {
+    "scorer": "Michael Olise",
+    "team": "Bayern Munich",
+    "total_goals": 6,
+    "total_xG": 1.89,
+    "goals_1H": 2,
+    "goals_2H": 4,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 53.3
+  },
+  {
+    "scorer": "Christoph Baumgartner",
+    "team": "RasenBallsport Leipzig",
+    "total_goals": 6,
+    "total_xG": 2.62,
+    "goals_1H": 4,
+    "goals_2H": 2,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 35.5
+  },
+  {
+    "scorer": "Said El Mala",
+    "team": "FC Cologne",
+    "total_goals": 6,
+    "total_xG": 1.81,
+    "goals_1H": 1,
+    "goals_2H": 5,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 67.2
+  },
+  {
+    "scorer": "Yan Diomande",
+    "team": "RasenBallsport Leipzig",
+    "total_goals": 6,
+    "total_xG": 1.43,
+    "goals_1H": 2,
+    "goals_2H": 4,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 38.8
+  },
+  {
+    "scorer": "Riccardo Orsolini",
+    "team": "Bologna",
+    "total_goals": 6,
+    "total_xG": 2.8,
+    "goals_1H": 2,
+    "goals_2H": 4,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 61.0
+  },
+  {
+    "scorer": "Hakan Calhanoglu",
+    "team": "Inter",
+    "total_goals": 6,
+    "total_xG": 1.63,
+    "goals_1H": 1,
+    "goals_2H": 5,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 63.7
+  },
+  {
+    "scorer": "Ilan Kebbal",
+    "team": "Paris FC",
+    "total_goals": 6,
+    "total_xG": 2.47,
+    "goals_1H": 3,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 42.7
+  },
+  {
+    "scorer": "Sofiane Diop",
+    "team": "Nice",
+    "total_goals": 6,
+    "total_xG": 2.92,
+    "goals_1H": 6,
+    "goals_2H": 0,
+    "first_goals": 4,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 34.5
+  },
+  {
+    "scorer": "Wesley Said",
+    "team": "Lens",
+    "total_goals": 6,
+    "total_xG": 3.2,
+    "goals_1H": 3,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 48.2
+  },
+  {
+    "scorer": "Romain Del Castillo",
+    "team": "Brest",
+    "total_goals": 6,
+    "total_xG": 3.83,
+    "goals_1H": 2,
+    "goals_2H": 4,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 54.7
+  },
+  {
+    "scorer": "Hugo Ekitike",
+    "team": "Liverpool",
+    "total_goals": 5,
+    "total_xG": 1.38,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 41.0
+  },
+  {
+    "scorer": "Bruno Guimarães",
+    "team": "Newcastle United",
+    "total_goals": 5,
+    "total_xG": 1.04,
+    "goals_1H": 1,
+    "goals_2H": 4,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 60.4
+  },
+  {
+    "scorer": "Bryan Mbeumo",
+    "team": "Manchester United",
+    "total_goals": 5,
+    "total_xG": 1.61,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 48.8
+  },
+  {
+    "scorer": "Zian Flemming",
+    "team": "Burnley",
+    "total_goals": 5,
+    "total_xG": 2.71,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 50.6
+  },
+  {
+    "scorer": "Nick Woltemade",
+    "team": "Newcastle United",
+    "total_goals": 5,
+    "total_xG": 1.68,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 52.8
+  },
+  {
+    "scorer": "Pedro Neto",
+    "team": "Chelsea",
+    "total_goals": 5,
+    "total_xG": 1.81,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 46.0
+  },
+  {
+    "scorer": "Borja Iglesias",
+    "team": "Celta Vigo",
+    "total_goals": 5,
+    "total_xG": 1.72,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 59.0
+  },
+  {
+    "scorer": "Tajon Buchanan",
+    "team": "Villarreal",
+    "total_goals": 5,
+    "total_xG": 1.01,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 39.4
+  },
+  {
+    "scorer": "Vinícius Júnior",
+    "team": "Real Madrid",
+    "total_goals": 5,
+    "total_xG": 1.04,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 54.0
+  },
+  {
+    "scorer": "Pere Milla",
+    "team": "Espanyol",
+    "total_goals": 5,
+    "total_xG": 1.67,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 48.0
+  },
+  {
+    "scorer": "Antony",
+    "team": "Real Betis",
+    "total_goals": 5,
+    "total_xG": 0.73,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 41.0
+  },
+  {
+    "scorer": "Mikel Oyarzabal",
+    "team": "Real Sociedad",
+    "total_goals": 5,
+    "total_xG": 3.03,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 48.8
+  },
+  {
+    "scorer": "Hugo Duro",
+    "team": "Valencia",
+    "total_goals": 5,
+    "total_xG": 2.25,
+    "goals_1H": 0,
+    "goals_2H": 5,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 83.8
+  },
+  {
+    "scorer": "Jakub Kaminski",
+    "team": "FC Cologne",
+    "total_goals": 5,
+    "total_xG": 1.6,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 48.0
+  },
+  {
+    "scorer": "Jens Stage",
+    "team": "Werder Bremen",
+    "total_goals": 5,
+    "total_xG": 1.04,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 60.8
+  },
+  {
+    "scorer": "Mohammed Amoura",
+    "team": "Wolfsburg",
+    "total_goals": 5,
+    "total_xG": 2.33,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 44.8
+  },
+  {
+    "scorer": "Serhou Guirassy",
+    "team": "Borussia Dortmund",
+    "total_goals": 5,
+    "total_xG": 2.19,
+    "goals_1H": 4,
+    "goals_2H": 1,
+    "first_goals": 4,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 40.2
+  },
+  {
+    "scorer": "Fisnik Asllani",
+    "team": "Hoffenheim",
+    "total_goals": 5,
+    "total_xG": 2.02,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 30.0
+  },
+  {
+    "scorer": "Patrik Schick",
+    "team": "Bayer Leverkusen",
+    "total_goals": 5,
+    "total_xG": 3.25,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 27.4
+  },
+  {
+    "scorer": "Can Uzun",
+    "team": "Eintracht Frankfurt",
+    "total_goals": 5,
+    "total_xG": 1.1,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 49.2
+  },
+  {
+    "scorer": "Christian Pulisic",
+    "team": "AC Milan",
+    "total_goals": 5,
+    "total_xG": 1.84,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 51.8
+  },
+  {
+    "scorer": "Federico Bonazzoli",
+    "team": "Cremonese",
+    "total_goals": 5,
+    "total_xG": 1.83,
+    "goals_1H": 1,
+    "goals_2H": 4,
+    "first_goals": 2,
+    "by_situation": {
+      "Penalty": 1,
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 49.8
+  },
+  {
+    "scorer": "Nico Paz",
+    "team": "Como",
+    "total_goals": 5,
+    "total_xG": 1.0,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 53.6
+  },
+  {
+    "scorer": "Kenan Yildiz",
+    "team": "Juventus",
+    "total_goals": 5,
+    "total_xG": 1.31,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 52.2
+  },
+  {
+    "scorer": "Rafael Leão",
+    "team": "AC Milan",
+    "total_goals": 5,
+    "total_xG": 2.18,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 45.4
+  },
+  {
+    "scorer": "Odsonne Edouard",
+    "team": "Lens",
+    "total_goals": 5,
+    "total_xG": 2.11,
+    "goals_1H": 5,
+    "goals_2H": 0,
+    "first_goals": 4,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 15.2
+  },
+  {
+    "scorer": "Pablo Pagis",
+    "team": "Lorient",
+    "total_goals": 5,
+    "total_xG": 2.0,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 60.2
+  },
+  {
+    "scorer": "João Neves",
+    "team": "Paris Saint Germain",
+    "total_goals": 5,
+    "total_xG": 1.05,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 50.8
+  },
+  {
+    "scorer": "Bradley Barcola",
+    "team": "Paris Saint Germain",
+    "total_goals": 5,
+    "total_xG": 1.42,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 32.6
+  },
+  {
+    "scorer": "Gauthier Hein",
+    "team": "Metz",
+    "total_goals": 5,
+    "total_xG": 2.97,
+    "goals_1H": 1,
+    "goals_2H": 4,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 67.8
+  },
+  {
+    "scorer": "Hamza Igamane",
+    "team": "Lille",
+    "total_goals": 5,
+    "total_xG": 2.12,
+    "goals_1H": 1,
+    "goals_2H": 4,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 73.8
+  },
+  {
+    "scorer": "Anssumane Fati",
+    "team": "Monaco",
+    "total_goals": 5,
+    "total_xG": 3.31,
+    "goals_1H": 1,
+    "goals_2H": 4,
+    "first_goals": 0,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 65.6
+  },
+  {
+    "scorer": "Pierre-Emerick Aubameyang",
+    "team": "Marseille",
+    "total_goals": 5,
+    "total_xG": 2.46,
+    "goals_1H": 2,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 52.8
+  },
+  {
+    "scorer": "Florian Thauvin",
+    "team": "Lens",
+    "total_goals": 5,
+    "total_xG": 1.48,
+    "goals_1H": 3,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 50.2
+  },
+  {
+    "scorer": "Cody Gakpo",
+    "team": "Liverpool",
+    "total_goals": 4,
+    "total_xG": 2.02,
+    "goals_1H": 0,
+    "goals_2H": 4,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 69.5
+  },
+  {
+    "scorer": "Mohamed Salah",
+    "team": "Liverpool",
+    "total_goals": 4,
+    "total_xG": 1.23,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 80.0
+  },
+  {
+    "scorer": "Emiliano Buendía",
+    "team": "Aston Villa",
+    "total_goals": 4,
+    "total_xG": 0.92,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "DirectFreekick": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 61.8
+  },
+  {
+    "scorer": "Donyell Malen",
+    "team": "Aston Villa",
+    "total_goals": 4,
+    "total_xG": 1.2,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 61.0
+  },
+  {
+    "scorer": "Callum Wilson",
+    "team": "West Ham",
+    "total_goals": 4,
+    "total_xG": 1.03,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "SetPiece": 1,
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 44.5
+  },
+  {
+    "scorer": "Dominic Calvert-Lewin",
+    "team": "Leeds",
+    "total_goals": 4,
+    "total_xG": 2.23,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 55.2
+  },
+  {
+    "scorer": "Kiernan Dewsbury-Hall",
+    "team": "Everton",
+    "total_goals": 4,
+    "total_xG": 0.78,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 57.8
+  },
+  {
+    "scorer": "Wilson Isidor",
+    "team": "Sunderland",
+    "total_goals": 4,
+    "total_xG": 1.51,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 70.2
+  },
+  {
+    "scorer": "Lukas Nmecha",
+    "team": "Leeds",
+    "total_goals": 4,
+    "total_xG": 2.19,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 3,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 42.2
+  },
+  {
+    "scorer": "Leandro Trossard",
+    "team": "Arsenal",
+    "total_goals": 4,
+    "total_xG": 1.55,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 54.0
+  },
+  {
+    "scorer": "João Pedro",
+    "team": "Chelsea",
+    "total_goals": 4,
+    "total_xG": 2.03,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 41.0
+  },
+  {
+    "scorer": "Enzo Fernández",
+    "team": "Chelsea",
+    "total_goals": 4,
+    "total_xG": 2.97,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 49.5
+  },
+  {
+    "scorer": "Iliman Ndiaye",
+    "team": "Everton",
+    "total_goals": 4,
+    "total_xG": 2.06,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 35.8
+  },
+  {
+    "scorer": "Jarrod Bowen",
+    "team": "West Ham",
+    "total_goals": 4,
+    "total_xG": 0.34,
+    "goals_1H": 0,
+    "goals_2H": 4,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 66.8
+  },
+  {
+    "scorer": "Bukayo Saka",
+    "team": "Arsenal",
+    "total_goals": 4,
+    "total_xG": 1.49,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 63.5
+  },
+  {
+    "scorer": "Jaidon Anthony",
+    "team": "Burnley",
+    "total_goals": 4,
+    "total_xG": 1.51,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 52.0
+  },
+  {
+    "scorer": "Viktor Gyokeres",
+    "team": "Arsenal",
+    "total_goals": 4,
+    "total_xG": 2.2,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 49.8
+  },
+  {
+    "scorer": "Eberechi Eze",
+    "team": "Arsenal",
+    "total_goals": 4,
+    "total_xG": 0.46,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 49.5
+  },
+  {
+    "scorer": "Harry Wilson",
+    "team": "Fulham",
+    "total_goals": 4,
+    "total_xG": 0.4,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 35.5
+  },
+  {
+    "scorer": "Eli Junior Kroupi",
+    "team": "Bournemouth",
+    "total_goals": 4,
+    "total_xG": 1.48,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 43.5
+  },
+  {
+    "scorer": "Gerard Moreno",
+    "team": "Villarreal",
+    "total_goals": 4,
+    "total_xG": 1.5,
+    "goals_1H": 4,
+    "goals_2H": 0,
+    "first_goals": 4,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 28.0
+  },
+  {
+    "scorer": "Roberto Fernández",
+    "team": "Espanyol",
+    "total_goals": 4,
+    "total_xG": 1.45,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 52.2
+  },
+  {
+    "scorer": "Jorge De Frutos",
+    "team": "Rayo Vallecano",
+    "total_goals": 4,
+    "total_xG": 1.97,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 29.0
+  },
+  {
+    "scorer": "Iván Romero",
+    "team": "Levante",
+    "total_goals": 4,
+    "total_xG": 1.72,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 27.2
+  },
+  {
+    "scorer": "Borja Mayoral",
+    "team": "Getafe",
+    "total_goals": 4,
+    "total_xG": 1.85,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 58.5
+  },
+  {
+    "scorer": "André Silva",
+    "team": "Elche",
+    "total_goals": 4,
+    "total_xG": 2.06,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 42.5
+  },
+  {
+    "scorer": "Alexander Sørloth",
+    "team": "Atletico Madrid",
+    "total_goals": 4,
+    "total_xG": 1.77,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 23.5
+  },
+  {
+    "scorer": "Ante Budimir",
+    "team": "Osasuna",
+    "total_goals": 4,
+    "total_xG": 1.7,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 34.8
+  },
+  {
+    "scorer": "Raphinha",
+    "team": "Barcelona",
+    "total_goals": 4,
+    "total_xG": 1.72,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 37.0
+  },
+  {
+    "scorer": "Antoine Griezmann",
+    "team": "Atletico Madrid",
+    "total_goals": 4,
+    "total_xG": 1.79,
+    "goals_1H": 0,
+    "goals_2H": 4,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 80.0
+  },
+  {
+    "scorer": "Dani Olmo",
+    "team": "Barcelona",
+    "total_goals": 4,
+    "total_xG": 1.62,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 60.5
+  },
+  {
+    "scorer": "Fermín López",
+    "team": "Barcelona",
+    "total_goals": 4,
+    "total_xG": 1.08,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 41.8
+  },
+  {
+    "scorer": "Georges Mikautadze",
+    "team": "Villarreal",
+    "total_goals": 4,
+    "total_xG": 1.47,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 62.0
+  },
+  {
+    "scorer": "Tim Lemperle",
+    "team": "Hoffenheim",
+    "total_goals": 4,
+    "total_xG": 1.67,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 54.0
+  },
+  {
+    "scorer": "Grischa Prömel",
+    "team": "Hoffenheim",
+    "total_goals": 4,
+    "total_xG": 1.19,
+    "goals_1H": 0,
+    "goals_2H": 4,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 73.8
+  },
+  {
+    "scorer": "Danilho Doekhi",
+    "team": "Union Berlin",
+    "total_goals": 4,
+    "total_xG": 1.12,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "FromCorner": 1,
+      "SetPiece": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 33.8
+  },
+  {
+    "scorer": "Andréas Hountondji",
+    "team": "St. Pauli",
+    "total_goals": 4,
+    "total_xG": 1.32,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 39.2
+  },
+  {
+    "scorer": "Karim Adeyemi",
+    "team": "Borussia Dortmund",
+    "total_goals": 4,
+    "total_xG": 1.35,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 52.5
+  },
+  {
+    "scorer": "Rômulo",
+    "team": "RasenBallsport Leipzig",
+    "total_goals": 4,
+    "total_xG": 2.55,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 56.8
+  },
+  {
+    "scorer": "Ernest Poku",
+    "team": "Bayer Leverkusen",
+    "total_goals": 4,
+    "total_xG": 1.06,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 34.0
+  },
+  {
+    "scorer": "Ilyas Ansah",
+    "team": "Union Berlin",
+    "total_goals": 4,
+    "total_xG": 1.07,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 30.2
+  },
+  {
+    "scorer": "Serge Gnabry",
+    "team": "Bayern Munich",
+    "total_goals": 4,
+    "total_xG": 0.97,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 3,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 37.8
+  },
+  {
+    "scorer": "Stefan Schimmer",
+    "team": "FC Heidenheim",
+    "total_goals": 4,
+    "total_xG": 0.95,
+    "goals_1H": 0,
+    "goals_2H": 4,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 80.5
+  },
+  {
+    "scorer": "Vincenzo Grifo",
+    "team": "Freiburg",
+    "total_goals": 4,
+    "total_xG": 2.08,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1,
+      "DirectFreekick": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 50.0
+  },
+  {
+    "scorer": "Álex Grimaldo",
+    "team": "Bayer Leverkusen",
+    "total_goals": 4,
+    "total_xG": 1.26,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "DirectFreekick": 1,
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 40.8
+  },
+  {
+    "scorer": "Keinan Davis",
+    "team": "Udinese",
+    "total_goals": 4,
+    "total_xG": 2.62,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 45.5
+  },
+  {
+    "scorer": "Franck Zambo",
+    "team": "Napoli",
+    "total_goals": 4,
+    "total_xG": 0.8,
+    "goals_1H": 0,
+    "goals_2H": 4,
+    "first_goals": 2,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 70.8
+  },
+  {
+    "scorer": "Santiago Castro",
+    "team": "Bologna",
+    "total_goals": 4,
+    "total_xG": 1.3,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 44.8
+  },
+  {
+    "scorer": "Rasmus Højlund",
+    "team": "Napoli",
+    "total_goals": 4,
+    "total_xG": 2.12,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 42.5
+  },
+  {
+    "scorer": "Domenico Berardi",
+    "team": "Sassuolo",
+    "total_goals": 4,
+    "total_xG": 2.47,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 52.8
+  },
+  {
+    "scorer": "Giovanni Simeone",
+    "team": "Torino",
+    "total_goals": 4,
+    "total_xG": 1.5,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 36.2
+  },
+  {
+    "scorer": "Kevin De Bruyne",
+    "team": "Napoli",
+    "total_goals": 4,
+    "total_xG": 2.31,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "DirectFreekick": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 38.0
+  },
+  {
+    "scorer": "Rolando Mandragora",
+    "team": "Fiorentina",
+    "total_goals": 4,
+    "total_xG": 1.28,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 4,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 31.8
+  },
+  {
+    "scorer": "Andrea Pinamonti",
+    "team": "Sassuolo",
+    "total_goals": 4,
+    "total_xG": 1.57,
+    "goals_1H": 0,
+    "goals_2H": 4,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 60.8
+  },
+  {
+    "scorer": "Ange-Yoan Bonny",
+    "team": "Inter",
+    "total_goals": 4,
+    "total_xG": 1.88,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 43.5
+  },
+  {
+    "scorer": "Nicolo Zaniolo",
+    "team": "Udinese",
+    "total_goals": 4,
+    "total_xG": 0.9,
+    "goals_1H": 3,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 36.0
+  },
+  {
+    "scorer": "Matìas Soulè Malvano",
+    "team": "Roma",
+    "total_goals": 4,
+    "total_xG": 0.84,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 42.2
+  },
+  {
+    "scorer": "Jamie Vardy",
+    "team": "Cremonese",
+    "total_goals": 4,
+    "total_xG": 2.16,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 60.5
+  },
+  {
+    "scorer": "Marcus Thuram",
+    "team": "Inter",
+    "total_goals": 4,
+    "total_xG": 1.62,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 57.2
+  },
+  {
+    "scorer": "Mateo Pellegrino",
+    "team": "Parma Calcio 1913",
+    "total_goals": 4,
+    "total_xG": 1.39,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 50.5
+  },
+  {
+    "scorer": "Emersonn",
+    "team": "Toulouse",
+    "total_goals": 4,
+    "total_xG": 0.78,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 52.8
+  },
+  {
+    "scorer": "Sambou Soumano",
+    "team": "Lorient",
+    "total_goals": 4,
+    "total_xG": 2.49,
+    "goals_1H": 0,
+    "goals_2H": 4,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 58.5
+  },
+  {
+    "scorer": "Lassine Sinayoko",
+    "team": "Auxerre",
+    "total_goals": 4,
+    "total_xG": 1.98,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 44.5
+  },
+  {
+    "scorer": "Folarin Balogun",
+    "team": "Monaco",
+    "total_goals": 4,
+    "total_xG": 1.86,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 48.5
+  },
+  {
+    "scorer": "Breel Embolo",
+    "team": "Rennes",
+    "total_goals": 4,
+    "total_xG": 1.78,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 44.5
+  },
+  {
+    "scorer": "Robinio Vaz",
+    "team": "Marseille",
+    "total_goals": 4,
+    "total_xG": 1.49,
+    "goals_1H": 0,
+    "goals_2H": 4,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 75.5
+  },
+  {
+    "scorer": "Olivier Giroud",
+    "team": "Lille",
+    "total_goals": 4,
+    "total_xG": 1.77,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 53.8
+  },
+  {
+    "scorer": "Kamory Doumbia",
+    "team": "Brest",
+    "total_goals": 4,
+    "total_xG": 1.15,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 39.2
+  },
+  {
+    "scorer": "Pavel Sulc",
+    "team": "Lyon",
+    "total_goals": 4,
+    "total_xG": 1.33,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 57.2
+  },
+  {
+    "scorer": "Frank Magri",
+    "team": "Toulouse",
+    "total_goals": 4,
+    "total_xG": 1.72,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 41.2
+  },
+  {
+    "scorer": "Emanuel Emegha",
+    "team": "Strasbourg",
+    "total_goals": 4,
+    "total_xG": 1.52,
+    "goals_1H": 1,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 64.8
+  },
+  {
+    "scorer": "Hákon Haraldsson",
+    "team": "Lille",
+    "total_goals": 4,
+    "total_xG": 1.02,
+    "goals_1H": 2,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 52.5
+  },
+  {
+    "scorer": "Ismaila Sarr",
+    "team": "Crystal Palace",
+    "total_goals": 3,
+    "total_xG": 1.89,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 40.3
+  },
+  {
+    "scorer": "Moisés Caicedo",
+    "team": "Chelsea",
+    "total_goals": 3,
+    "total_xG": 0.58,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 50.0
+  },
+  {
+    "scorer": "Dango Ouattara",
+    "team": "Brentford",
+    "total_goals": 3,
+    "total_xG": 1.45,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 35.7
+  },
+  {
+    "scorer": "Kevin Schade",
+    "team": "Brentford",
+    "total_goals": 3,
+    "total_xG": 1.19,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 44.3
+  },
+  {
+    "scorer": "Morgan Gibbs-White",
+    "team": "Nottingham Forest",
+    "total_goals": 3,
+    "total_xG": 0.74,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 63.7
+  },
+  {
+    "scorer": "Ryan Gravenberch",
+    "team": "Liverpool",
+    "total_goals": 3,
+    "total_xG": 0.16,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 33.3
+  },
+  {
+    "scorer": "Mikel Merino",
+    "team": "Arsenal",
+    "total_goals": 3,
+    "total_xG": 1.0,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1
+    },
+    "avg_minute": 50.3
+  },
+  {
+    "scorer": "Lucas Paquetá",
+    "team": "West Ham",
+    "total_goals": 3,
+    "total_xG": 0.79,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 42.0
+  },
+  {
+    "scorer": "Jan Paul van Hecke",
+    "team": "Brighton",
+    "total_goals": 3,
+    "total_xG": 0.93,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 58.3
+  },
+  {
+    "scorer": "Ollie Watkins",
+    "team": "Aston Villa",
+    "total_goals": 3,
+    "total_xG": 1.19,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 41.0
+  },
+  {
+    "scorer": "Casemiro",
+    "team": "Manchester United",
+    "total_goals": 3,
+    "total_xG": 0.34,
+    "goals_1H": 3,
+    "goals_2H": 0,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 34.0
+  },
+  {
+    "scorer": "Trevoh Chalobah",
+    "team": "Chelsea",
+    "total_goals": 3,
+    "total_xG": 0.97,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 61.0
+  },
+  {
+    "scorer": "Micky van de Ven",
+    "team": "Tottenham",
+    "total_goals": 3,
+    "total_xG": 0.94,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 43.7
+  },
+  {
+    "scorer": "Marcus Tavernier",
+    "team": "Bournemouth",
+    "total_goals": 3,
+    "total_xG": 0.84,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 32.0
+  },
+  {
+    "scorer": "Matthew Cash",
+    "team": "Aston Villa",
+    "total_goals": 3,
+    "total_xG": 0.37,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 3,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 39.7
+  },
+  {
+    "scorer": "Daniel Muñoz",
+    "team": "Crystal Palace",
+    "total_goals": 3,
+    "total_xG": 1.11,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 47.0
+  },
+  {
+    "scorer": "Morgan Rogers",
+    "team": "Aston Villa",
+    "total_goals": 3,
+    "total_xG": 0.21,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 52.3
+  },
+  {
+    "scorer": "Harvey Barnes",
+    "team": "Newcastle United",
+    "total_goals": 3,
+    "total_xG": 1.12,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 52.7
+  },
+  {
+    "scorer": "Diego López",
+    "team": "Valencia",
+    "total_goals": 3,
+    "total_xG": 0.86,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 58.3
+  },
+  {
+    "scorer": "Álvaro García",
+    "team": "Rayo Vallecano",
+    "total_goals": 3,
+    "total_xG": 1.78,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 53.0
+  },
+  {
+    "scorer": "Isaac Romero",
+    "team": "Sevilla",
+    "total_goals": 3,
+    "total_xG": 1.13,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 39.0
+  },
+  {
+    "scorer": "Arnaut Danjuma Groeneveld",
+    "team": "Valencia",
+    "total_goals": 3,
+    "total_xG": 0.78,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 23.3
+  },
+  {
+    "scorer": "Kike García",
+    "team": "Espanyol",
+    "total_goals": 3,
+    "total_xG": 1.65,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 78.0
+  },
+  {
+    "scorer": "Cristhian Stuani",
+    "team": "Girona",
+    "total_goals": 3,
+    "total_xG": 2.23,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 81.7
+  },
+  {
+    "scorer": "Azz-Eddine Ounahi",
+    "team": "Girona",
+    "total_goals": 3,
+    "total_xG": 0.42,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 44.7
+  },
+  {
+    "scorer": "Nico Williams",
+    "team": "Athletic Club",
+    "total_goals": 3,
+    "total_xG": 1.32,
+    "goals_1H": 3,
+    "goals_2H": 0,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 34.0
+  },
+  {
+    "scorer": "Ander Barrenetxea",
+    "team": "Real Sociedad",
+    "total_goals": 3,
+    "total_xG": 0.15,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "DirectFreekick": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 75.7
+  },
+  {
+    "scorer": "Jude Bellingham",
+    "team": "Real Madrid",
+    "total_goals": 3,
+    "total_xG": 1.57,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 0,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 57.0
+  },
+  {
+    "scorer": "Arda Güler",
+    "team": "Real Madrid",
+    "total_goals": 3,
+    "total_xG": 1.64,
+    "goals_1H": 3,
+    "goals_2H": 0,
+    "first_goals": 0,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 38.0
+  },
+  {
+    "scorer": "Ruben Vargas",
+    "team": "Sevilla",
+    "total_goals": 3,
+    "total_xG": 1.24,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 24.7
+  },
+  {
+    "scorer": "Abdessamad Ezzalzouli",
+    "team": "Real Betis",
+    "total_goals": 3,
+    "total_xG": 1.45,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 38.7
+  },
+  {
+    "scorer": "Pablo Fornals",
+    "team": "Real Betis",
+    "total_goals": 3,
+    "total_xG": 1.19,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 67.0
+  },
+  {
+    "scorer": "Roberto Navarro",
+    "team": "Athletic Club",
+    "total_goals": 3,
+    "total_xG": 1.38,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 53.3
+  },
+  {
+    "scorer": "Lucas Boyé",
+    "team": "Alaves",
+    "total_goals": 3,
+    "total_xG": 1.28,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 60.3
+  },
+  {
+    "scorer": "Vladyslav Vanat",
+    "team": "Girona",
+    "total_goals": 3,
+    "total_xG": 0.9,
+    "goals_1H": 3,
+    "goals_2H": 0,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 15.7
+  },
+  {
+    "scorer": "Adrián Liso",
+    "team": "Getafe",
+    "total_goals": 3,
+    "total_xG": 0.93,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 36.7
+  },
+  {
+    "scorer": "Carlos Vicente",
+    "team": "Alaves",
+    "total_goals": 3,
+    "total_xG": 2.23,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 34.7
+  },
+  {
+    "scorer": "Brais Méndez",
+    "team": "Real Sociedad",
+    "total_goals": 3,
+    "total_xG": 1.02,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 33.7
+  },
+  {
+    "scorer": "Albert Sambi Lokonga",
+    "team": "Hamburger SV",
+    "total_goals": 3,
+    "total_xG": 0.44,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 38.0
+  },
+  {
+    "scorer": "Tiago Tomás",
+    "team": "VfB Stuttgart",
+    "total_goals": 3,
+    "total_xG": 0.74,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 61.0
+  },
+  {
+    "scorer": "Julian Brandt",
+    "team": "Borussia Dortmund",
+    "total_goals": 3,
+    "total_xG": 1.46,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 66.0
+  },
+  {
+    "scorer": "Johan Manzambi",
+    "team": "Freiburg",
+    "total_goals": 3,
+    "total_xG": 0.25,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 34.7
+  },
+  {
+    "scorer": "Nadiem Amiri",
+    "team": "Mainz 05",
+    "total_goals": 3,
+    "total_xG": 2.27,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 66.0
+  },
+  {
+    "scorer": "Gian-Luca Waldschmidt",
+    "team": "FC Cologne",
+    "total_goals": 3,
+    "total_xG": 1.93,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 62.7
+  },
+  {
+    "scorer": "Wouter Burger",
+    "team": "Hoffenheim",
+    "total_goals": 3,
+    "total_xG": 0.96,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 38.7
+  },
+  {
+    "scorer": "Samuel Mbangula",
+    "team": "Werder Bremen",
+    "total_goals": 3,
+    "total_xG": 0.45,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 36.0
+  },
+  {
+    "scorer": "Edmond Tapsoba",
+    "team": "Bayer Leverkusen",
+    "total_goals": 3,
+    "total_xG": 1.23,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 32.7
+  },
+  {
+    "scorer": "Malik Tillman",
+    "team": "Bayer Leverkusen",
+    "total_goals": 3,
+    "total_xG": 0.98,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 45.0
+  },
+  {
+    "scorer": "Maximilian Beier",
+    "team": "Borussia Dortmund",
+    "total_goals": 3,
+    "total_xG": 1.36,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 61.7
+  },
+  {
+    "scorer": "Rayan Philippe",
+    "team": "Hamburger SV",
+    "total_goals": 3,
+    "total_xG": 0.98,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 42.3
+  },
+  {
+    "scorer": "Andrej Kramaric",
+    "team": "Hoffenheim",
+    "total_goals": 3,
+    "total_xG": 1.33,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 55.0
+  },
+  {
+    "scorer": "Rani Khedira",
+    "team": "Union Berlin",
+    "total_goals": 3,
+    "total_xG": 0.57,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 55.0
+  },
+  {
+    "scorer": "Ritsu Doan",
+    "team": "Eintracht Frankfurt",
+    "total_goals": 3,
+    "total_xG": 1.06,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 40.3
+  },
+  {
+    "scorer": "Nicolas Jackson",
+    "team": "Bayern Munich",
+    "total_goals": 3,
+    "total_xG": 1.19,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 67.3
+  },
+  {
+    "scorer": "Fabian Rieder",
+    "team": "Augsburg",
+    "total_goals": 3,
+    "total_xG": 1.7,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 3,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 25.0
+  },
+  {
+    "scorer": "Christian Kofane",
+    "team": "Bayer Leverkusen",
+    "total_goals": 3,
+    "total_xG": 0.98,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 51.0
+  },
+  {
+    "scorer": "Assan Ouédraogo",
+    "team": "RasenBallsport Leipzig",
+    "total_goals": 3,
+    "total_xG": 0.85,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 43.0
+  },
+  {
+    "scorer": "Justin Njinmah",
+    "team": "Werder Bremen",
+    "total_goals": 3,
+    "total_xG": 1.12,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 68.0
+  },
+  {
+    "scorer": "Oliver Burke",
+    "team": "Union Berlin",
+    "total_goals": 3,
+    "total_xG": 1.38,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "OtherBodyPart": 1
+    },
+    "avg_minute": 46.0
+  },
+  {
+    "scorer": "Marius Bülter",
+    "team": "FC Cologne",
+    "total_goals": 3,
+    "total_xG": 0.71,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 72.3
+  },
+  {
+    "scorer": "Ermedin Demirovic",
+    "team": "VfB Stuttgart",
+    "total_goals": 3,
+    "total_xG": 1.32,
+    "goals_1H": 3,
+    "goals_2H": 0,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 29.3
+  },
+  {
+    "scorer": "Jens Odgaard",
+    "team": "Bologna",
+    "total_goals": 3,
+    "total_xG": 0.8,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 53.7
+  },
+  {
+    "scorer": "Che Adams",
+    "team": "Torino",
+    "total_goals": 3,
+    "total_xG": 0.91,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 58.3
+  },
+  {
+    "scorer": "Dusan Vlahovic",
+    "team": "Juventus",
+    "total_goals": 3,
+    "total_xG": 1.61,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 53.0
+  },
+  {
+    "scorer": "Matteo Cancellieri",
+    "team": "Lazio",
+    "total_goals": 3,
+    "total_xG": 0.82,
+    "goals_1H": 3,
+    "goals_2H": 0,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 21.7
+  },
+  {
+    "scorer": "Mattia Zaccagni",
+    "team": "Lazio",
+    "total_goals": 3,
+    "total_xG": 1.53,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 53.7
+  },
+  {
+    "scorer": "Gennaro Borrelli",
+    "team": "Cagliari",
+    "total_goals": 3,
+    "total_xG": 1.47,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 38.3
+  },
+  {
+    "scorer": "Sebastiano Esposito",
+    "team": "Cagliari",
+    "total_goals": 3,
+    "total_xG": 1.18,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 46.3
+  },
+  {
+    "scorer": "M&#039;Bala Nzola",
+    "team": "Pisa",
+    "total_goals": 3,
+    "total_xG": 1.87,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 49.0
+  },
+  {
+    "scorer": "Gianluca Scamacca",
+    "team": "Atalanta",
+    "total_goals": 3,
+    "total_xG": 1.13,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 60.0
+  },
+  {
+    "scorer": "Leo Østigard",
+    "team": "Genoa",
+    "total_goals": 3,
+    "total_xG": 1.27,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 48.7
+  },
+  {
+    "scorer": "Tasos Douvikas",
+    "team": "Como",
+    "total_goals": 3,
+    "total_xG": 1.22,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 3,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 22.3
+  },
+  {
+    "scorer": "David Neres",
+    "team": "Napoli",
+    "total_goals": 3,
+    "total_xG": 0.76,
+    "goals_1H": 3,
+    "goals_2H": 0,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 29.3
+  },
+  {
+    "scorer": "Jayden Addai",
+    "team": "Como",
+    "total_goals": 3,
+    "total_xG": 0.9,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 59.7
+  },
+  {
+    "scorer": "Giovane",
+    "team": "Verona",
+    "total_goals": 3,
+    "total_xG": 0.68,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 46.0
+  },
+  {
+    "scorer": "Ludovic Blas",
+    "team": "Rennes",
+    "total_goals": 3,
+    "total_xG": 1.85,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 66.7
+  },
+  {
+    "scorer": "Moses Simon",
+    "team": "Paris FC",
+    "total_goals": 3,
+    "total_xG": 1.14,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 58.3
+  },
+  {
+    "scorer": "Sidiki Chérif",
+    "team": "Angers",
+    "total_goals": 3,
+    "total_xG": 0.47,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 55.3
+  },
+  {
+    "scorer": "Ethan Mbappé",
+    "team": "Lille",
+    "total_goals": 3,
+    "total_xG": 0.66,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 63.3
+  },
+  {
+    "scorer": "Aiyegun Tosin",
+    "team": "Lorient",
+    "total_goals": 3,
+    "total_xG": 1.76,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 43.0
+  },
+  {
+    "scorer": "Prosper Peter",
+    "team": "Angers",
+    "total_goals": 3,
+    "total_xG": 1.49,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 50.3
+  },
+  {
+    "scorer": "Corentin Tolisso",
+    "team": "Lyon",
+    "total_goals": 3,
+    "total_xG": 1.15,
+    "goals_1H": 3,
+    "goals_2H": 0,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 15.3
+  },
+  {
+    "scorer": "Youssef El-Arabi",
+    "team": "Nantes",
+    "total_goals": 3,
+    "total_xG": 1.11,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 44.3
+  },
+  {
+    "scorer": "Issa Soumaré",
+    "team": "Le Havre",
+    "total_goals": 3,
+    "total_xG": 1.89,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 61.7
+  },
+  {
+    "scorer": "Rassoul Ndiaye",
+    "team": "Le Havre",
+    "total_goals": 3,
+    "total_xG": 0.55,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 68.0
+  },
+  {
+    "scorer": "Charlie Cresswell",
+    "team": "Toulouse",
+    "total_goals": 3,
+    "total_xG": 1.13,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1
+    },
+    "avg_minute": 58.7
+  },
+  {
+    "scorer": "Aron Dønnum",
+    "team": "Toulouse",
+    "total_goals": 3,
+    "total_xG": 2.28,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 0,
+    "by_situation": {
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 52.7
+  },
+  {
+    "scorer": "Khvicha Kvaratskhelia",
+    "team": "Paris Saint Germain",
+    "total_goals": 3,
+    "total_xG": 0.91,
+    "goals_1H": 2,
+    "goals_2H": 1,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 41.7
+  },
+  {
+    "scorer": "Gonçalo Ramos",
+    "team": "Paris Saint Germain",
+    "total_goals": 3,
+    "total_xG": 1.26,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1,
+      "FromCorner": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "Head": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 80.0
+  },
+  {
+    "scorer": "Maghnes Akliouche",
+    "team": "Monaco",
+    "total_goals": 3,
+    "total_xG": 1.25,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1
+    },
+    "avg_minute": 44.0
+  },
+  {
+    "scorer": "Habib Diallo",
+    "team": "Metz",
+    "total_goals": 3,
+    "total_xG": 1.12,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 61.0
+  },
+  {
+    "scorer": "Igor Paixão",
+    "team": "Marseille",
+    "total_goals": 3,
+    "total_xG": 1.21,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 62.7
+  },
+  {
+    "scorer": "Angel Gomes",
+    "team": "Marseille",
+    "total_goals": 3,
+    "total_xG": 0.61,
+    "goals_1H": 3,
+    "goals_2H": 0,
+    "first_goals": 2,
+    "by_situation": {
+      "DirectFreekick": 1,
+      "FromCorner": 1,
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 28.3
+  },
+  {
+    "scorer": "Takumi Minamino",
+    "team": "Monaco",
+    "total_goals": 3,
+    "total_xG": 1.19,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 2,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1,
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "avg_minute": 69.3
+  },
+  {
+    "scorer": "Felix Correia",
+    "team": "Lille",
+    "total_goals": 3,
+    "total_xG": 0.73,
+    "goals_1H": 1,
+    "goals_2H": 2,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 1
+    },
+    "avg_minute": 43.7
+  },
+  {
+    "scorer": "Yann Gboho",
+    "team": "Toulouse",
+    "total_goals": 3,
+    "total_xG": 0.86,
+    "goals_1H": 0,
+    "goals_2H": 3,
+    "first_goals": 1,
+    "by_situation": {
+      "OpenPlay": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 1,
+      "RightFoot": 1
+    },
+    "avg_minute": 70.7
+  }
+]

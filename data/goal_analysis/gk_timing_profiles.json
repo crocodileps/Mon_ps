@@ -1,0 +1,3284 @@
+[
+  {
+    "goalkeeper": "Iñaki Peña",
+    "team": "Barcelona",
+    "total_goals": 20,
+    "goals_1H": 14,
+    "goals_2H": 6,
+    "pct_1H": 70.0,
+    "pct_2H": 30.0,
+    "by_period": {
+      "0-15": 5,
+      "16-30": 4,
+      "31-45": 5,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 3,
+      "90+": 1
+    },
+    "pct_early": 45.0,
+    "pct_late": 20.0,
+    "by_situation": {
+      "OpenPlay": 12,
+      "Penalty": 3,
+      "FromCorner": 4,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 20
+    },
+    "tags": [
+      "SLOW_STARTER",
+      "EARLY_VULNERABLE",
+      "CORNER_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Guglielmo Vicario",
+    "team": "Tottenham",
+    "total_goals": 18,
+    "goals_1H": 12,
+    "goals_2H": 6,
+    "pct_1H": 66.7,
+    "pct_2H": 33.3,
+    "by_period": {
+      "0-15": 4,
+      "16-30": 1,
+      "31-45": 7,
+      "46-60": 1,
+      "61-75": 2,
+      "76-90": 2,
+      "90+": 1
+    },
+    "pct_early": 27.8,
+    "pct_late": 16.7,
+    "by_situation": {
+      "OpenPlay": 15,
+      "FromCorner": 2,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 6,
+      "RightFoot": 10,
+      "Head": 2
+    },
+    "tags": [
+      "SLOW_STARTER"
+    ]
+  },
+  {
+    "goalkeeper": "Rui Silva",
+    "team": "Real Betis",
+    "total_goals": 18,
+    "goals_1H": 12,
+    "goals_2H": 6,
+    "pct_1H": 66.7,
+    "pct_2H": 33.3,
+    "by_period": {
+      "0-15": 7,
+      "16-30": 2,
+      "31-45": 3,
+      "46-60": 2,
+      "61-75": 1,
+      "76-90": 3,
+      "90+": 0
+    },
+    "pct_early": 50.0,
+    "pct_late": 16.7,
+    "by_situation": {
+      "OpenPlay": 13,
+      "FromCorner": 4,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 12,
+      "LeftFoot": 5,
+      "Head": 1
+    },
+    "tags": [
+      "SLOW_STARTER",
+      "EARLY_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Dominik Greif",
+    "team": "Mallorca",
+    "total_goals": 22,
+    "goals_1H": 14,
+    "goals_2H": 8,
+    "pct_1H": 63.6,
+    "pct_2H": 36.4,
+    "by_period": {
+      "0-15": 5,
+      "16-30": 3,
+      "31-45": 6,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 5,
+      "90+": 2
+    },
+    "pct_early": 36.4,
+    "pct_late": 31.8,
+    "by_situation": {
+      "OpenPlay": 17,
+      "FromCorner": 2,
+      "Penalty": 2,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "Head": 2,
+      "RightFoot": 10,
+      "LeftFoot": 10
+    },
+    "tags": [
+      "SLOW_STARTER",
+      "EARLY_VULNERABLE",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Vanja Milinković-Savić",
+    "team": "Torino",
+    "total_goals": 23,
+    "goals_1H": 14,
+    "goals_2H": 9,
+    "pct_1H": 60.9,
+    "pct_2H": 39.1,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 6,
+      "31-45": 6,
+      "46-60": 2,
+      "61-75": 5,
+      "76-90": 1,
+      "90+": 1
+    },
+    "pct_early": 34.8,
+    "pct_late": 8.7,
+    "by_situation": {
+      "FromCorner": 4,
+      "OpenPlay": 16,
+      "Penalty": 3
+    },
+    "by_shot_type": {
+      "Head": 5,
+      "RightFoot": 10,
+      "LeftFoot": 8
+    },
+    "tags": [
+      "SLOW_STARTER",
+      "EARLY_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Álex Remiro",
+    "team": "Real Sociedad",
+    "total_goals": 21,
+    "goals_1H": 12,
+    "goals_2H": 9,
+    "pct_1H": 57.1,
+    "pct_2H": 42.9,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 3,
+      "31-45": 6,
+      "46-60": 5,
+      "61-75": 1,
+      "76-90": 2,
+      "90+": 1
+    },
+    "pct_early": 28.6,
+    "pct_late": 14.3,
+    "by_situation": {
+      "OpenPlay": 13,
+      "Penalty": 2,
+      "FromCorner": 3,
+      "SetPiece": 3
+    },
+    "by_shot_type": {
+      "RightFoot": 9,
+      "Head": 4,
+      "LeftFoot": 8
+    },
+    "tags": [
+      "SLOW_STARTER"
+    ]
+  },
+  {
+    "goalkeeper": "Michele Di Gregorio",
+    "team": "Juventus",
+    "total_goals": 14,
+    "goals_1H": 8,
+    "goals_2H": 6,
+    "pct_1H": 57.1,
+    "pct_2H": 42.9,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 2,
+      "31-45": 3,
+      "46-60": 1,
+      "61-75": 2,
+      "76-90": 3,
+      "90+": 0
+    },
+    "pct_early": 35.7,
+    "pct_late": 21.4,
+    "by_situation": {
+      "OpenPlay": 11,
+      "FromCorner": 2,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 8,
+      "RightFoot": 4,
+      "Head": 2
+    },
+    "tags": [
+      "SLOW_STARTER",
+      "EARLY_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "GK Sassuolo",
+    "team": "Sassuolo",
+    "total_goals": 16,
+    "goals_1H": 9,
+    "goals_2H": 7,
+    "pct_1H": 56.2,
+    "pct_2H": 43.8,
+    "by_period": {
+      "0-15": 5,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 3,
+      "61-75": 1,
+      "76-90": 1,
+      "90+": 2
+    },
+    "pct_early": 43.8,
+    "pct_late": 18.8,
+    "by_situation": {
+      "OpenPlay": 8,
+      "DirectFreekick": 1,
+      "FromCorner": 3,
+      "Penalty": 3,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "Head": 4,
+      "RightFoot": 6,
+      "LeftFoot": 6
+    },
+    "tags": [
+      "SLOW_STARTER",
+      "EARLY_VULNERABLE",
+      "HEADER_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Marco Carnesecchi",
+    "team": "Atalanta",
+    "total_goals": 16,
+    "goals_1H": 9,
+    "goals_2H": 7,
+    "pct_1H": 56.2,
+    "pct_2H": 43.8,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 4,
+      "31-45": 4,
+      "46-60": 1,
+      "61-75": 2,
+      "76-90": 4,
+      "90+": 0
+    },
+    "pct_early": 31.2,
+    "pct_late": 25.0,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 12,
+      "FromCorner": 2,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 5,
+      "LeftFoot": 10,
+      "Head": 1
+    },
+    "tags": [
+      "SLOW_STARTER",
+      "EARLY_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "GK RasenBallsport Leipzig",
+    "team": "RasenBallsport Leipzig",
+    "total_goals": 13,
+    "goals_1H": 7,
+    "goals_2H": 6,
+    "pct_1H": 53.8,
+    "pct_2H": 46.2,
+    "by_period": {
+      "0-15": 0,
+      "16-30": 4,
+      "31-45": 3,
+      "46-60": 1,
+      "61-75": 3,
+      "76-90": 2,
+      "90+": 0
+    },
+    "pct_early": 30.8,
+    "pct_late": 15.4,
+    "by_situation": {
+      "OpenPlay": 11,
+      "FromCorner": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 8,
+      "LeftFoot": 4,
+      "Head": 1
+    },
+    "tags": [
+      "EARLY_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Brice Samba",
+    "team": "Lens",
+    "total_goals": 13,
+    "goals_1H": 7,
+    "goals_2H": 6,
+    "pct_1H": 53.8,
+    "pct_2H": 46.2,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 3,
+      "31-45": 3,
+      "46-60": 3,
+      "61-75": 1,
+      "76-90": 2,
+      "90+": 0
+    },
+    "pct_early": 30.8,
+    "pct_late": 15.4,
+    "by_situation": {
+      "OpenPlay": 8,
+      "FromCorner": 2,
+      "Penalty": 2,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 8,
+      "LeftFoot": 3,
+      "Head": 2
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Jordan Pickford",
+    "team": "Everton",
+    "total_goals": 17,
+    "goals_1H": 9,
+    "goals_2H": 8,
+    "pct_1H": 52.9,
+    "pct_2H": 47.1,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 4,
+      "31-45": 3,
+      "46-60": 3,
+      "61-75": 2,
+      "76-90": 3,
+      "90+": 0
+    },
+    "pct_early": 35.3,
+    "pct_late": 17.6,
+    "by_situation": {
+      "Penalty": 1,
+      "OpenPlay": 12,
+      "FromCorner": 4
+    },
+    "by_shot_type": {
+      "RightFoot": 6,
+      "LeftFoot": 5,
+      "Head": 6
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "HEADER_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Marco Bizot",
+    "team": "Brest",
+    "total_goals": 23,
+    "goals_1H": 12,
+    "goals_2H": 11,
+    "pct_1H": 52.2,
+    "pct_2H": 47.8,
+    "by_period": {
+      "0-15": 5,
+      "16-30": 4,
+      "31-45": 3,
+      "46-60": 3,
+      "61-75": 3,
+      "76-90": 3,
+      "90+": 2
+    },
+    "pct_early": 39.1,
+    "pct_late": 21.7,
+    "by_situation": {
+      "OpenPlay": 16,
+      "FromCorner": 3,
+      "SetPiece": 1,
+      "Penalty": 2,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 7,
+      "RightFoot": 14,
+      "Head": 2
+    },
+    "tags": [
+      "EARLY_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Emiliano Martínez",
+    "team": "Aston Villa",
+    "total_goals": 14,
+    "goals_1H": 7,
+    "goals_2H": 7,
+    "pct_1H": 50.0,
+    "pct_2H": 50.0,
+    "by_period": {
+      "0-15": 5,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 2,
+      "61-75": 2,
+      "76-90": 3,
+      "90+": 0
+    },
+    "pct_early": 42.9,
+    "pct_late": 21.4,
+    "by_situation": {
+      "OpenPlay": 8,
+      "Penalty": 1,
+      "FromCorner": 4,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 3,
+      "RightFoot": 8,
+      "Head": 3
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Anthony Patterson",
+    "team": "Sunderland",
+    "total_goals": 16,
+    "goals_1H": 8,
+    "goals_2H": 8,
+    "pct_1H": 50.0,
+    "pct_2H": 50.0,
+    "by_period": {
+      "0-15": 5,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 2,
+      "61-75": 3,
+      "76-90": 3,
+      "90+": 0
+    },
+    "pct_early": 43.8,
+    "pct_late": 18.8,
+    "by_situation": {
+      "OpenPlay": 14,
+      "FromCorner": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 9,
+      "LeftFoot": 4,
+      "Head": 3
+    },
+    "tags": [
+      "EARLY_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Mark Flekken",
+    "team": "Brentford",
+    "total_goals": 22,
+    "goals_1H": 11,
+    "goals_2H": 11,
+    "pct_1H": 50.0,
+    "pct_2H": 50.0,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 4,
+      "31-45": 4,
+      "46-60": 3,
+      "61-75": 1,
+      "76-90": 6,
+      "90+": 1
+    },
+    "pct_early": 31.8,
+    "pct_late": 31.8,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 18,
+      "Penalty": 2,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 9,
+      "Head": 4,
+      "LeftFoot": 9
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Lukáš Hrádecký",
+    "team": "Bayer Leverkusen",
+    "total_goals": 18,
+    "goals_1H": 9,
+    "goals_2H": 9,
+    "pct_1H": 50.0,
+    "pct_2H": 50.0,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 4,
+      "31-45": 4,
+      "46-60": 3,
+      "61-75": 3,
+      "76-90": 1,
+      "90+": 2
+    },
+    "pct_early": 27.8,
+    "pct_late": 16.7,
+    "by_situation": {
+      "OpenPlay": 10,
+      "Penalty": 2,
+      "FromCorner": 5,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 5,
+      "RightFoot": 7,
+      "Head": 6
+    },
+    "tags": [
+      "HEADER_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Nediljko Labrović",
+    "team": "Augsburg",
+    "total_goals": 26,
+    "goals_1H": 13,
+    "goals_2H": 13,
+    "pct_1H": 50.0,
+    "pct_2H": 50.0,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 6,
+      "31-45": 4,
+      "46-60": 7,
+      "61-75": 4,
+      "76-90": 2,
+      "90+": 0
+    },
+    "pct_early": 34.6,
+    "pct_late": 7.7,
+    "by_situation": {
+      "Penalty": 2,
+      "OpenPlay": 21,
+      "SetPiece": 1,
+      "DirectFreekick": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 17,
+      "Head": 2,
+      "LeftFoot": 7
+    },
+    "tags": [
+      "EARLY_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Mile Svilar",
+    "team": "Roma",
+    "total_goals": 8,
+    "goals_1H": 4,
+    "goals_2H": 4,
+    "pct_1H": 50.0,
+    "pct_2H": 50.0,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 0,
+      "31-45": 2,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 2,
+      "90+": 1
+    },
+    "pct_early": 25.0,
+    "pct_late": 37.5,
+    "by_situation": {
+      "OpenPlay": 6,
+      "FromCorner": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 5,
+      "LeftFoot": 2,
+      "Head": 1
+    },
+    "tags": [
+      "LATE_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "José Sá",
+    "team": "Wolverhampton Wanderers",
+    "total_goals": 27,
+    "goals_1H": 13,
+    "goals_2H": 14,
+    "pct_1H": 48.1,
+    "pct_2H": 51.9,
+    "by_period": {
+      "0-15": 4,
+      "16-30": 4,
+      "31-45": 5,
+      "46-60": 3,
+      "61-75": 7,
+      "76-90": 2,
+      "90+": 2
+    },
+    "pct_early": 29.6,
+    "pct_late": 14.8,
+    "by_situation": {
+      "OpenPlay": 24,
+      "DirectFreekick": 1,
+      "FromCorner": 2
+    },
+    "by_shot_type": {
+      "LeftFoot": 12,
+      "RightFoot": 9,
+      "Head": 6
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Bart Verbruggen",
+    "team": "Brighton",
+    "total_goals": 19,
+    "goals_1H": 9,
+    "goals_2H": 10,
+    "pct_1H": 47.4,
+    "pct_2H": 52.6,
+    "by_period": {
+      "0-15": 0,
+      "16-30": 5,
+      "31-45": 4,
+      "46-60": 5,
+      "61-75": 2,
+      "76-90": 1,
+      "90+": 2
+    },
+    "pct_early": 26.3,
+    "pct_late": 15.8,
+    "by_situation": {
+      "FromCorner": 2,
+      "OpenPlay": 15,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "LeftFoot": 6,
+      "RightFoot": 11,
+      "Head": 2
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Oliver Baumann",
+    "team": "Hoffenheim",
+    "total_goals": 19,
+    "goals_1H": 9,
+    "goals_2H": 10,
+    "pct_1H": 47.4,
+    "pct_2H": 52.6,
+    "by_period": {
+      "0-15": 5,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 5,
+      "61-75": 3,
+      "76-90": 1,
+      "90+": 1
+    },
+    "pct_early": 36.8,
+    "pct_late": 10.5,
+    "by_situation": {
+      "SetPiece": 2,
+      "OpenPlay": 10,
+      "FromCorner": 5,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 6,
+      "RightFoot": 12
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Moritz Nicolas",
+    "team": "Borussia M.Gladbach",
+    "total_goals": 19,
+    "goals_1H": 9,
+    "goals_2H": 10,
+    "pct_1H": 47.4,
+    "pct_2H": 52.6,
+    "by_period": {
+      "0-15": 4,
+      "16-30": 2,
+      "31-45": 3,
+      "46-60": 1,
+      "61-75": 4,
+      "76-90": 4,
+      "90+": 1
+    },
+    "pct_early": 31.6,
+    "pct_late": 26.3,
+    "by_situation": {
+      "FromCorner": 4,
+      "OpenPlay": 11,
+      "Penalty": 2,
+      "SetPiece": 2
+    },
+    "by_shot_type": {
+      "Head": 3,
+      "RightFoot": 10,
+      "LeftFoot": 6
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "GK Pisa",
+    "team": "Pisa",
+    "total_goals": 19,
+    "goals_1H": 9,
+    "goals_2H": 10,
+    "pct_1H": 47.4,
+    "pct_2H": 52.6,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 1,
+      "31-45": 5,
+      "46-60": 4,
+      "61-75": 2,
+      "76-90": 2,
+      "90+": 2
+    },
+    "pct_early": 21.1,
+    "pct_late": 21.1,
+    "by_situation": {
+      "OpenPlay": 13,
+      "DirectFreekick": 1,
+      "SetPiece": 1,
+      "FromCorner": 3,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 10,
+      "LeftFoot": 8,
+      "Head": 1
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Donovan Léon",
+    "team": "Auxerre",
+    "total_goals": 19,
+    "goals_1H": 9,
+    "goals_2H": 10,
+    "pct_1H": 47.4,
+    "pct_2H": 52.6,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 2,
+      "31-45": 4,
+      "46-60": 6,
+      "61-75": 1,
+      "76-90": 2,
+      "90+": 1
+    },
+    "pct_early": 26.3,
+    "pct_late": 15.8,
+    "by_situation": {
+      "OpenPlay": 13,
+      "FromCorner": 4,
+      "Penalty": 1,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 7,
+      "Head": 5,
+      "RightFoot": 7
+    },
+    "tags": [
+      "HEADER_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Robert Sánchez",
+    "team": "Chelsea",
+    "total_goals": 15,
+    "goals_1H": 7,
+    "goals_2H": 8,
+    "pct_1H": 46.7,
+    "pct_2H": 53.3,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 1,
+      "31-45": 3,
+      "46-60": 1,
+      "61-75": 2,
+      "76-90": 1,
+      "90+": 4
+    },
+    "pct_early": 26.7,
+    "pct_late": 33.3,
+    "by_situation": {
+      "OpenPlay": 12,
+      "FromCorner": 3
+    },
+    "by_shot_type": {
+      "LeftFoot": 3,
+      "RightFoot": 7,
+      "Head": 5
+    },
+    "tags": [
+      "LATE_VULNERABLE",
+      "HEADER_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Antonio Sivera",
+    "team": "Alaves",
+    "total_goals": 15,
+    "goals_1H": 7,
+    "goals_2H": 8,
+    "pct_1H": 46.7,
+    "pct_2H": 53.3,
+    "by_period": {
+      "0-15": 5,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 2,
+      "61-75": 3,
+      "76-90": 1,
+      "90+": 2
+    },
+    "pct_early": 40.0,
+    "pct_late": 20.0,
+    "by_situation": {
+      "OpenPlay": 14,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 6,
+      "LeftFoot": 6,
+      "Head": 3
+    },
+    "tags": [
+      "EARLY_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Jan Oblak",
+    "team": "Atletico Madrid",
+    "total_goals": 15,
+    "goals_1H": 7,
+    "goals_2H": 8,
+    "pct_1H": 46.7,
+    "pct_2H": 53.3,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 3,
+      "31-45": 2,
+      "46-60": 0,
+      "61-75": 3,
+      "76-90": 4,
+      "90+": 1
+    },
+    "pct_early": 33.3,
+    "pct_late": 33.3,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 12,
+      "Penalty": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 7,
+      "Head": 3,
+      "LeftFoot": 5
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Yann Sommer",
+    "team": "Inter",
+    "total_goals": 13,
+    "goals_1H": 6,
+    "goals_2H": 7,
+    "pct_1H": 46.2,
+    "pct_2H": 53.8,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 4,
+      "46-60": 2,
+      "61-75": 1,
+      "76-90": 4,
+      "90+": 0
+    },
+    "pct_early": 15.4,
+    "pct_late": 30.8,
+    "by_situation": {
+      "Penalty": 2,
+      "OpenPlay": 9,
+      "FromCorner": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 5,
+      "RightFoot": 7,
+      "Head": 1
+    },
+    "tags": [
+      "LATE_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Geronimo Rulli",
+    "team": "Marseille",
+    "total_goals": 13,
+    "goals_1H": 6,
+    "goals_2H": 7,
+    "pct_1H": 46.2,
+    "pct_2H": 53.8,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 4,
+      "31-45": 0,
+      "46-60": 2,
+      "61-75": 1,
+      "76-90": 1,
+      "90+": 3
+    },
+    "pct_early": 46.2,
+    "pct_late": 30.8,
+    "by_situation": {
+      "OpenPlay": 11,
+      "Penalty": 1,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 5,
+      "RightFoot": 6,
+      "Head": 2
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Christophe Kerbrat",
+    "team": "Paris FC",
+    "total_goals": 26,
+    "goals_1H": 12,
+    "goals_2H": 14,
+    "pct_1H": 46.2,
+    "pct_2H": 53.8,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 5,
+      "31-45": 4,
+      "46-60": 4,
+      "61-75": 2,
+      "76-90": 6,
+      "90+": 2
+    },
+    "pct_early": 30.8,
+    "pct_late": 30.8,
+    "by_situation": {
+      "OpenPlay": 14,
+      "Penalty": 4,
+      "FromCorner": 6,
+      "SetPiece": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 15,
+      "LeftFoot": 7,
+      "Head": 4
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "LATE_VULNERABLE",
+      "CORNER_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Robin Zentner",
+    "team": "Mainz 05",
+    "total_goals": 22,
+    "goals_1H": 10,
+    "goals_2H": 12,
+    "pct_1H": 45.5,
+    "pct_2H": 54.5,
+    "by_period": {
+      "0-15": 5,
+      "16-30": 3,
+      "31-45": 2,
+      "46-60": 5,
+      "61-75": 0,
+      "76-90": 7,
+      "90+": 0
+    },
+    "pct_early": 36.4,
+    "pct_late": 31.8,
+    "by_situation": {
+      "OpenPlay": 19,
+      "FromCorner": 2,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "Head": 1,
+      "LeftFoot": 8,
+      "RightFoot": 13
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Maduka Okoye",
+    "team": "Udinese",
+    "total_goals": 22,
+    "goals_1H": 10,
+    "goals_2H": 12,
+    "pct_1H": 45.5,
+    "pct_2H": 54.5,
+    "by_period": {
+      "0-15": 4,
+      "16-30": 2,
+      "31-45": 4,
+      "46-60": 5,
+      "61-75": 2,
+      "76-90": 2,
+      "90+": 3
+    },
+    "pct_early": 27.3,
+    "pct_late": 22.7,
+    "by_situation": {
+      "FromCorner": 3,
+      "OpenPlay": 13,
+      "SetPiece": 1,
+      "DirectFreekick": 1,
+      "Penalty": 4
+    },
+    "by_shot_type": {
+      "RightFoot": 11,
+      "LeftFoot": 8,
+      "Head": 3
+    },
+    "tags": [
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "GK Hamburger SV",
+    "team": "Hamburger SV",
+    "total_goals": 20,
+    "goals_1H": 9,
+    "goals_2H": 11,
+    "pct_1H": 45.0,
+    "pct_2H": 55.0,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 4,
+      "31-45": 2,
+      "46-60": 4,
+      "61-75": 3,
+      "76-90": 1,
+      "90+": 3
+    },
+    "pct_early": 35.0,
+    "pct_late": 20.0,
+    "by_situation": {
+      "FromCorner": 3,
+      "OpenPlay": 14,
+      "Penalty": 1,
+      "SetPiece": 1,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 16,
+      "LeftFoot": 3,
+      "Head": 1
+    },
+    "tags": [
+      "EARLY_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "GK Verona",
+    "team": "Verona",
+    "total_goals": 20,
+    "goals_1H": 9,
+    "goals_2H": 11,
+    "pct_1H": 45.0,
+    "pct_2H": 55.0,
+    "by_period": {
+      "0-15": 5,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 1,
+      "61-75": 3,
+      "76-90": 5,
+      "90+": 2
+    },
+    "pct_early": 35.0,
+    "pct_late": 35.0,
+    "by_situation": {
+      "FromCorner": 2,
+      "OpenPlay": 12,
+      "SetPiece": 5,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "Head": 7,
+      "RightFoot": 8,
+      "LeftFoot": 5
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "LATE_VULNERABLE",
+      "HEADER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "David Raya",
+    "team": "Arsenal",
+    "total_goals": 9,
+    "goals_1H": 4,
+    "goals_2H": 5,
+    "pct_1H": 44.4,
+    "pct_2H": 55.6,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 0,
+      "31-45": 3,
+      "46-60": 2,
+      "61-75": 0,
+      "76-90": 1,
+      "90+": 2
+    },
+    "pct_early": 11.1,
+    "pct_late": 33.3,
+    "by_situation": {
+      "DirectFreekick": 1,
+      "OpenPlay": 5,
+      "FromCorner": 2,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 7,
+      "Head": 2
+    },
+    "tags": [
+      "LATE_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Manuel Neuer",
+    "team": "Bayern Munich",
+    "total_goals": 9,
+    "goals_1H": 4,
+    "goals_2H": 5,
+    "pct_1H": 44.4,
+    "pct_2H": 55.6,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 2,
+      "31-45": 0,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 3,
+      "90+": 0
+    },
+    "pct_early": 44.4,
+    "pct_late": 33.3,
+    "by_situation": {
+      "OpenPlay": 3,
+      "DirectFreekick": 1,
+      "SetPiece": 2,
+      "FromCorner": 3
+    },
+    "by_shot_type": {
+      "RightFoot": 6,
+      "LeftFoot": 2,
+      "Head": 1
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "LATE_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Nikola Vasilj",
+    "team": "St. Pauli",
+    "total_goals": 25,
+    "goals_1H": 11,
+    "goals_2H": 14,
+    "pct_1H": 44.0,
+    "pct_2H": 56.0,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 1,
+      "31-45": 7,
+      "46-60": 7,
+      "61-75": 3,
+      "76-90": 2,
+      "90+": 2
+    },
+    "pct_early": 16.0,
+    "pct_late": 16.0,
+    "by_situation": {
+      "OpenPlay": 22,
+      "SetPiece": 2,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "Head": 4,
+      "RightFoot": 17,
+      "LeftFoot": 4
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Joan García",
+    "team": "Espanyol",
+    "total_goals": 16,
+    "goals_1H": 7,
+    "goals_2H": 9,
+    "pct_1H": 43.8,
+    "pct_2H": 56.2,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 4,
+      "46-60": 4,
+      "61-75": 4,
+      "76-90": 1,
+      "90+": 0
+    },
+    "pct_early": 18.8,
+    "pct_late": 6.2,
+    "by_situation": {
+      "DirectFreekick": 1,
+      "OpenPlay": 12,
+      "Penalty": 1,
+      "FromCorner": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 9,
+      "LeftFoot": 3,
+      "Head": 4
+    },
+    "tags": [
+      "HEADER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Kamil Grabara",
+    "team": "Wolfsburg",
+    "total_goals": 23,
+    "goals_1H": 10,
+    "goals_2H": 13,
+    "pct_1H": 43.5,
+    "pct_2H": 56.5,
+    "by_period": {
+      "0-15": 4,
+      "16-30": 4,
+      "31-45": 2,
+      "46-60": 3,
+      "61-75": 3,
+      "76-90": 4,
+      "90+": 3
+    },
+    "pct_early": 34.8,
+    "pct_late": 30.4,
+    "by_situation": {
+      "DirectFreekick": 1,
+      "Penalty": 2,
+      "OpenPlay": 16,
+      "FromCorner": 4
+    },
+    "by_shot_type": {
+      "RightFoot": 8,
+      "LeftFoot": 11,
+      "Head": 4
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Kevin Müller",
+    "team": "FC Heidenheim",
+    "total_goals": 28,
+    "goals_1H": 12,
+    "goals_2H": 16,
+    "pct_1H": 42.9,
+    "pct_2H": 57.1,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 4,
+      "31-45": 6,
+      "46-60": 8,
+      "61-75": 5,
+      "76-90": 2,
+      "90+": 1
+    },
+    "pct_early": 21.4,
+    "pct_late": 10.7,
+    "by_situation": {
+      "OpenPlay": 25,
+      "Penalty": 2,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 7,
+      "Head": 4,
+      "RightFoot": 17
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Alexander Nübel",
+    "team": "VfB Stuttgart",
+    "total_goals": 21,
+    "goals_1H": 9,
+    "goals_2H": 12,
+    "pct_1H": 42.9,
+    "pct_2H": 57.1,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 3,
+      "31-45": 3,
+      "46-60": 2,
+      "61-75": 1,
+      "76-90": 7,
+      "90+": 2
+    },
+    "pct_early": 28.6,
+    "pct_late": 42.9,
+    "by_situation": {
+      "OpenPlay": 17,
+      "Penalty": 4
+    },
+    "by_shot_type": {
+      "RightFoot": 15,
+      "LeftFoot": 6
+    },
+    "tags": [
+      "LATE_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Simone Scuffet",
+    "team": "Cagliari",
+    "total_goals": 19,
+    "goals_1H": 8,
+    "goals_2H": 11,
+    "pct_1H": 42.1,
+    "pct_2H": 57.9,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 4,
+      "31-45": 2,
+      "46-60": 3,
+      "61-75": 3,
+      "76-90": 4,
+      "90+": 1
+    },
+    "pct_early": 31.6,
+    "pct_late": 26.3,
+    "by_situation": {
+      "OpenPlay": 12,
+      "FromCorner": 3,
+      "SetPiece": 2,
+      "DirectFreekick": 2
+    },
+    "by_shot_type": {
+      "Head": 4,
+      "RightFoot": 8,
+      "LeftFoot": 7
+    },
+    "tags": [
+      "EARLY_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Guillaume Restes",
+    "team": "Toulouse",
+    "total_goals": 19,
+    "goals_1H": 8,
+    "goals_2H": 11,
+    "pct_1H": 42.1,
+    "pct_2H": 57.9,
+    "by_period": {
+      "0-15": 5,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 6,
+      "61-75": 2,
+      "76-90": 2,
+      "90+": 1
+    },
+    "pct_early": 36.8,
+    "pct_late": 15.8,
+    "by_situation": {
+      "SetPiece": 1,
+      "OpenPlay": 11,
+      "FromCorner": 3,
+      "Penalty": 4
+    },
+    "by_shot_type": {
+      "RightFoot": 12,
+      "LeftFoot": 4,
+      "Head": 3
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Kepa Arrizabalaga",
+    "team": "Bournemouth",
+    "total_goals": 24,
+    "goals_1H": 10,
+    "goals_2H": 14,
+    "pct_1H": 41.7,
+    "pct_2H": 58.3,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 3,
+      "31-45": 6,
+      "46-60": 4,
+      "61-75": 4,
+      "76-90": 4,
+      "90+": 2
+    },
+    "pct_early": 16.7,
+    "pct_late": 25.0,
+    "by_situation": {
+      "OpenPlay": 13,
+      "FromCorner": 5,
+      "Penalty": 2,
+      "DirectFreekick": 1,
+      "SetPiece": 3
+    },
+    "by_shot_type": {
+      "RightFoot": 12,
+      "Head": 4,
+      "LeftFoot": 8
+    },
+    "tags": [
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Matz Sels",
+    "team": "Nottingham Forest",
+    "total_goals": 24,
+    "goals_1H": 10,
+    "goals_2H": 14,
+    "pct_1H": 41.7,
+    "pct_2H": 58.3,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 2,
+      "31-45": 7,
+      "46-60": 4,
+      "61-75": 0,
+      "76-90": 10,
+      "90+": 0
+    },
+    "pct_early": 12.5,
+    "pct_late": 41.7,
+    "by_situation": {
+      "Penalty": 3,
+      "OpenPlay": 11,
+      "FromCorner": 6,
+      "SetPiece": 3,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 13,
+      "LeftFoot": 6,
+      "Head": 5
+    },
+    "tags": [
+      "LATE_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Łukasz Skorupski",
+    "team": "Bologna",
+    "total_goals": 12,
+    "goals_1H": 5,
+    "goals_2H": 7,
+    "pct_1H": 41.7,
+    "pct_2H": 58.3,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 3,
+      "61-75": 2,
+      "76-90": 0,
+      "90+": 2
+    },
+    "pct_early": 25.0,
+    "pct_late": 16.7,
+    "by_situation": {
+      "OpenPlay": 9,
+      "FromCorner": 1,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 10,
+      "Head": 1,
+      "LeftFoot": 1
+    },
+    "tags": [
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "David de Gea",
+    "team": "Fiorentina",
+    "total_goals": 24,
+    "goals_1H": 10,
+    "goals_2H": 14,
+    "pct_1H": 41.7,
+    "pct_2H": 58.3,
+    "by_period": {
+      "0-15": 4,
+      "16-30": 4,
+      "31-45": 2,
+      "46-60": 5,
+      "61-75": 5,
+      "76-90": 2,
+      "90+": 2
+    },
+    "pct_early": 33.3,
+    "pct_late": 16.7,
+    "by_situation": {
+      "SetPiece": 4,
+      "Penalty": 3,
+      "OpenPlay": 12,
+      "FromCorner": 5
+    },
+    "by_shot_type": {
+      "Head": 4,
+      "RightFoot": 12,
+      "LeftFoot": 7,
+      "OtherBodyPart": 1
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Gianluigi Donnarumma",
+    "team": "Paris Saint Germain",
+    "total_goals": 12,
+    "goals_1H": 5,
+    "goals_2H": 7,
+    "pct_1H": 41.7,
+    "pct_2H": 58.3,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 3,
+      "61-75": 1,
+      "76-90": 3,
+      "90+": 0
+    },
+    "pct_early": 25.0,
+    "pct_late": 25.0,
+    "by_situation": {
+      "FromCorner": 2,
+      "OpenPlay": 10
+    },
+    "by_shot_type": {
+      "RightFoot": 7,
+      "Head": 2,
+      "LeftFoot": 3
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Paulo Gazzaniga",
+    "team": "Girona",
+    "total_goals": 29,
+    "goals_1H": 12,
+    "goals_2H": 17,
+    "pct_1H": 41.4,
+    "pct_2H": 58.6,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 5,
+      "31-45": 4,
+      "46-60": 7,
+      "61-75": 5,
+      "76-90": 1,
+      "90+": 4
+    },
+    "pct_early": 27.6,
+    "pct_late": 17.2,
+    "by_situation": {
+      "OpenPlay": 19,
+      "Penalty": 4,
+      "FromCorner": 4,
+      "DirectFreekick": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 14,
+      "LeftFoot": 10,
+      "Head": 5
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "GK Elche",
+    "team": "Elche",
+    "total_goals": 17,
+    "goals_1H": 7,
+    "goals_2H": 10,
+    "pct_1H": 41.2,
+    "pct_2H": 58.8,
+    "by_period": {
+      "0-15": 4,
+      "16-30": 3,
+      "31-45": 0,
+      "46-60": 3,
+      "61-75": 1,
+      "76-90": 5,
+      "90+": 1
+    },
+    "pct_early": 41.2,
+    "pct_late": 35.3,
+    "by_situation": {
+      "OpenPlay": 13,
+      "Penalty": 2,
+      "FromCorner": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 7,
+      "RightFoot": 9,
+      "Head": 1
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Lucas Chevalier",
+    "team": "Lille",
+    "total_goals": 17,
+    "goals_1H": 7,
+    "goals_2H": 10,
+    "pct_1H": 41.2,
+    "pct_2H": 58.8,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 2,
+      "31-45": 3,
+      "46-60": 3,
+      "61-75": 4,
+      "76-90": 2,
+      "90+": 1
+    },
+    "pct_early": 23.5,
+    "pct_late": 17.6,
+    "by_situation": {
+      "OpenPlay": 13,
+      "SetPiece": 1,
+      "FromCorner": 1,
+      "DirectFreekick": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 11,
+      "Head": 2,
+      "LeftFoot": 4
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "GK Real Oviedo",
+    "team": "Real Oviedo",
+    "total_goals": 22,
+    "goals_1H": 9,
+    "goals_2H": 13,
+    "pct_1H": 40.9,
+    "pct_2H": 59.1,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 4,
+      "31-45": 2,
+      "46-60": 3,
+      "61-75": 4,
+      "76-90": 5,
+      "90+": 1
+    },
+    "pct_early": 31.8,
+    "pct_late": 27.3,
+    "by_situation": {
+      "FromCorner": 5,
+      "OpenPlay": 14,
+      "SetPiece": 1,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "Head": 5,
+      "LeftFoot": 6,
+      "RightFoot": 11
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Noah Atubolu",
+    "team": "Freiburg",
+    "total_goals": 22,
+    "goals_1H": 9,
+    "goals_2H": 13,
+    "pct_1H": 40.9,
+    "pct_2H": 59.1,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 4,
+      "31-45": 4,
+      "46-60": 8,
+      "61-75": 1,
+      "76-90": 3,
+      "90+": 1
+    },
+    "pct_early": 22.7,
+    "pct_late": 18.2,
+    "by_situation": {
+      "OpenPlay": 17,
+      "FromCorner": 5
+    },
+    "by_shot_type": {
+      "LeftFoot": 8,
+      "Head": 3,
+      "RightFoot": 11
+    },
+    "tags": [
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Pierluigi Gollini",
+    "team": "Genoa",
+    "total_goals": 20,
+    "goals_1H": 8,
+    "goals_2H": 12,
+    "pct_1H": 40.0,
+    "pct_2H": 60.0,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 3,
+      "31-45": 2,
+      "46-60": 5,
+      "61-75": 5,
+      "76-90": 1,
+      "90+": 1
+    },
+    "pct_early": 30.0,
+    "pct_late": 10.0,
+    "by_situation": {
+      "FromCorner": 6,
+      "OpenPlay": 11,
+      "Penalty": 2,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "Head": 4,
+      "LeftFoot": 9,
+      "RightFoot": 7
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Lucas Perri",
+    "team": "Lyon",
+    "total_goals": 15,
+    "goals_1H": 6,
+    "goals_2H": 9,
+    "pct_1H": 40.0,
+    "pct_2H": 60.0,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 2,
+      "31-45": 3,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 4,
+      "90+": 3
+    },
+    "pct_early": 20.0,
+    "pct_late": 46.7,
+    "by_situation": {
+      "FromCorner": 4,
+      "OpenPlay": 11
+    },
+    "by_shot_type": {
+      "RightFoot": 8,
+      "Head": 4,
+      "LeftFoot": 3
+    },
+    "tags": [
+      "LATE_VULNERABLE",
+      "HEADER_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Arthur Desmas",
+    "team": "Le Havre",
+    "total_goals": 20,
+    "goals_1H": 8,
+    "goals_2H": 12,
+    "pct_1H": 40.0,
+    "pct_2H": 60.0,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 3,
+      "31-45": 2,
+      "46-60": 2,
+      "61-75": 5,
+      "76-90": 4,
+      "90+": 1
+    },
+    "pct_early": 30.0,
+    "pct_late": 25.0,
+    "by_situation": {
+      "FromCorner": 2,
+      "OpenPlay": 15,
+      "Penalty": 3
+    },
+    "by_shot_type": {
+      "Head": 3,
+      "LeftFoot": 7,
+      "RightFoot": 10
+    },
+    "tags": [
+      "EARLY_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Alexandre Oukidja",
+    "team": "Metz",
+    "total_goals": 33,
+    "goals_1H": 13,
+    "goals_2H": 20,
+    "pct_1H": 39.4,
+    "pct_2H": 60.6,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 5,
+      "31-45": 5,
+      "46-60": 5,
+      "61-75": 4,
+      "76-90": 8,
+      "90+": 3
+    },
+    "pct_early": 24.2,
+    "pct_late": 33.3,
+    "by_situation": {
+      "OpenPlay": 24,
+      "SetPiece": 3,
+      "Penalty": 5,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "Head": 5,
+      "RightFoot": 11,
+      "LeftFoot": 17
+    },
+    "tags": [
+      "LATE_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Michael Zetterer",
+    "team": "Werder Bremen",
+    "total_goals": 23,
+    "goals_1H": 9,
+    "goals_2H": 14,
+    "pct_1H": 39.1,
+    "pct_2H": 60.9,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 4,
+      "31-45": 4,
+      "46-60": 2,
+      "61-75": 7,
+      "76-90": 5,
+      "90+": 0
+    },
+    "pct_early": 21.7,
+    "pct_late": 21.7,
+    "by_situation": {
+      "OpenPlay": 16,
+      "Penalty": 3,
+      "FromCorner": 2,
+      "SetPiece": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 10,
+      "Head": 2,
+      "LeftFoot": 11
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Vicente Guaita",
+    "team": "Celta Vigo",
+    "total_goals": 18,
+    "goals_1H": 7,
+    "goals_2H": 11,
+    "pct_1H": 38.9,
+    "pct_2H": 61.1,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 4,
+      "46-60": 3,
+      "61-75": 5,
+      "76-90": 3,
+      "90+": 0
+    },
+    "pct_early": 16.7,
+    "pct_late": 16.7,
+    "by_situation": {
+      "OpenPlay": 11,
+      "FromCorner": 5,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "LeftFoot": 6,
+      "RightFoot": 8,
+      "Head": 4
+    },
+    "tags": [
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Lukasz Fabianski",
+    "team": "West Ham",
+    "total_goals": 29,
+    "goals_1H": 11,
+    "goals_2H": 18,
+    "pct_1H": 37.9,
+    "pct_2H": 62.1,
+    "by_period": {
+      "0-15": 4,
+      "16-30": 2,
+      "31-45": 5,
+      "46-60": 7,
+      "61-75": 5,
+      "76-90": 2,
+      "90+": 4
+    },
+    "pct_early": 20.7,
+    "pct_late": 20.7,
+    "by_situation": {
+      "OpenPlay": 17,
+      "FromCorner": 10,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "Head": 9,
+      "RightFoot": 14,
+      "LeftFoot": 6
+    },
+    "tags": [
+      "HEADER_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Andrés Fernández",
+    "team": "Levante",
+    "total_goals": 24,
+    "goals_1H": 9,
+    "goals_2H": 15,
+    "pct_1H": 37.5,
+    "pct_2H": 62.5,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 2,
+      "31-45": 5,
+      "46-60": 6,
+      "61-75": 3,
+      "76-90": 5,
+      "90+": 1
+    },
+    "pct_early": 16.7,
+    "pct_late": 25.0,
+    "by_situation": {
+      "FromCorner": 6,
+      "SetPiece": 1,
+      "OpenPlay": 16,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "Head": 2,
+      "LeftFoot": 8,
+      "RightFoot": 14
+    },
+    "tags": [
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "James Trafford",
+    "team": "Burnley",
+    "total_goals": 27,
+    "goals_1H": 10,
+    "goals_2H": 17,
+    "pct_1H": 37.0,
+    "pct_2H": 63.0,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 2,
+      "31-45": 5,
+      "46-60": 5,
+      "61-75": 2,
+      "76-90": 6,
+      "90+": 4
+    },
+    "pct_early": 18.5,
+    "pct_late": 37.0,
+    "by_situation": {
+      "OpenPlay": 17,
+      "Penalty": 5,
+      "FromCorner": 5
+    },
+    "by_shot_type": {
+      "RightFoot": 14,
+      "LeftFoot": 6,
+      "Head": 6,
+      "OtherBodyPart": 1
+    },
+    "tags": [
+      "LATE_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Giorgi Mamardashvili",
+    "team": "Valencia",
+    "total_goals": 22,
+    "goals_1H": 8,
+    "goals_2H": 14,
+    "pct_1H": 36.4,
+    "pct_2H": 63.6,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 4,
+      "31-45": 3,
+      "46-60": 5,
+      "61-75": 4,
+      "76-90": 4,
+      "90+": 1
+    },
+    "pct_early": 22.7,
+    "pct_late": 22.7,
+    "by_situation": {
+      "OpenPlay": 15,
+      "FromCorner": 3,
+      "SetPiece": 2,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "LeftFoot": 6,
+      "Head": 4,
+      "RightFoot": 12
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Ivan Provedel",
+    "team": "Lazio",
+    "total_goals": 11,
+    "goals_1H": 4,
+    "goals_2H": 7,
+    "pct_1H": 36.4,
+    "pct_2H": 63.6,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 0,
+      "31-45": 2,
+      "46-60": 2,
+      "61-75": 4,
+      "76-90": 0,
+      "90+": 1
+    },
+    "pct_early": 18.2,
+    "pct_late": 9.1,
+    "by_situation": {
+      "OpenPlay": 8,
+      "DirectFreekick": 1,
+      "FromCorner": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 9,
+      "LeftFoot": 1,
+      "Head": 1
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Pepe Reina",
+    "team": "Como",
+    "total_goals": 11,
+    "goals_1H": 4,
+    "goals_2H": 7,
+    "pct_1H": 36.4,
+    "pct_2H": 63.6,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 1,
+      "31-45": 0,
+      "46-60": 3,
+      "61-75": 1,
+      "76-90": 2,
+      "90+": 1
+    },
+    "pct_early": 36.4,
+    "pct_late": 27.3,
+    "by_situation": {
+      "OpenPlay": 7,
+      "SetPiece": 1,
+      "FromCorner": 2,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 5,
+      "RightFoot": 5,
+      "Head": 1
+    },
+    "tags": [
+      "EARLY_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Radosław Majecki",
+    "team": "Monaco",
+    "total_goals": 25,
+    "goals_1H": 9,
+    "goals_2H": 16,
+    "pct_1H": 36.0,
+    "pct_2H": 64.0,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 5,
+      "31-45": 3,
+      "46-60": 5,
+      "61-75": 6,
+      "76-90": 5,
+      "90+": 0
+    },
+    "pct_early": 24.0,
+    "pct_late": 20.0,
+    "by_situation": {
+      "OpenPlay": 18,
+      "Penalty": 4,
+      "SetPiece": 1,
+      "FromCorner": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 13,
+      "LeftFoot": 8,
+      "Head": 4
+    },
+    "tags": [
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Illan Meslier",
+    "team": "Leeds",
+    "total_goals": 28,
+    "goals_1H": 10,
+    "goals_2H": 18,
+    "pct_1H": 35.7,
+    "pct_2H": 64.3,
+    "by_period": {
+      "0-15": 4,
+      "16-30": 4,
+      "31-45": 2,
+      "46-60": 7,
+      "61-75": 5,
+      "76-90": 4,
+      "90+": 2
+    },
+    "pct_early": 28.6,
+    "pct_late": 21.4,
+    "by_situation": {
+      "FromCorner": 3,
+      "OpenPlay": 20,
+      "Penalty": 2,
+      "DirectFreekick": 2,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "Head": 4,
+      "RightFoot": 16,
+      "LeftFoot": 8
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "GK Cremonese",
+    "team": "Cremonese",
+    "total_goals": 17,
+    "goals_1H": 6,
+    "goals_2H": 11,
+    "pct_1H": 35.3,
+    "pct_2H": 64.7,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 3,
+      "46-60": 4,
+      "61-75": 6,
+      "76-90": 1,
+      "90+": 0
+    },
+    "pct_early": 17.6,
+    "pct_late": 5.9,
+    "by_situation": {
+      "OpenPlay": 14,
+      "Penalty": 2,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "Head": 4,
+      "RightFoot": 4,
+      "LeftFoot": 9
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Zion Suzuki",
+    "team": "Parma Calcio 1913",
+    "total_goals": 17,
+    "goals_1H": 6,
+    "goals_2H": 11,
+    "pct_1H": 35.3,
+    "pct_2H": 64.7,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 2,
+      "61-75": 4,
+      "76-90": 4,
+      "90+": 1
+    },
+    "pct_early": 23.5,
+    "pct_late": 29.4,
+    "by_situation": {
+      "FromCorner": 3,
+      "OpenPlay": 11,
+      "SetPiece": 1,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 7,
+      "LeftFoot": 8,
+      "Head": 2
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Yahia Fofana",
+    "team": "Angers",
+    "total_goals": 17,
+    "goals_1H": 6,
+    "goals_2H": 11,
+    "pct_1H": 35.3,
+    "pct_2H": 64.7,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 2,
+      "31-45": 3,
+      "46-60": 5,
+      "61-75": 6,
+      "76-90": 0,
+      "90+": 0
+    },
+    "pct_early": 17.6,
+    "pct_late": 0.0,
+    "by_situation": {
+      "OpenPlay": 13,
+      "FromCorner": 3,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 12,
+      "LeftFoot": 5
+    },
+    "tags": []
+  },
+  {
+    "goalkeeper": "Yvon Mvogo",
+    "team": "Lorient",
+    "total_goals": 26,
+    "goals_1H": 9,
+    "goals_2H": 17,
+    "pct_1H": 34.6,
+    "pct_2H": 65.4,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 3,
+      "31-45": 3,
+      "46-60": 5,
+      "61-75": 1,
+      "76-90": 7,
+      "90+": 4
+    },
+    "pct_early": 23.1,
+    "pct_late": 42.3,
+    "by_situation": {
+      "OpenPlay": 17,
+      "Penalty": 4,
+      "FromCorner": 5
+    },
+    "by_shot_type": {
+      "RightFoot": 13,
+      "LeftFoot": 9,
+      "Head": 4
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "LATE_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Kevin Trapp",
+    "team": "Eintracht Frankfurt",
+    "total_goals": 29,
+    "goals_1H": 10,
+    "goals_2H": 19,
+    "pct_1H": 34.5,
+    "pct_2H": 65.5,
+    "by_period": {
+      "0-15": 6,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 6,
+      "61-75": 4,
+      "76-90": 6,
+      "90+": 3
+    },
+    "pct_early": 27.6,
+    "pct_late": 31.0,
+    "by_situation": {
+      "OpenPlay": 22,
+      "DirectFreekick": 3,
+      "Penalty": 2,
+      "FromCorner": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 12,
+      "LeftFoot": 11,
+      "OtherBodyPart": 1,
+      "Head": 5
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Alisson Becker",
+    "team": "Liverpool",
+    "total_goals": 24,
+    "goals_1H": 8,
+    "goals_2H": 16,
+    "pct_1H": 33.3,
+    "pct_2H": 66.7,
+    "by_period": {
+      "0-15": 4,
+      "16-30": 1,
+      "31-45": 3,
+      "46-60": 4,
+      "61-75": 6,
+      "76-90": 3,
+      "90+": 3
+    },
+    "pct_early": 20.8,
+    "pct_late": 25.0,
+    "by_situation": {
+      "OpenPlay": 15,
+      "SetPiece": 2,
+      "FromCorner": 5,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "LeftFoot": 8,
+      "Head": 3,
+      "RightFoot": 13
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Dean Henderson",
+    "team": "Crystal Palace",
+    "total_goals": 12,
+    "goals_1H": 4,
+    "goals_2H": 8,
+    "pct_1H": 33.3,
+    "pct_2H": 66.7,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 0,
+      "31-45": 3,
+      "46-60": 3,
+      "61-75": 2,
+      "76-90": 2,
+      "90+": 1
+    },
+    "pct_early": 8.3,
+    "pct_late": 25.0,
+    "by_situation": {
+      "OpenPlay": 6,
+      "FromCorner": 2,
+      "Penalty": 1,
+      "SetPiece": 3
+    },
+    "by_shot_type": {
+      "RightFoot": 6,
+      "Head": 2,
+      "LeftFoot": 4
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER"
+    ]
+  },
+  {
+    "goalkeeper": "David Soria",
+    "team": "Getafe",
+    "total_goals": 15,
+    "goals_1H": 5,
+    "goals_2H": 10,
+    "pct_1H": 33.3,
+    "pct_2H": 66.7,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 3,
+      "61-75": 3,
+      "76-90": 2,
+      "90+": 2
+    },
+    "pct_early": 26.7,
+    "pct_late": 26.7,
+    "by_situation": {
+      "FromCorner": 3,
+      "OpenPlay": 10,
+      "SetPiece": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "Head": 2,
+      "RightFoot": 10,
+      "LeftFoot": 3
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Alex Meret",
+    "team": "Napoli",
+    "total_goals": 12,
+    "goals_1H": 4,
+    "goals_2H": 8,
+    "pct_1H": 33.3,
+    "pct_2H": 66.7,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 5,
+      "61-75": 1,
+      "76-90": 2,
+      "90+": 0
+    },
+    "pct_early": 16.7,
+    "pct_late": 16.7,
+    "by_situation": {
+      "FromCorner": 1,
+      "Penalty": 2,
+      "OpenPlay": 8,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 4,
+      "RightFoot": 7,
+      "Head": 1
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Mike Maignan",
+    "team": "AC Milan",
+    "total_goals": 9,
+    "goals_1H": 3,
+    "goals_2H": 6,
+    "pct_1H": 33.3,
+    "pct_2H": 66.7,
+    "by_period": {
+      "0-15": 0,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 4,
+      "61-75": 1,
+      "76-90": 1,
+      "90+": 0
+    },
+    "pct_early": 11.1,
+    "pct_late": 11.1,
+    "by_situation": {
+      "FromCorner": 2,
+      "OpenPlay": 5,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "Head": 2,
+      "LeftFoot": 5,
+      "RightFoot": 2
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "CORNER_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Marcin Bułka",
+    "team": "Nice",
+    "total_goals": 27,
+    "goals_1H": 9,
+    "goals_2H": 18,
+    "pct_1H": 33.3,
+    "pct_2H": 66.7,
+    "by_period": {
+      "0-15": 4,
+      "16-30": 3,
+      "31-45": 2,
+      "46-60": 8,
+      "61-75": 4,
+      "76-90": 3,
+      "90+": 3
+    },
+    "pct_early": 25.9,
+    "pct_late": 22.2,
+    "by_situation": {
+      "OpenPlay": 17,
+      "Penalty": 4,
+      "FromCorner": 5,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 16,
+      "LeftFoot": 7,
+      "Head": 4
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER"
+    ]
+  },
+  {
+    "goalkeeper": "Bernd Leno",
+    "team": "Fulham",
+    "total_goals": 22,
+    "goals_1H": 7,
+    "goals_2H": 15,
+    "pct_1H": 31.8,
+    "pct_2H": 68.2,
+    "by_period": {
+      "0-15": 0,
+      "16-30": 4,
+      "31-45": 3,
+      "46-60": 9,
+      "61-75": 0,
+      "76-90": 5,
+      "90+": 1
+    },
+    "pct_early": 18.2,
+    "pct_late": 27.3,
+    "by_situation": {
+      "Penalty": 2,
+      "FromCorner": 5,
+      "OpenPlay": 15
+    },
+    "by_shot_type": {
+      "LeftFoot": 6,
+      "Head": 2,
+      "RightFoot": 13,
+      "OtherBodyPart": 1
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Frederik Rønnow",
+    "team": "Union Berlin",
+    "total_goals": 22,
+    "goals_1H": 7,
+    "goals_2H": 15,
+    "pct_1H": 31.8,
+    "pct_2H": 68.2,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 5,
+      "46-60": 6,
+      "61-75": 1,
+      "76-90": 6,
+      "90+": 2
+    },
+    "pct_early": 9.1,
+    "pct_late": 36.4,
+    "by_situation": {
+      "OpenPlay": 17,
+      "FromCorner": 2,
+      "Penalty": 3
+    },
+    "by_shot_type": {
+      "RightFoot": 16,
+      "LeftFoot": 3,
+      "Head": 3
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Wladimiro Falcone",
+    "team": "Lecce",
+    "total_goals": 19,
+    "goals_1H": 6,
+    "goals_2H": 13,
+    "pct_1H": 31.6,
+    "pct_2H": 68.4,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 4,
+      "46-60": 3,
+      "61-75": 6,
+      "76-90": 3,
+      "90+": 1
+    },
+    "pct_early": 10.5,
+    "pct_late": 21.1,
+    "by_situation": {
+      "SetPiece": 2,
+      "OpenPlay": 12,
+      "FromCorner": 2,
+      "Penalty": 3
+    },
+    "by_shot_type": {
+      "Head": 6,
+      "LeftFoot": 5,
+      "RightFoot": 8
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "HEADER_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Augusto Batalla",
+    "team": "Rayo Vallecano",
+    "total_goals": 16,
+    "goals_1H": 5,
+    "goals_2H": 11,
+    "pct_1H": 31.2,
+    "pct_2H": 68.8,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 4,
+      "61-75": 3,
+      "76-90": 4,
+      "90+": 0
+    },
+    "pct_early": 18.8,
+    "pct_late": 25.0,
+    "by_situation": {
+      "OpenPlay": 11,
+      "Penalty": 3,
+      "FromCorner": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 9,
+      "LeftFoot": 7
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Steve Mandanda",
+    "team": "Rennes",
+    "total_goals": 23,
+    "goals_1H": 7,
+    "goals_2H": 16,
+    "pct_1H": 30.4,
+    "pct_2H": 69.6,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 4,
+      "46-60": 4,
+      "61-75": 5,
+      "76-90": 5,
+      "90+": 2
+    },
+    "pct_early": 13.0,
+    "pct_late": 30.4,
+    "by_situation": {
+      "FromCorner": 1,
+      "OpenPlay": 18,
+      "SetPiece": 1,
+      "Penalty": 3
+    },
+    "by_shot_type": {
+      "RightFoot": 17,
+      "LeftFoot": 3,
+      "Head": 3
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Alban Lafont",
+    "team": "Nantes",
+    "total_goals": 23,
+    "goals_1H": 7,
+    "goals_2H": 16,
+    "pct_1H": 30.4,
+    "pct_2H": 69.6,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 1,
+      "31-45": 3,
+      "46-60": 4,
+      "61-75": 4,
+      "76-90": 6,
+      "90+": 2
+    },
+    "pct_early": 17.4,
+    "pct_late": 34.8,
+    "by_situation": {
+      "FromCorner": 2,
+      "OpenPlay": 19,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 13,
+      "Head": 3,
+      "LeftFoot": 7
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Ørjan Nyland",
+    "team": "Sevilla",
+    "total_goals": 24,
+    "goals_1H": 7,
+    "goals_2H": 17,
+    "pct_1H": 29.2,
+    "pct_2H": 70.8,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 3,
+      "31-45": 3,
+      "46-60": 5,
+      "61-75": 5,
+      "76-90": 6,
+      "90+": 1
+    },
+    "pct_early": 16.7,
+    "pct_late": 29.2,
+    "by_situation": {
+      "Penalty": 4,
+      "OpenPlay": 17,
+      "FromCorner": 1,
+      "DirectFreekick": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 13,
+      "LeftFoot": 10,
+      "Head": 1
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "André Onana",
+    "team": "Manchester United",
+    "total_goals": 21,
+    "goals_1H": 6,
+    "goals_2H": 15,
+    "pct_1H": 28.6,
+    "pct_2H": 71.4,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 3,
+      "31-45": 1,
+      "46-60": 4,
+      "61-75": 4,
+      "76-90": 5,
+      "90+": 2
+    },
+    "pct_early": 23.8,
+    "pct_late": 33.3,
+    "by_situation": {
+      "FromCorner": 5,
+      "OpenPlay": 14,
+      "DirectFreekick": 1,
+      "Penalty": 1
+    },
+    "by_shot_type": {
+      "Head": 6,
+      "RightFoot": 9,
+      "LeftFoot": 6
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "LATE_VULNERABLE",
+      "HEADER_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "GK FC Cologne",
+    "team": "FC Cologne",
+    "total_goals": 21,
+    "goals_1H": 6,
+    "goals_2H": 15,
+    "pct_1H": 28.6,
+    "pct_2H": 71.4,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 2,
+      "31-45": 3,
+      "46-60": 7,
+      "61-75": 3,
+      "76-90": 2,
+      "90+": 3
+    },
+    "pct_early": 14.3,
+    "pct_late": 23.8,
+    "by_situation": {
+      "FromCorner": 6,
+      "SetPiece": 1,
+      "OpenPlay": 9,
+      "DirectFreekick": 2,
+      "Penalty": 3
+    },
+    "by_shot_type": {
+      "Head": 5,
+      "RightFoot": 8,
+      "LeftFoot": 8
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Thibaut Courtois",
+    "team": "Real Madrid",
+    "total_goals": 15,
+    "goals_1H": 4,
+    "goals_2H": 11,
+    "pct_1H": 26.7,
+    "pct_2H": 73.3,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 6,
+      "61-75": 2,
+      "76-90": 1,
+      "90+": 2
+    },
+    "pct_early": 13.3,
+    "pct_late": 20.0,
+    "by_situation": {
+      "FromCorner": 1,
+      "Penalty": 2,
+      "OpenPlay": 10,
+      "SetPiece": 1,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "Head": 4,
+      "LeftFoot": 2,
+      "RightFoot": 9
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "HEADER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Unai Simón",
+    "team": "Athletic Club",
+    "total_goals": 19,
+    "goals_1H": 5,
+    "goals_2H": 14,
+    "pct_1H": 26.3,
+    "pct_2H": 73.7,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 0,
+      "31-45": 2,
+      "46-60": 5,
+      "61-75": 3,
+      "76-90": 3,
+      "90+": 3
+    },
+    "pct_early": 15.8,
+    "pct_late": 31.6,
+    "by_situation": {
+      "OpenPlay": 17,
+      "FromCorner": 2
+    },
+    "by_shot_type": {
+      "LeftFoot": 7,
+      "Head": 3,
+      "RightFoot": 9
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Djordje Petrović",
+    "team": "Strasbourg",
+    "total_goals": 19,
+    "goals_1H": 5,
+    "goals_2H": 14,
+    "pct_1H": 26.3,
+    "pct_2H": 73.7,
+    "by_period": {
+      "0-15": 3,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 5,
+      "61-75": 1,
+      "76-90": 6,
+      "90+": 2
+    },
+    "pct_early": 21.1,
+    "pct_late": 42.1,
+    "by_situation": {
+      "OpenPlay": 15,
+      "Penalty": 2,
+      "FromCorner": 1,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "LeftFoot": 7,
+      "RightFoot": 9,
+      "Head": 3
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "LATE_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Ederson",
+    "team": "Manchester City",
+    "total_goals": 16,
+    "goals_1H": 4,
+    "goals_2H": 12,
+    "pct_1H": 25.0,
+    "pct_2H": 75.0,
+    "by_period": {
+      "0-15": 0,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 4,
+      "61-75": 5,
+      "76-90": 2,
+      "90+": 1
+    },
+    "pct_early": 12.5,
+    "pct_late": 18.8,
+    "by_situation": {
+      "OpenPlay": 9,
+      "Penalty": 1,
+      "FromCorner": 5,
+      "SetPiece": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 11,
+      "LeftFoot": 4,
+      "Head": 1
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Nick Pope",
+    "team": "Newcastle United",
+    "total_goals": 18,
+    "goals_1H": 4,
+    "goals_2H": 14,
+    "pct_1H": 22.2,
+    "pct_2H": 77.8,
+    "by_period": {
+      "0-15": 0,
+      "16-30": 0,
+      "31-45": 4,
+      "46-60": 2,
+      "61-75": 2,
+      "76-90": 4,
+      "90+": 6
+    },
+    "pct_early": 0.0,
+    "pct_late": 55.6,
+    "by_situation": {
+      "OpenPlay": 12,
+      "FromCorner": 4,
+      "Penalty": 2
+    },
+    "by_shot_type": {
+      "RightFoot": 10,
+      "Head": 5,
+      "LeftFoot": 3
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "LATE_VULNERABLE",
+      "HEADER_VULNERABLE",
+      "CORNER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Sergio Herrera",
+    "team": "Osasuna",
+    "total_goals": 18,
+    "goals_1H": 4,
+    "goals_2H": 14,
+    "pct_1H": 22.2,
+    "pct_2H": 77.8,
+    "by_period": {
+      "0-15": 0,
+      "16-30": 3,
+      "31-45": 1,
+      "46-60": 5,
+      "61-75": 5,
+      "76-90": 3,
+      "90+": 1
+    },
+    "pct_early": 16.7,
+    "pct_late": 22.2,
+    "by_situation": {
+      "Penalty": 3,
+      "OpenPlay": 14,
+      "FromCorner": 1
+    },
+    "by_shot_type": {
+      "RightFoot": 10,
+      "LeftFoot": 6,
+      "Head": 1,
+      "OtherBodyPart": 1
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "PENALTY_CONCEDER"
+    ]
+  },
+  {
+    "goalkeeper": "Gregor Kobel",
+    "team": "Borussia Dortmund",
+    "total_goals": 11,
+    "goals_1H": 2,
+    "goals_2H": 9,
+    "pct_1H": 18.2,
+    "pct_2H": 81.8,
+    "by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 0,
+      "46-60": 2,
+      "61-75": 1,
+      "76-90": 5,
+      "90+": 1
+    },
+    "pct_early": 18.2,
+    "pct_late": 54.5,
+    "by_situation": {
+      "OpenPlay": 7,
+      "Penalty": 1,
+      "SetPiece": 1,
+      "FromCorner": 2
+    },
+    "by_shot_type": {
+      "Head": 3,
+      "LeftFoot": 3,
+      "RightFoot": 5
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "LATE_VULNERABLE",
+      "HEADER_VULNERABLE"
+    ]
+  },
+  {
+    "goalkeeper": "Diego Conde",
+    "team": "Villarreal",
+    "total_goals": 13,
+    "goals_1H": 2,
+    "goals_2H": 11,
+    "pct_1H": 15.4,
+    "pct_2H": 84.6,
+    "by_period": {
+      "0-15": 2,
+      "16-30": 0,
+      "31-45": 0,
+      "46-60": 5,
+      "61-75": 2,
+      "76-90": 2,
+      "90+": 2
+    },
+    "pct_early": 15.4,
+    "pct_late": 30.8,
+    "by_situation": {
+      "OpenPlay": 10,
+      "Penalty": 2,
+      "DirectFreekick": 1
+    },
+    "by_shot_type": {
+      "Head": 2,
+      "LeftFoot": 6,
+      "RightFoot": 5
+    },
+    "tags": [
+      "SECOND_HALF_COLLAPSER",
+      "LATE_VULNERABLE",
+      "PENALTY_CONCEDER"
+    ]
+  }
+]

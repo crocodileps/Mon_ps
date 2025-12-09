@@ -1,0 +1,5814 @@
+{
+  "Aston Villa": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 724.0,
+        "xG_for_90": 0.997,
+        "xG_against_90": 1.652,
+        "goals_for_90": 1.367,
+        "goals_against_90": 0.87,
+        "net_xG_90": -0.655,
+        "shots_for": 80,
+        "shots_against": 100
+      },
+      "Goal diff -1": {
+        "time": 267.0,
+        "xG_for_90": 1.259,
+        "xG_against_90": 1.035,
+        "goals_for_90": 1.348,
+        "goals_against_90": 1.011,
+        "net_xG_90": 0.224,
+        "shots_for": 44,
+        "shots_against": 20
+      },
+      "Goal diff +1": {
+        "time": 260.0,
+        "xG_for_90": 1.837,
+        "xG_against_90": 1.37,
+        "goals_for_90": 1.385,
+        "goals_against_90": 0.692,
+        "net_xG_90": 0.467,
+        "shots_for": 32,
+        "shots_against": 49
+      },
+      "Goal diff > +1": {
+        "time": 110.0,
+        "xG_for_90": 0.677,
+        "xG_against_90": 1.872,
+        "goals_for_90": 1.636,
+        "goals_against_90": 1.636,
+        "net_xG_90": -1.196,
+        "shots_for": 9,
+        "shots_against": 18
+      },
+      "Goal diff < -1": {
+        "time": 72.0,
+        "xG_for_90": 1.774,
+        "xG_against_90": 1.362,
+        "goals_for_90": 1.25,
+        "goals_against_90": 1.25,
+        "net_xG_90": 0.412,
+        "shots_for": 12,
+        "shots_against": 5
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 0,
+      "closing_ability": "POOR"
+    }
+  },
+  "Everton": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 711.0,
+        "xG_for_90": 1.44,
+        "xG_against_90": 1.09,
+        "goals_for_90": 1.266,
+        "goals_against_90": 0.759,
+        "net_xG_90": 0.35,
+        "shots_for": 78,
+        "shots_against": 80
+      },
+      "Goal diff +1": {
+        "time": 291.0,
+        "xG_for_90": 0.889,
+        "xG_against_90": 1.327,
+        "goals_for_90": 1.237,
+        "goals_against_90": 0.928,
+        "net_xG_90": -0.439,
+        "shots_for": 23,
+        "shots_against": 58
+      },
+      "Goal diff < -1": {
+        "time": 173.0,
+        "xG_for_90": 1.201,
+        "xG_against_90": 2.122,
+        "goals_for_90": 1.04,
+        "goals_against_90": 1.561,
+        "net_xG_90": -0.92,
+        "shots_for": 21,
+        "shots_against": 20
+      },
+      "Goal diff -1": {
+        "time": 142.0,
+        "xG_for_90": 1.293,
+        "xG_against_90": 2.045,
+        "goals_for_90": 0.634,
+        "goals_against_90": 2.535,
+        "net_xG_90": -0.752,
+        "shots_for": 19,
+        "shots_against": 22
+      },
+      "Goal diff > +1": {
+        "time": 118.0,
+        "xG_for_90": 1.637,
+        "xG_against_90": 1.2,
+        "goals_for_90": 0.763,
+        "goals_against_90": 0.763,
+        "net_xG_90": 0.438,
+        "shots_for": 19,
+        "shots_against": 14
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0.928,
+      "closing_ability": "POOR"
+    }
+  },
+  "Bournemouth": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 699.0,
+        "xG_for_90": 1.376,
+        "xG_against_90": 1.068,
+        "goals_for_90": 1.288,
+        "goals_against_90": 1.288,
+        "net_xG_90": 0.309,
+        "shots_for": 79,
+        "shots_against": 80
+      },
+      "Goal diff +1": {
+        "time": 341.0,
+        "xG_for_90": 1.44,
+        "xG_against_90": 0.96,
+        "goals_for_90": 1.056,
+        "goals_against_90": 1.32,
+        "net_xG_90": 0.48,
+        "shots_for": 53,
+        "shots_against": 34
+      },
+      "Goal diff -1": {
+        "time": 191.0,
+        "xG_for_90": 1.657,
+        "xG_against_90": 1.841,
+        "goals_for_90": 2.356,
+        "goals_against_90": 2.356,
+        "net_xG_90": -0.184,
+        "shots_for": 32,
+        "shots_against": 26
+      },
+      "Goal diff < -1": {
+        "time": 123.0,
+        "xG_for_90": 2.23,
+        "xG_against_90": 0.988,
+        "goals_for_90": 1.463,
+        "goals_against_90": 1.463,
+        "net_xG_90": 1.242,
+        "shots_for": 24,
+        "shots_against": 16
+      },
+      "Goal diff > +1": {
+        "time": 83.0,
+        "xG_for_90": 0.628,
+        "xG_against_90": 2.326,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.169,
+        "net_xG_90": -1.698,
+        "shots_for": 8,
+        "shots_against": 14
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.32,
+      "closing_ability": "POOR"
+    }
+  },
+  "Sunderland": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 950.0,
+        "xG_for_90": 0.703,
+        "xG_against_90": 1.318,
+        "goals_for_90": 0.758,
+        "goals_against_90": 0.947,
+        "net_xG_90": -0.615,
+        "shots_for": 82,
+        "shots_against": 128
+      },
+      "Goal diff +1": {
+        "time": 179.0,
+        "xG_for_90": 1.578,
+        "xG_against_90": 2.006,
+        "goals_for_90": 1.006,
+        "goals_against_90": 1.006,
+        "net_xG_90": -0.428,
+        "shots_for": 17,
+        "shots_against": 43
+      },
+      "Goal diff -1": {
+        "time": 164.0,
+        "xG_for_90": 1.801,
+        "xG_against_90": 1.789,
+        "goals_for_90": 3.293,
+        "goals_against_90": 2.195,
+        "net_xG_90": 0.012,
+        "shots_for": 25,
+        "shots_against": 23
+      },
+      "Goal diff < -1": {
+        "time": 135.0,
+        "xG_for_90": 1.488,
+        "xG_against_90": 1.91,
+        "goals_for_90": 0.667,
+        "goals_against_90": 0.667,
+        "net_xG_90": -0.423,
+        "shots_for": 19,
+        "shots_against": 25
+      },
+      "Goal diff > +1": {
+        "time": 22.0,
+        "xG_for_90": 0.378,
+        "xG_against_90": 1.622,
+        "goals_for_90": 4.091,
+        "goals_against_90": 0.0,
+        "net_xG_90": -1.244,
+        "shots_for": 1,
+        "shots_against": 11
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.006,
+      "closing_ability": "POOR"
+    }
+  },
+  "Crystal Palace": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 880.0,
+        "xG_for_90": 1.609,
+        "xG_against_90": 0.991,
+        "goals_for_90": 1.33,
+        "goals_against_90": 0.511,
+        "net_xG_90": 0.618,
+        "shots_for": 103,
+        "shots_against": 79
+      },
+      "Goal diff +1": {
+        "time": 321.0,
+        "xG_for_90": 2.001,
+        "xG_against_90": 2.057,
+        "goals_for_90": 0.841,
+        "goals_against_90": 1.682,
+        "net_xG_90": -0.055,
+        "shots_for": 37,
+        "shots_against": 56
+      },
+      "Goal diff -1": {
+        "time": 140.0,
+        "xG_for_90": 1.88,
+        "xG_against_90": 0.855,
+        "goals_for_90": 1.286,
+        "goals_against_90": 0.643,
+        "net_xG_90": 1.024,
+        "shots_for": 18,
+        "shots_against": 16
+      },
+      "Goal diff > +1": {
+        "time": 93.0,
+        "xG_for_90": 1.61,
+        "xG_against_90": 1.926,
+        "goals_for_90": 0.968,
+        "goals_against_90": 0.0,
+        "net_xG_90": -0.316,
+        "shots_for": 10,
+        "shots_against": 11
+      },
+      "Goal diff < -1": {
+        "time": 22.0,
+        "xG_for_90": 4.484,
+        "xG_against_90": 0.512,
+        "goals_for_90": 4.091,
+        "goals_against_90": 0.0,
+        "net_xG_90": 3.972,
+        "shots_for": 6,
+        "shots_against": 2
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.682,
+      "closing_ability": "POOR"
+    }
+  },
+  "Chelsea": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 788.0,
+        "xG_for_90": 1.406,
+        "xG_against_90": 0.875,
+        "goals_for_90": 1.371,
+        "goals_against_90": 0.685,
+        "net_xG_90": 0.531,
+        "shots_for": 115,
+        "shots_against": 80
+      },
+      "Goal diff +1": {
+        "time": 302.0,
+        "xG_for_90": 1.872,
+        "xG_against_90": 1.676,
+        "goals_for_90": 1.49,
+        "goals_against_90": 1.49,
+        "net_xG_90": 0.196,
+        "shots_for": 38,
+        "shots_against": 26
+      },
+      "Goal diff > +1": {
+        "time": 162.0,
+        "xG_for_90": 3.446,
+        "xG_against_90": 1.64,
+        "goals_for_90": 2.222,
+        "goals_against_90": 0.0,
+        "net_xG_90": 1.806,
+        "shots_for": 27,
+        "shots_against": 26
+      },
+      "Goal diff -1": {
+        "time": 139.0,
+        "xG_for_90": 0.968,
+        "xG_against_90": 1.514,
+        "goals_for_90": 1.295,
+        "goals_against_90": 2.59,
+        "net_xG_90": -0.546,
+        "shots_for": 22,
+        "shots_against": 12
+      },
+      "Goal diff < -1": {
+        "time": 53.0,
+        "xG_for_90": 2.233,
+        "xG_against_90": 1.446,
+        "goals_for_90": 3.396,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.787,
+        "shots_for": 7,
+        "shots_against": 6
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.49,
+      "closing_ability": "POOR"
+    }
+  },
+  "West Ham": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 787.0,
+        "xG_for_90": 0.837,
+        "xG_against_90": 1.883,
+        "goals_for_90": 0.686,
+        "goals_against_90": 1.487,
+        "net_xG_90": -1.046,
+        "shots_for": 72,
+        "shots_against": 125
+      },
+      "Goal diff -1": {
+        "time": 301.0,
+        "xG_for_90": 0.982,
+        "xG_against_90": 1.592,
+        "goals_for_90": 1.495,
+        "goals_against_90": 2.093,
+        "net_xG_90": -0.61,
+        "shots_for": 37,
+        "shots_against": 41
+      },
+      "Goal diff < -1": {
+        "time": 192.0,
+        "xG_for_90": 0.902,
+        "xG_against_90": 1.969,
+        "goals_for_90": 0.469,
+        "goals_against_90": 1.875,
+        "net_xG_90": -1.067,
+        "shots_for": 26,
+        "shots_against": 28
+      },
+      "Goal diff +1": {
+        "time": 119.0,
+        "xG_for_90": 2.647,
+        "xG_against_90": 2.523,
+        "goals_for_90": 3.025,
+        "goals_against_90": 2.269,
+        "net_xG_90": 0.123,
+        "shots_for": 14,
+        "shots_against": 26
+      },
+      "Goal diff > +1": {
+        "time": 43.0,
+        "xG_for_90": 2.027,
+        "xG_against_90": 4.233,
+        "goals_for_90": 2.093,
+        "goals_against_90": 4.186,
+        "net_xG_90": -2.205,
+        "shots_for": 3,
+        "shots_against": 17
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 2.269,
+      "closing_ability": "POOR"
+    }
+  },
+  "Tottenham": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 595.0,
+        "xG_for_90": 0.876,
+        "xG_against_90": 1.19,
+        "goals_for_90": 1.361,
+        "goals_against_90": 1.513,
+        "net_xG_90": -0.315,
+        "shots_for": 47,
+        "shots_against": 65
+      },
+      "Goal diff -1": {
+        "time": 322.0,
+        "xG_for_90": 1.112,
+        "xG_against_90": 1.669,
+        "goals_for_90": 1.398,
+        "goals_against_90": 0.839,
+        "net_xG_90": -0.558,
+        "shots_for": 36,
+        "shots_against": 46
+      },
+      "Goal diff > +1": {
+        "time": 214.0,
+        "xG_for_90": 1.836,
+        "xG_against_90": 0.958,
+        "goals_for_90": 1.262,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.877,
+        "shots_for": 31,
+        "shots_against": 21
+      },
+      "Goal diff +1": {
+        "time": 190.0,
+        "xG_for_90": 1.532,
+        "xG_against_90": 1.224,
+        "goals_for_90": 2.368,
+        "goals_against_90": 1.421,
+        "net_xG_90": 0.308,
+        "shots_for": 20,
+        "shots_against": 30
+      },
+      "Goal diff < -1": {
+        "time": 120.0,
+        "xG_for_90": 0.844,
+        "xG_against_90": 1.043,
+        "goals_for_90": 2.25,
+        "goals_against_90": 1.5,
+        "net_xG_90": -0.199,
+        "shots_for": 13,
+        "shots_against": 12
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.421,
+      "closing_ability": "POOR"
+    }
+  },
+  "Arsenal": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 721.0,
+        "xG_for_90": 1.676,
+        "xG_against_90": 0.912,
+        "goals_for_90": 1.373,
+        "goals_against_90": 0.874,
+        "net_xG_90": 0.764,
+        "shots_for": 96,
+        "shots_against": 61
+      },
+      "Goal diff +1": {
+        "time": 331.0,
+        "xG_for_90": 2.302,
+        "xG_against_90": 0.76,
+        "goals_for_90": 1.631,
+        "goals_against_90": 0.272,
+        "net_xG_90": 1.542,
+        "shots_for": 53,
+        "shots_against": 33
+      },
+      "Goal diff > +1": {
+        "time": 220.0,
+        "xG_for_90": 1.548,
+        "xG_against_90": 0.507,
+        "goals_for_90": 2.455,
+        "goals_against_90": 0.409,
+        "net_xG_90": 1.041,
+        "shots_for": 32,
+        "shots_against": 13
+      },
+      "Goal diff -1": {
+        "time": 171.0,
+        "xG_for_90": 2.044,
+        "xG_against_90": 0.52,
+        "goals_for_90": 2.632,
+        "goals_against_90": 0.0,
+        "net_xG_90": 1.523,
+        "shots_for": 36,
+        "shots_against": 9
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Newcastle United": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 894.0,
+        "xG_for_90": 1.421,
+        "xG_against_90": 0.966,
+        "goals_for_90": 1.309,
+        "goals_against_90": 0.705,
+        "net_xG_90": 0.455,
+        "shots_for": 112,
+        "shots_against": 83
+      },
+      "Goal diff +1": {
+        "time": 301.0,
+        "xG_for_90": 1.562,
+        "xG_against_90": 1.47,
+        "goals_for_90": 0.897,
+        "goals_against_90": 2.093,
+        "net_xG_90": 0.092,
+        "shots_for": 36,
+        "shots_against": 50
+      },
+      "Goal diff -1": {
+        "time": 149.0,
+        "xG_for_90": 1.154,
+        "xG_against_90": 1.27,
+        "goals_for_90": 1.208,
+        "goals_against_90": 1.812,
+        "net_xG_90": -0.116,
+        "shots_for": 25,
+        "shots_against": 16
+      },
+      "Goal diff > +1": {
+        "time": 106.0,
+        "xG_for_90": 1.894,
+        "xG_against_90": 1.645,
+        "goals_for_90": 1.698,
+        "goals_against_90": 1.698,
+        "net_xG_90": 0.249,
+        "shots_for": 15,
+        "shots_against": 10
+      },
+      "Goal diff < -1": {
+        "time": 11.0,
+        "xG_for_90": 2.686,
+        "xG_against_90": 5.199,
+        "goals_for_90": 8.182,
+        "goals_against_90": 0.0,
+        "net_xG_90": -2.514,
+        "shots_for": 1,
+        "shots_against": 2
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 2.093,
+      "closing_ability": "POOR"
+    }
+  },
+  "Liverpool": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 729.0,
+        "xG_for_90": 1.368,
+        "xG_against_90": 1.065,
+        "goals_for_90": 1.358,
+        "goals_against_90": 1.235,
+        "net_xG_90": 0.303,
+        "shots_for": 114,
+        "shots_against": 68
+      },
+      "Goal diff -1": {
+        "time": 321.0,
+        "xG_for_90": 2.833,
+        "xG_against_90": 1.974,
+        "goals_for_90": 1.121,
+        "goals_against_90": 1.121,
+        "net_xG_90": 0.859,
+        "shots_for": 59,
+        "shots_against": 42
+      },
+      "Goal diff +1": {
+        "time": 188.0,
+        "xG_for_90": 1.55,
+        "xG_against_90": 0.935,
+        "goals_for_90": 3.351,
+        "goals_against_90": 1.915,
+        "net_xG_90": 0.615,
+        "shots_for": 23,
+        "shots_against": 24
+      },
+      "Goal diff < -1": {
+        "time": 119.0,
+        "xG_for_90": 1.912,
+        "xG_against_90": 1.276,
+        "goals_for_90": 1.513,
+        "goals_against_90": 1.513,
+        "net_xG_90": 0.636,
+        "shots_for": 23,
+        "shots_against": 20
+      },
+      "Goal diff > +1": {
+        "time": 102.0,
+        "xG_for_90": 0.587,
+        "xG_against_90": 2.046,
+        "goals_for_90": 0.0,
+        "goals_against_90": 3.529,
+        "net_xG_90": -1.459,
+        "shots_for": 10,
+        "shots_against": 13
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.915,
+      "closing_ability": "POOR"
+    }
+  },
+  "Manchester City": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 545.0,
+        "xG_for_90": 2.284,
+        "xG_against_90": 1.021,
+        "goals_for_90": 2.477,
+        "goals_against_90": 0.826,
+        "net_xG_90": 1.263,
+        "shots_for": 81,
+        "shots_against": 39
+      },
+      "Goal diff +1": {
+        "time": 416.0,
+        "xG_for_90": 1.869,
+        "xG_against_90": 1.262,
+        "goals_for_90": 1.947,
+        "goals_against_90": 1.082,
+        "net_xG_90": 0.607,
+        "shots_for": 43,
+        "shots_against": 44
+      },
+      "Goal diff > +1": {
+        "time": 339.0,
+        "xG_for_90": 2.499,
+        "xG_against_90": 1.121,
+        "goals_for_90": 2.655,
+        "goals_against_90": 1.327,
+        "net_xG_90": 1.378,
+        "shots_for": 64,
+        "shots_against": 42
+      },
+      "Goal diff -1": {
+        "time": 97.0,
+        "xG_for_90": 1.621,
+        "xG_against_90": 1.055,
+        "goals_for_90": 0.928,
+        "goals_against_90": 0.928,
+        "net_xG_90": 0.566,
+        "shots_for": 24,
+        "shots_against": 7
+      },
+      "Goal diff < -1": {
+        "time": 47.0,
+        "xG_for_90": 1.45,
+        "xG_against_90": 0.85,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.6,
+        "shots_for": 6,
+        "shots_against": 8
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.082,
+      "closing_ability": "POOR"
+    }
+  },
+  "Manchester United": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 561.0,
+        "xG_for_90": 2.035,
+        "xG_against_90": 1.125,
+        "goals_for_90": 2.086,
+        "goals_against_90": 1.123,
+        "net_xG_90": 0.91,
+        "shots_for": 74,
+        "shots_against": 53
+      },
+      "Goal diff -1": {
+        "time": 299.0,
+        "xG_for_90": 1.628,
+        "xG_against_90": 1.118,
+        "goals_for_90": 0.903,
+        "goals_against_90": 0.903,
+        "net_xG_90": 0.511,
+        "shots_for": 66,
+        "shots_against": 23
+      },
+      "Goal diff +1": {
+        "time": 286.0,
+        "xG_for_90": 2.073,
+        "xG_against_90": 2.082,
+        "goals_for_90": 1.259,
+        "goals_against_90": 2.203,
+        "net_xG_90": -0.008,
+        "shots_for": 45,
+        "shots_against": 45
+      },
+      "Goal diff > +1": {
+        "time": 153.0,
+        "xG_for_90": 1.079,
+        "xG_against_90": 1.153,
+        "goals_for_90": 0.588,
+        "goals_against_90": 1.765,
+        "net_xG_90": -0.073,
+        "shots_for": 16,
+        "shots_against": 25
+      },
+      "Goal diff < -1": {
+        "time": 49.0,
+        "xG_for_90": 6.436,
+        "xG_against_90": 2.599,
+        "goals_for_90": 1.837,
+        "goals_against_90": 1.837,
+        "net_xG_90": 3.837,
+        "shots_for": 16,
+        "shots_against": 8
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 2.203,
+      "closing_ability": "POOR"
+    }
+  },
+  "Burnley": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 773.0,
+        "xG_for_90": 0.496,
+        "xG_against_90": 2.064,
+        "goals_for_90": 0.582,
+        "goals_against_90": 1.863,
+        "net_xG_90": -1.568,
+        "shots_for": 56,
+        "shots_against": 121
+      },
+      "Goal diff -1": {
+        "time": 340.0,
+        "xG_for_90": 1.403,
+        "xG_against_90": 3.121,
+        "goals_for_90": 1.324,
+        "goals_against_90": 2.118,
+        "net_xG_90": -1.718,
+        "shots_for": 44,
+        "shots_against": 62
+      },
+      "Goal diff < -1": {
+        "time": 176.0,
+        "xG_for_90": 1.686,
+        "xG_against_90": 1.571,
+        "goals_for_90": 1.534,
+        "goals_against_90": 1.534,
+        "net_xG_90": 0.115,
+        "shots_for": 17,
+        "shots_against": 25
+      },
+      "Goal diff +1": {
+        "time": 115.0,
+        "xG_for_90": 1.132,
+        "xG_against_90": 1.837,
+        "goals_for_90": 2.348,
+        "goals_against_90": 1.565,
+        "net_xG_90": -0.704,
+        "shots_for": 5,
+        "shots_against": 18
+      },
+      "Goal diff > +1": {
+        "time": 54.0,
+        "xG_for_90": 0.09,
+        "xG_against_90": 4.291,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.667,
+        "net_xG_90": -4.201,
+        "shots_for": 1,
+        "shots_against": 18
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.565,
+      "closing_ability": "POOR"
+    }
+  },
+  "Brighton": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 671.0,
+        "xG_for_90": 1.464,
+        "xG_against_90": 1.527,
+        "goals_for_90": 1.341,
+        "goals_against_90": 1.341,
+        "net_xG_90": -0.063,
+        "shots_for": 89,
+        "shots_against": 72
+      },
+      "Goal diff -1": {
+        "time": 349.0,
+        "xG_for_90": 1.663,
+        "xG_against_90": 0.942,
+        "goals_for_90": 1.547,
+        "goals_against_90": 1.032,
+        "net_xG_90": 0.721,
+        "shots_for": 58,
+        "shots_against": 35
+      },
+      "Goal diff +1": {
+        "time": 275.0,
+        "xG_for_90": 1.632,
+        "xG_against_90": 1.654,
+        "goals_for_90": 1.636,
+        "goals_against_90": 1.309,
+        "net_xG_90": -0.022,
+        "shots_for": 34,
+        "shots_against": 47
+      },
+      "Goal diff < -1": {
+        "time": 101.0,
+        "xG_for_90": 1.627,
+        "xG_against_90": 1.841,
+        "goals_for_90": 2.673,
+        "goals_against_90": 0.891,
+        "net_xG_90": -0.214,
+        "shots_for": 20,
+        "shots_against": 12
+      },
+      "Goal diff > +1": {
+        "time": 57.0,
+        "xG_for_90": 1.056,
+        "xG_against_90": 3.675,
+        "goals_for_90": 1.579,
+        "goals_against_90": 3.158,
+        "net_xG_90": -2.619,
+        "shots_for": 2,
+        "shots_against": 10
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.309,
+      "closing_ability": "POOR"
+    }
+  },
+  "Fulham": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 781.0,
+        "xG_for_90": 1.139,
+        "xG_against_90": 1.598,
+        "goals_for_90": 0.807,
+        "goals_against_90": 1.498,
+        "net_xG_90": -0.459,
+        "shots_for": 93,
+        "shots_against": 98
+      },
+      "Goal diff -1": {
+        "time": 260.0,
+        "xG_for_90": 1.713,
+        "xG_against_90": 1.868,
+        "goals_for_90": 1.731,
+        "goals_against_90": 1.731,
+        "net_xG_90": -0.155,
+        "shots_for": 36,
+        "shots_against": 26
+      },
+      "Goal diff +1": {
+        "time": 148.0,
+        "xG_for_90": 1.373,
+        "xG_against_90": 1.017,
+        "goals_for_90": 1.824,
+        "goals_against_90": 1.216,
+        "net_xG_90": 0.355,
+        "shots_for": 20,
+        "shots_against": 17
+      },
+      "Goal diff < -1": {
+        "time": 140.0,
+        "xG_for_90": 0.705,
+        "xG_against_90": 1.782,
+        "goals_for_90": 2.571,
+        "goals_against_90": 1.929,
+        "net_xG_90": -1.077,
+        "shots_for": 17,
+        "shots_against": 14
+      },
+      "Goal diff > +1": {
+        "time": 113.0,
+        "xG_for_90": 2.031,
+        "xG_against_90": 0.448,
+        "goals_for_90": 0.796,
+        "goals_against_90": 0.796,
+        "net_xG_90": 1.583,
+        "shots_for": 13,
+        "shots_against": 11
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.216,
+      "closing_ability": "POOR"
+    }
+  },
+  "Wolverhampton Wanderers": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 603.0,
+        "xG_for_90": 0.902,
+        "xG_against_90": 1.659,
+        "goals_for_90": 0.448,
+        "goals_against_90": 2.09,
+        "net_xG_90": -0.757,
+        "shots_for": 45,
+        "shots_against": 80
+      },
+      "Goal diff -1": {
+        "time": 388.0,
+        "xG_for_90": 0.626,
+        "xG_against_90": 1.506,
+        "goals_for_90": 0.464,
+        "goals_against_90": 1.856,
+        "net_xG_90": -0.881,
+        "shots_for": 40,
+        "shots_against": 52
+      },
+      "Goal diff < -1": {
+        "time": 211.0,
+        "xG_for_90": 1.683,
+        "xG_against_90": 2.269,
+        "goals_for_90": 0.853,
+        "goals_against_90": 1.706,
+        "net_xG_90": -0.586,
+        "shots_for": 36,
+        "shots_against": 30
+      },
+      "Goal diff +1": {
+        "time": 131.0,
+        "xG_for_90": 0.442,
+        "xG_against_90": 1.011,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.061,
+        "net_xG_90": -0.568,
+        "shots_for": 7,
+        "shots_against": 22
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 2.061,
+      "closing_ability": "POOR"
+    }
+  },
+  "Brentford": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 575.0,
+        "xG_for_90": 1.952,
+        "xG_against_90": 0.762,
+        "goals_for_90": 1.722,
+        "goals_against_90": 1.565,
+        "net_xG_90": 1.19,
+        "shots_for": 61,
+        "shots_against": 60
+      },
+      "Goal diff +1": {
+        "time": 361.0,
+        "xG_for_90": 1.715,
+        "xG_against_90": 1.705,
+        "goals_for_90": 1.745,
+        "goals_against_90": 1.247,
+        "net_xG_90": 0.011,
+        "shots_for": 40,
+        "shots_against": 59
+      },
+      "Goal diff -1": {
+        "time": 286.0,
+        "xG_for_90": 1.262,
+        "xG_against_90": 1.959,
+        "goals_for_90": 0.629,
+        "goals_against_90": 1.573,
+        "net_xG_90": -0.697,
+        "shots_for": 27,
+        "shots_against": 33
+      },
+      "Goal diff < -1": {
+        "time": 189.0,
+        "xG_for_90": 1.138,
+        "xG_against_90": 1.258,
+        "goals_for_90": 0.476,
+        "goals_against_90": 0.476,
+        "net_xG_90": -0.121,
+        "shots_for": 19,
+        "shots_against": 17
+      },
+      "Goal diff > +1": {
+        "time": 41.0,
+        "xG_for_90": 2.671,
+        "xG_against_90": 6.447,
+        "goals_for_90": 0.0,
+        "goals_against_90": 6.585,
+        "net_xG_90": -3.776,
+        "shots_for": 5,
+        "shots_against": 12
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.247,
+      "closing_ability": "POOR"
+    }
+  },
+  "Leeds": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 693.0,
+        "xG_for_90": 1.194,
+        "xG_against_90": 1.22,
+        "goals_for_90": 0.909,
+        "goals_against_90": 1.818,
+        "net_xG_90": -0.026,
+        "shots_for": 83,
+        "shots_against": 78
+      },
+      "Goal diff -1": {
+        "time": 303.0,
+        "xG_for_90": 1.525,
+        "xG_against_90": 1.672,
+        "goals_for_90": 1.782,
+        "goals_against_90": 1.782,
+        "net_xG_90": -0.147,
+        "shots_for": 46,
+        "shots_against": 25
+      },
+      "Goal diff +1": {
+        "time": 174.0,
+        "xG_for_90": 1.611,
+        "xG_against_90": 1.604,
+        "goals_for_90": 2.069,
+        "goals_against_90": 1.552,
+        "net_xG_90": 0.007,
+        "shots_for": 20,
+        "shots_against": 31
+      },
+      "Goal diff < -1": {
+        "time": 141.0,
+        "xG_for_90": 1.964,
+        "xG_against_90": 1.992,
+        "goals_for_90": 1.277,
+        "goals_against_90": 2.553,
+        "net_xG_90": -0.028,
+        "shots_for": 19,
+        "shots_against": 22
+      },
+      "Goal diff > +1": {
+        "time": 135.0,
+        "xG_for_90": 1.139,
+        "xG_against_90": 1.226,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.333,
+        "net_xG_90": -0.087,
+        "shots_for": 16,
+        "shots_against": 23
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.552,
+      "closing_ability": "POOR"
+    }
+  },
+  "Nottingham Forest": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 795.0,
+        "xG_for_90": 0.872,
+        "xG_against_90": 1.289,
+        "goals_for_90": 0.679,
+        "goals_against_90": 1.245,
+        "net_xG_90": -0.417,
+        "shots_for": 84,
+        "shots_against": 94
+      },
+      "Goal diff -1": {
+        "time": 236.0,
+        "xG_for_90": 1.167,
+        "xG_against_90": 3.055,
+        "goals_for_90": 1.144,
+        "goals_against_90": 2.669,
+        "net_xG_90": -1.889,
+        "shots_for": 43,
+        "shots_against": 37
+      },
+      "Goal diff < -1": {
+        "time": 184.0,
+        "xG_for_90": 1.08,
+        "xG_against_90": 1.684,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.957,
+        "net_xG_90": -0.604,
+        "shots_for": 25,
+        "shots_against": 26
+      },
+      "Goal diff +1": {
+        "time": 108.0,
+        "xG_for_90": 1.834,
+        "xG_against_90": 1.3,
+        "goals_for_90": 2.5,
+        "goals_against_90": 1.667,
+        "net_xG_90": 0.534,
+        "shots_for": 13,
+        "shots_against": 25
+      },
+      "Goal diff > +1": {
+        "time": 101.0,
+        "xG_for_90": 1.424,
+        "xG_against_90": 1.655,
+        "goals_for_90": 1.782,
+        "goals_against_90": 0.891,
+        "net_xG_90": -0.231,
+        "shots_for": 16,
+        "shots_against": 18
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.667,
+      "closing_ability": "POOR"
+    }
+  },
+  "Sevilla": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 790.0,
+        "xG_for_90": 0.865,
+        "xG_against_90": 1.346,
+        "goals_for_90": 1.025,
+        "goals_against_90": 1.481,
+        "net_xG_90": -0.48,
+        "shots_for": 65,
+        "shots_against": 79
+      },
+      "Goal diff -1": {
+        "time": 276.0,
+        "xG_for_90": 1.424,
+        "xG_against_90": 1.125,
+        "goals_for_90": 1.63,
+        "goals_against_90": 1.63,
+        "net_xG_90": 0.299,
+        "shots_for": 50,
+        "shots_against": 18
+      },
+      "Goal diff +1": {
+        "time": 275.0,
+        "xG_for_90": 1.19,
+        "xG_against_90": 2.524,
+        "goals_for_90": 0.982,
+        "goals_against_90": 1.309,
+        "net_xG_90": -1.333,
+        "shots_for": 30,
+        "shots_against": 47
+      },
+      "Goal diff < -1": {
+        "time": 67.0,
+        "xG_for_90": 1.203,
+        "xG_against_90": 1.757,
+        "goals_for_90": 2.687,
+        "goals_against_90": 1.343,
+        "net_xG_90": -0.553,
+        "shots_for": 12,
+        "shots_against": 7
+      },
+      "Goal diff > +1": {
+        "time": 47.0,
+        "xG_for_90": 1.374,
+        "xG_against_90": 3.252,
+        "goals_for_90": 1.915,
+        "goals_against_90": 1.915,
+        "net_xG_90": -1.878,
+        "shots_for": 5,
+        "shots_against": 15
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.309,
+      "closing_ability": "POOR"
+    }
+  },
+  "Real Sociedad": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 789.0,
+        "xG_for_90": 1.33,
+        "xG_against_90": 1.208,
+        "goals_for_90": 0.913,
+        "goals_against_90": 1.597,
+        "net_xG_90": 0.122,
+        "shots_for": 103,
+        "shots_against": 88
+      },
+      "Goal diff -1": {
+        "time": 414.0,
+        "xG_for_90": 1.802,
+        "xG_against_90": 1.669,
+        "goals_for_90": 1.522,
+        "goals_against_90": 0.87,
+        "net_xG_90": 0.133,
+        "shots_for": 77,
+        "shots_against": 58
+      },
+      "Goal diff +1": {
+        "time": 166.0,
+        "xG_for_90": 1.057,
+        "xG_against_90": 1.557,
+        "goals_for_90": 0.542,
+        "goals_against_90": 2.169,
+        "net_xG_90": -0.501,
+        "shots_for": 13,
+        "shots_against": 26
+      },
+      "Goal diff < -1": {
+        "time": 57.0,
+        "xG_for_90": 2.333,
+        "xG_against_90": 1.914,
+        "goals_for_90": 4.737,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.419,
+        "shots_for": 9,
+        "shots_against": 10
+      },
+      "Goal diff > +1": {
+        "time": 12.0,
+        "xG_for_90": 1.666,
+        "xG_against_90": 1.334,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.332,
+        "shots_for": 3,
+        "shots_against": 3
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 2.169,
+      "closing_ability": "POOR"
+    }
+  },
+  "Espanyol": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 754.0,
+        "xG_for_90": 1.571,
+        "xG_against_90": 0.942,
+        "goals_for_90": 1.313,
+        "goals_against_90": 0.836,
+        "net_xG_90": 0.63,
+        "shots_for": 94,
+        "shots_against": 82
+      },
+      "Goal diff +1": {
+        "time": 299.0,
+        "xG_for_90": 1.343,
+        "xG_against_90": 1.676,
+        "goals_for_90": 1.204,
+        "goals_against_90": 0.903,
+        "net_xG_90": -0.332,
+        "shots_for": 36,
+        "shots_against": 63
+      },
+      "Goal diff -1": {
+        "time": 248.0,
+        "xG_for_90": 2.4,
+        "xG_against_90": 1.53,
+        "goals_for_90": 1.089,
+        "goals_against_90": 1.089,
+        "net_xG_90": 0.869,
+        "shots_for": 50,
+        "shots_against": 25
+      },
+      "Goal diff < -1": {
+        "time": 101.0,
+        "xG_for_90": 0.753,
+        "xG_against_90": 1.777,
+        "goals_for_90": 0.891,
+        "goals_against_90": 0.0,
+        "net_xG_90": -1.024,
+        "shots_for": 14,
+        "shots_against": 16
+      },
+      "Goal diff > +1": {
+        "time": 42.0,
+        "xG_for_90": 1.961,
+        "xG_against_90": 2.366,
+        "goals_for_90": 0.0,
+        "goals_against_90": 6.429,
+        "net_xG_90": -0.405,
+        "shots_for": 4,
+        "shots_against": 9
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0.903,
+      "closing_ability": "POOR"
+    }
+  },
+  "Getafe": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 874.0,
+        "xG_for_90": 0.87,
+        "xG_against_90": 0.917,
+        "goals_for_90": 0.927,
+        "goals_against_90": 0.824,
+        "net_xG_90": -0.047,
+        "shots_for": 83,
+        "shots_against": 79
+      },
+      "Goal diff +1": {
+        "time": 191.0,
+        "xG_for_90": 0.911,
+        "xG_against_90": 1.695,
+        "goals_for_90": 1.414,
+        "goals_against_90": 1.414,
+        "net_xG_90": -0.784,
+        "shots_for": 14,
+        "shots_against": 34
+      },
+      "Goal diff -1": {
+        "time": 181.0,
+        "xG_for_90": 0.814,
+        "xG_against_90": 1.946,
+        "goals_for_90": 0.497,
+        "goals_against_90": 1.492,
+        "net_xG_90": -1.132,
+        "shots_for": 24,
+        "shots_against": 21
+      },
+      "Goal diff < -1": {
+        "time": 119.0,
+        "xG_for_90": 0.627,
+        "xG_against_90": 1.899,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.513,
+        "net_xG_90": -1.272,
+        "shots_for": 11,
+        "shots_against": 16
+      },
+      "Goal diff > +1": {
+        "time": 70.0,
+        "xG_for_90": 0.48,
+        "xG_against_90": 1.376,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.286,
+        "net_xG_90": -0.897,
+        "shots_for": 6,
+        "shots_against": 7
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.414,
+      "closing_ability": "POOR"
+    }
+  },
+  "Atletico Madrid": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 957.0,
+        "xG_for_90": 2.172,
+        "xG_against_90": 0.765,
+        "goals_for_90": 1.693,
+        "goals_against_90": 0.47,
+        "net_xG_90": 1.407,
+        "shots_for": 140,
+        "shots_against": 82
+      },
+      "Goal diff +1": {
+        "time": 324.0,
+        "xG_for_90": 2.059,
+        "xG_against_90": 2.003,
+        "goals_for_90": 1.667,
+        "goals_against_90": 2.5,
+        "net_xG_90": 0.056,
+        "shots_for": 47,
+        "shots_against": 45
+      },
+      "Goal diff > +1": {
+        "time": 204.0,
+        "xG_for_90": 0.722,
+        "xG_against_90": 1.435,
+        "goals_for_90": 0.882,
+        "goals_against_90": 0.0,
+        "net_xG_90": -0.713,
+        "shots_for": 14,
+        "shots_against": 33
+      },
+      "Goal diff -1": {
+        "time": 54.0,
+        "xG_for_90": 4.004,
+        "xG_against_90": 1.301,
+        "goals_for_90": 3.333,
+        "goals_against_90": 1.667,
+        "net_xG_90": 2.703,
+        "shots_for": 12,
+        "shots_against": 5
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 2.5,
+      "closing_ability": "POOR"
+    }
+  },
+  "Rayo Vallecano": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 969.0,
+        "xG_for_90": 1.251,
+        "xG_against_90": 1.307,
+        "goals_for_90": 0.557,
+        "goals_against_90": 0.836,
+        "net_xG_90": -0.056,
+        "shots_for": 117,
+        "shots_against": 110
+      },
+      "Goal diff -1": {
+        "time": 238.0,
+        "xG_for_90": 1.177,
+        "xG_against_90": 1.477,
+        "goals_for_90": 1.134,
+        "goals_against_90": 0.756,
+        "net_xG_90": -0.3,
+        "shots_for": 34,
+        "shots_against": 25
+      },
+      "Goal diff > +1": {
+        "time": 136.0,
+        "xG_for_90": 2.179,
+        "xG_against_90": 1.149,
+        "goals_for_90": 1.324,
+        "goals_against_90": 0.662,
+        "net_xG_90": 1.031,
+        "shots_for": 18,
+        "shots_against": 24
+      },
+      "Goal diff < -1": {
+        "time": 50.0,
+        "xG_for_90": 1.974,
+        "xG_against_90": 2.515,
+        "goals_for_90": 0.0,
+        "goals_against_90": 3.6,
+        "net_xG_90": -0.541,
+        "shots_for": 12,
+        "shots_against": 7
+      },
+      "Goal diff +1": {
+        "time": 44.0,
+        "xG_for_90": 3.329,
+        "xG_against_90": 3.908,
+        "goals_for_90": 4.091,
+        "goals_against_90": 4.091,
+        "net_xG_90": -0.579,
+        "shots_for": 8,
+        "shots_against": 9
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 4.091,
+      "closing_ability": "POOR"
+    }
+  },
+  "Valencia": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 838.0,
+        "xG_for_90": 0.986,
+        "xG_against_90": 1.372,
+        "goals_for_90": 0.752,
+        "goals_against_90": 1.074,
+        "net_xG_90": -0.386,
+        "shots_for": 91,
+        "shots_against": 94
+      },
+      "Goal diff -1": {
+        "time": 239.0,
+        "xG_for_90": 1.646,
+        "xG_against_90": 1.371,
+        "goals_for_90": 1.506,
+        "goals_against_90": 1.13,
+        "net_xG_90": 0.275,
+        "shots_for": 38,
+        "shots_against": 32
+      },
+      "Goal diff +1": {
+        "time": 203.0,
+        "xG_for_90": 1.216,
+        "xG_against_90": 2.186,
+        "goals_for_90": 0.887,
+        "goals_against_90": 1.773,
+        "net_xG_90": -0.97,
+        "shots_for": 17,
+        "shots_against": 36
+      },
+      "Goal diff < -1": {
+        "time": 120.0,
+        "xG_for_90": 0.354,
+        "xG_against_90": 3.098,
+        "goals_for_90": 0.0,
+        "goals_against_90": 4.5,
+        "net_xG_90": -2.744,
+        "shots_for": 10,
+        "shots_against": 26
+      },
+      "Goal diff > +1": {
+        "time": 38.0,
+        "xG_for_90": 2.805,
+        "xG_against_90": 1.453,
+        "goals_for_90": 2.368,
+        "goals_against_90": 0.0,
+        "net_xG_90": 1.352,
+        "shots_for": 4,
+        "shots_against": 8
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.773,
+      "closing_ability": "POOR"
+    }
+  },
+  "Athletic Club": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 896.0,
+        "xG_for_90": 1.35,
+        "xG_against_90": 1.094,
+        "goals_for_90": 0.904,
+        "goals_against_90": 1.004,
+        "net_xG_90": 0.255,
+        "shots_for": 113,
+        "shots_against": 83
+      },
+      "Goal diff -1": {
+        "time": 244.0,
+        "xG_for_90": 1.332,
+        "xG_against_90": 1.485,
+        "goals_for_90": 1.107,
+        "goals_against_90": 1.107,
+        "net_xG_90": -0.152,
+        "shots_for": 38,
+        "shots_against": 23
+      },
+      "Goal diff +1": {
+        "time": 236.0,
+        "xG_for_90": 1.658,
+        "xG_against_90": 0.405,
+        "goals_for_90": 1.144,
+        "goals_against_90": 0.763,
+        "net_xG_90": 1.253,
+        "shots_for": 40,
+        "shots_against": 22
+      },
+      "Goal diff < -1": {
+        "time": 81.0,
+        "xG_for_90": 0.919,
+        "xG_against_90": 2.093,
+        "goals_for_90": 0.0,
+        "goals_against_90": 3.333,
+        "net_xG_90": -1.173,
+        "shots_for": 9,
+        "shots_against": 17
+      },
+      "Goal diff > +1": {
+        "time": 70.0,
+        "xG_for_90": 2.359,
+        "xG_against_90": 1.959,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.571,
+        "net_xG_90": 0.4,
+        "shots_for": 8,
+        "shots_against": 12
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "POOR"
+    }
+  },
+  "Barcelona": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 632.0,
+        "xG_for_90": 2.289,
+        "xG_against_90": 1.51,
+        "goals_for_90": 2.421,
+        "goals_against_90": 1.282,
+        "net_xG_90": 0.779,
+        "shots_for": 123,
+        "shots_against": 43
+      },
+      "Goal diff +1": {
+        "time": 334.0,
+        "xG_for_90": 2.774,
+        "xG_against_90": 1.139,
+        "goals_for_90": 2.964,
+        "goals_against_90": 1.078,
+        "net_xG_90": 1.635,
+        "shots_for": 65,
+        "shots_against": 32
+      },
+      "Goal diff > +1": {
+        "time": 331.0,
+        "xG_for_90": 2.543,
+        "xG_against_90": 1.059,
+        "goals_for_90": 2.719,
+        "goals_against_90": 0.816,
+        "net_xG_90": 1.484,
+        "shots_for": 74,
+        "shots_against": 37
+      },
+      "Goal diff -1": {
+        "time": 223.0,
+        "xG_for_90": 3.061,
+        "xG_against_90": 2.155,
+        "goals_for_90": 2.825,
+        "goals_against_90": 1.211,
+        "net_xG_90": 0.905,
+        "shots_for": 48,
+        "shots_against": 35
+      },
+      "Goal diff < -1": {
+        "time": 16.0,
+        "xG_for_90": 3.489,
+        "xG_against_90": 3.349,
+        "goals_for_90": 11.25,
+        "goals_against_90": 5.625,
+        "net_xG_90": 0.14,
+        "shots_for": 6,
+        "shots_against": 3
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.078,
+      "closing_ability": "POOR"
+    }
+  },
+  "Real Madrid": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 739.0,
+        "xG_for_90": 1.895,
+        "xG_against_90": 0.939,
+        "goals_for_90": 1.583,
+        "goals_against_90": 0.853,
+        "net_xG_90": 0.956,
+        "shots_for": 150,
+        "shots_against": 69
+      },
+      "Goal diff +1": {
+        "time": 426.0,
+        "xG_for_90": 2.671,
+        "xG_against_90": 1.275,
+        "goals_for_90": 1.901,
+        "goals_against_90": 0.423,
+        "net_xG_90": 1.396,
+        "shots_for": 93,
+        "shots_against": 58
+      },
+      "Goal diff > +1": {
+        "time": 214.0,
+        "xG_for_90": 2.834,
+        "xG_against_90": 1.343,
+        "goals_for_90": 2.103,
+        "goals_against_90": 1.262,
+        "net_xG_90": 1.491,
+        "shots_for": 43,
+        "shots_against": 22
+      },
+      "Goal diff -1": {
+        "time": 111.0,
+        "xG_for_90": 3.828,
+        "xG_against_90": 1.833,
+        "goals_for_90": 4.054,
+        "goals_against_90": 1.622,
+        "net_xG_90": 1.995,
+        "shots_for": 29,
+        "shots_against": 10
+      },
+      "Goal diff < -1": {
+        "time": 29.0,
+        "xG_for_90": 0.525,
+        "xG_against_90": 0.958,
+        "goals_for_90": 0.0,
+        "goals_against_90": 3.103,
+        "net_xG_90": -0.432,
+        "shots_for": 3,
+        "shots_against": 2
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "GOOD"
+    }
+  },
+  "Levante": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 668.0,
+        "xG_for_90": 1.072,
+        "xG_against_90": 1.867,
+        "goals_for_90": 0.808,
+        "goals_against_90": 1.617,
+        "net_xG_90": -0.795,
+        "shots_for": 49,
+        "shots_against": 109
+      },
+      "Goal diff +1": {
+        "time": 210.0,
+        "xG_for_90": 2.069,
+        "xG_against_90": 2.334,
+        "goals_for_90": 1.714,
+        "goals_against_90": 1.714,
+        "net_xG_90": -0.265,
+        "shots_for": 24,
+        "shots_against": 53
+      },
+      "Goal diff < -1": {
+        "time": 209.0,
+        "xG_for_90": 1.918,
+        "xG_against_90": 2.499,
+        "goals_for_90": 0.431,
+        "goals_against_90": 0.861,
+        "net_xG_90": -0.581,
+        "shots_for": 38,
+        "shots_against": 31
+      },
+      "Goal diff -1": {
+        "time": 177.0,
+        "xG_for_90": 1.024,
+        "xG_against_90": 2.348,
+        "goals_for_90": 1.525,
+        "goals_against_90": 3.051,
+        "net_xG_90": -1.324,
+        "shots_for": 22,
+        "shots_against": 36
+      },
+      "Goal diff > +1": {
+        "time": 78.0,
+        "xG_for_90": 4.041,
+        "xG_against_90": 0.917,
+        "goals_for_90": 2.308,
+        "goals_against_90": 2.308,
+        "net_xG_90": 3.124,
+        "shots_for": 12,
+        "shots_against": 15
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.714,
+      "closing_ability": "POOR"
+    }
+  },
+  "Celta Vigo": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 880.0,
+        "xG_for_90": 0.978,
+        "xG_against_90": 1.644,
+        "goals_for_90": 0.92,
+        "goals_against_90": 1.227,
+        "net_xG_90": -0.666,
+        "shots_for": 91,
+        "shots_against": 108
+      },
+      "Goal diff -1": {
+        "time": 268.0,
+        "xG_for_90": 2.033,
+        "xG_against_90": 1.155,
+        "goals_for_90": 2.687,
+        "goals_against_90": 0.672,
+        "net_xG_90": 0.878,
+        "shots_for": 48,
+        "shots_against": 32
+      },
+      "Goal diff +1": {
+        "time": 242.0,
+        "xG_for_90": 0.974,
+        "xG_against_90": 1.98,
+        "goals_for_90": 0.372,
+        "goals_against_90": 1.86,
+        "net_xG_90": -1.005,
+        "shots_for": 19,
+        "shots_against": 46
+      },
+      "Goal diff < -1": {
+        "time": 49.0,
+        "xG_for_90": 0.348,
+        "xG_against_90": 1.177,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.0,
+        "net_xG_90": -0.829,
+        "shots_for": 5,
+        "shots_against": 4
+      },
+      "Goal diff > +1": {
+        "time": 0.0,
+        "xG_for_90": 0,
+        "xG_against_90": 0,
+        "goals_for_90": 0,
+        "goals_against_90": 0,
+        "net_xG_90": 0,
+        "shots_for": 1,
+        "shots_against": 0
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.86,
+      "closing_ability": "POOR"
+    }
+  },
+  "Real Betis": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 618.0,
+        "xG_for_90": 1.423,
+        "xG_against_90": 1.099,
+        "goals_for_90": 1.602,
+        "goals_against_90": 1.019,
+        "net_xG_90": 0.325,
+        "shots_for": 67,
+        "shots_against": 71
+      },
+      "Goal diff +1": {
+        "time": 265.0,
+        "xG_for_90": 1.315,
+        "xG_against_90": 1.53,
+        "goals_for_90": 1.358,
+        "goals_against_90": 1.698,
+        "net_xG_90": -0.215,
+        "shots_for": 36,
+        "shots_against": 38
+      },
+      "Goal diff -1": {
+        "time": 257.0,
+        "xG_for_90": 1.479,
+        "xG_against_90": 1.458,
+        "goals_for_90": 1.401,
+        "goals_against_90": 1.751,
+        "net_xG_90": 0.022,
+        "shots_for": 63,
+        "shots_against": 27
+      },
+      "Goal diff > +1": {
+        "time": 151.0,
+        "xG_for_90": 2.397,
+        "xG_against_90": 0.911,
+        "goals_for_90": 0.596,
+        "goals_against_90": 0.0,
+        "net_xG_90": 1.485,
+        "shots_for": 22,
+        "shots_against": 25
+      },
+      "Goal diff < -1": {
+        "time": 150.0,
+        "xG_for_90": 2.378,
+        "xG_against_90": 1.292,
+        "goals_for_90": 3.0,
+        "goals_against_90": 1.2,
+        "net_xG_90": 1.086,
+        "shots_for": 36,
+        "shots_against": 11
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.698,
+      "closing_ability": "POOR"
+    }
+  },
+  "Villarreal": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 716.0,
+        "xG_for_90": 1.85,
+        "xG_against_90": 1.246,
+        "goals_for_90": 2.011,
+        "goals_against_90": 0.377,
+        "net_xG_90": 0.604,
+        "shots_for": 96,
+        "shots_against": 90
+      },
+      "Goal diff +1": {
+        "time": 303.0,
+        "xG_for_90": 1.988,
+        "xG_against_90": 1.086,
+        "goals_for_90": 2.376,
+        "goals_against_90": 1.485,
+        "net_xG_90": 0.903,
+        "shots_for": 35,
+        "shots_against": 51
+      },
+      "Goal diff > +1": {
+        "time": 267.0,
+        "xG_for_90": 1.983,
+        "xG_against_90": 0.457,
+        "goals_for_90": 1.685,
+        "goals_against_90": 0.674,
+        "net_xG_90": 1.527,
+        "shots_for": 45,
+        "shots_against": 24
+      },
+      "Goal diff -1": {
+        "time": 91.0,
+        "xG_for_90": 1.763,
+        "xG_against_90": 2.785,
+        "goals_for_90": 0.989,
+        "goals_against_90": 2.967,
+        "net_xG_90": -1.022,
+        "shots_for": 18,
+        "shots_against": 10
+      },
+      "Goal diff < -1": {
+        "time": 51.0,
+        "xG_for_90": 0.383,
+        "xG_against_90": 1.648,
+        "goals_for_90": 1.765,
+        "goals_against_90": 0.0,
+        "net_xG_90": -1.264,
+        "shots_for": 5,
+        "shots_against": 8
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.485,
+      "closing_ability": "POOR"
+    }
+  },
+  "Osasuna": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 718.0,
+        "xG_for_90": 0.917,
+        "xG_against_90": 1.528,
+        "goals_for_90": 0.877,
+        "goals_against_90": 1.379,
+        "net_xG_90": -0.612,
+        "shots_for": 66,
+        "shots_against": 98
+      },
+      "Goal diff +1": {
+        "time": 287.0,
+        "xG_for_90": 0.849,
+        "xG_against_90": 1.407,
+        "goals_for_90": 0.314,
+        "goals_against_90": 1.254,
+        "net_xG_90": -0.558,
+        "shots_for": 31,
+        "shots_against": 40
+      },
+      "Goal diff -1": {
+        "time": 235.0,
+        "xG_for_90": 1.804,
+        "xG_against_90": 0.774,
+        "goals_for_90": 1.149,
+        "goals_against_90": 1.149,
+        "net_xG_90": 1.03,
+        "shots_for": 32,
+        "shots_against": 27
+      },
+      "Goal diff < -1": {
+        "time": 84.0,
+        "xG_for_90": 0.819,
+        "xG_against_90": 0.601,
+        "goals_for_90": 1.071,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.217,
+        "shots_for": 15,
+        "shots_against": 7
+      },
+      "Goal diff > +1": {
+        "time": 15.0,
+        "xG_for_90": 0.848,
+        "xG_against_90": 2.236,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.0,
+        "net_xG_90": -1.388,
+        "shots_for": 1,
+        "shots_against": 8
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.254,
+      "closing_ability": "POOR"
+    }
+  },
+  "Alaves": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 852.0,
+        "xG_for_90": 1.271,
+        "xG_against_90": 0.957,
+        "goals_for_90": 0.739,
+        "goals_against_90": 1.056,
+        "net_xG_90": 0.314,
+        "shots_for": 91,
+        "shots_against": 85
+      },
+      "Goal diff -1": {
+        "time": 356.0,
+        "xG_for_90": 1.624,
+        "xG_against_90": 0.982,
+        "goals_for_90": 0.758,
+        "goals_against_90": 0.253,
+        "net_xG_90": 0.641,
+        "shots_for": 50,
+        "shots_against": 41
+      },
+      "Goal diff +1": {
+        "time": 215.0,
+        "xG_for_90": 1.429,
+        "xG_against_90": 1.448,
+        "goals_for_90": 1.256,
+        "goals_against_90": 0.837,
+        "net_xG_90": -0.019,
+        "shots_for": 26,
+        "shots_against": 38
+      },
+      "Goal diff > +1": {
+        "time": 24.0,
+        "xG_for_90": 0.693,
+        "xG_against_90": 2.58,
+        "goals_for_90": 0.0,
+        "goals_against_90": 7.5,
+        "net_xG_90": -1.887,
+        "shots_for": 4,
+        "shots_against": 4
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0.837,
+      "closing_ability": "POOR"
+    }
+  },
+  "Elche": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 832.0,
+        "xG_for_90": 1.117,
+        "xG_against_90": 1.194,
+        "goals_for_90": 0.974,
+        "goals_against_90": 0.865,
+        "net_xG_90": -0.076,
+        "shots_for": 90,
+        "shots_against": 100
+      },
+      "Goal diff -1": {
+        "time": 294.0,
+        "xG_for_90": 1.225,
+        "xG_against_90": 1.728,
+        "goals_for_90": 1.224,
+        "goals_against_90": 1.224,
+        "net_xG_90": -0.502,
+        "shots_for": 39,
+        "shots_against": 41
+      },
+      "Goal diff +1": {
+        "time": 178.0,
+        "xG_for_90": 0.651,
+        "xG_against_90": 2.212,
+        "goals_for_90": 1.011,
+        "goals_against_90": 2.528,
+        "net_xG_90": -1.561,
+        "shots_for": 17,
+        "shots_against": 26
+      },
+      "Goal diff > +1": {
+        "time": 76.0,
+        "xG_for_90": 1.991,
+        "xG_against_90": 0.875,
+        "goals_for_90": 1.184,
+        "goals_against_90": 0.0,
+        "net_xG_90": 1.115,
+        "shots_for": 11,
+        "shots_against": 13
+      },
+      "Goal diff < -1": {
+        "time": 52.0,
+        "xG_for_90": 1.399,
+        "xG_against_90": 1.737,
+        "goals_for_90": 3.462,
+        "goals_against_90": 0.0,
+        "net_xG_90": -0.337,
+        "shots_for": 10,
+        "shots_against": 10
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 2.528,
+      "closing_ability": "POOR"
+    }
+  },
+  "Girona": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 708.0,
+        "xG_for_90": 1.131,
+        "xG_against_90": 1.574,
+        "goals_for_90": 1.017,
+        "goals_against_90": 1.144,
+        "net_xG_90": -0.443,
+        "shots_for": 66,
+        "shots_against": 124
+      },
+      "Goal diff +1": {
+        "time": 327.0,
+        "xG_for_90": 0.844,
+        "xG_against_90": 2.403,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.651,
+        "net_xG_90": -1.559,
+        "shots_for": 26,
+        "shots_against": 81
+      },
+      "Goal diff < -1": {
+        "time": 280.0,
+        "xG_for_90": 1.355,
+        "xG_against_90": 2.805,
+        "goals_for_90": 0.964,
+        "goals_against_90": 2.25,
+        "net_xG_90": -1.45,
+        "shots_for": 33,
+        "shots_against": 42
+      },
+      "Goal diff -1": {
+        "time": 109.0,
+        "xG_for_90": 1.784,
+        "xG_against_90": 2.701,
+        "goals_for_90": 1.651,
+        "goals_against_90": 5.78,
+        "net_xG_90": -0.917,
+        "shots_for": 15,
+        "shots_against": 15
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.651,
+      "closing_ability": "POOR"
+    }
+  },
+  "Mallorca": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 699.0,
+        "xG_for_90": 0.667,
+        "xG_against_90": 1.963,
+        "goals_for_90": 0.644,
+        "goals_against_90": 1.803,
+        "net_xG_90": -1.296,
+        "shots_for": 60,
+        "shots_against": 98
+      },
+      "Goal diff -1": {
+        "time": 413.0,
+        "xG_for_90": 1.487,
+        "xG_against_90": 1.121,
+        "goals_for_90": 1.525,
+        "goals_against_90": 0.654,
+        "net_xG_90": 0.366,
+        "shots_for": 68,
+        "shots_against": 48
+      },
+      "Goal diff +1": {
+        "time": 168.0,
+        "xG_for_90": 1.138,
+        "xG_against_90": 1.194,
+        "goals_for_90": 1.071,
+        "goals_against_90": 1.071,
+        "net_xG_90": -0.056,
+        "shots_for": 14,
+        "shots_against": 31
+      },
+      "Goal diff < -1": {
+        "time": 126.0,
+        "xG_for_90": 0.909,
+        "xG_against_90": 2.971,
+        "goals_for_90": 0.714,
+        "goals_against_90": 1.429,
+        "net_xG_90": -2.061,
+        "shots_for": 15,
+        "shots_against": 33
+      },
+      "Goal diff > +1": {
+        "time": 32.0,
+        "xG_for_90": 0.0,
+        "xG_against_90": 0.816,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.812,
+        "net_xG_90": -0.816,
+        "shots_for": 0,
+        "shots_against": 5
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.071,
+      "closing_ability": "POOR"
+    }
+  },
+  "Real Oviedo": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 766.0,
+        "xG_for_90": 0.863,
+        "xG_against_90": 1.656,
+        "goals_for_90": 0.47,
+        "goals_against_90": 1.292,
+        "net_xG_90": -0.793,
+        "shots_for": 65,
+        "shots_against": 128
+      },
+      "Goal diff -1": {
+        "time": 370.0,
+        "xG_for_90": 1.029,
+        "xG_against_90": 1.987,
+        "goals_for_90": 0.486,
+        "goals_against_90": 1.703,
+        "net_xG_90": -0.957,
+        "shots_for": 40,
+        "shots_against": 69
+      },
+      "Goal diff < -1": {
+        "time": 179.0,
+        "xG_for_90": 0.994,
+        "xG_against_90": 1.196,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.503,
+        "net_xG_90": -0.202,
+        "shots_for": 23,
+        "shots_against": 25
+      },
+      "Goal diff +1": {
+        "time": 104.0,
+        "xG_for_90": 0.629,
+        "xG_against_90": 1.561,
+        "goals_for_90": 0.865,
+        "goals_against_90": 1.731,
+        "net_xG_90": -0.932,
+        "shots_for": 7,
+        "shots_against": 19
+      },
+      "Goal diff > +1": {
+        "time": 18.0,
+        "xG_for_90": 0.0,
+        "xG_against_90": 5.313,
+        "goals_for_90": 0.0,
+        "goals_against_90": 5.0,
+        "net_xG_90": -5.313,
+        "shots_for": 0,
+        "shots_against": 2
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.731,
+      "closing_ability": "POOR"
+    }
+  },
+  "Bayern Munich": {
+    "raw_data": {
+      "Goal diff > +1": {
+        "time": 471.0,
+        "xG_for_90": 3.409,
+        "xG_against_90": 0.716,
+        "goals_for_90": 3.822,
+        "goals_against_90": 0.764,
+        "net_xG_90": 2.693,
+        "shots_for": 108,
+        "shots_against": 48
+      },
+      "Goal diff 0": {
+        "time": 448.0,
+        "xG_for_90": 1.874,
+        "xG_against_90": 0.565,
+        "goals_for_90": 2.411,
+        "goals_against_90": 0.804,
+        "net_xG_90": 1.309,
+        "shots_for": 78,
+        "shots_against": 35
+      },
+      "Goal diff +1": {
+        "time": 246.0,
+        "xG_for_90": 3.486,
+        "xG_against_90": 0.757,
+        "goals_for_90": 4.39,
+        "goals_against_90": 0.0,
+        "net_xG_90": 2.729,
+        "shots_for": 48,
+        "shots_against": 25
+      },
+      "Goal diff -1": {
+        "time": 66.0,
+        "xG_for_90": 2.049,
+        "xG_against_90": 0.581,
+        "goals_for_90": 5.455,
+        "goals_against_90": 1.364,
+        "net_xG_90": 1.468,
+        "shots_for": 15,
+        "shots_against": 8
+      },
+      "Goal diff < -1": {
+        "time": 14.0,
+        "xG_for_90": 4.969,
+        "xG_against_90": 0.0,
+        "goals_for_90": 6.429,
+        "goals_against_90": 0.0,
+        "net_xG_90": 4.969,
+        "shots_for": 2,
+        "shots_against": 0
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Hamburger SV": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 668.0,
+        "xG_for_90": 1.065,
+        "xG_against_90": 1.226,
+        "goals_for_90": 0.808,
+        "goals_against_90": 1.213,
+        "net_xG_90": -0.161,
+        "shots_for": 71,
+        "shots_against": 92
+      },
+      "Goal diff -1": {
+        "time": 262.0,
+        "xG_for_90": 1.835,
+        "xG_against_90": 1.591,
+        "goals_for_90": 1.031,
+        "goals_against_90": 1.374,
+        "net_xG_90": 0.244,
+        "shots_for": 62,
+        "shots_against": 31
+      },
+      "Goal diff < -1": {
+        "time": 141.0,
+        "xG_for_90": 0.92,
+        "xG_against_90": 2.768,
+        "goals_for_90": 0.638,
+        "goals_against_90": 2.553,
+        "net_xG_90": -1.847,
+        "shots_for": 12,
+        "shots_against": 33
+      },
+      "Goal diff > +1": {
+        "time": 117.0,
+        "xG_for_90": 1.24,
+        "xG_against_90": 1.404,
+        "goals_for_90": 1.538,
+        "goals_against_90": 0.769,
+        "net_xG_90": -0.164,
+        "shots_for": 18,
+        "shots_against": 20
+      },
+      "Goal diff +1": {
+        "time": 71.0,
+        "xG_for_90": 1.733,
+        "xG_against_90": 2.694,
+        "goals_for_90": 2.535,
+        "goals_against_90": 2.535,
+        "net_xG_90": -0.961,
+        "shots_for": 8,
+        "shots_against": 15
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 2.535,
+      "closing_ability": "POOR"
+    }
+  },
+  "Bayer Leverkusen": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 368.0,
+        "xG_for_90": 1.967,
+        "xG_against_90": 0.893,
+        "goals_for_90": 2.69,
+        "goals_against_90": 0.978,
+        "net_xG_90": 1.073,
+        "shots_for": 43,
+        "shots_against": 41
+      },
+      "Goal diff +1": {
+        "time": 364.0,
+        "xG_for_90": 2.187,
+        "xG_against_90": 0.861,
+        "goals_for_90": 2.72,
+        "goals_against_90": 0.989,
+        "net_xG_90": 1.326,
+        "shots_for": 51,
+        "shots_against": 43
+      },
+      "Goal diff > +1": {
+        "time": 273.0,
+        "xG_for_90": 2.672,
+        "xG_against_90": 1.706,
+        "goals_for_90": 1.648,
+        "goals_against_90": 2.308,
+        "net_xG_90": 0.965,
+        "shots_for": 53,
+        "shots_against": 39
+      },
+      "Goal diff < -1": {
+        "time": 143.0,
+        "xG_for_90": 1.113,
+        "xG_against_90": 2.236,
+        "goals_for_90": 0.629,
+        "goals_against_90": 0.629,
+        "net_xG_90": -1.123,
+        "shots_for": 24,
+        "shots_against": 22
+      },
+      "Goal diff -1": {
+        "time": 92.0,
+        "xG_for_90": 0.793,
+        "xG_against_90": 1.926,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.935,
+        "net_xG_90": -1.133,
+        "shots_for": 15,
+        "shots_against": 9
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0.989,
+      "closing_ability": "POOR"
+    }
+  },
+  "Hoffenheim": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 542.0,
+        "xG_for_90": 1.409,
+        "xG_against_90": 1.184,
+        "goals_for_90": 1.494,
+        "goals_against_90": 1.328,
+        "net_xG_90": 0.226,
+        "shots_for": 76,
+        "shots_against": 51
+      },
+      "Goal diff +1": {
+        "time": 221.0,
+        "xG_for_90": 2.415,
+        "xG_against_90": 1.668,
+        "goals_for_90": 2.851,
+        "goals_against_90": 0.814,
+        "net_xG_90": 0.747,
+        "shots_for": 34,
+        "shots_against": 36
+      },
+      "Goal diff > +1": {
+        "time": 197.0,
+        "xG_for_90": 1.897,
+        "xG_against_90": 2.223,
+        "goals_for_90": 1.371,
+        "goals_against_90": 1.371,
+        "net_xG_90": -0.326,
+        "shots_for": 22,
+        "shots_against": 40
+      },
+      "Goal diff < -1": {
+        "time": 143.0,
+        "xG_for_90": 1.1,
+        "xG_against_90": 2.006,
+        "goals_for_90": 1.259,
+        "goals_against_90": 1.888,
+        "net_xG_90": -0.905,
+        "shots_for": 20,
+        "shots_against": 19
+      },
+      "Goal diff -1": {
+        "time": 141.0,
+        "xG_for_90": 2.756,
+        "xG_against_90": 1.581,
+        "goals_for_90": 2.553,
+        "goals_against_90": 1.915,
+        "net_xG_90": 1.174,
+        "shots_for": 25,
+        "shots_against": 14
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0.814,
+      "closing_ability": "POOR"
+    }
+  },
+  "Augsburg": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 523.0,
+        "xG_for_90": 1.158,
+        "xG_against_90": 1.268,
+        "goals_for_90": 1.377,
+        "goals_against_90": 1.377,
+        "net_xG_90": -0.11,
+        "shots_for": 58,
+        "shots_against": 67
+      },
+      "Goal diff < -1": {
+        "time": 280.0,
+        "xG_for_90": 0.835,
+        "xG_against_90": 2.019,
+        "goals_for_90": 1.286,
+        "goals_against_90": 2.571,
+        "net_xG_90": -1.184,
+        "shots_for": 46,
+        "shots_against": 36
+      },
+      "Goal diff > +1": {
+        "time": 155.0,
+        "xG_for_90": 1.404,
+        "xG_against_90": 2.082,
+        "goals_for_90": 1.161,
+        "goals_against_90": 1.161,
+        "net_xG_90": -0.678,
+        "shots_for": 21,
+        "shots_against": 33
+      },
+      "Goal diff -1": {
+        "time": 154.0,
+        "xG_for_90": 0.851,
+        "xG_against_90": 2.929,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.922,
+        "net_xG_90": -2.078,
+        "shots_for": 18,
+        "shots_against": 26
+      },
+      "Goal diff +1": {
+        "time": 142.0,
+        "xG_for_90": 1.219,
+        "xG_against_90": 2.285,
+        "goals_for_90": 1.901,
+        "goals_against_90": 2.535,
+        "net_xG_90": -1.066,
+        "shots_for": 14,
+        "shots_against": 23
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 2.535,
+      "closing_ability": "POOR"
+    }
+  },
+  "Werder Bremen": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 529.0,
+        "xG_for_90": 0.896,
+        "xG_against_90": 1.82,
+        "goals_for_90": 1.361,
+        "goals_against_90": 1.531,
+        "net_xG_90": -0.924,
+        "shots_for": 61,
+        "shots_against": 81
+      },
+      "Goal diff -1": {
+        "time": 237.0,
+        "xG_for_90": 1.224,
+        "xG_against_90": 2.015,
+        "goals_for_90": 1.519,
+        "goals_against_90": 2.278,
+        "net_xG_90": -0.792,
+        "shots_for": 32,
+        "shots_against": 24
+      },
+      "Goal diff +1": {
+        "time": 227.0,
+        "xG_for_90": 1.54,
+        "xG_against_90": 1.485,
+        "goals_for_90": 0.396,
+        "goals_against_90": 1.586,
+        "net_xG_90": 0.055,
+        "shots_for": 34,
+        "shots_against": 42
+      },
+      "Goal diff < -1": {
+        "time": 183.0,
+        "xG_for_90": 1.601,
+        "xG_against_90": 2.791,
+        "goals_for_90": 1.475,
+        "goals_against_90": 2.459,
+        "net_xG_90": -1.19,
+        "shots_for": 27,
+        "shots_against": 39
+      },
+      "Goal diff > +1": {
+        "time": 65.0,
+        "xG_for_90": 2.806,
+        "xG_against_90": 1.865,
+        "goals_for_90": 2.769,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.941,
+        "shots_for": 10,
+        "shots_against": 15
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.586,
+      "closing_ability": "POOR"
+    }
+  },
+  "Mainz 05": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 529.0,
+        "xG_for_90": 0.95,
+        "xG_against_90": 2.204,
+        "goals_for_90": 0.51,
+        "goals_against_90": 1.871,
+        "net_xG_90": -1.254,
+        "shots_for": 56,
+        "shots_against": 84
+      },
+      "Goal diff -1": {
+        "time": 359.0,
+        "xG_for_90": 1.492,
+        "xG_against_90": 1.895,
+        "goals_for_90": 0.501,
+        "goals_against_90": 1.504,
+        "net_xG_90": -0.403,
+        "shots_for": 51,
+        "shots_against": 60
+      },
+      "Goal diff < -1": {
+        "time": 231.0,
+        "xG_for_90": 0.897,
+        "xG_against_90": 1.958,
+        "goals_for_90": 1.169,
+        "goals_against_90": 1.558,
+        "net_xG_90": -1.061,
+        "shots_for": 25,
+        "shots_against": 36
+      },
+      "Goal diff > +1": {
+        "time": 70.0,
+        "xG_for_90": 2.625,
+        "xG_against_90": 0.93,
+        "goals_for_90": 2.571,
+        "goals_against_90": 1.286,
+        "net_xG_90": 1.695,
+        "shots_for": 8,
+        "shots_against": 12
+      },
+      "Goal diff +1": {
+        "time": 69.0,
+        "xG_for_90": 1.151,
+        "xG_against_90": 0.827,
+        "goals_for_90": 1.304,
+        "goals_against_90": 2.609,
+        "net_xG_90": 0.324,
+        "shots_for": 4,
+        "shots_against": 9
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 2.609,
+      "closing_ability": "POOR"
+    }
+  },
+  "Borussia Dortmund": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 654.0,
+        "xG_for_90": 1.558,
+        "xG_against_90": 0.771,
+        "goals_for_90": 1.789,
+        "goals_against_90": 0.275,
+        "net_xG_90": 0.787,
+        "shots_for": 96,
+        "shots_against": 62
+      },
+      "Goal diff +1": {
+        "time": 307.0,
+        "xG_for_90": 1.983,
+        "xG_against_90": 1.365,
+        "goals_for_90": 2.052,
+        "goals_against_90": 1.466,
+        "net_xG_90": 0.618,
+        "shots_for": 32,
+        "shots_against": 40
+      },
+      "Goal diff > +1": {
+        "time": 194.0,
+        "xG_for_90": 1.088,
+        "xG_against_90": 1.156,
+        "goals_for_90": 0.464,
+        "goals_against_90": 1.392,
+        "net_xG_90": -0.067,
+        "shots_for": 21,
+        "shots_against": 24
+      },
+      "Goal diff -1": {
+        "time": 84.0,
+        "xG_for_90": 1.0,
+        "xG_against_90": 2.17,
+        "goals_for_90": 1.071,
+        "goals_against_90": 1.071,
+        "net_xG_90": -1.169,
+        "shots_for": 9,
+        "shots_against": 11
+      },
+      "Goal diff < -1": {
+        "time": 4.0,
+        "xG_for_90": 13.516,
+        "xG_against_90": 0.0,
+        "goals_for_90": 22.5,
+        "goals_against_90": 0.0,
+        "net_xG_90": 13.516,
+        "shots_for": 1,
+        "shots_against": 0
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.466,
+      "closing_ability": "POOR"
+    }
+  },
+  "Borussia M.Gladbach": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 719.0,
+        "xG_for_90": 1.183,
+        "xG_against_90": 1.034,
+        "goals_for_90": 0.501,
+        "goals_against_90": 0.751,
+        "net_xG_90": 0.149,
+        "shots_for": 80,
+        "shots_against": 96
+      },
+      "Goal diff < -1": {
+        "time": 204.0,
+        "xG_for_90": 2.022,
+        "xG_against_90": 2.496,
+        "goals_for_90": 2.206,
+        "goals_against_90": 3.088,
+        "net_xG_90": -0.474,
+        "shots_for": 30,
+        "shots_against": 33
+      },
+      "Goal diff > +1": {
+        "time": 123.0,
+        "xG_for_90": 3.044,
+        "xG_against_90": 1.895,
+        "goals_for_90": 2.927,
+        "goals_against_90": 0.732,
+        "net_xG_90": 1.149,
+        "shots_for": 20,
+        "shots_against": 27
+      },
+      "Goal diff -1": {
+        "time": 114.0,
+        "xG_for_90": 1.054,
+        "xG_against_90": 1.719,
+        "goals_for_90": 0.789,
+        "goals_against_90": 3.947,
+        "net_xG_90": -0.665,
+        "shots_for": 15,
+        "shots_against": 19
+      },
+      "Goal diff +1": {
+        "time": 81.0,
+        "xG_for_90": 2.745,
+        "xG_against_90": 1.147,
+        "goals_for_90": 3.333,
+        "goals_against_90": 0.0,
+        "net_xG_90": 1.598,
+        "shots_for": 11,
+        "shots_against": 17
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Wolfsburg": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 452.0,
+        "xG_for_90": 1.231,
+        "xG_against_90": 1.275,
+        "goals_for_90": 1.991,
+        "goals_against_90": 1.792,
+        "net_xG_90": -0.044,
+        "shots_for": 50,
+        "shots_against": 49
+      },
+      "Goal diff -1": {
+        "time": 307.0,
+        "xG_for_90": 1.411,
+        "xG_against_90": 1.847,
+        "goals_for_90": 0.586,
+        "goals_against_90": 0.879,
+        "net_xG_90": -0.437,
+        "shots_for": 42,
+        "shots_against": 46
+      },
+      "Goal diff +1": {
+        "time": 288.0,
+        "xG_for_90": 0.812,
+        "xG_against_90": 2.19,
+        "goals_for_90": 0.625,
+        "goals_against_90": 2.188,
+        "net_xG_90": -1.378,
+        "shots_for": 26,
+        "shots_against": 67
+      },
+      "Goal diff < -1": {
+        "time": 147.0,
+        "xG_for_90": 2.008,
+        "xG_against_90": 1.34,
+        "goals_for_90": 1.224,
+        "goals_against_90": 1.837,
+        "net_xG_90": 0.667,
+        "shots_for": 35,
+        "shots_against": 14
+      },
+      "Goal diff > +1": {
+        "time": 75.0,
+        "xG_for_90": 0.974,
+        "xG_against_90": 2.315,
+        "goals_for_90": 1.2,
+        "goals_against_90": 1.2,
+        "net_xG_90": -1.341,
+        "shots_for": 3,
+        "shots_against": 18
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 2.188,
+      "closing_ability": "POOR"
+    }
+  },
+  "Eintracht Frankfurt": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 434.0,
+        "xG_for_90": 1.39,
+        "xG_against_90": 0.895,
+        "goals_for_90": 1.452,
+        "goals_against_90": 1.659,
+        "net_xG_90": 0.494,
+        "shots_for": 57,
+        "shots_against": 35
+      },
+      "Goal diff > +1": {
+        "time": 288.0,
+        "xG_for_90": 1.94,
+        "xG_against_90": 1.56,
+        "goals_for_90": 2.5,
+        "goals_against_90": 2.5,
+        "net_xG_90": 0.38,
+        "shots_for": 37,
+        "shots_against": 43
+      },
+      "Goal diff -1": {
+        "time": 266.0,
+        "xG_for_90": 1.3,
+        "xG_against_90": 1.843,
+        "goals_for_90": 1.353,
+        "goals_against_90": 2.03,
+        "net_xG_90": -0.543,
+        "shots_for": 40,
+        "shots_against": 36
+      },
+      "Goal diff < -1": {
+        "time": 171.0,
+        "xG_for_90": 0.922,
+        "xG_against_90": 2.41,
+        "goals_for_90": 2.105,
+        "goals_against_90": 3.158,
+        "net_xG_90": -1.488,
+        "shots_for": 19,
+        "shots_against": 24
+      },
+      "Goal diff +1": {
+        "time": 93.0,
+        "xG_for_90": 4.087,
+        "xG_against_90": 0.739,
+        "goals_for_90": 4.839,
+        "goals_against_90": 0.968,
+        "net_xG_90": 3.347,
+        "shots_for": 15,
+        "shots_against": 11
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0.968,
+      "closing_ability": "POOR"
+    }
+  },
+  "VfB Stuttgart": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 653.0,
+        "xG_for_90": 1.321,
+        "xG_against_90": 1.509,
+        "goals_for_90": 1.103,
+        "goals_against_90": 1.654,
+        "net_xG_90": -0.188,
+        "shots_for": 105,
+        "shots_against": 75
+      },
+      "Goal diff -1": {
+        "time": 263.0,
+        "xG_for_90": 1.918,
+        "xG_against_90": 1.599,
+        "goals_for_90": 2.395,
+        "goals_against_90": 2.053,
+        "net_xG_90": 0.318,
+        "shots_for": 44,
+        "shots_against": 30
+      },
+      "Goal diff +1": {
+        "time": 162.0,
+        "xG_for_90": 1.323,
+        "xG_against_90": 0.917,
+        "goals_for_90": 1.111,
+        "goals_against_90": 0.556,
+        "net_xG_90": 0.406,
+        "shots_for": 20,
+        "shots_against": 28
+      },
+      "Goal diff < -1": {
+        "time": 91.0,
+        "xG_for_90": 1.518,
+        "xG_against_90": 3.099,
+        "goals_for_90": 2.967,
+        "goals_against_90": 2.967,
+        "net_xG_90": -1.58,
+        "shots_for": 17,
+        "shots_against": 15
+      },
+      "Goal diff > +1": {
+        "time": 84.0,
+        "xG_for_90": 1.756,
+        "xG_against_90": 1.478,
+        "goals_for_90": 1.071,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.278,
+        "shots_for": 13,
+        "shots_against": 17
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "GOOD"
+    }
+  },
+  "FC Cologne": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 672.0,
+        "xG_for_90": 1.291,
+        "xG_against_90": 1.615,
+        "goals_for_90": 1.071,
+        "goals_against_90": 1.339,
+        "net_xG_90": -0.323,
+        "shots_for": 68,
+        "shots_against": 98
+      },
+      "Goal diff +1": {
+        "time": 266.0,
+        "xG_for_90": 1.431,
+        "xG_against_90": 1.562,
+        "goals_for_90": 1.015,
+        "goals_against_90": 1.353,
+        "net_xG_90": -0.13,
+        "shots_for": 36,
+        "shots_against": 41
+      },
+      "Goal diff -1": {
+        "time": 148.0,
+        "xG_for_90": 1.444,
+        "xG_against_90": 1.724,
+        "goals_for_90": 3.041,
+        "goals_against_90": 1.824,
+        "net_xG_90": -0.281,
+        "shots_for": 26,
+        "shots_against": 23
+      },
+      "Goal diff < -1": {
+        "time": 126.0,
+        "xG_for_90": 2.418,
+        "xG_against_90": 2.092,
+        "goals_for_90": 2.143,
+        "goals_against_90": 1.429,
+        "net_xG_90": 0.327,
+        "shots_for": 25,
+        "shots_against": 12
+      },
+      "Goal diff > +1": {
+        "time": 64.0,
+        "xG_for_90": 2.628,
+        "xG_against_90": 1.466,
+        "goals_for_90": 4.219,
+        "goals_against_90": 2.812,
+        "net_xG_90": 1.162,
+        "shots_for": 13,
+        "shots_against": 9
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.353,
+      "closing_ability": "POOR"
+    }
+  },
+  "Freiburg": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 642.0,
+        "xG_for_90": 1.141,
+        "xG_against_90": 1.126,
+        "goals_for_90": 1.121,
+        "goals_against_90": 0.981,
+        "net_xG_90": 0.016,
+        "shots_for": 74,
+        "shots_against": 74
+      },
+      "Goal diff < -1": {
+        "time": 169.0,
+        "xG_for_90": 1.107,
+        "xG_against_90": 1.995,
+        "goals_for_90": 1.065,
+        "goals_against_90": 2.663,
+        "net_xG_90": -0.888,
+        "shots_for": 19,
+        "shots_against": 35
+      },
+      "Goal diff -1": {
+        "time": 166.0,
+        "xG_for_90": 1.369,
+        "xG_against_90": 1.26,
+        "goals_for_90": 1.084,
+        "goals_against_90": 2.169,
+        "net_xG_90": 0.11,
+        "shots_for": 26,
+        "shots_against": 16
+      },
+      "Goal diff +1": {
+        "time": 146.0,
+        "xG_for_90": 2.368,
+        "xG_against_90": 1.532,
+        "goals_for_90": 3.082,
+        "goals_against_90": 2.466,
+        "net_xG_90": 0.835,
+        "shots_for": 19,
+        "shots_against": 20
+      },
+      "Goal diff > +1": {
+        "time": 123.0,
+        "xG_for_90": 2.922,
+        "xG_against_90": 1.689,
+        "goals_for_90": 2.195,
+        "goals_against_90": 1.463,
+        "net_xG_90": 1.233,
+        "shots_for": 22,
+        "shots_against": 12
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 2.466,
+      "closing_ability": "POOR"
+    }
+  },
+  "RasenBallsport Leipzig": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 565.0,
+        "xG_for_90": 2.24,
+        "xG_against_90": 0.819,
+        "goals_for_90": 2.071,
+        "goals_against_90": 0.319,
+        "net_xG_90": 1.421,
+        "shots_for": 104,
+        "shots_against": 71
+      },
+      "Goal diff +1": {
+        "time": 350.0,
+        "xG_for_90": 1.966,
+        "xG_against_90": 1.553,
+        "goals_for_90": 1.8,
+        "goals_against_90": 1.029,
+        "net_xG_90": 0.413,
+        "shots_for": 52,
+        "shots_against": 59
+      },
+      "Goal diff > +1": {
+        "time": 204.0,
+        "xG_for_90": 2.851,
+        "xG_against_90": 0.885,
+        "goals_for_90": 3.529,
+        "goals_against_90": 0.441,
+        "net_xG_90": 1.966,
+        "shots_for": 40,
+        "shots_against": 27
+      },
+      "Goal diff < -1": {
+        "time": 71.0,
+        "xG_for_90": 0.774,
+        "xG_against_90": 3.393,
+        "goals_for_90": 0.0,
+        "goals_against_90": 5.07,
+        "net_xG_90": -2.619,
+        "shots_for": 12,
+        "shots_against": 15
+      },
+      "Goal diff -1": {
+        "time": 48.0,
+        "xG_for_90": 0.746,
+        "xG_against_90": 0.977,
+        "goals_for_90": 0.0,
+        "goals_against_90": 3.75,
+        "net_xG_90": -0.231,
+        "shots_for": 10,
+        "shots_against": 2
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.029,
+      "closing_ability": "POOR"
+    }
+  },
+  "Union Berlin": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 661.0,
+        "xG_for_90": 1.087,
+        "xG_against_90": 1.034,
+        "goals_for_90": 0.953,
+        "goals_against_90": 0.817,
+        "net_xG_90": 0.054,
+        "shots_for": 75,
+        "shots_against": 80
+      },
+      "Goal diff +1": {
+        "time": 225.0,
+        "xG_for_90": 1.063,
+        "xG_against_90": 1.194,
+        "goals_for_90": 2.0,
+        "goals_against_90": 1.2,
+        "net_xG_90": -0.131,
+        "shots_for": 30,
+        "shots_against": 41
+      },
+      "Goal diff < -1": {
+        "time": 194.0,
+        "xG_for_90": 2.598,
+        "xG_against_90": 1.369,
+        "goals_for_90": 1.392,
+        "goals_against_90": 0.928,
+        "net_xG_90": 1.228,
+        "shots_for": 38,
+        "shots_against": 17
+      },
+      "Goal diff > +1": {
+        "time": 124.0,
+        "xG_for_90": 1.011,
+        "xG_against_90": 1.614,
+        "goals_for_90": 0.726,
+        "goals_against_90": 3.629,
+        "net_xG_90": -0.603,
+        "shots_for": 7,
+        "shots_against": 23
+      },
+      "Goal diff -1": {
+        "time": 55.0,
+        "xG_for_90": 1.132,
+        "xG_against_90": 6.192,
+        "goals_for_90": 0.0,
+        "goals_against_90": 9.818,
+        "net_xG_90": -5.06,
+        "shots_for": 11,
+        "shots_against": 11
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.2,
+      "closing_ability": "POOR"
+    }
+  },
+  "FC Heidenheim": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 685.0,
+        "xG_for_90": 1.063,
+        "xG_against_90": 1.611,
+        "goals_for_90": 0.526,
+        "goals_against_90": 1.708,
+        "net_xG_90": -0.547,
+        "shots_for": 62,
+        "shots_against": 96
+      },
+      "Goal diff < -1": {
+        "time": 245.0,
+        "xG_for_90": 0.933,
+        "xG_against_90": 2.737,
+        "goals_for_90": 0.735,
+        "goals_against_90": 2.204,
+        "net_xG_90": -1.804,
+        "shots_for": 29,
+        "shots_against": 54
+      },
+      "Goal diff -1": {
+        "time": 228.0,
+        "xG_for_90": 1.469,
+        "xG_against_90": 2.707,
+        "goals_for_90": 1.974,
+        "goals_against_90": 2.763,
+        "net_xG_90": -1.238,
+        "shots_for": 41,
+        "shots_against": 43
+      },
+      "Goal diff > +1": {
+        "time": 43.0,
+        "xG_for_90": 0.48,
+        "xG_against_90": 1.134,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.093,
+        "net_xG_90": -0.654,
+        "shots_for": 5,
+        "shots_against": 6
+      },
+      "Goal diff +1": {
+        "time": 33.0,
+        "xG_for_90": 1.776,
+        "xG_against_90": 2.12,
+        "goals_for_90": 2.727,
+        "goals_against_90": 2.727,
+        "net_xG_90": -0.344,
+        "shots_for": 4,
+        "shots_against": 6
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 2.727,
+      "closing_ability": "POOR"
+    }
+  },
+  "St. Pauli": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 620.0,
+        "xG_for_90": 0.541,
+        "xG_against_90": 1.729,
+        "goals_for_90": 0.435,
+        "goals_against_90": 2.032,
+        "net_xG_90": -1.188,
+        "shots_for": 43,
+        "shots_against": 70
+      },
+      "Goal diff -1": {
+        "time": 350.0,
+        "xG_for_90": 1.009,
+        "xG_against_90": 1.739,
+        "goals_for_90": 1.286,
+        "goals_against_90": 1.8,
+        "net_xG_90": -0.731,
+        "shots_for": 51,
+        "shots_against": 38
+      },
+      "Goal diff < -1": {
+        "time": 177.0,
+        "xG_for_90": 1.758,
+        "xG_against_90": 2.303,
+        "goals_for_90": 1.017,
+        "goals_against_90": 1.525,
+        "net_xG_90": -0.545,
+        "shots_for": 33,
+        "shots_against": 26
+      },
+      "Goal diff +1": {
+        "time": 61.0,
+        "xG_for_90": 1.876,
+        "xG_against_90": 1.462,
+        "goals_for_90": 1.475,
+        "goals_against_90": 1.475,
+        "net_xG_90": 0.415,
+        "shots_for": 9,
+        "shots_against": 10
+      },
+      "Goal diff > +1": {
+        "time": 39.0,
+        "xG_for_90": 1.369,
+        "xG_against_90": 1.234,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.134,
+        "shots_for": 9,
+        "shots_against": 1
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.475,
+      "closing_ability": "POOR"
+    }
+  },
+  "Verona": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 797.0,
+        "xG_for_90": 0.95,
+        "xG_against_90": 1.267,
+        "goals_for_90": 0.339,
+        "goals_against_90": 1.355,
+        "net_xG_90": -0.317,
+        "shots_for": 89,
+        "shots_against": 107
+      },
+      "Goal diff -1": {
+        "time": 293.0,
+        "xG_for_90": 2.088,
+        "xG_against_90": 0.937,
+        "goals_for_90": 1.536,
+        "goals_against_90": 0.922,
+        "net_xG_90": 1.151,
+        "shots_for": 50,
+        "shots_against": 36
+      },
+      "Goal diff < -1": {
+        "time": 90.0,
+        "xG_for_90": 0.719,
+        "xG_against_90": 3.543,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.0,
+        "net_xG_90": -2.824,
+        "shots_for": 14,
+        "shots_against": 21
+      },
+      "Goal diff +1": {
+        "time": 77.0,
+        "xG_for_90": 2.613,
+        "xG_against_90": 0.981,
+        "goals_for_90": 2.338,
+        "goals_against_90": 2.338,
+        "net_xG_90": 1.632,
+        "shots_for": 9,
+        "shots_against": 6
+      },
+      "Goal diff > +1": {
+        "time": 73.0,
+        "xG_for_90": 1.393,
+        "xG_against_90": 1.54,
+        "goals_for_90": 1.233,
+        "goals_against_90": 2.466,
+        "net_xG_90": -0.147,
+        "shots_for": 8,
+        "shots_against": 7
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 2.338,
+      "closing_ability": "POOR"
+    }
+  },
+  "Roma": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 603.0,
+        "xG_for_90": 0.924,
+        "xG_against_90": 0.947,
+        "goals_for_90": 1.343,
+        "goals_against_90": 0.896,
+        "net_xG_90": -0.024,
+        "shots_for": 79,
+        "shots_against": 54
+      },
+      "Goal diff +1": {
+        "time": 425.0,
+        "xG_for_90": 1.704,
+        "xG_against_90": 1.003,
+        "goals_for_90": 0.847,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.701,
+        "shots_for": 58,
+        "shots_against": 54
+      },
+      "Goal diff -1": {
+        "time": 237.0,
+        "xG_for_90": 1.54,
+        "xG_against_90": 1.856,
+        "goals_for_90": 0.38,
+        "goals_against_90": 0.0,
+        "net_xG_90": -0.316,
+        "shots_for": 39,
+        "shots_against": 30
+      },
+      "Goal diff > +1": {
+        "time": 69.0,
+        "xG_for_90": 1.453,
+        "xG_against_90": 1.824,
+        "goals_for_90": 1.304,
+        "goals_against_90": 2.609,
+        "net_xG_90": -0.372,
+        "shots_for": 7,
+        "shots_against": 9
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Lazio": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 703.0,
+        "xG_for_90": 0.721,
+        "xG_against_90": 1.156,
+        "goals_for_90": 0.896,
+        "goals_against_90": 0.896,
+        "net_xG_90": -0.435,
+        "shots_for": 67,
+        "shots_against": 86
+      },
+      "Goal diff -1": {
+        "time": 233.0,
+        "xG_for_90": 0.805,
+        "xG_against_90": 1.49,
+        "goals_for_90": 0.773,
+        "goals_against_90": 0.773,
+        "net_xG_90": -0.685,
+        "shots_for": 25,
+        "shots_against": 32
+      },
+      "Goal diff +1": {
+        "time": 223.0,
+        "xG_for_90": 1.404,
+        "xG_against_90": 1.625,
+        "goals_for_90": 1.614,
+        "goals_against_90": 0.807,
+        "net_xG_90": -0.221,
+        "shots_for": 33,
+        "shots_against": 35
+      },
+      "Goal diff > +1": {
+        "time": 142.0,
+        "xG_for_90": 3.64,
+        "xG_against_90": 1.271,
+        "goals_for_90": 1.901,
+        "goals_against_90": 0.0,
+        "net_xG_90": 2.369,
+        "shots_for": 25,
+        "shots_against": 27
+      },
+      "Goal diff < -1": {
+        "time": 41.0,
+        "xG_for_90": 1.014,
+        "xG_against_90": 0.572,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.441,
+        "shots_for": 6,
+        "shots_against": 6
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 0.807,
+      "closing_ability": "POOR"
+    }
+  },
+  "Bologna": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 828.0,
+        "xG_for_90": 1.085,
+        "xG_against_90": 0.884,
+        "goals_for_90": 0.978,
+        "goals_against_90": 0.761,
+        "net_xG_90": 0.201,
+        "shots_for": 97,
+        "shots_against": 80
+      },
+      "Goal diff +1": {
+        "time": 180.0,
+        "xG_for_90": 1.534,
+        "xG_against_90": 1.886,
+        "goals_for_90": 3.0,
+        "goals_against_90": 1.0,
+        "net_xG_90": -0.351,
+        "shots_for": 23,
+        "shots_against": 22
+      },
+      "Goal diff > +1": {
+        "time": 138.0,
+        "xG_for_90": 3.313,
+        "xG_against_90": 1.305,
+        "goals_for_90": 1.957,
+        "goals_against_90": 0.652,
+        "net_xG_90": 2.008,
+        "shots_for": 29,
+        "shots_against": 14
+      },
+      "Goal diff -1": {
+        "time": 133.0,
+        "xG_for_90": 2.428,
+        "xG_against_90": 1.993,
+        "goals_for_90": 2.707,
+        "goals_against_90": 1.353,
+        "net_xG_90": 0.435,
+        "shots_for": 24,
+        "shots_against": 19
+      },
+      "Goal diff < -1": {
+        "time": 58.0,
+        "xG_for_90": 2.565,
+        "xG_against_90": 1.267,
+        "goals_for_90": 1.552,
+        "goals_against_90": 0.0,
+        "net_xG_90": 1.298,
+        "shots_for": 21,
+        "shots_against": 7
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.0,
+      "closing_ability": "POOR"
+    }
+  },
+  "Juventus": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 745.0,
+        "xG_for_90": 1.477,
+        "xG_against_90": 1.025,
+        "goals_for_90": 1.329,
+        "goals_against_90": 0.846,
+        "net_xG_90": 0.452,
+        "shots_for": 139,
+        "shots_against": 72
+      },
+      "Goal diff +1": {
+        "time": 305.0,
+        "xG_for_90": 1.627,
+        "xG_against_90": 0.709,
+        "goals_for_90": 0.885,
+        "goals_against_90": 1.475,
+        "net_xG_90": 0.918,
+        "shots_for": 40,
+        "shots_against": 38
+      },
+      "Goal diff -1": {
+        "time": 242.0,
+        "xG_for_90": 1.231,
+        "xG_against_90": 1.112,
+        "goals_for_90": 1.488,
+        "goals_against_90": 0.372,
+        "net_xG_90": 0.119,
+        "shots_for": 36,
+        "shots_against": 31
+      },
+      "Goal diff > +1": {
+        "time": 26.0,
+        "xG_for_90": 1.24,
+        "xG_against_90": 1.662,
+        "goals_for_90": 0.0,
+        "goals_against_90": 3.462,
+        "net_xG_90": -0.422,
+        "shots_for": 4,
+        "shots_against": 7
+      },
+      "Goal diff < -1": {
+        "time": 16.0,
+        "xG_for_90": 0.552,
+        "xG_against_90": 0.947,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.0,
+        "net_xG_90": -0.395,
+        "shots_for": 3,
+        "shots_against": 2
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.475,
+      "closing_ability": "POOR"
+    }
+  },
+  "Udinese": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 550.0,
+        "xG_for_90": 1.085,
+        "xG_against_90": 1.571,
+        "goals_for_90": 0.982,
+        "goals_against_90": 1.8,
+        "net_xG_90": -0.486,
+        "shots_for": 69,
+        "shots_against": 63
+      },
+      "Goal diff +1": {
+        "time": 298.0,
+        "xG_for_90": 1.252,
+        "xG_against_90": 0.834,
+        "goals_for_90": 0.906,
+        "goals_against_90": 0.302,
+        "net_xG_90": 0.419,
+        "shots_for": 32,
+        "shots_against": 43
+      },
+      "Goal diff -1": {
+        "time": 280.0,
+        "xG_for_90": 1.503,
+        "xG_against_90": 1.468,
+        "goals_for_90": 1.607,
+        "goals_against_90": 1.929,
+        "net_xG_90": 0.035,
+        "shots_for": 45,
+        "shots_against": 33
+      },
+      "Goal diff < -1": {
+        "time": 136.0,
+        "xG_for_90": 1.674,
+        "xG_against_90": 2.248,
+        "goals_for_90": 0.662,
+        "goals_against_90": 1.324,
+        "net_xG_90": -0.574,
+        "shots_for": 23,
+        "shots_against": 23
+      },
+      "Goal diff > +1": {
+        "time": 61.0,
+        "xG_for_90": 0.862,
+        "xG_against_90": 1.07,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.951,
+        "net_xG_90": -0.208,
+        "shots_for": 7,
+        "shots_against": 13
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 0,
+      "closing_ability": "GOOD"
+    }
+  },
+  "Genoa": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 837.0,
+        "xG_for_90": 1.257,
+        "xG_against_90": 1.007,
+        "goals_for_90": 1.183,
+        "goals_against_90": 1.075,
+        "net_xG_90": 0.25,
+        "shots_for": 90,
+        "shots_against": 79
+      },
+      "Goal diff +1": {
+        "time": 209.0,
+        "xG_for_90": 0.989,
+        "xG_against_90": 3.411,
+        "goals_for_90": 0.0,
+        "goals_against_90": 3.445,
+        "net_xG_90": -2.422,
+        "shots_for": 25,
+        "shots_against": 49
+      },
+      "Goal diff -1": {
+        "time": 190.0,
+        "xG_for_90": 2.266,
+        "xG_against_90": 1.622,
+        "goals_for_90": 1.895,
+        "goals_against_90": 0.947,
+        "net_xG_90": 0.644,
+        "shots_for": 35,
+        "shots_against": 24
+      },
+      "Goal diff < -1": {
+        "time": 105.0,
+        "xG_for_90": 1.867,
+        "xG_against_90": 2.926,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.857,
+        "net_xG_90": -1.06,
+        "shots_for": 22,
+        "shots_against": 9
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 3.445,
+      "closing_ability": "POOR"
+    }
+  },
+  "Sassuolo": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 666.0,
+        "xG_for_90": 1.157,
+        "xG_against_90": 1.295,
+        "goals_for_90": 0.811,
+        "goals_against_90": 1.486,
+        "net_xG_90": -0.138,
+        "shots_for": 78,
+        "shots_against": 87
+      },
+      "Goal diff -1": {
+        "time": 292.0,
+        "xG_for_90": 1.337,
+        "xG_against_90": 2.756,
+        "goals_for_90": 1.541,
+        "goals_against_90": 1.233,
+        "net_xG_90": -1.419,
+        "shots_for": 39,
+        "shots_against": 46
+      },
+      "Goal diff +1": {
+        "time": 163.0,
+        "xG_for_90": 1.558,
+        "xG_against_90": 0.583,
+        "goals_for_90": 2.761,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.974,
+        "shots_for": 17,
+        "shots_against": 23
+      },
+      "Goal diff > +1": {
+        "time": 115.0,
+        "xG_for_90": 1.424,
+        "xG_against_90": 1.575,
+        "goals_for_90": 0.783,
+        "goals_against_90": 1.565,
+        "net_xG_90": -0.151,
+        "shots_for": 8,
+        "shots_against": 19
+      },
+      "Goal diff < -1": {
+        "time": 103.0,
+        "xG_for_90": 1.599,
+        "xG_against_90": 1.134,
+        "goals_for_90": 1.748,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.465,
+        "shots_for": 15,
+        "shots_against": 13
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Napoli": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 660.0,
+        "xG_for_90": 1.618,
+        "xG_against_90": 0.923,
+        "goals_for_90": 1.636,
+        "goals_against_90": 0.545,
+        "net_xG_90": 0.695,
+        "shots_for": 95,
+        "shots_against": 53
+      },
+      "Goal diff +1": {
+        "time": 259.0,
+        "xG_for_90": 1.217,
+        "xG_against_90": 1.013,
+        "goals_for_90": 2.085,
+        "goals_against_90": 0.695,
+        "net_xG_90": 0.204,
+        "shots_for": 28,
+        "shots_against": 31
+      },
+      "Goal diff > +1": {
+        "time": 207.0,
+        "xG_for_90": 1.599,
+        "xG_against_90": 1.802,
+        "goals_for_90": 0.87,
+        "goals_against_90": 1.739,
+        "net_xG_90": -0.203,
+        "shots_for": 21,
+        "shots_against": 44
+      },
+      "Goal diff -1": {
+        "time": 158.0,
+        "xG_for_90": 1.042,
+        "xG_against_90": 1.137,
+        "goals_for_90": 0.57,
+        "goals_against_90": 1.139,
+        "net_xG_90": -0.095,
+        "shots_for": 32,
+        "shots_against": 15
+      },
+      "Goal diff < -1": {
+        "time": 54.0,
+        "xG_for_90": 2.945,
+        "xG_against_90": 0.365,
+        "goals_for_90": 1.667,
+        "goals_against_90": 0.0,
+        "net_xG_90": 2.58,
+        "shots_for": 7,
+        "shots_against": 5
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "POOR"
+    }
+  },
+  "Inter": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 494.0,
+        "xG_for_90": 2.01,
+        "xG_against_90": 0.789,
+        "goals_for_90": 2.368,
+        "goals_against_90": 1.093,
+        "net_xG_90": 1.221,
+        "shots_for": 99,
+        "shots_against": 37
+      },
+      "Goal diff +1": {
+        "time": 442.0,
+        "xG_for_90": 2.545,
+        "xG_against_90": 1.11,
+        "goals_for_90": 1.629,
+        "goals_against_90": 0.611,
+        "net_xG_90": 1.434,
+        "shots_for": 71,
+        "shots_against": 49
+      },
+      "Goal diff > +1": {
+        "time": 196.0,
+        "xG_for_90": 3.21,
+        "xG_against_90": 1.293,
+        "goals_for_90": 3.673,
+        "goals_against_90": 0.918,
+        "net_xG_90": 1.917,
+        "shots_for": 36,
+        "shots_against": 34
+      },
+      "Goal diff -1": {
+        "time": 161.0,
+        "xG_for_90": 1.394,
+        "xG_against_90": 0.356,
+        "goals_for_90": 1.118,
+        "goals_against_90": 1.118,
+        "net_xG_90": 1.039,
+        "shots_for": 34,
+        "shots_against": 11
+      },
+      "Goal diff < -1": {
+        "time": 28.0,
+        "xG_for_90": 3.135,
+        "xG_against_90": 0.446,
+        "goals_for_90": 3.214,
+        "goals_against_90": 0.0,
+        "net_xG_90": 2.689,
+        "shots_for": 6,
+        "shots_against": 1
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "POOR"
+    }
+  },
+  "Atalanta": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 802.0,
+        "xG_for_90": 1.331,
+        "xG_against_90": 0.968,
+        "goals_for_90": 0.673,
+        "goals_against_90": 0.786,
+        "net_xG_90": 0.362,
+        "shots_for": 118,
+        "shots_against": 92
+      },
+      "Goal diff < -1": {
+        "time": 155.0,
+        "xG_for_90": 1.226,
+        "xG_against_90": 2.148,
+        "goals_for_90": 1.161,
+        "goals_against_90": 1.742,
+        "net_xG_90": -0.923,
+        "shots_for": 27,
+        "shots_against": 17
+      },
+      "Goal diff -1": {
+        "time": 151.0,
+        "xG_for_90": 1.097,
+        "xG_against_90": 0.78,
+        "goals_for_90": 1.788,
+        "goals_against_90": 1.788,
+        "net_xG_90": 0.317,
+        "shots_for": 23,
+        "shots_against": 12
+      },
+      "Goal diff > +1": {
+        "time": 137.0,
+        "xG_for_90": 2.26,
+        "xG_against_90": 1.545,
+        "goals_for_90": 1.971,
+        "goals_against_90": 0.657,
+        "net_xG_90": 0.715,
+        "shots_for": 20,
+        "shots_against": 23
+      },
+      "Goal diff +1": {
+        "time": 74.0,
+        "xG_for_90": 2.831,
+        "xG_against_90": 3.046,
+        "goals_for_90": 3.649,
+        "goals_against_90": 3.649,
+        "net_xG_90": -0.215,
+        "shots_for": 19,
+        "shots_against": 10
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 3.649,
+      "closing_ability": "POOR"
+    }
+  },
+  "Fiorentina": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 793.0,
+        "xG_for_90": 0.878,
+        "xG_against_90": 1.647,
+        "goals_for_90": 0.681,
+        "goals_against_90": 1.248,
+        "net_xG_90": -0.769,
+        "shots_for": 72,
+        "shots_against": 122
+      },
+      "Goal diff -1": {
+        "time": 251.0,
+        "xG_for_90": 2.391,
+        "xG_against_90": 1.638,
+        "goals_for_90": 1.076,
+        "goals_against_90": 1.793,
+        "net_xG_90": 0.753,
+        "shots_for": 46,
+        "shots_against": 24
+      },
+      "Goal diff < -1": {
+        "time": 185.0,
+        "xG_for_90": 1.633,
+        "xG_against_90": 1.628,
+        "goals_for_90": 0.973,
+        "goals_against_90": 0.973,
+        "net_xG_90": 0.005,
+        "shots_for": 39,
+        "shots_against": 19
+      },
+      "Goal diff +1": {
+        "time": 109.0,
+        "xG_for_90": 0.682,
+        "xG_against_90": 1.633,
+        "goals_for_90": 0.0,
+        "goals_against_90": 4.954,
+        "net_xG_90": -0.95,
+        "shots_for": 5,
+        "shots_against": 22
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 4.954,
+      "closing_ability": "POOR"
+    }
+  },
+  "AC Milan": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 711.0,
+        "xG_for_90": 1.685,
+        "xG_against_90": 0.704,
+        "goals_for_90": 1.392,
+        "goals_against_90": 0.506,
+        "net_xG_90": 0.981,
+        "shots_for": 98,
+        "shots_against": 68
+      },
+      "Goal diff +1": {
+        "time": 383.0,
+        "xG_for_90": 1.674,
+        "xG_against_90": 1.407,
+        "goals_for_90": 0.94,
+        "goals_against_90": 0.705,
+        "net_xG_90": 0.267,
+        "shots_for": 48,
+        "shots_against": 63
+      },
+      "Goal diff > +1": {
+        "time": 99.0,
+        "xG_for_90": 0.876,
+        "xG_against_90": 1.929,
+        "goals_for_90": 0.909,
+        "goals_against_90": 1.818,
+        "net_xG_90": -1.052,
+        "shots_for": 13,
+        "shots_against": 19
+      },
+      "Goal diff -1": {
+        "time": 50.0,
+        "xG_for_90": 2.772,
+        "xG_against_90": 0.0,
+        "goals_for_90": 5.4,
+        "goals_against_90": 0.0,
+        "net_xG_90": 2.772,
+        "shots_for": 13,
+        "shots_against": 0
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "POOR"
+    }
+  },
+  "Torino": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 757.0,
+        "xG_for_90": 0.999,
+        "xG_against_90": 1.384,
+        "goals_for_90": 0.594,
+        "goals_against_90": 1.189,
+        "net_xG_90": -0.385,
+        "shots_for": 83,
+        "shots_against": 108
+      },
+      "Goal diff -1": {
+        "time": 194.0,
+        "xG_for_90": 2.083,
+        "xG_against_90": 1.673,
+        "goals_for_90": 2.32,
+        "goals_against_90": 2.32,
+        "net_xG_90": 0.41,
+        "shots_for": 23,
+        "shots_against": 25
+      },
+      "Goal diff < -1": {
+        "time": 172.0,
+        "xG_for_90": 1.836,
+        "xG_against_90": 2.027,
+        "goals_for_90": 1.047,
+        "goals_against_90": 3.14,
+        "net_xG_90": -0.192,
+        "shots_for": 34,
+        "shots_against": 25
+      },
+      "Goal diff +1": {
+        "time": 111.0,
+        "xG_for_90": 1.225,
+        "xG_against_90": 2.222,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.622,
+        "net_xG_90": -0.997,
+        "shots_for": 11,
+        "shots_against": 31
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.622,
+      "closing_ability": "POOR"
+    }
+  },
+  "Cagliari": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 837.0,
+        "xG_for_90": 0.969,
+        "xG_against_90": 1.142,
+        "goals_for_90": 0.645,
+        "goals_against_90": 1.183,
+        "net_xG_90": -0.173,
+        "shots_for": 83,
+        "shots_against": 96
+      },
+      "Goal diff -1": {
+        "time": 329.0,
+        "xG_for_90": 1.224,
+        "xG_against_90": 2.208,
+        "goals_for_90": 1.368,
+        "goals_against_90": 1.368,
+        "net_xG_90": -0.984,
+        "shots_for": 36,
+        "shots_against": 51
+      },
+      "Goal diff +1": {
+        "time": 108.0,
+        "xG_for_90": 0.869,
+        "xG_against_90": 2.375,
+        "goals_for_90": 0.833,
+        "goals_against_90": 2.5,
+        "net_xG_90": -1.506,
+        "shots_for": 8,
+        "shots_against": 26
+      },
+      "Goal diff < -1": {
+        "time": 42.0,
+        "xG_for_90": 2.245,
+        "xG_against_90": 2.147,
+        "goals_for_90": 4.286,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.098,
+        "shots_for": 8,
+        "shots_against": 3
+      },
+      "Goal diff > +1": {
+        "time": 14.0,
+        "xG_for_90": 0.622,
+        "xG_against_90": 0.269,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.353,
+        "shots_for": 1,
+        "shots_against": 1
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 2.5,
+      "closing_ability": "POOR"
+    }
+  },
+  "Parma Calcio 1913": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 892.0,
+        "xG_for_90": 0.899,
+        "xG_against_90": 1.248,
+        "goals_for_90": 0.605,
+        "goals_against_90": 0.807,
+        "net_xG_90": -0.35,
+        "shots_for": 72,
+        "shots_against": 123
+      },
+      "Goal diff -1": {
+        "time": 233.0,
+        "xG_for_90": 1.762,
+        "xG_against_90": 1.844,
+        "goals_for_90": 0.773,
+        "goals_against_90": 2.318,
+        "net_xG_90": -0.082,
+        "shots_for": 39,
+        "shots_against": 31
+      },
+      "Goal diff +1": {
+        "time": 128.0,
+        "xG_for_90": 0.923,
+        "xG_against_90": 2.512,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.109,
+        "net_xG_90": -1.589,
+        "shots_for": 21,
+        "shots_against": 25
+      },
+      "Goal diff < -1": {
+        "time": 79.0,
+        "xG_for_90": 1.399,
+        "xG_against_90": 0.883,
+        "goals_for_90": 2.278,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.516,
+        "shots_for": 17,
+        "shots_against": 9
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 2.109,
+      "closing_ability": "POOR"
+    }
+  },
+  "Lecce": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 765.0,
+        "xG_for_90": 0.82,
+        "xG_against_90": 1.029,
+        "goals_for_90": 0.588,
+        "goals_against_90": 0.941,
+        "net_xG_90": -0.209,
+        "shots_for": 70,
+        "shots_against": 77
+      },
+      "Goal diff -1": {
+        "time": 225.0,
+        "xG_for_90": 0.884,
+        "xG_against_90": 1.88,
+        "goals_for_90": 0.4,
+        "goals_against_90": 2.4,
+        "net_xG_90": -0.996,
+        "shots_for": 23,
+        "shots_against": 37
+      },
+      "Goal diff +1": {
+        "time": 224.0,
+        "xG_for_90": 0.893,
+        "xG_against_90": 2.053,
+        "goals_for_90": 0.402,
+        "goals_against_90": 0.804,
+        "net_xG_90": -1.16,
+        "shots_for": 23,
+        "shots_against": 34
+      },
+      "Goal diff < -1": {
+        "time": 86.0,
+        "xG_for_90": 0.619,
+        "xG_against_90": 2.145,
+        "goals_for_90": 3.14,
+        "goals_against_90": 2.093,
+        "net_xG_90": -1.526,
+        "shots_for": 14,
+        "shots_against": 13
+      },
+      "Goal diff > +1": {
+        "time": 34.0,
+        "xG_for_90": 0.681,
+        "xG_against_90": 2.217,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.647,
+        "net_xG_90": -1.537,
+        "shots_for": 3,
+        "shots_against": 11
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0.804,
+      "closing_ability": "POOR"
+    }
+  },
+  "Cremonese": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 741.0,
+        "xG_for_90": 0.889,
+        "xG_against_90": 1.206,
+        "goals_for_90": 1.093,
+        "goals_against_90": 0.607,
+        "net_xG_90": -0.317,
+        "shots_for": 60,
+        "shots_against": 115
+      },
+      "Goal diff -1": {
+        "time": 211.0,
+        "xG_for_90": 0.55,
+        "xG_against_90": 2.651,
+        "goals_for_90": 0.427,
+        "goals_against_90": 1.28,
+        "net_xG_90": -2.101,
+        "shots_for": 18,
+        "shots_against": 40
+      },
+      "Goal diff +1": {
+        "time": 163.0,
+        "xG_for_90": 2.637,
+        "xG_against_90": 2.198,
+        "goals_for_90": 2.761,
+        "goals_against_90": 2.209,
+        "net_xG_90": 0.439,
+        "shots_for": 20,
+        "shots_against": 24
+      },
+      "Goal diff > +1": {
+        "time": 130.0,
+        "xG_for_90": 1.524,
+        "xG_against_90": 2.025,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.385,
+        "net_xG_90": -0.5,
+        "shots_for": 13,
+        "shots_against": 34
+      },
+      "Goal diff < -1": {
+        "time": 89.0,
+        "xG_for_90": 1.414,
+        "xG_against_90": 2.601,
+        "goals_for_90": 3.034,
+        "goals_against_90": 3.034,
+        "net_xG_90": -1.187,
+        "shots_for": 8,
+        "shots_against": 17
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 2.209,
+      "closing_ability": "POOR"
+    }
+  },
+  "Como": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 765.0,
+        "xG_for_90": 1.24,
+        "xG_against_90": 0.939,
+        "goals_for_90": 1.176,
+        "goals_against_90": 0.471,
+        "net_xG_90": 0.301,
+        "shots_for": 99,
+        "shots_against": 81
+      },
+      "Goal diff +1": {
+        "time": 298.0,
+        "xG_for_90": 1.665,
+        "xG_against_90": 1.794,
+        "goals_for_90": 1.51,
+        "goals_against_90": 1.208,
+        "net_xG_90": -0.129,
+        "shots_for": 47,
+        "shots_against": 42
+      },
+      "Goal diff -1": {
+        "time": 147.0,
+        "xG_for_90": 1.545,
+        "xG_against_90": 1.084,
+        "goals_for_90": 1.224,
+        "goals_against_90": 0.612,
+        "net_xG_90": 0.461,
+        "shots_for": 22,
+        "shots_against": 12
+      },
+      "Goal diff > +1": {
+        "time": 87.0,
+        "xG_for_90": 1.47,
+        "xG_against_90": 1.51,
+        "goals_for_90": 2.069,
+        "goals_against_90": 0.0,
+        "net_xG_90": -0.04,
+        "shots_for": 17,
+        "shots_against": 14
+      },
+      "Goal diff < -1": {
+        "time": 31.0,
+        "xG_for_90": 0.904,
+        "xG_against_90": 2.184,
+        "goals_for_90": 0.0,
+        "goals_against_90": 5.806,
+        "net_xG_90": -1.28,
+        "shots_for": 10,
+        "shots_against": 4
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.208,
+      "closing_ability": "POOR"
+    }
+  },
+  "Pisa": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 911.0,
+        "xG_for_90": 1.019,
+        "xG_against_90": 1.356,
+        "goals_for_90": 0.593,
+        "goals_against_90": 0.79,
+        "net_xG_90": -0.337,
+        "shots_for": 89,
+        "shots_against": 146
+      },
+      "Goal diff -1": {
+        "time": 246.0,
+        "xG_for_90": 1.778,
+        "xG_against_90": 1.44,
+        "goals_for_90": 0.732,
+        "goals_against_90": 1.098,
+        "net_xG_90": 0.337,
+        "shots_for": 43,
+        "shots_against": 34
+      },
+      "Goal diff +1": {
+        "time": 84.0,
+        "xG_for_90": 2.13,
+        "xG_against_90": 2.006,
+        "goals_for_90": 1.071,
+        "goals_against_90": 5.357,
+        "net_xG_90": 0.124,
+        "shots_for": 5,
+        "shots_against": 18
+      },
+      "Goal diff < -1": {
+        "time": 73.0,
+        "xG_for_90": 1.112,
+        "xG_against_90": 4.379,
+        "goals_for_90": 1.233,
+        "goals_against_90": 2.466,
+        "net_xG_90": -3.267,
+        "shots_for": 4,
+        "shots_against": 18
+      },
+      "Goal diff > +1": {
+        "time": 10.0,
+        "xG_for_90": 0.0,
+        "xG_against_90": 0.867,
+        "goals_for_90": 0.0,
+        "goals_against_90": 9.0,
+        "net_xG_90": -0.867,
+        "shots_for": 0,
+        "shots_against": 2
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 5.357,
+      "closing_ability": "POOR"
+    }
+  },
+  "Lille": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 721.0,
+        "xG_for_90": 1.708,
+        "xG_against_90": 1.004,
+        "goals_for_90": 1.373,
+        "goals_against_90": 0.874,
+        "net_xG_90": 0.704,
+        "shots_for": 102,
+        "shots_against": 66
+      },
+      "Goal diff +1": {
+        "time": 288.0,
+        "xG_for_90": 2.665,
+        "xG_against_90": 0.948,
+        "goals_for_90": 2.188,
+        "goals_against_90": 0.625,
+        "net_xG_90": 1.717,
+        "shots_for": 49,
+        "shots_against": 30
+      },
+      "Goal diff -1": {
+        "time": 255.0,
+        "xG_for_90": 1.523,
+        "xG_against_90": 1.199,
+        "goals_for_90": 1.059,
+        "goals_against_90": 1.059,
+        "net_xG_90": 0.324,
+        "shots_for": 40,
+        "shots_against": 20
+      },
+      "Goal diff > +1": {
+        "time": 114.0,
+        "xG_for_90": 3.152,
+        "xG_against_90": 3.427,
+        "goals_for_90": 6.316,
+        "goals_against_90": 3.158,
+        "net_xG_90": -0.276,
+        "shots_for": 23,
+        "shots_against": 15
+      },
+      "Goal diff < -1": {
+        "time": 75.0,
+        "xG_for_90": 0.632,
+        "xG_against_90": 2.233,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.2,
+        "net_xG_90": -1.601,
+        "shots_for": 13,
+        "shots_against": 8
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "POOR"
+    }
+  },
+  "Paris Saint Germain": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 750.0,
+        "xG_for_90": 1.386,
+        "xG_against_90": 0.629,
+        "goals_for_90": 1.8,
+        "goals_against_90": 0.36,
+        "net_xG_90": 0.756,
+        "shots_for": 128,
+        "shots_against": 54
+      },
+      "Goal diff > +1": {
+        "time": 303.0,
+        "xG_for_90": 2.025,
+        "xG_against_90": 1.415,
+        "goals_for_90": 2.673,
+        "goals_against_90": 0.891,
+        "net_xG_90": 0.61,
+        "shots_for": 59,
+        "shots_against": 36
+      },
+      "Goal diff +1": {
+        "time": 231.0,
+        "xG_for_90": 3.397,
+        "xG_against_90": 1.107,
+        "goals_for_90": 2.338,
+        "goals_against_90": 1.948,
+        "net_xG_90": 2.29,
+        "shots_for": 51,
+        "shots_against": 30
+      },
+      "Goal diff -1": {
+        "time": 138.0,
+        "xG_for_90": 1.806,
+        "xG_against_90": 1.077,
+        "goals_for_90": 0.652,
+        "goals_against_90": 0.652,
+        "net_xG_90": 0.729,
+        "shots_for": 29,
+        "shots_against": 9
+      },
+      "Goal diff < -1": {
+        "time": 8.0,
+        "xG_for_90": 9.573,
+        "xG_against_90": 0.512,
+        "goals_for_90": 11.25,
+        "goals_against_90": 0.0,
+        "net_xG_90": 9.061,
+        "shots_for": 2,
+        "shots_against": 1
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.948,
+      "closing_ability": "POOR"
+    }
+  },
+  "Rennes": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 738.0,
+        "xG_for_90": 1.4,
+        "xG_against_90": 1.335,
+        "goals_for_90": 1.341,
+        "goals_against_90": 0.61,
+        "net_xG_90": 0.065,
+        "shots_for": 101,
+        "shots_against": 100
+      },
+      "Goal diff +1": {
+        "time": 306.0,
+        "xG_for_90": 1.58,
+        "xG_against_90": 2.27,
+        "goals_for_90": 1.765,
+        "goals_against_90": 1.471,
+        "net_xG_90": -0.69,
+        "shots_for": 31,
+        "shots_against": 51
+      },
+      "Goal diff > +1": {
+        "time": 149.0,
+        "xG_for_90": 2.36,
+        "xG_against_90": 2.473,
+        "goals_for_90": 2.416,
+        "goals_against_90": 3.02,
+        "net_xG_90": -0.113,
+        "shots_for": 19,
+        "shots_against": 30
+      },
+      "Goal diff < -1": {
+        "time": 120.0,
+        "xG_for_90": 0.627,
+        "xG_against_90": 2.996,
+        "goals_for_90": 0.75,
+        "goals_against_90": 3.75,
+        "net_xG_90": -2.369,
+        "shots_for": 8,
+        "shots_against": 28
+      },
+      "Goal diff -1": {
+        "time": 113.0,
+        "xG_for_90": 1.991,
+        "xG_against_90": 1.745,
+        "goals_for_90": 1.593,
+        "goals_against_90": 2.389,
+        "net_xG_90": 0.246,
+        "shots_for": 31,
+        "shots_against": 12
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.471,
+      "closing_ability": "POOR"
+    }
+  },
+  "Marseille": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 660.0,
+        "xG_for_90": 1.851,
+        "xG_against_90": 1.274,
+        "goals_for_90": 1.773,
+        "goals_against_90": 1.091,
+        "net_xG_90": 0.577,
+        "shots_for": 107,
+        "shots_against": 55
+      },
+      "Goal diff +1": {
+        "time": 285.0,
+        "xG_for_90": 1.416,
+        "xG_against_90": 1.438,
+        "goals_for_90": 2.211,
+        "goals_against_90": 1.263,
+        "net_xG_90": -0.022,
+        "shots_for": 29,
+        "shots_against": 36
+      },
+      "Goal diff > +1": {
+        "time": 246.0,
+        "xG_for_90": 3.243,
+        "xG_against_90": 0.665,
+        "goals_for_90": 4.024,
+        "goals_against_90": 1.098,
+        "net_xG_90": 2.577,
+        "shots_for": 37,
+        "shots_against": 24
+      },
+      "Goal diff -1": {
+        "time": 243.0,
+        "xG_for_90": 1.766,
+        "xG_against_90": 0.969,
+        "goals_for_90": 1.481,
+        "goals_against_90": 0.0,
+        "net_xG_90": 0.797,
+        "shots_for": 38,
+        "shots_against": 20
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.263,
+      "closing_ability": "POOR"
+    }
+  },
+  "Angers": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 662.0,
+        "xG_for_90": 0.961,
+        "xG_against_90": 1.558,
+        "goals_for_90": 0.816,
+        "goals_against_90": 1.36,
+        "net_xG_90": -0.596,
+        "shots_for": 57,
+        "shots_against": 98
+      },
+      "Goal diff -1": {
+        "time": 314.0,
+        "xG_for_90": 1.198,
+        "xG_against_90": 2.283,
+        "goals_for_90": 1.146,
+        "goals_against_90": 0.86,
+        "net_xG_90": -1.085,
+        "shots_for": 33,
+        "shots_against": 51
+      },
+      "Goal diff +1": {
+        "time": 303.0,
+        "xG_for_90": 0.689,
+        "xG_against_90": 1.608,
+        "goals_for_90": 0.594,
+        "goals_against_90": 0.297,
+        "net_xG_90": -0.919,
+        "shots_for": 24,
+        "shots_against": 62
+      },
+      "Goal diff < -1": {
+        "time": 117.0,
+        "xG_for_90": 1.068,
+        "xG_against_90": 1.712,
+        "goals_for_90": 0.769,
+        "goals_against_90": 2.308,
+        "net_xG_90": -0.644,
+        "shots_for": 13,
+        "shots_against": 11
+      },
+      "Goal diff > +1": {
+        "time": 30.0,
+        "xG_for_90": 1.567,
+        "xG_against_90": 1.978,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.0,
+        "net_xG_90": -0.411,
+        "shots_for": 2,
+        "shots_against": 9
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 0.297,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Nantes": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 787.0,
+        "xG_for_90": 0.756,
+        "xG_against_90": 1.63,
+        "goals_for_90": 0.686,
+        "goals_against_90": 1.487,
+        "net_xG_90": -0.873,
+        "shots_for": 75,
+        "shots_against": 131
+      },
+      "Goal diff -1": {
+        "time": 325.0,
+        "xG_for_90": 1.675,
+        "xG_against_90": 2.447,
+        "goals_for_90": 1.385,
+        "goals_against_90": 1.662,
+        "net_xG_90": -0.772,
+        "shots_for": 43,
+        "shots_against": 61
+      },
+      "Goal diff +1": {
+        "time": 258.0,
+        "xG_for_90": 0.387,
+        "xG_against_90": 1.396,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.395,
+        "net_xG_90": -1.009,
+        "shots_for": 16,
+        "shots_against": 44
+      },
+      "Goal diff < -1": {
+        "time": 69.0,
+        "xG_for_90": 2.041,
+        "xG_against_90": 2.476,
+        "goals_for_90": 2.609,
+        "goals_against_90": 1.304,
+        "net_xG_90": -0.435,
+        "shots_for": 15,
+        "shots_against": 11
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 1.395,
+      "closing_ability": "POOR"
+    }
+  },
+  "Nice": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 655.0,
+        "xG_for_90": 1.315,
+        "xG_against_90": 1.3,
+        "goals_for_90": 1.511,
+        "goals_against_90": 1.237,
+        "net_xG_90": 0.015,
+        "shots_for": 69,
+        "shots_against": 100
+      },
+      "Goal diff +1": {
+        "time": 340.0,
+        "xG_for_90": 1.422,
+        "xG_against_90": 2.039,
+        "goals_for_90": 1.324,
+        "goals_against_90": 1.588,
+        "net_xG_90": -0.618,
+        "shots_for": 37,
+        "shots_against": 71
+      },
+      "Goal diff -1": {
+        "time": 225.0,
+        "xG_for_90": 1.135,
+        "xG_against_90": 1.312,
+        "goals_for_90": 0.4,
+        "goals_against_90": 2.0,
+        "net_xG_90": -0.178,
+        "shots_for": 32,
+        "shots_against": 27
+      },
+      "Goal diff < -1": {
+        "time": 127.0,
+        "xG_for_90": 2.501,
+        "xG_against_90": 2.95,
+        "goals_for_90": 1.417,
+        "goals_against_90": 2.835,
+        "net_xG_90": -0.449,
+        "shots_for": 24,
+        "shots_against": 18
+      },
+      "Goal diff > +1": {
+        "time": 92.0,
+        "xG_for_90": 1.285,
+        "xG_against_90": 3.171,
+        "goals_for_90": 0.0,
+        "goals_against_90": 2.935,
+        "net_xG_90": -1.886,
+        "shots_for": 10,
+        "shots_against": 21
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.588,
+      "closing_ability": "POOR"
+    }
+  },
+  "Monaco": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 758.0,
+        "xG_for_90": 1.463,
+        "xG_against_90": 1.223,
+        "goals_for_90": 1.544,
+        "goals_against_90": 1.069,
+        "net_xG_90": 0.241,
+        "shots_for": 95,
+        "shots_against": 88
+      },
+      "Goal diff +1": {
+        "time": 314.0,
+        "xG_for_90": 2.974,
+        "xG_against_90": 1.963,
+        "goals_for_90": 1.72,
+        "goals_against_90": 1.72,
+        "net_xG_90": 1.01,
+        "shots_for": 45,
+        "shots_against": 43
+      },
+      "Goal diff -1": {
+        "time": 202.0,
+        "xG_for_90": 2.044,
+        "xG_against_90": 1.918,
+        "goals_for_90": 1.337,
+        "goals_against_90": 1.782,
+        "net_xG_90": 0.126,
+        "shots_for": 27,
+        "shots_against": 35
+      },
+      "Goal diff < -1": {
+        "time": 117.0,
+        "xG_for_90": 3.138,
+        "xG_against_90": 3.143,
+        "goals_for_90": 2.308,
+        "goals_against_90": 3.077,
+        "net_xG_90": -0.005,
+        "shots_for": 16,
+        "shots_against": 24
+      },
+      "Goal diff > +1": {
+        "time": 63.0,
+        "xG_for_90": 1.477,
+        "xG_against_90": 1.417,
+        "goals_for_90": 1.429,
+        "goals_against_90": 4.286,
+        "net_xG_90": 0.06,
+        "shots_for": 7,
+        "shots_against": 15
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.72,
+      "closing_ability": "POOR"
+    }
+  },
+  "Toulouse": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 739.0,
+        "xG_for_90": 0.779,
+        "xG_against_90": 1.277,
+        "goals_for_90": 0.853,
+        "goals_against_90": 1.34,
+        "net_xG_90": -0.499,
+        "shots_for": 83,
+        "shots_against": 91
+      },
+      "Goal diff -1": {
+        "time": 331.0,
+        "xG_for_90": 1.891,
+        "xG_against_90": 1.313,
+        "goals_for_90": 1.631,
+        "goals_against_90": 0.544,
+        "net_xG_90": 0.578,
+        "shots_for": 63,
+        "shots_against": 30
+      },
+      "Goal diff +1": {
+        "time": 184.0,
+        "xG_for_90": 1.536,
+        "xG_against_90": 1.351,
+        "goals_for_90": 0.978,
+        "goals_against_90": 0.978,
+        "net_xG_90": 0.184,
+        "shots_for": 13,
+        "shots_against": 27
+      },
+      "Goal diff > +1": {
+        "time": 93.0,
+        "xG_for_90": 1.916,
+        "xG_against_90": 0.533,
+        "goals_for_90": 1.935,
+        "goals_against_90": 0.0,
+        "net_xG_90": 1.383,
+        "shots_for": 15,
+        "shots_against": 11
+      },
+      "Goal diff < -1": {
+        "time": 91.0,
+        "xG_for_90": 2.697,
+        "xG_against_90": 1.93,
+        "goals_for_90": 3.956,
+        "goals_against_90": 3.956,
+        "net_xG_90": 0.767,
+        "shots_for": 15,
+        "shots_against": 10
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 0.978,
+      "closing_ability": "POOR"
+    }
+  },
+  "Lyon": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 832.0,
+        "xG_for_90": 1.414,
+        "xG_against_90": 1.417,
+        "goals_for_90": 1.082,
+        "goals_against_90": 0.974,
+        "net_xG_90": -0.004,
+        "shots_for": 96,
+        "shots_against": 84
+      },
+      "Goal diff +1": {
+        "time": 357.0,
+        "xG_for_90": 1.346,
+        "xG_against_90": 1.353,
+        "goals_for_90": 0.756,
+        "goals_against_90": 0.756,
+        "net_xG_90": -0.006,
+        "shots_for": 36,
+        "shots_against": 62
+      },
+      "Goal diff -1": {
+        "time": 120.0,
+        "xG_for_90": 2.728,
+        "xG_against_90": 1.098,
+        "goals_for_90": 3.0,
+        "goals_against_90": 1.5,
+        "net_xG_90": 1.63,
+        "shots_for": 27,
+        "shots_against": 12
+      },
+      "Goal diff > +1": {
+        "time": 102.0,
+        "xG_for_90": 2.509,
+        "xG_against_90": 0.572,
+        "goals_for_90": 2.647,
+        "goals_against_90": 1.765,
+        "net_xG_90": 1.937,
+        "shots_for": 16,
+        "shots_against": 14
+      },
+      "Goal diff < -1": {
+        "time": 41.0,
+        "xG_for_90": 2.304,
+        "xG_against_90": 0.192,
+        "goals_for_90": 2.195,
+        "goals_against_90": 0.0,
+        "net_xG_90": 2.112,
+        "shots_for": 11,
+        "shots_against": 1
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "POOR"
+    }
+  },
+  "Lorient": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 692.0,
+        "xG_for_90": 1.255,
+        "xG_against_90": 1.377,
+        "goals_for_90": 1.04,
+        "goals_against_90": 1.301,
+        "net_xG_90": -0.122,
+        "shots_for": 65,
+        "shots_against": 68
+      },
+      "Goal diff -1": {
+        "time": 225.0,
+        "xG_for_90": 2.074,
+        "xG_against_90": 2.085,
+        "goals_for_90": 1.6,
+        "goals_against_90": 2.4,
+        "net_xG_90": -0.011,
+        "shots_for": 39,
+        "shots_against": 22
+      },
+      "Goal diff +1": {
+        "time": 218.0,
+        "xG_for_90": 1.393,
+        "xG_against_90": 1.675,
+        "goals_for_90": 1.239,
+        "goals_against_90": 1.651,
+        "net_xG_90": -0.281,
+        "shots_for": 31,
+        "shots_against": 21
+      },
+      "Goal diff < -1": {
+        "time": 204.0,
+        "xG_for_90": 1.727,
+        "xG_against_90": 2.423,
+        "goals_for_90": 0.441,
+        "goals_against_90": 3.088,
+        "net_xG_90": -0.695,
+        "shots_for": 26,
+        "shots_against": 28
+      },
+      "Goal diff > +1": {
+        "time": 95.0,
+        "xG_for_90": 4.179,
+        "xG_against_90": 1.49,
+        "goals_for_90": 2.842,
+        "goals_against_90": 0.947,
+        "net_xG_90": 2.689,
+        "shots_for": 22,
+        "shots_against": 7
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.651,
+      "closing_ability": "POOR"
+    }
+  },
+  "Metz": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 815.0,
+        "xG_for_90": 0.853,
+        "xG_against_90": 1.632,
+        "goals_for_90": 0.663,
+        "goals_against_90": 1.656,
+        "net_xG_90": -0.779,
+        "shots_for": 69,
+        "shots_against": 116
+      },
+      "Goal diff -1": {
+        "time": 273.0,
+        "xG_for_90": 1.848,
+        "xG_against_90": 2.326,
+        "goals_for_90": 1.648,
+        "goals_against_90": 2.308,
+        "net_xG_90": -0.478,
+        "shots_for": 34,
+        "shots_against": 42
+      },
+      "Goal diff < -1": {
+        "time": 225.0,
+        "xG_for_90": 0.549,
+        "xG_against_90": 2.647,
+        "goals_for_90": 0.8,
+        "goals_against_90": 3.6,
+        "net_xG_90": -2.098,
+        "shots_for": 18,
+        "shots_against": 43
+      },
+      "Goal diff +1": {
+        "time": 126.0,
+        "xG_for_90": 1.736,
+        "xG_against_90": 2.732,
+        "goals_for_90": 1.429,
+        "goals_against_90": 2.143,
+        "net_xG_90": -0.996,
+        "shots_for": 13,
+        "shots_against": 19
+      },
+      "Goal diff > +1": {
+        "time": 9.0,
+        "xG_for_90": 0.882,
+        "xG_against_90": 1.276,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.0,
+        "net_xG_90": -0.395,
+        "shots_for": 1,
+        "shots_against": 4
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 2.143,
+      "closing_ability": "POOR"
+    }
+  },
+  "Lens": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 739.0,
+        "xG_for_90": 2.444,
+        "xG_against_90": 1.303,
+        "goals_for_90": 1.827,
+        "goals_against_90": 0.609,
+        "net_xG_90": 1.141,
+        "shots_for": 115,
+        "shots_against": 93
+      },
+      "Goal diff +1": {
+        "time": 389.0,
+        "xG_for_90": 1.675,
+        "xG_against_90": 1.566,
+        "goals_for_90": 1.388,
+        "goals_against_90": 0.925,
+        "net_xG_90": 0.109,
+        "shots_for": 49,
+        "shots_against": 54
+      },
+      "Goal diff > +1": {
+        "time": 132.0,
+        "xG_for_90": 2.547,
+        "xG_against_90": 2.491,
+        "goals_for_90": 2.045,
+        "goals_against_90": 1.364,
+        "net_xG_90": 0.056,
+        "shots_for": 17,
+        "shots_against": 26
+      },
+      "Goal diff -1": {
+        "time": 127.0,
+        "xG_for_90": 2.692,
+        "xG_against_90": 1.479,
+        "goals_for_90": 1.417,
+        "goals_against_90": 1.417,
+        "net_xG_90": 1.213,
+        "shots_for": 21,
+        "shots_against": 14
+      },
+      "Goal diff < -1": {
+        "time": 49.0,
+        "xG_for_90": 0.524,
+        "xG_against_90": 0.964,
+        "goals_for_90": 0.0,
+        "goals_against_90": 0.0,
+        "net_xG_90": -0.44,
+        "shots_for": 8,
+        "shots_against": 8
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": true,
+      "strong_at_0_0": true,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0.925,
+      "closing_ability": "POOR"
+    }
+  },
+  "Strasbourg": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 827.0,
+        "xG_for_90": 1.405,
+        "xG_against_90": 1.026,
+        "goals_for_90": 1.197,
+        "goals_against_90": 0.979,
+        "net_xG_90": 0.379,
+        "shots_for": 82,
+        "shots_against": 78
+      },
+      "Goal diff +1": {
+        "time": 230.0,
+        "xG_for_90": 2.123,
+        "xG_against_90": 2.197,
+        "goals_for_90": 2.348,
+        "goals_against_90": 1.565,
+        "net_xG_90": -0.074,
+        "shots_for": 29,
+        "shots_against": 36
+      },
+      "Goal diff -1": {
+        "time": 187.0,
+        "xG_for_90": 1.444,
+        "xG_against_90": 1.089,
+        "goals_for_90": 0.963,
+        "goals_against_90": 0.963,
+        "net_xG_90": 0.355,
+        "shots_for": 18,
+        "shots_against": 21
+      },
+      "Goal diff > +1": {
+        "time": 121.0,
+        "xG_for_90": 2.328,
+        "xG_against_90": 1.328,
+        "goals_for_90": 2.975,
+        "goals_against_90": 2.231,
+        "net_xG_90": 1.0,
+        "shots_for": 18,
+        "shots_against": 9
+      },
+      "Goal diff < -1": {
+        "time": 80.0,
+        "xG_for_90": 1.582,
+        "xG_against_90": 2.127,
+        "goals_for_90": 2.25,
+        "goals_against_90": 2.25,
+        "net_xG_90": -0.546,
+        "shots_for": 19,
+        "shots_against": 9
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.565,
+      "closing_ability": "POOR"
+    }
+  },
+  "Brest": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 755.0,
+        "xG_for_90": 1.47,
+        "xG_against_90": 0.978,
+        "goals_for_90": 1.192,
+        "goals_against_90": 1.192,
+        "net_xG_90": 0.492,
+        "shots_for": 92,
+        "shots_against": 82
+      },
+      "Goal diff -1": {
+        "time": 212.0,
+        "xG_for_90": 1.546,
+        "xG_against_90": 2.58,
+        "goals_for_90": 1.698,
+        "goals_against_90": 2.547,
+        "net_xG_90": -1.034,
+        "shots_for": 32,
+        "shots_against": 27
+      },
+      "Goal diff +1": {
+        "time": 208.0,
+        "xG_for_90": 1.137,
+        "xG_against_90": 2.367,
+        "goals_for_90": 1.298,
+        "goals_against_90": 2.163,
+        "net_xG_90": -1.23,
+        "shots_for": 23,
+        "shots_against": 37
+      },
+      "Goal diff < -1": {
+        "time": 171.0,
+        "xG_for_90": 2.219,
+        "xG_against_90": 1.598,
+        "goals_for_90": 1.053,
+        "goals_against_90": 1.053,
+        "net_xG_90": 0.621,
+        "shots_for": 29,
+        "shots_against": 23
+      },
+      "Goal diff > +1": {
+        "time": 102.0,
+        "xG_for_90": 0.643,
+        "xG_against_90": 1.832,
+        "goals_for_90": 0.882,
+        "goals_against_90": 0.882,
+        "net_xG_90": -1.189,
+        "shots_for": 7,
+        "shots_against": 19
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 2.163,
+      "closing_ability": "POOR"
+    }
+  },
+  "Auxerre": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 784.0,
+        "xG_for_90": 0.762,
+        "xG_against_90": 1.831,
+        "goals_for_90": 0.459,
+        "goals_against_90": 1.607,
+        "net_xG_90": -1.069,
+        "shots_for": 69,
+        "shots_against": 102
+      },
+      "Goal diff -1": {
+        "time": 406.0,
+        "xG_for_90": 1.982,
+        "xG_against_90": 1.135,
+        "goals_for_90": 1.108,
+        "goals_against_90": 0.887,
+        "net_xG_90": 0.846,
+        "shots_for": 66,
+        "shots_against": 35
+      },
+      "Goal diff +1": {
+        "time": 139.0,
+        "xG_for_90": 1.598,
+        "xG_against_90": 1.427,
+        "goals_for_90": 1.295,
+        "goals_against_90": 0.647,
+        "net_xG_90": 0.171,
+        "shots_for": 16,
+        "shots_against": 22
+      },
+      "Goal diff < -1": {
+        "time": 88.0,
+        "xG_for_90": 1.227,
+        "xG_against_90": 2.416,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.023,
+        "net_xG_90": -1.19,
+        "shots_for": 11,
+        "shots_against": 17
+      },
+      "Goal diff > +1": {
+        "time": 6.0,
+        "xG_for_90": 0.153,
+        "xG_against_90": 0.773,
+        "goals_for_90": 0.0,
+        "goals_against_90": 15.0,
+        "net_xG_90": -0.619,
+        "shots_for": 1,
+        "shots_against": 1
+      }
+    },
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": true,
+      "comeback_vulnerability": 0,
+      "closing_ability": "POOR"
+    }
+  },
+  "Le Havre": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 846.0,
+        "xG_for_90": 1.107,
+        "xG_against_90": 1.258,
+        "goals_for_90": 0.532,
+        "goals_against_90": 0.957,
+        "net_xG_90": -0.151,
+        "shots_for": 99,
+        "shots_against": 105
+      },
+      "Goal diff -1": {
+        "time": 348.0,
+        "xG_for_90": 1.278,
+        "xG_against_90": 1.526,
+        "goals_for_90": 0.776,
+        "goals_against_90": 1.552,
+        "net_xG_90": -0.248,
+        "shots_for": 47,
+        "shots_against": 36
+      },
+      "Goal diff +1": {
+        "time": 152.0,
+        "xG_for_90": 0.861,
+        "xG_against_90": 1.168,
+        "goals_for_90": 0.592,
+        "goals_against_90": 1.184,
+        "net_xG_90": -0.307,
+        "shots_for": 12,
+        "shots_against": 20
+      },
+      "Goal diff < -1": {
+        "time": 86.0,
+        "xG_for_90": 1.949,
+        "xG_against_90": 3.181,
+        "goals_for_90": 4.186,
+        "goals_against_90": 4.186,
+        "net_xG_90": -1.232,
+        "shots_for": 19,
+        "shots_against": 15
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.184,
+      "closing_ability": "POOR"
+    }
+  },
+  "Paris FC": {
+    "raw_data": {
+      "Goal diff 0": {
+        "time": 731.0,
+        "xG_for_90": 1.262,
+        "xG_against_90": 1.379,
+        "goals_for_90": 0.862,
+        "goals_against_90": 1.601,
+        "net_xG_90": -0.117,
+        "shots_for": 86,
+        "shots_against": 79
+      },
+      "Goal diff -1": {
+        "time": 412.0,
+        "xG_for_90": 1.399,
+        "xG_against_90": 1.918,
+        "goals_for_90": 1.311,
+        "goals_against_90": 1.529,
+        "net_xG_90": -0.519,
+        "shots_for": 71,
+        "shots_against": 47
+      },
+      "Goal diff +1": {
+        "time": 142.0,
+        "xG_for_90": 2.064,
+        "xG_against_90": 2.505,
+        "goals_for_90": 1.268,
+        "goals_against_90": 1.901,
+        "net_xG_90": -0.441,
+        "shots_for": 17,
+        "shots_against": 26
+      },
+      "Goal diff > +1": {
+        "time": 90.0,
+        "xG_for_90": 0.907,
+        "xG_against_90": 2.168,
+        "goals_for_90": 0.0,
+        "goals_against_90": 1.0,
+        "net_xG_90": -1.26,
+        "shots_for": 5,
+        "shots_against": 18
+      },
+      "Goal diff < -1": {
+        "time": 71.0,
+        "xG_for_90": 2.2,
+        "xG_against_90": 1.284,
+        "goals_for_90": 7.606,
+        "goals_against_90": 2.535,
+        "net_xG_90": 0.916,
+        "shots_for": 12,
+        "shots_against": 4
+      }
+    },
+    "insights": {
+      "collapses_when_leading": true,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 1.901,
+      "closing_ability": "POOR"
+    }
+  }
+}
