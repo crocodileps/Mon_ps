@@ -1,0 +1,51 @@
+{
+  "P Bankes|Newcastle United": {
+    "referee": "P Bankes",
+    "team": "Newcastle United",
+    "matches": 3,
+    "avg_cards": 0.3333333333333333,
+    "volatility": 0.5773502691896257
+  },
+  "M Donohue|Ipswich": {
+    "referee": "M Donohue",
+    "team": "Ipswich",
+    "matches": 3,
+    "avg_cards": 1.0,
+    "volatility": 1.0
+  },
+  "M Donohue|Leicester": {
+    "referee": "M Donohue",
+    "team": "Leicester",
+    "matches": 3,
+    "avg_cards": 2.6666666666666665,
+    "volatility": 3.0550504633038935
+  },
+  "A Herczeg|QPR": {
+    "referee": "A Herczeg",
+    "team": "QPR",
+    "matches": 3,
+    "avg_cards": 1.3333333333333333,
+    "volatility": 1.1547005383792515
+  },
+  "D Webb|Swansea": {
+    "referee": "D Webb",
+    "team": "Swansea",
+    "matches": 3,
+    "avg_cards": 1.0,
+    "volatility": 1.0
+  },
+  "C Pawson|Newcastle United": {
+    "referee": "C Pawson",
+    "team": "Newcastle United",
+    "matches": 3,
+    "avg_cards": 0.6666666666666666,
+    "volatility": 0.5773502691896257
+  },
+  "C Kavanagh|Liverpool": {
+    "referee": "C Kavanagh",
+    "team": "Liverpool",
+    "matches": 3,
+    "avg_cards": 3.0,
+    "volatility": 1.0
+  }
+}

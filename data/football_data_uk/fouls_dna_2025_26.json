@@ -1,0 +1,866 @@
+[
+  {
+    "team": "Liverpool",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.67,
+    "fouls_suffered_avg": 10.67,
+    "fouls_to_yellow_rate": 18.1
+  },
+  {
+    "team": "Bournemouth",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 13.0,
+    "fouls_suffered_avg": 10.93,
+    "fouls_to_yellow_rate": 19.5
+  },
+  {
+    "team": "Aston Villa",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.2,
+    "fouls_suffered_avg": 14.13,
+    "fouls_to_yellow_rate": 14.4
+  },
+  {
+    "team": "Newcastle",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.87,
+    "fouls_suffered_avg": 10.87,
+    "fouls_to_yellow_rate": 9.2
+  },
+  {
+    "team": "Brighton",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.87,
+    "fouls_suffered_avg": 10.27,
+    "fouls_to_yellow_rate": 20.8
+  },
+  {
+    "team": "Fulham",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 12.0,
+    "fouls_suffered_avg": 10.8,
+    "fouls_to_yellow_rate": 14.4
+  },
+  {
+    "team": "Sunderland",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 9.8,
+    "fouls_suffered_avg": 10.6,
+    "fouls_to_yellow_rate": 19.0
+  },
+  {
+    "team": "West Ham",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.4,
+    "fouls_suffered_avg": 10.53,
+    "fouls_to_yellow_rate": 15.4
+  },
+  {
+    "team": "Tottenham",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.53,
+    "fouls_suffered_avg": 9.0,
+    "fouls_to_yellow_rate": 22.0
+  },
+  {
+    "team": "Burnley",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 9.93,
+    "fouls_suffered_avg": 9.4,
+    "fouls_to_yellow_rate": 14.8
+  },
+  {
+    "team": "Wolves",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 14.53,
+    "fouls_suffered_avg": 9.93,
+    "fouls_to_yellow_rate": 14.2
+  },
+  {
+    "team": "Man City",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 9.6,
+    "fouls_suffered_avg": 11.2,
+    "fouls_to_yellow_rate": 18.8
+  },
+  {
+    "team": "Chelsea",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.53,
+    "fouls_suffered_avg": 12.73,
+    "fouls_to_yellow_rate": 16.2
+  },
+  {
+    "team": "Crystal Palace",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.2,
+    "fouls_suffered_avg": 10.53,
+    "fouls_to_yellow_rate": 16.3
+  },
+  {
+    "team": "Nott'm Forest",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.0,
+    "fouls_suffered_avg": 12.13,
+    "fouls_to_yellow_rate": 15.2
+  },
+  {
+    "team": "Brentford",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.67,
+    "fouls_suffered_avg": 9.0,
+    "fouls_to_yellow_rate": 18.8
+  },
+  {
+    "team": "Man United",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.27,
+    "fouls_suffered_avg": 11.87,
+    "fouls_to_yellow_rate": 13.0
+  },
+  {
+    "team": "Arsenal",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.27,
+    "fouls_suffered_avg": 10.8,
+    "fouls_to_yellow_rate": 13.0
+  },
+  {
+    "team": "Leeds",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.87,
+    "fouls_suffered_avg": 12.53,
+    "fouls_to_yellow_rate": 16.0
+  },
+  {
+    "team": "Everton",
+    "league": "EPL",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.8,
+    "fouls_suffered_avg": 12.07,
+    "fouls_to_yellow_rate": 20.4
+  },
+  {
+    "team": "Girona",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.73,
+    "fouls_suffered_avg": 13.6,
+    "fouls_to_yellow_rate": 20.5
+  },
+  {
+    "team": "Vallecano",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 14.07,
+    "fouls_suffered_avg": 10.4,
+    "fouls_to_yellow_rate": 18.0
+  },
+  {
+    "team": "Villarreal",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 12.6,
+    "fouls_suffered_avg": 11.27,
+    "fouls_to_yellow_rate": 19.6
+  },
+  {
+    "team": "Oviedo",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.6,
+    "fouls_suffered_avg": 11.07,
+    "fouls_to_yellow_rate": 19.0
+  },
+  {
+    "team": "Mallorca",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.53,
+    "fouls_suffered_avg": 13.0,
+    "fouls_to_yellow_rate": 17.9
+  },
+  {
+    "team": "Barcelona",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 16,
+    "fouls_committed_avg": 9.56,
+    "fouls_suffered_avg": 12.12,
+    "fouls_to_yellow_rate": 17.6
+  },
+  {
+    "team": "Alaves",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 16.33,
+    "fouls_suffered_avg": 13.87,
+    "fouls_to_yellow_rate": 14.7
+  },
+  {
+    "team": "Levante",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 12.27,
+    "fouls_suffered_avg": 12.4,
+    "fouls_to_yellow_rate": 16.8
+  },
+  {
+    "team": "Valencia",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 12.13,
+    "fouls_suffered_avg": 11.73,
+    "fouls_to_yellow_rate": 15.4
+  },
+  {
+    "team": "Sociedad",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 15.47,
+    "fouls_suffered_avg": 12.2,
+    "fouls_to_yellow_rate": 15.1
+  },
+  {
+    "team": "Celta",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 12.13,
+    "fouls_suffered_avg": 11.93,
+    "fouls_to_yellow_rate": 15.9
+  },
+  {
+    "team": "Getafe",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 15.07,
+    "fouls_suffered_avg": 14.67,
+    "fouls_to_yellow_rate": 16.8
+  },
+  {
+    "team": "Ath Bilbao",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 16,
+    "fouls_committed_avg": 13.31,
+    "fouls_suffered_avg": 12.56,
+    "fouls_to_yellow_rate": 14.6
+  },
+  {
+    "team": "Sevilla",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 15.33,
+    "fouls_suffered_avg": 14.47,
+    "fouls_to_yellow_rate": 21.7
+  },
+  {
+    "team": "Espanol",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 13.67,
+    "fouls_suffered_avg": 11.8,
+    "fouls_to_yellow_rate": 14.6
+  },
+  {
+    "team": "Ath Madrid",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 16,
+    "fouls_committed_avg": 11.12,
+    "fouls_suffered_avg": 10.56,
+    "fouls_to_yellow_rate": 16.9
+  },
+  {
+    "team": "Elche",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 13.0,
+    "fouls_suffered_avg": 15.8,
+    "fouls_to_yellow_rate": 13.8
+  },
+  {
+    "team": "Betis",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.33,
+    "fouls_suffered_avg": 14.0,
+    "fouls_to_yellow_rate": 21.9
+  },
+  {
+    "team": "Real Madrid",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 16,
+    "fouls_committed_avg": 9.56,
+    "fouls_suffered_avg": 13.62,
+    "fouls_to_yellow_rate": 19.0
+  },
+  {
+    "team": "Osasuna",
+    "league": "La_Liga",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 13.0,
+    "fouls_suffered_avg": 11.4,
+    "fouls_to_yellow_rate": 17.4
+  },
+  {
+    "team": "Genoa",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 14.64,
+    "fouls_suffered_avg": 15.0,
+    "fouls_to_yellow_rate": 16.6
+  },
+  {
+    "team": "Lecce",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 12.79,
+    "fouls_suffered_avg": 14.36,
+    "fouls_to_yellow_rate": 14.0
+  },
+  {
+    "team": "Sassuolo",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 12.86,
+    "fouls_suffered_avg": 14.36,
+    "fouls_to_yellow_rate": 17.2
+  },
+  {
+    "team": "Napoli",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 12.71,
+    "fouls_suffered_avg": 13.07,
+    "fouls_to_yellow_rate": 12.4
+  },
+  {
+    "team": "Milan",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 9.64,
+    "fouls_suffered_avg": 12.5,
+    "fouls_to_yellow_rate": 16.3
+  },
+  {
+    "team": "Cremonese",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 12.14,
+    "fouls_suffered_avg": 13.0,
+    "fouls_to_yellow_rate": 17.1
+  },
+  {
+    "team": "Roma",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 14.57,
+    "fouls_suffered_avg": 15.79,
+    "fouls_to_yellow_rate": 13.7
+  },
+  {
+    "team": "Bologna",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 15.14,
+    "fouls_suffered_avg": 15.29,
+    "fouls_to_yellow_rate": 12.7
+  },
+  {
+    "team": "Cagliari",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 16.36,
+    "fouls_suffered_avg": 15.86,
+    "fouls_to_yellow_rate": 15.7
+  },
+  {
+    "team": "Fiorentina",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 14.07,
+    "fouls_suffered_avg": 17.29,
+    "fouls_to_yellow_rate": 17.3
+  },
+  {
+    "team": "Como",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 15.21,
+    "fouls_suffered_avg": 13.36,
+    "fouls_to_yellow_rate": 14.6
+  },
+  {
+    "team": "Lazio",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 11.0,
+    "fouls_suffered_avg": 17.14,
+    "fouls_to_yellow_rate": 15.6
+  },
+  {
+    "team": "Atalanta",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 10.21,
+    "fouls_suffered_avg": 9.79,
+    "fouls_to_yellow_rate": 14.7
+  },
+  {
+    "team": "Pisa",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 13.14,
+    "fouls_suffered_avg": 12.29,
+    "fouls_to_yellow_rate": 13.6
+  },
+  {
+    "team": "Juventus",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 13.29,
+    "fouls_suffered_avg": 11.29,
+    "fouls_to_yellow_rate": 11.3
+  },
+  {
+    "team": "Parma",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 10.79,
+    "fouls_suffered_avg": 14.5,
+    "fouls_to_yellow_rate": 17.9
+  },
+  {
+    "team": "Udinese",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 14.29,
+    "fouls_suffered_avg": 12.07,
+    "fouls_to_yellow_rate": 13.5
+  },
+  {
+    "team": "Verona",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 17.36,
+    "fouls_suffered_avg": 8.93,
+    "fouls_to_yellow_rate": 15.2
+  },
+  {
+    "team": "Inter",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 14.07,
+    "fouls_suffered_avg": 11.71,
+    "fouls_to_yellow_rate": 9.6
+  },
+  {
+    "team": "Torino",
+    "league": "Serie_A",
+    "season": "2025-26",
+    "matches": 14,
+    "fouls_committed_avg": 13.86,
+    "fouls_suffered_avg": 10.57,
+    "fouls_to_yellow_rate": 12.9
+  },
+  {
+    "team": "Bayern Munich",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 9.92,
+    "fouls_suffered_avg": 9.85,
+    "fouls_to_yellow_rate": 24.0
+  },
+  {
+    "team": "RB Leipzig",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 9.46,
+    "fouls_suffered_avg": 11.0,
+    "fouls_to_yellow_rate": 17.1
+  },
+  {
+    "team": "Ein Frankfurt",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 10.08,
+    "fouls_suffered_avg": 9.69,
+    "fouls_to_yellow_rate": 16.0
+  },
+  {
+    "team": "Werder Bremen",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 9.69,
+    "fouls_suffered_avg": 9.92,
+    "fouls_to_yellow_rate": 29.4
+  },
+  {
+    "team": "Freiburg",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 8.85,
+    "fouls_suffered_avg": 13.38,
+    "fouls_to_yellow_rate": 17.4
+  },
+  {
+    "team": "Augsburg",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 13.08,
+    "fouls_suffered_avg": 11.54,
+    "fouls_to_yellow_rate": 22.9
+  },
+  {
+    "team": "Heidenheim",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 10.62,
+    "fouls_suffered_avg": 11.54,
+    "fouls_to_yellow_rate": 15.2
+  },
+  {
+    "team": "Wolfsburg",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 11.31,
+    "fouls_suffered_avg": 10.38,
+    "fouls_to_yellow_rate": 18.4
+  },
+  {
+    "team": "Leverkusen",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 8.62,
+    "fouls_suffered_avg": 12.08,
+    "fouls_to_yellow_rate": 28.6
+  },
+  {
+    "team": "Hoffenheim",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 14.62,
+    "fouls_suffered_avg": 9.46,
+    "fouls_to_yellow_rate": 13.7
+  },
+  {
+    "team": "Union Berlin",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 13.54,
+    "fouls_suffered_avg": 11.69,
+    "fouls_to_yellow_rate": 17.0
+  },
+  {
+    "team": "Stuttgart",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 10.54,
+    "fouls_suffered_avg": 12.46,
+    "fouls_to_yellow_rate": 19.0
+  },
+  {
+    "team": "St Pauli",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 10.92,
+    "fouls_suffered_avg": 10.15,
+    "fouls_to_yellow_rate": 16.2
+  },
+  {
+    "team": "Dortmund",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 11.62,
+    "fouls_suffered_avg": 10.31,
+    "fouls_to_yellow_rate": 13.9
+  },
+  {
+    "team": "Mainz",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 13.08,
+    "fouls_suffered_avg": 11.08,
+    "fouls_to_yellow_rate": 19.4
+  },
+  {
+    "team": "FC Koln",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 9.23,
+    "fouls_suffered_avg": 11.23,
+    "fouls_to_yellow_rate": 19.2
+  },
+  {
+    "team": "M'gladbach",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 11.08,
+    "fouls_suffered_avg": 10.69,
+    "fouls_to_yellow_rate": 13.2
+  },
+  {
+    "team": "Hamburg",
+    "league": "Bundesliga",
+    "season": "2025-26",
+    "matches": 13,
+    "fouls_committed_avg": 13.0,
+    "fouls_suffered_avg": 12.77,
+    "fouls_to_yellow_rate": 17.8
+  },
+  {
+    "team": "Rennes",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.13,
+    "fouls_suffered_avg": 12.13,
+    "fouls_to_yellow_rate": 16.2
+  },
+  {
+    "team": "Marseille",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.87,
+    "fouls_suffered_avg": 10.07,
+    "fouls_to_yellow_rate": 17.4
+  },
+  {
+    "team": "Lens",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 12.87,
+    "fouls_suffered_avg": 12.07,
+    "fouls_to_yellow_rate": 15.5
+  },
+  {
+    "team": "Lyon",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 14.6,
+    "fouls_suffered_avg": 13.93,
+    "fouls_to_yellow_rate": 13.2
+  },
+  {
+    "team": "Monaco",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 13.07,
+    "fouls_suffered_avg": 12.0,
+    "fouls_to_yellow_rate": 18.9
+  },
+  {
+    "team": "Le Havre",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 13.87,
+    "fouls_suffered_avg": 13.0,
+    "fouls_to_yellow_rate": 11.5
+  },
+  {
+    "team": "Nice",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 12.4,
+    "fouls_suffered_avg": 11.93,
+    "fouls_to_yellow_rate": 17.7
+  },
+  {
+    "team": "Toulouse",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 14.4,
+    "fouls_suffered_avg": 11.67,
+    "fouls_to_yellow_rate": 16.7
+  },
+  {
+    "team": "Brest",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 12.87,
+    "fouls_suffered_avg": 11.2,
+    "fouls_to_yellow_rate": 13.0
+  },
+  {
+    "team": "Lille",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 13.07,
+    "fouls_suffered_avg": 12.93,
+    "fouls_to_yellow_rate": 17.3
+  },
+  {
+    "team": "Angers",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.27,
+    "fouls_suffered_avg": 11.13,
+    "fouls_to_yellow_rate": 12.4
+  },
+  {
+    "team": "Paris FC",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.53,
+    "fouls_suffered_avg": 11.67,
+    "fouls_to_yellow_rate": 16.8
+  },
+  {
+    "team": "Auxerre",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 13.53,
+    "fouls_suffered_avg": 14.33,
+    "fouls_to_yellow_rate": 15.8
+  },
+  {
+    "team": "Lorient",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.8,
+    "fouls_suffered_avg": 15.27,
+    "fouls_to_yellow_rate": 19.8
+  },
+  {
+    "team": "Metz",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.07,
+    "fouls_suffered_avg": 11.87,
+    "fouls_to_yellow_rate": 13.3
+  },
+  {
+    "team": "Strasbourg",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 12.0,
+    "fouls_suffered_avg": 14.47,
+    "fouls_to_yellow_rate": 18.3
+  },
+  {
+    "team": "Nantes",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 11.47,
+    "fouls_suffered_avg": 13.33,
+    "fouls_to_yellow_rate": 15.1
+  },
+  {
+    "team": "Paris SG",
+    "league": "Ligue_1",
+    "season": "2025-26",
+    "matches": 15,
+    "fouls_committed_avg": 10.2,
+    "fouls_suffered_avg": 9.0,
+    "fouls_to_yellow_rate": 11.1
+  }
+]

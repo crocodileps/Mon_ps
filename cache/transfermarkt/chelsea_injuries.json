@@ -2,16 +2,21 @@
   {
     "player_name": "Levi Colwill",
     "injury_type": "22",
-    "scraped_at": "2025-12-08T06:00:25.857335"
+    "scraped_at": "2025-12-09T06:00:28.461457"
   },
   {
     "player_name": "Rom\u00e9o Lavia",
     "injury_type": "21",
-    "scraped_at": "2025-12-08T06:00:25.857467"
+    "scraped_at": "2025-12-09T06:00:28.461520"
   },
   {
     "player_name": "D\u00e1rio Essugo",
     "injury_type": "20",
-    "scraped_at": "2025-12-08T06:00:25.857555"
+    "scraped_at": "2025-12-09T06:00:28.461569"
+  },
+  {
+    "player_name": "Liam Delap",
+    "injury_type": "22",
+    "scraped_at": "2025-12-09T06:00:28.461618"
   }
 ]
