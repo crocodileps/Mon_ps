@@ -265,6 +265,69 @@ class FeatureEngineer:
         features[f'{prefix}gk_exploit_late'] = 1 if 'Goal 76-90 min' in exploit_markets else 0
 
         # ═══════════════════════════════════════════════════════════════════════
+        # ZERO DATA HANDLING V4.5 - Éviter biais ML
+        # ═══════════════════════════════════════════════════════════════════════
+        # Si sample=0, le SR=0 n'est pas "nul" mais "inconnu"
+        # Remplacer par moyenne ligue pour éviter biais
+        LEAGUE_AVG = {'vhard': 29.6, 'medium': 65.7, 'setpiece': 52.5, 'penalty': 25.0}
+        
+        vhard_sample = very_hard.get('sample', 0)
+        if vhard_sample == 0:
+            features[f'{prefix}gk_vhard_sr'] = LEAGUE_AVG['vhard']
+        features[f'{prefix}gk_has_vhard_data'] = 1 if vhard_sample > 0 else 0
+        
+        medium_sample = medium.get('sample', 0)
+        if medium_sample == 0:
+            features[f'{prefix}gk_medium_sr'] = LEAGUE_AVG['medium']
+        features[f'{prefix}gk_has_medium_data'] = 1 if medium_sample > 0 else 0
+        
+        setpiece_sample = set_pieces.get('sample', 0)
+        if setpiece_sample == 0:
+            features[f'{prefix}gk_setpiece_sr'] = LEAGUE_AVG['setpiece']
+        features[f'{prefix}gk_has_setpiece_data'] = 1 if setpiece_sample > 0 else 0
+        
+        penalty_sample = penalties.get('sample', 0)
+        if penalty_sample == 0:
+            features[f'{prefix}gk_penalty_sr'] = LEAGUE_AVG['penalty']
+        features[f'{prefix}gk_has_penalty_data'] = 1 if penalty_sample > 0 else 0
+
+        # ═══════════════════════════════════════════════════════════════════════
+        # GK_PANIC_SCORE V4.5 - Score composite cible betting
+        # ═══════════════════════════════════════════════════════════════════════
+        # Identifie les GK vulnérables sous pression
+        # Corrélation validée: -0.569 avec gk_performance
+        
+        routine_map = {'ROCK_SOLID': 100, 'RELIABLE': 75, 'AVERAGE': 50, 'ERROR_PRONE': 25}
+        routine_pct = routine_map.get(routine, 50)
+        
+        clutch_val = timing.get('clutch_factor', 0)
+        late_collapse = max(0, -clutch_val)  # Positif si clutch négatif
+        
+        corner_sr_val = corners.get('sr', corners.get('save_rate', 65))
+        corner_weakness = max(0, 65 - corner_sr_val)  # Écart vs benchmark 65%
+        
+        big_weakness = {1: 0, 0: 15, -1: 30}.get(features[f'{prefix}gk_big_save'], 15)
+        
+        panic_score = (
+            (100 - routine_pct) +
+            (late_collapse * 1.5) +
+            corner_weakness +
+            big_weakness
+        ) / 4
+        
+        features[f'{prefix}gk_panic_score'] = round(panic_score, 1)
+        
+        # Catégorisation pour signaux clairs
+        if panic_score >= 50:
+            features[f'{prefix}gk_panic_level'] = 3  # CATASTROPHIQUE
+        elif panic_score >= 35:
+            features[f'{prefix}gk_panic_level'] = 2  # VULNÉRABLE
+        elif panic_score >= 25:
+            features[f'{prefix}gk_panic_level'] = 1  # MOYEN
+        else:
+            features[f'{prefix}gk_panic_level'] = 0  # SOLIDE
+
+        # ═══════════════════════════════════════════════════════════════════════
         # DEFENDER DNA V9 (Aggregated)
         # ═══════════════════════════════════════════════════════════════════════
         defenders = team_data.get('defenders', {}) or {}
