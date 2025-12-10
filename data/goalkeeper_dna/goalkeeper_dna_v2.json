@@ -10,8 +10,8 @@
       "shot_stopping": 98,
       "aerial": 79,
       "set_piece": 70,
-      "timing_early": 5.0,
-      "timing_late": 94.0,
+      "timing_early": 41.0,
+      "timing_late": 58.0,
       "discipline": 100,
       "home": 100,
       "away": 96,
@@ -21,31 +21,29 @@
       "experience": 80
     },
     "overall_score": 79.6,
-    "fingerprint_code": "GK-98-79-70-5-94-100-100-96-96-97-40-80",
-    "fingerprint_compact": "SHT98|AER79|STP70|ERL5|LAT94|DIS100|HOM100|AWY96|LNG96|OPN97|HGT40|EXP80",
+    "fingerprint_code": "GK-98-79-70-41-58-100-100-96-96-97-40-80",
+    "fingerprint_compact": "SHT98|AER79|STP70|ERL41|LAT58|DIS100|HOM100|AWY96|LNG96|OPN97|HGT40|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
       "AERIAL_DOMINANT",
-      "SLOW_STARTER",
-      "STRONG_FINISHER",
       "ROAD_WARRIOR",
       "SHORT_GK"
     ],
-    "dna_string": "SOLID_GK-SHOT_STOPPER-AERIAL_DOMINANT-SLOW_STARTER-STRONG_FINISHER-ROAD_WARRIOR-SHORT_GK",
+    "dna_string": "SOLID_GK-SHOT_STOPPER-AERIAL_DOMINANT-ROAD_WARRIOR-SHORT_GK",
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 5,
+        "value": 41,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.4
+        "confidence": "LOW",
+        "exploit_type": "MINOR",
+        "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Solide Discipliné, Lent au Départ",
+    "enriched_name": "Gardien Solide Discipliné",
     "team_defense_level": "Forteresse",
     "team_defense_pct": 98
   },
@@ -60,8 +58,8 @@
       "shot_stopping": 60,
       "aerial": 12,
       "set_piece": 6,
-      "timing_early": 1.0,
-      "timing_late": 98.0,
+      "timing_early": 0.0,
+      "timing_late": 99.0,
       "discipline": 62,
       "home": 33,
       "away": 64,
@@ -71,8 +69,8 @@
       "experience": 80
     },
     "overall_score": 48.7,
-    "fingerprint_code": "GK-60-12-6-1-98-62-33-64-23-60-85-80",
-    "fingerprint_compact": "SHT60|AER12|STP6|ERL1|LAT98|DIS62|HOM33|AWY64|LNG23|OPN60|HGT85|EXP80",
+    "fingerprint_code": "GK-60-12-6-0-99-62-33-64-23-60-85-80",
+    "fingerprint_compact": "SHT60|AER12|STP6|ERL0|LAT99|DIS62|HOM33|AWY64|LNG23|OPN60|HGT85|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "AERIAL_WEAK",
@@ -86,13 +84,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 1,
+        "value": 0,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 7.0
+        "edge_estimate": 7.1
       },
       {
         "dimension": "set_piece",
@@ -150,8 +148,8 @@
       "shot_stopping": 72,
       "aerial": 92,
       "set_piece": 72,
-      "timing_early": 17.0,
-      "timing_late": 82.0,
+      "timing_early": 14.0,
+      "timing_late": 85.0,
       "discipline": 62,
       "home": 98,
       "away": 11,
@@ -161,8 +159,8 @@
       "experience": 80
     },
     "overall_score": 65.3,
-    "fingerprint_code": "GK-72-92-72-17-82-62-98-11-73-70-55-80",
-    "fingerprint_compact": "SHT72|AER92|STP72|ERL17|LAT82|DIS62|HOM98|AWY11|LNG73|OPN70|HGT55|EXP80",
+    "fingerprint_code": "GK-72-92-72-14-85-62-98-11-73-70-55-80",
+    "fingerprint_compact": "SHT72|AER92|STP72|ERL14|LAT85|DIS62|HOM98|AWY11|LNG73|OPN70|HGT55|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "AERIAL_DOMINANT",
@@ -184,13 +182,13 @@
       },
       {
         "dimension": "timing_early",
-        "value": 17,
+        "value": 14,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.7
+        "edge_estimate": 5.1
       }
     ],
     "enriched_name": "Gardien Solide Domicile, Fragile Ext.",
@@ -208,8 +206,8 @@
       "shot_stopping": 47,
       "aerial": 86,
       "set_piece": 100,
-      "timing_early": 40.0,
-      "timing_late": 59.0,
+      "timing_early": 2.0,
+      "timing_late": 97.0,
       "discipline": 33,
       "home": 57,
       "away": 70,
@@ -219,16 +217,28 @@
       "experience": 80
     },
     "overall_score": 59.2,
-    "fingerprint_code": "GK-47-86-100-40-59-33-57-70-51-18-70-80",
-    "fingerprint_compact": "SHT47|AER86|STP100|ERL40|LAT59|DIS33|HOM57|AWY70|LNG51|OPN18|HGT70|EXP80",
+    "fingerprint_code": "GK-47-86-100-2-97-33-57-70-51-18-70-80",
+    "fingerprint_compact": "SHT47|AER86|STP100|ERL2|LAT97|DIS33|HOM57|AWY70|LNG51|OPN18|HGT70|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "AERIAL_DOMINANT",
       "SET_PIECE_STRONG",
+      "SLOW_STARTER",
+      "STRONG_FINISHER",
       "ROAD_WARRIOR"
     ],
-    "dna_string": "AVERAGE_GK-AERIAL_DOMINANT-SET_PIECE_STRONG-ROAD_WARRIOR",
+    "dna_string": "AVERAGE_GK-AERIAL_DOMINANT-SET_PIECE_STRONG-SLOW_STARTER-STRONG_FINISHER-ROAD_WARRIOR",
     "exploit_paths": [
+      {
+        "dimension": "timing_early",
+        "value": 2,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 6.9
+      },
       {
         "dimension": "discipline",
         "value": 33,
@@ -238,16 +248,6 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.4
-      },
-      {
-        "dimension": "timing_early",
-        "value": 40,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 0.8
       },
       {
         "dimension": "shot_stopping",
@@ -260,7 +260,7 @@
         "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Moyen Coups de Pied, Jeu Ouvert",
+    "enriched_name": "Gardien Moyen Coups de Pied, Lent au Départ",
     "team_defense_level": "Ligne",
     "team_defense_pct": 47
   },
@@ -275,8 +275,8 @@
       "shot_stopping": 41,
       "aerial": 10,
       "set_piece": 27,
-      "timing_early": 20.0,
-      "timing_late": 79.0,
+      "timing_early": 51.0,
+      "timing_late": 48.0,
       "discipline": 33,
       "home": 19,
       "away": 82,
@@ -286,18 +286,16 @@
       "experience": 45
     },
     "overall_score": 43.8,
-    "fingerprint_code": "GK-41-10-27-20-79-33-19-82-67-32-70-45",
-    "fingerprint_compact": "SHT41|AER10|STP27|ERL20|LAT79|DIS33|HOM19|AWY82|LNG67|OPN32|HGT70|EXP45",
+    "fingerprint_code": "GK-41-10-27-51-48-33-19-82-67-32-70-45",
+    "fingerprint_compact": "SHT41|AER10|STP27|ERL51|LAT48|DIS33|HOM19|AWY82|LNG67|OPN32|HGT70|EXP45",
     "profile_tags": [
       "BELOW_AVG_GK",
       "AERIAL_WEAK",
       "SET_PIECE_WEAK",
-      "SLOW_STARTER",
-      "STRONG_FINISHER",
       "ROAD_WARRIOR",
       "YOUNG_GK"
     ],
-    "dna_string": "BELOW_AVG_GK-AERIAL_WEAK-SET_PIECE_WEAK-SLOW_STARTER-STRONG_FINISHER-ROAD_WARRIOR-YOUNG_GK",
+    "dna_string": "BELOW_AVG_GK-AERIAL_WEAK-SET_PIECE_WEAK-ROAD_WARRIOR-YOUNG_GK",
     "exploit_paths": [
       {
         "dimension": "aerial",
@@ -320,16 +318,6 @@
         "edge_estimate": 4.4
       },
       {
-        "dimension": "timing_early",
-        "value": 20,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.3
-      },
-      {
         "dimension": "set_piece",
         "value": 27,
         "market": "Set Piece Goal",
@@ -348,6 +336,16 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.4
+      },
+      {
+        "dimension": "shot_stopping",
+        "value": 41,
+        "market": "Goals Over",
+        "attacker_profile": "ANY_ATTACKER",
+        "tactic": "Tirer cadré",
+        "confidence": "LOW",
+        "exploit_type": "MINOR",
+        "edge_estimate": 0.5
       }
     ],
     "enriched_name": "Gardien Fragile Extérieur, Aérien Faible",
@@ -365,8 +363,8 @@
       "shot_stopping": 2,
       "aerial": 2,
       "set_piece": 1,
-      "timing_early": 49.0,
-      "timing_late": 50.0,
+      "timing_early": 76.0,
+      "timing_late": 23.0,
       "discipline": 4,
       "home": 12,
       "away": 2,
@@ -376,19 +374,21 @@
       "experience": 45
     },
     "overall_score": 22.2,
-    "fingerprint_code": "GK-2-2-1-49-50-4-12-2-13-1-85-45",
-    "fingerprint_compact": "SHT2|AER2|STP1|ERL49|LAT50|DIS4|HOM12|AWY2|LNG13|OPN1|HGT85|EXP45",
+    "fingerprint_code": "GK-2-2-1-76-23-4-12-2-13-1-85-45",
+    "fingerprint_compact": "SHT2|AER2|STP1|ERL76|LAT23|DIS4|HOM12|AWY2|LNG13|OPN1|HGT85|EXP45",
     "profile_tags": [
       "LIABILITY_GK",
       "SHOT_STOPPER_WEAK",
       "AERIAL_WEAK",
       "SET_PIECE_WEAK",
+      "FAST_STARTER",
+      "LATE_COLLAPSER",
       "PENALTY_PRONE",
       "LONGSHOT_WEAK",
       "TALL_GK",
       "YOUNG_GK"
     ],
-    "dna_string": "LIABILITY_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-PENALTY_PRONE-LONGSHOT_WEAK-TALL_GK-YOUNG_GK",
+    "dna_string": "LIABILITY_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-FAST_STARTER-LATE_COLLAPSER-PENALTY_PRONE-LONGSHOT_WEAK-TALL_GK-YOUNG_GK",
     "exploit_paths": [
       {
         "dimension": "set_piece",
@@ -456,8 +456,8 @@
       "shot_stopping": 85,
       "aerial": 13,
       "set_piece": 56,
-      "timing_early": 60.0,
-      "timing_late": 39.0,
+      "timing_early": 66.0,
+      "timing_late": 33.0,
       "discipline": 100,
       "home": 45,
       "away": 85,
@@ -467,8 +467,8 @@
       "experience": 80
     },
     "overall_score": 65.2,
-    "fingerprint_code": "GK-85-13-56-60-39-100-45-85-78-57-85-80",
-    "fingerprint_compact": "SHT85|AER13|STP56|ERL60|LAT39|DIS100|HOM45|AWY85|LNG78|OPN57|HGT85|EXP80",
+    "fingerprint_code": "GK-85-13-56-66-33-100-45-85-78-57-85-80",
+    "fingerprint_compact": "SHT85|AER13|STP56|ERL66|LAT33|DIS100|HOM45|AWY85|LNG78|OPN57|HGT85|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -490,13 +490,13 @@
       },
       {
         "dimension": "timing_late",
-        "value": 39,
+        "value": 33,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
-        "edge_estimate": 0.9
+        "edge_estimate": 1.4
       },
       {
         "dimension": "home",
@@ -524,8 +524,8 @@
       "shot_stopping": 82,
       "aerial": 21,
       "set_piece": 32,
-      "timing_early": 73.0,
-      "timing_late": 26.0,
+      "timing_early": 82.0,
+      "timing_late": 17.0,
       "discipline": 83,
       "home": 35,
       "away": 87,
@@ -535,16 +535,28 @@
       "experience": 80
     },
     "overall_score": 58.6,
-    "fingerprint_code": "GK-82-21-32-73-26-83-35-87-64-65-55-80",
-    "fingerprint_compact": "SHT82|AER21|STP32|ERL73|LAT26|DIS83|HOM35|AWY87|LNG64|OPN65|HGT55|EXP80",
+    "fingerprint_code": "GK-82-21-32-82-17-83-35-87-64-65-55-80",
+    "fingerprint_compact": "SHT82|AER21|STP32|ERL82|LAT17|DIS83|HOM35|AWY87|LNG64|OPN65|HGT55|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "SHOT_STOPPER",
       "AERIAL_WEAK",
+      "FAST_STARTER",
+      "LATE_COLLAPSER",
       "ROAD_WARRIOR"
     ],
-    "dna_string": "AVERAGE_GK-SHOT_STOPPER-AERIAL_WEAK-ROAD_WARRIOR",
+    "dna_string": "AVERAGE_GK-SHOT_STOPPER-AERIAL_WEAK-FAST_STARTER-LATE_COLLAPSER-ROAD_WARRIOR",
     "exploit_paths": [
+      {
+        "dimension": "timing_late",
+        "value": 17,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 4.7
+      },
       {
         "dimension": "aerial",
         "value": 21,
@@ -554,16 +566,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 4.1
-      },
-      {
-        "dimension": "timing_late",
-        "value": 26,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 2.0
       },
       {
         "dimension": "set_piece",
@@ -586,7 +588,7 @@
         "edge_estimate": 1.2
       }
     ],
-    "enriched_name": "Gardien Moyen Extérieur, Aérien Faible",
+    "enriched_name": "Gardien Moyen Extérieur, S'effondre",
     "team_defense_level": "Muraille",
     "team_defense_pct": 82
   },
@@ -601,8 +603,8 @@
       "shot_stopping": 64,
       "aerial": 47,
       "set_piece": 38,
-      "timing_early": 54.0,
-      "timing_late": 45.0,
+      "timing_early": 72.0,
+      "timing_late": 27.0,
       "discipline": 62,
       "home": 42,
       "away": 59,
@@ -612,14 +614,24 @@
       "experience": 80
     },
     "overall_score": 54.6,
-    "fingerprint_code": "GK-64-47-38-54-45-62-42-59-54-55-55-80",
-    "fingerprint_compact": "SHT64|AER47|STP38|ERL54|LAT45|DIS62|HOM42|AWY59|LNG54|OPN55|HGT55|EXP80",
+    "fingerprint_code": "GK-64-47-38-72-27-62-42-59-54-55-55-80",
+    "fingerprint_compact": "SHT64|AER47|STP38|ERL72|LAT27|DIS62|HOM42|AWY59|LNG54|OPN55|HGT55|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "SHORT_GK"
     ],
     "dna_string": "AVERAGE_GK-SHORT_GK",
     "exploit_paths": [
+      {
+        "dimension": "timing_late",
+        "value": 27,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.9
+      },
       {
         "dimension": "set_piece",
         "value": 38,
@@ -641,16 +653,6 @@
         "edge_estimate": 0.5
       },
       {
-        "dimension": "timing_late",
-        "value": 45,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "LOW",
-        "exploit_type": "MINOR",
-        "edge_estimate": 0.5
-      },
-      {
         "dimension": "home",
         "value": 42,
         "market": "Away Goals",
@@ -661,7 +663,7 @@
         "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Moyen Expérience",
+    "enriched_name": "Gardien Moyen Expérience, S'effondre",
     "team_defense_level": "Bouclier",
     "team_defense_pct": 64
   },
@@ -676,8 +678,8 @@
       "shot_stopping": 42,
       "aerial": 5,
       "set_piece": 10,
-      "timing_early": 98.0,
-      "timing_late": 1.0,
+      "timing_early": 96.0,
+      "timing_late": 3.0,
       "discipline": 33,
       "home": 61,
       "away": 32,
@@ -687,8 +689,8 @@
       "experience": 80
     },
     "overall_score": 47.3,
-    "fingerprint_code": "GK-42-5-10-98-1-33-61-32-85-51-70-80",
-    "fingerprint_compact": "SHT42|AER5|STP10|ERL98|LAT1|DIS33|HOM61|AWY32|LNG85|OPN51|HGT70|EXP80",
+    "fingerprint_code": "GK-42-5-10-96-3-33-61-32-85-51-70-80",
+    "fingerprint_compact": "SHT42|AER5|STP10|ERL96|LAT3|DIS33|HOM61|AWY32|LNG85|OPN51|HGT70|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "AERIAL_WEAK",
@@ -700,13 +702,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 1,
+        "value": 3,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 7.0
+        "edge_estimate": 6.7
       },
       {
         "dimension": "aerial",
@@ -764,8 +766,8 @@
       "shot_stopping": 38,
       "aerial": 31,
       "set_piece": 13,
-      "timing_early": 41.0,
-      "timing_late": 58.0,
+      "timing_early": 45.0,
+      "timing_late": 54.0,
       "discipline": 62,
       "home": 82,
       "away": 20,
@@ -775,8 +777,8 @@
       "experience": 70
     },
     "overall_score": 48.7,
-    "fingerprint_code": "GK-38-31-13-41-58-62-82-20-39-45-85-70",
-    "fingerprint_compact": "SHT38|AER31|STP13|ERL41|LAT58|DIS62|HOM82|AWY20|LNG39|OPN45|HGT85|EXP70",
+    "fingerprint_code": "GK-38-31-13-45-54-62-82-20-39-45-85-70",
+    "fingerprint_compact": "SHT38|AER31|STP13|ERL45|LAT54|DIS62|HOM82|AWY20|LNG39|OPN45|HGT85|EXP70",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SET_PIECE_WEAK",
@@ -851,8 +853,8 @@
       "shot_stopping": 56,
       "aerial": 73,
       "set_piece": 66,
-      "timing_early": 8.0,
-      "timing_late": 91.0,
+      "timing_early": 20.0,
+      "timing_late": 79.0,
       "discipline": 33,
       "home": 70,
       "away": 40,
@@ -862,8 +864,8 @@
       "experience": 80
     },
     "overall_score": 58.8,
-    "fingerprint_code": "GK-56-73-66-8-91-33-70-40-63-55-70-80",
-    "fingerprint_compact": "SHT56|AER73|STP66|ERL8|LAT91|DIS33|HOM70|AWY40|LNG63|OPN55|HGT70|EXP80",
+    "fingerprint_code": "GK-56-73-66-20-79-33-70-40-63-55-70-80",
+    "fingerprint_compact": "SHT56|AER73|STP66|ERL20|LAT79|DIS33|HOM70|AWY40|LNG63|OPN55|HGT70|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "SLOW_STARTER",
@@ -873,13 +875,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 8,
+        "value": 20,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.0
+        "edge_estimate": 4.3
       },
       {
         "dimension": "discipline",
@@ -902,7 +904,7 @@
         "edge_estimate": 0.8
       }
     ],
-    "enriched_name": "Gardien Moyen Finition, Lent au Départ",
+    "enriched_name": "Gardien Moyen Expérience, Lent au Départ",
     "team_defense_level": "Ligne",
     "team_defense_pct": 56
   },
@@ -917,8 +919,8 @@
       "shot_stopping": 92,
       "aerial": 30,
       "set_piece": 35,
-      "timing_early": 97.0,
-      "timing_late": 2.0,
+      "timing_early": 99.0,
+      "timing_late": 0.0,
       "discipline": 62,
       "home": 75,
       "away": 88,
@@ -928,8 +930,8 @@
       "experience": 80
     },
     "overall_score": 66.3,
-    "fingerprint_code": "GK-92-30-35-97-2-62-75-88-90-90-55-80",
-    "fingerprint_compact": "SHT92|AER30|STP35|ERL97|LAT2|DIS62|HOM75|AWY88|LNG90|OPN90|HGT55|EXP80",
+    "fingerprint_code": "GK-92-30-35-99-0-62-75-88-90-90-55-80",
+    "fingerprint_compact": "SHT92|AER30|STP35|ERL99|LAT0|DIS62|HOM75|AWY88|LNG90|OPN90|HGT55|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -942,13 +944,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 2,
+        "value": 0,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.9
+        "edge_estimate": 7.1
       },
       {
         "dimension": "aerial",
@@ -986,8 +988,8 @@
       "shot_stopping": 32,
       "aerial": 18,
       "set_piece": 14,
-      "timing_early": 62.0,
-      "timing_late": 36.0,
+      "timing_early": 64.0,
+      "timing_late": 35.0,
       "discipline": 83,
       "home": 84,
       "away": 18,
@@ -996,9 +998,9 @@
       "height_factor": 70,
       "experience": 80
     },
-    "overall_score": 54.7,
-    "fingerprint_code": "GK-32-18-14-62-36-83-84-18-87-72-70-80",
-    "fingerprint_compact": "SHT32|AER18|STP14|ERL62|LAT36|DIS83|HOM84|AWY18|LNG87|OPN72|HGT70|EXP80",
+    "overall_score": 54.8,
+    "fingerprint_code": "GK-32-18-14-64-35-83-84-18-87-72-70-80",
+    "fingerprint_compact": "SHT32|AER18|STP14|ERL64|LAT35|DIS83|HOM84|AWY18|LNG87|OPN72|HGT70|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "AERIAL_WEAK",
@@ -1049,7 +1051,7 @@
       },
       {
         "dimension": "timing_late",
-        "value": 36,
+        "value": 35,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
@@ -1073,8 +1075,8 @@
       "shot_stopping": 77,
       "aerial": 80,
       "set_piece": 85,
-      "timing_early": 75.0,
-      "timing_late": 24.0,
+      "timing_early": 86.0,
+      "timing_late": 12.0,
       "discipline": 62,
       "home": 51,
       "away": 95,
@@ -1083,9 +1085,9 @@
       "height_factor": 85,
       "experience": 80
     },
-    "overall_score": 70.9,
-    "fingerprint_code": "GK-77-80-85-75-24-62-51-95-72-65-85-80",
-    "fingerprint_compact": "SHT77|AER80|STP85|ERL75|LAT24|DIS62|HOM51|AWY95|LNG72|OPN65|HGT85|EXP80",
+    "overall_score": 70.8,
+    "fingerprint_code": "GK-77-80-85-86-12-62-51-95-72-65-85-80",
+    "fingerprint_compact": "SHT77|AER80|STP85|ERL86|LAT12|DIS62|HOM51|AWY95|LNG72|OPN65|HGT85|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -1100,13 +1102,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 24,
+        "value": 12,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 3.7
+        "edge_estimate": 5.4
       }
     ],
     "enriched_name": "Gardien Solide Extérieur, S'effondre",
@@ -1124,8 +1126,8 @@
       "shot_stopping": 20,
       "aerial": 8,
       "set_piece": 2,
-      "timing_early": 53.0,
-      "timing_late": 46.0,
+      "timing_early": 88.0,
+      "timing_late": 11.0,
       "discipline": 33,
       "home": 16,
       "away": 42,
@@ -1135,15 +1137,17 @@
       "experience": 80
     },
     "overall_score": 36.2,
-    "fingerprint_code": "GK-20-8-2-53-46-33-16-42-33-46-55-80",
-    "fingerprint_compact": "SHT20|AER8|STP2|ERL53|LAT46|DIS33|HOM16|AWY42|LNG33|OPN46|HGT55|EXP80",
+    "fingerprint_code": "GK-20-8-2-88-11-33-16-42-33-46-55-80",
+    "fingerprint_compact": "SHT20|AER8|STP2|ERL88|LAT11|DIS33|HOM16|AWY42|LNG33|OPN46|HGT55|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
       "AERIAL_WEAK",
-      "SET_PIECE_WEAK"
+      "SET_PIECE_WEAK",
+      "FAST_STARTER",
+      "LATE_COLLAPSER"
     ],
-    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK",
+    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-FAST_STARTER-LATE_COLLAPSER",
     "exploit_paths": [
       {
         "dimension": "set_piece",
@@ -1166,6 +1170,16 @@
         "edge_estimate": 6.0
       },
       {
+        "dimension": "timing_late",
+        "value": 11,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 5.6
+      },
+      {
         "dimension": "home",
         "value": 16,
         "market": "Away Goals",
@@ -1184,19 +1198,9 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 4.3
-      },
-      {
-        "dimension": "discipline",
-        "value": 33,
-        "market": "Penalty Scored",
-        "attacker_profile": "PENALTY_TAKER",
-        "tactic": "Provoquer fautes",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 1.4
       }
     ],
-    "enriched_name": "Gardien Fragile Expérience, CPA Faible",
+    "enriched_name": "Gardien Fragile Départ Fort, CPA Faible",
     "team_defense_level": "Chaos",
     "team_defense_pct": 20
   },
@@ -1211,8 +1215,8 @@
       "shot_stopping": 50,
       "aerial": 41,
       "set_piece": 86,
-      "timing_early": 28.0,
-      "timing_late": 71.0,
+      "timing_early": 60.0,
+      "timing_late": 39.0,
       "discipline": 83,
       "home": 53,
       "away": 39,
@@ -1222,8 +1226,8 @@
       "experience": 60
     },
     "overall_score": 50.2,
-    "fingerprint_code": "GK-50-41-86-28-71-83-53-39-25-12-55-60",
-    "fingerprint_compact": "SHT50|AER41|STP86|ERL28|LAT71|DIS83|HOM53|AWY39|LNG25|OPN12|HGT55|EXP60",
+    "fingerprint_code": "GK-50-41-86-60-39-83-53-39-25-12-55-60",
+    "fingerprint_compact": "SHT50|AER41|STP86|ERL60|LAT39|DIS83|HOM53|AWY39|LNG25|OPN12|HGT55|EXP60",
     "profile_tags": [
       "AVERAGE_GK",
       "SET_PIECE_STRONG",
@@ -1242,14 +1246,14 @@
         "edge_estimate": 3.6
       },
       {
-        "dimension": "timing_early",
-        "value": 28,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
+        "dimension": "timing_late",
+        "value": 39,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
-        "edge_estimate": 1.8
+        "edge_estimate": 0.9
       },
       {
         "dimension": "away",
@@ -1297,8 +1301,8 @@
       "shot_stopping": 68,
       "aerial": 32,
       "set_piece": 66,
-      "timing_early": 61.0,
-      "timing_late": 37.0,
+      "timing_early": 47.0,
+      "timing_late": 52.0,
       "discipline": 83,
       "home": 59,
       "away": 69,
@@ -1307,9 +1311,9 @@
       "height_factor": 70,
       "experience": 80
     },
-    "overall_score": 60.7,
-    "fingerprint_code": "GK-68-32-66-61-37-83-59-69-48-55-70-80",
-    "fingerprint_compact": "SHT68|AER32|STP66|ERL61|LAT37|DIS83|HOM59|AWY69|LNG48|OPN55|HGT70|EXP80",
+    "overall_score": 60.8,
+    "fingerprint_code": "GK-68-32-66-47-52-83-59-69-48-55-70-80",
+    "fingerprint_compact": "SHT68|AER32|STP66|ERL47|LAT52|DIS83|HOM59|AWY69|LNG48|OPN55|HGT70|EXP80",
     "profile_tags": [
       "AVERAGE_GK"
     ],
@@ -1326,14 +1330,14 @@
         "edge_estimate": 1.5
       },
       {
-        "dimension": "timing_late",
-        "value": 37,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 1.1
+        "dimension": "timing_early",
+        "value": 47,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "LOW",
+        "exploit_type": "MINOR",
+        "edge_estimate": 0.5
       },
       {
         "dimension": "longshot",
@@ -1361,8 +1365,8 @@
       "shot_stopping": 4,
       "aerial": 1,
       "set_piece": 4,
-      "timing_early": 27.0,
-      "timing_late": 72.0,
+      "timing_early": 25.0,
+      "timing_late": 74.0,
       "discipline": 62,
       "home": 3,
       "away": 26,
@@ -1372,16 +1376,17 @@
       "experience": 50
     },
     "overall_score": 32.8,
-    "fingerprint_code": "GK-4-1-4-27-72-62-3-26-69-6-70-50",
-    "fingerprint_compact": "SHT4|AER1|STP4|ERL27|LAT72|DIS62|HOM3|AWY26|LNG69|OPN6|HGT70|EXP50",
+    "fingerprint_code": "GK-4-1-4-25-74-62-3-26-69-6-70-50",
+    "fingerprint_compact": "SHT4|AER1|STP4|ERL25|LAT74|DIS62|HOM3|AWY26|LNG69|OPN6|HGT70|EXP50",
     "profile_tags": [
       "LIABILITY_GK",
       "SHOT_STOPPER_WEAK",
       "AERIAL_WEAK",
       "SET_PIECE_WEAK",
+      "SLOW_STARTER",
       "VETERAN"
     ],
-    "dna_string": "LIABILITY_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-VETERAN",
+    "dna_string": "LIABILITY_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-SLOW_STARTER-VETERAN",
     "exploit_paths": [
       {
         "dimension": "aerial",
@@ -1424,14 +1429,14 @@
         "edge_estimate": 6.6
       },
       {
-        "dimension": "away",
-        "value": 26,
-        "market": "Home Goals",
-        "attacker_profile": "HOME_SPECIALIST",
-        "tactic": "Exploiter déplacement",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 2.0
+        "dimension": "timing_early",
+        "value": 25,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 3.6
       }
     ],
     "enriched_name": "Passoire Finition, Aérien Faible",
@@ -1449,8 +1454,8 @@
       "shot_stopping": 14,
       "aerial": 33,
       "set_piece": 75,
-      "timing_early": 12.0,
-      "timing_late": 86.0,
+      "timing_early": 3.0,
+      "timing_late": 96.0,
       "discipline": 100,
       "home": 28,
       "away": 47,
@@ -1459,9 +1464,9 @@
       "height_factor": 70,
       "experience": 80
     },
-    "overall_score": 46.5,
-    "fingerprint_code": "GK-14-33-75-12-86-100-28-47-3-10-70-80",
-    "fingerprint_compact": "SHT14|AER33|STP75|ERL12|LAT86|DIS100|HOM28|AWY47|LNG3|OPN10|HGT70|EXP80",
+    "overall_score": 46.6,
+    "fingerprint_code": "GK-14-33-75-3-96-100-28-47-3-10-70-80",
+    "fingerprint_compact": "SHT14|AER33|STP75|ERL3|LAT96|DIS100|HOM28|AWY47|LNG3|OPN10|HGT70|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -1473,6 +1478,16 @@
     "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-SET_PIECE_STRONG-SLOW_STARTER-STRONG_FINISHER-LONGSHOT_WEAK",
     "exploit_paths": [
       {
+        "dimension": "timing_early",
+        "value": 3,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 6.7
+      },
+      {
         "dimension": "longshot",
         "value": 3,
         "market": "Outside Box Goal",
@@ -1481,16 +1496,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 6.7
-      },
-      {
-        "dimension": "timing_early",
-        "value": 12,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.4
       },
       {
         "dimension": "shot_stopping",
@@ -1523,7 +1528,7 @@
         "edge_estimate": 1.4
       }
     ],
-    "enriched_name": "Gardien Fragile Discipliné, Frappes de Loin",
+    "enriched_name": "Gardien Fragile Discipliné, Lent au Départ",
     "team_defense_level": "Chaos",
     "team_defense_pct": 14
   },
@@ -1538,8 +1543,8 @@
       "shot_stopping": 70,
       "aerial": 78,
       "set_piece": 83,
-      "timing_early": 36.0,
-      "timing_late": 62.0,
+      "timing_early": 27.0,
+      "timing_late": 72.0,
       "discipline": 91,
       "home": 88,
       "away": 77,
@@ -1548,9 +1553,9 @@
       "height_factor": 40,
       "experience": 80
     },
-    "overall_score": 70.1,
-    "fingerprint_code": "GK-70-78-83-36-62-91-88-77-55-81-40-80",
-    "fingerprint_compact": "SHT70|AER78|STP83|ERL36|LAT62|DIS91|HOM88|AWY77|LNG55|OPN81|HGT40|EXP80",
+    "overall_score": 70.2,
+    "fingerprint_code": "GK-70-78-83-27-72-91-88-77-55-81-40-80",
+    "fingerprint_compact": "SHT70|AER78|STP83|ERL27|LAT72|DIS91|HOM88|AWY77|LNG55|OPN81|HGT40|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "AERIAL_DOMINANT",
@@ -1562,16 +1567,16 @@
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 36,
+        "value": 27,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
-        "edge_estimate": 1.2
+        "edge_estimate": 1.9
       }
     ],
-    "enriched_name": "Gardien Solide Discipliné",
+    "enriched_name": "Gardien Solide Discipliné, Lent au Départ",
     "team_defense_level": "Bouclier",
     "team_defense_pct": 70
   },
@@ -1586,8 +1591,8 @@
       "shot_stopping": 79,
       "aerial": 54,
       "set_piece": 78,
-      "timing_early": 71.0,
-      "timing_late": 28.0,
+      "timing_early": 44.0,
+      "timing_late": 55.0,
       "discipline": 100,
       "home": 95,
       "away": 61,
@@ -1597,8 +1602,8 @@
       "experience": 80
     },
     "overall_score": 66.6,
-    "fingerprint_code": "GK-79-54-78-71-28-100-95-61-43-40-70-80",
-    "fingerprint_compact": "SHT79|AER54|STP78|ERL71|LAT28|DIS100|HOM95|AWY61|LNG43|OPN40|HGT70|EXP80",
+    "fingerprint_code": "GK-79-54-78-44-55-100-95-61-43-40-70-80",
+    "fingerprint_compact": "SHT79|AER54|STP78|ERL44|LAT55|DIS100|HOM95|AWY61|LNG43|OPN40|HGT70|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -1607,14 +1612,14 @@
     "dna_string": "SOLID_GK-SHOT_STOPPER-SET_PIECE_STRONG",
     "exploit_paths": [
       {
-        "dimension": "timing_late",
-        "value": 28,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 1.8
+        "dimension": "timing_early",
+        "value": 44,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "LOW",
+        "exploit_type": "MINOR",
+        "edge_estimate": 0.5
       },
       {
         "dimension": "longshot",
@@ -1627,7 +1632,7 @@
         "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Solide Discipliné, S'effondre",
+    "enriched_name": "Gardien Solide Discipliné",
     "team_defense_level": "Muraille",
     "team_defense_pct": 79
   },
@@ -1642,8 +1647,8 @@
       "shot_stopping": 80,
       "aerial": 71,
       "set_piece": 63,
-      "timing_early": 52.0,
-      "timing_late": 47.0,
+      "timing_early": 55.0,
+      "timing_late": 44.0,
       "discipline": 75,
       "home": 86,
       "away": 73,
@@ -1653,8 +1658,8 @@
       "experience": 80
     },
     "overall_score": 68.5,
-    "fingerprint_code": "GK-80-71-63-52-47-75-86-73-65-75-55-80",
-    "fingerprint_compact": "SHT80|AER71|STP63|ERL52|LAT47|DIS75|HOM86|AWY73|LNG65|OPN75|HGT55|EXP80",
+    "fingerprint_code": "GK-80-71-63-55-44-75-86-73-65-75-55-80",
+    "fingerprint_compact": "SHT80|AER71|STP63|ERL55|LAT44|DIS75|HOM86|AWY73|LNG65|OPN75|HGT55|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -1664,7 +1669,7 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 47,
+        "value": 44,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
@@ -1688,8 +1693,8 @@
       "shot_stopping": 45,
       "aerial": 48,
       "set_piece": 28,
-      "timing_early": 0.0,
-      "timing_late": 99.0,
+      "timing_early": 1.0,
+      "timing_late": 98.0,
       "discipline": 22,
       "home": 77,
       "away": 19,
@@ -1699,8 +1704,8 @@
       "experience": 70
     },
     "overall_score": 48.7,
-    "fingerprint_code": "GK-45-48-28-0-99-22-77-19-100-36-40-70",
-    "fingerprint_compact": "SHT45|AER48|STP28|ERL0|LAT99|DIS22|HOM77|AWY19|LNG100|OPN36|HGT40|EXP70",
+    "fingerprint_code": "GK-45-48-28-1-98-22-77-19-100-36-40-70",
+    "fingerprint_compact": "SHT45|AER48|STP28|ERL1|LAT98|DIS22|HOM77|AWY19|LNG100|OPN36|HGT40|EXP70",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SET_PIECE_WEAK",
@@ -1714,13 +1719,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 0,
+        "value": 1,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 7.1
+        "edge_estimate": 7.0
       },
       {
         "dimension": "away",
@@ -1778,8 +1783,8 @@
       "shot_stopping": 28,
       "aerial": 62,
       "set_piece": 39,
-      "timing_early": 32.0,
-      "timing_late": 67.0,
+      "timing_early": 26.0,
+      "timing_late": 73.0,
       "discipline": 10,
       "home": 31,
       "away": 38,
@@ -1789,8 +1794,8 @@
       "experience": 50
     },
     "overall_score": 42.5,
-    "fingerprint_code": "GK-28-62-39-32-67-10-31-38-52-31-70-50",
-    "fingerprint_compact": "SHT28|AER62|STP39|ERL32|LAT67|DIS10|HOM31|AWY38|LNG52|OPN31|HGT70|EXP50",
+    "fingerprint_code": "GK-28-62-39-26-73-10-31-38-52-31-70-50",
+    "fingerprint_compact": "SHT28|AER62|STP39|ERL26|LAT73|DIS10|HOM31|AWY38|LNG52|OPN31|HGT70|EXP50",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -1808,6 +1813,16 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 5.7
+      },
+      {
+        "dimension": "timing_early",
+        "value": 26,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 2.0
       },
       {
         "dimension": "shot_stopping",
@@ -1830,16 +1845,6 @@
         "edge_estimate": 1.6
       },
       {
-        "dimension": "timing_early",
-        "value": 32,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 1.5
-      },
-      {
         "dimension": "away",
         "value": 38,
         "market": "Home Goals",
@@ -1850,7 +1855,7 @@
         "edge_estimate": 1.0
       }
     ],
-    "enriched_name": "Gardien Fragile Envergure, Penalties",
+    "enriched_name": "Gardien Fragile Finition, Penalties",
     "team_defense_level": "Chaos",
     "team_defense_pct": 28
   },
@@ -1865,8 +1870,8 @@
       "shot_stopping": 48,
       "aerial": 43,
       "set_piece": 69,
-      "timing_early": 33.0,
-      "timing_late": 66.0,
+      "timing_early": 56.0,
+      "timing_late": 43.0,
       "discipline": 75,
       "home": 39,
       "away": 45,
@@ -1876,24 +1881,14 @@
       "experience": 80
     },
     "overall_score": 50.0,
-    "fingerprint_code": "GK-48-43-69-33-66-75-39-45-35-27-40-80",
-    "fingerprint_compact": "SHT48|AER43|STP69|ERL33|LAT66|DIS75|HOM39|AWY45|LNG35|OPN27|HGT40|EXP80",
+    "fingerprint_code": "GK-48-43-69-56-43-75-39-45-35-27-40-80",
+    "fingerprint_compact": "SHT48|AER43|STP69|ERL56|LAT43|DIS75|HOM39|AWY45|LNG35|OPN27|HGT40|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "SHORT_GK"
     ],
     "dna_string": "AVERAGE_GK-SHORT_GK",
     "exploit_paths": [
-      {
-        "dimension": "timing_early",
-        "value": 33,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 1.4
-      },
       {
         "dimension": "longshot",
         "value": 35,
@@ -1933,6 +1928,16 @@
         "confidence": "LOW",
         "exploit_type": "MINOR",
         "edge_estimate": 0.5
+      },
+      {
+        "dimension": "timing_late",
+        "value": 43,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "LOW",
+        "exploit_type": "MINOR",
+        "edge_estimate": 0.5
       }
     ],
     "enriched_name": "Gardien Moyen Expérience, Jeu Ouvert",
@@ -1950,8 +1955,8 @@
       "shot_stopping": 73,
       "aerial": 81,
       "set_piece": 80,
-      "timing_early": 93.0,
-      "timing_late": 6.0,
+      "timing_early": 91.0,
+      "timing_late": 8.0,
       "discipline": 91,
       "home": 45,
       "away": 76,
@@ -1961,8 +1966,8 @@
       "experience": 60
     },
     "overall_score": 60.2,
-    "fingerprint_code": "GK-73-81-80-93-6-91-45-76-14-33-70-60",
-    "fingerprint_compact": "SHT73|AER81|STP80|ERL93|LAT6|DIS91|HOM45|AWY76|LNG14|OPN33|HGT70|EXP60",
+    "fingerprint_code": "GK-73-81-80-91-8-91-45-76-14-33-70-60",
+    "fingerprint_compact": "SHT73|AER81|STP80|ERL91|LAT8|DIS91|HOM45|AWY76|LNG14|OPN33|HGT70|EXP60",
     "profile_tags": [
       "AVERAGE_GK",
       "AERIAL_DOMINANT",
@@ -1977,13 +1982,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 6,
+        "value": 8,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.3
+        "edge_estimate": 6.0
       },
       {
         "dimension": "longshot",
@@ -2021,8 +2026,8 @@
       "shot_stopping": 75,
       "aerial": 90,
       "set_piece": 73,
-      "timing_early": 29.0,
-      "timing_late": 70.0,
+      "timing_early": 39.0,
+      "timing_late": 60.0,
       "discipline": 91,
       "home": 58,
       "away": 90,
@@ -2032,8 +2037,8 @@
       "experience": 80
     },
     "overall_score": 66.6,
-    "fingerprint_code": "GK-75-90-73-29-70-91-58-90-31-42-70-80",
-    "fingerprint_compact": "SHT75|AER90|STP73|ERL29|LAT70|DIS91|HOM58|AWY90|LNG31|OPN42|HGT70|EXP80",
+    "fingerprint_code": "GK-75-90-73-39-60-91-58-90-31-42-70-80",
+    "fingerprint_compact": "SHT75|AER90|STP73|ERL39|LAT60|DIS91|HOM58|AWY90|LNG31|OPN42|HGT70|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -2043,16 +2048,6 @@
     "dna_string": "SOLID_GK-SHOT_STOPPER-AERIAL_DOMINANT-ROAD_WARRIOR",
     "exploit_paths": [
       {
-        "dimension": "timing_early",
-        "value": 29,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 1.8
-      },
-      {
         "dimension": "longshot",
         "value": 31,
         "market": "Outside Box Goal",
@@ -2061,9 +2056,19 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.6
+      },
+      {
+        "dimension": "timing_early",
+        "value": 39,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 0.9
       }
     ],
-    "enriched_name": "Gardien Solide Discipliné, Lent au Départ",
+    "enriched_name": "Gardien Solide Discipliné, Frappes de Loin",
     "team_defense_level": "Muraille",
     "team_defense_pct": 75
   },
@@ -2078,8 +2083,8 @@
       "shot_stopping": 3,
       "aerial": 3,
       "set_piece": 5,
-      "timing_early": 72.0,
-      "timing_late": 27.0,
+      "timing_early": 74.0,
+      "timing_late": 25.0,
       "discipline": 22,
       "home": 2,
       "away": 23,
@@ -2089,17 +2094,18 @@
       "experience": 80
     },
     "overall_score": 26.3,
-    "fingerprint_code": "GK-3-3-5-72-27-22-2-23-6-3-70-80",
-    "fingerprint_compact": "SHT3|AER3|STP5|ERL72|LAT27|DIS22|HOM2|AWY23|LNG6|OPN3|HGT70|EXP80",
+    "fingerprint_code": "GK-3-3-5-74-25-22-2-23-6-3-70-80",
+    "fingerprint_compact": "SHT3|AER3|STP5|ERL74|LAT25|DIS22|HOM2|AWY23|LNG6|OPN3|HGT70|EXP80",
     "profile_tags": [
       "LIABILITY_GK",
       "SHOT_STOPPER_WEAK",
       "AERIAL_WEAK",
       "SET_PIECE_WEAK",
+      "LATE_COLLAPSER",
       "PENALTY_PRONE",
       "LONGSHOT_WEAK"
     ],
-    "dna_string": "LIABILITY_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-PENALTY_PRONE-LONGSHOT_WEAK",
+    "dna_string": "LIABILITY_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-LATE_COLLAPSER-PENALTY_PRONE-LONGSHOT_WEAK",
     "exploit_paths": [
       {
         "dimension": "home",
@@ -2167,8 +2173,8 @@
       "shot_stopping": 7,
       "aerial": 23,
       "set_piece": 40,
-      "timing_early": 44.0,
-      "timing_late": 55.0,
+      "timing_early": 54.0,
+      "timing_late": 45.0,
       "discipline": 91,
       "home": 1,
       "away": 68,
@@ -2178,8 +2184,8 @@
       "experience": 50
     },
     "overall_score": 36.1,
-    "fingerprint_code": "GK-7-23-40-44-55-91-1-68-12-2-40-50",
-    "fingerprint_compact": "SHT7|AER23|STP40|ERL44|LAT55|DIS91|HOM1|AWY68|LNG12|OPN2|HGT40|EXP50",
+    "fingerprint_code": "GK-7-23-40-54-45-91-1-68-12-2-40-50",
+    "fingerprint_compact": "SHT7|AER23|STP40|ERL54|LAT45|DIS91|HOM1|AWY68|LNG12|OPN2|HGT40|EXP50",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -2256,8 +2262,8 @@
       "shot_stopping": 17,
       "aerial": 16,
       "set_piece": 61,
-      "timing_early": 42.0,
-      "timing_late": 57.0,
+      "timing_early": 36.0,
+      "timing_late": 62.0,
       "discipline": 42,
       "home": 38,
       "away": 5,
@@ -2266,9 +2272,9 @@
       "height_factor": 70,
       "experience": 80
     },
-    "overall_score": 36.8,
-    "fingerprint_code": "GK-17-16-61-42-57-42-38-5-2-11-70-80",
-    "fingerprint_compact": "SHT17|AER16|STP61|ERL42|LAT57|DIS42|HOM38|AWY5|LNG2|OPN11|HGT70|EXP80",
+    "overall_score": 36.7,
+    "fingerprint_code": "GK-17-16-61-36-62-42-38-5-2-11-70-80",
+    "fingerprint_compact": "SHT17|AER16|STP61|ERL36|LAT62|DIS42|HOM38|AWY5|LNG2|OPN11|HGT70|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -2318,14 +2324,14 @@
         "edge_estimate": 4.7
       },
       {
-        "dimension": "home",
-        "value": 38,
-        "market": "Away Goals",
-        "attacker_profile": "AWAY_SPECIALIST",
-        "tactic": "Exploiter domicile",
+        "dimension": "timing_early",
+        "value": 36,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
-        "edge_estimate": 1.0
+        "edge_estimate": 1.2
       }
     ],
     "enriched_name": "Gardien Fragile Expérience, Frappes de Loin",
@@ -2343,8 +2349,8 @@
       "shot_stopping": 53,
       "aerial": 93,
       "set_piece": 90,
-      "timing_early": 91.0,
-      "timing_late": 8.0,
+      "timing_early": 83.0,
+      "timing_late": 16.0,
       "discipline": 42,
       "home": 66,
       "away": 54,
@@ -2354,8 +2360,8 @@
       "experience": 80
     },
     "overall_score": 60.6,
-    "fingerprint_code": "GK-53-93-90-91-8-42-66-54-27-68-55-80",
-    "fingerprint_compact": "SHT53|AER93|STP90|ERL91|LAT8|DIS42|HOM66|AWY54|LNG27|OPN68|HGT55|EXP80",
+    "fingerprint_code": "GK-53-93-90-83-16-42-66-54-27-68-55-80",
+    "fingerprint_compact": "SHT53|AER93|STP90|ERL83|LAT16|DIS42|HOM66|AWY54|LNG27|OPN68|HGT55|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "AERIAL_DOMINANT",
@@ -2368,13 +2374,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 8,
+        "value": 16,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.0
+        "edge_estimate": 4.9
       },
       {
         "dimension": "longshot",
@@ -2412,8 +2418,8 @@
       "shot_stopping": 57,
       "aerial": 75,
       "set_piece": 77,
-      "timing_early": 90.0,
-      "timing_late": 9.0,
+      "timing_early": 97.0,
+      "timing_late": 2.0,
       "discipline": 42,
       "home": 54,
       "away": 44,
@@ -2423,8 +2429,8 @@
       "experience": 80
     },
     "overall_score": 52.7,
-    "fingerprint_code": "GK-57-75-77-90-9-42-54-44-21-28-55-80",
-    "fingerprint_compact": "SHT57|AER75|STP77|ERL90|LAT9|DIS42|HOM54|AWY44|LNG21|OPN28|HGT55|EXP80",
+    "fingerprint_code": "GK-57-75-77-97-2-42-54-44-21-28-55-80",
+    "fingerprint_compact": "SHT57|AER75|STP77|ERL97|LAT2|DIS42|HOM54|AWY44|LNG21|OPN28|HGT55|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "AERIAL_DOMINANT",
@@ -2437,13 +2443,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 9,
+        "value": 2,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.9
+        "edge_estimate": 6.9
       },
       {
         "dimension": "longshot",
@@ -2491,8 +2497,8 @@
       "shot_stopping": 67,
       "aerial": 83,
       "set_piece": 53,
-      "timing_early": 30.0,
-      "timing_late": 69.0,
+      "timing_early": 19.0,
+      "timing_late": 80.0,
       "discipline": 75,
       "home": 48,
       "away": 86,
@@ -2502,24 +2508,26 @@
       "experience": 80
     },
     "overall_score": 65.9,
-    "fingerprint_code": "GK-67-83-53-30-69-75-48-86-57-73-70-80",
-    "fingerprint_compact": "SHT67|AER83|STP53|ERL30|LAT69|DIS75|HOM48|AWY86|LNG57|OPN73|HGT70|EXP80",
+    "fingerprint_code": "GK-67-83-53-19-80-75-48-86-57-73-70-80",
+    "fingerprint_compact": "SHT67|AER83|STP53|ERL19|LAT80|DIS75|HOM48|AWY86|LNG57|OPN73|HGT70|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "AERIAL_DOMINANT",
+      "SLOW_STARTER",
+      "STRONG_FINISHER",
       "ROAD_WARRIOR"
     ],
-    "dna_string": "SOLID_GK-AERIAL_DOMINANT-ROAD_WARRIOR",
+    "dna_string": "SOLID_GK-AERIAL_DOMINANT-SLOW_STARTER-STRONG_FINISHER-ROAD_WARRIOR",
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 30,
+        "value": 19,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 1.7
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 4.4
       },
       {
         "dimension": "home",
@@ -2615,8 +2623,8 @@
       "shot_stopping": 22,
       "aerial": 9,
       "set_piece": 19,
-      "timing_early": 70.0,
-      "timing_late": 29.0,
+      "timing_early": 46.0,
+      "timing_late": 53.0,
       "discipline": 42,
       "home": 18,
       "away": 17,
@@ -2626,8 +2634,8 @@
       "experience": 60
     },
     "overall_score": 30.0,
-    "fingerprint_code": "GK-22-9-19-70-29-42-18-17-4-15-55-60",
-    "fingerprint_compact": "SHT22|AER9|STP19|ERL70|LAT29|DIS42|HOM18|AWY17|LNG4|OPN15|HGT55|EXP60",
+    "fingerprint_code": "GK-22-9-19-46-53-42-18-17-4-15-55-60",
+    "fingerprint_compact": "SHT22|AER9|STP19|ERL46|LAT53|DIS42|HOM18|AWY17|LNG4|OPN15|HGT55|EXP60",
     "profile_tags": [
       "LIABILITY_GK",
       "SHOT_STOPPER_WEAK",
@@ -2688,7 +2696,7 @@
         "edge_estimate": 4.4
       }
     ],
-    "enriched_name": "Passoire Départ Fort, Frappes de Loin",
+    "enriched_name": "Passoire Expérience, Frappes de Loin",
     "team_defense_level": "Chaos",
     "team_defense_pct": 22
   },
@@ -2703,8 +2711,8 @@
       "shot_stopping": 35,
       "aerial": 29,
       "set_piece": 21,
-      "timing_early": 67.0,
-      "timing_late": 32.0,
+      "timing_early": 53.0,
+      "timing_late": 46.0,
       "discipline": 75,
       "home": 53,
       "away": 64,
@@ -2714,8 +2722,8 @@
       "experience": 80
     },
     "overall_score": 47.3,
-    "fingerprint_code": "GK-35-29-21-67-32-75-53-64-7-50-55-80",
-    "fingerprint_compact": "SHT35|AER29|STP21|ERL67|LAT32|DIS75|HOM53|AWY64|LNG7|OPN50|HGT55|EXP80",
+    "fingerprint_code": "GK-35-29-21-53-46-75-53-64-7-50-55-80",
+    "fingerprint_compact": "SHT35|AER29|STP21|ERL53|LAT46|DIS75|HOM53|AWY64|LNG7|OPN50|HGT55|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "AERIAL_WEAK",
@@ -2755,16 +2763,6 @@
         "edge_estimate": 1.8
       },
       {
-        "dimension": "timing_late",
-        "value": 32,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 1.5
-      },
-      {
         "dimension": "shot_stopping",
         "value": 35,
         "market": "Goals Over",
@@ -2773,6 +2771,16 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.2
+      },
+      {
+        "dimension": "timing_late",
+        "value": 46,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "LOW",
+        "exploit_type": "MINOR",
+        "edge_estimate": 0.5
       }
     ],
     "enriched_name": "Gardien Fragile Expérience, Frappes de Loin",
@@ -2790,8 +2798,8 @@
       "shot_stopping": 25,
       "aerial": 92,
       "set_piece": 81,
-      "timing_early": 88.0,
-      "timing_late": 11.0,
+      "timing_early": 89.0,
+      "timing_late": 10.0,
       "discipline": 10,
       "home": 22,
       "away": 31,
@@ -2801,8 +2809,8 @@
       "experience": 70
     },
     "overall_score": 48.6,
-    "fingerprint_code": "GK-25-92-81-88-11-10-22-31-62-21-70-70",
-    "fingerprint_compact": "SHT25|AER92|STP81|ERL88|LAT11|DIS10|HOM22|AWY31|LNG62|OPN21|HGT70|EXP70",
+    "fingerprint_code": "GK-25-92-81-89-10-10-22-31-62-21-70-70",
+    "fingerprint_compact": "SHT25|AER92|STP81|ERL89|LAT10|DIS10|HOM22|AWY31|LNG62|OPN21|HGT70|EXP70",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -2815,6 +2823,16 @@
     "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_DOMINANT-SET_PIECE_STRONG-FAST_STARTER-LATE_COLLAPSER-PENALTY_PRONE",
     "exploit_paths": [
       {
+        "dimension": "timing_late",
+        "value": 10,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 5.7
+      },
+      {
         "dimension": "discipline",
         "value": 10,
         "market": "Penalty Scored",
@@ -2823,16 +2841,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 5.7
-      },
-      {
-        "dimension": "timing_late",
-        "value": 11,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.6
       },
       {
         "dimension": "home",
@@ -2865,7 +2873,7 @@
         "edge_estimate": 1.6
       }
     ],
-    "enriched_name": "Gardien Fragile Aérien, Penalties",
+    "enriched_name": "Gardien Fragile Aérien, S'effondre",
     "team_defense_level": "Chaos",
     "team_defense_pct": 25
   },
@@ -2880,8 +2888,8 @@
       "shot_stopping": 39,
       "aerial": 11,
       "set_piece": 9,
-      "timing_early": 39.0,
-      "timing_late": 60.0,
+      "timing_early": 17.0,
+      "timing_late": 82.0,
       "discipline": 42,
       "home": 68,
       "away": 9,
@@ -2891,16 +2899,18 @@
       "experience": 60
     },
     "overall_score": 38.9,
-    "fingerprint_code": "GK-39-11-9-39-60-42-68-9-15-30-85-60",
-    "fingerprint_compact": "SHT39|AER11|STP9|ERL39|LAT60|DIS42|HOM68|AWY9|LNG15|OPN30|HGT85|EXP60",
+    "fingerprint_code": "GK-39-11-9-17-82-42-68-9-15-30-85-60",
+    "fingerprint_compact": "SHT39|AER11|STP9|ERL17|LAT82|DIS42|HOM68|AWY9|LNG15|OPN30|HGT85|EXP60",
     "profile_tags": [
       "BELOW_AVG_GK",
       "AERIAL_WEAK",
       "SET_PIECE_WEAK",
+      "SLOW_STARTER",
+      "STRONG_FINISHER",
       "LONGSHOT_WEAK",
       "TALL_GK"
     ],
-    "dna_string": "BELOW_AVG_GK-AERIAL_WEAK-SET_PIECE_WEAK-LONGSHOT_WEAK-TALL_GK",
+    "dna_string": "BELOW_AVG_GK-AERIAL_WEAK-SET_PIECE_WEAK-SLOW_STARTER-STRONG_FINISHER-LONGSHOT_WEAK-TALL_GK",
     "exploit_paths": [
       {
         "dimension": "set_piece",
@@ -2943,14 +2953,14 @@
         "edge_estimate": 5.0
       },
       {
-        "dimension": "shot_stopping",
-        "value": 39,
-        "market": "Goals Over",
-        "attacker_profile": "ANY_ATTACKER",
-        "tactic": "Tirer cadré",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 0.9
+        "dimension": "timing_early",
+        "value": 17,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 4.7
       }
     ],
     "enriched_name": "Gardien Fragile Envergure, CPA Faible",
@@ -2968,8 +2978,8 @@
       "shot_stopping": 91,
       "aerial": 44,
       "set_piece": 36,
-      "timing_early": 7.0,
-      "timing_late": 92.0,
+      "timing_early": 18.0,
+      "timing_late": 81.0,
       "discipline": 42,
       "home": 76,
       "away": 76,
@@ -2979,8 +2989,8 @@
       "experience": 70
     },
     "overall_score": 60.2,
-    "fingerprint_code": "GK-91-44-36-7-92-42-76-76-45-89-55-70",
-    "fingerprint_compact": "SHT91|AER44|STP36|ERL7|LAT92|DIS42|HOM76|AWY76|LNG45|OPN89|HGT55|EXP70",
+    "fingerprint_code": "GK-91-44-36-18-81-42-76-76-45-89-55-70",
+    "fingerprint_compact": "SHT91|AER44|STP36|ERL18|LAT81|DIS42|HOM76|AWY76|LNG45|OPN89|HGT55|EXP70",
     "profile_tags": [
       "AVERAGE_GK",
       "SHOT_STOPPER",
@@ -2992,13 +3002,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 7,
+        "value": 18,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.1
+        "edge_estimate": 4.6
       },
       {
         "dimension": "set_piece",
@@ -3041,7 +3051,7 @@
         "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Moyen Finition, Lent au Départ",
+    "enriched_name": "Gardien Moyen Réflexes, Lent au Départ",
     "team_defense_level": "Forteresse",
     "team_defense_pct": 91
   },
@@ -3056,8 +3066,8 @@
       "shot_stopping": 12,
       "aerial": 85,
       "set_piece": 60,
-      "timing_early": 21.0,
-      "timing_late": 78.0,
+      "timing_early": 9.0,
+      "timing_late": 90.0,
       "discipline": 36,
       "home": 8,
       "away": 36,
@@ -3067,8 +3077,8 @@
       "experience": 70
     },
     "overall_score": 45.1,
-    "fingerprint_code": "GK-12-85-60-21-78-36-8-36-48-17-70-70",
-    "fingerprint_compact": "SHT12|AER85|STP60|ERL21|LAT78|DIS36|HOM8|AWY36|LNG48|OPN17|HGT70|EXP70",
+    "fingerprint_code": "GK-12-85-60-9-90-36-8-36-48-17-70-70",
+    "fingerprint_compact": "SHT12|AER85|STP60|ERL9|LAT90|DIS36|HOM8|AWY36|LNG48|OPN17|HGT70|EXP70",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -3089,6 +3099,16 @@
         "edge_estimate": 6.0
       },
       {
+        "dimension": "timing_early",
+        "value": 9,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 5.9
+      },
+      {
         "dimension": "shot_stopping",
         "value": 12,
         "market": "Goals Over",
@@ -3097,16 +3117,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 5.4
-      },
-      {
-        "dimension": "timing_early",
-        "value": 21,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.1
       },
       {
         "dimension": "discipline",
@@ -3129,7 +3139,7 @@
         "edge_estimate": 1.2
       }
     ],
-    "enriched_name": "Gardien Fragile Aérien, Fragile Dom.",
+    "enriched_name": "Gardien Fragile Finition, Fragile Dom.",
     "team_defense_level": "Chaos",
     "team_defense_pct": 12
   },
@@ -3144,8 +3154,8 @@
       "shot_stopping": 63,
       "aerial": 69,
       "set_piece": 33,
-      "timing_early": 45.0,
-      "timing_late": 54.0,
+      "timing_early": 31.0,
+      "timing_late": 68.0,
       "discipline": 69,
       "home": 92,
       "away": 29,
@@ -3155,8 +3165,8 @@
       "experience": 80
     },
     "overall_score": 61.3,
-    "fingerprint_code": "GK-63-69-33-45-54-69-92-29-56-91-55-80",
-    "fingerprint_compact": "SHT63|AER69|STP33|ERL45|LAT54|DIS69|HOM92|AWY29|LNG56|OPN91|HGT55|EXP80",
+    "fingerprint_code": "GK-63-69-33-31-68-69-92-29-56-91-55-80",
+    "fingerprint_compact": "SHT63|AER69|STP33|ERL31|LAT68|DIS69|HOM92|AWY29|LNG56|OPN91|HGT55|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "HOME_ONLY"
@@ -3174,6 +3184,16 @@
         "edge_estimate": 1.8
       },
       {
+        "dimension": "timing_early",
+        "value": 31,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.6
+      },
+      {
         "dimension": "set_piece",
         "value": 33,
         "market": "Set Piece Goal",
@@ -3182,16 +3202,6 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.4
-      },
-      {
-        "dimension": "timing_early",
-        "value": 45,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "LOW",
-        "exploit_type": "MINOR",
-        "edge_estimate": 0.5
       }
     ],
     "enriched_name": "Gardien Moyen Domicile, Fragile Ext.",
@@ -3209,8 +3219,8 @@
       "shot_stopping": 100,
       "aerial": 100,
       "set_piece": 89,
-      "timing_early": 66.0,
-      "timing_late": 33.0,
+      "timing_early": 59.0,
+      "timing_late": 40.0,
       "discipline": 87,
       "home": 97,
       "away": 100,
@@ -3220,8 +3230,8 @@
       "experience": 50
     },
     "overall_score": 82.4,
-    "fingerprint_code": "GK-100-100-89-66-33-87-97-100-97-100-70-50",
-    "fingerprint_compact": "SHT100|AER100|STP89|ERL66|LAT33|DIS87|HOM97|AWY100|LNG97|OPN100|HGT70|EXP50",
+    "fingerprint_code": "GK-100-100-89-59-40-87-97-100-97-100-70-50",
+    "fingerprint_compact": "SHT100|AER100|STP89|ERL59|LAT40|DIS87|HOM97|AWY100|LNG97|OPN100|HGT70|EXP50",
     "profile_tags": [
       "ELITE_GK",
       "SHOT_STOPPER",
@@ -3234,16 +3244,16 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 33,
+        "value": 40,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
-        "edge_estimate": 1.4
+        "edge_estimate": 0.8
       }
     ],
-    "enriched_name": "Mur Réflexes, S'effondre",
+    "enriched_name": "Mur Réflexes",
     "team_defense_level": "Forteresse",
     "team_defense_pct": 100
   },
@@ -3258,8 +3268,8 @@
       "shot_stopping": 94,
       "aerial": 52,
       "set_piece": 42,
-      "timing_early": 78.0,
-      "timing_late": 21.0,
+      "timing_early": 79.0,
+      "timing_late": 20.0,
       "discipline": 87,
       "home": 62,
       "away": 94,
@@ -3269,8 +3279,8 @@
       "experience": 70
     },
     "overall_score": 71.7,
-    "fingerprint_code": "GK-94-52-42-78-21-87-62-94-95-95-70-70",
-    "fingerprint_compact": "SHT94|AER52|STP42|ERL78|LAT21|DIS87|HOM62|AWY94|LNG95|OPN95|HGT70|EXP70",
+    "fingerprint_code": "GK-94-52-42-79-20-87-62-94-95-95-70-70",
+    "fingerprint_compact": "SHT94|AER52|STP42|ERL79|LAT20|DIS87|HOM62|AWY94|LNG95|OPN95|HGT70|EXP70",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -3282,13 +3292,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 21,
+        "value": 20,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.1
+        "edge_estimate": 4.3
       },
       {
         "dimension": "set_piece",
@@ -3316,8 +3326,8 @@
       "shot_stopping": 66,
       "aerial": 55,
       "set_piece": 31,
-      "timing_early": 89.0,
-      "timing_late": 10.0,
+      "timing_early": 90.0,
+      "timing_late": 9.0,
       "discipline": 69,
       "home": 9,
       "away": 93,
@@ -3327,8 +3337,8 @@
       "experience": 80
     },
     "overall_score": 58.0,
-    "fingerprint_code": "GK-66-55-31-89-10-69-9-93-27-82-85-80",
-    "fingerprint_compact": "SHT66|AER55|STP31|ERL89|LAT10|DIS69|HOM9|AWY93|LNG27|OPN82|HGT85|EXP80",
+    "fingerprint_code": "GK-66-55-31-90-9-69-9-93-27-82-85-80",
+    "fingerprint_compact": "SHT66|AER55|STP31|ERL90|LAT9|DIS69|HOM9|AWY93|LNG27|OPN82|HGT85|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "FAST_STARTER",
@@ -3340,6 +3350,16 @@
     "dna_string": "AVERAGE_GK-FAST_STARTER-LATE_COLLAPSER-ROAD_WARRIOR-LONGSHOT_WEAK-TALL_GK",
     "exploit_paths": [
       {
+        "dimension": "timing_late",
+        "value": 9,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 5.9
+      },
+      {
         "dimension": "home",
         "value": 9,
         "market": "Away Goals",
@@ -3348,16 +3368,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 5.9
-      },
-      {
-        "dimension": "timing_late",
-        "value": 10,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.7
       },
       {
         "dimension": "longshot",
@@ -3380,7 +3390,7 @@
         "edge_estimate": 1.6
       }
     ],
-    "enriched_name": "Gardien Moyen Extérieur, Fragile Dom.",
+    "enriched_name": "Gardien Moyen Extérieur, S'effondre",
     "team_defense_level": "Bouclier",
     "team_defense_pct": 66
   },
@@ -3395,8 +3405,8 @@
       "shot_stopping": 33,
       "aerial": 84,
       "set_piece": 84,
-      "timing_early": 86.0,
-      "timing_late": 12.0,
+      "timing_early": 92.0,
+      "timing_late": 7.0,
       "discipline": 69,
       "home": 56,
       "away": 30,
@@ -3405,9 +3415,9 @@
       "height_factor": 55,
       "experience": 70
     },
-    "overall_score": 59.1,
-    "fingerprint_code": "GK-33-84-84-86-12-69-56-30-78-52-55-70",
-    "fingerprint_compact": "SHT33|AER84|STP84|ERL86|LAT12|DIS69|HOM56|AWY30|LNG78|OPN52|HGT55|EXP70",
+    "overall_score": 59.2,
+    "fingerprint_code": "GK-33-84-84-92-7-69-56-30-78-52-55-70",
+    "fingerprint_compact": "SHT33|AER84|STP84|ERL92|LAT7|DIS69|HOM56|AWY30|LNG78|OPN52|HGT55|EXP70",
     "profile_tags": [
       "AVERAGE_GK",
       "AERIAL_DOMINANT",
@@ -3419,13 +3429,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 12,
+        "value": 7,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.4
+        "edge_estimate": 6.1
       },
       {
         "dimension": "away",
@@ -3463,8 +3473,8 @@
       "shot_stopping": 18,
       "aerial": 26,
       "set_piece": 16,
-      "timing_early": 77.0,
-      "timing_late": 22.0,
+      "timing_early": 58.0,
+      "timing_late": 41.0,
       "discipline": 20,
       "home": 41,
       "away": 13,
@@ -3474,18 +3484,16 @@
       "experience": 80
     },
     "overall_score": 42.4,
-    "fingerprint_code": "GK-18-26-16-77-22-20-41-13-80-61-55-80",
-    "fingerprint_compact": "SHT18|AER26|STP16|ERL77|LAT22|DIS20|HOM41|AWY13|LNG80|OPN61|HGT55|EXP80",
+    "fingerprint_code": "GK-18-26-16-58-41-20-41-13-80-61-55-80",
+    "fingerprint_compact": "SHT18|AER26|STP16|ERL58|LAT41|DIS20|HOM41|AWY13|LNG80|OPN61|HGT55|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
       "AERIAL_WEAK",
       "SET_PIECE_WEAK",
-      "FAST_STARTER",
-      "LATE_COLLAPSER",
       "PENALTY_PRONE"
     ],
-    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-FAST_STARTER-LATE_COLLAPSER-PENALTY_PRONE",
+    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-PENALTY_PRONE",
     "exploit_paths": [
       {
         "dimension": "away",
@@ -3528,14 +3536,14 @@
         "edge_estimate": 4.3
       },
       {
-        "dimension": "timing_late",
-        "value": 22,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.0
+        "dimension": "aerial",
+        "value": 26,
+        "market": "Header Goal",
+        "attacker_profile": "HEADER_SPECIALIST",
+        "tactic": "Centres et corners",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 2.0
       }
     ],
     "enriched_name": "Gardien Fragile Longue Distance, Fragile Ext.",
@@ -3553,8 +3561,8 @@
       "shot_stopping": 1,
       "aerial": 22,
       "set_piece": 47,
-      "timing_early": 56.0,
-      "timing_late": 43.0,
+      "timing_early": 42.0,
+      "timing_late": 57.0,
       "discipline": 69,
       "home": 10,
       "away": 4,
@@ -3564,8 +3572,8 @@
       "experience": 70
     },
     "overall_score": 34.9,
-    "fingerprint_code": "GK-1-22-47-56-43-69-10-4-20-7-70-70",
-    "fingerprint_compact": "SHT1|AER22|STP47|ERL56|LAT43|DIS69|HOM10|AWY4|LNG20|OPN7|HGT70|EXP70",
+    "fingerprint_code": "GK-1-22-47-42-57-69-10-4-20-7-70-70",
+    "fingerprint_compact": "SHT1|AER22|STP47|ERL42|LAT57|DIS69|HOM10|AWY4|LNG20|OPN7|HGT70|EXP70",
     "profile_tags": [
       "LIABILITY_GK",
       "SHOT_STOPPER_WEAK",
@@ -3718,8 +3726,8 @@
       "shot_stopping": 31,
       "aerial": 90,
       "set_piece": 59,
-      "timing_early": 10.0,
-      "timing_late": 89.0,
+      "timing_early": 16.0,
+      "timing_late": 83.0,
       "discipline": 69,
       "home": 40,
       "away": 15,
@@ -3729,8 +3737,8 @@
       "experience": 80
     },
     "overall_score": 48.5,
-    "fingerprint_code": "GK-31-90-59-10-89-69-40-15-9-35-55-80",
-    "fingerprint_compact": "SHT31|AER90|STP59|ERL10|LAT89|DIS69|HOM40|AWY15|LNG9|OPN35|HGT55|EXP80",
+    "fingerprint_code": "GK-31-90-59-16-83-69-40-15-9-35-55-80",
+    "fingerprint_compact": "SHT31|AER90|STP59|ERL16|LAT83|DIS69|HOM40|AWY15|LNG9|OPN35|HGT55|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "AERIAL_DOMINANT",
@@ -3751,16 +3759,6 @@
         "edge_estimate": 5.9
       },
       {
-        "dimension": "timing_early",
-        "value": 10,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.7
-      },
-      {
         "dimension": "away",
         "value": 15,
         "market": "Home Goals",
@@ -3769,6 +3767,16 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 5.0
+      },
+      {
+        "dimension": "timing_early",
+        "value": 16,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 4.9
       },
       {
         "dimension": "shot_stopping",
@@ -3806,8 +3814,8 @@
       "shot_stopping": 30,
       "aerial": 19,
       "set_piece": 15,
-      "timing_early": 81.0,
-      "timing_late": 18.0,
+      "timing_early": 65.0,
+      "timing_late": 34.0,
       "discipline": 69,
       "home": 25,
       "away": 50,
@@ -3817,18 +3825,16 @@
       "experience": 70
     },
     "overall_score": 44.1,
-    "fingerprint_code": "GK-30-19-15-81-18-69-25-50-30-67-55-70",
-    "fingerprint_compact": "SHT30|AER19|STP15|ERL81|LAT18|DIS69|HOM25|AWY50|LNG30|OPN67|HGT55|EXP70",
+    "fingerprint_code": "GK-30-19-15-65-34-69-25-50-30-67-55-70",
+    "fingerprint_compact": "SHT30|AER19|STP15|ERL65|LAT34|DIS69|HOM25|AWY50|LNG30|OPN67|HGT55|EXP70",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
       "AERIAL_WEAK",
       "SET_PIECE_WEAK",
-      "FAST_STARTER",
-      "LATE_COLLAPSER",
       "LONGSHOT_WEAK"
     ],
-    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-FAST_STARTER-LATE_COLLAPSER-LONGSHOT_WEAK",
+    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-LONGSHOT_WEAK",
     "exploit_paths": [
       {
         "dimension": "set_piece",
@@ -3839,16 +3845,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 5.0
-      },
-      {
-        "dimension": "timing_late",
-        "value": 18,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.6
       },
       {
         "dimension": "aerial",
@@ -3879,9 +3875,19 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.7
+      },
+      {
+        "dimension": "longshot",
+        "value": 30,
+        "market": "Outside Box Goal",
+        "attacker_profile": "LONGSHOT_SPECIALIST",
+        "tactic": "Tirs de loin",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.7
       }
     ],
-    "enriched_name": "Gardien Fragile Départ Fort, CPA Faible",
+    "enriched_name": "Gardien Fragile Expérience, CPA Faible",
     "team_defense_level": "Passoire",
     "team_defense_pct": 30
   },
@@ -3896,8 +3902,8 @@
       "shot_stopping": 5,
       "aerial": 50,
       "set_piece": 29,
-      "timing_early": 48.0,
-      "timing_late": 51.0,
+      "timing_early": 37.0,
+      "timing_late": 61.0,
       "discipline": 87,
       "home": 7,
       "away": 37,
@@ -3906,9 +3912,9 @@
       "height_factor": 70,
       "experience": 80
     },
-    "overall_score": 44.5,
-    "fingerprint_code": "GK-5-50-29-48-51-87-7-37-60-10-70-80",
-    "fingerprint_compact": "SHT5|AER50|STP29|ERL48|LAT51|DIS87|HOM7|AWY37|LNG60|OPN10|HGT70|EXP80",
+    "overall_score": 44.4,
+    "fingerprint_code": "GK-5-50-29-37-61-87-7-37-60-10-70-80",
+    "fingerprint_compact": "SHT5|AER50|STP29|ERL37|LAT61|DIS87|HOM7|AWY37|LNG60|OPN10|HGT70|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -3947,6 +3953,16 @@
         "edge_estimate": 1.8
       },
       {
+        "dimension": "timing_early",
+        "value": 37,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.1
+      },
+      {
         "dimension": "away",
         "value": 37,
         "market": "Home Goals",
@@ -3955,16 +3971,6 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.1
-      },
-      {
-        "dimension": "aerial",
-        "value": 50,
-        "market": "Header Goal",
-        "attacker_profile": "HEADER_SPECIALIST",
-        "tactic": "Centres et corners",
-        "confidence": "LOW",
-        "exploit_type": "MINOR",
-        "edge_estimate": 0.5
       }
     ],
     "enriched_name": "Gardien Fragile Discipliné, Arrêts Faibles",
@@ -3982,8 +3988,8 @@
       "shot_stopping": 93,
       "aerial": 64,
       "set_piece": 45,
-      "timing_early": 23.0,
-      "timing_late": 76.0,
+      "timing_early": 11.0,
+      "timing_late": 88.0,
       "discipline": 100,
       "home": 79,
       "away": 72,
@@ -3993,8 +3999,8 @@
       "experience": 80
     },
     "overall_score": 69.4,
-    "fingerprint_code": "GK-93-64-45-23-76-100-79-72-58-88-55-80",
-    "fingerprint_compact": "SHT93|AER64|STP45|ERL23|LAT76|DIS100|HOM79|AWY72|LNG58|OPN88|HGT55|EXP80",
+    "fingerprint_code": "GK-93-64-45-11-88-100-79-72-58-88-55-80",
+    "fingerprint_compact": "SHT93|AER64|STP45|ERL11|LAT88|DIS100|HOM79|AWY72|LNG58|OPN88|HGT55|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -4006,13 +4012,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 23,
+        "value": 11,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 3.9
+        "edge_estimate": 5.6
       },
       {
         "dimension": "set_piece",
@@ -4040,8 +4046,8 @@
       "shot_stopping": 8,
       "aerial": 57,
       "set_piece": 82,
-      "timing_early": 16.0,
-      "timing_late": 83.0,
+      "timing_early": 10.0,
+      "timing_late": 89.0,
       "discipline": 69,
       "home": 14,
       "away": 21,
@@ -4051,8 +4057,8 @@
       "experience": 80
     },
     "overall_score": 44.7,
-    "fingerprint_code": "GK-8-57-82-16-83-69-14-21-22-14-70-80",
-    "fingerprint_compact": "SHT8|AER57|STP82|ERL16|LAT83|DIS69|HOM14|AWY21|LNG22|OPN14|HGT70|EXP80",
+    "fingerprint_code": "GK-8-57-82-10-89-69-14-21-22-14-70-80",
+    "fingerprint_compact": "SHT8|AER57|STP82|ERL10|LAT89|DIS69|HOM14|AWY21|LNG22|OPN14|HGT70|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -4074,6 +4080,16 @@
         "edge_estimate": 6.0
       },
       {
+        "dimension": "timing_early",
+        "value": 10,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 5.7
+      },
+      {
         "dimension": "home",
         "value": 14,
         "market": "Away Goals",
@@ -4082,16 +4098,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 5.1
-      },
-      {
-        "dimension": "timing_early",
-        "value": 16,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.9
       },
       {
         "dimension": "away",
@@ -4129,8 +4135,8 @@
       "shot_stopping": 43,
       "aerial": 97,
       "set_piece": 94,
-      "timing_early": 51.0,
-      "timing_late": 48.0,
+      "timing_early": 52.0,
+      "timing_late": 47.0,
       "discipline": 36,
       "home": 34,
       "away": 55,
@@ -4140,8 +4146,8 @@
       "experience": 80
     },
     "overall_score": 61.8,
-    "fingerprint_code": "GK-43-97-94-51-48-36-34-55-68-66-70-80",
-    "fingerprint_compact": "SHT43|AER97|STP94|ERL51|LAT48|DIS36|HOM34|AWY55|LNG68|OPN66|HGT70|EXP80",
+    "fingerprint_code": "GK-43-97-94-52-47-36-34-55-68-66-70-80",
+    "fingerprint_compact": "SHT43|AER97|STP94|ERL52|LAT47|DIS36|HOM34|AWY55|LNG68|OPN66|HGT70|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "AERIAL_DOMINANT",
@@ -4181,7 +4187,7 @@
       },
       {
         "dimension": "timing_late",
-        "value": 48,
+        "value": 47,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
@@ -4205,8 +4211,8 @@
       "shot_stopping": 52,
       "aerial": 88,
       "set_piece": 97,
-      "timing_early": 2.0,
-      "timing_late": 97.0,
+      "timing_early": 32.0,
+      "timing_late": 67.0,
       "discipline": 20,
       "home": 13,
       "away": 79,
@@ -4216,29 +4222,17 @@
       "experience": 80
     },
     "overall_score": 60.0,
-    "fingerprint_code": "GK-52-88-97-2-97-20-13-79-88-34-70-80",
-    "fingerprint_compact": "SHT52|AER88|STP97|ERL2|LAT97|DIS20|HOM13|AWY79|LNG88|OPN34|HGT70|EXP80",
+    "fingerprint_code": "GK-52-88-97-32-67-20-13-79-88-34-70-80",
+    "fingerprint_compact": "SHT52|AER88|STP97|ERL32|LAT67|DIS20|HOM13|AWY79|LNG88|OPN34|HGT70|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "AERIAL_DOMINANT",
       "SET_PIECE_STRONG",
-      "SLOW_STARTER",
-      "STRONG_FINISHER",
       "PENALTY_PRONE",
       "ROAD_WARRIOR"
     ],
-    "dna_string": "AVERAGE_GK-AERIAL_DOMINANT-SET_PIECE_STRONG-SLOW_STARTER-STRONG_FINISHER-PENALTY_PRONE-ROAD_WARRIOR",
+    "dna_string": "AVERAGE_GK-AERIAL_DOMINANT-SET_PIECE_STRONG-PENALTY_PRONE-ROAD_WARRIOR",
     "exploit_paths": [
-      {
-        "dimension": "timing_early",
-        "value": 2,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.9
-      },
       {
         "dimension": "home",
         "value": 13,
@@ -4258,9 +4252,19 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 4.3
+      },
+      {
+        "dimension": "timing_early",
+        "value": 32,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.5
       }
     ],
-    "enriched_name": "Gardien Moyen Coups de Pied, Lent au Départ",
+    "enriched_name": "Gardien Moyen Coups de Pied, Fragile Dom.",
     "team_defense_level": "Ligne",
     "team_defense_pct": 52
   },
@@ -4275,8 +4279,8 @@
       "shot_stopping": 10,
       "aerial": 40,
       "set_piece": 23,
-      "timing_early": 18.0,
-      "timing_late": 81.0,
+      "timing_early": 5.0,
+      "timing_late": 94.0,
       "discipline": 36,
       "home": 47,
       "away": 3,
@@ -4286,8 +4290,8 @@
       "experience": 80
     },
     "overall_score": 35.8,
-    "fingerprint_code": "GK-10-40-23-18-81-36-47-3-16-20-55-80",
-    "fingerprint_compact": "SHT10|AER40|STP23|ERL18|LAT81|DIS36|HOM47|AWY3|LNG16|OPN20|HGT55|EXP80",
+    "fingerprint_code": "GK-10-40-23-5-94-36-47-3-16-20-55-80",
+    "fingerprint_compact": "SHT10|AER40|STP23|ERL5|LAT94|DIS36|HOM47|AWY3|LNG16|OPN20|HGT55|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -4309,6 +4313,16 @@
         "edge_estimate": 6.7
       },
       {
+        "dimension": "timing_early",
+        "value": 5,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 6.4
+      },
+      {
         "dimension": "shot_stopping",
         "value": 10,
         "market": "Goals Over",
@@ -4327,16 +4341,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 4.9
-      },
-      {
-        "dimension": "timing_early",
-        "value": 18,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.6
       },
       {
         "dimension": "set_piece",
@@ -4364,8 +4368,8 @@
       "shot_stopping": 9,
       "aerial": 59,
       "set_piece": 17,
-      "timing_early": 24.0,
-      "timing_late": 75.0,
+      "timing_early": 61.0,
+      "timing_late": 37.0,
       "discipline": 8,
       "home": 4,
       "away": 57,
@@ -4374,19 +4378,17 @@
       "height_factor": 70,
       "experience": 70
     },
-    "overall_score": 39.9,
-    "fingerprint_code": "GK-9-59-17-24-75-8-4-57-17-69-70-70",
-    "fingerprint_compact": "SHT9|AER59|STP17|ERL24|LAT75|DIS8|HOM4|AWY57|LNG17|OPN69|HGT70|EXP70",
+    "overall_score": 39.8,
+    "fingerprint_code": "GK-9-59-17-61-37-8-4-57-17-69-70-70",
+    "fingerprint_compact": "SHT9|AER59|STP17|ERL61|LAT37|DIS8|HOM4|AWY57|LNG17|OPN69|HGT70|EXP70",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
       "SET_PIECE_WEAK",
-      "SLOW_STARTER",
-      "STRONG_FINISHER",
       "PENALTY_PRONE",
       "LONGSHOT_WEAK"
     ],
-    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-SET_PIECE_WEAK-SLOW_STARTER-STRONG_FINISHER-PENALTY_PRONE-LONGSHOT_WEAK",
+    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-SET_PIECE_WEAK-PENALTY_PRONE-LONGSHOT_WEAK",
     "exploit_paths": [
       {
         "dimension": "home",
@@ -4439,7 +4441,7 @@
         "edge_estimate": 4.7
       }
     ],
-    "enriched_name": "Gardien Fragile Finition, Fragile Dom.",
+    "enriched_name": "Gardien Fragile Envergure, Fragile Dom.",
     "team_defense_level": "Chaos",
     "team_defense_pct": 9
   },
@@ -4454,8 +4456,8 @@
       "shot_stopping": 95,
       "aerial": 82,
       "set_piece": 76,
-      "timing_early": 96.0,
-      "timing_late": 3.0,
+      "timing_early": 81.0,
+      "timing_late": 18.0,
       "discipline": 15,
       "home": 67,
       "away": 98,
@@ -4465,8 +4467,8 @@
       "experience": 80
     },
     "overall_score": 71.8,
-    "fingerprint_code": "GK-95-82-76-96-3-15-67-98-82-98-70-80",
-    "fingerprint_compact": "SHT95|AER82|STP76|ERL96|LAT3|DIS15|HOM67|AWY98|LNG82|OPN98|HGT70|EXP80",
+    "fingerprint_code": "GK-95-82-76-81-18-15-67-98-82-98-70-80",
+    "fingerprint_compact": "SHT95|AER82|STP76|ERL81|LAT18|DIS15|HOM67|AWY98|LNG82|OPN98|HGT70|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -4480,16 +4482,6 @@
     "dna_string": "SOLID_GK-SHOT_STOPPER-AERIAL_DOMINANT-SET_PIECE_STRONG-FAST_STARTER-LATE_COLLAPSER-PENALTY_PRONE-ROAD_WARRIOR",
     "exploit_paths": [
       {
-        "dimension": "timing_late",
-        "value": 3,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.7
-      },
-      {
         "dimension": "discipline",
         "value": 15,
         "market": "Penalty Scored",
@@ -4498,9 +4490,19 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 5.0
+      },
+      {
+        "dimension": "timing_late",
+        "value": 18,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 4.6
       }
     ],
-    "enriched_name": "Gardien Solide Extérieur, S'effondre",
+    "enriched_name": "Gardien Solide Extérieur, Penalties",
     "team_defense_level": "Forteresse",
     "team_defense_pct": 95
   },
@@ -4515,8 +4517,8 @@
       "shot_stopping": 65,
       "aerial": 66,
       "set_piece": 51,
-      "timing_early": 25.0,
-      "timing_late": 74.0,
+      "timing_early": 34.0,
+      "timing_late": 65.0,
       "discipline": 62,
       "home": 72,
       "away": 84,
@@ -4526,24 +4528,23 @@
       "experience": 60
     },
     "overall_score": 62.9,
-    "fingerprint_code": "GK-65-66-51-25-74-62-72-84-41-85-70-60",
-    "fingerprint_compact": "SHT65|AER66|STP51|ERL25|LAT74|DIS62|HOM72|AWY84|LNG41|OPN85|HGT70|EXP60",
+    "fingerprint_code": "GK-65-66-51-34-65-62-72-84-41-85-70-60",
+    "fingerprint_compact": "SHT65|AER66|STP51|ERL34|LAT65|DIS62|HOM72|AWY84|LNG41|OPN85|HGT70|EXP60",
     "profile_tags": [
       "AVERAGE_GK",
-      "SLOW_STARTER",
       "ROAD_WARRIOR"
     ],
-    "dna_string": "AVERAGE_GK-SLOW_STARTER-ROAD_WARRIOR",
+    "dna_string": "AVERAGE_GK-ROAD_WARRIOR",
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 25,
+        "value": 34,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 3.6
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.3
       },
       {
         "dimension": "longshot",
@@ -4571,8 +4572,8 @@
       "shot_stopping": 83,
       "aerial": 35,
       "set_piece": 57,
-      "timing_early": 46.0,
-      "timing_late": 53.0,
+      "timing_early": 49.0,
+      "timing_late": 50.0,
       "discipline": 62,
       "home": 93,
       "away": 57,
@@ -4582,8 +4583,8 @@
       "experience": 70
     },
     "overall_score": 63.1,
-    "fingerprint_code": "GK-83-35-57-46-53-62-93-57-59-87-55-70",
-    "fingerprint_compact": "SHT83|AER35|STP57|ERL46|LAT53|DIS62|HOM93|AWY57|LNG59|OPN87|HGT55|EXP70",
+    "fingerprint_code": "GK-83-35-57-49-50-62-93-57-59-87-55-70",
+    "fingerprint_compact": "SHT83|AER35|STP57|ERL49|LAT50|DIS62|HOM93|AWY57|LNG59|OPN87|HGT55|EXP70",
     "profile_tags": [
       "AVERAGE_GK",
       "SHOT_STOPPER"
@@ -4602,10 +4603,20 @@
       },
       {
         "dimension": "timing_early",
-        "value": 46,
+        "value": 49,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
+        "confidence": "LOW",
+        "exploit_type": "MINOR",
+        "edge_estimate": 0.5
+      },
+      {
+        "dimension": "timing_late",
+        "value": 50,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
         "confidence": "LOW",
         "exploit_type": "MINOR",
         "edge_estimate": 0.5
@@ -4626,8 +4637,8 @@
       "shot_stopping": 34,
       "aerial": 6,
       "set_piece": 8,
-      "timing_early": 68.0,
-      "timing_late": 31.0,
+      "timing_early": 62.0,
+      "timing_late": 36.0,
       "discipline": 100,
       "home": 20,
       "away": 58,
@@ -4637,8 +4648,8 @@
       "experience": 80
     },
     "overall_score": 51.8,
-    "fingerprint_code": "GK-34-6-8-68-31-100-20-58-84-48-85-80",
-    "fingerprint_compact": "SHT34|AER6|STP8|ERL68|LAT31|DIS100|HOM20|AWY58|LNG84|OPN48|HGT85|EXP80",
+    "fingerprint_code": "GK-34-6-8-62-36-100-20-58-84-48-85-80",
+    "fingerprint_compact": "SHT34|AER6|STP8|ERL62|LAT36|DIS100|HOM20|AWY58|LNG84|OPN48|HGT85|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "AERIAL_WEAK",
@@ -4678,16 +4689,6 @@
         "edge_estimate": 4.3
       },
       {
-        "dimension": "timing_late",
-        "value": 31,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 1.6
-      },
-      {
         "dimension": "shot_stopping",
         "value": 34,
         "market": "Goals Over",
@@ -4696,6 +4697,16 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.3
+      },
+      {
+        "dimension": "timing_late",
+        "value": 36,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.2
       }
     ],
     "enriched_name": "Gardien Moyen Discipliné, Aérien Faible",
@@ -4713,8 +4724,8 @@
       "shot_stopping": 82,
       "aerial": 65,
       "set_piece": 34,
-      "timing_early": 6.0,
-      "timing_late": 93.0,
+      "timing_early": 29.0,
+      "timing_late": 70.0,
       "discipline": 83,
       "home": 69,
       "away": 81,
@@ -4724,27 +4735,25 @@
       "experience": 50
     },
     "overall_score": 66.3,
-    "fingerprint_code": "GK-82-65-34-6-93-83-69-81-92-86-55-50",
-    "fingerprint_compact": "SHT82|AER65|STP34|ERL6|LAT93|DIS83|HOM69|AWY81|LNG92|OPN86|HGT55|EXP50",
+    "fingerprint_code": "GK-82-65-34-29-70-83-69-81-92-86-55-50",
+    "fingerprint_compact": "SHT82|AER65|STP34|ERL29|LAT70|DIS83|HOM69|AWY81|LNG92|OPN86|HGT55|EXP50",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
-      "SLOW_STARTER",
-      "STRONG_FINISHER",
       "ROAD_WARRIOR",
       "VETERAN"
     ],
-    "dna_string": "SOLID_GK-SHOT_STOPPER-SLOW_STARTER-STRONG_FINISHER-ROAD_WARRIOR-VETERAN",
+    "dna_string": "SOLID_GK-SHOT_STOPPER-ROAD_WARRIOR-VETERAN",
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 6,
+        "value": 29,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.3
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.8
       },
       {
         "dimension": "set_piece",
@@ -4757,7 +4766,7 @@
         "edge_estimate": 1.3
       }
     ],
-    "enriched_name": "Gardien Solide Finition, Lent au Départ",
+    "enriched_name": "Gardien Solide Longue Distance, Lent au Départ",
     "team_defense_level": "Muraille",
     "team_defense_pct": 82
   },
@@ -4772,8 +4781,8 @@
       "shot_stopping": 23,
       "aerial": 58,
       "set_piece": 62,
-      "timing_early": 65.0,
-      "timing_late": 34.0,
+      "timing_early": 50.0,
+      "timing_late": 49.0,
       "discipline": 62,
       "home": 23,
       "away": 8,
@@ -4783,8 +4792,8 @@
       "experience": 60
     },
     "overall_score": 40.2,
-    "fingerprint_code": "GK-23-58-62-65-34-62-23-8-5-13-70-60",
-    "fingerprint_compact": "SHT23|AER58|STP62|ERL65|LAT34|DIS62|HOM23|AWY8|LNG5|OPN13|HGT70|EXP60",
+    "fingerprint_code": "GK-23-58-62-50-49-62-23-8-5-13-70-60",
+    "fingerprint_compact": "SHT23|AER58|STP62|ERL50|LAT49|DIS62|HOM23|AWY8|LNG5|OPN13|HGT70|EXP60",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -4833,14 +4842,14 @@
         "edge_estimate": 3.9
       },
       {
-        "dimension": "timing_late",
-        "value": 34,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 1.3
+        "dimension": "timing_early",
+        "value": 50,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "LOW",
+        "exploit_type": "MINOR",
+        "edge_estimate": 0.5
       }
     ],
     "enriched_name": "Gardien Fragile Envergure, Frappes de Loin",
@@ -4858,8 +4867,8 @@
       "shot_stopping": 16,
       "aerial": 7,
       "set_piece": 3,
-      "timing_early": 37.0,
-      "timing_late": 61.0,
+      "timing_early": 28.0,
+      "timing_late": 71.0,
       "discipline": 15,
       "home": 11,
       "away": 47,
@@ -4868,9 +4877,9 @@
       "height_factor": 70,
       "experience": 70
     },
-    "overall_score": 40.7,
-    "fingerprint_code": "GK-16-7-3-37-61-15-11-47-71-80-70-70",
-    "fingerprint_compact": "SHT16|AER7|STP3|ERL37|LAT61|DIS15|HOM11|AWY47|LNG71|OPN80|HGT70|EXP70",
+    "overall_score": 40.8,
+    "fingerprint_code": "GK-16-7-3-28-71-15-11-47-71-80-70-70",
+    "fingerprint_compact": "SHT16|AER7|STP3|ERL28|LAT71|DIS15|HOM11|AWY47|LNG71|OPN80|HGT70|EXP70",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -4946,8 +4955,8 @@
       "shot_stopping": 27,
       "aerial": 4,
       "set_piece": 26,
-      "timing_early": 83.0,
-      "timing_late": 16.0,
+      "timing_early": 57.0,
+      "timing_late": 42.0,
       "discipline": 62,
       "home": 21,
       "away": 53,
@@ -4957,17 +4966,15 @@
       "experience": 80
     },
     "overall_score": 48.3,
-    "fingerprint_code": "GK-27-4-26-83-16-62-21-53-94-44-70-80",
-    "fingerprint_compact": "SHT27|AER4|STP26|ERL83|LAT16|DIS62|HOM21|AWY53|LNG94|OPN44|HGT70|EXP80",
+    "fingerprint_code": "GK-27-4-26-57-42-62-21-53-94-44-70-80",
+    "fingerprint_compact": "SHT27|AER4|STP26|ERL57|LAT42|DIS62|HOM21|AWY53|LNG94|OPN44|HGT70|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
       "AERIAL_WEAK",
-      "SET_PIECE_WEAK",
-      "FAST_STARTER",
-      "LATE_COLLAPSER"
+      "SET_PIECE_WEAK"
     ],
-    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-FAST_STARTER-LATE_COLLAPSER",
+    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK",
     "exploit_paths": [
       {
         "dimension": "aerial",
@@ -4978,16 +4985,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 6.6
-      },
-      {
-        "dimension": "timing_late",
-        "value": 16,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.9
       },
       {
         "dimension": "home",
@@ -5018,6 +5015,16 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.9
+      },
+      {
+        "dimension": "timing_late",
+        "value": 42,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "LOW",
+        "exploit_type": "MINOR",
+        "edge_estimate": 0.5
       }
     ],
     "enriched_name": "Gardien Fragile Longue Distance, Aérien Faible",
@@ -5035,8 +5042,8 @@
       "shot_stopping": 96,
       "aerial": 76,
       "set_piece": 92,
-      "timing_early": 99.0,
-      "timing_late": 0.0,
+      "timing_early": 98.0,
+      "timing_late": 1.0,
       "discipline": 62,
       "home": 90,
       "away": 91,
@@ -5046,8 +5053,8 @@
       "experience": 60
     },
     "overall_score": 74.2,
-    "fingerprint_code": "GK-96-76-92-99-0-62-90-91-89-96-40-60",
-    "fingerprint_compact": "SHT96|AER76|STP92|ERL99|LAT0|DIS62|HOM90|AWY91|LNG89|OPN96|HGT40|EXP60",
+    "fingerprint_code": "GK-96-76-92-98-1-62-90-91-89-96-40-60",
+    "fingerprint_compact": "SHT96|AER76|STP92|ERL98|LAT1|DIS62|HOM90|AWY91|LNG89|OPN96|HGT40|EXP60",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -5063,13 +5070,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 0,
+        "value": 1,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 7.1
+        "edge_estimate": 7.0
       }
     ],
     "enriched_name": "Gardien Solide Départ Fort, S'effondre",
@@ -5087,8 +5094,8 @@
       "shot_stopping": 86,
       "aerial": 96,
       "set_piece": 91,
-      "timing_early": 47.0,
-      "timing_late": 52.0,
+      "timing_early": 30.0,
+      "timing_late": 69.0,
       "discipline": 62,
       "home": 87,
       "away": 89,
@@ -5098,8 +5105,8 @@
       "experience": 80
     },
     "overall_score": 76.2,
-    "fingerprint_code": "GK-86-96-91-47-52-62-87-89-61-93-70-80",
-    "fingerprint_compact": "SHT86|AER96|STP91|ERL47|LAT52|DIS62|HOM87|AWY89|LNG61|OPN93|HGT70|EXP80",
+    "fingerprint_code": "GK-86-96-91-30-69-62-87-89-61-93-70-80",
+    "fingerprint_compact": "SHT86|AER96|STP91|ERL30|LAT69|DIS62|HOM87|AWY89|LNG61|OPN93|HGT70|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -5111,16 +5118,16 @@
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 47,
+        "value": 30,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
-        "confidence": "LOW",
-        "exploit_type": "MINOR",
-        "edge_estimate": 0.5
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.7
       }
     ],
-    "enriched_name": "Gardien Solide Aérien",
+    "enriched_name": "Gardien Solide Aérien, Lent au Départ",
     "team_defense_level": "Muraille",
     "team_defense_pct": 86
   },
@@ -5135,8 +5142,8 @@
       "shot_stopping": 78,
       "aerial": 28,
       "set_piece": 46,
-      "timing_early": 84.0,
-      "timing_late": 15.0,
+      "timing_early": 70.0,
+      "timing_late": 29.0,
       "discipline": 100,
       "home": 56,
       "away": 71,
@@ -5146,34 +5153,32 @@
       "experience": 80
     },
     "overall_score": 64.3,
-    "fingerprint_code": "GK-78-28-46-84-15-100-56-71-81-63-70-80",
-    "fingerprint_compact": "SHT78|AER28|STP46|ERL84|LAT15|DIS100|HOM56|AWY71|LNG81|OPN63|HGT70|EXP80",
+    "fingerprint_code": "GK-78-28-46-70-29-100-56-71-81-63-70-80",
+    "fingerprint_compact": "SHT78|AER28|STP46|ERL70|LAT29|DIS100|HOM56|AWY71|LNG81|OPN63|HGT70|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "SHOT_STOPPER",
       "AERIAL_WEAK",
-      "FAST_STARTER",
-      "LATE_COLLAPSER",
       "ROAD_WARRIOR"
     ],
-    "dna_string": "AVERAGE_GK-SHOT_STOPPER-AERIAL_WEAK-FAST_STARTER-LATE_COLLAPSER-ROAD_WARRIOR",
+    "dna_string": "AVERAGE_GK-SHOT_STOPPER-AERIAL_WEAK-ROAD_WARRIOR",
     "exploit_paths": [
-      {
-        "dimension": "timing_late",
-        "value": 15,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.0
-      },
       {
         "dimension": "aerial",
         "value": 28,
         "market": "Header Goal",
         "attacker_profile": "HEADER_SPECIALIST",
         "tactic": "Centres et corners",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.8
+      },
+      {
+        "dimension": "timing_late",
+        "value": 29,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.8
@@ -5189,7 +5194,7 @@
         "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Moyen Discipliné, S'effondre",
+    "enriched_name": "Gardien Moyen Discipliné, Aérien Faible",
     "team_defense_level": "Muraille",
     "team_defense_pct": 78
   },
@@ -5204,8 +5209,8 @@
       "shot_stopping": 58,
       "aerial": 61,
       "set_piece": 23,
-      "timing_early": 58.0,
-      "timing_late": 41.0,
+      "timing_early": 69.0,
+      "timing_late": 30.0,
       "discipline": 15,
       "home": 26,
       "away": 62,
@@ -5215,8 +5220,8 @@
       "experience": 80
     },
     "overall_score": 53.2,
-    "fingerprint_code": "GK-58-61-23-58-41-15-26-62-76-83-55-80",
-    "fingerprint_compact": "SHT58|AER61|STP23|ERL58|LAT41|DIS15|HOM26|AWY62|LNG76|OPN83|HGT55|EXP80",
+    "fingerprint_code": "GK-58-61-23-69-30-15-26-62-76-83-55-80",
+    "fingerprint_compact": "SHT58|AER61|STP23|ERL69|LAT30|DIS15|HOM26|AWY62|LNG76|OPN83|HGT55|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "SET_PIECE_WEAK",
@@ -5256,13 +5261,13 @@
       },
       {
         "dimension": "timing_late",
-        "value": 41,
+        "value": 30,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
-        "confidence": "LOW",
-        "exploit_type": "MINOR",
-        "edge_estimate": 0.5
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.7
       }
     ],
     "enriched_name": "Gardien Moyen Jeu Ouvert, Penalties",
@@ -5280,8 +5285,8 @@
       "shot_stopping": 84,
       "aerial": 94,
       "set_piece": 98,
-      "timing_early": 50.0,
-      "timing_late": 49.0,
+      "timing_early": 24.0,
+      "timing_late": 75.0,
       "discipline": 15,
       "home": 63,
       "away": 92,
@@ -5291,17 +5296,19 @@
       "experience": 80
     },
     "overall_score": 69.3,
-    "fingerprint_code": "GK-84-94-98-50-49-15-63-92-45-92-70-80",
-    "fingerprint_compact": "SHT84|AER94|STP98|ERL50|LAT49|DIS15|HOM63|AWY92|LNG45|OPN92|HGT70|EXP80",
+    "fingerprint_code": "GK-84-94-98-24-75-15-63-92-45-92-70-80",
+    "fingerprint_compact": "SHT84|AER94|STP98|ERL24|LAT75|DIS15|HOM63|AWY92|LNG45|OPN92|HGT70|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
       "AERIAL_DOMINANT",
       "SET_PIECE_STRONG",
+      "SLOW_STARTER",
+      "STRONG_FINISHER",
       "PENALTY_PRONE",
       "ROAD_WARRIOR"
     ],
-    "dna_string": "SOLID_GK-SHOT_STOPPER-AERIAL_DOMINANT-SET_PIECE_STRONG-PENALTY_PRONE-ROAD_WARRIOR",
+    "dna_string": "SOLID_GK-SHOT_STOPPER-AERIAL_DOMINANT-SET_PIECE_STRONG-SLOW_STARTER-STRONG_FINISHER-PENALTY_PRONE-ROAD_WARRIOR",
     "exploit_paths": [
       {
         "dimension": "discipline",
@@ -5315,23 +5322,13 @@
       },
       {
         "dimension": "timing_early",
-        "value": 50,
+        "value": 24,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
-        "confidence": "LOW",
-        "exploit_type": "MINOR",
-        "edge_estimate": 0.5
-      },
-      {
-        "dimension": "timing_late",
-        "value": 49,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "LOW",
-        "exploit_type": "MINOR",
-        "edge_estimate": 0.5
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 3.7
       },
       {
         "dimension": "longshot",
@@ -5359,8 +5356,8 @@
       "shot_stopping": 55,
       "aerial": 63,
       "set_piece": 72,
-      "timing_early": 57.0,
-      "timing_late": 42.0,
+      "timing_early": 73.0,
+      "timing_late": 26.0,
       "discipline": 33,
       "home": 28,
       "away": 67,
@@ -5370,14 +5367,24 @@
       "experience": 45
     },
     "overall_score": 52.2,
-    "fingerprint_code": "GK-55-63-72-57-42-33-28-67-46-48-70-45",
-    "fingerprint_compact": "SHT55|AER63|STP72|ERL57|LAT42|DIS33|HOM28|AWY67|LNG46|OPN48|HGT70|EXP45",
+    "fingerprint_code": "GK-55-63-72-73-26-33-28-67-46-48-70-45",
+    "fingerprint_compact": "SHT55|AER63|STP72|ERL73|LAT26|DIS33|HOM28|AWY67|LNG46|OPN48|HGT70|EXP45",
     "profile_tags": [
       "AVERAGE_GK",
       "YOUNG_GK"
     ],
     "dna_string": "AVERAGE_GK-YOUNG_GK",
     "exploit_paths": [
+      {
+        "dimension": "timing_late",
+        "value": 26,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 2.0
+      },
       {
         "dimension": "home",
         "value": 28,
@@ -5399,16 +5406,6 @@
         "edge_estimate": 1.4
       },
       {
-        "dimension": "timing_late",
-        "value": 42,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "LOW",
-        "exploit_type": "MINOR",
-        "edge_estimate": 0.5
-      },
-      {
         "dimension": "longshot",
         "value": 46,
         "market": "Outside Box Goal",
@@ -5419,7 +5416,7 @@
         "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Moyen Coups de Pied, Fragile Dom.",
+    "enriched_name": "Gardien Moyen Départ Fort, S'effondre",
     "team_defense_level": "Ligne",
     "team_defense_pct": 55
   },
@@ -5434,8 +5431,8 @@
       "shot_stopping": 37,
       "aerial": 72,
       "set_piece": 68,
-      "timing_early": 79.0,
-      "timing_late": 20.0,
+      "timing_early": 84.0,
+      "timing_late": 15.0,
       "discipline": 83,
       "home": 43,
       "away": 14,
@@ -5445,8 +5442,8 @@
       "experience": 60
     },
     "overall_score": 47.7,
-    "fingerprint_code": "GK-37-72-68-79-20-83-43-14-19-22-55-60",
-    "fingerprint_compact": "SHT37|AER72|STP68|ERL79|LAT20|DIS83|HOM43|AWY14|LNG19|OPN22|HGT55|EXP60",
+    "fingerprint_code": "GK-37-72-68-84-15-83-43-14-19-22-55-60",
+    "fingerprint_compact": "SHT37|AER72|STP68|ERL84|LAT15|DIS83|HOM43|AWY14|LNG19|OPN22|HGT55|EXP60",
     "profile_tags": [
       "BELOW_AVG_GK",
       "FAST_STARTER",
@@ -5466,6 +5463,16 @@
         "edge_estimate": 5.1
       },
       {
+        "dimension": "timing_late",
+        "value": 15,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 5.0
+      },
+      {
         "dimension": "longshot",
         "value": 19,
         "market": "Outside Box Goal",
@@ -5474,16 +5481,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 4.4
-      },
-      {
-        "dimension": "timing_late",
-        "value": 20,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.3
       },
       {
         "dimension": "shot_stopping",
@@ -5506,7 +5503,7 @@
         "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Fragile Discipliné, Fragile Ext.",
+    "enriched_name": "Gardien Fragile Départ Fort, Fragile Ext.",
     "team_defense_level": "Passoire",
     "team_defense_pct": 37
   },
@@ -5521,8 +5518,8 @@
       "shot_stopping": 87,
       "aerial": 69,
       "set_piece": 64,
-      "timing_early": 55.0,
-      "timing_late": 44.0,
+      "timing_early": 22.0,
+      "timing_late": 77.0,
       "discipline": 100,
       "home": 78,
       "away": 78,
@@ -5532,15 +5529,27 @@
       "experience": 70
     },
     "overall_score": 68.0,
-    "fingerprint_code": "GK-87-69-64-55-44-100-78-78-37-79-55-70",
-    "fingerprint_compact": "SHT87|AER69|STP64|ERL55|LAT44|DIS100|HOM78|AWY78|LNG37|OPN79|HGT55|EXP70",
+    "fingerprint_code": "GK-87-69-64-22-77-100-78-78-37-79-55-70",
+    "fingerprint_compact": "SHT87|AER69|STP64|ERL22|LAT77|DIS100|HOM78|AWY78|LNG37|OPN79|HGT55|EXP70",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
+      "SLOW_STARTER",
+      "STRONG_FINISHER",
       "ROAD_WARRIOR"
     ],
-    "dna_string": "SOLID_GK-SHOT_STOPPER-ROAD_WARRIOR",
+    "dna_string": "SOLID_GK-SHOT_STOPPER-SLOW_STARTER-STRONG_FINISHER-ROAD_WARRIOR",
     "exploit_paths": [
+      {
+        "dimension": "timing_early",
+        "value": 22,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 4.0
+      },
       {
         "dimension": "longshot",
         "value": 37,
@@ -5550,19 +5559,9 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.1
-      },
-      {
-        "dimension": "timing_late",
-        "value": 44,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
-        "confidence": "LOW",
-        "exploit_type": "MINOR",
-        "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Solide Discipliné",
+    "enriched_name": "Gardien Solide Discipliné, Lent au Départ",
     "team_defense_level": "Muraille",
     "team_defense_pct": 87
   },
@@ -5577,8 +5576,8 @@
       "shot_stopping": 47,
       "aerial": 56,
       "set_piece": 50,
-      "timing_early": 35.0,
-      "timing_late": 64.0,
+      "timing_early": 21.0,
+      "timing_late": 78.0,
       "discipline": 33,
       "home": 29,
       "away": 52,
@@ -5588,14 +5587,26 @@
       "experience": 50
     },
     "overall_score": 45.4,
-    "fingerprint_code": "GK-47-56-50-35-64-33-29-52-36-38-55-50",
-    "fingerprint_compact": "SHT47|AER56|STP50|ERL35|LAT64|DIS33|HOM29|AWY52|LNG36|OPN38|HGT55|EXP50",
+    "fingerprint_code": "GK-47-56-50-21-78-33-29-52-36-38-55-50",
+    "fingerprint_compact": "SHT47|AER56|STP50|ERL21|LAT78|DIS33|HOM29|AWY52|LNG36|OPN38|HGT55|EXP50",
     "profile_tags": [
       "BELOW_AVG_GK",
+      "SLOW_STARTER",
+      "STRONG_FINISHER",
       "VETERAN"
     ],
-    "dna_string": "BELOW_AVG_GK-VETERAN",
+    "dna_string": "BELOW_AVG_GK-SLOW_STARTER-STRONG_FINISHER-VETERAN",
     "exploit_paths": [
+      {
+        "dimension": "timing_early",
+        "value": 21,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 4.1
+      },
       {
         "dimension": "home",
         "value": 29,
@@ -5615,16 +5626,6 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.4
-      },
-      {
-        "dimension": "timing_early",
-        "value": 35,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 1.2
       },
       {
         "dimension": "longshot",
@@ -5647,7 +5648,7 @@
         "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Fragile Finition, Fragile Dom.",
+    "enriched_name": "Gardien Fragile Finition, Lent au Départ",
     "team_defense_level": "Ligne",
     "team_defense_pct": 47
   },
@@ -5662,8 +5663,8 @@
       "shot_stopping": 51,
       "aerial": 36,
       "set_piece": 48,
-      "timing_early": 11.0,
-      "timing_late": 88.0,
+      "timing_early": 7.0,
+      "timing_late": 92.0,
       "discipline": 33,
       "home": 5,
       "away": 80,
@@ -5673,8 +5674,8 @@
       "experience": 80
     },
     "overall_score": 50.4,
-    "fingerprint_code": "GK-51-36-48-11-88-33-5-80-29-59-85-80",
-    "fingerprint_compact": "SHT51|AER36|STP48|ERL11|LAT88|DIS33|HOM5|AWY80|LNG29|OPN59|HGT85|EXP80",
+    "fingerprint_code": "GK-51-36-48-7-92-33-5-80-29-59-85-80",
+    "fingerprint_compact": "SHT51|AER36|STP48|ERL7|LAT92|DIS33|HOM5|AWY80|LNG29|OPN59|HGT85|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "SLOW_STARTER",
@@ -5697,13 +5698,13 @@
       },
       {
         "dimension": "timing_early",
-        "value": 11,
+        "value": 7,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.6
+        "edge_estimate": 6.1
       },
       {
         "dimension": "longshot",
@@ -5751,8 +5752,8 @@
       "shot_stopping": 44,
       "aerial": 77,
       "set_piece": 88,
-      "timing_early": 9.0,
-      "timing_late": 90.0,
+      "timing_early": 8.0,
+      "timing_late": 91.0,
       "discipline": 15,
       "home": 65,
       "away": 34,
@@ -5762,8 +5763,8 @@
       "experience": 70
     },
     "overall_score": 59.6,
-    "fingerprint_code": "GK-44-77-88-9-90-15-65-34-75-78-70-70",
-    "fingerprint_compact": "SHT44|AER77|STP88|ERL9|LAT90|DIS15|HOM65|AWY34|LNG75|OPN78|HGT70|EXP70",
+    "fingerprint_code": "GK-44-77-88-8-91-15-65-34-75-78-70-70",
+    "fingerprint_compact": "SHT44|AER77|STP88|ERL8|LAT91|DIS15|HOM65|AWY34|LNG75|OPN78|HGT70|EXP70",
     "profile_tags": [
       "AVERAGE_GK",
       "AERIAL_DOMINANT",
@@ -5776,13 +5777,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 9,
+        "value": 8,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.9
+        "edge_estimate": 6.0
       },
       {
         "dimension": "discipline",
@@ -5830,8 +5831,8 @@
       "shot_stopping": 61,
       "aerial": 60,
       "set_piece": 18,
-      "timing_early": 74.0,
-      "timing_late": 25.0,
+      "timing_early": 80.0,
+      "timing_late": 19.0,
       "discipline": 62,
       "home": 73,
       "away": 60,
@@ -5841,15 +5842,16 @@
       "experience": 80
     },
     "overall_score": 57.1,
-    "fingerprint_code": "GK-61-60-18-74-25-62-73-60-18-84-70-80",
-    "fingerprint_compact": "SHT61|AER60|STP18|ERL74|LAT25|DIS62|HOM73|AWY60|LNG18|OPN84|HGT70|EXP80",
+    "fingerprint_code": "GK-61-60-18-80-19-62-73-60-18-84-70-80",
+    "fingerprint_compact": "SHT61|AER60|STP18|ERL80|LAT19|DIS62|HOM73|AWY60|LNG18|OPN84|HGT70|EXP80",
     "profile_tags": [
       "AVERAGE_GK",
       "SET_PIECE_WEAK",
+      "FAST_STARTER",
       "LATE_COLLAPSER",
       "LONGSHOT_WEAK"
     ],
-    "dna_string": "AVERAGE_GK-SET_PIECE_WEAK-LATE_COLLAPSER-LONGSHOT_WEAK",
+    "dna_string": "AVERAGE_GK-SET_PIECE_WEAK-FAST_STARTER-LATE_COLLAPSER-LONGSHOT_WEAK",
     "exploit_paths": [
       {
         "dimension": "set_piece",
@@ -5873,13 +5875,13 @@
       },
       {
         "dimension": "timing_late",
-        "value": 25,
+        "value": 19,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 3.6
+        "edge_estimate": 4.4
       }
     ],
     "enriched_name": "Gardien Moyen Jeu Ouvert, CPA Faible",
@@ -5897,8 +5899,8 @@
       "shot_stopping": 29,
       "aerial": 25,
       "set_piece": 11,
-      "timing_early": 59.0,
-      "timing_late": 40.0,
+      "timing_early": 40.0,
+      "timing_late": 59.0,
       "discipline": 18,
       "home": 32,
       "away": 6,
@@ -5908,8 +5910,8 @@
       "experience": 70
     },
     "overall_score": 31.6,
-    "fingerprint_code": "GK-29-25-11-59-40-18-32-6-11-23-55-70",
-    "fingerprint_compact": "SHT29|AER25|STP11|ERL59|LAT40|DIS18|HOM32|AWY6|LNG11|OPN23|HGT55|EXP70",
+    "fingerprint_code": "GK-29-25-11-40-59-18-32-6-11-23-55-70",
+    "fingerprint_compact": "SHT29|AER25|STP11|ERL40|LAT59|DIS18|HOM32|AWY6|LNG11|OPN23|HGT55|EXP70",
     "profile_tags": [
       "LIABILITY_GK",
       "SHOT_STOPPER_WEAK",
@@ -5986,8 +5988,8 @@
       "shot_stopping": 36,
       "aerial": 42,
       "set_piece": 44,
-      "timing_early": 26.0,
-      "timing_late": 73.0,
+      "timing_early": 12.0,
+      "timing_late": 86.0,
       "discipline": 62,
       "home": 64,
       "away": 16,
@@ -5996,15 +5998,27 @@
       "height_factor": 55,
       "experience": 80
     },
-    "overall_score": 48.3,
-    "fingerprint_code": "GK-36-42-44-26-73-62-64-16-66-16-55-80",
-    "fingerprint_compact": "SHT36|AER42|STP44|ERL26|LAT73|DIS62|HOM64|AWY16|LNG66|OPN16|HGT55|EXP80",
+    "overall_score": 48.2,
+    "fingerprint_code": "GK-36-42-44-12-86-62-64-16-66-16-55-80",
+    "fingerprint_compact": "SHT36|AER42|STP44|ERL12|LAT86|DIS62|HOM64|AWY16|LNG66|OPN16|HGT55|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
+      "SLOW_STARTER",
+      "STRONG_FINISHER",
       "SHORT_GK"
     ],
-    "dna_string": "BELOW_AVG_GK-SHORT_GK",
+    "dna_string": "BELOW_AVG_GK-SLOW_STARTER-STRONG_FINISHER-SHORT_GK",
     "exploit_paths": [
+      {
+        "dimension": "timing_early",
+        "value": 12,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 5.4
+      },
       {
         "dimension": "away",
         "value": 16,
@@ -6014,16 +6028,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 4.9
-      },
-      {
-        "dimension": "timing_early",
-        "value": 26,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 2.0
       },
       {
         "dimension": "shot_stopping",
@@ -6056,7 +6060,7 @@
         "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Fragile Expérience, Fragile Ext.",
+    "enriched_name": "Gardien Fragile Finition, Lent au Départ",
     "team_defense_level": "Passoire",
     "team_defense_pct": 36
   },
@@ -6071,8 +6075,8 @@
       "shot_stopping": 40,
       "aerial": 34,
       "set_piece": 30,
-      "timing_early": 31.0,
-      "timing_late": 68.0,
+      "timing_early": 33.0,
+      "timing_late": 66.0,
       "discipline": 62,
       "home": 36,
       "away": 33,
@@ -6082,8 +6086,8 @@
       "experience": 70
     },
     "overall_score": 47.4,
-    "fingerprint_code": "GK-40-34-30-31-68-62-36-33-70-25-70-70",
-    "fingerprint_compact": "SHT40|AER34|STP30|ERL31|LAT68|DIS62|HOM36|AWY33|LNG70|OPN25|HGT70|EXP70",
+    "fingerprint_code": "GK-40-34-30-33-66-62-36-33-70-25-70-70",
+    "fingerprint_compact": "SHT40|AER34|STP30|ERL33|LAT66|DIS62|HOM36|AWY33|LNG70|OPN25|HGT70|EXP70",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SET_PIECE_WEAK"
@@ -6102,13 +6106,13 @@
       },
       {
         "dimension": "timing_early",
-        "value": 31,
+        "value": 33,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
-        "edge_estimate": 1.6
+        "edge_estimate": 1.4
       },
       {
         "dimension": "away",
@@ -6156,8 +6160,8 @@
       "shot_stopping": 62,
       "aerial": 67,
       "set_piece": 93,
-      "timing_early": 43.0,
-      "timing_late": 56.0,
+      "timing_early": 78.0,
+      "timing_late": 21.0,
       "discipline": 33,
       "home": 81,
       "away": 25,
@@ -6167,15 +6171,27 @@
       "experience": 70
     },
     "overall_score": 57.5,
-    "fingerprint_code": "GK-62-67-93-43-56-33-81-25-79-26-55-70",
-    "fingerprint_compact": "SHT62|AER67|STP93|ERL43|LAT56|DIS33|HOM81|AWY25|LNG79|OPN26|HGT55|EXP70",
+    "fingerprint_code": "GK-62-67-93-78-21-33-81-25-79-26-55-70",
+    "fingerprint_compact": "SHT62|AER67|STP93|ERL78|LAT21|DIS33|HOM81|AWY25|LNG79|OPN26|HGT55|EXP70",
     "profile_tags": [
       "AVERAGE_GK",
       "SET_PIECE_STRONG",
+      "FAST_STARTER",
+      "LATE_COLLAPSER",
       "HOME_ONLY"
     ],
-    "dna_string": "AVERAGE_GK-SET_PIECE_STRONG-HOME_ONLY",
+    "dna_string": "AVERAGE_GK-SET_PIECE_STRONG-FAST_STARTER-LATE_COLLAPSER-HOME_ONLY",
     "exploit_paths": [
+      {
+        "dimension": "timing_late",
+        "value": 21,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 4.1
+      },
       {
         "dimension": "away",
         "value": 25,
@@ -6195,19 +6211,9 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.4
-      },
-      {
-        "dimension": "timing_early",
-        "value": 43,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "LOW",
-        "exploit_type": "MINOR",
-        "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Moyen Coups de Pied, Fragile Ext.",
+    "enriched_name": "Gardien Moyen Coups de Pied, S'effondre",
     "team_defense_level": "Bouclier",
     "team_defense_pct": 62
   },
@@ -6222,8 +6228,8 @@
       "shot_stopping": 55,
       "aerial": 47,
       "set_piece": 55,
-      "timing_early": 22.0,
-      "timing_late": 77.0,
+      "timing_early": 15.0,
+      "timing_late": 84.0,
       "discipline": 7,
       "home": 61,
       "away": 41,
@@ -6233,8 +6239,8 @@
       "experience": 80
     },
     "overall_score": 49.6,
-    "fingerprint_code": "GK-55-47-55-22-77-7-61-41-51-44-55-80",
-    "fingerprint_compact": "SHT55|AER47|STP55|ERL22|LAT77|DIS7|HOM61|AWY41|LNG51|OPN44|HGT55|EXP80",
+    "fingerprint_code": "GK-55-47-55-15-84-7-61-41-51-44-55-80",
+    "fingerprint_compact": "SHT55|AER47|STP55|ERL15|LAT84|DIS7|HOM61|AWY41|LNG51|OPN44|HGT55|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SLOW_STARTER",
@@ -6255,13 +6261,13 @@
       },
       {
         "dimension": "timing_early",
-        "value": 22,
+        "value": 15,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.0
+        "edge_estimate": 5.0
       },
       {
         "dimension": "aerial",
@@ -6284,7 +6290,7 @@
         "edge_estimate": 0.5
       }
     ],
-    "enriched_name": "Gardien Fragile Expérience, Penalties",
+    "enriched_name": "Gardien Fragile Finition, Penalties",
     "team_defense_level": "Ligne",
     "team_defense_pct": 55
   },
@@ -6299,8 +6305,8 @@
       "shot_stopping": 71,
       "aerial": 51,
       "set_piece": 67,
-      "timing_early": 85.0,
-      "timing_late": 14.0,
+      "timing_early": 68.0,
+      "timing_late": 31.0,
       "discipline": 62,
       "home": 71,
       "away": 66,
@@ -6310,25 +6316,23 @@
       "experience": 60
     },
     "overall_score": 58.0,
-    "fingerprint_code": "GK-71-51-67-85-14-62-71-66-38-56-55-60",
-    "fingerprint_compact": "SHT71|AER51|STP67|ERL85|LAT14|DIS62|HOM71|AWY66|LNG38|OPN56|HGT55|EXP60",
+    "fingerprint_code": "GK-71-51-67-68-31-62-71-66-38-56-55-60",
+    "fingerprint_compact": "SHT71|AER51|STP67|ERL68|LAT31|DIS62|HOM71|AWY66|LNG38|OPN56|HGT55|EXP60",
     "profile_tags": [
       "AVERAGE_GK",
-      "FAST_STARTER",
-      "LATE_COLLAPSER",
       "YOUNG_GK"
     ],
-    "dna_string": "AVERAGE_GK-FAST_STARTER-LATE_COLLAPSER-YOUNG_GK",
+    "dna_string": "AVERAGE_GK-YOUNG_GK",
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 14,
+        "value": 31,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.1
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.6
       },
       {
         "dimension": "longshot",
@@ -6341,7 +6345,7 @@
         "edge_estimate": 1.0
       }
     ],
-    "enriched_name": "Gardien Moyen Départ Fort, S'effondre",
+    "enriched_name": "Gardien Moyen Réflexes, S'effondre",
     "team_defense_level": "Bouclier",
     "team_defense_pct": 71
   },
@@ -6356,8 +6360,8 @@
       "shot_stopping": 26,
       "aerial": 20,
       "set_piece": 12,
-      "timing_early": 64.0,
-      "timing_late": 35.0,
+      "timing_early": 85.0,
+      "timing_late": 14.0,
       "discipline": 3,
       "home": 46,
       "away": 22,
@@ -6367,16 +6371,18 @@
       "experience": 80
     },
     "overall_score": 41.5,
-    "fingerprint_code": "GK-26-20-12-64-35-3-46-22-98-37-55-80",
-    "fingerprint_compact": "SHT26|AER20|STP12|ERL64|LAT35|DIS3|HOM46|AWY22|LNG98|OPN37|HGT55|EXP80",
+    "fingerprint_code": "GK-26-20-12-85-14-3-46-22-98-37-55-80",
+    "fingerprint_compact": "SHT26|AER20|STP12|ERL85|LAT14|DIS3|HOM46|AWY22|LNG98|OPN37|HGT55|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
       "AERIAL_WEAK",
       "SET_PIECE_WEAK",
+      "FAST_STARTER",
+      "LATE_COLLAPSER",
       "PENALTY_PRONE"
     ],
-    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-PENALTY_PRONE",
+    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-FAST_STARTER-LATE_COLLAPSER-PENALTY_PRONE",
     "exploit_paths": [
       {
         "dimension": "discipline",
@@ -6399,6 +6405,16 @@
         "edge_estimate": 5.4
       },
       {
+        "dimension": "timing_late",
+        "value": 14,
+        "market": "Last Goalscorer",
+        "attacker_profile": "DIESEL/CLUTCH",
+        "tactic": "Pousser tard",
+        "confidence": "HIGH",
+        "exploit_type": "ABSOLUTE",
+        "edge_estimate": 5.1
+      },
+      {
         "dimension": "aerial",
         "value": 20,
         "market": "Header Goal",
@@ -6417,16 +6433,6 @@
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
         "edge_estimate": 4.0
-      },
-      {
-        "dimension": "shot_stopping",
-        "value": 26,
-        "market": "Goals Over",
-        "attacker_profile": "ANY_ATTACKER",
-        "tactic": "Tirer cadré",
-        "confidence": "MEDIUM",
-        "exploit_type": "MODERATE",
-        "edge_estimate": 2.0
       }
     ],
     "enriched_name": "Gardien Fragile Longue Distance, Penalties",
@@ -6444,8 +6450,8 @@
       "shot_stopping": 91,
       "aerial": 38,
       "set_piece": 58,
-      "timing_early": 4.0,
-      "timing_late": 95.0,
+      "timing_early": 6.0,
+      "timing_late": 93.0,
       "discipline": 83,
       "home": 85,
       "away": 51,
@@ -6455,8 +6461,8 @@
       "experience": 70
     },
     "overall_score": 65.3,
-    "fingerprint_code": "GK-91-38-58-4-95-83-85-51-83-41-85-70",
-    "fingerprint_compact": "SHT91|AER38|STP58|ERL4|LAT95|DIS83|HOM85|AWY51|LNG83|OPN41|HGT85|EXP70",
+    "fingerprint_code": "GK-91-38-58-6-93-83-85-51-83-41-85-70",
+    "fingerprint_compact": "SHT91|AER38|STP58|ERL6|LAT93|DIS83|HOM85|AWY51|LNG83|OPN41|HGT85|EXP70",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -6468,13 +6474,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 4,
+        "value": 6,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.6
+        "edge_estimate": 6.3
       },
       {
         "dimension": "aerial",
@@ -6502,8 +6508,8 @@
       "shot_stopping": 89,
       "aerial": 87,
       "set_piece": 96,
-      "timing_early": 82.0,
-      "timing_late": 17.0,
+      "timing_early": 75.0,
+      "timing_late": 24.0,
       "discipline": 83,
       "home": 96,
       "away": 83,
@@ -6513,8 +6519,8 @@
       "experience": 80
     },
     "overall_score": 76.6,
-    "fingerprint_code": "GK-89-87-96-82-17-83-96-83-93-58-55-80",
-    "fingerprint_compact": "SHT89|AER87|STP96|ERL82|LAT17|DIS83|HOM96|AWY83|LNG93|OPN58|HGT55|EXP80",
+    "fingerprint_code": "GK-89-87-96-75-24-83-96-83-93-58-55-80",
+    "fingerprint_compact": "SHT89|AER87|STP96|ERL75|LAT24|DIS83|HOM96|AWY83|LNG93|OPN58|HGT55|EXP80",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -6528,13 +6534,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 17,
+        "value": 24,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.7
+        "edge_estimate": 3.7
       }
     ],
     "enriched_name": "Gardien Solide Coups de Pied, S'effondre",
@@ -6552,8 +6558,8 @@
       "shot_stopping": 6,
       "aerial": 27,
       "set_piece": 26,
-      "timing_early": 34.0,
-      "timing_late": 65.0,
+      "timing_early": 48.0,
+      "timing_late": 51.0,
       "discipline": 3,
       "home": 50,
       "away": 1,
@@ -6563,8 +6569,8 @@
       "experience": 60
     },
     "overall_score": 27.2,
-    "fingerprint_code": "GK-6-27-26-34-65-3-50-1-10-5-40-60",
-    "fingerprint_compact": "SHT6|AER27|STP26|ERL34|LAT65|DIS3|HOM50|AWY1|LNG10|OPN5|HGT40|EXP60",
+    "fingerprint_code": "GK-6-27-26-48-51-3-50-1-10-5-40-60",
+    "fingerprint_compact": "SHT6|AER27|STP26|ERL48|LAT51|DIS3|HOM50|AWY1|LNG10|OPN5|HGT40|EXP60",
     "profile_tags": [
       "LIABILITY_GK",
       "SHOT_STOPPER_WEAK",
@@ -6628,7 +6634,7 @@
         "edge_estimate": 2.0
       }
     ],
-    "enriched_name": "Passoire Finition, Fragile Ext.",
+    "enriched_name": "Passoire Expérience, Fragile Ext.",
     "team_defense_level": "Chaos",
     "team_defense_pct": 6
   },
@@ -6643,8 +6649,8 @@
       "shot_stopping": 21,
       "aerial": 53,
       "set_piece": 20,
-      "timing_early": 69.0,
-      "timing_late": 30.0,
+      "timing_early": 67.0,
+      "timing_late": 32.0,
       "discipline": 7,
       "home": 30,
       "away": 27,
@@ -6654,8 +6660,8 @@
       "experience": 70
     },
     "overall_score": 38.2,
-    "fingerprint_code": "GK-21-53-20-69-30-7-30-27-32-29-70-70",
-    "fingerprint_compact": "SHT21|AER53|STP20|ERL69|LAT30|DIS7|HOM30|AWY27|LNG32|OPN29|HGT70|EXP70",
+    "fingerprint_code": "GK-21-53-20-67-32-7-30-27-32-29-70-70",
+    "fingerprint_compact": "SHT21|AER53|STP20|ERL67|LAT32|DIS7|HOM30|AWY27|LNG32|OPN29|HGT70|EXP70",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
@@ -6705,11 +6711,11 @@
         "edge_estimate": 1.9
       },
       {
-        "dimension": "timing_late",
+        "dimension": "home",
         "value": 30,
-        "market": "Last Goalscorer",
-        "attacker_profile": "DIESEL/CLUTCH",
-        "tactic": "Pousser tard",
+        "market": "Away Goals",
+        "attacker_profile": "AWAY_SPECIALIST",
+        "tactic": "Exploiter domicile",
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.7
@@ -6730,8 +6736,8 @@
       "shot_stopping": 13,
       "aerial": 17,
       "set_piece": 41,
-      "timing_early": 15.0,
-      "timing_late": 84.0,
+      "timing_early": 35.0,
+      "timing_late": 64.0,
       "discipline": 62,
       "home": 6,
       "away": 48,
@@ -6741,18 +6747,16 @@
       "experience": 70
     },
     "overall_score": 39.4,
-    "fingerprint_code": "GK-13-17-41-15-84-62-6-48-28-4-85-70",
-    "fingerprint_compact": "SHT13|AER17|STP41|ERL15|LAT84|DIS62|HOM6|AWY48|LNG28|OPN4|HGT85|EXP70",
+    "fingerprint_code": "GK-13-17-41-35-64-62-6-48-28-4-85-70",
+    "fingerprint_compact": "SHT13|AER17|STP41|ERL35|LAT64|DIS62|HOM6|AWY48|LNG28|OPN4|HGT85|EXP70",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
       "AERIAL_WEAK",
-      "SLOW_STARTER",
-      "STRONG_FINISHER",
       "LONGSHOT_WEAK",
       "TALL_GK"
     ],
-    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SLOW_STARTER-STRONG_FINISHER-LONGSHOT_WEAK-TALL_GK",
+    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-LONGSHOT_WEAK-TALL_GK",
     "exploit_paths": [
       {
         "dimension": "home",
@@ -6775,16 +6779,6 @@
         "edge_estimate": 5.3
       },
       {
-        "dimension": "timing_early",
-        "value": 15,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
-        "confidence": "HIGH",
-        "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.0
-      },
-      {
         "dimension": "aerial",
         "value": 17,
         "market": "Header Goal",
@@ -6803,6 +6797,16 @@
         "confidence": "MEDIUM",
         "exploit_type": "MODERATE",
         "edge_estimate": 1.8
+      },
+      {
+        "dimension": "timing_early",
+        "value": 35,
+        "market": "First Goalscorer",
+        "attacker_profile": "EARLY_BIRD",
+        "tactic": "Attaquer tôt",
+        "confidence": "MEDIUM",
+        "exploit_type": "MODERATE",
+        "edge_estimate": 1.2
       }
     ],
     "enriched_name": "Gardien Fragile Envergure, Jeu Ouvert",
@@ -6820,8 +6824,8 @@
       "shot_stopping": 11,
       "aerial": 15,
       "set_piece": 37,
-      "timing_early": 92.0,
-      "timing_late": 7.0,
+      "timing_early": 93.0,
+      "timing_late": 6.0,
       "discipline": 7,
       "home": 18,
       "away": 12,
@@ -6831,8 +6835,8 @@
       "experience": 70
     },
     "overall_score": 31.8,
-    "fingerprint_code": "GK-11-15-37-92-7-7-18-12-8-19-85-70",
-    "fingerprint_compact": "SHT11|AER15|STP37|ERL92|LAT7|DIS7|HOM18|AWY12|LNG8|OPN19|HGT85|EXP70",
+    "fingerprint_code": "GK-11-15-37-93-6-7-18-12-8-19-85-70",
+    "fingerprint_compact": "SHT11|AER15|STP37|ERL93|LAT6|DIS7|HOM18|AWY12|LNG8|OPN19|HGT85|EXP70",
     "profile_tags": [
       "LIABILITY_GK",
       "SHOT_STOPPER_WEAK",
@@ -6847,13 +6851,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_late",
-        "value": 7,
+        "value": 6,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.1
+        "edge_estimate": 6.3
       },
       {
         "dimension": "discipline",
@@ -6911,8 +6915,8 @@
       "shot_stopping": 19,
       "aerial": 14,
       "set_piece": 7,
-      "timing_early": 14.0,
-      "timing_late": 85.0,
+      "timing_early": 43.0,
+      "timing_late": 56.0,
       "discipline": 1,
       "home": 38,
       "away": 10,
@@ -6922,18 +6926,16 @@
       "experience": 80
     },
     "overall_score": 35.6,
-    "fingerprint_code": "GK-19-14-7-14-85-1-38-10-42-62-55-80",
-    "fingerprint_compact": "SHT19|AER14|STP7|ERL14|LAT85|DIS1|HOM38|AWY10|LNG42|OPN62|HGT55|EXP80",
+    "fingerprint_code": "GK-19-14-7-43-56-1-38-10-42-62-55-80",
+    "fingerprint_compact": "SHT19|AER14|STP7|ERL43|LAT56|DIS1|HOM38|AWY10|LNG42|OPN62|HGT55|EXP80",
     "profile_tags": [
       "BELOW_AVG_GK",
       "SHOT_STOPPER_WEAK",
       "AERIAL_WEAK",
       "SET_PIECE_WEAK",
-      "SLOW_STARTER",
-      "STRONG_FINISHER",
       "PENALTY_PRONE"
     ],
-    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-SLOW_STARTER-STRONG_FINISHER-PENALTY_PRONE",
+    "dna_string": "BELOW_AVG_GK-SHOT_STOPPER_WEAK-AERIAL_WEAK-SET_PIECE_WEAK-PENALTY_PRONE",
     "exploit_paths": [
       {
         "dimension": "discipline",
@@ -6976,17 +6978,17 @@
         "edge_estimate": 5.1
       },
       {
-        "dimension": "timing_early",
-        "value": 14,
-        "market": "First Goalscorer",
-        "attacker_profile": "EARLY_BIRD",
-        "tactic": "Attaquer tôt",
+        "dimension": "shot_stopping",
+        "value": 19,
+        "market": "Goals Over",
+        "attacker_profile": "ANY_ATTACKER",
+        "tactic": "Tirer cadré",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 5.1
+        "edge_estimate": 4.4
       }
     ],
-    "enriched_name": "Gardien Fragile Finition, Penalties",
+    "enriched_name": "Gardien Fragile Expérience, Penalties",
     "team_defense_level": "Chaos",
     "team_defense_pct": 19
   },
@@ -7001,8 +7003,8 @@
       "shot_stopping": 97,
       "aerial": 96,
       "set_piece": 88,
-      "timing_early": 3.0,
-      "timing_late": 96.0,
+      "timing_early": 4.0,
+      "timing_late": 95.0,
       "discipline": 62,
       "home": 89,
       "away": 97,
@@ -7012,8 +7014,8 @@
       "experience": 70
     },
     "overall_score": 80.7,
-    "fingerprint_code": "GK-97-96-88-3-96-62-89-97-91-94-85-70",
-    "fingerprint_compact": "SHT97|AER96|STP88|ERL3|LAT96|DIS62|HOM89|AWY97|LNG91|OPN94|HGT85|EXP70",
+    "fingerprint_code": "GK-97-96-88-4-95-62-89-97-91-94-85-70",
+    "fingerprint_compact": "SHT97|AER96|STP88|ERL4|LAT95|DIS62|HOM89|AWY97|LNG91|OPN94|HGT85|EXP70",
     "profile_tags": [
       "ELITE_GK",
       "SHOT_STOPPER",
@@ -7028,13 +7030,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 3,
+        "value": 4,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 6.7
+        "edge_estimate": 6.6
       }
     ],
     "enriched_name": "Mur Réflexes, Lent au Départ",
@@ -7052,8 +7054,8 @@
       "shot_stopping": 15,
       "aerial": 37,
       "set_piece": 43,
-      "timing_early": 80.0,
-      "timing_late": 19.0,
+      "timing_early": 71.0,
+      "timing_late": 28.0,
       "discipline": 18,
       "home": 15,
       "away": 7,
@@ -7063,19 +7065,17 @@
       "experience": 50
     },
     "overall_score": 29.0,
-    "fingerprint_code": "GK-15-37-43-80-19-18-15-7-1-8-55-50",
-    "fingerprint_compact": "SHT15|AER37|STP43|ERL80|LAT19|DIS18|HOM15|AWY7|LNG1|OPN8|HGT55|EXP50",
+    "fingerprint_code": "GK-15-37-43-71-28-18-15-7-1-8-55-50",
+    "fingerprint_compact": "SHT15|AER37|STP43|ERL71|LAT28|DIS18|HOM15|AWY7|LNG1|OPN8|HGT55|EXP50",
     "profile_tags": [
       "LIABILITY_GK",
       "SHOT_STOPPER_WEAK",
-      "FAST_STARTER",
-      "LATE_COLLAPSER",
       "PENALTY_PRONE",
       "LONGSHOT_WEAK",
       "SHORT_GK",
       "VETERAN"
     ],
-    "dna_string": "LIABILITY_GK-SHOT_STOPPER_WEAK-FAST_STARTER-LATE_COLLAPSER-PENALTY_PRONE-LONGSHOT_WEAK-SHORT_GK-VETERAN",
+    "dna_string": "LIABILITY_GK-SHOT_STOPPER_WEAK-PENALTY_PRONE-LONGSHOT_WEAK-SHORT_GK-VETERAN",
     "exploit_paths": [
       {
         "dimension": "longshot",
@@ -7143,8 +7143,8 @@
       "shot_stopping": 76,
       "aerial": 98,
       "set_piece": 95,
-      "timing_early": 19.0,
-      "timing_late": 80.0,
+      "timing_early": 23.0,
+      "timing_late": 76.0,
       "discipline": 33,
       "home": 94,
       "away": 36,
@@ -7154,8 +7154,8 @@
       "experience": 60
     },
     "overall_score": 65.5,
-    "fingerprint_code": "GK-76-98-95-19-80-33-94-36-86-39-70-60",
-    "fingerprint_compact": "SHT76|AER98|STP95|ERL19|LAT80|DIS33|HOM94|AWY36|LNG86|OPN39|HGT70|EXP60",
+    "fingerprint_code": "GK-76-98-95-23-76-33-94-36-86-39-70-60",
+    "fingerprint_compact": "SHT76|AER98|STP95|ERL23|LAT76|DIS33|HOM94|AWY36|LNG86|OPN39|HGT70|EXP60",
     "profile_tags": [
       "SOLID_GK",
       "SHOT_STOPPER",
@@ -7169,13 +7169,13 @@
     "exploit_paths": [
       {
         "dimension": "timing_early",
-        "value": 19,
+        "value": 23,
         "market": "First Goalscorer",
         "attacker_profile": "EARLY_BIRD",
         "tactic": "Attaquer tôt",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 4.4
+        "edge_estimate": 3.9
       },
       {
         "dimension": "discipline",
@@ -7213,8 +7213,8 @@
       "shot_stopping": 69,
       "aerial": 71,
       "set_piece": 79,
-      "timing_early": 76.0,
-      "timing_late": 23.0,
+      "timing_early": 77.0,
+      "timing_late": 22.0,
       "discipline": 18,
       "home": 80,
       "away": 43,
@@ -7224,8 +7224,8 @@
       "experience": 45
     },
     "overall_score": 58.2,
-    "fingerprint_code": "GK-69-71-79-76-23-18-80-43-53-71-70-45",
-    "fingerprint_compact": "SHT69|AER71|STP79|ERL76|LAT23|DIS18|HOM80|AWY43|LNG53|OPN71|HGT70|EXP45",
+    "fingerprint_code": "GK-69-71-79-77-22-18-80-43-53-71-70-45",
+    "fingerprint_compact": "SHT69|AER71|STP79|ERL77|LAT22|DIS18|HOM80|AWY43|LNG53|OPN71|HGT70|EXP45",
     "profile_tags": [
       "AVERAGE_GK",
       "SET_PIECE_STRONG",
@@ -7248,13 +7248,13 @@
       },
       {
         "dimension": "timing_late",
-        "value": 23,
+        "value": 22,
         "market": "Last Goalscorer",
         "attacker_profile": "DIESEL/CLUTCH",
         "tactic": "Pousser tard",
         "confidence": "HIGH",
         "exploit_type": "ABSOLUTE",
-        "edge_estimate": 3.9
+        "edge_estimate": 4.0
       },
       {
         "dimension": "away",

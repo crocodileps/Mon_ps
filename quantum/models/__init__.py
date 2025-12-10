@@ -1,230 +1,274 @@
 """
 ╔═══════════════════════════════════════════════════════════════════════════════════════╗
-║                    QUANTUM MODELS - MON_PS TRADING SYSTEM                            ║
-║                                                                                       ║
-║  Package contenant tous les modèles de données pour l'Agent Quantum V1.              ║
-║                                                                                       ║
-║  Structure:                                                                           ║
-║  - dna_vectors.py: Les 9 vecteurs DNA (TeamDNA)                                      ║
-║  - friction_context.py: FrictionMatrix, MatchContext, CompositeIndices              ║
-║  - scenarios_strategy.py: Scénarios, Recommandations, QuantumStrategy               ║
-║  - scenarios_definitions.py: Définitions des 20 scénarios                           ║
-║                                                                                       ║
+║  QUANTUM MODELS - Exports Complets V2                                                ║
+║  Version: 2.0                                                                        ║
+║  Architecture Mon_PS - Chess Engine V2.0                                             ║
 ╚═══════════════════════════════════════════════════════════════════════════════════════╝
+
+Installation: /home/Mon_ps/quantum/models/__init__.py
+(Remplacer l'ancien __init__.py par celui-ci)
+
+Usage:
+    from quantum.models import (
+        # Main DNA classes
+        TeamDNA,
+        CoachDNA,
+        ContextDNA,
+        DefenseDNA,
+        GoalkeeperDNA,
+        VarianceDNA,
+        ExploitProfile,
+        
+        # Base
+        ConfidentMetric,
+        TimingMetric,
+        
+        # Enums
+        Formation,
+        MarketType,
+        ...
+    )
 """
 
-# DNA Vectors
-from .dna_vectors import (
-    # Enums
-    Mentality,
-    KillerInstinct,
-    KeeperStatus,
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# BASE MODELS
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+from .base import (
+    QuantumBaseModel,
+    ConfidentMetric,
+    TimingMetric,
+    EdgeMetric,
+    calculate_confidence,
+    weighted_average,
+)
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# ENUMS
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+from .enums import (
+    # Formations
     Formation,
-    PlayingStyle,
-    ScoringPeriod,
-    MomentumTrend,
     
-    # Vecteur 1: Market DNA
-    MarketPerformance,
-    MarketDNA,
+    # Profils
+    DefenseProfile,
+    AttackProfile,
+    MomentumState,
+    FormTrend,
+    VarianceProfile,
     
-    # Vecteur 2: Context DNA
-    LocationPerformance,
-    SituationalPerformance,
+    # Matchups
+    MatchupProfile,
+    
+    # Game State
+    GameState,
+    GameStateReaction,
+    
+    # Timing
+    TimingSignature,
+    
+    # Marchés
+    MarketType,
+    MarketCategory,
+    
+    # Stakes
+    StakeSize,
+    DecisionConfidence,
+    
+    # Positions
+    Position,
+    PositionCategory,
+    
+    # Arbitres
+    RefereeStrictness,
+    RefereeStyle,
+    
+    # Leagues
+    League,
+    LeagueTier,
+    
+    # Perception
+    PublicPerceptionBias,
+    StructureType,
+    
+    # Data Quality
+    DataQuality,
+)
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# COACH DNA
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+from .coach_dna import (
+    TacticalFingerprint,
+    SubstitutionProfile,
+    GameStateReactionProfile,
+    MarketImpactProfile,
+    CoachDNA,
+)
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# SUB MODELS
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+from .sub_models import (
+    # Context
+    OffensiveMetrics,
+    PossessionMetrics,
+    MomentumMetrics,
+    HomeAwaySplits,
     ContextDNA,
     
-    # Vecteur 3: Risk DNA
-    VarianceMetrics,
-    UpsetProfile,
-    StreakAnalysis,
-    RiskDNA,
+    # Defense
+    DefensiveMetrics,
+    ZoneVulnerability,
+    PressingResistance,
+    DefensiveActions,
+    DefenseDNA,
     
-    # Vecteur 4: Temporal DNA
-    PeriodStats,
-    HalfStats,
-    TemporalMarketOpportunity,
-    TemporalDNA,
+    # Goalkeeper
+    ShotStoppingMetrics,
+    DistributionMetrics,
+    SweepingMetrics,
+    PenaltyProfile,
+    ReliabilityMetrics,
+    GoalkeeperDNA,
     
-    # Vecteur 5: Nemesis DNA
-    TacticalAxis,
-    TacticalWeakness,
-    TacticalStrength,
-    SpecificMatchup,
-    NemesisDNA,
+    # Variance
+    ExpectedPointsMetrics,
+    GoalVarianceMetrics,
+    ConversionVariance,
+    CloseGamesMetrics,
+    VarianceDNA,
     
-    # Vecteur 6: Psyche DNA
-    GameStateBehavior,
-    ClutchPerformance,
-    MomentumPsychology,
-    PsycheDNA,
-    
-    # Vecteur 7: Sentiment DNA
-    ValueZone,
-    CLVTrackRecord,
-    SentimentDNA,
-    
-    # Vecteur 8: Roster DNA
-    RosterDNA,
-    
-    # Vecteur 9: Physical DNA
-    PhysicalDNA,
-    
-    # Vecteur 10: Luck DNA
-    LuckDNA,
-    
-    # Vecteur 11: Chameleon DNA
-    ChameleonDNA,
-    
-    # Current Season
-    CurrentSeasonDNA,
-    
-    # Team DNA complet
+    # Exploit
+    IdentifiedWeakness,
+    MarketEdge,
+    TimingExploits,
+    SetPieceExploits,
+    MatchupVulnerabilities,
+    ExploitProfile,
+)
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# TEAM DNA (Main aggregator)
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+from .team_dna import (
+    TeamIdentity,
     TeamDNA,
 )
 
-# Friction & Context
-from .friction_context import (
-    # Enums
-    FrictionLevel,
-    DominanceType,
-    ClashType,
-    
-    # Friction Components
-    KineticFriction,
-    TemporalFriction,
-    PsycheFriction,
-    PhysicalFriction,
-    
-    # Friction Matrix
-    FrictionMatrix,
-    
-    # Match Context
-    TeamMatchContext,
-    MatchContext,
-    
-    # Composite Indices
-    CompositeIndices,
-    MatchIndicesComparison,
-    
-    # Disciplinary
-    DisciplinaryFriction,
-    
-    # H2H
-    H2HMatch,
-    H2HAnalysis,
-    
-    # Referee
-    RefereeProfile,
-)
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# ALL EXPORTS
+# ═══════════════════════════════════════════════════════════════════════════════════════
 
-# Scenarios & Strategy
-from .scenarios_strategy import (
-    # Enums
-    ScenarioCategory,
-    ScenarioID,
-    MarketType,
-    StakeTier,
-    DecisionSource,
-    
-    # Scenario Definition
-    ScenarioCondition,
-    ScenarioMarket,
-    ScenarioDefinition,
-    ScenarioDetectionResult,
-    
-    # Market Recommendation
-    MarketProbabilities,
-    MarketRecommendation,
-    
-    # Quantum Strategy
-    QuantumStrategy,
-    DailyQuantumPicks,
-    
-    # Performance
-    BetResult,
-    ScenarioPerformance,
-    QuantumPerformanceReport,
-)
-
-# Version
-__version__ = "1.0.0"
-__author__ = "Mon_PS Quant Team"
-
-# Liste de tous les exports
 __all__ = [
-    # DNA Vectors
-    "Mentality",
-    "KillerInstinct",
-    "KeeperStatus",
+    # Base
+    "QuantumBaseModel",
+    "ConfidentMetric",
+    "TimingMetric",
+    "EdgeMetric",
+    "calculate_confidence",
+    "weighted_average",
+    
+    # Enums - Formations
     "Formation",
-    "PlayingStyle",
-    "ScoringPeriod",
-    "MomentumTrend",
-    "MarketPerformance",
-    "MarketDNA",
-    "LocationPerformance",
-    "SituationalPerformance",
-    "ContextDNA",
-    "VarianceMetrics",
-    "UpsetProfile",
-    "StreakAnalysis",
-    "RiskDNA",
-    "PeriodStats",
-    "HalfStats",
-    "TemporalMarketOpportunity",
-    "TemporalDNA",
-    "TacticalAxis",
-    "TacticalWeakness",
-    "TacticalStrength",
-    "SpecificMatchup",
-    "NemesisDNA",
-    "GameStateBehavior",
-    "ClutchPerformance",
-    "MomentumPsychology",
-    "PsycheDNA",
-    "ValueZone",
-    "CLVTrackRecord",
-    "SentimentDNA",
-    "RosterDNA",
-    "PhysicalDNA",
-    "LuckDNA",
-    "ChameleonDNA",
-    "CurrentSeasonDNA",
-    "TeamDNA",
     
-    # Friction & Context
-    "FrictionLevel",
-    "DominanceType",
-    "ClashType",
-    "KineticFriction",
-    "TemporalFriction",
-    "PsycheFriction",
-    "PhysicalFriction",
-    "FrictionMatrix",
-    "TeamMatchContext",
-    "MatchContext",
-    "CompositeIndices",
-    "MatchIndicesComparison",
-    "DisciplinaryFriction",
-    "H2HMatch",
-    "H2HAnalysis",
-    "RefereeProfile",
+    # Enums - Profils
+    "DefenseProfile",
+    "AttackProfile",
+    "MomentumState",
+    "FormTrend",
+    "VarianceProfile",
     
-    # Scenarios & Strategy
-    "ScenarioCategory",
-    "ScenarioID",
+    # Enums - Matchups
+    "MatchupProfile",
+    
+    # Enums - Game State
+    "GameState",
+    "GameStateReaction",
+    
+    # Enums - Timing
+    "TimingSignature",
+    
+    # Enums - Markets
     "MarketType",
-    "StakeTier",
-    "DecisionSource",
-    "ScenarioCondition",
-    "ScenarioMarket",
-    "ScenarioDefinition",
-    "ScenarioDetectionResult",
-    "MarketProbabilities",
-    "MarketRecommendation",
-    "QuantumStrategy",
-    "DailyQuantumPicks",
-    "BetResult",
-    "ScenarioPerformance",
-    "QuantumPerformanceReport",
+    "MarketCategory",
+    
+    # Enums - Stakes
+    "StakeSize",
+    "DecisionConfidence",
+    
+    # Enums - Positions
+    "Position",
+    "PositionCategory",
+    
+    # Enums - Referees
+    "RefereeStrictness",
+    "RefereeStyle",
+    
+    # Enums - Leagues
+    "League",
+    "LeagueTier",
+    
+    # Enums - Perception
+    "PublicPerceptionBias",
+    "StructureType",
+    
+    # Enums - Data Quality
+    "DataQuality",
+    
+    # Coach DNA
+    "TacticalFingerprint",
+    "SubstitutionProfile",
+    "GameStateReactionProfile",
+    "MarketImpactProfile",
+    "CoachDNA",
+    
+    # Context DNA
+    "OffensiveMetrics",
+    "PossessionMetrics",
+    "MomentumMetrics",
+    "HomeAwaySplits",
+    "ContextDNA",
+    
+    # Defense DNA
+    "DefensiveMetrics",
+    "ZoneVulnerability",
+    "PressingResistance",
+    "DefensiveActions",
+    "DefenseDNA",
+    
+    # Goalkeeper DNA
+    "ShotStoppingMetrics",
+    "DistributionMetrics",
+    "SweepingMetrics",
+    "PenaltyProfile",
+    "ReliabilityMetrics",
+    "GoalkeeperDNA",
+    
+    # Variance DNA
+    "ExpectedPointsMetrics",
+    "GoalVarianceMetrics",
+    "ConversionVariance",
+    "CloseGamesMetrics",
+    "VarianceDNA",
+    
+    # Exploit Profile
+    "IdentifiedWeakness",
+    "MarketEdge",
+    "TimingExploits",
+    "SetPieceExploits",
+    "MatchupVulnerabilities",
+    "ExploitProfile",
+    
+    # Team DNA (Main)
+    "TeamIdentity",
+    "TeamDNA",
 ]
+
+# Version info
+__version__ = "2.0"
+__author__ = "Mon_PS Quantum Engine"
