@@ -1,0 +1,3608 @@
+{
+  "53.43_-2.96_2025-08-15_19": {
+    "temperature": 18.0,
+    "rain": 0.0,
+    "wind_speed": 9.9,
+    "weather_code": 0
+  },
+  "50.74_-1.84_2025-09-13_14": {
+    "temperature": 16.9,
+    "rain": 0.0,
+    "wind_speed": 22.0,
+    "weather_code": 1
+  },
+  "53.78_-1.57_2025-09-27_14": {
+    "temperature": 15.1,
+    "rain": 0.0,
+    "wind_speed": 18.5,
+    "weather_code": 3
+  },
+  "50.74_-1.84_2025-10-03_19": {
+    "temperature": 17.1,
+    "rain": 0.4,
+    "wind_speed": 38.8,
+    "weather_code": 51
+  },
+  "51.40_-0.09_2025-10-18_14": {
+    "temperature": 14.2,
+    "rain": 0.0,
+    "wind_speed": 10.9,
+    "weather_code": 3
+  },
+  "53.48_-2.20_2025-11-02_16": {
+    "temperature": 9.8,
+    "rain": 0.0,
+    "wind_speed": 9.9,
+    "weather_code": 3
+  },
+  "52.51_-1.88_2025-11-09_14": {
+    "temperature": 12.7,
+    "rain": 0.0,
+    "wind_speed": 14.3,
+    "weather_code": 2
+  },
+  "50.74_-1.84_2025-11-22_15": {
+    "temperature": 9.7,
+    "rain": 1.1,
+    "wind_speed": 35.4,
+    "weather_code": 55
+  },
+  "54.91_-1.39_2025-11-29_15": {
+    "temperature": 5.6,
+    "rain": 0.8,
+    "wind_speed": 9.9,
+    "weather_code": 53
+  },
+  "50.74_-1.84_2025-12-02_19": {
+    "temperature": 8.2,
+    "rain": 0.1,
+    "wind_speed": 14.3,
+    "weather_code": 51
+  },
+  "54.98_-1.62_2025-08-25_19": {
+    "temperature": 22.6,
+    "rain": 0.0,
+    "wind_speed": 8.9,
+    "weather_code": 0
+  },
+  "53.43_-2.96_2025-09-20_11": {
+    "temperature": 13.3,
+    "rain": 1.7,
+    "wind_speed": 10.1,
+    "weather_code": 61
+  },
+  "51.40_-0.09_2025-09-27_14": {
+    "temperature": 17.2,
+    "rain": 0.0,
+    "wind_speed": 14.8,
+    "weather_code": 3
+  },
+  "51.48_-0.19_2025-10-04_16": {
+    "temperature": 13.3,
+    "rain": 0.0,
+    "wind_speed": 23.2,
+    "weather_code": 1
+  },
+  "53.43_-2.96_2025-10-19_15": {
+    "temperature": 13.8,
+    "rain": 0.5,
+    "wind_speed": 24.7,
+    "weather_code": 53
+  },
+  "51.49_-0.29_2025-10-25_19": {
+    "temperature": 7.6,
+    "rain": 0.0,
+    "wind_speed": 16.1,
+    "weather_code": 0
+  },
+  "53.48_-2.20_2025-11-09_16": {
+    "temperature": 11.7,
+    "rain": 0.5,
+    "wind_speed": 14.6,
+    "weather_code": 53
+  },
+  "53.43_-2.96_2025-11-22_15": {
+    "temperature": 7.5,
+    "rain": 0.1,
+    "wind_speed": 3.4,
+    "weather_code": 51
+  },
+  "53.43_-2.96_2025-12-03_20": {
+    "temperature": 5.5,
+    "rain": 0.0,
+    "wind_speed": 16.1,
+    "weather_code": 3
+  },
+  "53.78_-1.57_2025-12-06_17": {
+    "temperature": 9.6,
+    "rain": 0.2,
+    "wind_speed": 19.1,
+    "weather_code": 51
+  },
+  "54.98_-1.62_2025-09-28_15": {
+    "temperature": 15.6,
+    "rain": 0.0,
+    "wind_speed": 4.9,
+    "weather_code": 2
+  },
+  "50.86_-0.08_2025-10-18_14": {
+    "temperature": 13.9,
+    "rain": 0.0,
+    "wind_speed": 19.4,
+    "weather_code": 3
+  },
+  "54.98_-1.62_2025-10-25_14": {
+    "temperature": 8.2,
+    "rain": 0.0,
+    "wind_speed": 22.6,
+    "weather_code": 0
+  },
+  "51.54_-0.02_2025-11-02_14": {
+    "temperature": 12.2,
+    "rain": 0.0,
+    "wind_speed": 14.5,
+    "weather_code": 0
+  },
+  "51.49_-0.29_2025-11-09_14": {
+    "temperature": 13.6,
+    "rain": 0.0,
+    "wind_speed": 12.3,
+    "weather_code": 3
+  },
+  "54.98_-1.62_2025-11-22_17": {
+    "temperature": 4.4,
+    "rain": 0.0,
+    "wind_speed": 6.4,
+    "weather_code": 3
+  },
+  "53.44_-2.97_2025-11-29_17": {
+    "temperature": 3.8,
+    "rain": 0.4,
+    "wind_speed": 9.8,
+    "weather_code": 51
+  },
+  "54.98_-1.62_2025-12-02_20": {
+    "temperature": 4.6,
+    "rain": 0.0,
+    "wind_speed": 15.2,
+    "weather_code": 2
+  },
+  "54.98_-1.62_2025-12-06_15": {
+    "temperature": 7.6,
+    "rain": 0.0,
+    "wind_speed": 5.5,
+    "weather_code": 0
+  },
+  "51.49_-0.29_2025-08-23_14": {
+    "temperature": 22.5,
+    "rain": 0.0,
+    "wind_speed": 1.5,
+    "weather_code": 3
+  },
+  "52.51_-1.88_2025-08-31_18": {
+    "temperature": 16.5,
+    "rain": 0.0,
+    "wind_speed": 18.6,
+    "weather_code": 1
+  },
+  "54.91_-1.39_2025-09-21_13": {
+    "temperature": 12.7,
+    "rain": 0.0,
+    "wind_speed": 13.9,
+    "weather_code": 0
+  },
+  "52.51_-1.88_2025-09-28_13": {
+    "temperature": 16.1,
+    "rain": 0.0,
+    "wind_speed": 9.2,
+    "weather_code": 1
+  },
+  "52.51_-1.88_2025-10-05_13": {
+    "temperature": 14.6,
+    "rain": 0.0,
+    "wind_speed": 24.8,
+    "weather_code": 3
+  },
+  "51.60_-0.07_2025-10-19_13": {
+    "temperature": 15.0,
+    "rain": 0.4,
+    "wind_speed": 14.5,
+    "weather_code": 51
+  },
+  "53.43_-2.96_2025-11-01_20": {
+    "temperature": 7.6,
+    "rain": 0.0,
+    "wind_speed": 13.6,
+    "weather_code": 0
+  },
+  "53.78_-1.57_2025-11-23_14": {
+    "temperature": 6.4,
+    "rain": 0.1,
+    "wind_speed": 16.8,
+    "weather_code": 51
+  },
+  "50.86_-0.08_2025-12-03_19": {
+    "temperature": 8.6,
+    "rain": 0.0,
+    "wind_speed": 17.8,
+    "weather_code": 1
+  },
+  "52.51_-1.88_2025-12-06_12": {
+    "temperature": 10.4,
+    "rain": 0.0,
+    "wind_speed": 24.0,
+    "weather_code": 2
+  },
+  "50.86_-0.08_2025-08-16_14": {
+    "temperature": 21.1,
+    "rain": 0.0,
+    "wind_speed": 21.4,
+    "weather_code": 3
+  },
+  "51.48_-0.19_2025-08-30_11": {
+    "temperature": 19.6,
+    "rain": 0.0,
+    "wind_speed": 17.3,
+    "weather_code": 3
+  },
+  "51.48_-0.22_2025-09-20_19": {
+    "temperature": 16.4,
+    "rain": 0.0,
+    "wind_speed": 23.5,
+    "weather_code": 1
+  },
+  "51.48_-0.22_2025-10-18_16": {
+    "temperature": 13.9,
+    "rain": 0.0,
+    "wind_speed": 7.8,
+    "weather_code": 3
+  },
+  "53.44_-2.97_2025-11-08_15": {
+    "temperature": 12.7,
+    "rain": 0.0,
+    "wind_speed": 6.1,
+    "weather_code": 0
+  },
+  "51.60_-0.07_2025-11-29_20": {
+    "temperature": 5.6,
+    "rain": 0.0,
+    "wind_speed": 15.5,
+    "weather_code": 0
+  },
+  "51.48_-0.22_2025-12-02_19": {
+    "temperature": 8.2,
+    "rain": 0.2,
+    "wind_speed": 10.3,
+    "weather_code": 51
+  },
+  "51.48_-0.22_2025-12-07_16": {
+    "temperature": 14.0,
+    "rain": 0.0,
+    "wind_speed": 25.0,
+    "weather_code": 3
+  },
+  "53.44_-2.97_2025-08-24_13": {
+    "temperature": 23.9,
+    "rain": 0.0,
+    "wind_speed": 7.7,
+    "weather_code": 3
+  },
+  "50.86_-0.08_2025-08-31_13": {
+    "temperature": 18.4,
+    "rain": 0.1,
+    "wind_speed": 26.4,
+    "weather_code": 51
+  },
+  "50.86_-0.08_2025-09-20_14": {
+    "temperature": 18.8,
+    "rain": 0.0,
+    "wind_speed": 30.0,
+    "weather_code": 3
+  },
+  "51.48_-0.19_2025-09-27_14": {
+    "temperature": 17.5,
+    "rain": 0.0,
+    "wind_speed": 14.2,
+    "weather_code": 3
+  },
+  "53.46_-2.29_2025-10-25_16": {
+    "temperature": 8.6,
+    "rain": 0.0,
+    "wind_speed": 12.7,
+    "weather_code": 0
+  },
+  "50.86_-0.08_2025-11-22_15": {
+    "temperature": 8.2,
+    "rain": 0.8,
+    "wind_speed": 36.4,
+    "weather_code": 53
+  },
+  "50.86_-0.08_2025-12-07_14": {
+    "temperature": 13.3,
+    "rain": 1.4,
+    "wind_speed": 40.5,
+    "weather_code": 61
+  },
+  "54.91_-1.39_2025-08-16_14": {
+    "temperature": 17.4,
+    "rain": 0.0,
+    "wind_speed": 6.9,
+    "weather_code": 2
+  },
+  "51.54_-0.02_2025-08-22_19": {
+    "temperature": 20.4,
+    "rain": 0.0,
+    "wind_speed": 1.6,
+    "weather_code": 3
+  },
+  "51.54_-0.02_2025-09-13_16": {
+    "temperature": 16.0,
+    "rain": 0.0,
+    "wind_speed": 10.9,
+    "weather_code": 0
+  },
+  "51.54_-0.02_2025-09-20_14": {
+    "temperature": 20.4,
+    "rain": 0.0,
+    "wind_speed": 17.7,
+    "weather_code": 3
+  },
+  "53.44_-2.97_2025-09-29_19": {
+    "temperature": 11.8,
+    "rain": 0.0,
+    "wind_speed": 5.0,
+    "weather_code": 3
+  },
+  "51.55_-0.11_2025-10-04_14": {
+    "temperature": 13.6,
+    "rain": 0.0,
+    "wind_speed": 35.8,
+    "weather_code": 3
+  },
+  "51.54_-0.02_2025-10-20_19": {
+    "temperature": 12.4,
+    "rain": 0.3,
+    "wind_speed": 3.7,
+    "weather_code": 51
+  },
+  "53.78_-1.57_2025-10-24_19": {
+    "temperature": 8.7,
+    "rain": 0.0,
+    "wind_speed": 13.7,
+    "weather_code": 3
+  },
+  "51.54_-0.02_2025-11-08_15": {
+    "temperature": 14.0,
+    "rain": 0.0,
+    "wind_speed": 6.7,
+    "weather_code": 1
+  },
+  "51.54_-0.02_2025-11-30_14": {
+    "temperature": 7.6,
+    "rain": 0.0,
+    "wind_speed": 11.7,
+    "weather_code": 1
+  },
+  "53.46_-2.29_2025-12-04_20": {
+    "temperature": 5.2,
+    "rain": 0.2,
+    "wind_speed": 8.0,
+    "weather_code": 51
+  },
+  "53.79_-2.23_2025-08-23_14": {
+    "temperature": 19.2,
+    "rain": 0.0,
+    "wind_speed": 7.6,
+    "weather_code": 3
+  },
+  "54.91_-1.39_2025-08-30_14": {
+    "temperature": 20.7,
+    "rain": 0.0,
+    "wind_speed": 21.9,
+    "weather_code": 3
+  },
+  "53.46_-2.29_2025-10-04_14": {
+    "temperature": 12.0,
+    "rain": 0.1,
+    "wind_speed": 23.1,
+    "weather_code": 51
+  },
+  "51.48_-0.19_2025-10-25_14": {
+    "temperature": 10.8,
+    "rain": 0.1,
+    "wind_speed": 17.4,
+    "weather_code": 51
+  },
+  "54.91_-1.39_2025-11-03_20": {
+    "temperature": 14.9,
+    "rain": 0.2,
+    "wind_speed": 28.3,
+    "weather_code": 51
+  },
+  "54.91_-1.39_2025-11-08_17": {
+    "temperature": 11.4,
+    "rain": 0.0,
+    "wind_speed": 8.0,
+    "weather_code": 0
+  },
+  "51.48_-0.22_2025-11-22_15": {
+    "temperature": 7.5,
+    "rain": 0.4,
+    "wind_speed": 17.0,
+    "weather_code": 51
+  },
+  "53.48_-2.20_2025-12-06_15": {
+    "temperature": 9.4,
+    "rain": 0.7,
+    "wind_speed": 15.9,
+    "weather_code": 53
+  },
+  "51.60_-0.07_2025-08-16_14": {
+    "temperature": 21.3,
+    "rain": 0.0,
+    "wind_speed": 12.6,
+    "weather_code": 3
+  },
+  "53.46_-2.29_2025-08-30_14": {
+    "temperature": 19.0,
+    "rain": 0.1,
+    "wind_speed": 16.1,
+    "weather_code": 51
+  },
+  "53.79_-2.23_2025-09-14_13": {
+    "temperature": 12.6,
+    "rain": 0.6,
+    "wind_speed": 20.6,
+    "weather_code": 53
+  },
+  "53.79_-2.23_2025-09-20_14": {
+    "temperature": 11.7,
+    "rain": 1.4,
+    "wind_speed": 20.4,
+    "weather_code": 61
+  },
+  "53.48_-2.20_2025-09-27_14": {
+    "temperature": 14.8,
+    "rain": 0.0,
+    "wind_speed": 15.7,
+    "weather_code": 3
+  },
+  "52.59_-2.13_2025-10-26_13": {
+    "temperature": 8.7,
+    "rain": 0.0,
+    "wind_speed": 21.5,
+    "weather_code": 3
+  },
+  "53.79_-2.23_2025-11-01_15": {
+    "temperature": 9.5,
+    "rain": 0.1,
+    "wind_speed": 19.0,
+    "weather_code": 51
+  },
+  "53.79_-2.23_2025-11-22_12": {
+    "temperature": 5.2,
+    "rain": 0.0,
+    "wind_speed": 9.0,
+    "weather_code": 3
+  },
+  "51.49_-0.29_2025-11-29_15": {
+    "temperature": 8.2,
+    "rain": 0.0,
+    "wind_speed": 12.4,
+    "weather_code": 3
+  },
+  "53.79_-2.23_2025-12-03_19": {
+    "temperature": 5.0,
+    "rain": 0.0,
+    "wind_speed": 17.9,
+    "weather_code": 3
+  },
+  "51.60_-0.07_2025-08-30_14": {
+    "temperature": 19.9,
+    "rain": 0.0,
+    "wind_speed": 21.3,
+    "weather_code": 3
+  },
+  "51.60_-0.07_2025-09-27_19": {
+    "temperature": 13.7,
+    "rain": 0.0,
+    "wind_speed": 10.0,
+    "weather_code": 0
+  },
+  "53.78_-1.57_2025-10-04_11": {
+    "temperature": 10.6,
+    "rain": 0.5,
+    "wind_speed": 20.4,
+    "weather_code": 53
+  },
+  "51.60_-0.07_2025-11-01_17": {
+    "temperature": 11.0,
+    "rain": 0.5,
+    "wind_speed": 14.2,
+    "weather_code": 53
+  },
+  "51.60_-0.07_2025-11-08_12": {
+    "temperature": 13.5,
+    "rain": 0.0,
+    "wind_speed": 10.6,
+    "weather_code": 3
+  },
+  "51.55_-0.11_2025-11-23_16": {
+    "temperature": 8.0,
+    "rain": 0.0,
+    "wind_speed": 15.5,
+    "weather_code": 0
+  },
+  "53.48_-2.20_2025-08-23_11": {
+    "temperature": 19.6,
+    "rain": 0.0,
+    "wind_speed": 2.4,
+    "weather_code": 3
+  },
+  "51.55_-0.11_2025-09-21_15": {
+    "temperature": 15.4,
+    "rain": 0.0,
+    "wind_speed": 11.3,
+    "weather_code": 1
+  },
+  "52.51_-1.88_2025-10-26_13": {
+    "temperature": 8.8,
+    "rain": 0.0,
+    "wind_speed": 18.9,
+    "weather_code": 3
+  },
+  "53.48_-2.20_2025-11-29_15": {
+    "temperature": 5.5,
+    "rain": 0.1,
+    "wind_speed": 4.1,
+    "weather_code": 51
+  },
+  "52.59_-2.13_2025-08-16_16": {
+    "temperature": 22.3,
+    "rain": 0.0,
+    "wind_speed": 14.4,
+    "weather_code": 1
+  },
+  "50.74_-1.84_2025-08-23_14": {
+    "temperature": 21.7,
+    "rain": 0.0,
+    "wind_speed": 10.6,
+    "weather_code": 2
+  },
+  "52.59_-2.13_2025-08-30_14": {
+    "temperature": 18.6,
+    "rain": 0.0,
+    "wind_speed": 26.8,
+    "weather_code": 3
+  },
+  "54.98_-1.62_2025-09-13_14": {
+    "temperature": 15.3,
+    "rain": 0.5,
+    "wind_speed": 19.6,
+    "weather_code": 53
+  },
+  "52.59_-2.13_2025-09-20_14": {
+    "temperature": 16.5,
+    "rain": 2.6,
+    "wind_speed": 20.3,
+    "weather_code": 63
+  },
+  "52.59_-2.13_2025-10-05_13": {
+    "temperature": 14.2,
+    "rain": 0.0,
+    "wind_speed": 27.3,
+    "weather_code": 3
+  },
+  "54.91_-1.39_2025-10-18_14": {
+    "temperature": 11.9,
+    "rain": 0.0,
+    "wind_speed": 12.3,
+    "weather_code": 3
+  },
+  "51.48_-0.22_2025-11-01_15": {
+    "temperature": 14.3,
+    "rain": 0.0,
+    "wind_speed": 15.5,
+    "weather_code": 3
+  },
+  "51.48_-0.19_2025-11-08_20": {
+    "temperature": 10.3,
+    "rain": 0.0,
+    "wind_speed": 7.7,
+    "weather_code": 0
+  },
+  "52.59_-2.13_2025-11-22_15": {
+    "temperature": 7.6,
+    "rain": 0.0,
+    "wind_speed": 12.6,
+    "weather_code": 3
+  },
+  "52.51_-1.88_2025-11-30_14": {
+    "temperature": 6.9,
+    "rain": 0.0,
+    "wind_speed": 13.1,
+    "weather_code": 1
+  },
+  "52.59_-2.13_2025-12-03_19": {
+    "temperature": 5.0,
+    "rain": 0.0,
+    "wind_speed": 14.2,
+    "weather_code": 3
+  },
+  "51.40_-0.09_2025-08-24_13": {
+    "temperature": 22.9,
+    "rain": 0.0,
+    "wind_speed": 7.1,
+    "weather_code": 3
+  },
+  "53.44_-2.97_2025-10-05_13": {
+    "temperature": 13.5,
+    "rain": 0.1,
+    "wind_speed": 31.7,
+    "weather_code": 51
+  },
+  "51.55_-0.11_2025-10-26_13": {
+    "temperature": 9.7,
+    "rain": 0.0,
+    "wind_speed": 19.9,
+    "weather_code": 3
+  },
+  "51.40_-0.09_2025-11-30_12": {
+    "temperature": 6.9,
+    "rain": 0.0,
+    "wind_speed": 11.8,
+    "weather_code": 0
+  },
+  "51.49_-0.29_2025-09-13_19": {
+    "temperature": 14.2,
+    "rain": 0.0,
+    "wind_speed": 11.0,
+    "weather_code": 0
+  },
+  "53.46_-2.29_2025-09-20_16": {
+    "temperature": 12.4,
+    "rain": 3.3,
+    "wind_speed": 22.2,
+    "weather_code": 63
+  },
+  "51.48_-0.19_2025-11-30_16": {
+    "temperature": 6.5,
+    "rain": 0.0,
+    "wind_speed": 9.0,
+    "weather_code": 0
+  },
+  "53.78_-1.57_2025-12-03_20": {
+    "temperature": 4.4,
+    "rain": 0.0,
+    "wind_speed": 10.1,
+    "weather_code": 3
+  },
+  "52.94_-1.13_2025-08-17_13": {
+    "temperature": 21.6,
+    "rain": 0.0,
+    "wind_speed": 13.0,
+    "weather_code": 3
+  },
+  "51.49_-0.29_2025-09-27_11": {
+    "temperature": 16.2,
+    "rain": 0.1,
+    "wind_speed": 14.8,
+    "weather_code": 51
+  },
+  "51.49_-0.29_2025-10-05_15": {
+    "temperature": 15.7,
+    "rain": 0.0,
+    "wind_speed": 17.3,
+    "weather_code": 3
+  },
+  "51.40_-0.09_2025-11-01_15": {
+    "temperature": 13.9,
+    "rain": 0.0,
+    "wind_speed": 17.1,
+    "weather_code": 3
+  },
+  "51.55_-0.11_2025-12-03_19": {
+    "temperature": 6.4,
+    "rain": 0.0,
+    "wind_speed": 10.6,
+    "weather_code": 2
+  },
+  "51.60_-0.07_2025-12-06_15": {
+    "temperature": 11.4,
+    "rain": 0.0,
+    "wind_speed": 20.5,
+    "weather_code": 1
+  },
+  "52.94_-1.13_2025-08-31_13": {
+    "temperature": 19.8,
+    "rain": 0.1,
+    "wind_speed": 22.6,
+    "weather_code": 51
+  },
+  "51.55_-0.11_2025-09-13_11": {
+    "temperature": 16.7,
+    "rain": 0.1,
+    "wind_speed": 14.6,
+    "weather_code": 51
+  },
+  "52.94_-1.13_2025-09-27_16": {
+    "temperature": 15.4,
+    "rain": 0.0,
+    "wind_speed": 12.5,
+    "weather_code": 3
+  },
+  "54.98_-1.62_2025-10-05_13": {
+    "temperature": 14.5,
+    "rain": 0.0,
+    "wind_speed": 26.1,
+    "weather_code": 0
+  },
+  "52.94_-1.13_2025-10-18_11": {
+    "temperature": 12.2,
+    "rain": 0.0,
+    "wind_speed": 8.1,
+    "weather_code": 3
+  },
+  "50.74_-1.84_2025-10-26_13": {
+    "temperature": 10.8,
+    "rain": 0.0,
+    "wind_speed": 23.9,
+    "weather_code": 3
+  },
+  "52.94_-1.13_2025-11-01_15": {
+    "temperature": 12.6,
+    "rain": 0.0,
+    "wind_speed": 15.8,
+    "weather_code": 3
+  },
+  "52.94_-1.13_2025-11-09_14": {
+    "temperature": 12.7,
+    "rain": 0.0,
+    "wind_speed": 15.9,
+    "weather_code": 3
+  },
+  "52.94_-1.13_2025-11-30_14": {
+    "temperature": 6.9,
+    "rain": 0.0,
+    "wind_speed": 14.7,
+    "weather_code": 1
+  },
+  "53.44_-2.97_2025-12-06_15": {
+    "temperature": 9.5,
+    "rain": 0.7,
+    "wind_speed": 19.9,
+    "weather_code": 53
+  },
+  "53.43_-2.96_2025-08-31_15": {
+    "temperature": 19.5,
+    "rain": 0.1,
+    "wind_speed": 22.4,
+    "weather_code": 51
+  },
+  "53.46_-2.29_2025-08-17_15": {
+    "temperature": 24.0,
+    "rain": 0.0,
+    "wind_speed": 11.5,
+    "weather_code": 3
+  },
+  "51.48_-0.22_2025-08-24_15": {
+    "temperature": 23.7,
+    "rain": 0.0,
+    "wind_speed": 6.2,
+    "weather_code": 3
+  },
+  "53.48_-2.20_2025-09-14_15": {
+    "temperature": 12.3,
+    "rain": 0.9,
+    "wind_speed": 21.8,
+    "weather_code": 53
+  },
+  "53.46_-2.29_2025-11-24_20": {
+    "temperature": 5.9,
+    "rain": 0.0,
+    "wind_speed": 10.0,
+    "weather_code": 3
+  },
+  "53.78_-1.57_2025-08-18_19": {
+    "temperature": 17.9,
+    "rain": 0.0,
+    "wind_speed": 12.3,
+    "weather_code": 3
+  },
+  "53.48_-2.20_2025-10-18_14": {
+    "temperature": 12.4,
+    "rain": 0.0,
+    "wind_speed": 9.3,
+    "weather_code": 3
+  },
+  "53.44_-2.97_2025-10-26_15": {
+    "temperature": 9.4,
+    "rain": 0.5,
+    "wind_speed": 24.1,
+    "weather_code": 53
+  },
+  "51.55_-0.11_2025-08-23_16": {
+    "temperature": 21.6,
+    "rain": 0.0,
+    "wind_speed": 5.4,
+    "weather_code": 2
+  },
+  "53.79_-2.23_2025-10-18_14": {
+    "temperature": 11.4,
+    "rain": 0.0,
+    "wind_speed": 12.1,
+    "weather_code": 3
+  },
+  "50.86_-0.08_2025-11-01_15": {
+    "temperature": 12.8,
+    "rain": 0.1,
+    "wind_speed": 31.6,
+    "weather_code": 51
+  },
+  "41.96_2.83_2025-08-15_17": {
+    "temperature": 31.5,
+    "rain": 0.0,
+    "wind_speed": 8.9,
+    "weather_code": 0
+  },
+  "43.26_-2.95_2025-08-25_17": {
+    "temperature": 24.1,
+    "rain": 0.0,
+    "wind_speed": 8.9,
+    "weather_code": 1
+  },
+  "40.39_-3.66_2025-08-31_19": {
+    "temperature": 24.3,
+    "rain": 0.0,
+    "wind_speed": 14.2,
+    "weather_code": 1
+  },
+  "42.80_-1.64_2025-09-14_16": {
+    "temperature": 26.4,
+    "rain": 0.0,
+    "wind_speed": 17.8,
+    "weather_code": 0
+  },
+  "40.39_-3.66_2025-09-21_12": {
+    "temperature": 25.3,
+    "rain": 0.0,
+    "wind_speed": 13.0,
+    "weather_code": 0
+  },
+  "40.44_-3.60_2025-09-24_19": {
+    "temperature": 19.1,
+    "rain": 0.0,
+    "wind_speed": 5.7,
+    "weather_code": 0
+  },
+  "40.39_-3.66_2025-09-28_12": {
+    "temperature": 14.0,
+    "rain": 2.4,
+    "wind_speed": 9.3,
+    "weather_code": 61
+  },
+  "39.94_-0.10_2025-11-01_13": {
+    "temperature": 21.4,
+    "rain": 0.0,
+    "wind_speed": 6.6,
+    "weather_code": 3
+  },
+  "40.39_-3.66_2025-12-01_20": {
+    "temperature": 6.7,
+    "rain": 0.0,
+    "wind_speed": 6.7,
+    "weather_code": 3
+  },
+  "41.35_2.08_2025-12-07_17": {
+    "temperature": 14.7,
+    "rain": 0.0,
+    "wind_speed": 4.1,
+    "weather_code": 3
+  },
+  "39.94_-0.10_2025-08-24_17": {
+    "temperature": 29.2,
+    "rain": 0.0,
+    "wind_speed": 11.0,
+    "weather_code": 0
+  },
+  "41.96_2.83_2025-08-30_17": {
+    "temperature": 23.9,
+    "rain": 0.0,
+    "wind_speed": 8.3,
+    "weather_code": 2
+  },
+  "42.21_-8.74_2025-09-14_12": {
+    "temperature": 22.5,
+    "rain": 0.1,
+    "wind_speed": 8.5,
+    "weather_code": 51
+  },
+  "41.96_2.83_2025-09-20_12": {
+    "temperature": 28.0,
+    "rain": 0.0,
+    "wind_speed": 15.2,
+    "weather_code": 0
+  },
+  "43.26_-2.95_2025-09-23_17": {
+    "temperature": 14.7,
+    "rain": 0.2,
+    "wind_speed": 6.8,
+    "weather_code": 51
+  },
+  "41.96_2.83_2025-10-04_14": {
+    "temperature": 27.1,
+    "rain": 0.0,
+    "wind_speed": 5.6,
+    "weather_code": 1
+  },
+  "41.36_2.16_2025-10-18_14": {
+    "temperature": 20.4,
+    "rain": 0.0,
+    "wind_speed": 6.8,
+    "weather_code": 1
+  },
+  "41.96_2.83_2025-10-25_12": {
+    "temperature": 20.2,
+    "rain": 0.0,
+    "wind_speed": 5.0,
+    "weather_code": 2
+  },
+  "40.33_-3.71_2025-10-31_20": {
+    "temperature": 14.7,
+    "rain": 0.0,
+    "wind_speed": 9.3,
+    "weather_code": 3
+  },
+  "37.36_-5.98_2025-11-23_15": {
+    "temperature": 15.4,
+    "rain": 0.0,
+    "wind_speed": 1.4,
+    "weather_code": 3
+  },
+  "41.96_2.83_2025-11-30_20": {
+    "temperature": 9.4,
+    "rain": 0.0,
+    "wind_speed": 13.7,
+    "weather_code": 0
+  },
+  "39.94_-0.10_2025-08-15_19": {
+    "temperature": 31.2,
+    "rain": 0.0,
+    "wind_speed": 5.9,
+    "weather_code": 0
+  },
+  "40.33_-3.71_2025-09-13_12": {
+    "temperature": 28.5,
+    "rain": 0.0,
+    "wind_speed": 5.8,
+    "weather_code": 3
+  },
+  "39.47_-0.36_2025-09-29_19": {
+    "temperature": 18.4,
+    "rain": 3.7,
+    "wind_speed": 17.3,
+    "weather_code": 63
+  },
+  "43.26_-2.95_2025-11-09_13": {
+    "temperature": 17.8,
+    "rain": 0.0,
+    "wind_speed": 6.7,
+    "weather_code": 3
+  },
+  "40.44_-3.60_2025-11-29_20": {
+    "temperature": 5.7,
+    "rain": 0.0,
+    "wind_speed": 5.1,
+    "weather_code": 3
+  },
+  "42.21_-8.74_2025-08-31_15": {
+    "temperature": 19.5,
+    "rain": 0.5,
+    "wind_speed": 16.3,
+    "weather_code": 53
+  },
+  "40.44_-3.60_2025-09-13_19": {
+    "temperature": 26.6,
+    "rain": 0.0,
+    "wind_speed": 12.9,
+    "weather_code": 2
+  },
+  "39.94_-0.10_2025-09-20_16": {
+    "temperature": 27.6,
+    "rain": 0.0,
+    "wind_speed": 12.3,
+    "weather_code": 1
+  },
+  "37.38_-5.97_2025-09-23_19": {
+    "temperature": 26.3,
+    "rain": 0.0,
+    "wind_speed": 2.2,
+    "weather_code": 0
+  },
+  "40.45_-3.69_2025-10-04_19": {
+    "temperature": 24.5,
+    "rain": 0.0,
+    "wind_speed": 13.9,
+    "weather_code": 0
+  },
+  "39.94_-0.10_2025-10-18_16": {
+    "temperature": 20.8,
+    "rain": 0.0,
+    "wind_speed": 7.0,
+    "weather_code": 0
+  },
+  "39.94_-0.10_2025-11-22_20": {
+    "temperature": 6.7,
+    "rain": 0.0,
+    "wind_speed": 8.4,
+    "weather_code": 3
+  },
+  "43.30_-1.97_2025-11-30_13": {
+    "temperature": 12.1,
+    "rain": 1.2,
+    "wind_speed": 6.5,
+    "weather_code": 55
+  },
+  "41.36_2.16_2025-09-28_16": {
+    "temperature": 20.8,
+    "rain": 0.0,
+    "wind_speed": 12.3,
+    "weather_code": 3
+  },
+  "37.38_-5.97_2025-10-05_14": {
+    "temperature": 32.1,
+    "rain": 0.0,
+    "wind_speed": 2.5,
+    "weather_code": 0
+  },
+  "40.45_-3.69_2025-10-26_15": {
+    "temperature": 16.9,
+    "rain": 0.0,
+    "wind_speed": 13.9,
+    "weather_code": 0
+  },
+  "41.36_2.16_2025-11-02_17": {
+    "temperature": 17.3,
+    "rain": 0.0,
+    "wind_speed": 15.3,
+    "weather_code": 3
+  },
+  "42.21_-8.74_2025-11-09_20": {
+    "temperature": 13.9,
+    "rain": 1.2,
+    "wind_speed": 12.9,
+    "weather_code": 55
+  },
+  "41.36_2.16_2025-11-29_15": {
+    "temperature": 14.8,
+    "rain": 0.0,
+    "wind_speed": 8.2,
+    "weather_code": 3
+  },
+  "41.36_2.16_2025-12-02_20": {
+    "temperature": 9.7,
+    "rain": 0.0,
+    "wind_speed": 9.8,
+    "weather_code": 3
+  },
+  "37.36_-5.98_2025-12-06_17": {
+    "temperature": 15.6,
+    "rain": 0.0,
+    "wind_speed": 3.7,
+    "weather_code": 2
+  },
+  "39.59_2.63_2025-08-16_17": {
+    "temperature": 34.9,
+    "rain": 0.0,
+    "wind_speed": 6.3,
+    "weather_code": 0
+  },
+  "39.59_2.63_2025-08-23_15": {
+    "temperature": 28.3,
+    "rain": 0.6,
+    "wind_speed": 10.4,
+    "weather_code": 53
+  },
+  "40.45_-3.69_2025-08-30_19": {
+    "temperature": 27.9,
+    "rain": 0.0,
+    "wind_speed": 13.0,
+    "weather_code": 0
+  },
+  "41.35_2.08_2025-09-15_19": {
+    "temperature": 23.3,
+    "rain": 0.0,
+    "wind_speed": 3.0,
+    "weather_code": 0
+  },
+  "39.59_2.63_2025-09-21_14": {
+    "temperature": 28.0,
+    "rain": 0.0,
+    "wind_speed": 14.7,
+    "weather_code": 2
+  },
+  "43.30_-1.97_2025-09-24_19": {
+    "temperature": 13.8,
+    "rain": 0.0,
+    "wind_speed": 1.5,
+    "weather_code": 3
+  },
+  "43.26_-2.95_2025-10-04_16": {
+    "temperature": 16.4,
+    "rain": 0.2,
+    "wind_speed": 11.0,
+    "weather_code": 51
+  },
+  "37.38_-5.97_2025-10-18_12": {
+    "temperature": 28.2,
+    "rain": 0.0,
+    "wind_speed": 8.8,
+    "weather_code": 0
+  },
+  "39.59_2.63_2025-10-26_13": {
+    "temperature": 15.7,
+    "rain": 8.8,
+    "wind_speed": 14.0,
+    "weather_code": 65
+  },
+  "37.36_-5.98_2025-11-02_20": {
+    "temperature": 18.2,
+    "rain": 0.0,
+    "wind_speed": 7.5,
+    "weather_code": 1
+  },
+  "39.59_2.63_2025-11-29_13": {
+    "temperature": 16.5,
+    "rain": 0.0,
+    "wind_speed": 17.3,
+    "weather_code": 3
+  },
+  "42.84_-2.69_2025-08-16_19": {
+    "temperature": 25.0,
+    "rain": 0.0,
+    "wind_speed": 14.5,
+    "weather_code": 0
+  },
+  "40.33_-3.71_2025-09-27_12": {
+    "temperature": 25.2,
+    "rain": 0.0,
+    "wind_speed": 11.5,
+    "weather_code": 3
+  },
+  "40.44_-3.60_2025-11-08_17": {
+    "temperature": 12.1,
+    "rain": 0.0,
+    "wind_speed": 12.5,
+    "weather_code": 0
+  },
+  "39.47_-0.36_2025-11-21_20": {
+    "temperature": 9.2,
+    "rain": 0.0,
+    "wind_speed": 19.5,
+    "weather_code": 0
+  },
+  "37.36_-5.98_2025-08-22_19": {
+    "temperature": 30.4,
+    "rain": 0.0,
+    "wind_speed": 10.8,
+    "weather_code": 0
+  },
+  "42.84_-2.69_2025-08-30_15": {
+    "temperature": 29.3,
+    "rain": 0.0,
+    "wind_speed": 13.7,
+    "weather_code": 0
+  },
+  "42.84_-2.69_2025-09-20_16": {
+    "temperature": 20.7,
+    "rain": 0.0,
+    "wind_speed": 20.7,
+    "weather_code": 3
+  },
+  "40.33_-3.71_2025-09-24_17": {
+    "temperature": 20.9,
+    "rain": 0.0,
+    "wind_speed": 3.5,
+    "weather_code": 3
+  },
+  "39.59_2.63_2025-09-27_16": {
+    "temperature": 24.4,
+    "rain": 0.0,
+    "wind_speed": 14.0,
+    "weather_code": 1
+  },
+  "42.84_-2.69_2025-10-05_12": {
+    "temperature": 13.6,
+    "rain": 0.0,
+    "wind_speed": 13.2,
+    "weather_code": 3
+  },
+  "40.39_-3.66_2025-10-26_20": {
+    "temperature": 13.3,
+    "rain": 0.0,
+    "wind_speed": 10.4,
+    "weather_code": 0
+  },
+  "42.84_-2.69_2025-11-02_15": {
+    "temperature": 15.1,
+    "rain": 0.0,
+    "wind_speed": 14.6,
+    "weather_code": 2
+  },
+  "41.96_2.83_2025-11-08_13": {
+    "temperature": 16.7,
+    "rain": 0.0,
+    "wind_speed": 11.2,
+    "weather_code": 3
+  },
+  "42.84_-2.69_2025-11-22_13": {
+    "temperature": 8.2,
+    "rain": 0.0,
+    "wind_speed": 10.0,
+    "weather_code": 2
+  },
+  "39.47_-0.36_2025-08-16_19": {
+    "temperature": 31.4,
+    "rain": 0.0,
+    "wind_speed": 8.9,
+    "weather_code": 3
+  },
+  "43.30_-1.97_2025-08-24_17": {
+    "temperature": 24.7,
+    "rain": 0.0,
+    "wind_speed": 3.2,
+    "weather_code": 0
+  },
+  "43.30_-1.97_2025-09-13_14": {
+    "temperature": 21.6,
+    "rain": 0.0,
+    "wind_speed": 8.8,
+    "weather_code": 3
+  },
+  "37.36_-5.98_2025-09-19_19": {
+    "temperature": 32.9,
+    "rain": 0.0,
+    "wind_speed": 7.6,
+    "weather_code": 3
+  },
+  "43.30_-1.97_2025-10-05_16": {
+    "temperature": 16.6,
+    "rain": 0.0,
+    "wind_speed": 10.4,
+    "weather_code": 3
+  },
+  "42.21_-8.74_2025-10-19_14": {
+    "temperature": 19.0,
+    "rain": 0.7,
+    "wind_speed": 17.6,
+    "weather_code": 53
+  },
+  "43.30_-1.97_2025-10-24_19": {
+    "temperature": 14.0,
+    "rain": 0.0,
+    "wind_speed": 3.3,
+    "weather_code": 3
+  },
+  "43.30_-1.97_2025-11-01_17": {
+    "temperature": 15.0,
+    "rain": 0.6,
+    "wind_speed": 4.6,
+    "weather_code": 53
+  },
+  "42.80_-1.64_2025-11-22_17": {
+    "temperature": 5.8,
+    "rain": 0.0,
+    "wind_speed": 1.1,
+    "weather_code": 3
+  },
+  "42.84_-2.69_2025-12-06_15": {
+    "temperature": 16.1,
+    "rain": 0.0,
+    "wind_speed": 17.4,
+    "weather_code": 3
+  },
+  "42.80_-1.64_2025-08-24_15": {
+    "temperature": 32.4,
+    "rain": 0.0,
+    "wind_speed": 4.6,
+    "weather_code": 0
+  },
+  "41.36_2.16_2025-09-14_19": {
+    "temperature": 21.9,
+    "rain": 0.0,
+    "wind_speed": 1.3,
+    "weather_code": 0
+  },
+  "41.35_2.08_2025-09-23_17": {
+    "temperature": 19.5,
+    "rain": 0.0,
+    "wind_speed": 9.0,
+    "weather_code": 1
+  },
+  "39.47_-0.36_2025-10-25_19": {
+    "temperature": 21.4,
+    "rain": 0.0,
+    "wind_speed": 22.3,
+    "weather_code": 2
+  },
+  "40.45_-3.69_2025-11-01_20": {
+    "temperature": 14.2,
+    "rain": 0.0,
+    "wind_speed": 6.9,
+    "weather_code": 3
+  },
+  "39.47_-0.36_2025-11-09_17": {
+    "temperature": 17.1,
+    "rain": 0.0,
+    "wind_speed": 7.7,
+    "weather_code": 0
+  },
+  "39.47_-0.36_2025-08-29_19": {
+    "temperature": 30.8,
+    "rain": 0.0,
+    "wind_speed": 12.6,
+    "weather_code": 0
+  },
+  "41.36_2.16_2025-09-21_19": {
+    "temperature": 19.5,
+    "rain": 3.4,
+    "wind_speed": 7.5,
+    "weather_code": 63
+  },
+  "42.80_-1.64_2025-10-03_19": {
+    "temperature": 17.3,
+    "rain": 0.0,
+    "wind_speed": 5.8,
+    "weather_code": 3
+  },
+  "40.33_-3.71_2025-10-19_19": {
+    "temperature": 21.7,
+    "rain": 0.0,
+    "wind_speed": 9.6,
+    "weather_code": 3
+  },
+  "39.59_2.63_2025-11-09_17": {
+    "temperature": 13.8,
+    "rain": 0.0,
+    "wind_speed": 4.6,
+    "weather_code": 0
+  },
+  "39.94_-0.10_2025-12-06_13": {
+    "temperature": 23.0,
+    "rain": 0.0,
+    "wind_speed": 6.0,
+    "weather_code": 0
+  },
+  "42.21_-8.74_2025-08-17_15": {
+    "temperature": 23.5,
+    "rain": 0.0,
+    "wind_speed": 13.7,
+    "weather_code": 0
+  },
+  "42.21_-8.74_2025-08-27_19": {
+    "temperature": 18.8,
+    "rain": 0.1,
+    "wind_speed": 8.2,
+    "weather_code": 51
+  },
+  "42.80_-1.64_2025-10-26_17": {
+    "temperature": 10.7,
+    "rain": 0.0,
+    "wind_speed": 12.6,
+    "weather_code": 0
+  },
+  "42.21_-8.74_2025-11-30_17": {
+    "temperature": 10.1,
+    "rain": 0.0,
+    "wind_speed": 4.8,
+    "weather_code": 0
+  },
+  "43.26_-2.95_2025-08-17_17": {
+    "temperature": 25.2,
+    "rain": 0.0,
+    "wind_speed": 13.7,
+    "weather_code": 3
+  },
+  "37.38_-5.97_2025-08-25_19": {
+    "temperature": 29.7,
+    "rain": 0.0,
+    "wind_speed": 11.8,
+    "weather_code": 0
+  },
+  "37.38_-5.97_2025-09-12_19": {
+    "temperature": 33.7,
+    "rain": 0.0,
+    "wind_speed": 4.1,
+    "weather_code": 0
+  },
+  "40.44_-3.60_2025-11-01_15": {
+    "temperature": 17.0,
+    "rain": 0.0,
+    "wind_speed": 11.7,
+    "weather_code": 3
+  },
+  "41.35_2.08_2025-11-24_20": {
+    "temperature": 14.5,
+    "rain": 0.0,
+    "wind_speed": 9.7,
+    "weather_code": 2
+  },
+  "37.38_-5.97_2025-11-30_15": {
+    "temperature": 14.2,
+    "rain": 0.7,
+    "wind_speed": 8.8,
+    "weather_code": 53
+  },
+  "39.47_-0.36_2025-12-07_15": {
+    "temperature": 23.4,
+    "rain": 0.0,
+    "wind_speed": 8.8,
+    "weather_code": 0
+  },
+  "37.36_-5.98_2025-08-31_17": {
+    "temperature": 30.8,
+    "rain": 0.0,
+    "wind_speed": 17.6,
+    "weather_code": 3
+  },
+  "39.47_-0.36_2025-09-20_19": {
+    "temperature": 25.0,
+    "rain": 0.0,
+    "wind_speed": 5.5,
+    "weather_code": 3
+  },
+  "39.94_-0.10_2025-09-27_19": {
+    "temperature": 22.6,
+    "rain": 0.0,
+    "wind_speed": 5.7,
+    "weather_code": 3
+  },
+  "43.26_-2.95_2025-10-25_16": {
+    "temperature": 15.0,
+    "rain": 0.1,
+    "wind_speed": 17.4,
+    "weather_code": 51
+  },
+  "41.36_2.16_2025-11-22_15": {
+    "temperature": 12.0,
+    "rain": 0.0,
+    "wind_speed": 9.7,
+    "weather_code": 3
+  },
+  "43.26_-2.95_2025-12-03_18": {
+    "temperature": 8.2,
+    "rain": 0.1,
+    "wind_speed": 4.4,
+    "weather_code": 51
+  },
+  "41.35_2.08_2025-08-17_19": {
+    "temperature": 28.8,
+    "rain": 0.0,
+    "wind_speed": 5.5,
+    "weather_code": 0
+  },
+  "40.44_-3.60_2025-08-23_17": {
+    "temperature": 32.2,
+    "rain": 0.0,
+    "wind_speed": 7.9,
+    "weather_code": 1
+  },
+  "40.44_-3.60_2025-09-27_14": {
+    "temperature": 25.7,
+    "rain": 0.0,
+    "wind_speed": 15.9,
+    "weather_code": 3
+  },
+  "42.21_-8.74_2025-10-05_19": {
+    "temperature": 16.2,
+    "rain": 0.0,
+    "wind_speed": 4.4,
+    "weather_code": 3
+  },
+  "43.26_-2.95_2025-12-06_20": {
+    "temperature": 12.6,
+    "rain": 0.0,
+    "wind_speed": 9.9,
+    "weather_code": 3
+  },
+  "40.45_-3.69_2025-09-20_14": {
+    "temperature": 30.2,
+    "rain": 0.0,
+    "wind_speed": 9.4,
+    "weather_code": 1
+  },
+  "41.35_2.08_2025-10-05_16": {
+    "temperature": 21.8,
+    "rain": 0.0,
+    "wind_speed": 4.9,
+    "weather_code": 0
+  },
+  "41.35_2.08_2025-11-08_20": {
+    "temperature": 12.0,
+    "rain": 0.0,
+    "wind_speed": 2.8,
+    "weather_code": 1
+  },
+  "37.36_-5.98_2025-10-27_20": {
+    "temperature": 20.4,
+    "rain": 0.0,
+    "wind_speed": 4.5,
+    "weather_code": 0
+  },
+  "42.80_-1.64_2025-09-25_17": {
+    "temperature": 14.9,
+    "rain": 0.0,
+    "wind_speed": 14.2,
+    "weather_code": 1
+  },
+  "41.35_2.08_2025-10-25_14": {
+    "temperature": 23.0,
+    "rain": 0.0,
+    "wind_speed": 8.1,
+    "weather_code": 2
+  },
+  "40.33_-3.71_2025-11-28_20": {
+    "temperature": 6.7,
+    "rain": 0.0,
+    "wind_speed": 2.7,
+    "weather_code": 3
+  },
+  "40.45_-3.69_2025-08-19_19": {
+    "temperature": 27.9,
+    "rain": 0.0,
+    "wind_speed": 13.2,
+    "weather_code": 3
+  },
+  "41.35_2.08_2025-08-31_17": {
+    "temperature": 27.0,
+    "rain": 0.0,
+    "wind_speed": 13.1,
+    "weather_code": 3
+  },
+  "37.36_-5.98_2025-09-28_19": {
+    "temperature": 20.5,
+    "rain": 0.8,
+    "wind_speed": 11.6,
+    "weather_code": 53
+  },
+  "40.44_-3.60_2025-10-18_19": {
+    "temperature": 18.8,
+    "rain": 0.0,
+    "wind_speed": 5.6,
+    "weather_code": 0
+  },
+  "37.38_-5.97_2025-11-08_15": {
+    "temperature": 20.6,
+    "rain": 0.0,
+    "wind_speed": 6.2,
+    "weather_code": 1
+  },
+  "40.45_-3.69_2025-12-07_20": {
+    "temperature": 8.5,
+    "rain": 0.0,
+    "wind_speed": 2.4,
+    "weather_code": 0
+  },
+  "48.22_11.62_2025-08-22_18": {
+    "temperature": 17.6,
+    "rain": 0.0,
+    "wind_speed": 6.9,
+    "weather_code": 3
+  },
+  "51.35_12.35_2025-09-20_16": {
+    "temperature": 27.0,
+    "rain": 0.0,
+    "wind_speed": 11.8,
+    "weather_code": 1
+  },
+  "51.49_7.45_2025-10-04_13": {
+    "temperature": 11.9,
+    "rain": 0.2,
+    "wind_speed": 23.8,
+    "weather_code": 51
+  },
+  "51.35_12.35_2025-10-18_13": {
+    "temperature": 9.8,
+    "rain": 0.0,
+    "wind_speed": 5.1,
+    "weather_code": 0
+  },
+  "51.35_12.35_2025-11-01_14": {
+    "temperature": 15.2,
+    "rain": 0.1,
+    "wind_speed": 10.9,
+    "weather_code": 51
+  },
+  "49.24_8.89_2025-11-08_14": {
+    "temperature": 6.3,
+    "rain": 0.0,
+    "wind_speed": 4.0,
+    "weather_code": 3
+  },
+  "48.32_10.89_2025-08-30_16": {
+    "temperature": 18.6,
+    "rain": 0.0,
+    "wind_speed": 10.1,
+    "weather_code": 0
+  },
+  "49.24_8.89_2025-09-20_13": {
+    "temperature": 28.7,
+    "rain": 0.0,
+    "wind_speed": 4.9,
+    "weather_code": 3
+  },
+  "48.22_11.62_2025-10-18_16": {
+    "temperature": 10.1,
+    "rain": 0.0,
+    "wind_speed": 7.8,
+    "weather_code": 0
+  },
+  "52.46_13.57_2025-11-08_14": {
+    "temperature": 8.2,
+    "rain": 0.0,
+    "wind_speed": 4.5,
+    "weather_code": 0
+  },
+  "48.22_11.62_2025-11-22_14": {
+    "temperature": -2.4,
+    "rain": 0.0,
+    "wind_speed": 4.1,
+    "weather_code": 1
+  },
+  "48.22_11.62_2025-11-29_14": {
+    "temperature": 3.7,
+    "rain": 0.0,
+    "wind_speed": 4.6,
+    "weather_code": 2
+  },
+  "48.67_10.14_2025-08-23_13": {
+    "temperature": 15.6,
+    "rain": 0.0,
+    "wind_speed": 14.4,
+    "weather_code": 3
+  },
+  "52.43_10.80_2025-08-31_13": {
+    "temperature": 25.7,
+    "rain": 0.0,
+    "wind_speed": 12.3,
+    "weather_code": 2
+  },
+  "52.43_10.80_2025-09-13_13": {
+    "temperature": 18.6,
+    "rain": 0.2,
+    "wind_speed": 18.2,
+    "weather_code": 51
+  },
+  "51.49_7.45_2025-09-21_17": {
+    "temperature": 14.1,
+    "rain": 0.1,
+    "wind_speed": 10.5,
+    "weather_code": 51
+  },
+  "52.43_10.80_2025-09-27_13": {
+    "temperature": 17.1,
+    "rain": 0.1,
+    "wind_speed": 10.5,
+    "weather_code": 51
+  },
+  "48.32_10.89_2025-10-04_13": {
+    "temperature": 19.2,
+    "rain": 0.0,
+    "wind_speed": 24.6,
+    "weather_code": 3
+  },
+  "52.43_10.80_2025-10-18_13": {
+    "temperature": 10.2,
+    "rain": 0.0,
+    "wind_speed": 2.8,
+    "weather_code": 0
+  },
+  "52.43_10.80_2025-11-02_16": {
+    "temperature": 10.8,
+    "rain": 0.0,
+    "wind_speed": 7.5,
+    "weather_code": 3
+  },
+  "53.07_8.84_2025-11-07_19": {
+    "temperature": 9.7,
+    "rain": 0.0,
+    "wind_speed": 7.1,
+    "weather_code": 3
+  },
+  "52.43_10.80_2025-11-22_14": {
+    "temperature": 2.5,
+    "rain": 0.0,
+    "wind_speed": 11.1,
+    "weather_code": 0
+  },
+  "50.07_8.65_2025-11-30_16": {
+    "temperature": 6.6,
+    "rain": 0.1,
+    "wind_speed": 8.7,
+    "weather_code": 51
+  },
+  "52.43_10.80_2025-12-06_14": {
+    "temperature": 6.4,
+    "rain": 0.0,
+    "wind_speed": 13.0,
+    "weather_code": 3
+  },
+  "51.35_12.35_2025-08-30_13": {
+    "temperature": 21.6,
+    "rain": 0.1,
+    "wind_speed": 10.1,
+    "weather_code": 51
+  },
+  "48.67_10.14_2025-09-13_13": {
+    "temperature": 18.0,
+    "rain": 0.1,
+    "wind_speed": 8.7,
+    "weather_code": 51
+  },
+  "53.59_9.90_2025-09-20_13": {
+    "temperature": 25.9,
+    "rain": 0.0,
+    "wind_speed": 12.7,
+    "weather_code": 3
+  },
+  "48.67_10.14_2025-09-27_13": {
+    "temperature": 13.5,
+    "rain": 0.0,
+    "wind_speed": 8.5,
+    "weather_code": 2
+  },
+  "48.79_9.23_2025-10-05_13": {
+    "temperature": 12.5,
+    "rain": 0.0,
+    "wind_speed": 22.5,
+    "weather_code": 1
+  },
+  "48.67_10.14_2025-10-18_13": {
+    "temperature": 11.3,
+    "rain": 0.0,
+    "wind_speed": 8.2,
+    "weather_code": 3
+  },
+  "49.24_8.89_2025-10-25_13": {
+    "temperature": 11.8,
+    "rain": 0.0,
+    "wind_speed": 29.2,
+    "weather_code": 3
+  },
+  "48.67_10.14_2025-11-01_14": {
+    "temperature": 12.4,
+    "rain": 0.0,
+    "wind_speed": 9.4,
+    "weather_code": 3
+  },
+  "51.04_7.00_2025-11-08_14": {
+    "temperature": 11.2,
+    "rain": 0.0,
+    "wind_speed": 3.8,
+    "weather_code": 2
+  },
+  "48.67_10.14_2025-11-22_14": {
+    "temperature": -0.4,
+    "rain": 0.0,
+    "wind_speed": 2.3,
+    "weather_code": 0
+  },
+  "52.46_13.57_2025-11-29_14": {
+    "temperature": 7.5,
+    "rain": 0.0,
+    "wind_speed": 6.9,
+    "weather_code": 3
+  },
+  "48.67_10.14_2025-12-06_14": {
+    "temperature": 6.1,
+    "rain": 0.0,
+    "wind_speed": 14.9,
+    "weather_code": 3
+  },
+  "51.04_7.00_2025-08-23_13": {
+    "temperature": 18.6,
+    "rain": 0.0,
+    "wind_speed": 11.2,
+    "weather_code": 2
+  },
+  "49.24_8.89_2025-08-30_13": {
+    "temperature": 20.2,
+    "rain": 0.0,
+    "wind_speed": 14.4,
+    "weather_code": 0
+  },
+  "52.46_13.57_2025-09-13_13": {
+    "temperature": 21.0,
+    "rain": 0.0,
+    "wind_speed": 14.2,
+    "weather_code": 3
+  },
+  "48.02_7.83_2025-09-28_13": {
+    "temperature": 16.5,
+    "rain": 0.0,
+    "wind_speed": 10.8,
+    "weather_code": 0
+  },
+  "49.24_8.89_2025-10-03_18": {
+    "temperature": 11.1,
+    "rain": 0.0,
+    "wind_speed": 7.8,
+    "weather_code": 3
+  },
+  "49.98_8.22_2025-11-21_19": {
+    "temperature": -1.4,
+    "rain": 0.0,
+    "wind_speed": 5.7,
+    "weather_code": 0
+  },
+  "51.49_7.45_2025-12-07_16": {
+    "temperature": 10.9,
+    "rain": 0.0,
+    "wind_speed": 16.1,
+    "weather_code": 3
+  },
+  "53.07_8.84_2025-08-30_13": {
+    "temperature": 21.1,
+    "rain": 0.1,
+    "wind_speed": 15.5,
+    "weather_code": 51
+  },
+  "51.04_7.00_2025-09-12_18": {
+    "temperature": 15.1,
+    "rain": 0.0,
+    "wind_speed": 6.1,
+    "weather_code": 0
+  },
+  "51.04_7.00_2025-09-21_15": {
+    "temperature": 15.4,
+    "rain": 0.0,
+    "wind_speed": 12.9,
+    "weather_code": 3
+  },
+  "53.55_9.97_2025-09-27_13": {
+    "temperature": 17.0,
+    "rain": 0.0,
+    "wind_speed": 13.0,
+    "weather_code": 3
+  },
+  "49.98_8.22_2025-10-18_13": {
+    "temperature": 13.2,
+    "rain": 0.0,
+    "wind_speed": 8.5,
+    "weather_code": 1
+  },
+  "48.22_11.62_2025-11-01_17": {
+    "temperature": 13.7,
+    "rain": 0.0,
+    "wind_speed": 7.4,
+    "weather_code": 3
+  },
+  "51.04_7.00_2025-11-29_17": {
+    "temperature": 10.2,
+    "rain": 0.0,
+    "wind_speed": 16.7,
+    "weather_code": 3
+  },
+  "48.32_10.89_2025-12-06_14": {
+    "temperature": 4.9,
+    "rain": 0.0,
+    "wind_speed": 15.3,
+    "weather_code": 3
+  },
+  "52.46_13.57_2025-08-23_13": {
+    "temperature": 16.9,
+    "rain": 0.1,
+    "wind_speed": 19.3,
+    "weather_code": 51
+  },
+  "48.02_7.83_2025-09-13_13": {
+    "temperature": 20.2,
+    "rain": 0.0,
+    "wind_speed": 13.7,
+    "weather_code": 3
+  },
+  "50.93_6.88_2025-09-28_15": {
+    "temperature": 18.2,
+    "rain": 0.0,
+    "wind_speed": 3.5,
+    "weather_code": 2
+  },
+  "48.79_9.23_2025-10-26_15": {
+    "temperature": 8.6,
+    "rain": 0.0,
+    "wind_speed": 13.3,
+    "weather_code": 3
+  },
+  "48.79_9.23_2025-11-09_16": {
+    "temperature": 8.9,
+    "rain": 0.2,
+    "wind_speed": 7.2,
+    "weather_code": 51
+  },
+  "51.49_7.45_2025-11-22_14": {
+    "temperature": 3.2,
+    "rain": 0.0,
+    "wind_speed": 10.1,
+    "weather_code": 3
+  },
+  "53.59_9.90_2025-11-30_14": {
+    "temperature": 7.8,
+    "rain": 0.0,
+    "wind_speed": 16.7,
+    "weather_code": 2
+  },
+  "48.79_9.23_2025-12-06_14": {
+    "temperature": 10.3,
+    "rain": 0.0,
+    "wind_speed": 14.2,
+    "weather_code": 3
+  },
+  "51.49_7.45_2025-08-31_15": {
+    "temperature": 23.9,
+    "rain": 0.0,
+    "wind_speed": 15.5,
+    "weather_code": 1
+  },
+  "50.07_8.65_2025-09-21_13": {
+    "temperature": 19.2,
+    "rain": 0.1,
+    "wind_speed": 12.7,
+    "weather_code": 51
+  },
+  "51.04_7.00_2025-10-04_13": {
+    "temperature": 14.3,
+    "rain": 0.1,
+    "wind_speed": 23.7,
+    "weather_code": 51
+  },
+  "52.46_13.57_2025-10-17_18": {
+    "temperature": 10.3,
+    "rain": 0.0,
+    "wind_speed": 9.6,
+    "weather_code": 3
+  },
+  "53.07_8.84_2025-10-24_18": {
+    "temperature": 9.1,
+    "rain": 0.0,
+    "wind_speed": 25.5,
+    "weather_code": 0
+  },
+  "50.07_8.65_2025-08-23_13": {
+    "temperature": 18.7,
+    "rain": 0.2,
+    "wind_speed": 14.3,
+    "weather_code": 51
+  },
+  "53.07_8.84_2025-09-20_13": {
+    "temperature": 27.0,
+    "rain": 0.0,
+    "wind_speed": 9.8,
+    "weather_code": 3
+  },
+  "48.22_11.62_2025-09-26_18": {
+    "temperature": 13.2,
+    "rain": 0.0,
+    "wind_speed": 8.1,
+    "weather_code": 1
+  },
+  "49.98_8.22_2025-11-01_14": {
+    "temperature": 13.3,
+    "rain": 0.4,
+    "wind_speed": 7.2,
+    "weather_code": 51
+  },
+  "51.35_12.35_2025-11-23_14": {
+    "temperature": 0.9,
+    "rain": 0.0,
+    "wind_speed": 9.7,
+    "weather_code": 0
+  },
+  "53.07_8.84_2025-11-29_14": {
+    "temperature": 9.3,
+    "rain": 0.0,
+    "wind_speed": 13.8,
+    "weather_code": 3
+  },
+  "53.59_9.90_2025-12-07_14": {
+    "temperature": 8.9,
+    "rain": 0.0,
+    "wind_speed": 10.5,
+    "weather_code": 3
+  },
+  "51.17_6.39_2025-09-27_16": {
+    "temperature": 16.5,
+    "rain": 0.0,
+    "wind_speed": 4.8,
+    "weather_code": 1
+  },
+  "50.07_8.65_2025-10-04_16": {
+    "temperature": 13.3,
+    "rain": 0.0,
+    "wind_speed": 21.3,
+    "weather_code": 1
+  },
+  "48.02_7.83_2025-10-19_13": {
+    "temperature": 15.8,
+    "rain": 0.0,
+    "wind_speed": 1.7,
+    "weather_code": 3
+  },
+  "50.93_6.88_2025-11-22_17": {
+    "temperature": 0.4,
+    "rain": 0.0,
+    "wind_speed": 11.2,
+    "weather_code": 2
+  },
+  "51.35_12.35_2025-12-06_17": {
+    "temperature": 4.9,
+    "rain": 0.0,
+    "wind_speed": 14.9,
+    "weather_code": 3
+  },
+  "48.02_7.83_2025-08-23_13": {
+    "temperature": 20.2,
+    "rain": 0.0,
+    "wind_speed": 9.0,
+    "weather_code": 3
+  },
+  "53.55_9.97_2025-09-14_13": {
+    "temperature": 17.3,
+    "rain": 0.0,
+    "wind_speed": 11.8,
+    "weather_code": 1
+  },
+  "48.32_10.89_2025-09-20_13": {
+    "temperature": 28.5,
+    "rain": 0.0,
+    "wind_speed": 2.3,
+    "weather_code": 0
+  },
+  "50.93_6.88_2025-10-18_13": {
+    "temperature": 13.1,
+    "rain": 0.0,
+    "wind_speed": 7.8,
+    "weather_code": 3
+  },
+  "48.32_10.89_2025-10-25_13": {
+    "temperature": 9.8,
+    "rain": 1.0,
+    "wind_speed": 23.3,
+    "weather_code": 55
+  },
+  "48.32_10.89_2025-10-31_19": {
+    "temperature": 8.3,
+    "rain": 0.0,
+    "wind_speed": 7.2,
+    "weather_code": 3
+  },
+  "49.24_8.89_2025-11-29_14": {
+    "temperature": 8.7,
+    "rain": 0.0,
+    "wind_speed": 7.7,
+    "weather_code": 3
+  },
+  "50.93_6.88_2025-08-31_17": {
+    "temperature": 23.0,
+    "rain": 0.0,
+    "wind_speed": 7.0,
+    "weather_code": 3
+  },
+  "51.04_7.00_2025-10-26_13": {
+    "temperature": 9.1,
+    "rain": 0.0,
+    "wind_speed": 25.3,
+    "weather_code": 2
+  },
+  "48.02_7.83_2025-11-09_14": {
+    "temperature": 11.3,
+    "rain": 0.1,
+    "wind_speed": 0.9,
+    "weather_code": 51
+  },
+  "53.55_9.97_2025-08-23_16": {
+    "temperature": 18.2,
+    "rain": 0.0,
+    "wind_speed": 16.2,
+    "weather_code": 2
+  },
+  "53.59_9.90_2025-11-08_14": {
+    "temperature": 7.7,
+    "rain": 0.0,
+    "wind_speed": 0.4,
+    "weather_code": 3
+  },
+  "48.79_9.23_2025-09-19_18": {
+    "temperature": 20.9,
+    "rain": 0.0,
+    "wind_speed": 7.1,
+    "weather_code": 0
+  },
+  "53.07_8.84_2025-10-04_13": {
+    "temperature": 11.5,
+    "rain": 1.4,
+    "wind_speed": 29.4,
+    "weather_code": 61
+  },
+  "53.55_9.97_2025-10-19_15": {
+    "temperature": 9.8,
+    "rain": 0.0,
+    "wind_speed": 16.0,
+    "weather_code": 0
+  },
+  "50.07_8.65_2025-10-25_13": {
+    "temperature": 10.8,
+    "rain": 0.8,
+    "wind_speed": 21.9,
+    "weather_code": 53
+  },
+  "53.55_9.97_2025-11-01_14": {
+    "temperature": 13.7,
+    "rain": 0.2,
+    "wind_speed": 16.0,
+    "weather_code": 51
+  },
+  "53.55_9.97_2025-11-23_16": {
+    "temperature": 0.7,
+    "rain": 0.0,
+    "wind_speed": 19.7,
+    "weather_code": 3
+  },
+  "50.93_6.88_2025-12-06_14": {
+    "temperature": 9.4,
+    "rain": 1.8,
+    "wind_speed": 13.9,
+    "weather_code": 61
+  },
+  "51.49_7.45_2025-10-25_16": {
+    "temperature": 9.1,
+    "rain": 1.8,
+    "wind_speed": 22.5,
+    "weather_code": 61
+  },
+  "50.93_6.88_2025-11-02_14": {
+    "temperature": 13.6,
+    "rain": 0.4,
+    "wind_speed": 6.0,
+    "weather_code": 51
+  },
+  "51.17_6.39_2025-11-08_17": {
+    "temperature": 9.0,
+    "rain": 0.0,
+    "wind_speed": 5.6,
+    "weather_code": 1
+  },
+  "49.98_8.22_2025-08-24_13": {
+    "temperature": 21.9,
+    "rain": 0.0,
+    "wind_speed": 7.0,
+    "weather_code": 0
+  },
+  "49.98_8.22_2025-09-13_13": {
+    "temperature": 18.8,
+    "rain": 0.3,
+    "wind_speed": 13.0,
+    "weather_code": 51
+  },
+  "49.98_8.22_2025-09-27_13": {
+    "temperature": 15.9,
+    "rain": 0.0,
+    "wind_speed": 5.4,
+    "weather_code": 1
+  },
+  "53.59_9.90_2025-10-05_15": {
+    "temperature": 11.6,
+    "rain": 0.9,
+    "wind_speed": 29.7,
+    "weather_code": 53
+  },
+  "50.07_8.65_2025-11-09_18": {
+    "temperature": 7.8,
+    "rain": 0.0,
+    "wind_speed": 6.8,
+    "weather_code": 3
+  },
+  "48.02_7.83_2025-11-30_18": {
+    "temperature": 5.8,
+    "rain": 0.5,
+    "wind_speed": 3.1,
+    "weather_code": 53
+  },
+  "53.59_9.90_2025-08-29_18": {
+    "temperature": 20.3,
+    "rain": 0.0,
+    "wind_speed": 14.3,
+    "weather_code": 0
+  },
+  "48.22_11.62_2025-09-13_16": {
+    "temperature": 18.6,
+    "rain": 0.0,
+    "wind_speed": 4.3,
+    "weather_code": 3
+  },
+  "53.59_9.90_2025-10-25_13": {
+    "temperature": 9.5,
+    "rain": 0.8,
+    "wind_speed": 25.6,
+    "weather_code": 53
+  },
+  "48.32_10.89_2025-11-22_14": {
+    "temperature": -1.6,
+    "rain": 0.0,
+    "wind_speed": 2.9,
+    "weather_code": 0
+  },
+  "48.79_9.23_2025-08-30_13": {
+    "temperature": 19.7,
+    "rain": 0.1,
+    "wind_speed": 2.7,
+    "weather_code": 51
+  },
+  "51.17_6.39_2025-09-14_15": {
+    "temperature": 17.8,
+    "rain": 0.0,
+    "wind_speed": 14.6,
+    "weather_code": 3
+  },
+  "51.17_6.39_2025-10-25_13": {
+    "temperature": 10.3,
+    "rain": 2.6,
+    "wind_speed": 29.4,
+    "weather_code": 63
+  },
+  "40.37_18.19_2025-08-29_18": {
+    "temperature": 27.3,
+    "rain": 0.0,
+    "wind_speed": 9.9,
+    "weather_code": 2
+  },
+  "45.71_9.68_2025-09-14_13": {
+    "temperature": 23.1,
+    "rain": 0.0,
+    "wind_speed": 6.6,
+    "weather_code": 3
+  },
+  "40.37_18.19_2025-09-19_18": {
+    "temperature": 23.2,
+    "rain": 0.0,
+    "wind_speed": 15.2,
+    "weather_code": 0
+  },
+  "40.37_18.19_2025-09-28_16": {
+    "temperature": 20.8,
+    "rain": 0.0,
+    "wind_speed": 17.4,
+    "weather_code": 1
+  },
+  "46.08_13.20_2025-10-25_13": {
+    "temperature": 16.4,
+    "rain": 0.0,
+    "wind_speed": 6.4,
+    "weather_code": 0
+  },
+  "40.37_18.19_2025-10-28_16": {
+    "temperature": 17.0,
+    "rain": 0.0,
+    "wind_speed": 10.0,
+    "weather_code": 0
+  },
+  "41.93_12.45_2025-11-23_17": {
+    "temperature": 7.4,
+    "rain": 0.0,
+    "wind_speed": 1.2,
+    "weather_code": 0
+  },
+  "40.37_18.19_2025-11-30_11": {
+    "temperature": 14.8,
+    "rain": 0.0,
+    "wind_speed": 18.6,
+    "weather_code": 0
+  },
+  "44.42_8.95_2025-08-31_16": {
+    "temperature": 23.4,
+    "rain": 0.0,
+    "wind_speed": 9.4,
+    "weather_code": 0
+  },
+  "45.81_9.08_2025-09-15_18": {
+    "temperature": 20.7,
+    "rain": 0.0,
+    "wind_speed": 2.3,
+    "weather_code": 1
+  },
+  "44.49_11.31_2025-09-20_13": {
+    "temperature": 30.5,
+    "rain": 0.0,
+    "wind_speed": 6.2,
+    "weather_code": 0
+  },
+  "44.42_8.95_2025-09-29_18": {
+    "temperature": 17.1,
+    "rain": 0.0,
+    "wind_speed": 3.8,
+    "weather_code": 0
+  },
+  "40.83_14.19_2025-10-05_16": {
+    "temperature": 21.2,
+    "rain": 0.0,
+    "wind_speed": 25.4,
+    "weather_code": 0
+  },
+  "45.04_7.65_2025-10-26_10": {
+    "temperature": 16.3,
+    "rain": 0.0,
+    "wind_speed": 0.4,
+    "weather_code": 0
+  },
+  "44.42_8.95_2025-10-29_18": {
+    "temperature": 15.5,
+    "rain": 0.2,
+    "wind_speed": 14.5,
+    "weather_code": 51
+  },
+  "44.71_10.65_2025-11-03_17": {
+    "temperature": 12.7,
+    "rain": 0.0,
+    "wind_speed": 2.3,
+    "weather_code": 0
+  },
+  "44.42_8.95_2025-11-09_14": {
+    "temperature": 16.7,
+    "rain": 0.0,
+    "wind_speed": 8.9,
+    "weather_code": 0
+  },
+  "39.20_9.14_2025-11-22_14": {
+    "temperature": 13.6,
+    "rain": 0.0,
+    "wind_speed": 40.4,
+    "weather_code": 3
+  },
+  "44.42_8.95_2025-11-29_14": {
+    "temperature": 13.1,
+    "rain": 0.0,
+    "wind_speed": 4.3,
+    "weather_code": 0
+  },
+  "46.08_13.20_2025-12-08_17": {
+    "temperature": 7.4,
+    "rain": 0.0,
+    "wind_speed": 3.0,
+    "weather_code": 0
+  },
+  "43.78_11.28_2025-09-13_18": {
+    "temperature": 20.7,
+    "rain": 0.1,
+    "wind_speed": 7.1,
+    "weather_code": 51
+  },
+  "40.83_14.19_2025-09-22_18": {
+    "temperature": 24.6,
+    "rain": 0.0,
+    "wind_speed": 5.6,
+    "weather_code": 3
+  },
+  "45.48_9.12_2025-09-28_18": {
+    "temperature": 16.5,
+    "rain": 0.0,
+    "wind_speed": 3.1,
+    "weather_code": 0
+  },
+  "45.04_7.65_2025-10-18_16": {
+    "temperature": 17.9,
+    "rain": 0.0,
+    "wind_speed": 2.3,
+    "weather_code": 0
+  },
+  "40.83_14.19_2025-10-25_16": {
+    "temperature": 19.9,
+    "rain": 0.0,
+    "wind_speed": 17.8,
+    "weather_code": 3
+  },
+  "44.49_11.31_2025-11-09_14": {
+    "temperature": 12.9,
+    "rain": 0.0,
+    "wind_speed": 5.6,
+    "weather_code": 2
+  },
+  "40.83_14.19_2025-11-22_19": {
+    "temperature": 8.8,
+    "rain": 0.0,
+    "wind_speed": 10.6,
+    "weather_code": 3
+  },
+  "40.83_14.19_2025-12-07_19": {
+    "temperature": 13.1,
+    "rain": 0.0,
+    "wind_speed": 10.2,
+    "weather_code": 3
+  },
+  "44.71_10.65_2025-08-23_16": {
+    "temperature": 25.5,
+    "rain": 0.0,
+    "wind_speed": 7.9,
+    "weather_code": 0
+  },
+  "45.48_9.12_2025-09-21_18": {
+    "temperature": 19.9,
+    "rain": 0.2,
+    "wind_speed": 14.1,
+    "weather_code": 51
+  },
+  "44.71_10.65_2025-09-28_10": {
+    "temperature": 17.8,
+    "rain": 0.0,
+    "wind_speed": 9.0,
+    "weather_code": 0
+  },
+  "44.71_10.65_2025-10-26_13": {
+    "temperature": 16.9,
+    "rain": 0.0,
+    "wind_speed": 0.9,
+    "weather_code": 3
+  },
+  "39.20_9.14_2025-10-30_16": {
+    "temperature": 21.0,
+    "rain": 0.0,
+    "wind_speed": 12.0,
+    "weather_code": 2
+  },
+  "44.71_10.65_2025-11-24_19": {
+    "temperature": 3.8,
+    "rain": 0.0,
+    "wind_speed": 1.0,
+    "weather_code": 3
+  },
+  "45.81_9.08_2025-11-28_19": {
+    "temperature": 3.4,
+    "rain": 0.0,
+    "wind_speed": 2.0,
+    "weather_code": 3
+  },
+  "44.71_10.65_2025-12-06_14": {
+    "temperature": 9.0,
+    "rain": 0.0,
+    "wind_speed": 4.7,
+    "weather_code": 3
+  },
+  "45.48_9.12_2025-08-23_18": {
+    "temperature": 23.2,
+    "rain": 0.0,
+    "wind_speed": 7.7,
+    "weather_code": 1
+  },
+  "45.81_9.08_2025-09-27_13": {
+    "temperature": 14.6,
+    "rain": 2.9,
+    "wind_speed": 2.6,
+    "weather_code": 63
+  },
+  "45.48_9.12_2025-10-04_16": {
+    "temperature": 15.6,
+    "rain": 0.0,
+    "wind_speed": 2.2,
+    "weather_code": 3
+  },
+  "44.49_11.31_2025-12-01_19": {
+    "temperature": 5.6,
+    "rain": 0.0,
+    "wind_speed": 5.7,
+    "weather_code": 3
+  },
+  "45.48_9.12_2025-10-19_18": {
+    "temperature": 12.5,
+    "rain": 0.0,
+    "wind_speed": 4.7,
+    "weather_code": 2
+  },
+  "45.48_9.12_2025-10-24_18": {
+    "temperature": 12.7,
+    "rain": 0.0,
+    "wind_speed": 6.8,
+    "weather_code": 2
+  },
+  "45.71_9.68_2025-10-28_18": {
+    "temperature": 10.9,
+    "rain": 0.0,
+    "wind_speed": 2.2,
+    "weather_code": 0
+  },
+  "44.80_10.34_2025-11-08_19": {
+    "temperature": 8.9,
+    "rain": 0.0,
+    "wind_speed": 4.4,
+    "weather_code": 0
+  },
+  "41.93_12.45_2025-08-23_18": {
+    "temperature": 25.4,
+    "rain": 0.0,
+    "wind_speed": 7.6,
+    "weather_code": 0
+  },
+  "45.48_9.12_2025-09-14_18": {
+    "temperature": 21.3,
+    "rain": 0.0,
+    "wind_speed": 6.8,
+    "weather_code": 0
+  },
+  "43.78_11.28_2025-10-26_16": {
+    "temperature": 15.9,
+    "rain": 0.2,
+    "wind_speed": 11.2,
+    "weather_code": 51
+  },
+  "44.80_10.34_2025-11-02_17": {
+    "temperature": 13.8,
+    "rain": 0.1,
+    "wind_speed": 4.4,
+    "weather_code": 51
+  },
+  "41.93_12.45_2025-12-07_17": {
+    "temperature": 11.9,
+    "rain": 0.0,
+    "wind_speed": 4.8,
+    "weather_code": 3
+  },
+  "41.93_12.45_2025-09-14_10": {
+    "temperature": 26.1,
+    "rain": 0.0,
+    "wind_speed": 6.5,
+    "weather_code": 3
+  },
+  "43.78_11.28_2025-10-05_13": {
+    "temperature": 15.8,
+    "rain": 0.0,
+    "wind_speed": 23.6,
+    "weather_code": 0
+  },
+  "41.93_12.45_2025-10-18_18": {
+    "temperature": 17.8,
+    "rain": 0.0,
+    "wind_speed": 7.9,
+    "weather_code": 0
+  },
+  "41.93_12.45_2025-10-29_16": {
+    "temperature": 17.9,
+    "rain": 0.0,
+    "wind_speed": 10.4,
+    "weather_code": 3
+  },
+  "45.48_9.12_2025-11-02_19": {
+    "temperature": 13.3,
+    "rain": 0.0,
+    "wind_speed": 11.7,
+    "weather_code": 0
+  },
+  "41.93_12.45_2025-11-30_19": {
+    "temperature": 7.7,
+    "rain": 0.0,
+    "wind_speed": 2.6,
+    "weather_code": 3
+  },
+  "39.20_9.14_2025-12-07_14": {
+    "temperature": 18.3,
+    "rain": 0.0,
+    "wind_speed": 30.0,
+    "weather_code": 3
+  },
+  "39.20_9.14_2025-08-24_16": {
+    "temperature": 27.4,
+    "rain": 0.0,
+    "wind_speed": 16.9,
+    "weather_code": 0
+  },
+  "43.78_11.28_2025-09-21_16": {
+    "temperature": 27.4,
+    "rain": 0.0,
+    "wind_speed": 4.8,
+    "weather_code": 0
+  },
+  "45.48_9.12_2025-10-29_18": {
+    "temperature": 12.9,
+    "rain": 0.9,
+    "wind_speed": 2.7,
+    "weather_code": 53
+  },
+  "43.78_11.28_2025-11-02_14": {
+    "temperature": 18.6,
+    "rain": 0.2,
+    "wind_speed": 5.8,
+    "weather_code": 51
+  },
+  "43.78_11.28_2025-11-22_17": {
+    "temperature": 5.1,
+    "rain": 0.0,
+    "wind_speed": 14.6,
+    "weather_code": 3
+  },
+  "45.71_9.68_2025-11-30_17": {
+    "temperature": 3.9,
+    "rain": 0.0,
+    "wind_speed": 2.9,
+    "weather_code": 3
+  },
+  "40.83_14.19_2025-08-30_18": {
+    "temperature": 24.3,
+    "rain": 0.0,
+    "wind_speed": 21.2,
+    "weather_code": 0
+  },
+  "39.20_9.14_2025-09-27_18": {
+    "temperature": 23.6,
+    "rain": 0.0,
+    "wind_speed": 19.3,
+    "weather_code": 3
+  },
+  "46.08_13.20_2025-10-05_10": {
+    "temperature": 7.4,
+    "rain": 2.0,
+    "wind_speed": 9.5,
+    "weather_code": 61
+  },
+  "39.20_9.14_2025-10-19_13": {
+    "temperature": 21.7,
+    "rain": 0.0,
+    "wind_speed": 11.6,
+    "weather_code": 0
+  },
+  "41.93_12.45_2025-11-03_19": {
+    "temperature": 16.2,
+    "rain": 0.0,
+    "wind_speed": 19.4,
+    "weather_code": 3
+  },
+  "45.11_7.64_2025-11-29_17": {
+    "temperature": 1.7,
+    "rain": 0.0,
+    "wind_speed": 2.8,
+    "weather_code": 0
+  },
+  "45.81_9.08_2025-08-24_16": {
+    "temperature": 22.3,
+    "rain": 0.0,
+    "wind_speed": 8.9,
+    "weather_code": 3
+  },
+  "44.71_10.65_2025-09-14_16": {
+    "temperature": 26.5,
+    "rain": 0.0,
+    "wind_speed": 2.2,
+    "weather_code": 3
+  },
+  "41.93_12.45_2025-09-21_10": {
+    "temperature": 28.2,
+    "rain": 0.0,
+    "wind_speed": 6.8,
+    "weather_code": 0
+  },
+  "41.93_12.45_2025-10-04_13": {
+    "temperature": 20.5,
+    "rain": 0.0,
+    "wind_speed": 11.5,
+    "weather_code": 0
+  },
+  "45.48_9.12_2025-11-09_19": {
+    "temperature": 8.2,
+    "rain": 0.0,
+    "wind_speed": 2.8,
+    "weather_code": 0
+  },
+  "45.48_9.12_2025-11-29_19": {
+    "temperature": 3.8,
+    "rain": 0.0,
+    "wind_speed": 4.0,
+    "weather_code": 0
+  },
+  "44.49_11.31_2025-08-30_16": {
+    "temperature": 24.6,
+    "rain": 0.0,
+    "wind_speed": 9.7,
+    "weather_code": 1
+  },
+  "45.71_9.68_2025-10-04_18": {
+    "temperature": 14.6,
+    "rain": 0.0,
+    "wind_speed": 6.9,
+    "weather_code": 3
+  },
+  "45.81_9.08_2025-10-29_16": {
+    "temperature": 13.1,
+    "rain": 0.3,
+    "wind_speed": 4.2,
+    "weather_code": 51
+  },
+  "45.04_7.65_2025-11-24_17": {
+    "temperature": 0.9,
+    "rain": 0.0,
+    "wind_speed": 4.1,
+    "weather_code": 3
+  },
+  "45.48_9.12_2025-12-06_17": {
+    "temperature": 5.6,
+    "rain": 0.0,
+    "wind_speed": 6.9,
+    "weather_code": 2
+  },
+  "45.71_9.68_2025-08-24_18": {
+    "temperature": 19.2,
+    "rain": 0.0,
+    "wind_speed": 2.3,
+    "weather_code": 1
+  },
+  "44.49_11.31_2025-10-05_13": {
+    "temperature": 13.9,
+    "rain": 0.0,
+    "wind_speed": 16.4,
+    "weather_code": 2
+  },
+  "45.04_7.65_2025-11-02_14": {
+    "temperature": 15.3,
+    "rain": 0.0,
+    "wind_speed": 0.9,
+    "weather_code": 3
+  },
+  "44.80_10.34_2025-08-30_16": {
+    "temperature": 23.0,
+    "rain": 0.0,
+    "wind_speed": 7.3,
+    "weather_code": 0
+  },
+  "45.11_7.64_2025-09-27_16": {
+    "temperature": 15.6,
+    "rain": 0.0,
+    "wind_speed": 9.2,
+    "weather_code": 1
+  },
+  "46.08_13.20_2025-11-01_14": {
+    "temperature": 17.2,
+    "rain": 0.5,
+    "wind_speed": 10.9,
+    "weather_code": 53
+  },
+  "45.71_9.68_2025-11-09_11": {
+    "temperature": 12.6,
+    "rain": 0.0,
+    "wind_speed": 2.4,
+    "weather_code": 0
+  },
+  "45.11_7.64_2025-08-24_18": {
+    "temperature": 20.8,
+    "rain": 0.0,
+    "wind_speed": 7.8,
+    "weather_code": 3
+  },
+  "39.20_9.14_2025-09-13_13": {
+    "temperature": 26.3,
+    "rain": 0.0,
+    "wind_speed": 18.8,
+    "weather_code": 0
+  },
+  "44.80_10.34_2025-09-29_16": {
+    "temperature": 21.3,
+    "rain": 0.0,
+    "wind_speed": 3.1,
+    "weather_code": 0
+  },
+  "44.80_10.34_2025-10-04_13": {
+    "temperature": 18.4,
+    "rain": 0.0,
+    "wind_speed": 6.7,
+    "weather_code": 3
+  },
+  "44.80_10.34_2025-11-29_14": {
+    "temperature": 7.8,
+    "rain": 0.0,
+    "wind_speed": 2.0,
+    "weather_code": 0
+  },
+  "45.11_7.64_2025-09-13_16": {
+    "temperature": 20.6,
+    "rain": 0.0,
+    "wind_speed": 3.9,
+    "weather_code": 3
+  },
+  "45.81_9.08_2025-10-19_10": {
+    "temperature": 15.6,
+    "rain": 0.0,
+    "wind_speed": 6.9,
+    "weather_code": 3
+  },
+  "41.93_12.45_2025-10-26_18": {
+    "temperature": 17.6,
+    "rain": 0.0,
+    "wind_speed": 11.6,
+    "weather_code": 3
+  },
+  "45.11_7.64_2025-10-29_16": {
+    "temperature": 11.0,
+    "rain": 0.0,
+    "wind_speed": 2.9,
+    "weather_code": 3
+  },
+  "46.08_13.20_2025-08-25_16": {
+    "temperature": 23.6,
+    "rain": 0.0,
+    "wind_speed": 6.6,
+    "weather_code": 3
+  },
+  "41.93_12.45_2025-08-31_18": {
+    "temperature": 22.5,
+    "rain": 0.0,
+    "wind_speed": 8.8,
+    "weather_code": 0
+  },
+  "41.93_12.45_2025-09-28_13": {
+    "temperature": 23.6,
+    "rain": 0.0,
+    "wind_speed": 15.1,
+    "weather_code": 0
+  },
+  "45.48_9.12_2025-08-31_18": {
+    "temperature": 22.5,
+    "rain": 0.0,
+    "wind_speed": 2.9,
+    "weather_code": 0
+  },
+  "46.08_13.20_2025-09-20_18": {
+    "temperature": 20.8,
+    "rain": 0.0,
+    "wind_speed": 3.5,
+    "weather_code": 1
+  },
+  "41.93_12.45_2025-11-09_17": {
+    "temperature": 15.5,
+    "rain": 0.0,
+    "wind_speed": 13.1,
+    "weather_code": 0
+  },
+  "46.08_13.20_2025-11-22_14": {
+    "temperature": 6.6,
+    "rain": 0.0,
+    "wind_speed": 8.6,
+    "weather_code": 3
+  },
+  "45.48_9.12_2025-08-25_18": {
+    "temperature": 23.0,
+    "rain": 0.0,
+    "wind_speed": 2.8,
+    "weather_code": 3
+  },
+  "45.04_7.65_2025-09-21_13": {
+    "temperature": 25.9,
+    "rain": 0.2,
+    "wind_speed": 9.3,
+    "weather_code": 51
+  },
+  "45.48_9.12_2025-11-23_19": {
+    "temperature": 3.0,
+    "rain": 0.0,
+    "wind_speed": 4.2,
+    "weather_code": 3
+  },
+  "48.11_-1.71_2025-08-15_18": {
+    "temperature": 30.8,
+    "rain": 0.0,
+    "wind_speed": 14.5,
+    "weather_code": 0
+  },
+  "43.27_5.40_2025-08-23_15": {
+    "temperature": 29.5,
+    "rain": 0.0,
+    "wind_speed": 20.9,
+    "weather_code": 0
+  },
+  "48.56_7.75_2025-09-26_18": {
+    "temperature": 11.5,
+    "rain": 0.5,
+    "wind_speed": 6.5,
+    "weather_code": 53
+  },
+  "43.27_5.40_2025-10-18_19": {
+    "temperature": 16.9,
+    "rain": 0.0,
+    "wind_speed": 6.0,
+    "weather_code": 1
+  },
+  "50.43_2.81_2025-10-25_19": {
+    "temperature": 8.3,
+    "rain": 0.0,
+    "wind_speed": 14.8,
+    "weather_code": 2
+  },
+  "43.27_5.40_2025-10-29_19": {
+    "temperature": 17.1,
+    "rain": 1.9,
+    "wind_speed": 32.2,
+    "weather_code": 61
+  },
+  "43.70_7.19_2025-11-21_19": {
+    "temperature": 3.6,
+    "rain": 0.0,
+    "wind_speed": 9.5,
+    "weather_code": 3
+  },
+  "43.27_5.40_2025-11-29_20": {
+    "temperature": 10.5,
+    "rain": 0.0,
+    "wind_speed": 12.6,
+    "weather_code": 3
+  },
+  "50.61_3.13_2025-12-05_20": {
+    "temperature": 5.0,
+    "rain": 0.0,
+    "wind_speed": 23.7,
+    "weather_code": 3
+  },
+  "47.75_-3.36_2025-08-24_13": {
+    "temperature": 25.2,
+    "rain": 0.0,
+    "wind_speed": 11.7,
+    "weather_code": 0
+  },
+  "47.46_-0.53_2025-08-31_13": {
+    "temperature": 21.9,
+    "rain": 0.0,
+    "wind_speed": 15.7,
+    "weather_code": 3
+  },
+  "48.11_-1.71_2025-09-14_18": {
+    "temperature": 19.3,
+    "rain": 0.0,
+    "wind_speed": 24.5,
+    "weather_code": 3
+  },
+  "47.26_-1.52_2025-09-20_15": {
+    "temperature": 20.6,
+    "rain": 0.0,
+    "wind_speed": 20.3,
+    "weather_code": 3
+  },
+  "49.50_0.17_2025-10-05_15": {
+    "temperature": 14.5,
+    "rain": 0.5,
+    "wind_speed": 32.5,
+    "weather_code": 53
+  },
+  "48.11_-1.71_2025-10-19_15": {
+    "temperature": 16.3,
+    "rain": 0.3,
+    "wind_speed": 25.6,
+    "weather_code": 51
+  },
+  "48.11_-1.71_2025-10-26_15": {
+    "temperature": 12.4,
+    "rain": 0.0,
+    "wind_speed": 17.6,
+    "weather_code": 3
+  },
+  "43.58_1.43_2025-10-29_19": {
+    "temperature": 13.7,
+    "rain": 0.0,
+    "wind_speed": 2.3,
+    "weather_code": 3
+  },
+  "48.11_-1.71_2025-11-02_14": {
+    "temperature": 14.1,
+    "rain": 0.0,
+    "wind_speed": 17.6,
+    "weather_code": 3
+  },
+  "48.11_-1.71_2025-11-22_18": {
+    "temperature": 4.9,
+    "rain": 0.8,
+    "wind_speed": 21.6,
+    "weather_code": 53
+  },
+  "48.84_2.25_2025-12-06_20": {
+    "temperature": 10.5,
+    "rain": 0.0,
+    "wind_speed": 16.7,
+    "weather_code": 3
+  },
+  "45.77_4.98_2025-10-05_13": {
+    "temperature": 14.3,
+    "rain": 0.0,
+    "wind_speed": 13.8,
+    "weather_code": 2
+  },
+  "43.70_7.19_2025-10-18_15": {
+    "temperature": 19.7,
+    "rain": 0.0,
+    "wind_speed": 8.1,
+    "weather_code": 0
+  },
+  "45.77_4.98_2025-10-26_18": {
+    "temperature": 6.5,
+    "rain": 0.0,
+    "wind_speed": 3.0,
+    "weather_code": 1
+  },
+  "48.82_2.35_2025-10-29_19": {
+    "temperature": 12.3,
+    "rain": 3.5,
+    "wind_speed": 14.6,
+    "weather_code": 63
+  },
+  "45.77_4.98_2025-11-09_19": {
+    "temperature": 9.6,
+    "rain": 0.0,
+    "wind_speed": 9.5,
+    "weather_code": 2
+  },
+  "47.75_-3.36_2025-12-07_19": {
+    "temperature": 14.9,
+    "rain": 0.1,
+    "wind_speed": 35.5,
+    "weather_code": 51
+  },
+  "50.43_2.81_2025-08-16_15": {
+    "temperature": 22.1,
+    "rain": 0.0,
+    "wind_speed": 16.0,
+    "weather_code": 3
+  },
+  "49.50_0.17_2025-08-24_15": {
+    "temperature": 23.3,
+    "rain": 0.0,
+    "wind_speed": 8.8,
+    "weather_code": 0
+  },
+  "50.43_2.81_2025-08-29_18": {
+    "temperature": 17.5,
+    "rain": 0.0,
+    "wind_speed": 15.7,
+    "weather_code": 0
+  },
+  "48.84_2.25_2025-09-14_15": {
+    "temperature": 18.6,
+    "rain": 0.0,
+    "wind_speed": 17.0,
+    "weather_code": 3
+  },
+  "47.79_3.59_2025-10-04_19": {
+    "temperature": 12.6,
+    "rain": 0.0,
+    "wind_speed": 19.4,
+    "weather_code": 1
+  },
+  "50.43_2.81_2025-10-19_13": {
+    "temperature": 12.7,
+    "rain": 0.0,
+    "wind_speed": 14.7,
+    "weather_code": 3
+  },
+  "43.73_7.42_2025-11-08_20": {
+    "temperature": 11.7,
+    "rain": 0.0,
+    "wind_speed": 4.3,
+    "weather_code": 0
+  },
+  "47.46_-0.53_2025-11-30_16": {
+    "temperature": 7.3,
+    "rain": 0.0,
+    "wind_speed": 3.1,
+    "weather_code": 0
+  },
+  "47.26_-1.52_2025-12-06_16": {
+    "temperature": 12.6,
+    "rain": 0.0,
+    "wind_speed": 16.6,
+    "weather_code": 3
+  },
+  "43.73_7.42_2025-08-16_17": {
+    "temperature": 31.7,
+    "rain": 0.0,
+    "wind_speed": 7.6,
+    "weather_code": 1
+  },
+  "49.50_0.17_2025-08-31_15": {
+    "temperature": 20.5,
+    "rain": 0.0,
+    "wind_speed": 18.8,
+    "weather_code": 3
+  },
+  "48.56_7.75_2025-09-14_15": {
+    "temperature": 20.7,
+    "rain": 0.0,
+    "wind_speed": 7.3,
+    "weather_code": 3
+  },
+  "49.50_0.17_2025-09-21_15": {
+    "temperature": 16.0,
+    "rain": 0.0,
+    "wind_speed": 17.4,
+    "weather_code": 1
+  },
+  "49.50_0.17_2025-11-08_18": {
+    "temperature": 12.5,
+    "rain": 0.0,
+    "wind_speed": 11.0,
+    "weather_code": 0
+  },
+  "48.84_2.25_2025-11-22_20": {
+    "temperature": -0.2,
+    "rain": 0.0,
+    "wind_speed": 15.4,
+    "weather_code": 3
+  },
+  "49.50_0.17_2025-11-30_16": {
+    "temperature": 8.1,
+    "rain": 0.0,
+    "wind_speed": 11.3,
+    "weather_code": 1
+  },
+  "50.61_3.13_2025-08-24_18": {
+    "temperature": 19.1,
+    "rain": 0.0,
+    "wind_speed": 6.0,
+    "weather_code": 0
+  },
+  "43.73_7.42_2025-08-31_15": {
+    "temperature": 24.6,
+    "rain": 0.0,
+    "wind_speed": 9.5,
+    "weather_code": 0
+  },
+  "43.73_7.42_2025-09-21_15": {
+    "temperature": 24.9,
+    "rain": 0.0,
+    "wind_speed": 5.5,
+    "weather_code": 3
+  },
+  "47.75_-3.36_2025-09-27_15": {
+    "temperature": 16.6,
+    "rain": 0.0,
+    "wind_speed": 16.1,
+    "weather_code": 3
+  },
+  "43.73_7.42_2025-10-05_15": {
+    "temperature": 21.3,
+    "rain": 0.0,
+    "wind_speed": 9.4,
+    "weather_code": 0
+  },
+  "47.46_-0.53_2025-10-18_17": {
+    "temperature": 15.6,
+    "rain": 0.0,
+    "wind_speed": 7.9,
+    "weather_code": 3
+  },
+  "47.26_-1.52_2025-10-29_19": {
+    "temperature": 11.1,
+    "rain": 0.0,
+    "wind_speed": 13.0,
+    "weather_code": 3
+  },
+  "43.73_7.42_2025-11-01_18": {
+    "temperature": 17.0,
+    "rain": 0.0,
+    "wind_speed": 4.0,
+    "weather_code": 2
+  },
+  "48.40_-4.46_2025-12-05_18": {
+    "temperature": 12.3,
+    "rain": 0.2,
+    "wind_speed": 27.3,
+    "weather_code": 51
+  },
+  "43.58_1.43_2025-08-30_19": {
+    "temperature": 21.0,
+    "rain": 0.0,
+    "wind_speed": 1.7,
+    "weather_code": 3
+  },
+  "50.61_3.13_2025-09-14_13": {
+    "temperature": 18.3,
+    "rain": 0.0,
+    "wind_speed": 17.3,
+    "weather_code": 3
+  },
+  "47.79_3.59_2025-09-21_15": {
+    "temperature": 14.6,
+    "rain": 0.1,
+    "wind_speed": 7.2,
+    "weather_code": 51
+  },
+  "43.58_1.43_2025-09-27_17": {
+    "temperature": 19.8,
+    "rain": 0.0,
+    "wind_speed": 8.2,
+    "weather_code": 0
+  },
+  "43.73_7.42_2025-10-25_17": {
+    "temperature": 18.1,
+    "rain": 0.0,
+    "wind_speed": 24.1,
+    "weather_code": 3
+  },
+  "47.75_-3.36_2025-11-09_14": {
+    "temperature": 14.7,
+    "rain": 0.1,
+    "wind_speed": 24.2,
+    "weather_code": 51
+  },
+  "43.58_1.43_2025-11-23_16": {
+    "temperature": 11.9,
+    "rain": 0.2,
+    "wind_speed": 16.4,
+    "weather_code": 51
+  },
+  "43.70_7.19_2025-08-16_19": {
+    "temperature": 29.6,
+    "rain": 0.0,
+    "wind_speed": 0.9,
+    "weather_code": 0
+  },
+  "43.70_7.19_2025-08-23_17": {
+    "temperature": 25.8,
+    "rain": 0.0,
+    "wind_speed": 6.5,
+    "weather_code": 0
+  },
+  "48.40_-4.46_2025-09-20_17": {
+    "temperature": 15.0,
+    "rain": 0.2,
+    "wind_speed": 23.2,
+    "weather_code": 51
+  },
+  "43.70_7.19_2025-09-28_13": {
+    "temperature": 21.8,
+    "rain": 0.0,
+    "wind_speed": 11.1,
+    "weather_code": 0
+  },
+  "48.84_2.25_2025-11-01_16": {
+    "temperature": 14.0,
+    "rain": 0.0,
+    "wind_speed": 12.9,
+    "weather_code": 1
+  },
+  "47.75_-3.36_2025-11-30_16": {
+    "temperature": 10.1,
+    "rain": 0.0,
+    "wind_speed": 9.1,
+    "weather_code": 1
+  },
+  "43.70_7.19_2025-12-07_14": {
+    "temperature": 13.4,
+    "rain": 0.0,
+    "wind_speed": 1.9,
+    "weather_code": 3
+  },
+  "48.40_-4.46_2025-08-17_13": {
+    "temperature": 28.7,
+    "rain": 0.0,
+    "wind_speed": 11.8,
+    "weather_code": 3
+  },
+  "47.75_-3.36_2025-08-30_15": {
+    "temperature": 19.9,
+    "rain": 0.4,
+    "wind_speed": 29.3,
+    "weather_code": 51
+  },
+  "50.43_2.81_2025-09-20_19": {
+    "temperature": 20.2,
+    "rain": 0.1,
+    "wind_speed": 17.5,
+    "weather_code": 51
+  },
+  "50.61_3.13_2025-09-28_15": {
+    "temperature": 19.1,
+    "rain": 0.0,
+    "wind_speed": 4.0,
+    "weather_code": 3
+  },
+  "50.61_3.13_2025-10-05_18": {
+    "temperature": 12.4,
+    "rain": 0.0,
+    "wind_speed": 11.7,
+    "weather_code": 1
+  },
+  "50.61_3.13_2025-10-26_13": {
+    "temperature": 10.4,
+    "rain": 0.0,
+    "wind_speed": 22.4,
+    "weather_code": 1
+  },
+  "43.70_7.19_2025-10-29_17": {
+    "temperature": 14.7,
+    "rain": 1.1,
+    "wind_speed": 9.8,
+    "weather_code": 55
+  },
+  "48.56_7.75_2025-11-09_16": {
+    "temperature": 8.5,
+    "rain": 0.0,
+    "wind_speed": 3.8,
+    "weather_code": 1
+  },
+  "50.61_3.13_2025-11-23_19": {
+    "temperature": 4.0,
+    "rain": 0.0,
+    "wind_speed": 12.7,
+    "weather_code": 2
+  },
+  "43.58_1.43_2025-08-24_15": {
+    "temperature": 31.1,
+    "rain": 0.0,
+    "wind_speed": 3.3,
+    "weather_code": 0
+  },
+  "48.40_-4.46_2025-09-14_15": {
+    "temperature": 18.4,
+    "rain": 0.2,
+    "wind_speed": 33.1,
+    "weather_code": 51
+  },
+  "47.75_-3.36_2025-10-19_15": {
+    "temperature": 16.2,
+    "rain": 0.5,
+    "wind_speed": 23.9,
+    "weather_code": 53
+  },
+  "48.40_-4.46_2025-10-25_15": {
+    "temperature": 11.6,
+    "rain": 0.0,
+    "wind_speed": 26.0,
+    "weather_code": 1
+  },
+  "49.50_0.17_2025-10-29_17": {
+    "temperature": 12.0,
+    "rain": 0.7,
+    "wind_speed": 14.3,
+    "weather_code": 53
+  },
+  "43.27_5.40_2025-11-08_16": {
+    "temperature": 15.9,
+    "rain": 0.0,
+    "wind_speed": 12.7,
+    "weather_code": 2
+  },
+  "48.40_-4.46_2025-11-23_16": {
+    "temperature": 10.5,
+    "rain": 0.0,
+    "wind_speed": 17.5,
+    "weather_code": 3
+  },
+  "48.56_7.75_2025-11-30_14": {
+    "temperature": 7.0,
+    "rain": 0.8,
+    "wind_speed": 6.1,
+    "weather_code": 53
+  },
+  "47.79_3.59_2025-08-17_15": {
+    "temperature": 27.5,
+    "rain": 0.0,
+    "wind_speed": 14.8,
+    "weather_code": 0
+  },
+  "43.27_5.40_2025-09-12_18": {
+    "temperature": 21.6,
+    "rain": 0.0,
+    "wind_speed": 10.7,
+    "weather_code": 3
+  },
+  "48.82_2.35_2025-10-03_18": {
+    "temperature": 14.6,
+    "rain": 0.6,
+    "wind_speed": 17.2,
+    "weather_code": 53
+  },
+  "47.46_-0.53_2025-10-26_15": {
+    "temperature": 12.6,
+    "rain": 0.0,
+    "wind_speed": 17.2,
+    "weather_code": 3
+  },
+  "47.75_-3.36_2025-10-29_17": {
+    "temperature": 12.4,
+    "rain": 0.0,
+    "wind_speed": 13.3,
+    "weather_code": 0
+  },
+  "50.43_2.81_2025-11-02_16": {
+    "temperature": 11.1,
+    "rain": 0.0,
+    "wind_speed": 15.7,
+    "weather_code": 0
+  },
+  "47.26_-1.52_2025-11-23_16": {
+    "temperature": 11.2,
+    "rain": 1.0,
+    "wind_speed": 11.7,
+    "weather_code": 55
+  },
+  "47.26_-1.52_2025-08-30_17": {
+    "temperature": 20.4,
+    "rain": 0.0,
+    "wind_speed": 21.7,
+    "weather_code": 2
+  },
+  "47.79_3.59_2025-09-13_19": {
+    "temperature": 15.2,
+    "rain": 0.3,
+    "wind_speed": 16.2,
+    "weather_code": 51
+  },
+  "48.84_2.25_2025-09-27_19": {
+    "temperature": 13.2,
+    "rain": 0.0,
+    "wind_speed": 8.0,
+    "weather_code": 3
+  },
+  "47.79_3.59_2025-10-26_15": {
+    "temperature": 10.8,
+    "rain": 0.0,
+    "wind_speed": 17.1,
+    "weather_code": 3
+  },
+  "48.56_7.75_2025-10-29_19": {
+    "temperature": 13.4,
+    "rain": 0.0,
+    "wind_speed": 12.8,
+    "weather_code": 3
+  },
+  "47.79_3.59_2025-11-01_20": {
+    "temperature": 12.5,
+    "rain": 0.0,
+    "wind_speed": 14.0,
+    "weather_code": 3
+  },
+  "47.46_-0.53_2025-11-09_16": {
+    "temperature": 13.0,
+    "rain": 0.0,
+    "wind_speed": 10.5,
+    "weather_code": 1
+  },
+  "48.82_2.35_2025-11-29_18": {
+    "temperature": 10.6,
+    "rain": 1.1,
+    "wind_speed": 18.4,
+    "weather_code": 55
+  },
+  "47.79_3.59_2025-12-07_16": {
+    "temperature": 13.7,
+    "rain": 0.6,
+    "wind_speed": 22.4,
+    "weather_code": 53
+  },
+  "47.46_-0.53_2025-08-17_15": {
+    "temperature": 30.3,
+    "rain": 0.0,
+    "wind_speed": 10.6,
+    "weather_code": 0
+  },
+  "48.82_2.35_2025-08-31_15": {
+    "temperature": 18.9,
+    "rain": 1.0,
+    "wind_speed": 9.4,
+    "weather_code": 55
+  },
+  "48.82_2.35_2025-09-21_13": {
+    "temperature": 17.6,
+    "rain": 0.1,
+    "wind_speed": 5.2,
+    "weather_code": 51
+  },
+  "48.82_2.35_2025-10-24_18": {
+    "temperature": 10.9,
+    "rain": 0.0,
+    "wind_speed": 15.7,
+    "weather_code": 3
+  },
+  "48.82_2.35_2025-11-07_19": {
+    "temperature": 12.3,
+    "rain": 0.0,
+    "wind_speed": 8.4,
+    "weather_code": 1
+  },
+  "48.84_2.25_2025-08-22_18": {
+    "temperature": 20.0,
+    "rain": 0.0,
+    "wind_speed": 7.8,
+    "weather_code": 3
+  },
+  "45.77_4.98_2025-09-19_18": {
+    "temperature": 25.0,
+    "rain": 0.0,
+    "wind_speed": 16.2,
+    "weather_code": 0
+  },
+  "47.46_-0.53_2025-09-28_15": {
+    "temperature": 19.8,
+    "rain": 0.0,
+    "wind_speed": 7.0,
+    "weather_code": 1
+  },
+  "48.56_7.75_2025-10-05_15": {
+    "temperature": 13.1,
+    "rain": 0.0,
+    "wind_speed": 11.7,
+    "weather_code": 1
+  },
+  "50.61_3.13_2025-11-02_16": {
+    "temperature": 10.9,
+    "rain": 0.0,
+    "wind_speed": 16.6,
+    "weather_code": 0
+  },
+  "48.84_2.25_2025-10-17_18": {
+    "temperature": 13.5,
+    "rain": 0.0,
+    "wind_speed": 7.8,
+    "weather_code": 1
+  },
+  "50.43_2.81_2025-11-22_16": {
+    "temperature": 0.4,
+    "rain": 0.0,
+    "wind_speed": 20.2,
+    "weather_code": 3
+  },
+  "43.58_1.43_2025-12-06_18": {
+    "temperature": 12.0,
+    "rain": 0.0,
+    "wind_speed": 7.0,
+    "weather_code": 3
+  },
+  "45.77_4.98_2025-08-23_19": {
+    "temperature": 19.2,
+    "rain": 0.0,
+    "wind_speed": 11.9,
+    "weather_code": 1
+  },
+  "43.58_1.43_2025-10-19_15": {
+    "temperature": 20.5,
+    "rain": 0.0,
+    "wind_speed": 17.3,
+    "weather_code": 3
+  },
+  "43.27_5.40_2025-09-22_18": {
+    "temperature": 19.3,
+    "rain": 0.0,
+    "wind_speed": 10.8,
+    "weather_code": 0
+  },
+  "43.73_7.42_2025-11-29_16": {
+    "temperature": 10.9,
+    "rain": 0.0,
+    "wind_speed": 1.1,
+    "weather_code": 0
+  },
+  "47.26_-1.52_2025-08-17_18": {
+    "temperature": 30.0,
+    "rain": 0.0,
+    "wind_speed": 11.5,
+    "weather_code": 0
+  },
+  "48.56_7.75_2025-08-24_15": {
+    "temperature": 21.6,
+    "rain": 0.0,
+    "wind_speed": 5.2,
+    "weather_code": 0
+  },
+  "43.70_7.19_2025-09-13_15": {
+    "temperature": 22.7,
+    "rain": 0.0,
+    "wind_speed": 8.6,
+    "weather_code": 3
+  },
+  "47.26_-1.52_2025-10-19_18": {
+    "temperature": 16.4,
+    "rain": 0.2,
+    "wind_speed": 24.3,
+    "weather_code": 51
+  },
+  "47.26_-1.52_2025-11-02_16": {
+    "temperature": 13.6,
+    "rain": 0.0,
+    "wind_speed": 10.9,
+    "weather_code": 1
+  },
+  "45.77_4.98_2025-11-30_19": {
+    "temperature": 5.8,
+    "rain": 0.2,
+    "wind_speed": 0.6,
+    "weather_code": 51
+  }
+}
