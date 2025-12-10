@@ -1,0 +1,21 @@
+{
+  "scrape_date": "2025-12-10T12:44:38.433622",
+  "season": "2526",
+  "season_display": "2025/2026",
+  "total_matches": 694,
+  "leagues": [
+    "EPL",
+    "Bundesliga",
+    "Serie_A",
+    "La_Liga",
+    "Ligue_1"
+  ],
+  "matches_per_league": {
+    "Bundesliga": 117,
+    "EPL": 150,
+    "La_Liga": 152,
+    "Ligue_1": 135,
+    "Serie_A": 140
+  },
+  "teams_count": 96
+}
