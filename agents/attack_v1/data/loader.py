@@ -317,7 +317,15 @@ class AttackDataLoader:
                     team_data.gamestate_data = ctx['context_dna'].get('gameState', {})
                     team_data.attack_speed_data = ctx['context_dna'].get('attackSpeed', {})
                     team_data.formation_data = ctx['context_dna'].get('formation', {})
-                    
+
+                # ====== FIX: Récupérer matches et xG depuis context_dna ======
+                team_data.matches_played = ctx.get('matches', 0)
+                if 'history' in ctx:
+                    team_data.total_xg = ctx['history'].get('xg', 0.0)
+                    team_data.xg_per_90 = ctx['history'].get('xg_90', 0.0)
+                if 'record' in ctx:
+                    team_data.goals_per_90 = ctx['record'].get('goals_for', 0) / max(ctx.get('matches', 1), 1)
+
             # Agréger les buts
             team_goals = goals_by_team.get(team_name, [])
             team_data.total_goals = len(team_goals)
