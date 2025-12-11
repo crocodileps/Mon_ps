@@ -1,0 +1,55 @@
+{
+  "match_id": "Aston Villa_vs_Newcastle United_2025-08-15",
+  "generated_at": "2025-12-10T23:30:40.754476",
+  "signals_count": 2,
+  "signals": [
+    {
+      "match_id": "Aston Villa_vs_Newcastle United_2025-08-15",
+      "home_team": "Aston Villa",
+      "away_team": "Newcastle United",
+      "league": "Premier League",
+      "kickoff": "2025-08-15 15:00",
+      "market": "btts",
+      "selection": "no",
+      "probability": 0.64305676668,
+      "odds": 2.15,
+      "implied_prob": 0.46511627906976744,
+      "edge_brut": 0.17794048761023257,
+      "edge_net": 0.15294048761023257,
+      "confidence": 0.78611353336,
+      "kelly_fraction": 0.033247932089181,
+      "stake_pct": 0.03989751850701719,
+      "tier": "GOLD",
+      "reasoning": {},
+      "timestamp": "2025-12-10T23:30:40.754318"
+    },
+    {
+      "match_id": "Aston Villa_vs_Newcastle United_2025-08-15",
+      "home_team": "Aston Villa",
+      "away_team": "Newcastle United",
+      "league": "Premier League",
+      "kickoff": "2025-08-15 15:00",
+      "market": "1X2",
+      "selection": "away",
+      "probability": 0.4267869752844253,
+      "odds": 3.1,
+      "implied_prob": 0.3225806451612903,
+      "edge_brut": 0.10420633012313496,
+      "edge_net": 0.08420633012313496,
+      "confidence": 0.6464260494311495,
+      "kelly_fraction": 0.010024563109897019,
+      "stake_pct": 0.006014737865938211,
+      "tier": "GOLD",
+      "reasoning": {},
+      "timestamp": "2025-12-10T23:30:40.754245"
+    }
+  ],
+  "summary": {
+    "total_stake_pct": 0.0459122563729554,
+    "average_edge": 0.11857340886668377,
+    "markets": [
+      "1X2",
+      "btts"
+    ]
+  }
+}

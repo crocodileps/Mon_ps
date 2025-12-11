@@ -1,0 +1,76 @@
+{
+  "match_id": "Wolverhampton Wanderers_vs_Manchester City_2025-08-15",
+  "generated_at": "2025-12-10T23:30:40.760996",
+  "signals_count": 3,
+  "signals": [
+    {
+      "match_id": "Wolverhampton Wanderers_vs_Manchester City_2025-08-15",
+      "home_team": "Wolverhampton Wanderers",
+      "away_team": "Manchester City",
+      "league": "Premier League",
+      "kickoff": "2025-08-15 15:00",
+      "market": "1X2",
+      "selection": "home",
+      "probability": 0.294358407079646,
+      "odds": 6.5,
+      "implied_prob": 0.15384615384615385,
+      "edge_brut": 0.14051225323349215,
+      "edge_net": 0.12551225323349213,
+      "confidence": 0.911283185840708,
+      "kelly_fraction": 0.005705102419704188,
+      "stake_pct": 0.005134592177733769,
+      "tier": "ELITE",
+      "reasoning": {},
+      "timestamp": "2025-12-10T23:30:40.760893"
+    },
+    {
+      "match_id": "Wolverhampton Wanderers_vs_Manchester City_2025-08-15",
+      "home_team": "Wolverhampton Wanderers",
+      "away_team": "Manchester City",
+      "league": "Premier League",
+      "kickoff": "2025-08-15 15:00",
+      "market": "btts",
+      "selection": "no",
+      "probability": 0.631182666,
+      "odds": 2.0,
+      "implied_prob": 0.5,
+      "edge_brut": 0.13118266599999995,
+      "edge_net": 0.11118266599999994,
+      "confidence": 0.7623653319999999,
+      "kelly_fraction": 0.027795666499999986,
+      "stake_pct": 0.03335479979999998,
+      "tier": "ELITE",
+      "reasoning": {},
+      "timestamp": "2025-12-10T23:30:40.760924"
+    },
+    {
+      "match_id": "Wolverhampton Wanderers_vs_Manchester City_2025-08-15",
+      "home_team": "Wolverhampton Wanderers",
+      "away_team": "Manchester City",
+      "league": "Premier League",
+      "kickoff": "2025-08-15 15:00",
+      "market": "over_25",
+      "selection": "under",
+      "probability": 0.5065189873417721,
+      "odds": 2.35,
+      "implied_prob": 0.425531914893617,
+      "edge_brut": 0.08098707244815512,
+      "edge_net": 0.06598707244815512,
+      "confidence": 0.5130379746835443,
+      "kelly_fraction": 0.012219828231139835,
+      "stake_pct": 0.009775862584911869,
+      "tier": "ELITE",
+      "reasoning": {},
+      "timestamp": "2025-12-10T23:30:40.760913"
+    }
+  ],
+  "summary": {
+    "total_stake_pct": 0.04826525456264562,
+    "average_edge": 0.10089399722721575,
+    "markets": [
+      "1X2",
+      "over_25",
+      "btts"
+    ]
+  }
+}

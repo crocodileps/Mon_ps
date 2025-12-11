@@ -1,0 +1,55 @@
+{
+  "match_id": "Liverpool_vs_Bournemouth_2025-08-15",
+  "generated_at": "2025-12-10T23:30:40.751777",
+  "signals_count": 2,
+  "signals": [
+    {
+      "match_id": "Liverpool_vs_Bournemouth_2025-08-15",
+      "home_team": "Liverpool",
+      "away_team": "Bournemouth",
+      "league": "Premier League",
+      "kickoff": "2025-08-15 15:00",
+      "market": "btts",
+      "selection": "no",
+      "probability": 0.626079783,
+      "odds": 2.2,
+      "implied_prob": 0.45454545454545453,
+      "edge_brut": 0.17153432845454547,
+      "edge_net": 0.15153432845454548,
+      "confidence": 0.752159566,
+      "kelly_fraction": 0.031569651761363636,
+      "stake_pct": 0.030306865690909093,
+      "tier": "ELITE",
+      "reasoning": {},
+      "timestamp": "2025-12-10T23:30:40.751558"
+    },
+    {
+      "match_id": "Liverpool_vs_Bournemouth_2025-08-15",
+      "home_team": "Liverpool",
+      "away_team": "Bournemouth",
+      "league": "Premier League",
+      "kickoff": "2025-08-15 15:00",
+      "market": "over_25",
+      "selection": "under",
+      "probability": 0.5027215189873417,
+      "odds": 2.4,
+      "implied_prob": 0.4166666666666667,
+      "edge_brut": 0.08605485232067506,
+      "edge_net": 0.07105485232067506,
+      "confidence": 0.5054430379746835,
+      "kelly_fraction": 0.012688366485834832,
+      "stake_pct": 0.010150693188667867,
+      "tier": "ELITE",
+      "reasoning": {},
+      "timestamp": "2025-12-10T23:30:40.751511"
+    }
+  ],
+  "summary": {
+    "total_stake_pct": 0.04045755887957696,
+    "average_edge": 0.11129459038761028,
+    "markets": [
+      "over_25",
+      "btts"
+    ]
+  }
+}
