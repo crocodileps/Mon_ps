@@ -246,7 +246,7 @@ class AttackFeatureEngineerV3:
             
             if dna.mvp_share >= 40:
                 dna.dependency_profile = DependencyProfile.MVP_DEPENDENT
-                surname = top_scorer.player_name.split()[-1].upper()
+                surname = top_scorer.player_name.split()[-1].split('-')[0].upper()
                 tags.append(f"{surname}_DEPENDENT")
                 dna.warnings.append(f"Sans {top_scorer.player_name}: -40% threat")
             elif dna.top3_share >= 70:
