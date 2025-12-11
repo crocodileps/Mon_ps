@@ -205,6 +205,9 @@ class AttackFeatureEngineer:
             league=team.league,
             total_goals=team.total_goals,
             total_xg=team.total_xg,
+            matches_played=team.matches_played,
+            xg_per_90=team.xg_per_90,
+            goals_per_90=team.goals_per_90,
         )
         
         # Skip si pas assez de données
