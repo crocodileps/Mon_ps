@@ -372,3 +372,64 @@ if __name__ == "__main__":
     for home, away, ref in matchups:
         analysis = engine.analyze(home, away, ref)
         engine.print_analysis(analysis)
+
+
+# ═══════════════════════════════════════════════════════════════════
+# INTEGRATION PENALTY EDGE CALCULATOR
+# ═══════════════════════════════════════════════════════════════════
+
+from agents.chess_engine_v2.penalty_edge_calculator import PenaltyEdgeCalculator
+
+class ChessEngineV2Enhanced(ChessEngineV2):
+    """
+    Chess Engine V2 avec Penalty & Set Piece Edge Calculator intégré
+    """
+    
+    def __init__(self, verbose: bool = True):
+        super().__init__(verbose)
+        self.penalty_calc = PenaltyEdgeCalculator()
+        self.penalty_calc.load_data()
+        if verbose:
+            print(f"   • {len(self.penalty_calc.team_vulnerabilities)} teams (Vulnerability)")
+    
+    def analyze_enhanced(self, home_team: str, away_team: str, referee: str = None) -> MatchAnalysis:
+        """
+        Analyse complète avec Penalty/SetPiece edges
+        """
+        # Base analysis
+        analysis = self.analyze(home_team, away_team, referee)
+        
+        # Get referee H2 intensity
+        h2_intensity = 1.0
+        if referee:
+            ref_data = self.referee_integration.referees.get(referee, {})
+            h2_intensity = ref_data.get('second_half_intensity', 1.0)
+        
+        # Get penalty/set piece edges
+        penalty_edges = self.penalty_calc.get_all_edges(
+            home_team, away_team, h2_intensity
+        )
+        
+        # Add to signals
+        for edge in penalty_edges:
+            if edge.edge_pct >= 2.5:  # Only significant edges
+                analysis.signals.append(BettingSignal(
+                    market=edge.market,
+                    prediction=edge.prediction,
+                    probability=edge.probability,
+                    edge_pct=edge.edge_pct,
+                    confidence=edge.confidence,
+                    source="SET_PIECE",
+                    reasoning=edge.reasoning
+                ))
+        
+        # Get vulnerability context
+        home_vuln = self.penalty_calc.get_team_vulnerability(home_team)
+        away_vuln = self.penalty_calc.get_team_vulnerability(away_team)
+        
+        if home_vuln:
+            analysis.home_vulnerabilities = home_vuln.to_dict()
+        if away_vuln:
+            analysis.away_vulnerabilities = away_vuln.to_dict()
+        
+        return analysis
