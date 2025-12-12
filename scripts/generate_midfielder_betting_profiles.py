@@ -199,6 +199,108 @@ COLLISION_SCENARIOS = {
 }
 
 
+# ============================================================
+# CONFIGURATION SOUS-RÔLES MILIEUX (V2)
+# ============================================================
+
+MIDFIELDER_SUB_ROLE_CONFIG = {
+    "SENTINELLE": {
+        "ANCHOR": {
+            "description": "Pure defensive pivot, shield in front of defense",
+            "examples": ["Rodri", "Casemiro", "Ndidi"],
+            "key_metrics": ["tackles", "interceptions", "ball_recoveries"],
+            "betting_markets": ["clean_sheet", "under_goals", "team_fouls_over"],
+            "absence_impact": {
+                "xGA_increase": "+45%",
+                "clean_sheet_prob": "-30%",
+                "midfield_control": "-25%"
+            }
+        },
+        "REGISTA": {
+            "description": "Creative sentinel, tempo dictator from deep",
+            "examples": ["Jorginho", "Busquets", "Fabinho"],
+            "key_metrics": ["progressive_passes", "pass_completion", "touches"],
+            "betting_markets": ["team_possession", "under_goals", "passes_completed_over"],
+            "absence_impact": {
+                "possession_loss": "-12%",
+                "build_up_quality": "-25%",
+                "tempo_control": "-30%"
+            }
+        }
+    },
+    "BOX_TO_BOX": {
+        "DESTROYER": {
+            "description": "Aggressive ball winner, disruptor",
+            "examples": ["Kante", "Ndidi", "Bissouma"],
+            "key_metrics": ["tackles", "fouls", "ball_recoveries"],
+            "betting_markets": ["player_card", "over_fouls", "tackles_over"],
+            "absence_impact": {
+                "pressing_intensity": "-35%",
+                "ball_recoveries": "-40%",
+                "opponent_possession": "+10%"
+            }
+        },
+        "CARRIER": {
+            "description": "Ball carrier, transition specialist",
+            "examples": ["Valverde", "Barella", "Bellingham"],
+            "key_metrics": ["progressive_carries", "dribbles", "distance"],
+            "betting_markets": ["btts_yes", "team_goals_over", "first_goal_time"],
+            "absence_impact": {
+                "transition_speed": "-35%",
+                "counter_attack_threat": "-30%",
+                "verticality": "-25%"
+            }
+        },
+        "WORKHORSE": {
+            "description": "High volume runner, covers every blade of grass",
+            "examples": ["Gavi", "McTominay", "Gallagher"],
+            "key_metrics": ["distance", "sprints", "duels"],
+            "betting_markets": ["over_cards_match", "total_fouls", "btts"],
+            "absence_impact": {
+                "work_rate": "-30%",
+                "pressing_coverage": "-25%",
+                "duels_won": "-20%"
+            }
+        }
+    },
+    "MENEUR": {
+        "CLASSIC_10": {
+            "description": "Traditional playmaker, chance creator",
+            "examples": ["Bruno Fernandes", "De Bruyne", "Odegaard"],
+            "key_metrics": ["key_passes", "xA", "through_balls"],
+            "betting_markets": ["assists_anytime", "team_goals_over", "first_assist"],
+            "absence_impact": {
+                "team_xG": "-30%",
+                "chance_creation": "-40%",
+                "final_third_entries": "-25%"
+            }
+        },
+        "SHADOW_STRIKER": {
+            "description": "Second striker, goals AND assists",
+            "examples": ["Muller", "Griezmann", "Maddison"],
+            "key_metrics": ["goals", "xA", "shots"],
+            "betting_markets": ["anytime_scorer", "assists", "shots_on_target_over"],
+            "absence_impact": {
+                "team_goals": "-25%",
+                "attacking_threat": "-35%",
+                "box_entries": "-20%"
+            }
+        },
+        "DEEP_LYING": {
+            "description": "Deep creator, possession anchor",
+            "examples": ["Pedri", "Verratti", "Thiago"],
+            "key_metrics": ["pass_completion", "progressive_passes", "touches"],
+            "betting_markets": ["team_possession", "under_goals", "passes_over"],
+            "absence_impact": {
+                "possession": "-15%",
+                "tempo_control": "-30%",
+                "build_up_fluidity": "-25%"
+            }
+        }
+    }
+}
+
+
 def load_unified_data() -> Dict:
     """Charge les données unifiées des joueurs"""
     logger.info(f"Chargement de {INPUT_FILE}...")
@@ -253,12 +355,12 @@ def get_stat_value(player: Dict, stat_name: str) -> float:
         return float(derived.get(stat_name, 0) or 0)
 
     # Impact (données understat enrichies)
-    impact = player.get('impact', {})
+    impact = player.get('impact', {}) or {}
     if stat_name in impact:
         return float(impact.get(stat_name, 0) or 0)
 
     # Understat direct
-    understat = player.get('understat', {})
+    understat = player.get('understat', {}) or {}
     if stat_name in understat:
         return float(understat.get(stat_name, 0) or 0)
 
@@ -352,85 +454,194 @@ def get_xA_per_90(player: Dict, minutes_90: float) -> float:
 def classify_midfielder_role(player: Dict, minutes_90: float) -> Tuple[str, float]:
     """
     Classifie automatiquement le rôle du milieu
-    Returns: (role, confidence)
+
+    SENTINELLE (N°6): Rodri, Tchouaméni, Casemiro, Rice, Jorginho
+    BOX_TO_BOX (N°8): Valverde, Barella, Gavi, McTominay
+    MENEUR (N°10): Bruno Fernandes, De Bruyne, Pedri, Bellingham
+
+    V2: Seuils adaptés aux DM modernes qui:
+    - Font MOINS de tacles (équipe domine possession)
+    - Font PLUS de passes progressives (style Pep)
+    - Mais restent des SENTINELLES par leur rôle défensif
     """
-    # Extraire les stats clés
+    sentinelle_score = 0
+    box_to_box_score = 0
+    meneur_score = 0
+
+    # Récupérer les métriques clés
     tackles = get_per_90_stat(player, 'tackles', minutes_90)
-    tackles_won = get_per_90_stat(player, 'tackles_won', minutes_90)
     interceptions = get_per_90_stat(player, 'interceptions', minutes_90)
     ball_recoveries = get_per_90_stat(player, 'ball_recoveries', minutes_90)
     key_passes = get_per_90_stat(player, 'key_passes', minutes_90)
-    progressive_carries = get_per_90_stat(player, 'progressive_carries', minutes_90)
     progressive_passes = get_per_90_stat(player, 'progressive_passes', minutes_90)
+    progressive_carries = get_per_90_stat(player, 'progressive_carries', minutes_90)
 
-    # xA depuis TOUTES les sources (attacking > style > impact > fbref > understat)
     xA_per_90 = get_xA_per_90(player, minutes_90)
 
     # SCA depuis fbref
     sca = get_per_90_stat(player, 'shot_creating_actions', minutes_90)
 
-    # Scores pour chaque rôle
-    sentinelle_score = 0
-    meneur_score = 0
-    box_to_box_score = 0
+    # Goals
+    goals_per_90 = get_per_90_stat(player, 'goals', minutes_90)
 
-    # SENTINELLE scoring
-    if tackles >= 2.0:
+    # ============================================================
+    # SENTINELLE (N°6) - Adapté aux DM modernes (Rodri, Rice)
+    # ============================================================
+
+    # Critère défensif combiné (tackles + interceptions)
+    # DM modernes: moins de tacles individuels mais présence défensive
+    defensive_actions = tackles + interceptions
+    if defensive_actions >= 3.0:
+        sentinelle_score += 35
+    elif defensive_actions >= 2.3:
         sentinelle_score += 25
-    if interceptions >= 0.8:
-        sentinelle_score += 25
-    if ball_recoveries >= 4.0:
-        sentinelle_score += 25
-    if key_passes < 1.5:
+    elif defensive_actions >= 1.8:
         sentinelle_score += 15
-    if xA_per_90 < 0.15:
+
+    # Ball recoveries - Critère CLÉ pour DM modernes
+    if ball_recoveries >= 6.5:
+        sentinelle_score += 35
+    elif ball_recoveries >= 5.5:
+        sentinelle_score += 28
+    elif ball_recoveries >= 4.5:
+        sentinelle_score += 20
+    elif ball_recoveries >= 3.5:
         sentinelle_score += 10
 
-    # MENEUR scoring (N°10) - Créateur, passeur décisif
-    # Bonus progressif key_passes (indicateur principal créativité)
-    if key_passes >= 2.5:
-        meneur_score += 45  # Très créatif = fort bonus
-    elif key_passes >= 1.5:
+    # Tackles seuls (seuil abaissé pour DM possession)
+    if tackles >= 2.5:
+        sentinelle_score += 20
+    elif tackles >= 1.8:  # Rodri = 1.82
+        sentinelle_score += 12
+    elif tackles >= 1.3:
+        sentinelle_score += 5
+
+    # Interceptions
+    if interceptions >= 1.5:
+        sentinelle_score += 18
+    elif interceptions >= 1.0:
+        sentinelle_score += 10
+    elif interceptions >= 0.6:
+        sentinelle_score += 5
+
+    # BONUS: DM créatif type Rodri/Jorginho (passes progressives élevées mais défensif)
+    if progressive_passes >= 6.0 and defensive_actions >= 2.0:
+        sentinelle_score += 15  # Bonus "Regista potential"
+
+    # Pénalité si trop offensif (mais moins sévère pour DM modernes)
+    if xA_per_90 >= 0.25:
+        sentinelle_score -= 30  # Clairement un meneur
+    elif xA_per_90 >= 0.18:
+        sentinelle_score -= 15
+
+    # Pénalité si beaucoup de buts (pas un DM)
+    if goals_per_90 >= 0.25:
+        sentinelle_score -= 25
+    elif goals_per_90 >= 0.15:
+        sentinelle_score -= 10
+
+    # ============================================================
+    # MENEUR (N°10) - Créateur, passeur décisif
+    # ============================================================
+
+    # Bonus progressif key_passes
+    if key_passes >= 2.8:
+        meneur_score += 50
+    elif key_passes >= 2.3:
+        meneur_score += 40
+    elif key_passes >= 1.8:
         meneur_score += 25
-    # xA (assists attendus)
-    if xA_per_90 >= 0.20:
-        meneur_score += 30
-    elif xA_per_90 >= 0.12:
-        meneur_score += 20
+    elif key_passes >= 1.4:
+        meneur_score += 12
+
+    # xA - Critère CLÉ pour différencier MENEUR
+    if xA_per_90 >= 0.28:
+        meneur_score += 50
+    elif xA_per_90 >= 0.20:
+        meneur_score += 38
+    elif xA_per_90 >= 0.15:
+        meneur_score += 25
+    elif xA_per_90 >= 0.10:
+        meneur_score += 12
+
     # Shot Creating Actions
-    if sca >= 4.0:
-        meneur_score += 25
-    elif sca >= 2.5:
-        meneur_score += 15
-    # Passes progressives
-    if progressive_passes >= 6.0:
-        meneur_score += 15
-    elif progressive_passes >= 4.0:
-        meneur_score += 8
-    # Bonus si peu défensif (profil offensif)
-    if tackles < 2.0:
+    if sca >= 5.0:
+        meneur_score += 30
+    elif sca >= 4.0:
+        meneur_score += 22
+    elif sca >= 3.0:
+        meneur_score += 12
+
+    # Passes progressives (bonus si très élevé pour MENEUR)
+    if progressive_passes >= 8.0:
+        meneur_score += 18
+    elif progressive_passes >= 6.5:
         meneur_score += 10
 
-    # BOX_TO_BOX scoring (N°8) - Hybride, polyvalent
-    if progressive_carries >= 1.0:
-        box_to_box_score += 20
-    if 1.0 <= tackles <= 3.0:
-        box_to_box_score += 20
-    if 0.5 <= key_passes <= 2.5:
-        box_to_box_score += 20
-    if ball_recoveries >= 3.0:
-        box_to_box_score += 20
-    if progressive_passes >= 3.0:
-        box_to_box_score += 20
-    # PÉNALITÉS si trop offensif (devrait être MENEUR)
-    if key_passes >= 2.5:
-        box_to_box_score -= 25  # Trop créatif pour B2B
-    if xA_per_90 >= 0.20:
-        box_to_box_score -= 20  # Trop de xA pour B2B
-    if sca >= 4.0:
-        box_to_box_score -= 15  # Trop de création
+    # Bonus si peu défensif (profil offensif pur)
+    if tackles < 1.5:
+        meneur_score += 12
+    if defensive_actions < 2.0:
+        meneur_score += 8
 
-    # Déterminer le rôle
+    # ============================================================
+    # BOX_TO_BOX (N°8) - Hybride, polyvalent
+    # ============================================================
+
+    # Progressive carries - Critère CLÉ B2B
+    if progressive_carries >= 3.5:
+        box_to_box_score += 35
+    elif progressive_carries >= 2.5:
+        box_to_box_score += 25
+    elif progressive_carries >= 1.8:
+        box_to_box_score += 15
+    elif progressive_carries >= 1.2:
+        box_to_box_score += 8
+
+    # Tackles dans fourchette B2B (ni trop défensif, ni trop offensif)
+    if 1.5 <= tackles <= 2.8:
+        box_to_box_score += 22
+    elif 1.0 <= tackles <= 3.2:
+        box_to_box_score += 12
+
+    # Ball recoveries
+    if 4.0 <= ball_recoveries <= 6.0:
+        box_to_box_score += 18
+    elif ball_recoveries >= 3.5:
+        box_to_box_score += 10
+
+    # Passes progressives
+    if 4.0 <= progressive_passes <= 7.0:
+        box_to_box_score += 18
+    elif progressive_passes >= 3.0:
+        box_to_box_score += 10
+
+    # Key passes modérées (ni DM pur, ni meneur pur)
+    if 0.8 <= key_passes <= 2.0:
+        box_to_box_score += 15
+
+    # PÉNALITÉS B2B si trop spécialisé
+
+    # Trop offensif → MENEUR
+    if xA_per_90 >= 0.22:
+        box_to_box_score -= 25
+    elif xA_per_90 >= 0.18:
+        box_to_box_score -= 12
+
+    if key_passes >= 2.5:
+        box_to_box_score -= 20
+
+    # Trop défensif → SENTINELLE
+    if tackles >= 3.0 and key_passes < 1.0:
+        box_to_box_score -= 15
+
+    if ball_recoveries >= 6.5 and progressive_carries < 1.5:
+        box_to_box_score -= 12
+
+    # ============================================================
+    # DÉTERMINER LE GAGNANT
+    # ============================================================
+
     scores = {
         'SENTINELLE': sentinelle_score,
         'BOX_TO_BOX': box_to_box_score,
@@ -439,15 +650,255 @@ def classify_midfielder_role(player: Dict, minutes_90: float) -> Tuple[str, floa
 
     best_role = max(scores, key=scores.get)
     max_score = scores[best_role]
+    total = sum(scores.values())
 
-    # Confidence basée sur la différence avec le 2ème
-    sorted_scores = sorted(scores.values(), reverse=True)
-    if sorted_scores[0] > 0:
-        confidence = min(1.0, (sorted_scores[0] - sorted_scores[1]) / sorted_scores[0] + 0.5)
-    else:
-        confidence = 0.5
+    # Confidence basée sur la marge
+    confidence = max_score / total if total > 0 else 0.33
 
     return best_role, round(confidence, 2)
+
+
+def classify_midfielder_sub_role(player: Dict, minutes_90: float, primary_role: str) -> Tuple[str, float]:
+    """
+    Classifie le sous-rôle du milieu selon son rôle principal
+
+    SENTINELLE → ANCHOR / REGISTA
+    BOX_TO_BOX → DESTROYER / CARRIER / WORKHORSE
+    MENEUR → CLASSIC_10 / SHADOW_STRIKER / DEEP_LYING
+
+    Returns: (sub_role, confidence)
+    """
+    # Récupérer les métriques
+    tackles = get_per_90_stat(player, 'tackles', minutes_90)
+    interceptions = get_per_90_stat(player, 'interceptions', minutes_90)
+    ball_recoveries = get_per_90_stat(player, 'ball_recoveries', minutes_90)
+    fouls = get_per_90_stat(player, 'fouls', minutes_90)
+
+    key_passes = get_per_90_stat(player, 'key_passes', minutes_90)
+    progressive_passes = get_per_90_stat(player, 'progressive_passes', minutes_90)
+    progressive_carries = get_per_90_stat(player, 'progressive_carries', minutes_90)
+
+    xA_per_90 = get_xA_per_90(player, minutes_90)
+    goals_per_90 = get_per_90_stat(player, 'goals', minutes_90)
+    shots = get_per_90_stat(player, 'shots', minutes_90)
+    dribbles = get_per_90_stat(player, 'dribbles_completed', minutes_90)
+    touches = get_per_90_stat(player, 'touches', minutes_90)
+
+    # Pass completion
+    fbref = player.get('fbref', {})
+    passing = fbref.get('passing', {})
+    pass_completion = float(passing.get('pass_completion_pct', 0) or 0)
+
+    if primary_role == "SENTINELLE":
+        anchor_score = 0
+        regista_score = 0
+
+        # ANCHOR: Défensif pur
+        if tackles >= 3.0:
+            anchor_score += 45
+        elif tackles >= 2.5:
+            anchor_score += 35
+        elif tackles >= 2.0:
+            anchor_score += 20
+
+        if interceptions >= 2.0:
+            anchor_score += 35
+        elif interceptions >= 1.5:
+            anchor_score += 25
+        elif interceptions >= 1.0:
+            anchor_score += 12
+
+        if ball_recoveries >= 6.0:
+            anchor_score += 30
+        elif ball_recoveries >= 4.5:
+            anchor_score += 18
+
+        # Pénalité si trop créatif
+        if key_passes >= 1.5:
+            anchor_score -= 20
+        if progressive_passes >= 6.0:
+            anchor_score -= 15
+
+        # REGISTA: Créatif depuis l'arrière
+        if pass_completion >= 92:
+            regista_score += 40
+        elif pass_completion >= 90:
+            regista_score += 30
+        elif pass_completion >= 88:
+            regista_score += 15
+
+        if progressive_passes >= 7.0:
+            regista_score += 45
+        elif progressive_passes >= 5.5:
+            regista_score += 30
+        elif progressive_passes >= 4.0:
+            regista_score += 15
+
+        if touches >= 70:
+            regista_score += 25
+        elif touches >= 55:
+            regista_score += 12
+
+        # Bonus régista si passes créatives
+        if key_passes >= 1.0:
+            regista_score += 15
+
+        scores = {"ANCHOR": anchor_score, "REGISTA": regista_score}
+
+    elif primary_role == "BOX_TO_BOX":
+        destroyer_score = 0
+        carrier_score = 0
+        workhorse_score = 0
+
+        # DESTROYER: Récupérateur agressif
+        if tackles >= 3.5:
+            destroyer_score += 50
+        elif tackles >= 2.8:
+            destroyer_score += 35
+        elif tackles >= 2.2:
+            destroyer_score += 20
+
+        if fouls >= 2.0:
+            destroyer_score += 30
+        elif fouls >= 1.5:
+            destroyer_score += 20
+        elif fouls >= 1.0:
+            destroyer_score += 10
+
+        if ball_recoveries >= 6.0:
+            destroyer_score += 25
+        elif ball_recoveries >= 4.5:
+            destroyer_score += 15
+
+        # Pénalité si trop offensif
+        if progressive_carries >= 3.0:
+            destroyer_score -= 25
+        if key_passes >= 1.5:
+            destroyer_score -= 15
+
+        # CARRIER: Porteur de balle
+        if progressive_carries >= 4.0:
+            carrier_score += 50
+        elif progressive_carries >= 3.0:
+            carrier_score += 38
+        elif progressive_carries >= 2.0:
+            carrier_score += 22
+
+        if dribbles >= 1.5:
+            carrier_score += 35
+        elif dribbles >= 1.0:
+            carrier_score += 22
+        elif dribbles >= 0.5:
+            carrier_score += 10
+
+        # Bonus si contribue aussi en attaque
+        if xA_per_90 >= 0.10:
+            carrier_score += 20
+        if key_passes >= 1.0:
+            carrier_score += 15
+
+        # WORKHORSE: Volume, équilibre
+        def_score = (tackles / 3.0 + interceptions / 2.0 + ball_recoveries / 6.0) * 33
+        off_score = (key_passes / 2.0 + progressive_carries / 3.0 + xA_per_90 / 0.15) * 33
+
+        balance = min(def_score, off_score) / max(def_score, off_score) if max(def_score, off_score) > 0 else 0
+
+        if balance >= 0.7:  # Très équilibré
+            workhorse_score += 50
+        elif balance >= 0.5:
+            workhorse_score += 35
+        elif balance >= 0.35:
+            workhorse_score += 20
+
+        if 1.8 <= tackles <= 2.8:
+            workhorse_score += 20
+        if ball_recoveries >= 4.5:
+            workhorse_score += 15
+        if 1.0 <= progressive_carries <= 2.5:
+            workhorse_score += 15
+
+        scores = {"DESTROYER": destroyer_score, "CARRIER": carrier_score, "WORKHORSE": workhorse_score}
+
+    else:  # MENEUR
+        classic_10_score = 0
+        shadow_striker_score = 0
+        deep_lying_score = 0
+
+        # CLASSIC_10: Playmaker traditionnel
+        if key_passes >= 3.0:
+            classic_10_score += 50
+        elif key_passes >= 2.5:
+            classic_10_score += 40
+        elif key_passes >= 2.0:
+            classic_10_score += 25
+
+        if xA_per_90 >= 0.25:
+            classic_10_score += 45
+        elif xA_per_90 >= 0.18:
+            classic_10_score += 32
+        elif xA_per_90 >= 0.12:
+            classic_10_score += 18
+
+        # Pénalité si trop buteur
+        if goals_per_90 >= 0.4:
+            classic_10_score -= 25
+        elif goals_per_90 >= 0.3:
+            classic_10_score -= 10
+
+        # SHADOW_STRIKER: Second attaquant
+        if goals_per_90 >= 0.45:
+            shadow_striker_score += 55
+        elif goals_per_90 >= 0.35:
+            shadow_striker_score += 42
+        elif goals_per_90 >= 0.25:
+            shadow_striker_score += 28
+
+        if shots >= 3.0:
+            shadow_striker_score += 35
+        elif shots >= 2.2:
+            shadow_striker_score += 22
+        elif shots >= 1.5:
+            shadow_striker_score += 12
+
+        # Bonus si aussi passeur (vrai shadow striker)
+        if xA_per_90 >= 0.12:
+            shadow_striker_score += 20
+
+        # DEEP_LYING: Créateur reculé
+        if pass_completion >= 92:
+            deep_lying_score += 45
+        elif pass_completion >= 90:
+            deep_lying_score += 32
+        elif pass_completion >= 88:
+            deep_lying_score += 18
+
+        if progressive_passes >= 9.0:
+            deep_lying_score += 45
+        elif progressive_passes >= 7.0:
+            deep_lying_score += 32
+        elif progressive_passes >= 5.5:
+            deep_lying_score += 18
+
+        if touches >= 85:
+            deep_lying_score += 30
+        elif touches >= 70:
+            deep_lying_score += 18
+
+        # Pénalité si trop direct (pas deep lying)
+        if key_passes >= 2.8:
+            deep_lying_score -= 20
+        if shots >= 2.0:
+            deep_lying_score -= 15
+
+        scores = {"CLASSIC_10": classic_10_score, "SHADOW_STRIKER": shadow_striker_score, "DEEP_LYING": deep_lying_score}
+
+    # Déterminer le gagnant
+    best_sub_role = max(scores, key=scores.get)
+    max_score = scores[best_sub_role]
+    total_score = sum(scores.values())
+    confidence = max_score / total_score if total_score > 0 else 0.5
+
+    return best_sub_role, round(confidence, 2)
 
 
 def calculate_role_metrics(player: Dict, role: str, minutes_90: float) -> Dict:
@@ -779,8 +1230,11 @@ def generate_midfielder_profile(name: str, player: Dict) -> Optional[Dict]:
     if minutes_90 < 3.0:
         return None
 
-    # Classification du rôle
+    # Classification du rôle principal
     role, role_confidence = classify_midfielder_role(player, minutes_90)
+
+    # Classification du sous-rôle
+    sub_role, sub_role_confidence = classify_midfielder_sub_role(player, minutes_90, role)
 
     # Métriques par rôle
     role_metrics = calculate_role_metrics(player, role, minutes_90)
@@ -811,17 +1265,23 @@ def generate_midfielder_profile(name: str, player: Dict) -> Optional[Dict]:
     if not league:
         league = fbref.get('league', player.get('league', 'Unknown'))
 
+    # Get sub_role config for betting insights
+    sub_role_config = MIDFIELDER_SUB_ROLE_CONFIG.get(role, {}).get(sub_role, {})
+
     return {
         'meta': {
             'name': name,
             'team': team,
             'league': league,
             'position': position,
-            'role': role,
+            'primary_role': role,
+            'sub_role': sub_role,
             'role_confidence': role_confidence,
+            'sub_role_confidence': sub_role_confidence,
             'minutes_90': round(minutes_90, 1)
         },
         'role_metrics': {role: role_metrics},
+        'sub_role_config': sub_role_config,
         'tempo_control': tempo,
         'discipline_profile': discipline,
         'absence_shock': absence_shock,
@@ -855,7 +1315,8 @@ def main():
     stats = {
         'total_processed': 0,
         'total_midfielders': 0,
-        'by_role': defaultdict(int),
+        'by_primary_role': defaultdict(int),
+        'by_sub_role': defaultdict(int),
         'by_league': defaultdict(int),
         'by_dependency': defaultdict(int)
     }
@@ -867,7 +1328,10 @@ def main():
         if profile:
             profiles[name] = profile
             stats['total_midfielders'] += 1
-            stats['by_role'][profile['meta']['role']] += 1
+            primary_role = profile['meta']['primary_role']
+            sub_role = profile['meta']['sub_role']
+            stats['by_primary_role'][primary_role] += 1
+            stats['by_sub_role'][f"{primary_role}_{sub_role}"] += 1
             stats['by_league'][profile['meta']['league']] += 1
             stats['by_dependency'][profile['absence_shock']['dependency_profile']] += 1
 
@@ -877,11 +1341,12 @@ def main():
             'generated_at': datetime.now().isoformat(),
             'source': 'player_dna_unified.json',
             'total_midfielders': stats['total_midfielders'],
-            'version': '1.0',
+            'version': '2.0',
             'paradigm': 'TEAM_CENTRIC_ADN'
         },
         'statistics': {
-            'by_role': dict(stats['by_role']),
+            'by_primary_role': dict(stats['by_primary_role']),
+            'by_sub_role': dict(stats['by_sub_role']),
             'by_league': dict(stats['by_league']),
             'by_dependency': dict(stats['by_dependency'])
         },
@@ -899,9 +1364,15 @@ def main():
     logger.info("=" * 70)
     logger.info(f"\nTotal milieux profilés: {stats['total_midfielders']}")
 
-    logger.info("\nPar rôle:")
-    for role, count in sorted(stats['by_role'].items()):
-        logger.info(f"   {role}: {count}")
+    logger.info("\nPar rôle principal:")
+    for role, count in sorted(stats['by_primary_role'].items()):
+        pct = count / stats['total_midfielders'] * 100
+        logger.info(f"   {role}: {count} ({pct:.1f}%)")
+
+    logger.info("\nPar sous-rôle:")
+    for sub_role, count in sorted(stats['by_sub_role'].items(), key=lambda x: -x[1]):
+        pct = count / stats['total_midfielders'] * 100
+        logger.info(f"   {sub_role}: {count} ({pct:.1f}%)")
 
     logger.info("\nPar ligue:")
     for league, count in sorted(stats['by_league'].items(), key=lambda x: -x[1])[:10]:
@@ -920,8 +1391,9 @@ def main():
     for ex_name in examples:
         for name, profile in profiles.items():
             if ex_name.lower() in name.lower():
-                logger.info(f"\n{profile['meta']['name']} ({profile['meta']['team']})")
-                logger.info(f"   Rôle: {profile['meta']['role']} (conf: {profile['meta']['role_confidence']})")
+                meta = profile['meta']
+                logger.info(f"\n{meta['name']} ({meta['team']})")
+                logger.info(f"   Rôle: {meta['primary_role']}/{meta['sub_role']} (conf: {meta['role_confidence']}/{meta['sub_role_confidence']})")
                 logger.info(f"   Absence Shock: {profile['absence_shock']['dependency_profile']} ({profile['absence_shock']['dependency_score']})")
                 if profile['betting_hints']['boosts']:
                     logger.info(f"   Boosts: {profile['betting_hints']['boosts'][0]}")
