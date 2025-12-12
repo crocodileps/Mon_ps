@@ -1,0 +1,110 @@
+{
+  "version": "V5",
+  "calibration": {
+    "sigmoid_center": 0.38,
+    "sigmoid_steepness": 0.18,
+    "max_prob": 0.7,
+    "min_prob": 0.15
+  },
+  "supply_chain": {
+    "affected_styles": [
+      "POACHER",
+      "CLINICAL"
+    ],
+    "pressing_threshold": 70,
+    "isolation_malus": -0.08
+  },
+  "signal_thresholds": {
+    "STRONG_BET": 0.12,
+    "BET": 0.06,
+    "LEAN": 0.03,
+    "MONITOR": -0.02
+  },
+  "test_results": [
+    {
+      "attacker": "Harry Kane",
+      "attacker_style": "POACHER",
+      "defense_team": "Nottingham Forest",
+      "defense_style": "DEEP_BLOCK",
+      "base_prob": 44.8,
+      "weakness_bonus": 4.0,
+      "tactical_mod": -5.0,
+      "friction_bonus": 9.2,
+      "isolation_malus": -8.0,
+      "raw_prob": 44.9,
+      "calibrated_prob": 56.3,
+      "final_prob": 56.3,
+      "market_prob": 45.0,
+      "edge": 11.3,
+      "signal": "BET"
+    },
+    {
+      "attacker": "Erling Haaland",
+      "attacker_style": "POACHER",
+      "defense_team": "Arsenal",
+      "defense_style": "MID_BLOCK",
+      "base_prob": 46.4,
+      "weakness_bonus": -5.6,
+      "tactical_mod": 0.0,
+      "friction_bonus": 2.1,
+      "isolation_malus": -8.0,
+      "raw_prob": 34.9,
+      "calibrated_prob": 29.5,
+      "final_prob": 29.5,
+      "market_prob": 50.0,
+      "edge": -20.5,
+      "signal": "SKIP"
+    },
+    {
+      "attacker": "Kylian Mbappe-Lottin",
+      "attacker_style": "VOLUME_SHOOTER",
+      "defense_team": "Atletico Madrid",
+      "defense_style": "DEEP_BLOCK",
+      "base_prob": 40.8,
+      "weakness_bonus": -0.3,
+      "tactical_mod": 5.0,
+      "friction_bonus": 2.5,
+      "isolation_malus": 0.0,
+      "raw_prob": 47.9,
+      "calibrated_prob": 63.1,
+      "final_prob": 63.1,
+      "market_prob": 40.0,
+      "edge": 23.1,
+      "signal": "STRONG_BET"
+    },
+    {
+      "attacker": "Mohamed Salah",
+      "attacker_style": "PLAYMAKER",
+      "defense_team": "Wolves",
+      "defense_style": "DEEP_BLOCK",
+      "base_prob": 33.9,
+      "weakness_bonus": 0.0,
+      "tactical_mod": -8.0,
+      "friction_bonus": 5.0,
+      "isolation_malus": 0.0,
+      "raw_prob": 30.9,
+      "calibrated_prob": 19.3,
+      "final_prob": 19.3,
+      "market_prob": 42.0,
+      "edge": -22.7,
+      "signal": "SKIP"
+    },
+    {
+      "attacker": "Bruno Fernandes",
+      "attacker_style": "PLAYMAKER",
+      "defense_team": "Paris Saint Germain",
+      "defense_style": "HIGH_LINE",
+      "base_prob": 37.7,
+      "weakness_bonus": -3.9,
+      "tactical_mod": 5.0,
+      "friction_bonus": 0.6,
+      "isolation_malus": 0.0,
+      "raw_prob": 39.3,
+      "calibrated_prob": 41.7,
+      "final_prob": 41.7,
+      "market_prob": 35.0,
+      "edge": 6.7,
+      "signal": "BET"
+    }
+  ]
+}

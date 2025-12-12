@@ -1,0 +1,1442 @@
+{
+  "Aston Villa": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Everton": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Bournemouth": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Sunderland": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Crystal Palace": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Chelsea": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "West Ham": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Tottenham": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Arsenal": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Newcastle United": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Liverpool": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Manchester City": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Manchester United": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Burnley": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Brighton": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Fulham": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Wolverhampton Wanderers": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Brentford": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Leeds": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Nottingham Forest": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Sevilla": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Real Sociedad": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Espanyol": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Getafe": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Atletico Madrid": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Rayo Vallecano": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Valencia": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Athletic Club": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Barcelona": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Real Madrid": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Levante": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Celta Vigo": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Real Betis": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Villarreal": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Osasuna": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Alaves": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Elche": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Girona": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Mallorca": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Real Oviedo": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Bayern Munich": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Hamburger SV": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Bayer Leverkusen": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Hoffenheim": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Augsburg": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Werder Bremen": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Mainz 05": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Borussia Dortmund": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Borussia M.Gladbach": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Wolfsburg": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Eintracht Frankfurt": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "VfB Stuttgart": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "FC Cologne": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Freiburg": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "RasenBallsport Leipzig": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Union Berlin": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "FC Heidenheim": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "St. Pauli": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Verona": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Roma": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Lazio": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Bologna": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Juventus": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Udinese": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Genoa": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Sassuolo": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Napoli": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Inter": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Atalanta": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Fiorentina": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "AC Milan": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Torino": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Cagliari": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Parma Calcio 1913": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Lecce": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Cremonese": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Como": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Pisa": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Lille": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Paris Saint Germain": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Rennes": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Marseille": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Angers": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Nantes": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Nice": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Monaco": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Toulouse": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Lyon": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Lorient": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Metz": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Lens": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Strasbourg": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Brest": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Auxerre": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Le Havre": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  },
+  "Paris FC": {
+    "behavior": "COLLAPSE_LEADER",
+    "collapses_when_leading": true,
+    "dangerous_when_trailing": true,
+    "strong_at_0_0": true,
+    "weak_at_0_0": true,
+    "insights": {
+      "collapses_when_leading": false,
+      "dangerous_when_trailing": false,
+      "strong_at_0_0": false,
+      "weak_at_0_0": false,
+      "comeback_vulnerability": 0,
+      "closing_ability": "EXCELLENT"
+    }
+  }
+}
