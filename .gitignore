@@ -79,3 +79,10 @@ models/agent_defense_v2/*.pkl
 models/agent_defense/*.pkl
 node_modules/
 node_modules/
+
+# Backups
+*.backup_*
+scripts/*.backup_*
+
+# Archives legacy
+archive/
