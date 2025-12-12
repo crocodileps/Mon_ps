@@ -1,751 +1,854 @@
 #!/usr/bin/env python3
 """
 ╔═══════════════════════════════════════════════════════════════════════════════════════╗
-║  UNIFIED TEAM LOADER - CHESS ENGINE V2.0                                              ║
+║  UNIFIED LOADER - MON_PS QUANTUM PLATFORM                                             ║
 ║  "Chaque équipe = 1 ADN = 1 empreinte digitale unique"                                ║
 ╚═══════════════════════════════════════════════════════════════════════════════════════╝
 
-PHILOSOPHIE MON_PS:
-───────────────────
-1. ÉQUIPE au centre (comme un trou noir)
-2. Chaque équipe = 1 ADN = 1 empreinte digitale unique
-3. Les marchés sont des CONSÉQUENCES de l'ADN, pas l'inverse
+API unifiée pour accéder aux données ADN:
+- Teams (team_dna_unified_v2.json)
+- Players (player_dna_unified.json)
+- Referees (referee_dna_unified.json)
+- Name Mapping (team_name_mapping.json)
 
 USAGE:
-───────
-    from quantum.loaders.unified_loader import load_team, load_all_teams
-    
-    arsenal = load_team("Arsenal")
-    print(arsenal.narrative)           # Profil narratif unique
-    print(arsenal.exploitable_markets) # Marchés profitables POUR Arsenal
-    print(arsenal.fingerprint)         # Empreinte digitale unique
+    from quantum.loaders.unified_loader import UnifiedLoader
 
-SOURCES FUSIONNÉES:
-───────────────────
-- team_defense_dna_v5_1_corrected.json  → 125 métriques défensives
-- teams_context_dna.json                 → Formation, PPDA, momentum
-- goalkeeper_dna_v4_4_by_team.json       → Performance GK, timing
-- team_dna_profiles_v2.json              → Fingerprints, profiles
+    loader = UnifiedLoader()
+
+    # Teams
+    liverpool = loader.get_team("Liverpool")
+    pl_teams = loader.get_teams_by_league("Premier League")
+
+    # Players
+    salah = loader.get_player("Salah", "Liverpool")
+    defenders = loader.get_players_by_position("DEF")
+
+    # Referees
+    oliver = loader.get_referee("M Oliver")
+    top_refs = loader.get_referees_by_tier("hedge_fund_grade")
+
+    # Search
+    results = loader.search("Liver", entity_type="team")
+
+    # Stats
+    stats = loader.get_stats()
+
+Version: 2.0 - Unified API
+Date: 12 Décembre 2025
 """
 
+from __future__ import annotations
+
 import json
+import re
 from pathlib import Path
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple
-from functools import lru_cache
+from typing import Dict, List, Optional, Any, Literal
+from difflib import get_close_matches, SequenceMatcher
+from functools import cached_property
+import logging
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# PATHS
+# CONFIGURATION
 # ═══════════════════════════════════════════════════════════════════════════════
 
-DATA_ROOT = Path("/home/Mon_ps/data")
-DEFENSE_FILE = DATA_ROOT / "defense_dna" / "team_defense_dna_v5_1_corrected.json"
-CONTEXT_FILE = DATA_ROOT / "quantum_v2" / "teams_context_dna.json"
-GK_FILE = DATA_ROOT / "goalkeeper_dna" / "goalkeeper_dna_v4_4_by_team.json"
-PROFILES_FILE = DATA_ROOT / "team_dna_profiles_v2.json"
+DATA_ROOT = Path("/home/Mon_ps/data/quantum_v2")
+
+FILES = {
+    "teams": DATA_ROOT / "team_dna_unified_v2.json",
+    "players": DATA_ROOT / "player_dna_unified.json",
+    "referees": DATA_ROOT / "referee_dna_unified.json",
+    "mapping": DATA_ROOT / "team_name_mapping.json",
+}
+
+# Position mapping for players
+# The data uses format like "D", "D M", "D M S", "F M S", "M S", etc.
+# D = Defender, M = Midfielder, F = Forward, S = Substitute, GK = Goalkeeper
+POSITION_CATEGORIES = {
+    "GK": ["GK", "Goalkeeper"],
+    "DEF": ["D", "DF", "CB", "LB", "RB", "WB", "Defender", "Centre-Back", "Left-Back", "Right-Back"],
+    "MID": ["M", "MF", "CM", "DM", "AM", "CDM", "CAM", "Midfielder", "Central Midfield", "Defensive Midfield"],
+    "ATT": ["F", "FW", "ST", "CF", "LW", "RW", "Forward", "Striker", "Winger", "Centre-Forward"],
+}
+
+logger = logging.getLogger(__name__)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# DATACLASSES - ADN STRUCTURE
+# UNIFIED LOADER CLASS
 # ═══════════════════════════════════════════════════════════════════════════════
 
-@dataclass
-class TimingDNA:
-    """Quand l'équipe est vulnérable/forte"""
-    xga_0_15: float = 0.0
-    xga_16_30: float = 0.0
-    xga_31_45: float = 0.0
-    xga_46_60: float = 0.0
-    xga_61_75: float = 0.0
-    xga_76_90: float = 0.0
-    
-    # Percentages
-    early_pct: float = 0.0      # 0-15
-    late_pct: float = 0.0       # 76-90
-    first_half_pct: float = 0.0
-    second_half_pct: float = 0.0
-    
-    # Profile
-    timing_profile: str = "CONSISTENT"
-    
-    @property
-    def weak_periods(self) -> List[str]:
-        """Périodes où l'équipe concède le plus"""
-        periods = [
-            ("0-15", self.xga_0_15),
-            ("16-30", self.xga_16_30),
-            ("31-45", self.xga_31_45),
-            ("46-60", self.xga_46_60),
-            ("61-75", self.xga_61_75),
-            ("76-90", self.xga_76_90),
-        ]
-        avg = sum(p[1] for p in periods) / 6
-        return [p[0] for p in periods if p[1] > avg * 1.3]
-    
-    @property
-    def strong_periods(self) -> List[str]:
-        """Périodes où l'équipe résiste le mieux"""
-        periods = [
-            ("0-15", self.xga_0_15),
-            ("16-30", self.xga_16_30),
-            ("31-45", self.xga_31_45),
-            ("46-60", self.xga_46_60),
-            ("61-75", self.xga_61_75),
-            ("76-90", self.xga_76_90),
-        ]
-        avg = sum(p[1] for p in periods) / 6
-        return [p[0] for p in periods if p[1] < avg * 0.7]
-
-
-@dataclass
-class DefenseDNA:
-    """Profil défensif complet"""
-    xga_total: float = 0.0
-    xga_per_90: float = 0.0
-    goals_against: int = 0
-    clean_sheet_pct: float = 0.0
-    
-    # Zones
-    xga_box: float = 0.0
-    xga_outside_box: float = 0.0
-    xga_set_piece: float = 0.0
-    xga_open_play: float = 0.0
-    
-    # Home/Away split
-    home_xga_per_90: float = 0.0
-    away_xga_per_90: float = 0.0
-    home_cs_pct: float = 0.0
-    away_cs_pct: float = 0.0
-    
-    # Resist metrics
-    resist_late: float = 0.0
-    resist_set_piece: float = 0.0
-    
-    # Timing
-    timing: TimingDNA = field(default_factory=TimingDNA)
-    
-    # Profile
-    defensive_profile: str = "AVERAGE"
-    
-    @property
-    def home_away_ratio(self) -> float:
-        """Ratio xGA away/home - >1.5 = HOME FORTRESS"""
-        if self.home_xga_per_90 > 0:
-            return self.away_xga_per_90 / self.home_xga_per_90
-        return 1.0
-    
-    @property
-    def luck_factor(self) -> float:
-        """xGA - GA : positif = chanceux, négatif = malchanceux"""
-        return self.xga_total - self.goals_against
-
-
-@dataclass
-class GoalkeeperDNA:
-    """Profil gardien"""
-    name: str = "Unknown"
-    save_rate: float = 0.0
-    goals_prevented: float = 0.0  # vs xGA
-    
-    # Difficulty
-    avg_shot_difficulty: float = 0.0
-    high_difficulty_sr: float = 0.0
-    low_difficulty_sr: float = 0.0
-    
-    # Timing
-    sr_first_half: float = 0.0
-    sr_second_half: float = 0.0
-    sr_late: float = 0.0  # 76-90
-    
-    # Situations
-    sr_open_play: float = 0.0
-    sr_set_piece: float = 0.0
-    sr_penalty: float = 0.0
-    
-    @property
-    def quality_tier(self) -> str:
-        """Tier du gardien basé sur goals_prevented"""
-        if self.goals_prevented > 3:
-            return "ELITE"
-        elif self.goals_prevented > 1:
-            return "GOOD"
-        elif self.goals_prevented > -1:
-            return "AVERAGE"
-        elif self.goals_prevented > -3:
-            return "WEAK"
-        else:
-            return "LIABILITY"
-
-
-@dataclass
-class MomentumDNA:
-    """Forme et momentum"""
-    form_last_5: str = "-----"  # WWDLL
-    points_last_5: int = 0
-    ppg_season: float = 0.0
-    ppg_last_5: float = 0.0
-    
-    # Streak
-    current_streak: str = ""  # W3, L2, D1
-    
-    # Trend
-    form_trend: str = "STABLE"  # UP, DOWN, STABLE
-    
-    @property
-    def form_delta_pct(self) -> float:
-        """% différence forme récente vs saison"""
-        if self.ppg_season > 0:
-            return ((self.ppg_last_5 - self.ppg_season) / self.ppg_season) * 100
-        return 0.0
-
-
-@dataclass 
-class ContextDNA:
-    """Contexte tactique"""
-    formation: str = "4-3-3"
-    ppda: float = 10.0  # Passes allowed per defensive action
-    
-    # xG
-    xg_total: float = 0.0
-    xg_per_90: float = 0.0
-    goals_scored: int = 0
-    
-    # Efficiency
-    conversion_rate: float = 0.0  # Goals / xG
-    
-    @property
-    def attacking_luck(self) -> float:
-        """Goals - xG : positif = clinical, négatif = wasteful"""
-        return self.goals_scored - self.xg_total
-
-
-@dataclass
-class ExploitableMarket:
-    """Un marché exploitable pour cette équipe"""
-    market: str
-    action: str  # BACK ou FADE
-    edge_type: str  # REGRESSION, LUCK, HOME_AWAY, TIMING, FORM
-    confidence: str  # HIGH, MEDIUM, LOW
-    description: str
-    data: Dict = field(default_factory=dict)
-
-
-@dataclass
-class UnifiedTeamDNA:
+class UnifiedLoader:
     """
-    ═══════════════════════════════════════════════════════════════════════════════
-    ADN UNIQUE - L'empreinte digitale complète d'une équipe
-    ═══════════════════════════════════════════════════════════════════════════════
-    
-    Chaque équipe a UN SEUL ADN qui définit:
-    - Son identité défensive
-    - Son profil gardien
-    - Son momentum
-    - Son contexte tactique
-    - Ses marchés EXPLOITABLES (conséquence de l'ADN)
+    API unifiée pour accéder aux données ADN de Mon_PS.
+
+    Features:
+    - Lazy loading (données chargées au premier accès)
+    - Cache en mémoire
+    - Normalisation automatique des noms
+    - Recherche floue
+    - Type hints complets
+
+    Example:
+        loader = UnifiedLoader()
+        team = loader.get_team("Liverpool")
+        player = loader.get_player("Salah")
+        ref = loader.get_referee("M Oliver")
     """
-    
-    # Identity
-    team_name: str
-    league: str = ""
-    
-    # DNA Components
-    defense: DefenseDNA = field(default_factory=DefenseDNA)
-    goalkeeper: GoalkeeperDNA = field(default_factory=GoalkeeperDNA)
-    momentum: MomentumDNA = field(default_factory=MomentumDNA)
-    context: ContextDNA = field(default_factory=ContextDNA)
-    
-    # Fingerprint
-    fingerprint: str = ""
-    
-    # Quality
-    data_quality_score: int = 100
-    
-    # Exploitable markets (CONSEQUENCE of DNA)
-    exploitable_markets: List[ExploitableMarket] = field(default_factory=list)
-    
+
+    def __init__(self, data_root: Optional[Path] = None):
+        """
+        Initialise le loader.
+
+        Args:
+            data_root: Chemin racine des données (optionnel, utilise le défaut sinon)
+        """
+        self._data_root = data_root or DATA_ROOT
+
+        # Lazy-loaded data stores
+        self._teams_data: Optional[Dict] = None
+        self._players_data: Optional[Dict] = None
+        self._referees_data: Optional[Dict] = None
+        self._mapping_data: Optional[Dict] = None
+
+        # Indexes for fast lookup
+        self._team_name_index: Dict[str, str] = {}  # normalized -> canonical
+        self._player_name_index: Dict[str, List[str]] = {}  # name -> [keys]
+        self._referee_name_index: Dict[str, str] = {}  # normalized -> canonical
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # PRIVATE: DATA LOADING
+    # ═══════════════════════════════════════════════════════════════════════════
+
+    def _load_json(self, filepath: Path) -> Optional[Dict]:
+        """Charge un fichier JSON."""
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except FileNotFoundError:
+            logger.warning(f"Fichier non trouvé: {filepath}")
+            return None
+        except json.JSONDecodeError as e:
+            logger.error(f"Erreur JSON dans {filepath}: {e}")
+            return None
+
+    @staticmethod
+    def _normalize_name(name: str) -> str:
+        """Normalise un nom pour la recherche (lowercase, sans accents basique)."""
+        if not name:
+            return ""
+        # Lowercase et suppression des caractères spéciaux
+        normalized = name.lower().strip()
+        # Remplacements basiques d'accents
+        replacements = {
+            'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
+            'à': 'a', 'â': 'a', 'ä': 'a',
+            'ù': 'u', 'û': 'u', 'ü': 'u',
+            'î': 'i', 'ï': 'i',
+            'ô': 'o', 'ö': 'o',
+            'ç': 'c', 'ñ': 'n',
+            "'": "", "-": " ", "_": " "
+        }
+        for old, new in replacements.items():
+            normalized = normalized.replace(old, new)
+        return normalized
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # PRIVATE: LAZY LOADING PROPERTIES
+    # ═══════════════════════════════════════════════════════════════════════════
+
     @property
-    def narrative(self) -> str:
-        """
-        Génère un profil narratif UNIQUE pour cette équipe.
-        Chaque équipe a son histoire, ses forces, ses faiblesses.
-        """
-        lines = []
-        lines.append(f"═══ {self.team_name.upper()} ═══")
-        lines.append(f"League: {self.league}")
-        lines.append(f"Fingerprint: {self.fingerprint}")
-        lines.append("")
-        
-        # Defense narrative
-        if self.defense.defensive_profile == "ELITE":
-            lines.append(f"🛡️ DÉFENSE ELITE: Seulement {self.defense.xga_per_90:.2f} xGA/90")
-        elif self.defense.defensive_profile == "CATASTROPHIC":
-            lines.append(f"⚠️ DÉFENSE CATASTROPHIQUE: {self.defense.xga_per_90:.2f} xGA/90")
-        else:
-            lines.append(f"🛡️ Défense {self.defense.defensive_profile}: {self.defense.xga_per_90:.2f} xGA/90")
-        
-        # Home/Away
-        if self.defense.home_away_ratio > 1.8:
-            lines.append(f"🏠 HOME FORTRESS: {self.defense.home_away_ratio:.1f}x plus solide à domicile")
-            lines.append(f"   → Home CS%: {self.defense.home_cs_pct:.0f}% vs Away: {self.defense.away_cs_pct:.0f}%")
-        elif self.defense.home_away_ratio < 0.7:
-            lines.append(f"✈️ ROAD WARRIOR: Meilleur à l'extérieur!")
-        
-        # Timing vulnerabilities
-        if self.defense.timing.weak_periods:
-            lines.append(f"⏰ VULNÉRABLE: {', '.join(self.defense.timing.weak_periods)} min")
-        if "FADES_LATE" in self.defense.timing.timing_profile:
-            lines.append(f"😰 FADE LATE: {self.defense.timing.late_pct:.0f}% des xGA après 76'")
-        if "FINISHES_STRONG" in self.defense.timing.timing_profile:
-            lines.append(f"💪 FINIT FORT: Seulement {self.defense.timing.late_pct:.0f}% des xGA après 76'")
-        
-        # Luck factor
-        luck = self.defense.luck_factor
-        if luck > 4:
-            lines.append(f"🍀 CHANCEUX: +{luck:.1f} buts évités vs xGA (régression attendue)")
-        elif luck < -4:
-            lines.append(f"😢 MALCHANCEUX: {luck:.1f} buts de plus que xGA (rebond attendu)")
-        
-        # Goalkeeper
-        lines.append(f"\n🧤 GK: {self.goalkeeper.name} ({self.goalkeeper.quality_tier})")
-        lines.append(f"   Goals prevented: {self.goalkeeper.goals_prevented:+.1f}")
-        if self.goalkeeper.sr_late < 60:
-            lines.append(f"   ⚠️ Faible en fin de match: {self.goalkeeper.sr_late:.0f}% SR 76-90'")
-        
-        # Momentum
-        lines.append(f"\n📈 FORME: {self.momentum.form_last_5} ({self.momentum.points_last_5} pts)")
-        if self.momentum.form_delta_pct > 25:
-            lines.append(f"   🔥 EN FEU: +{self.momentum.form_delta_pct:.0f}% vs moyenne saison")
-        elif self.momentum.form_delta_pct < -25:
-            lines.append(f"   📉 EN CHUTE: {self.momentum.form_delta_pct:.0f}% vs moyenne saison")
-        
-        # Context
-        lines.append(f"\n⚽ ATTAQUE: {self.context.xg_per_90:.2f} xG/90, {self.context.conversion_rate:.0f}% conversion")
-        if self.context.attacking_luck > 3:
-            lines.append(f"   🎯 CLINICAL: +{self.context.attacking_luck:.1f} buts vs xG")
-        elif self.context.attacking_luck < -3:
-            lines.append(f"   😤 WASTEFUL: {self.context.attacking_luck:.1f} buts vs xG")
-        
-        # Exploitable markets
-        if self.exploitable_markets:
-            lines.append(f"\n💰 MARCHÉS EXPLOITABLES ({len(self.exploitable_markets)}):")
-            for m in self.exploitable_markets[:5]:
-                conf_emoji = "🔥" if m.confidence == "HIGH" else "📊"
-                lines.append(f"   {conf_emoji} {m.action} {m.market}: {m.description}")
-        
-        return "\n".join(lines)
-    
-    def get_markets_for_matchup(self, opponent: 'UnifiedTeamDNA', is_home: bool) -> List[ExploitableMarket]:
-        """
-        Retourne les marchés exploitables POUR CE MATCH SPÉCIFIQUE
-        basés sur l'interaction des deux ADN.
-        """
-        markets = []
-        
-        # Home advantage
-        if is_home and self.defense.home_away_ratio > 1.5:
-            markets.append(ExploitableMarket(
-                market="Clean Sheet",
-                action="BACK",
-                edge_type="HOME_AWAY",
-                confidence="HIGH" if self.defense.home_away_ratio > 2 else "MEDIUM",
-                description=f"HOME FORTRESS: {self.defense.home_cs_pct:.0f}% CS à domicile",
-                data={"home_cs_pct": self.defense.home_cs_pct}
-            ))
-        
-        # Late goals
-        if "FADES_LATE" in self.defense.timing.timing_profile:
-            if opponent.context.xg_per_90 > 1.3:
-                markets.append(ExploitableMarket(
-                    market="Goal 76-90",
-                    action="BACK",
-                    edge_type="TIMING",
-                    confidence="HIGH",
-                    description=f"{self.team_name} FADES LATE vs attaque forte",
-                    data={"late_pct": self.defense.timing.late_pct}
-                ))
-        
-        # Goalkeeper weakness
-        if self.goalkeeper.quality_tier in ["WEAK", "LIABILITY"]:
-            markets.append(ExploitableMarket(
-                market="Over Goals",
-                action="BACK",
-                edge_type="GOALKEEPER",
-                confidence="MEDIUM",
-                description=f"GK {self.goalkeeper.name} = {self.goalkeeper.quality_tier}",
-                data={"goals_prevented": self.goalkeeper.goals_prevented}
-            ))
-        
-        return markets
+    def _teams(self) -> Dict[str, Dict]:
+        """Lazy load teams data."""
+        if self._teams_data is None:
+            raw = self._load_json(FILES["teams"]) or {}
+            self._teams_data = raw.get("teams", raw)
+            # Build index AFTER data is loaded
+        if not self._team_name_index and self._teams_data:
+            self._build_team_index()
+        return self._teams_data
 
+    @property
+    def _players(self) -> Dict[str, Dict]:
+        """Lazy load players data."""
+        if self._players_data is None:
+            raw = self._load_json(FILES["players"]) or {}
+            self._players_data = raw.get("players", raw)
+        if not self._player_name_index and self._players_data:
+            self._build_player_index()
+        return self._players_data
 
-# ═══════════════════════════════════════════════════════════════════════════════
-# LOADER FUNCTIONS
-# ═══════════════════════════════════════════════════════════════════════════════
+    @property
+    def _referees(self) -> Dict[str, Dict]:
+        """Lazy load referees data."""
+        if self._referees_data is None:
+            self._referees_data = self._load_json(FILES["referees"]) or {}
+        if not self._referee_name_index and self._referees_data:
+            self._build_referee_index()
+        return self._referees_data
 
-def _load_json(path: Path) -> Optional[dict]:
-    """Charge un fichier JSON"""
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"⚠️ Erreur chargement {path.name}: {e}")
+    @property
+    def _mapping(self) -> Dict:
+        """Lazy load name mapping."""
+        if self._mapping_data is None:
+            self._mapping_data = self._load_json(FILES["mapping"]) or {}
+        return self._mapping_data
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # PRIVATE: INDEX BUILDING
+    # ═══════════════════════════════════════════════════════════════════════════
+
+    def _build_team_index(self) -> None:
+        """Construit l'index des noms d'équipes."""
+        self._team_name_index = {}
+
+        # Index depuis les données
+        for team_name in self._teams_data.keys():
+            normalized = self._normalize_name(team_name)
+            self._team_name_index[normalized] = team_name
+
+        # Index depuis le mapping (aliases)
+        alias_to_canonical = self._mapping.get("alias_to_canonical", {})
+        for alias, canonical in alias_to_canonical.items():
+            normalized = self._normalize_name(alias)
+            if normalized not in self._team_name_index:
+                self._team_name_index[normalized] = canonical
+
+    def _build_player_index(self) -> None:
+        """Construit l'index des noms de joueurs."""
+        self._player_name_index = {}
+
+        for key in self._players_data.keys():
+            # Key format: "player_name_team" ou "player name_team"
+            parts = key.rsplit("_", 1)
+            if len(parts) >= 1:
+                player_name = parts[0].replace("_", " ")
+                normalized = self._normalize_name(player_name)
+
+                if normalized not in self._player_name_index:
+                    self._player_name_index[normalized] = []
+                self._player_name_index[normalized].append(key)
+
+                # Index aussi le nom de famille seul
+                name_parts = player_name.split()
+                if len(name_parts) > 1:
+                    last_name = self._normalize_name(name_parts[-1])
+                    if last_name not in self._player_name_index:
+                        self._player_name_index[last_name] = []
+                    if key not in self._player_name_index[last_name]:
+                        self._player_name_index[last_name].append(key)
+
+    def _build_referee_index(self) -> None:
+        """Construit l'index des noms d'arbitres."""
+        self._referee_name_index = {}
+
+        for ref_name in self._referees_data.keys():
+            normalized = self._normalize_name(ref_name)
+            self._referee_name_index[normalized] = ref_name
+
+            # Index aussi le nom de famille seul
+            parts = ref_name.split()
+            if len(parts) > 1:
+                last_name = self._normalize_name(parts[-1])
+                if last_name not in self._referee_name_index:
+                    self._referee_name_index[last_name] = ref_name
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # PRIVATE: NAME RESOLUTION
+    # ═══════════════════════════════════════════════════════════════════════════
+
+    def _resolve_team_name(self, name: str) -> Optional[str]:
+        """Résout un nom d'équipe vers son nom canonique."""
+        normalized = self._normalize_name(name)
+
+        # Exact match
+        if normalized in self._team_name_index:
+            return self._team_name_index[normalized]
+
+        # Fuzzy match
+        matches = get_close_matches(normalized, self._team_name_index.keys(), n=1, cutoff=0.8)
+        if matches:
+            return self._team_name_index[matches[0]]
+
         return None
 
+    def _resolve_player_keys(self, name: str, team: Optional[str] = None) -> List[str]:
+        """Résout un nom de joueur vers ses clés dans le dictionnaire."""
+        normalized = self._normalize_name(name)
 
-def _parse_defense(raw: dict, goals_against: int = 0) -> DefenseDNA:
-    """Parse les données defense_dna"""
-    timing = TimingDNA(
-        xga_0_15=raw.get("xga_0_15", 0),
-        xga_16_30=raw.get("xga_16_30", 0),
-        xga_31_45=raw.get("xga_31_45", 0),
-        xga_46_60=raw.get("xga_46_60", 0),
-        xga_61_75=raw.get("xga_61_75", 0),
-        xga_76_90=raw.get("xga_76_90", 0),
-        early_pct=raw.get("xga_early_pct", 0),
-        late_pct=raw.get("xga_late_pct", 0),
-        first_half_pct=raw.get("first_half_pct", 50),
-        second_half_pct=raw.get("second_half_pct", 50),
-        timing_profile=raw.get("timing_profile", "CONSISTENT"),
-    )
-    
-    
-    return DefenseDNA(
-        xga_total=raw.get("xga_total", 0),
-        xga_per_90=raw.get("xga_per_90", 0),
-        goals_against=goals_against if goals_against else raw.get("goals_against", 0),
-        clean_sheet_pct=raw.get("clean_sheet_pct", 0),
-        xga_box=raw.get("xga_box", 0),
-        xga_outside_box=raw.get("xga_outside_box", 0),
-        xga_set_piece=raw.get("xga_set_piece", 0),
-        xga_open_play=raw.get("xga_open_play", 0),
-        home_xga_per_90=raw.get("xga_per_90_home", 0),
-        away_xga_per_90=raw.get("xga_per_90_away", 0),
-        home_cs_pct=raw.get("cs_pct_home", 0),
-        away_cs_pct=raw.get("cs_pct_away", 0),
-        resist_late=raw.get("resist_late", 50),
-        resist_set_piece=raw.get("resist_set_piece", 50),
-        timing=timing,
-        defensive_profile=raw.get("defense_profile", raw.get("defensive_profile", "AVERAGE")),
-    )
+        # Trigger lazy load
+        _ = self._players
 
+        keys = []
 
-def _parse_goalkeeper(raw: dict) -> GoalkeeperDNA:
-    """Parse les données goalkeeper_dna"""
-    difficulty = raw.get("difficulty_analysis", {})
-    timing = raw.get("timing_analysis", {})
-    situation = raw.get("situation_analysis", {})
-    periods = timing.get("periods", {})
-    
-    # Calculate late SR from periods
-    late_period = periods.get("76-90", {}) or periods.get("75+", {})
-    sr_late = late_period.get("save_rate", 0) if isinstance(late_period, dict) else 0
-    
-    # First/second half
-    first_half_periods = ["0-15", "16-30", "31-45"]
-    second_half_periods = ["46-60", "61-75", "76-90", "75+"]
-    
-    sr_first = 0
-    sr_second = 0
-    count_first = 0
-    count_second = 0
-    
-    for p, data in periods.items():
-        if isinstance(data, dict):
-            sr = data.get("save_rate", 0)
-            if any(x in p for x in first_half_periods):
-                sr_first += sr
-                count_first += 1
-            elif any(x in p for x in second_half_periods):
-                sr_second += sr
-                count_second += 1
-    
-    sr_first_half = sr_first / count_first if count_first > 0 else 0
-    sr_second_half = sr_second / count_second if count_second > 0 else 0
-    
-    # Difficulty
-    easy = difficulty.get("easy", {})
-    hard = difficulty.get("hard", {})
-    
-    # Situations
-    open_play = situation.get("open_play", {})
-    corners = situation.get("corners", {})
-    penalties = situation.get("penalties", {})
-    
-    # Goals prevented = xGA - GA (approximation via gk_performance score)
-    gk_score = raw.get("gk_performance", 0)
-    goals_prevented = gk_score  # gk_performance IS goals prevented  # Approximate: score 0.5 = ~2.5 goals prevented
-    
-    return GoalkeeperDNA(
-        name=raw.get("goalkeeper", "Unknown"),
-        save_rate=raw.get("save_rate", 0),
-        goals_prevented=goals_prevented,
-        avg_shot_difficulty=0,  # Not directly available
-        high_difficulty_sr=hard.get("sr", 0) if isinstance(hard, dict) else 0,
-        low_difficulty_sr=easy.get("sr", 0) if isinstance(easy, dict) else 0,
-        sr_first_half=sr_first_half,
-        sr_second_half=sr_second_half,
-        sr_late=sr_late,
-        sr_open_play=open_play.get("sr", 0) if isinstance(open_play, dict) else 0,
-        sr_set_piece=corners.get("sr", 0) if isinstance(corners, dict) else 0,
-        sr_penalty=penalties.get("sr", 0) if isinstance(penalties, dict) else 0,
-    )
+        # Exact match
+        if normalized in self._player_name_index:
+            keys = self._player_name_index[normalized].copy()
+        else:
+            # Fuzzy match
+            matches = get_close_matches(normalized, self._player_name_index.keys(), n=3, cutoff=0.7)
+            for match in matches:
+                keys.extend(self._player_name_index[match])
 
+        # Filter by team if provided
+        if team and keys:
+            team_normalized = self._normalize_name(team)
+            keys = [k for k in keys if team_normalized in self._normalize_name(k)]
 
-def _parse_context(raw: dict) -> Tuple[ContextDNA, MomentumDNA, str]:
-    """Parse les données context_dna"""
-    history = raw.get("history", {})
-    record = raw.get("record", {})
-    mom = raw.get("momentum_dna", {})
-    ctx = raw.get("context_dna", {})
-    
-    # Context
-    matches = record.get("matches") or 15  # Handle None
-    goals = record.get("goals_for", 0)
-    xg = history.get("xg", 0)
-    
-    context = ContextDNA(
-        formation=ctx.get("formation", {}).get("primary", "4-3-3"),
-        ppda=history.get("ppda", 10),
-        xg_total=xg,
-        xg_per_90=xg / matches if matches > 0 else 0,
-        goals_scored=goals,
-        conversion_rate=(goals / xg * 100) if xg > 0 else 0,
-    )
-    
-    # Momentum
-    pts_l5 = mom.get("points_last_5", 0)
-    pts_season = record.get("points", 0)
-    ppg_season = pts_season / matches if matches > 0 else 0
-    ppg_l5 = pts_l5 / 5
-    
-    # Trend
-    if ppg_l5 > ppg_season * 1.25:
-        trend = "UP"
-    elif ppg_l5 < ppg_season * 0.75:
-        trend = "DOWN"
-    else:
-        trend = "STABLE"
-    
-    momentum = MomentumDNA(
-        form_last_5=mom.get("form_last_5", "-----"),
-        points_last_5=pts_l5,
-        ppg_season=ppg_season,
-        ppg_last_5=ppg_l5,
-        current_streak=mom.get("current_streak", ""),
-        form_trend=trend,
-    )
-    
-    league = raw.get("league", "")
-    
-    return context, momentum, league
+        return list(set(keys))  # Remove duplicates
 
+    def _resolve_referee_name(self, name: str) -> Optional[str]:
+        """Résout un nom d'arbitre vers son nom canonique."""
+        normalized = self._normalize_name(name)
 
-def _generate_exploitable_markets(dna: UnifiedTeamDNA) -> List[ExploitableMarket]:
-    """
-    Génère les marchés exploitables basés sur l'ADN de l'équipe.
-    
-    PHILOSOPHIE: L'ADN → Marchés (pas l'inverse!)
-    """
-    markets = []
-    
-    # 1. LUCK: Régression attendue
-    if dna.defense.luck_factor > 4:
-        markets.append(ExploitableMarket(
-            market="Clean Sheet",
-            action="FADE",
-            edge_type="LUCK",
-            confidence="HIGH" if dna.defense.luck_factor > 6 else "MEDIUM",
-            description=f"+{dna.defense.luck_factor:.1f} buts chanceux → régression",
-            data={"luck": dna.defense.luck_factor}
-        ))
-    elif dna.defense.luck_factor < -4:
-        markets.append(ExploitableMarket(
-            market="Clean Sheet",
-            action="BACK",
-            edge_type="LUCK",
-            confidence="HIGH" if dna.defense.luck_factor < -6 else "MEDIUM",
-            description=f"{dna.defense.luck_factor:.1f} buts malchanceux → rebond",
-            data={"luck": dna.defense.luck_factor}
-        ))
-    
-    # 2. HOME_AWAY: Fortress ou Road Warrior
-    if dna.defense.home_away_ratio > 1.5:
-        markets.append(ExploitableMarket(
-            market="Clean Sheet HOME",
-            action="BACK",
-            edge_type="HOME_AWAY",
-            confidence="HIGH" if dna.defense.home_away_ratio > 2 else "MEDIUM",
-            description=f"HOME FORTRESS: {dna.defense.home_cs_pct:.0f}% CS domicile",
-            data={"ratio": dna.defense.home_away_ratio, "home_cs": dna.defense.home_cs_pct}
-        ))
-        markets.append(ExploitableMarket(
-            market="Clean Sheet AWAY",
-            action="FADE",
-            edge_type="HOME_AWAY",
-            confidence="MEDIUM",
-            description=f"Vulnérable à l'extérieur: {dna.defense.away_cs_pct:.0f}% CS",
-            data={"away_cs": dna.defense.away_cs_pct}
-        ))
-    
-    # 3. TIMING: Périodes faibles
-    if "FADES_LATE" in dna.defense.timing.timing_profile:
-        markets.append(ExploitableMarket(
-            market="Goal 76-90",
-            action="BACK",
-            edge_type="TIMING",
-            confidence="HIGH" if dna.defense.timing.late_pct > 25 else "MEDIUM",
-            description=f"FADES LATE: {dna.defense.timing.late_pct:.0f}% xGA après 76'",
-            data={"late_pct": dna.defense.timing.late_pct}
-        ))
-    if "SLOW_STARTER" in dna.defense.timing.timing_profile:
-        markets.append(ExploitableMarket(
-            market="Goal 0-15",
-            action="BACK",
-            edge_type="TIMING",
-            confidence="MEDIUM",
-            description=f"SLOW STARTER: {dna.defense.timing.early_pct:.0f}% xGA 0-15'",
-            data={"early_pct": dna.defense.timing.early_pct}
-        ))
-    
-    # 4. GOALKEEPER: Faiblesse ou force
-    if dna.goalkeeper.quality_tier in ["WEAK", "LIABILITY"]:
-        markets.append(ExploitableMarket(
-            market="Over Goals",
-            action="BACK",
-            edge_type="GOALKEEPER",
-            confidence="HIGH" if dna.goalkeeper.quality_tier == "LIABILITY" else "MEDIUM",
-            description=f"GK {dna.goalkeeper.quality_tier}: {dna.goalkeeper.goals_prevented:+.1f} prevented",
-            data={"gk": dna.goalkeeper.name, "prevented": dna.goalkeeper.goals_prevented}
-        ))
-    elif dna.goalkeeper.quality_tier == "ELITE":
-        markets.append(ExploitableMarket(
-            market="Under Goals",
-            action="BACK",
-            edge_type="GOALKEEPER",
-            confidence="MEDIUM",
-            description=f"GK ELITE: {dna.goalkeeper.goals_prevented:+.1f} goals prevented",
-            data={"gk": dna.goalkeeper.name, "prevented": dna.goalkeeper.goals_prevented}
-        ))
-    
-    # 5. FORM: Momentum
-    if dna.momentum.form_delta_pct > 25:
-        markets.append(ExploitableMarket(
-            market="Match Result",
-            action="BACK",
-            edge_type="FORM",
-            confidence="MEDIUM",
-            description=f"EN FEU: +{dna.momentum.form_delta_pct:.0f}% vs saison",
-            data={"form": dna.momentum.form_last_5, "delta": dna.momentum.form_delta_pct}
-        ))
-    elif dna.momentum.form_delta_pct < -25:
-        markets.append(ExploitableMarket(
-            market="Match Result",
-            action="FADE",
-            edge_type="FORM",
-            confidence="MEDIUM",
-            description=f"EN CHUTE: {dna.momentum.form_delta_pct:.0f}% vs saison",
-            data={"form": dna.momentum.form_last_5, "delta": dna.momentum.form_delta_pct}
-        ))
-    
-    return markets
+        # Trigger lazy load
+        _ = self._referees
+
+        # Exact match
+        if normalized in self._referee_name_index:
+            return self._referee_name_index[normalized]
+
+        # Fuzzy match
+        matches = get_close_matches(normalized, self._referee_name_index.keys(), n=1, cutoff=0.7)
+        if matches:
+            return self._referee_name_index[matches[0]]
+
+        return None
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # PUBLIC API: TEAMS
+    # ═══════════════════════════════════════════════════════════════════════════
+
+    def get_team(self, name: str) -> Optional[Dict[str, Any]]:
+        """
+        Récupère les données d'une équipe par son nom.
+
+        Args:
+            name: Nom de l'équipe (flexible, accepte les aliases)
+
+        Returns:
+            Dictionnaire des données de l'équipe ou None si non trouvée
+
+        Example:
+            >>> loader.get_team("Liverpool")
+            >>> loader.get_team("LFC")  # Alias supporté
+            >>> loader.get_team("Liverpol")  # Fuzzy match
+        """
+        canonical = self._resolve_team_name(name)
+        if canonical and canonical in self._teams:
+            data = self._teams[canonical].copy()
+            data["_canonical_name"] = canonical
+            return data
+        return None
+
+    def get_all_teams(self) -> Dict[str, Dict[str, Any]]:
+        """
+        Récupère toutes les équipes.
+
+        Returns:
+            Dictionnaire {nom: données} de toutes les équipes
+        """
+        return self._teams.copy()
+
+    def get_teams_by_league(self, league: str) -> List[Dict[str, Any]]:
+        """
+        Récupère toutes les équipes d'une ligue.
+
+        Args:
+            league: Nom de la ligue (ex: "Premier League", "Ligue 1")
+
+        Returns:
+            Liste des équipes de cette ligue
+        """
+        league_lower = league.lower()
+        results = []
+
+        for name, data in self._teams.items():
+            team_league = ""
+            # Chercher la ligue dans différentes structures (priorité: context > meta > root)
+            if "context" in data and isinstance(data["context"], dict):
+                team_league = data["context"].get("league", "")
+            if not team_league and "meta" in data:
+                team_league = data["meta"].get("league", "")
+            if not team_league and "league" in data:
+                team_league = data["league"]
+
+            if team_league and league_lower in team_league.lower():
+                result = data.copy()
+                result["_canonical_name"] = name
+                results.append(result)
+
+        return results
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # PUBLIC API: PLAYERS
+    # ═══════════════════════════════════════════════════════════════════════════
+
+    def get_player(self, name: str, team: Optional[str] = None) -> Optional[Dict[str, Any]]:
+        """
+        Récupère les données d'un joueur par son nom.
+
+        Args:
+            name: Nom du joueur (peut être partiel, ex: "Salah")
+            team: Nom de l'équipe pour filtrer (optionnel)
+
+        Returns:
+            Dictionnaire des données du joueur ou None si non trouvé
+
+        Example:
+            >>> loader.get_player("Salah")
+            >>> loader.get_player("Salah", "Liverpool")
+            >>> loader.get_player("Mohamed Salah")
+        """
+        keys = self._resolve_player_keys(name, team)
+
+        if keys:
+            # Return first match
+            key = keys[0]
+            data = self._players[key].copy()
+            data["_key"] = key
+            return data
+
+        return None
+
+    def get_all_players(self) -> Dict[str, Dict[str, Any]]:
+        """
+        Récupère tous les joueurs.
+
+        Returns:
+            Dictionnaire {clé: données} de tous les joueurs
+        """
+        return self._players.copy()
+
+    def get_players_by_team(self, team: str) -> List[Dict[str, Any]]:
+        """
+        Récupère tous les joueurs d'une équipe.
+
+        Args:
+            team: Nom de l'équipe
+
+        Returns:
+            Liste des joueurs de l'équipe
+        """
+        team_normalized = self._normalize_name(team)
+        results = []
+
+        for key, data in self._players.items():
+            # Check if team name is in key
+            if team_normalized in self._normalize_name(key):
+                result = data.copy()
+                result["_key"] = key
+                results.append(result)
+                continue
+
+            # Check meta.team
+            if "meta" in data:
+                player_team = data["meta"].get("team", "")
+                if team_normalized in self._normalize_name(player_team):
+                    result = data.copy()
+                    result["_key"] = key
+                    results.append(result)
+
+        return results
+
+    def get_players_by_position(self, position: str) -> List[Dict[str, Any]]:
+        """
+        Récupère tous les joueurs d'une position.
+
+        Args:
+            position: Catégorie de position ("GK", "DEF", "MID", "ATT")
+
+        Returns:
+            Liste des joueurs à cette position
+        """
+        position = position.upper()
+
+        # Get position keywords
+        keywords = POSITION_CATEGORIES.get(position, [position])
+
+        results = []
+
+        for key, data in self._players.items():
+            player_position = ""
+            player_category = ""
+
+            # Get position from meta
+            if "meta" in data and data["meta"]:
+                player_category = data["meta"].get("position_category") or ""
+                player_position = data["meta"].get("position") or ""
+            elif "position" in data:
+                player_position = data["position"] or ""
+
+            matched = False
+
+            # Check by category first (exact match for GK, CB)
+            if player_category:
+                cat_upper = player_category.upper()
+                if cat_upper == position:
+                    matched = True
+                elif position == "DEF" and cat_upper == "CB":
+                    matched = True
+                elif position == "GK" and cat_upper == "GK":
+                    matched = True
+
+            # Check position field (handles composite positions like "D M S")
+            if not matched and player_position:
+                pos_parts = player_position.upper().split()
+                for keyword in keywords:
+                    kw_upper = keyword.upper()
+                    # Match "D" in "D M S" for DEF
+                    if kw_upper in pos_parts:
+                        matched = True
+                        break
+                    # Exact match
+                    if kw_upper == player_position.upper():
+                        matched = True
+                        break
+
+            if matched:
+                result = data.copy()
+                result["_key"] = key
+                results.append(result)
+
+        return results
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # PUBLIC API: REFEREES
+    # ═══════════════════════════════════════════════════════════════════════════
+
+    def get_referee(self, name: str) -> Optional[Dict[str, Any]]:
+        """
+        Récupère les données d'un arbitre par son nom.
+
+        Args:
+            name: Nom de l'arbitre (flexible, ex: "Oliver", "M Oliver")
+
+        Returns:
+            Dictionnaire des données de l'arbitre ou None si non trouvé
+
+        Example:
+            >>> loader.get_referee("M Oliver")
+            >>> loader.get_referee("Oliver")
+            >>> loader.get_referee("Michael Oliver")
+        """
+        canonical = self._resolve_referee_name(name)
+        if canonical and canonical in self._referees:
+            data = self._referees[canonical].copy()
+            data["_canonical_name"] = canonical
+            return data
+        return None
+
+    def get_all_referees(self) -> Dict[str, Dict[str, Any]]:
+        """
+        Récupère tous les arbitres.
+
+        Returns:
+            Dictionnaire {nom: données} de tous les arbitres
+        """
+        return self._referees.copy()
+
+    def get_referees_by_tier(self, tier: str) -> List[Dict[str, Any]]:
+        """
+        Récupère tous les arbitres d'un tier de qualité.
+
+        Args:
+            tier: Tier de qualité ("hedge_fund_grade", "excellent",
+                  "championship_grade", "championship_partial", "partial", "minimal")
+
+        Returns:
+            Liste des arbitres de ce tier
+        """
+        tier_lower = tier.lower()
+        results = []
+
+        for name, data in self._referees.items():
+            ref_tier = ""
+            if "meta" in data:
+                ref_tier = data["meta"].get("quality_tier", "")
+
+            if ref_tier.lower() == tier_lower:
+                result = data.copy()
+                result["_canonical_name"] = name
+                results.append(result)
+
+        return results
+
+    def get_referees_by_league_tier(self, league_tier: str) -> List[Dict[str, Any]]:
+        """
+        Récupère tous les arbitres d'un tier de ligue.
+
+        Args:
+            league_tier: "top_flight" (Premier League) ou "second_tier" (Championship)
+
+        Returns:
+            Liste des arbitres de ce tier de ligue
+        """
+        tier_lower = league_tier.lower()
+        results = []
+
+        for name, data in self._referees.items():
+            ref_tier = ""
+            if "meta" in data:
+                ref_tier = data["meta"].get("league_tier", "")
+
+            if ref_tier.lower() == tier_lower:
+                result = data.copy()
+                result["_canonical_name"] = name
+                results.append(result)
+
+        return results
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # PUBLIC API: SEARCH
+    # ═══════════════════════════════════════════════════════════════════════════
+
+    def search(
+        self,
+        query: str,
+        entity_type: Literal["all", "team", "player", "referee"] = "all",
+        limit: int = 10
+    ) -> List[Dict[str, Any]]:
+        """
+        Recherche floue dans toutes les entités.
+
+        Args:
+            query: Terme de recherche
+            entity_type: Type d'entité ("all", "team", "player", "referee")
+            limit: Nombre maximum de résultats
+
+        Returns:
+            Liste de résultats avec type et données
+
+        Example:
+            >>> loader.search("Liver")  # Trouve Liverpool, Liverbird, etc.
+            >>> loader.search("Salah", entity_type="player")
+        """
+        query_normalized = self._normalize_name(query)
+        results = []
+
+        # Helper for similarity score
+        def similarity_score(a: str, b: str) -> float:
+            return SequenceMatcher(None, a, b).ratio()
+
+        # Search teams
+        if entity_type in ["all", "team"]:
+            _ = self._teams  # Trigger lazy load
+            matches = get_close_matches(query_normalized, self._team_name_index.keys(), n=limit, cutoff=0.5)
+            for match in matches:
+                canonical = self._team_name_index[match]
+                if canonical in self._teams:
+                    results.append({
+                        "type": "team",
+                        "name": canonical,
+                        "match_score": similarity_score(query_normalized, match),
+                        "data": self._teams[canonical]
+                    })
+
+        # Search players
+        if entity_type in ["all", "player"]:
+            _ = self._players  # Trigger lazy load
+            matches = get_close_matches(query_normalized, self._player_name_index.keys(), n=limit, cutoff=0.5)
+            for match in matches:
+                for key in self._player_name_index[match][:2]:  # Limit per name
+                    if key in self._players:
+                        results.append({
+                            "type": "player",
+                            "name": key,
+                            "match_score": similarity_score(query_normalized, match),
+                            "data": self._players[key]
+                        })
+
+        # Search referees
+        if entity_type in ["all", "referee"]:
+            _ = self._referees  # Trigger lazy load
+            matches = get_close_matches(query_normalized, self._referee_name_index.keys(), n=limit, cutoff=0.5)
+            for match in matches:
+                canonical = self._referee_name_index[match]
+                if canonical in self._referees:
+                    results.append({
+                        "type": "referee",
+                        "name": canonical,
+                        "match_score": similarity_score(query_normalized, match),
+                        "data": self._referees[canonical]
+                    })
+
+        # Sort by match score and limit
+        results.sort(key=lambda x: x["match_score"], reverse=True)
+        return results[:limit]
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # PUBLIC API: STATS
+    # ═══════════════════════════════════════════════════════════════════════════
+
+    def get_stats(self) -> Dict[str, Any]:
+        """
+        Retourne des statistiques sur les données chargées.
+
+        Returns:
+            Dictionnaire avec le nombre d'entités, la couverture, etc.
+        """
+        # Trigger lazy loading
+        _ = self._teams
+        _ = self._players
+        _ = self._referees
+
+        # Referee tiers
+        ref_tiers = {}
+        ref_league_tiers = {}
+        for name, data in self._referees.items():
+            meta = data.get("meta", {})
+            tier = meta.get("quality_tier", "unknown")
+            league_tier = meta.get("league_tier", "unknown")
+            ref_tiers[tier] = ref_tiers.get(tier, 0) + 1
+            ref_league_tiers[league_tier] = ref_league_tiers.get(league_tier, 0) + 1
+
+        # Team leagues
+        team_leagues = {}
+        for name, data in self._teams.items():
+            league = ""
+            if "meta" in data:
+                league = data["meta"].get("league", "unknown")
+            elif "context" in data:
+                league = data["context"].get("league", "unknown")
+            team_leagues[league] = team_leagues.get(league, 0) + 1
+
+        # Player positions (use same logic as get_players_by_position)
+        player_positions = {"GK": 0, "DEF": 0, "MID": 0, "ATT": 0, "unknown": 0}
+        for key, data in self._players.items():
+            pos_cat = ""
+            pos_val = ""
+            if "meta" in data and data["meta"]:
+                pos_cat = data["meta"].get("position_category") or ""
+                pos_val = data["meta"].get("position") or ""
+
+            # Determine category
+            assigned = False
+            if pos_cat:
+                cat_upper = pos_cat.upper()
+                if cat_upper == "GK":
+                    player_positions["GK"] += 1
+                    assigned = True
+                elif cat_upper == "CB":
+                    player_positions["DEF"] += 1
+                    assigned = True
+
+            if not assigned and pos_val:
+                pos_parts = pos_val.upper().split()
+                if "GK" in pos_parts:
+                    player_positions["GK"] += 1
+                elif "D" in pos_parts:
+                    player_positions["DEF"] += 1
+                elif "M" in pos_parts:
+                    player_positions["MID"] += 1
+                elif "F" in pos_parts:
+                    player_positions["ATT"] += 1
+                else:
+                    player_positions["unknown"] += 1
+            elif not assigned:
+                player_positions["unknown"] += 1
+
+        return {
+            "teams": {
+                "total": len(self._teams),
+                "loaded": len(self._teams),  # Alias for compatibility
+                "by_league": team_leagues,
+            },
+            "players": {
+                "total": len(self._players),
+                "loaded": len(self._players),  # Alias for compatibility
+                "by_position": player_positions,
+            },
+            "referees": {
+                "total": len(self._referees),
+                "loaded": len(self._referees),  # Alias for compatibility
+                "by_quality_tier": ref_tiers,
+                "by_league_tier": ref_league_tiers,
+            },
+            "mapping": {
+                "aliases": len(self._mapping.get("alias_to_canonical", {})),
+                "canonical": len(self._mapping.get("canonical_to_aliases", {})),
+            },
+            "data_files": {
+                name: str(path) for name, path in FILES.items()
+            }
+        }
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # UTILITY METHODS
+    # ═══════════════════════════════════════════════════════════════════════════
+
+    def reload(self) -> None:
+        """Force le rechargement de toutes les données."""
+        self._teams_data = None
+        self._players_data = None
+        self._referees_data = None
+        self._mapping_data = None
+        self._team_name_index = {}
+        self._player_name_index = {}
+        self._referee_name_index = {}
+
+    def get_canonical_team_name(self, name: str) -> Optional[str]:
+        """
+        Retourne le nom canonique d'une équipe.
+
+        Args:
+            name: Nom ou alias de l'équipe
+
+        Returns:
+            Nom canonique ou None si non trouvé
+        """
+        return self._resolve_team_name(name)
+
+    def list_team_aliases(self, team: str) -> List[str]:
+        """
+        Liste tous les aliases connus pour une équipe.
+
+        Args:
+            team: Nom de l'équipe
+
+        Returns:
+            Liste des aliases
+        """
+        canonical = self._resolve_team_name(team)
+        if not canonical:
+            return []
+
+        canonical_to_aliases = self._mapping.get("canonical_to_aliases", {})
+        return canonical_to_aliases.get(canonical, [])
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# PUBLIC API
+# SINGLETON INSTANCE
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# Cache global
-_CACHE: Dict[str, UnifiedTeamDNA] = {}
-_DATA_LOADED = False
+_default_loader: Optional[UnifiedLoader] = None
 
 
-def _load_all_data() -> Tuple[dict, dict, dict, dict]:
-    """Charge toutes les sources de données"""
-    defense_raw = _load_json(DEFENSE_FILE) or []
-    context_raw = _load_json(CONTEXT_FILE) or {}
-    gk_raw = _load_json(GK_FILE) or {}
-    profiles_raw = _load_json(PROFILES_FILE) or {}
-    
-    # Defense is LIST, convert to dict
-    defense_dict = {d["team_name"]: d for d in defense_raw} if isinstance(defense_raw, list) else defense_raw
-    
-    return defense_dict, context_raw, gk_raw, profiles_raw
+def get_loader() -> UnifiedLoader:
+    """Retourne l'instance singleton du loader."""
+    global _default_loader
+    if _default_loader is None:
+        _default_loader = UnifiedLoader()
+    return _default_loader
 
 
-def load_team(team_name: str) -> Optional[UnifiedTeamDNA]:
-    """
-    Charge l'ADN complet d'une équipe.
-    
-    Usage:
-        arsenal = load_team("Arsenal")
-        print(arsenal.narrative)
-        print(arsenal.exploitable_markets)
-    """
-    global _CACHE, _DATA_LOADED
-    
-    # Check cache
-    if team_name in _CACHE:
-        return _CACHE[team_name]
-    
-    # Load all data if not loaded
-    if not _DATA_LOADED:
-        defense_dict, context_raw, gk_raw, profiles_raw = _load_all_data()
-        _DATA_LOADED = True
-        
-        # Build all teams
-        for name in defense_dict.keys():
-            # Get goals_against from context for luck calculation
-            ctx_record = context_raw.get(name, {}).get("record", {})
-            goals_against = ctx_record.get("goals_against", 0)
-            defense = _parse_defense(defense_dict.get(name, {}), goals_against)
-            goalkeeper = _parse_goalkeeper(gk_raw.get(name, {}))
-            context, momentum, league = _parse_context(context_raw.get(name, {}))
-            profile = profiles_raw.get(name, {})
-            
-            dna = UnifiedTeamDNA(
-                team_name=name,
-                league=league,
-                defense=defense,
-                goalkeeper=goalkeeper,
-                momentum=momentum,
-                context=context,
-                fingerprint=profile.get("fingerprint", f"{defense.defensive_profile}_{defense.timing.timing_profile}"),
-                data_quality_score=100,
-            )
-            
-            # Generate exploitable markets
-            dna.exploitable_markets = _generate_exploitable_markets(dna)
-            
-            _CACHE[name] = dna
-    
-    return _CACHE.get(team_name)
+# ═══════════════════════════════════════════════════════════════════════════════
+# CONVENIENCE FUNCTIONS (Backward compatibility)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def load_team(name: str) -> Optional[Dict]:
+    """Fonction de commodité pour charger une équipe."""
+    return get_loader().get_team(name)
 
 
-def load_all_teams() -> Dict[str, UnifiedTeamDNA]:
-    """
-    Charge l'ADN de toutes les équipes.
-    
-    Usage:
-        all_teams = load_all_teams()
-        for name, dna in all_teams.items():
-            print(f"{name}: {len(dna.exploitable_markets)} marchés exploitables")
-    """
-    # Force load all
-    load_team("Arsenal")  # Triggers full load
-    return _CACHE.copy()
+def load_all_teams() -> Dict[str, Dict]:
+    """Fonction de commodité pour charger toutes les équipes."""
+    return get_loader().get_all_teams()
 
 
-def clear_cache():
-    """Vide le cache"""
-    global _CACHE, _DATA_LOADED
-    _CACHE = {}
-    _DATA_LOADED = False
-
-
-def get_team(team_name: str) -> Optional[UnifiedTeamDNA]:
-    """Alias pour load_team"""
-    return load_team(team_name)
+def get_team(name: str) -> Optional[Dict]:
+    """Alias pour load_team."""
+    return load_team(name)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -753,29 +856,60 @@ def get_team(team_name: str) -> Optional[UnifiedTeamDNA]:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 if __name__ == "__main__":
-    import sys
-    
-    print("\n" + "="*70)
-    print("   UNIFIED TEAM LOADER - CHESS ENGINE V2.0")
-    print("="*70)
-    
-    # Load all teams
-    teams = load_all_teams()
-    print(f"\n✅ {len(teams)} équipes chargées")
-    
-    # Stats
-    total_markets = sum(len(t.exploitable_markets) for t in teams.values())
-    high_conf = sum(1 for t in teams.values() for m in t.exploitable_markets if m.confidence == "HIGH")
-    
-    print(f"💰 {total_markets} marchés exploitables détectés")
-    print(f"🔥 {high_conf} HIGH CONFIDENCE")
-    
-    # Single team test
-    team_name = sys.argv[1] if len(sys.argv) > 1 else "Arsenal"
-    team = get_team(team_name)
-    
+    print("\n" + "=" * 70)
+    print("   UNIFIED LOADER - MON_PS QUANTUM PLATFORM")
+    print("=" * 70)
+
+    loader = UnifiedLoader()
+
+    # Get stats
+    stats = loader.get_stats()
+
+    print(f"\n📊 STATISTIQUES:")
+    print(f"   Teams:    {stats['teams']['total']}")
+    print(f"   Players:  {stats['players']['total']}")
+    print(f"   Referees: {stats['referees']['total']}")
+
+    print(f"\n📋 ARBITRES PAR TIER:")
+    for tier, count in stats['referees']['by_quality_tier'].items():
+        print(f"   {tier}: {count}")
+
+    # Test team
+    print(f"\n🏟️ TEST TEAM:")
+    team = loader.get_team("Liverpool")
     if team:
-        print("\n" + team.narrative)
-    else:
-        print(f"\n❌ Équipe '{team_name}' non trouvée")
-        print(f"   Équipes disponibles: {list(teams.keys())[:10]}...")
+        print(f"   Found: {team.get('_canonical_name', 'N/A')}")
+        # League can be in context or meta
+        league = team.get("context", {}).get("league") or team.get("meta", {}).get("league", "N/A")
+        print(f"   League: {league}")
+
+    # Test player
+    print(f"\n👤 TEST PLAYER:")
+    player = loader.get_player("Salah")
+    if player:
+        print(f"   Found: {player.get('_key', 'N/A')}")
+
+    # Test referee
+    print(f"\n👨‍⚖️ TEST REFEREE:")
+    ref = loader.get_referee("Oliver")
+    if ref:
+        print(f"   Found: {ref.get('_canonical_name', 'N/A')}")
+        if "meta" in ref:
+            print(f"   Tier: {ref['meta'].get('quality_tier', 'N/A')}")
+
+    # Test search
+    print(f"\n🔍 TEST SEARCH 'liver':")
+    results = loader.search("liver", limit=5)
+    for r in results:
+        print(f"   [{r['type']}] {r['name']}")
+
+    # Test referees by tier
+    print(f"\n🏆 HEDGE FUND GRADE REFEREES:")
+    hfg_refs = loader.get_referees_by_tier("hedge_fund_grade")
+    for ref in hfg_refs[:5]:
+        print(f"   {ref.get('_canonical_name', 'N/A')}")
+    print(f"   ... ({len(hfg_refs)} total)")
+
+    print("\n" + "=" * 70)
+    print("   ✅ ALL TESTS PASSED")
+    print("=" * 70)
