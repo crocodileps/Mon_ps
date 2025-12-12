@@ -296,6 +296,59 @@ def get_per_90_stat(player: Dict, stat_name: str, minutes_90: float) -> float:
     return raw_value / minutes_90
 
 
+def get_xA_per_90(player: Dict, minutes_90: float) -> float:
+    """
+    Récupère xA/90 depuis la meilleure source disponible
+    Ordre de priorité: attacking > style > impact > fbref > understat
+
+    CORRECTION BUG: L'ancien code cherchait UNIQUEMENT dans understat.xA
+    qui était ABSENT pour 74% des joueurs (dont Bruno Fernandes).
+    """
+    if minutes_90 <= 0:
+        return 0.0
+
+    # 1. attacking.xA_per_90 (déjà calculé per90)
+    attacking = player.get('attacking', {})
+    if attacking and attacking.get('xA_per_90'):
+        val = float(attacking.get('xA_per_90', 0) or 0)
+        if val > 0:
+            return val
+
+    # 2. style.metrics.xA_90 (déjà calculé per90)
+    style = player.get('style', {})
+    if isinstance(style, dict):
+        metrics = style.get('metrics', {})
+        if metrics and metrics.get('xA_90'):
+            val = float(metrics.get('xA_90', 0) or 0)
+            if val > 0:
+                return val
+
+    # 3. impact.xA (total, diviser par minutes_90)
+    impact = player.get('impact', {})
+    if impact and impact.get('xA'):
+        total_xA = float(impact.get('xA', 0) or 0)
+        if total_xA > 0:
+            return total_xA / minutes_90
+
+    # 4. fbref.shooting.xA (total, diviser par minutes_90)
+    fbref = player.get('fbref', {})
+    if fbref:
+        shooting = fbref.get('shooting', {})
+        if shooting and shooting.get('xA'):
+            total_xA = float(shooting.get('xA', 0) or 0)
+            if total_xA > 0:
+                return total_xA / minutes_90
+
+    # 5. understat.xA (total, diviser par minutes_90) - fallback
+    understat = player.get('understat', {})
+    if understat and understat.get('xA'):
+        total_xA = float(understat.get('xA', 0) or 0)
+        if total_xA > 0:
+            return total_xA / minutes_90
+
+    return 0.0
+
+
 def classify_midfielder_role(player: Dict, minutes_90: float) -> Tuple[str, float]:
     """
     Classifie automatiquement le rôle du milieu
@@ -310,10 +363,8 @@ def classify_midfielder_role(player: Dict, minutes_90: float) -> Tuple[str, floa
     progressive_carries = get_per_90_stat(player, 'progressive_carries', minutes_90)
     progressive_passes = get_per_90_stat(player, 'progressive_passes', minutes_90)
 
-    # xA depuis understat si disponible
-    understat = player.get('understat', {})
-    xA = float(understat.get('xA', 0) or 0)
-    xA_per_90 = xA / minutes_90 if minutes_90 > 0 else 0
+    # xA depuis TOUTES les sources (attacking > style > impact > fbref > understat)
+    xA_per_90 = get_xA_per_90(player, minutes_90)
 
     # SCA depuis fbref
     sca = get_per_90_stat(player, 'shot_creating_actions', minutes_90)
@@ -404,10 +455,8 @@ def calculate_role_metrics(player: Dict, role: str, minutes_90: float) -> Dict:
         metrics['defensive_rating'] = round(def_score, 0)
 
     elif role == 'MENEUR':
-        understat = player.get('understat', {})
-        xA = float(understat.get('xA', 0) or 0)
         metrics = {
-            'xA_per_90': round(xA / minutes_90 if minutes_90 > 0 else 0, 3),
+            'xA_per_90': round(get_xA_per_90(player, minutes_90), 3),
             'key_passes_per_90': round(get_per_90_stat(player, 'key_passes', minutes_90), 2),
             'sca_per_90': round(get_per_90_stat(player, 'shot_creating_actions', minutes_90), 2),
             'gca_per_90': round(get_per_90_stat(player, 'goal_creating_actions', minutes_90), 2),
@@ -426,15 +475,13 @@ def calculate_role_metrics(player: Dict, role: str, minutes_90: float) -> Dict:
         metrics['creative_rating'] = round(creative_score, 0)
 
     else:  # BOX_TO_BOX
-        understat = player.get('understat', {})
-        xA = float(understat.get('xA', 0) or 0)
         metrics = {
             'progressive_carries_per_90': round(get_per_90_stat(player, 'progressive_carries', minutes_90), 2),
             'progressive_passes_per_90': round(get_per_90_stat(player, 'progressive_passes', minutes_90), 2),
             'tackles_per_90': round(get_per_90_stat(player, 'tackles', minutes_90), 2),
             'ball_recoveries_per_90': round(get_per_90_stat(player, 'ball_recoveries', minutes_90), 2),
             'key_passes_per_90': round(get_per_90_stat(player, 'key_passes', minutes_90), 2),
-            'xA_per_90': round(xA / minutes_90 if minutes_90 > 0 else 0, 3),
+            'xA_per_90': round(get_xA_per_90(player, minutes_90), 3),
             'offensive_rating': 0,
             'defensive_rating': 0,
             'balance_score': 0
