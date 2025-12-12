@@ -386,19 +386,32 @@ def classify_midfielder_role(player: Dict, minutes_90: float) -> Tuple[str, floa
     if xA_per_90 < 0.15:
         sentinelle_score += 10
 
-    # MENEUR scoring
-    if key_passes >= 1.5:
+    # MENEUR scoring (N°10) - Créateur, passeur décisif
+    # Bonus progressif key_passes (indicateur principal créativité)
+    if key_passes >= 2.5:
+        meneur_score += 45  # Très créatif = fort bonus
+    elif key_passes >= 1.5:
+        meneur_score += 25
+    # xA (assists attendus)
+    if xA_per_90 >= 0.20:
         meneur_score += 30
-    if xA_per_90 >= 0.15:
+    elif xA_per_90 >= 0.12:
+        meneur_score += 20
+    # Shot Creating Actions
+    if sca >= 4.0:
         meneur_score += 25
-    if sca >= 3.0:
-        meneur_score += 25
+    elif sca >= 2.5:
+        meneur_score += 15
+    # Passes progressives
+    if progressive_passes >= 6.0:
+        meneur_score += 15
+    elif progressive_passes >= 4.0:
+        meneur_score += 8
+    # Bonus si peu défensif (profil offensif)
     if tackles < 2.0:
         meneur_score += 10
-    if progressive_passes >= 5.0:
-        meneur_score += 10
 
-    # BOX_TO_BOX scoring (équilibré)
+    # BOX_TO_BOX scoring (N°8) - Hybride, polyvalent
     if progressive_carries >= 1.0:
         box_to_box_score += 20
     if 1.0 <= tackles <= 3.0:
@@ -409,6 +422,13 @@ def classify_midfielder_role(player: Dict, minutes_90: float) -> Tuple[str, floa
         box_to_box_score += 20
     if progressive_passes >= 3.0:
         box_to_box_score += 20
+    # PÉNALITÉS si trop offensif (devrait être MENEUR)
+    if key_passes >= 2.5:
+        box_to_box_score -= 25  # Trop créatif pour B2B
+    if xA_per_90 >= 0.20:
+        box_to_box_score -= 20  # Trop de xA pour B2B
+    if sca >= 4.0:
+        box_to_box_score -= 15  # Trop de création
 
     # Déterminer le rôle
     scores = {
