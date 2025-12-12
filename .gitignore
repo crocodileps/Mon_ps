@@ -77,3 +77,5 @@ docs/adr/TEMPLATE_ADR.md
 .Python
 models/agent_defense_v2/*.pkl
 models/agent_defense/*.pkl
+node_modules/
+node_modules/
