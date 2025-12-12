@@ -549,7 +549,57 @@
         "ref_global_avg": 1.49,
         "card_diff": 0.51
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Millwall",
+          "diff": -0.99,
+          "matches": 10
+        },
+        {
+          "team": "Blackpool",
+          "diff": -0.99,
+          "matches": 6
+        },
+        {
+          "team": "Norwich",
+          "diff": -0.63,
+          "matches": 7
+        },
+        {
+          "team": "Luton",
+          "diff": -0.63,
+          "matches": 7
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Coventry",
+          "diff": 0.82,
+          "matches": 13
+        },
+        {
+          "team": "Sheffield United",
+          "diff": 0.68,
+          "matches": 12
+        },
+        {
+          "team": "Southampton",
+          "diff": 0.51,
+          "matches": 6
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.17,
+      "second_half_intensity": 1.45,
+      "card_trigger_rate": 14.1,
+      "match_flow_score": 28.9,
+      "strictness": "LENIENT"
+    }
   },
   "A Taylor": {
     "meta": {
@@ -936,7 +986,62 @@
         "ref_global_avg": 1.76,
         "card_diff": -0.43
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Man City",
+          "diff": -0.71,
+          "matches": 21
+        },
+        {
+          "team": "Wolves",
+          "diff": -0.68,
+          "matches": 12
+        },
+        {
+          "team": "Fulham",
+          "diff": -0.67,
+          "matches": 11
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Bournemouth",
+          "diff": 0.91,
+          "matches": 6
+        },
+        {
+          "team": "Southampton",
+          "diff": 0.86,
+          "matches": 8
+        },
+        {
+          "team": "Man United",
+          "diff": 0.69,
+          "matches": 20
+        },
+        {
+          "team": "Chelsea",
+          "diff": 0.61,
+          "matches": 19
+        },
+        {
+          "team": "Nott'm Forest",
+          "diff": 0.6,
+          "matches": 11
+        }
+      ],
+      "big_team_bias": -0.2,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.88,
+      "second_half_intensity": 1.69,
+      "card_trigger_rate": 17.0,
+      "match_flow_score": 29.3,
+      "strictness": "FAIR"
+    }
   },
   "T Robinson": {
     "meta": {
@@ -1653,7 +1758,62 @@
         "ref_global_avg": 2.03,
         "card_diff": -0.23
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Newcastle",
+          "diff": -1.63,
+          "matches": 5
+        },
+        {
+          "team": "Bristol City",
+          "diff": -1.03,
+          "matches": 10
+        },
+        {
+          "team": "Norwich",
+          "diff": -0.78,
+          "matches": 8
+        },
+        {
+          "team": "Brentford",
+          "diff": -0.7,
+          "matches": 6
+        },
+        {
+          "team": "Reading",
+          "diff": -0.7,
+          "matches": 9
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Wolves",
+          "diff": 0.77,
+          "matches": 5
+        },
+        {
+          "team": "Cardiff",
+          "diff": 0.77,
+          "matches": 5
+        },
+        {
+          "team": "Chelsea",
+          "diff": 0.57,
+          "matches": 5
+        }
+      ],
+      "big_team_bias": -0.2,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.22,
+      "second_half_intensity": 1.52,
+      "card_trigger_rate": 17.4,
+      "match_flow_score": 26.9,
+      "strictness": "FAIR"
+    }
   },
   "M Donohue": {
     "meta": {
@@ -2220,7 +2380,67 @@
         "ref_global_avg": 1.93,
         "card_diff": -0.6
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Norwich",
+          "diff": -0.93,
+          "matches": 5
+        },
+        {
+          "team": "Plymouth",
+          "diff": -0.73,
+          "matches": 5
+        },
+        {
+          "team": "Sheffield Weds",
+          "diff": -0.68,
+          "matches": 8
+        },
+        {
+          "team": "Hull",
+          "diff": -0.68,
+          "matches": 8
+        },
+        {
+          "team": "Bournemouth",
+          "diff": -0.6,
+          "matches": 6
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Blackburn",
+          "diff": 0.84,
+          "matches": 13
+        },
+        {
+          "team": "Blackpool",
+          "diff": 0.74,
+          "matches": 6
+        },
+        {
+          "team": "Luton",
+          "diff": 0.64,
+          "matches": 7
+        },
+        {
+          "team": "Sunderland",
+          "diff": 0.57,
+          "matches": 6
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.03,
+      "second_half_intensity": 1.28,
+      "card_trigger_rate": 16.6,
+      "match_flow_score": 26.7,
+      "strictness": "FAIR"
+    }
   },
   "M Oliver": {
     "meta": {
@@ -2591,7 +2811,41 @@
         "ref_global_avg": 1.69,
         "card_diff": -0.25
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [
+        {
+          "team": "Southampton",
+          "diff": 0.64,
+          "matches": 6
+        },
+        {
+          "team": "Chelsea",
+          "diff": 0.6,
+          "matches": 17
+        },
+        {
+          "team": "Man United",
+          "diff": 0.6,
+          "matches": 14
+        },
+        {
+          "team": "Fulham",
+          "diff": 0.51,
+          "matches": 5
+        }
+      ],
+      "big_team_bias": 0.06,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.7,
+      "second_half_intensity": 1.72,
+      "card_trigger_rate": 15.4,
+      "match_flow_score": 28.2,
+      "strictness": "FAIR"
+    }
   },
   "S Hooper": {
     "meta": {
@@ -3098,7 +3352,62 @@
         "ref_global_avg": 1.88,
         "card_diff": -0.88
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Leicester",
+          "diff": -0.88,
+          "matches": 6
+        },
+        {
+          "team": "West Ham",
+          "diff": -0.76,
+          "matches": 8
+        },
+        {
+          "team": "Man City",
+          "diff": -0.73,
+          "matches": 13
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Leeds",
+          "diff": 1.24,
+          "matches": 8
+        },
+        {
+          "team": "Chelsea",
+          "diff": 0.74,
+          "matches": 8
+        },
+        {
+          "team": "Newcastle",
+          "diff": 0.67,
+          "matches": 11
+        },
+        {
+          "team": "Fulham",
+          "diff": 0.62,
+          "matches": 6
+        },
+        {
+          "team": "Southampton",
+          "diff": 0.55,
+          "matches": 7
+        }
+      ],
+      "big_team_bias": 0.33,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.35,
+      "second_half_intensity": 1.62,
+      "card_trigger_rate": 17.4,
+      "match_flow_score": 28.5,
+      "strictness": "FAIR"
+    }
   },
   "G Ward": {
     "meta": {
@@ -3634,7 +3943,67 @@
         "ref_global_avg": 1.78,
         "card_diff": -0.11
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Coventry",
+          "diff": -0.9,
+          "matches": 8
+        },
+        {
+          "team": "Norwich",
+          "diff": -0.9,
+          "matches": 8
+        },
+        {
+          "team": "Plymouth",
+          "diff": -0.58,
+          "matches": 5
+        },
+        {
+          "team": "Burnley",
+          "diff": -0.58,
+          "matches": 5
+        },
+        {
+          "team": "Bristol City",
+          "diff": -0.53,
+          "matches": 8
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Preston",
+          "diff": 1.12,
+          "matches": 10
+        },
+        {
+          "team": "Millwall",
+          "diff": 0.65,
+          "matches": 14
+        },
+        {
+          "team": "Sunderland",
+          "diff": 0.6,
+          "matches": 8
+        },
+        {
+          "team": "Rotherham",
+          "diff": 0.55,
+          "matches": 9
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.68,
+      "second_half_intensity": 1.35,
+      "card_trigger_rate": 16.0,
+      "match_flow_score": 27.9,
+      "strictness": "FAIR"
+    }
   },
   "O Langford": {
     "meta": {
@@ -4140,7 +4509,52 @@
         "ref_global_avg": 1.88,
         "card_diff": -0.21
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Leeds",
+          "diff": -0.88,
+          "matches": 6
+        },
+        {
+          "team": "Derby",
+          "diff": -0.59,
+          "matches": 7
+        },
+        {
+          "team": "Burnley",
+          "diff": -0.55,
+          "matches": 6
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Luton",
+          "diff": 1.42,
+          "matches": 10
+        },
+        {
+          "team": "Millwall",
+          "diff": 0.95,
+          "matches": 6
+        },
+        {
+          "team": "Swansea",
+          "diff": 0.85,
+          "matches": 11
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.11,
+      "second_half_intensity": 1.39,
+      "card_trigger_rate": 17.0,
+      "match_flow_score": 27.9,
+      "strictness": "FAIR"
+    }
   },
   "C Pawson": {
     "meta": {
@@ -4557,7 +4971,52 @@
         "ref_global_avg": 1.99,
         "card_diff": -0.66
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Liverpool",
+          "diff": -1.07,
+          "matches": 13
+        },
+        {
+          "team": "Burnley",
+          "diff": -0.99,
+          "matches": 6
+        },
+        {
+          "team": "Man City",
+          "diff": -0.77,
+          "matches": 9
+        },
+        {
+          "team": "Arsenal",
+          "diff": -0.52,
+          "matches": 15
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Wolves",
+          "diff": 1.34,
+          "matches": 12
+        },
+        {
+          "team": "Leeds",
+          "diff": 1.01,
+          "matches": 6
+        }
+      ],
+      "big_team_bias": -0.14,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.61,
+      "second_half_intensity": 1.3,
+      "card_trigger_rate": 17.2,
+      "match_flow_score": 27.0,
+      "strictness": "FAIR"
+    }
   },
   "D Whitestone": {
     "meta": {
@@ -5093,7 +5552,26 @@
         "ref_global_avg": 1.46,
         "card_diff": -1.46
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [
+        {
+          "team": "Preston",
+          "diff": 0.74,
+          "matches": 10
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.96,
+      "second_half_intensity": 1.34,
+      "card_trigger_rate": 13.7,
+      "match_flow_score": 28.9,
+      "strictness": "LENIENT"
+    }
   },
   "R Jones": {
     "meta": {
@@ -5570,7 +6048,47 @@
         "ref_global_avg": 1.82,
         "card_diff": -0.42
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Man City",
+          "diff": -0.68,
+          "matches": 7
+        },
+        {
+          "team": "Leeds",
+          "diff": -0.53,
+          "matches": 7
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Nott'm Forest",
+          "diff": 1.32,
+          "matches": 7
+        },
+        {
+          "team": "Man United",
+          "diff": 0.98,
+          "matches": 10
+        },
+        {
+          "team": "Bournemouth",
+          "diff": 0.62,
+          "matches": 9
+        }
+      ],
+      "big_team_bias": 0.65,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.08,
+      "second_half_intensity": 1.53,
+      "card_trigger_rate": 16.3,
+      "match_flow_score": 27.0,
+      "strictness": "FAIR"
+    }
   },
   "A Madley": {
     "meta": {
@@ -6062,7 +6580,47 @@
         "ref_global_avg": 1.69,
         "card_diff": 0.06
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Tottenham",
+          "diff": -1.02,
+          "matches": 9
+        },
+        {
+          "team": "Fulham",
+          "diff": -0.81,
+          "matches": 8
+        },
+        {
+          "team": "Man City",
+          "diff": -0.69,
+          "matches": 9
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Aston Villa",
+          "diff": 0.98,
+          "matches": 12
+        },
+        {
+          "team": "Newcastle",
+          "diff": 0.69,
+          "matches": 8
+        }
+      ],
+      "big_team_bias": 0.09,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.75,
+      "second_half_intensity": 1.75,
+      "card_trigger_rate": 14.1,
+      "match_flow_score": 26.7,
+      "strictness": "LENIENT"
+    }
   },
   "K Stroud": {
     "meta": {
@@ -6554,7 +7112,57 @@
         "ref_global_avg": 2.13,
         "card_diff": 0.62
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Middlesbrough",
+          "diff": -0.75,
+          "matches": 8
+        },
+        {
+          "team": "Blackburn",
+          "diff": -0.51,
+          "matches": 8
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Norwich",
+          "diff": 0.87,
+          "matches": 8
+        },
+        {
+          "team": "Birmingham",
+          "diff": 0.77,
+          "matches": 10
+        },
+        {
+          "team": "Rotherham",
+          "diff": 0.58,
+          "matches": 7
+        },
+        {
+          "team": "Watford",
+          "diff": 0.54,
+          "matches": 9
+        },
+        {
+          "team": "QPR",
+          "diff": 0.54,
+          "matches": 9
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.2,
+      "second_half_intensity": 1.55,
+      "card_trigger_rate": 17.9,
+      "match_flow_score": 26.5,
+      "strictness": "STRICT"
+    }
   },
   "J Linington": {
     "meta": {
@@ -7075,7 +7683,72 @@
         "ref_global_avg": 1.88,
         "card_diff": -1.21
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Sheffield Weds",
+          "diff": -0.88,
+          "matches": 5
+        },
+        {
+          "team": "Hull",
+          "diff": -0.88,
+          "matches": 8
+        },
+        {
+          "team": "Norwich",
+          "diff": -0.76,
+          "matches": 8
+        },
+        {
+          "team": "Bournemouth",
+          "diff": -0.71,
+          "matches": 6
+        },
+        {
+          "team": "Coventry",
+          "diff": -0.59,
+          "matches": 7
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Birmingham",
+          "diff": 1.29,
+          "matches": 6
+        },
+        {
+          "team": "Derby",
+          "diff": 1.12,
+          "matches": 5
+        },
+        {
+          "team": "Luton",
+          "diff": 0.98,
+          "matches": 7
+        },
+        {
+          "team": "Sheffield United",
+          "diff": 0.62,
+          "matches": 6
+        },
+        {
+          "team": "Burnley",
+          "diff": 0.55,
+          "matches": 7
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": -0.08,
+      "second_half_intensity": 1.28,
+      "card_trigger_rate": 16.9,
+      "match_flow_score": 27.3,
+      "strictness": "FAIR"
+    }
   },
   "C Kavanagh": {
     "meta": {
@@ -7507,7 +8180,47 @@
         "ref_global_avg": 1.78,
         "card_diff": -0.03
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Liverpool",
+          "diff": -0.78,
+          "matches": 16
+        },
+        {
+          "team": "Leicester",
+          "diff": -0.66,
+          "matches": 8
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Fulham",
+          "diff": 0.93,
+          "matches": 7
+        },
+        {
+          "team": "Man United",
+          "diff": 0.8,
+          "matches": 12
+        },
+        {
+          "team": "Wolves",
+          "diff": 0.6,
+          "matches": 8
+        }
+      ],
+      "big_team_bias": 0.04,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.45,
+      "second_half_intensity": 1.39,
+      "card_trigger_rate": 16.4,
+      "match_flow_score": 28.6,
+      "strictness": "FAIR"
+    }
   },
   "S Attwell": {
     "meta": {
@@ -7924,7 +8637,67 @@
         "ref_global_avg": 1.87,
         "card_diff": -0.2
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Liverpool",
+          "diff": -0.87,
+          "matches": 14
+        },
+        {
+          "team": "Brentford",
+          "diff": -0.87,
+          "matches": 8
+        },
+        {
+          "team": "Southampton",
+          "diff": -0.76,
+          "matches": 9
+        },
+        {
+          "team": "Arsenal",
+          "diff": -0.73,
+          "matches": 7
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Man United",
+          "diff": 0.77,
+          "matches": 11
+        },
+        {
+          "team": "Wolves",
+          "diff": 0.63,
+          "matches": 6
+        },
+        {
+          "team": "Bournemouth",
+          "diff": 0.57,
+          "matches": 9
+        },
+        {
+          "team": "Aston Villa",
+          "diff": 0.51,
+          "matches": 13
+        },
+        {
+          "team": "Sheffield United",
+          "diff": 0.51,
+          "matches": 8
+        }
+      ],
+      "big_team_bias": -0.26,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.52,
+      "second_half_intensity": 1.67,
+      "card_trigger_rate": 18.4,
+      "match_flow_score": 29.4,
+      "strictness": "FAIR"
+    }
   },
   "S Martin": {
     "meta": {
@@ -8460,7 +9233,62 @@
         "ref_global_avg": 1.75,
         "card_diff": -0.42
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Nott'm Forest",
+          "diff": -1.35,
+          "matches": 5
+        },
+        {
+          "team": "Hull",
+          "diff": -0.75,
+          "matches": 11
+        },
+        {
+          "team": "Cardiff",
+          "diff": -0.61,
+          "matches": 7
+        },
+        {
+          "team": "Barnsley",
+          "diff": -0.58,
+          "matches": 6
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Norwich",
+          "diff": 1.08,
+          "matches": 6
+        },
+        {
+          "team": "Plymouth",
+          "diff": 0.85,
+          "matches": 5
+        },
+        {
+          "team": "Sunderland",
+          "diff": 0.58,
+          "matches": 6
+        },
+        {
+          "team": "Rotherham",
+          "diff": 0.5,
+          "matches": 8
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.29,
+      "second_half_intensity": 1.28,
+      "card_trigger_rate": 15.0,
+      "match_flow_score": 26.5,
+      "strictness": "FAIR"
+    }
   },
   "D Bond": {
     "meta": {
@@ -9013,7 +9841,57 @@
         "ref_global_avg": 1.84,
         "card_diff": -0.59
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Luton",
+          "diff": -1.24,
+          "matches": 5
+        },
+        {
+          "team": "Hull",
+          "diff": -0.64,
+          "matches": 5
+        },
+        {
+          "team": "Huddersfield",
+          "diff": -0.64,
+          "matches": 5
+        },
+        {
+          "team": "Millwall",
+          "diff": -0.59,
+          "matches": 8
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Bournemouth",
+          "diff": 0.73,
+          "matches": 7
+        },
+        {
+          "team": "QPR",
+          "diff": 0.73,
+          "matches": 7
+        },
+        {
+          "team": "Swansea",
+          "diff": 0.66,
+          "matches": 6
+        }
+      ],
+      "big_team_bias": -0.09,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.5,
+      "second_half_intensity": 1.41,
+      "card_trigger_rate": 16.6,
+      "match_flow_score": 27.9,
+      "strictness": "FAIR"
+    }
   },
   "J Smith": {
     "meta": {
@@ -9490,7 +10368,47 @@
         "ref_global_avg": 1.95,
         "card_diff": 0.05
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Coventry",
+          "diff": -1.2,
+          "matches": 8
+        },
+        {
+          "team": "Middlesbrough",
+          "diff": -0.81,
+          "matches": 7
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Watford",
+          "diff": 1.22,
+          "matches": 6
+        },
+        {
+          "team": "Ipswich",
+          "diff": 0.88,
+          "matches": 6
+        },
+        {
+          "team": "Preston",
+          "diff": 0.52,
+          "matches": 15
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.73,
+      "second_half_intensity": 1.53,
+      "card_trigger_rate": 17.1,
+      "match_flow_score": 27.5,
+      "strictness": "FAIR"
+    }
   },
   "P Tierney": {
     "meta": {
@@ -9907,7 +10825,47 @@
         "ref_global_avg": 1.89,
         "card_diff": -0.22
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Burnley",
+          "diff": -0.6,
+          "matches": 7
+        },
+        {
+          "team": "Man City",
+          "diff": -0.56,
+          "matches": 12
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Southampton",
+          "diff": 1.31,
+          "matches": 5
+        },
+        {
+          "team": "Everton",
+          "diff": 0.82,
+          "matches": 7
+        },
+        {
+          "team": "Wolves",
+          "diff": 0.78,
+          "matches": 9
+        }
+      ],
+      "big_team_bias": 0.18,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.68,
+      "second_half_intensity": 1.79,
+      "card_trigger_rate": 17.0,
+      "match_flow_score": 27.9,
+      "strictness": "FAIR"
+    }
   },
   "J Gillett": {
     "meta": {
@@ -10474,7 +11432,37 @@
         "ref_global_avg": 1.72,
         "card_diff": -1.05
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Leicester",
+          "diff": -0.89,
+          "matches": 6
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Burnley",
+          "diff": 1.08,
+          "matches": 5
+        },
+        {
+          "team": "Tottenham",
+          "diff": 0.88,
+          "matches": 10
+        }
+      ],
+      "big_team_bias": 0.86,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.22,
+      "second_half_intensity": 1.69,
+      "card_trigger_rate": 16.4,
+      "match_flow_score": 29.3,
+      "strictness": "FAIR"
+    }
   },
   "J Brooks": {
     "meta": {
@@ -11011,7 +11999,62 @@
         "ref_global_avg": 2.05,
         "card_diff": -0.05
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Reading",
+          "diff": -0.85,
+          "matches": 5
+        },
+        {
+          "team": "Luton",
+          "diff": -0.76,
+          "matches": 7
+        },
+        {
+          "team": "Man City",
+          "diff": -0.65,
+          "matches": 10
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Aston Villa",
+          "diff": 1.33,
+          "matches": 8
+        },
+        {
+          "team": "Wolves",
+          "diff": 0.95,
+          "matches": 5
+        },
+        {
+          "team": "Southampton",
+          "diff": 0.95,
+          "matches": 5
+        },
+        {
+          "team": "Stoke",
+          "diff": 0.95,
+          "matches": 7
+        },
+        {
+          "team": "Chelsea",
+          "diff": 0.81,
+          "matches": 7
+        }
+      ],
+      "big_team_bias": 0.49,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.35,
+      "second_half_intensity": 1.51,
+      "card_trigger_rate": 17.9,
+      "match_flow_score": 27.3,
+      "strictness": "FAIR"
+    }
   },
   "P Bankes": {
     "meta": {
@@ -11458,7 +12501,47 @@
         "ref_global_avg": 1.98,
         "card_diff": -0.65
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Arsenal",
+          "diff": -0.84,
+          "matches": 7
+        },
+        {
+          "team": "Man City",
+          "diff": -0.55,
+          "matches": 7
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Fulham",
+          "diff": 0.91,
+          "matches": 9
+        },
+        {
+          "team": "Leeds",
+          "diff": 0.59,
+          "matches": 7
+        },
+        {
+          "team": "Tottenham",
+          "diff": 0.52,
+          "matches": 8
+        }
+      ],
+      "big_team_bias": -0.2,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.34,
+      "second_half_intensity": 1.47,
+      "card_trigger_rate": 18.3,
+      "match_flow_score": 28.5,
+      "strictness": "FAIR"
+    }
   },
   "D England": {
     "meta": {
@@ -11995,7 +13078,72 @@
         "ref_global_avg": 2.05,
         "card_diff": 0.28
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Man City",
+          "diff": -1.05,
+          "matches": 8
+        },
+        {
+          "team": "Arsenal",
+          "diff": -0.85,
+          "matches": 5
+        },
+        {
+          "team": "Luton",
+          "diff": -0.85,
+          "matches": 5
+        },
+        {
+          "team": "West Ham",
+          "diff": -0.72,
+          "matches": 6
+        },
+        {
+          "team": "Southampton",
+          "diff": -0.62,
+          "matches": 7
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Middlesbrough",
+          "diff": 1.45,
+          "matches": 6
+        },
+        {
+          "team": "Blackburn",
+          "diff": 1.15,
+          "matches": 5
+        },
+        {
+          "team": "Liverpool",
+          "diff": 0.75,
+          "matches": 5
+        },
+        {
+          "team": "Burnley",
+          "diff": 0.55,
+          "matches": 5
+        },
+        {
+          "team": "Fulham",
+          "diff": 0.52,
+          "matches": 7
+        }
+      ],
+      "big_team_bias": -0.36,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.9,
+      "second_half_intensity": 1.42,
+      "card_trigger_rate": 18.3,
+      "match_flow_score": 27.5,
+      "strictness": "FAIR"
+    }
   },
   "T Harrington": {
     "meta": {
@@ -12591,7 +13739,62 @@
         "ref_global_avg": 1.68,
         "card_diff": -0.48
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Brentford",
+          "diff": -1.08,
+          "matches": 5
+        },
+        {
+          "team": "Preston",
+          "diff": -0.93,
+          "matches": 8
+        },
+        {
+          "team": "Newcastle",
+          "diff": -0.88,
+          "matches": 5
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Everton",
+          "diff": 1.92,
+          "matches": 5
+        },
+        {
+          "team": "Bournemouth",
+          "diff": 1.12,
+          "matches": 5
+        },
+        {
+          "team": "Nott'm Forest",
+          "diff": 0.75,
+          "matches": 7
+        },
+        {
+          "team": "Burnley",
+          "diff": 0.52,
+          "matches": 5
+        },
+        {
+          "team": "Rotherham",
+          "diff": 0.52,
+          "matches": 5
+        }
+      ],
+      "big_team_bias": 0.39,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.95,
+      "second_half_intensity": 1.58,
+      "card_trigger_rate": 14.8,
+      "match_flow_score": 27.2,
+      "strictness": "FAIR"
+    }
   },
   "D Coote": {
     "meta": {
@@ -13009,7 +14212,62 @@
         "ref_global_avg": 2.0,
         "card_diff": 0.0
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Man City",
+          "diff": -1.67,
+          "matches": 6
+        },
+        {
+          "team": "West Ham",
+          "diff": -0.88,
+          "matches": 8
+        },
+        {
+          "team": "Leicester",
+          "diff": -0.8,
+          "matches": 5
+        },
+        {
+          "team": "Arsenal",
+          "diff": -0.5,
+          "matches": 10
+        },
+        {
+          "team": "Burnley",
+          "diff": -0.5,
+          "matches": 8
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Southampton",
+          "diff": 1.0,
+          "matches": 8
+        },
+        {
+          "team": "Chelsea",
+          "diff": 0.64,
+          "matches": 11
+        },
+        {
+          "team": "Brighton",
+          "diff": 0.56,
+          "matches": 9
+        }
+      ],
+      "big_team_bias": -0.12,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.7,
+      "second_half_intensity": 1.43,
+      "card_trigger_rate": 17.1,
+      "match_flow_score": 26.5,
+      "strictness": "FAIR"
+    }
   },
   "J Busby": {
     "meta": {
@@ -13485,7 +14743,57 @@
         "ref_global_avg": 1.78,
         "card_diff": 1.89
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Plymouth",
+          "diff": -0.78,
+          "matches": 5
+        },
+        {
+          "team": "West Brom",
+          "diff": -0.78,
+          "matches": 5
+        },
+        {
+          "team": "Huddersfield",
+          "diff": -0.78,
+          "matches": 6
+        },
+        {
+          "team": "Reading",
+          "diff": -0.61,
+          "matches": 6
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Stoke",
+          "diff": 1.22,
+          "matches": 5
+        },
+        {
+          "team": "Rotherham",
+          "diff": 0.62,
+          "matches": 5
+        },
+        {
+          "team": "Hull",
+          "diff": 0.52,
+          "matches": 10
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.9,
+      "second_half_intensity": 1.4,
+      "card_trigger_rate": 17.1,
+      "match_flow_score": 29.1,
+      "strictness": "FAIR"
+    }
   },
   "M Salisbury": {
     "meta": {
@@ -14007,7 +15315,52 @@
         "ref_global_avg": 1.64,
         "card_diff": -0.39
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "QPR",
+          "diff": -0.64,
+          "matches": 7
+        },
+        {
+          "team": "Cardiff",
+          "diff": -0.52,
+          "matches": 8
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Nott'm Forest",
+          "diff": 0.76,
+          "matches": 5
+        },
+        {
+          "team": "Sheffield United",
+          "diff": 0.65,
+          "matches": 7
+        },
+        {
+          "team": "Ipswich",
+          "diff": 0.53,
+          "matches": 6
+        },
+        {
+          "team": "Wolves",
+          "diff": 0.53,
+          "matches": 6
+        }
+      ],
+      "big_team_bias": 0.09,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.59,
+      "second_half_intensity": 1.68,
+      "card_trigger_rate": 14.3,
+      "match_flow_score": 27.5,
+      "strictness": "LENIENT"
+    }
   },
   "J Simpson": {
     "meta": {
@@ -14454,7 +15807,47 @@
         "ref_global_avg": 1.64,
         "card_diff": 0.03
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Middlesbrough",
+          "diff": -0.64,
+          "matches": 9
+        },
+        {
+          "team": "Preston",
+          "diff": -0.54,
+          "matches": 10
+        },
+        {
+          "team": "Birmingham",
+          "diff": -0.5,
+          "matches": 7
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Watford",
+          "diff": 0.76,
+          "matches": 5
+        },
+        {
+          "team": "Bristol City",
+          "diff": 0.74,
+          "matches": 8
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.75,
+      "second_half_intensity": 1.66,
+      "card_trigger_rate": 13.9,
+      "match_flow_score": 26.1,
+      "strictness": "LENIENT"
+    }
   },
   "L Doughty": {
     "meta": {
@@ -14900,7 +16293,52 @@
         "ref_global_avg": 2.05,
         "card_diff": -0.05
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "West Brom",
+          "diff": -0.91,
+          "matches": 7
+        },
+        {
+          "team": "Luton",
+          "diff": -0.67,
+          "matches": 8
+        },
+        {
+          "team": "Bristol City",
+          "diff": -0.5,
+          "matches": 11
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Birmingham",
+          "diff": 0.78,
+          "matches": 6
+        },
+        {
+          "team": "Millwall",
+          "diff": 0.73,
+          "matches": 9
+        },
+        {
+          "team": "QPR",
+          "diff": 0.52,
+          "matches": 7
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.28,
+      "second_half_intensity": 1.43,
+      "card_trigger_rate": 18.2,
+      "match_flow_score": 27.5,
+      "strictness": "FAIR"
+    }
   },
   "A Davies": {
     "meta": {
@@ -15347,7 +16785,47 @@
         "ref_global_avg": 1.6,
         "card_diff": -0.2
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Birmingham",
+          "diff": -0.8,
+          "matches": 10
+        },
+        {
+          "team": "Reading",
+          "diff": -0.6,
+          "matches": 5
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Rotherham",
+          "diff": 0.73,
+          "matches": 6
+        },
+        {
+          "team": "QPR",
+          "diff": 0.62,
+          "matches": 9
+        },
+        {
+          "team": "Sunderland",
+          "diff": 0.57,
+          "matches": 6
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 0,
+      "second_half_intensity": 1.26,
+      "card_trigger_rate": 15.6,
+      "match_flow_score": 29.8,
+      "strictness": "LENIENT"
+    }
   },
   "G Eltringham": {
     "meta": {
@@ -15794,7 +17272,57 @@
         "ref_global_avg": 1.7,
         "card_diff": -0.2
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Watford",
+          "diff": -0.7,
+          "matches": 7
+        },
+        {
+          "team": "Sheffield Weds",
+          "diff": -0.7,
+          "matches": 5
+        },
+        {
+          "team": "Nott'm Forest",
+          "diff": -0.53,
+          "matches": 6
+        },
+        {
+          "team": "Birmingham",
+          "diff": -0.5,
+          "matches": 5
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Huddersfield",
+          "diff": 0.55,
+          "matches": 8
+        },
+        {
+          "team": "Stoke",
+          "diff": 0.55,
+          "matches": 8
+        },
+        {
+          "team": "Bristol City",
+          "diff": 0.52,
+          "matches": 9
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 2.02,
+      "second_half_intensity": 1.28,
+      "card_trigger_rate": 15.0,
+      "match_flow_score": 26.8,
+      "strictness": "FAIR"
+    }
   },
   "T Bramall": {
     "meta": {
@@ -16286,7 +17814,57 @@
         "ref_global_avg": 1.83,
         "card_diff": 1.17
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Fulham",
+          "diff": -1.0,
+          "matches": 6
+        },
+        {
+          "team": "Hull",
+          "diff": -0.83,
+          "matches": 9
+        },
+        {
+          "team": "Luton",
+          "diff": -0.5,
+          "matches": 6
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Southampton",
+          "diff": 1.0,
+          "matches": 6
+        },
+        {
+          "team": "Bournemouth",
+          "diff": 0.97,
+          "matches": 5
+        },
+        {
+          "team": "Cardiff",
+          "diff": 0.88,
+          "matches": 7
+        },
+        {
+          "team": "Millwall",
+          "diff": 0.67,
+          "matches": 6
+        }
+      ],
+      "big_team_bias": -0.24,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": -0.4,
+      "second_half_intensity": 1.31,
+      "card_trigger_rate": 15.9,
+      "match_flow_score": 27.6,
+      "strictness": "FAIR"
+    }
   },
   "G Scott": {
     "meta": {
@@ -16749,7 +18327,26 @@
         "ref_global_avg": 1.63,
         "card_diff": 0.04
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Burnley",
+          "diff": -0.63,
+          "matches": 6
+        }
+      ],
+      "nemesis_teams": [],
+      "big_team_bias": -1.3,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": -0.32,
+      "second_half_intensity": 1.49,
+      "card_trigger_rate": 15.0,
+      "match_flow_score": 28.3,
+      "strictness": "LENIENT"
+    }
   },
   "A Marriner": {
     "meta": {
@@ -17122,7 +18719,42 @@
         "ref_global_avg": 1.49,
         "card_diff": 0.18
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Southampton",
+          "diff": -0.74,
+          "matches": 8
+        },
+        {
+          "team": "Arsenal",
+          "diff": -0.61,
+          "matches": 8
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Sheffield United",
+          "diff": 0.71,
+          "matches": 5
+        },
+        {
+          "team": "Everton",
+          "diff": 0.51,
+          "matches": 7
+        }
+      ],
+      "big_team_bias": -0.17,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.21,
+      "second_half_intensity": 1.55,
+      "card_trigger_rate": 16.1,
+      "match_flow_score": 31.1,
+      "strictness": "LENIENT"
+    }
   },
   "S Barrott": {
     "meta": {
@@ -17524,7 +19156,42 @@
         "ref_global_avg": 1.91,
         "card_diff": -0.91
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Arsenal",
+          "diff": -0.91,
+          "matches": 5
+        },
+        {
+          "team": "Stoke",
+          "diff": -0.91,
+          "matches": 5
+        },
+        {
+          "team": "Bristol City",
+          "diff": -0.77,
+          "matches": 7
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Leicester",
+          "diff": 0.59,
+          "matches": 6
+        }
+      ],
+      "big_team_bias": 0.75,
+      "home_profile": "PRO_HOME"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.2,
+      "second_half_intensity": 1.77,
+      "card_trigger_rate": 17.2,
+      "match_flow_score": 29.3,
+      "strictness": "FAIR"
+    }
   },
   "A Woolmer": {
     "meta": {
@@ -17896,7 +19563,52 @@
         "ref_global_avg": 1.73,
         "card_diff": 0.87
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Barnsley",
+          "diff": -1.13,
+          "matches": 5
+        },
+        {
+          "team": "Cardiff",
+          "diff": -0.73,
+          "matches": 7
+        },
+        {
+          "team": "Reading",
+          "diff": -0.53,
+          "matches": 5
+        },
+        {
+          "team": "Nott'm Forest",
+          "diff": -0.53,
+          "matches": 5
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Swansea",
+          "diff": 0.94,
+          "matches": 6
+        },
+        {
+          "team": "Derby",
+          "diff": 0.87,
+          "matches": 5
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0,
+      "second_half_intensity": 1.13,
+      "card_trigger_rate": 13.8,
+      "match_flow_score": 25.7,
+      "strictness": "FAIR"
+    }
   },
   "A Kitchen": {
     "meta": {
@@ -18238,7 +19950,37 @@
         "ref_global_avg": 1.55,
         "card_diff": -0.15
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Middlesbrough",
+          "diff": -0.88,
+          "matches": 6
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Norwich",
+          "diff": 1.05,
+          "matches": 5
+        },
+        {
+          "team": "Cardiff",
+          "diff": 0.65,
+          "matches": 5
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.05,
+      "second_half_intensity": 1.09,
+      "card_trigger_rate": 13.0,
+      "match_flow_score": 25.8,
+      "strictness": "LENIENT"
+    }
   },
   "R Madley": {
     "meta": {
@@ -18565,7 +20307,41 @@
         "ref_global_avg": 2.14,
         "card_diff": 0.53
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Bristol City",
+          "diff": -0.94,
+          "matches": 5
+        },
+        {
+          "team": "Burnley",
+          "diff": -0.54,
+          "matches": 5
+        },
+        {
+          "team": "West Brom",
+          "diff": -0.54,
+          "matches": 5
+        },
+        {
+          "team": "Watford",
+          "diff": -0.52,
+          "matches": 8
+        }
+      ],
+      "nemesis_teams": [],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.17,
+      "second_half_intensity": 1.38,
+      "card_trigger_rate": 19.6,
+      "match_flow_score": 28.7,
+      "strictness": "STRICT"
+    }
   },
   "M Dean": {
     "meta": {
@@ -18878,7 +20654,37 @@
         "ref_global_avg": 1.67,
         "card_diff": 0.83
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Liverpool",
+          "diff": -0.92,
+          "matches": 8
+        },
+        {
+          "team": "Man City",
+          "diff": -0.67,
+          "matches": 5
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Aston Villa",
+          "diff": 0.53,
+          "matches": 5
+        }
+      ],
+      "big_team_bias": -0.15,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.58,
+      "second_half_intensity": 1.43,
+      "card_trigger_rate": 16.2,
+      "match_flow_score": 28.9,
+      "strictness": "FAIR"
+    }
   },
   "M Atkinson": {
     "meta": {
@@ -19206,7 +21012,52 @@
         "ref_global_avg": 1.2,
         "card_diff": -0.53
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "West Ham",
+          "diff": -0.95,
+          "matches": 8
+        },
+        {
+          "team": "Everton",
+          "diff": -0.53,
+          "matches": 6
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Southampton",
+          "diff": 1.2,
+          "matches": 5
+        },
+        {
+          "team": "Crystal Palace",
+          "diff": 1.0,
+          "matches": 5
+        },
+        {
+          "team": "Man United",
+          "diff": 0.92,
+          "matches": 8
+        },
+        {
+          "team": "Aston Villa",
+          "diff": 0.6,
+          "matches": 5
+        }
+      ],
+      "big_team_bias": 0.41,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": -0.09,
+      "second_half_intensity": 1.34,
+      "card_trigger_rate": 13.7,
+      "match_flow_score": 32.6,
+      "strictness": "LENIENT"
+    }
   },
   "J Bell": {
     "meta": {
@@ -19547,7 +21398,47 @@
         "ref_global_avg": 1.81,
         "card_diff": -0.06
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Norwich",
+          "diff": -0.81,
+          "matches": 6
+        },
+        {
+          "team": "Leeds",
+          "diff": -0.81,
+          "matches": 5
+        },
+        {
+          "team": "West Brom",
+          "diff": -0.52,
+          "matches": 7
+        },
+        {
+          "team": "Coventry",
+          "diff": -0.52,
+          "matches": 7
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Stoke",
+          "diff": 0.97,
+          "matches": 9
+        }
+      ],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.03,
+      "second_half_intensity": 1.37,
+      "card_trigger_rate": 17.7,
+      "match_flow_score": 29.4,
+      "strictness": "FAIR"
+    }
   },
   "J Moss": {
     "meta": {
@@ -19875,7 +21766,32 @@
         "ref_global_avg": 1.23,
         "card_diff": -0.9
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Liverpool",
+          "diff": -0.94,
+          "matches": 7
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Chelsea",
+          "diff": 0.57,
+          "matches": 5
+        }
+      ],
+      "big_team_bias": -0.82,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 1.71,
+      "second_half_intensity": 1.65,
+      "card_trigger_rate": 12.9,
+      "match_flow_score": 30.8,
+      "strictness": "LENIENT"
+    }
   },
   "K Friend": {
     "meta": {
@@ -20173,7 +22089,47 @@
         "ref_global_avg": 1.54,
         "card_diff": 0.79
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [
+        {
+          "team": "Liverpool",
+          "diff": -0.87,
+          "matches": 6
+        },
+        {
+          "team": "Brighton",
+          "diff": -0.65,
+          "matches": 9
+        },
+        {
+          "team": "West Ham",
+          "diff": -0.54,
+          "matches": 6
+        }
+      ],
+      "nemesis_teams": [
+        {
+          "team": "Leeds",
+          "diff": 1.46,
+          "matches": 6
+        },
+        {
+          "team": "Burnley",
+          "diff": 0.6,
+          "matches": 7
+        }
+      ],
+      "big_team_bias": -0.6,
+      "home_profile": "PRO_AWAY"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.75,
+      "second_half_intensity": 1.25,
+      "card_trigger_rate": 15.4,
+      "match_flow_score": 29.8,
+      "strictness": "LENIENT"
+    }
   },
   "S Allison": {
     "meta": {
@@ -20485,7 +22441,20 @@
         "ref_global_avg": 2.06,
         "card_diff": -1.39
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.59,
+      "second_half_intensity": 1.22,
+      "card_trigger_rate": 17.8,
+      "match_flow_score": 27.9,
+      "strictness": "FAIR"
+    }
   },
   "T Nield": {
     "meta": {
@@ -20721,7 +22690,20 @@
         "ref_global_avg": 1.7,
         "card_diff": 0.63
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0.53,
+      "second_half_intensity": 1.37,
+      "card_trigger_rate": 16.6,
+      "match_flow_score": 26.2,
+      "strictness": "FAIR"
+    }
   },
   "L Smith": {
     "meta": {
@@ -20883,7 +22865,20 @@
         "ref_global_avg": 1.87,
         "card_diff": 0.8
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": -0.39,
+      "second_half_intensity": 1.82,
+      "card_trigger_rate": 15.7,
+      "match_flow_score": 27.4,
+      "strictness": "FAIR"
+    }
   },
   "A Backhouse": {
     "meta": {
@@ -21119,7 +23114,20 @@
         "ref_global_avg": 2.07,
         "card_diff": 0.6
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": 0,
+      "home_profile": "NEUTRE"
+    },
+    "advanced": {
+      "high_stakes_factor": 0,
+      "second_half_intensity": 1.13,
+      "card_trigger_rate": 18.6,
+      "match_flow_score": 28.1,
+      "strictness": "FAIR"
+    }
   },
   "T Reeves": {
     "meta": {
@@ -21151,6 +23159,12 @@
     },
     "profile": {
       "type": "LENIENT"
+    },
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
     }
   },
   "E Duckworth": {
@@ -21185,6 +23199,12 @@
     },
     "thresholds": {
       "cards_over_45": 66.7
+    },
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
     }
   },
   "B Speedie": {
@@ -21217,6 +23237,12 @@
     },
     "profile": {
       "type": "LENIENT"
+    },
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
     }
   },
   "A Herczeg": {
@@ -21263,6 +23289,12 @@
       "cards_over_35": 71.4,
       "cards_over_45": 28.6,
       "cards_over_55": 14.3
+    },
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
     }
   },
   "R Ricardo": {
@@ -21308,6 +23340,12 @@
       "cards_over_35": 60.0,
       "cards_over_45": 20.0,
       "cards_over_55": 20.0
+    },
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
     }
   },
   "B Toner": {
@@ -21416,7 +23454,13 @@
         "ref_global_avg": 2.0,
         "card_diff": -1.0
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
+    }
   },
   "F Hallam": {
     "meta": {
@@ -21491,7 +23535,13 @@
         "ref_global_avg": 1.83,
         "card_diff": 0.84
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
+    }
   },
   "T Kirk": {
     "meta": {
@@ -21567,7 +23617,13 @@
         "ref_global_avg": 1.83,
         "card_diff": -0.5
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
+    }
   },
   "E Bell": {
     "meta": {
@@ -21612,6 +23668,12 @@
       "cards_over_35": 60.0,
       "cards_over_45": 20.0,
       "cards_over_55": 20.0
+    },
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
     }
   },
   "L Mason": {
@@ -21673,7 +23735,13 @@
         "ref_global_avg": 1.33,
         "card_diff": -0.0
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
+    }
   },
   "R Welch": {
     "meta": {
@@ -21765,7 +23833,13 @@
         "ref_global_avg": 2.67,
         "card_diff": 0.66
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
+    }
   },
   "S Gill": {
     "meta": {
@@ -21838,7 +23912,13 @@
         "ref_global_avg": 1.5,
         "card_diff": -0.17
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
+    }
   },
   "W Finnie": {
     "meta": {
@@ -21896,6 +23976,12 @@
         "ref_global_avg": 2.33,
         "card_diff": -0.0
       }
-    ]
+    ],
+    "bias": {
+      "favored_teams": [],
+      "nemesis_teams": [],
+      "big_team_bias": null,
+      "home_profile": null
+    }
   }
 }
