@@ -1,0 +1,7 @@
+referee_name,full_name_guess,league,matches,seasons,current_sources,missing_sources,missing_sections,fbref_url_guess,priority,status,notes
+B Toner,Ben Toner,Championship,21,"2024-25, 2023-24, 2022-23, 2021-22","export, historical","catalyst, v3, v4","goals, catalyst",https://fbref.com/en/referees/ben-toner,1,TO_INVESTIGATE,"Championship only, 4 season(s)"
+F Hallam,Farai Hallam,Championship,13,2024-25,"export, historical","catalyst, v3, v4","goals, catalyst",https://fbref.com/en/referees/farai-hallam,2,TO_INVESTIGATE,"Championship only, 1 season(s)"
+T Kirk,Tom Kirk,Championship,11,"2024-25, 2023-24","export, historical","catalyst, v3, v4","goals, catalyst",https://fbref.com/en/referees/tom-kirk,3,TO_INVESTIGATE,"Championship only, 2 season(s)"
+A Herczeg,Adam Herczeg,Championship,7,"2024-25, 2023-24","export, historical","catalyst, v3, v4","goals, catalyst, team_interactions",https://fbref.com/en/referees/adam-herczeg,4,TO_INVESTIGATE,"Championship only, 2 season(s)"
+R Ricardo,Ross Ricardo,Championship,5,2024-25,"export, historical","catalyst, v3, v4","goals, catalyst, team_interactions",https://fbref.com/en/referees/ross-ricardo,5,TO_INVESTIGATE,"Championship only, 1 season(s)"
+E Bell,Eddie Bell,Championship,5,2024-25,"export, historical","catalyst, v3, v4","goals, catalyst, team_interactions",https://fbref.com/en/referees/eddie-bell,6,TO_INVESTIGATE,"Championship only, 1 season(s)"

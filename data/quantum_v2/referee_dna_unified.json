@@ -10,7 +10,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 149,
@@ -558,7 +562,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 144,
@@ -941,7 +949,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 142,
@@ -1654,7 +1666,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 141,
@@ -2217,7 +2233,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 133,
@@ -2584,7 +2604,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 130,
@@ -3087,7 +3111,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 130,
@@ -3619,7 +3647,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 125,
@@ -4121,7 +4153,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 122,
@@ -4534,7 +4570,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 122,
@@ -5066,7 +5106,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 116,
@@ -5539,7 +5583,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 116,
@@ -6026,7 +6074,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 3.0,
+      "quality_tier": "partial",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 116,
@@ -6513,7 +6567,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 116,
@@ -7030,7 +7088,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 113,
@@ -7458,7 +7520,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 113,
@@ -7871,7 +7937,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 112,
@@ -8402,7 +8472,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 4.5,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 111,
@@ -8950,7 +9026,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 111,
@@ -9423,7 +9503,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 107,
@@ -9836,7 +9920,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 106,
@@ -10399,7 +10487,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 106,
@@ -10932,7 +11024,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 105,
@@ -11375,7 +11471,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 104,
@@ -11908,7 +12008,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 103,
@@ -12499,7 +12603,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 4.5,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 99,
@@ -12912,7 +13022,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 96,
@@ -13384,7 +13498,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 95,
@@ -13901,7 +14019,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 3.0,
+      "quality_tier": "partial",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 95,
@@ -14343,7 +14467,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 91,
@@ -14784,7 +14912,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 3.0,
+      "quality_tier": "partial",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 89,
@@ -15225,7 +15359,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 3.0,
+      "quality_tier": "partial",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 88,
@@ -15667,7 +15807,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 85,
@@ -16154,7 +16298,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 4.5,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 75,
@@ -16611,7 +16761,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 4.5,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 67,
@@ -16979,7 +17135,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 64,
@@ -17376,7 +17536,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 3.0,
+      "quality_tier": "partial",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 60,
@@ -17743,7 +17909,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 53,
@@ -18081,7 +18251,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 53,
@@ -18403,7 +18577,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 4.5,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 53,
@@ -18710,7 +18890,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 4.5,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 53,
@@ -19033,7 +19219,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 52,
@@ -19369,7 +19559,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 4.5,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 52,
@@ -19691,7 +19887,13 @@
         "v3",
         "catalyst",
         "historical"
-      ]
+      ],
+      "quality_score": 4.5,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 52,
@@ -19984,7 +20186,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 46,
@@ -20292,7 +20498,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 35,
@@ -20524,7 +20734,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "hedge_fund_grade",
+      "quality_issues": [],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 33,
@@ -20682,7 +20896,11 @@
         "catalyst",
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 30,
@@ -20910,7 +21128,14 @@
       "sources_count": 1,
       "sources": [
         "export"
-      ]
+      ],
+      "quality_score": 1.5,
+      "quality_tier": "minimal",
+      "quality_issues": [
+        "low_matches",
+        "missing_historical"
+      ],
+      "league_tier": "unknown"
     },
     "core": {
       "matches": 3,
@@ -20935,7 +21160,14 @@
       "sources_count": 1,
       "sources": [
         "export"
-      ]
+      ],
+      "quality_score": 1.5,
+      "quality_tier": "minimal",
+      "quality_issues": [
+        "low_matches",
+        "missing_historical"
+      ],
+      "league_tier": "unknown"
     },
     "core": {
       "matches": 3,
@@ -20962,7 +21194,14 @@
       "sources_count": 1,
       "sources": [
         "export"
-      ]
+      ],
+      "quality_score": 1.5,
+      "quality_tier": "minimal",
+      "quality_issues": [
+        "low_matches",
+        "missing_historical"
+      ],
+      "league_tier": "unknown"
     },
     "core": {
       "matches": 4,
@@ -20988,7 +21227,13 @@
       "sources": [
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 3.5,
+      "quality_tier": "championship_partial",
+      "quality_issues": [
+        "low_matches"
+      ],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 7,
@@ -21028,7 +21273,13 @@
       "sources": [
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 3.5,
+      "quality_tier": "championship_partial",
+      "quality_issues": [
+        "low_matches"
+      ],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 5,
@@ -21067,7 +21318,11 @@
       "sources": [
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 5.0,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 21,
@@ -21171,7 +21426,11 @@
       "sources": [
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 4.5,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 13,
@@ -21242,7 +21501,11 @@
       "sources": [
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 4.5,
+      "quality_tier": "championship_grade",
+      "quality_issues": [],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 11,
@@ -21314,7 +21577,13 @@
       "sources": [
         "export",
         "historical"
-      ]
+      ],
+      "quality_score": 3.5,
+      "quality_tier": "championship_partial",
+      "quality_issues": [
+        "low_matches"
+      ],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 5,
@@ -21352,7 +21621,16 @@
       "sources_count": 1,
       "sources": [
         "historical"
-      ]
+      ],
+      "quality_score": 0.0,
+      "quality_tier": "minimal",
+      "quality_issues": [
+        "missing_v4",
+        "missing_catalyst",
+        "missing_v3",
+        "missing_export"
+      ],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 17,
@@ -21404,7 +21682,16 @@
       "sources_count": 1,
       "sources": [
         "historical"
-      ]
+      ],
+      "quality_score": 0.0,
+      "quality_tier": "minimal",
+      "quality_issues": [
+        "missing_v4",
+        "missing_catalyst",
+        "missing_v3",
+        "missing_export"
+      ],
+      "league_tier": "top_flight"
     },
     "core": {
       "matches": 16,
@@ -21487,7 +21774,13 @@
       "sources_count": 1,
       "sources": [
         "historical"
-      ]
+      ],
+      "quality_score": 2.5,
+      "quality_tier": "minimal",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 14,
@@ -21554,7 +21847,13 @@
       "sources_count": 1,
       "sources": [
         "historical"
-      ]
+      ],
+      "quality_score": 2.5,
+      "quality_tier": "minimal",
+      "quality_issues": [
+        "missing_export"
+      ],
+      "league_tier": "second_tier"
     },
     "core": {
       "matches": 14,
