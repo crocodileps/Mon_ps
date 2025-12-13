@@ -25,7 +25,14 @@ Examples:
     ... )
 """
 
-from pydantic import BaseModel, Field, field_validator, ConfigDict, field_serializer
+from pydantic import (
+    BaseModel,
+    Field,
+    field_validator,
+    model_validator,
+    ConfigDict,
+    field_serializer,
+)
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 from enum import Enum
@@ -84,6 +91,11 @@ class PositionSize(BaseModel):
 
     Détermine la taille optimale d'une position basée sur edge,
     volatilité et contraintes de risque.
+
+    Architecture Decision Records appliqués:
+    - ADR #002: model_validator pour assign_risk_level (cross-field logic)
+    - ADR #003: field_serializer pour computed_at
+    - ADR #004: Pattern Hybrid pour risk_level (auto-calcul avec override)
 
     Attributes:
         market_id: ID du marché
@@ -172,7 +184,15 @@ class PositionSize(BaseModel):
     max_risk_pct: float = Field(
         ..., ge=0.0, le=100.0, description="Risque max (% bankroll)"
     )
-    risk_level: RiskLevel = Field(..., description="Niveau de risque")
+    risk_level: RiskLevel = Field(
+        default=RiskLevel.LOW,
+        description=(
+            "Niveau de risque de la position. "
+            "Auto-calculé depuis recommended_stake_pct si omis. "
+            "Peut être overridden si nécessaire. "
+            "ADR #004: Pattern Hybrid."
+        ),
+    )
 
     # Portfolio Context
     bankroll: float = Field(..., gt=0.0, description="Bankroll actuel (€)")
@@ -202,32 +222,57 @@ class PositionSize(BaseModel):
 
     @field_serializer("computed_at", when_used="json")
     def serialize_datetime(self, dt: datetime) -> str:
-        """Serialize datetime to ISO format."""
-        return dt.isoformat()
+        """Serialize datetime field to ISO 8601 format.
 
-    @field_validator("risk_level", mode="before")
-    @classmethod
-    def assign_risk_level(cls, v: Any, info) -> RiskLevel:
-        """Assigne automatiquement le niveau de risque.
+        ADR #003: field_serializer explicite avec when_used='json'.
+        - Compatible FastAPI (.model_dump_json())
+        - Type-safe (mypy vérifie input/output)
+        - Testable unitairement
 
         Args:
-            v: Valeur fournie
-            info: Contexte de validation
+            dt: Datetime to serialize
 
         Returns:
-            Niveau de risque calculé
+            ISO 8601 string (e.g. '2025-12-13T22:00:00')
         """
-        if "recommended_stake_pct" in info.data:
-            pct = info.data["recommended_stake_pct"]
+        return dt.isoformat()
+
+    @model_validator(mode="after")
+    def assign_risk_level(self):
+        """Assigne automatiquement le niveau de risque.
+
+        ADR #002: model_validator garantit accès à tous les champs (y compris defaults).
+        ADR #004: Pattern Hybrid pour auto-calcul avec possibilité override.
+
+        Calcule risk_level depuis recommended_stake_pct si la sentinelle
+        (RiskLevel.LOW) est détectée.
+
+        Barèmes:
+        - < 1.0%: LOW
+        - 1.0-2.5%: MEDIUM
+        - 2.5-5.0%: HIGH
+        - >= 5.0%: VERY_HIGH
+
+        Returns:
+            Instance avec risk_level calculé ou overridden
+        """
+        # ─────────────────────────────────────────────────────────────────────
+        # AUTO-CALCUL : risk_level (ADR #004)
+        # ─────────────────────────────────────────────────────────────────────
+
+        # Vérifie sentinelle (RiskLevel.LOW) avant calcul
+        if self.risk_level == RiskLevel.LOW:
+            pct = self.recommended_stake_pct
             if pct < 1.0:
-                return RiskLevel.LOW
+                self.risk_level = RiskLevel.LOW
             elif pct < 2.5:
-                return RiskLevel.MEDIUM
+                self.risk_level = RiskLevel.MEDIUM
             elif pct < 5.0:
-                return RiskLevel.HIGH
+                self.risk_level = RiskLevel.HIGH
             else:
-                return RiskLevel.VERY_HIGH
-        return v if isinstance(v, RiskLevel) else RiskLevel.LOW
+                self.risk_level = RiskLevel.VERY_HIGH
+
+        return self
 
 
 class VaRCalculation(BaseModel):
@@ -235,6 +280,9 @@ class VaRCalculation(BaseModel):
 
     Mesure le risque maximum sur un horizon temporel avec un niveau
     de confiance donné.
+
+    Architecture Decision Records appliqués:
+    - ADR #003: field_serializer pour computed_at, based_on_data_from, based_on_data_to
 
     Attributes:
         confidence_level: Niveau de confiance (ex: 0.95 = 95%)
@@ -329,7 +377,19 @@ class VaRCalculation(BaseModel):
         "computed_at", "based_on_data_from", "based_on_data_to", when_used="json"
     )
     def serialize_datetime(self, dt: Optional[datetime]) -> Optional[str]:
-        """Serialize datetime to ISO format."""
+        """Serialize datetime fields to ISO 8601 format.
+
+        ADR #003: field_serializer explicite avec when_used='json'.
+        - Compatible FastAPI (.model_dump_json())
+        - Type-safe (mypy vérifie input/output)
+        - Testable unitairement
+
+        Args:
+            dt: Datetime to serialize (or None for optional fields)
+
+        Returns:
+            ISO 8601 string (e.g. '2025-12-13T22:00:00') or None
+        """
         return dt.isoformat() if dt else None
 
 
@@ -338,6 +398,9 @@ class PortfolioRisk(BaseModel):
 
     Agrège toutes les métriques de risque du portfolio incluant
     exposition, concentration, corrélations et VaR.
+
+    Architecture Decision Records appliqués:
+    - ADR #003: field_serializer pour computed_at
 
     Attributes:
         portfolio_id: ID du portfolio
@@ -469,5 +532,17 @@ class PortfolioRisk(BaseModel):
 
     @field_serializer("computed_at", when_used="json")
     def serialize_datetime(self, dt: datetime) -> str:
-        """Serialize datetime to ISO format."""
+        """Serialize datetime field to ISO 8601 format.
+
+        ADR #003: field_serializer explicite avec when_used='json'.
+        - Compatible FastAPI (.model_dump_json())
+        - Type-safe (mypy vérifie input/output)
+        - Testable unitairement
+
+        Args:
+            dt: Datetime to serialize
+
+        Returns:
+            ISO 8601 string (e.g. '2025-12-13T22:00:00')
+        """
         return dt.isoformat()
