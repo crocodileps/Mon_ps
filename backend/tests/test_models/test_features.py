@@ -280,3 +280,349 @@ class TestMatchFeatures:
 
         # value_differential = 800.0 - 600.0 = 200.0
         assert match.value_differential == pytest.approx(200.0, rel=1e-6)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TESTS ADR COMPLIANCE
+# ═══════════════════════════════════════════════════════════════════════════════
+
+
+class TestADR002ModelValidatorFeatures:
+    """Tests validant ADR #002 pour features.py.
+
+    ADR #002: model_validator pour cross-field logic.
+    - Garantit accès aux defaults
+    - Plus rapide que field_validator × N
+    - Type-safe avec Self return
+    """
+
+    def test_model_validator_accesses_defaults(self):
+        """ADR #002: model_validator accède aux defaults et calcule."""
+        home = TeamFeatures(
+            team_name="Liverpool",
+            team_id="liverpool",
+            is_home=True,
+            xg_per_90=2.14,
+            elo_rating=1987,
+            squad_value_millions=950.0,
+        )
+
+        away = TeamFeatures(
+            team_name="Manchester City",
+            team_id="mancity",
+            is_home=False,
+            xg_per_90=2.05,
+            elo_rating=2010,
+            squad_value_millions=1100.0,
+        )
+
+        # Tous les differentials omis → defaults None → calculés
+        match = MatchFeatures(
+            match_id="test_adr002_1",
+            competition="Premier League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+            # xg_differential omis → None → calculé
+            # elo_differential omis → None → calculé
+            # value_differential omis → None → calculé
+        )
+
+        # ADR #002: model_validator a calculé tous les differentials
+        assert match.xg_differential == pytest.approx(0.09, rel=1e-6)  # 2.14 - 2.05
+        assert match.elo_differential == -23  # 1987 - 2010
+        assert match.value_differential == pytest.approx(-150.0, rel=1e-6)  # 950 - 1100
+
+    def test_model_validator_cross_field_logic(self):
+        """ADR #002: model_validator combine données de plusieurs champs."""
+        home = TeamFeatures(
+            team_name="Team A",
+            team_id="team_a",
+            is_home=True,
+            xg_per_90=1.5,
+            elo_rating=1800,
+            # squad_value_millions omis
+        )
+
+        away = TeamFeatures(
+            team_name="Team B",
+            team_id="team_b",
+            is_home=False,
+            xg_per_90=1.2,
+            # elo_rating omis
+            squad_value_millions=600.0,
+        )
+
+        match = MatchFeatures(
+            match_id="test_adr002_2",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+        )
+
+        # Logique cross-field avec données partielles
+        assert match.xg_differential == pytest.approx(0.3, rel=1e-6)  # 1.5 - 1.2
+        assert match.elo_differential is None  # away_elo manquant
+        assert match.value_differential is None  # home_value manquant
+
+
+class TestADR003FieldSerializerFeatures:
+    """Tests validant ADR #003 pour features.py.
+
+    ADR #003: field_serializer explicite.
+    - when_used='json' pour .model_dump_json()
+    - Préserve datetime dans .model_dump()
+    - Type-safe et testable
+    """
+
+    def test_datetime_serializes_to_iso8601_json_metadata(self):
+        """ADR #003: .model_dump_json() serialise datetime en ISO 8601 (FeatureMetadata)."""
+        meta = FeatureMetadata(
+            feature_name="xg_per_90",
+            feature_type=FeatureType.CONTINUOUS,
+            source=FeatureSource.UNDERSTAT,
+            version="2.1.0",
+            computed_at=datetime(2025, 12, 13, 21, 0, 0),
+            data_timestamp=datetime(2025, 12, 13, 20, 0, 0),
+            quality_score=0.98,
+        )
+
+        json_str = meta.model_dump_json()
+
+        # Vérifier serialisation ISO 8601
+        assert '"computed_at":"2025-12-13T21:00:00"' in json_str
+        assert '"data_timestamp":"2025-12-13T20:00:00"' in json_str
+
+    def test_datetime_preserved_in_model_dump_team(self):
+        """ADR #003: .model_dump() préserve datetime object (TeamFeatures)."""
+        computed = datetime(2025, 12, 13, 21, 30, 0)
+
+        team = TeamFeatures(
+            team_name="Test Team",
+            team_id="test_team",
+            is_home=True,
+            computed_at=computed,
+        )
+
+        data = team.model_dump()
+
+        # Datetime préservé (pas de serialisation)
+        assert isinstance(data["computed_at"], datetime)
+        assert data["computed_at"] == computed
+
+    def test_match_datetime_serialization(self):
+        """ADR #003: MatchFeatures serialise computed_at et expires_at."""
+        home = TeamFeatures(team_name="A", team_id="a", is_home=True)
+        away = TeamFeatures(team_name="B", team_id="b", is_home=False)
+
+        computed = datetime(2025, 12, 13, 22, 0, 0)
+        expires = datetime(2025, 12, 14, 10, 0, 0)
+
+        match = MatchFeatures(
+            match_id="test_adr003_match",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime(2025, 12, 15, 15, 0),
+            home_team=home,
+            away_team=away,
+            computed_at=computed,
+            expires_at=expires,
+        )
+
+        json_str = match.model_dump_json()
+
+        # Serialisation ISO 8601
+        assert '"computed_at":"2025-12-13T22:00:00"' in json_str
+        assert '"expires_at":"2025-12-14T10:00:00"' in json_str
+
+        # .model_dump() préserve
+        data = match.model_dump()
+        assert isinstance(data["computed_at"], datetime)
+        assert isinstance(data["expires_at"], datetime)
+
+
+class TestADR004AutoCalculatedFeatures:
+    """Tests validant ADR #004 pour features.py.
+
+    ADR #004: Pattern Hybrid pour auto-calculs.
+    - Default sentinelle (None)
+    - Auto-calcul si sentinelle détectée
+    - Permet override si valeur fournie
+    """
+
+    def test_xg_differential_auto_calculated(self):
+        """ADR #004: xg_differential auto-calculé depuis team features."""
+        home = TeamFeatures(
+            team_name="Team A",
+            team_id="team_a",
+            is_home=True,
+            xg_per_90=1.8,
+        )
+
+        away = TeamFeatures(
+            team_name="Team B",
+            team_id="team_b",
+            is_home=False,
+            xg_per_90=1.3,
+        )
+
+        match = MatchFeatures(
+            match_id="test_adr004_1",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+            # xg_differential omis → None → auto-calculé
+        )
+
+        # Auto-calculé: 1.8 - 1.3 = 0.5
+        assert match.xg_differential == pytest.approx(0.5, rel=1e-6)
+
+    def test_xg_differential_can_be_overridden(self):
+        """ADR #004: xg_differential peut être overridden si nécessaire."""
+        home = TeamFeatures(
+            team_name="Team A",
+            team_id="team_a",
+            is_home=True,
+            xg_per_90=1.8,
+        )
+
+        away = TeamFeatures(
+            team_name="Team B",
+            team_id="team_b",
+            is_home=False,
+            xg_per_90=1.3,
+        )
+
+        match = MatchFeatures(
+            match_id="test_adr004_2",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+            xg_differential=0.42,  # Override explicite
+        )
+
+        # Valeur override préservée (pas de calcul)
+        assert match.xg_differential == pytest.approx(0.42, rel=1e-6)
+
+    def test_elo_differential_auto_calculated(self):
+        """ADR #004: elo_differential auto-calculé depuis team features."""
+        home = TeamFeatures(
+            team_name="Team A",
+            team_id="team_a",
+            is_home=True,
+            elo_rating=2000,
+        )
+
+        away = TeamFeatures(
+            team_name="Team B",
+            team_id="team_b",
+            is_home=False,
+            elo_rating=1950,
+        )
+
+        match = MatchFeatures(
+            match_id="test_adr004_3",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+            # elo_differential omis → None → auto-calculé
+        )
+
+        # Auto-calculé: 2000 - 1950 = 50
+        assert match.elo_differential == 50
+
+    def test_elo_differential_can_be_overridden(self):
+        """ADR #004: elo_differential peut être overridden si nécessaire."""
+        home = TeamFeatures(
+            team_name="Team A",
+            team_id="team_a",
+            is_home=True,
+            elo_rating=2000,
+        )
+
+        away = TeamFeatures(
+            team_name="Team B",
+            team_id="team_b",
+            is_home=False,
+            elo_rating=1950,
+        )
+
+        match = MatchFeatures(
+            match_id="test_adr004_4",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+            elo_differential=30,  # Override explicite
+        )
+
+        # Valeur override préservée (pas de calcul)
+        assert match.elo_differential == 30
+
+    def test_value_differential_auto_calculated(self):
+        """ADR #004: value_differential auto-calculé depuis team features."""
+        home = TeamFeatures(
+            team_name="Team A",
+            team_id="team_a",
+            is_home=True,
+            squad_value_millions=800.0,
+        )
+
+        away = TeamFeatures(
+            team_name="Team B",
+            team_id="team_b",
+            is_home=False,
+            squad_value_millions=600.0,
+        )
+
+        match = MatchFeatures(
+            match_id="test_adr004_5",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+            # value_differential omis → None → auto-calculé
+        )
+
+        # Auto-calculé: 800.0 - 600.0 = 200.0
+        assert match.value_differential == pytest.approx(200.0, rel=1e-6)
+
+    def test_value_differential_can_be_overridden(self):
+        """ADR #004: value_differential peut être overridden si nécessaire."""
+        home = TeamFeatures(
+            team_name="Team A",
+            team_id="team_a",
+            is_home=True,
+            squad_value_millions=800.0,
+        )
+
+        away = TeamFeatures(
+            team_name="Team B",
+            team_id="team_b",
+            is_home=False,
+            squad_value_millions=600.0,
+        )
+
+        match = MatchFeatures(
+            match_id="test_adr004_6",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+            value_differential=150.0,  # Override explicite
+        )
+
+        # Valeur override préservée (pas de calcul)
+        assert match.value_differential == pytest.approx(150.0, rel=1e-6)

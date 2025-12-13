@@ -80,6 +80,9 @@ class FeatureMetadata(BaseModel):
     Tracking complet de l'origine, version, qualité et fraîcheur des features.
     Essentiel pour la traçabilité Hedge Fund Grade.
 
+    Architecture Decision Records appliqués:
+    - ADR #003: field_serializer pour computed_at, data_timestamp
+
     Attributes:
         feature_name: Nom technique de la feature
         feature_type: Type de la feature (continuous, categorical, etc.)
@@ -155,7 +158,20 @@ class FeatureMetadata(BaseModel):
 
     @field_serializer("computed_at", "data_timestamp", when_used="json")
     def serialize_datetime(self, dt: Optional[datetime]) -> Optional[str]:
-        """Serialize datetime to ISO format."""
+        """Serialize datetime fields to ISO 8601 format.
+
+        ADR #003: field_serializer explicite avec when_used='json'.
+        - Compatible FastAPI (.model_dump_json())
+        - Type-safe (mypy vérifie)
+        - Testable unitairement
+        - Preserves Python datetime in .model_dump()
+
+        Args:
+            dt: Datetime to serialize (or None)
+
+        Returns:
+            ISO 8601 string (e.g. '2025-12-13T20:30:00Z') or None
+        """
         return dt.isoformat() if dt else None
 
 
@@ -163,6 +179,9 @@ class TeamFeatures(BaseModel):
     """Features d'une équipe pour un match.
 
     Contient toutes les features d'une équipe avec métadonnées et score de complétude.
+
+    Architecture Decision Records appliqués:
+    - ADR #003: field_serializer pour computed_at
 
     Attributes:
         team_name: Nom de l'équipe
@@ -308,7 +327,20 @@ class TeamFeatures(BaseModel):
 
     @field_serializer("computed_at", when_used="json")
     def serialize_datetime(self, dt: datetime) -> str:
-        """Serialize datetime to ISO format."""
+        """Serialize datetime field to ISO 8601 format.
+
+        ADR #003: field_serializer explicite avec when_used='json'.
+        - Compatible FastAPI (.model_dump_json())
+        - Type-safe (mypy vérifie)
+        - Testable unitairement
+        - Preserves Python datetime in .model_dump()
+
+        Args:
+            dt: Datetime to serialize
+
+        Returns:
+            ISO 8601 string (e.g. '2025-12-13T20:30:00Z')
+        """
         return dt.isoformat()
 
 
@@ -316,6 +348,11 @@ class MatchFeatures(BaseModel):
     """Features complètes d'un match (home + away).
 
     Agrège les features des deux équipes plus les features de match.
+
+    Architecture Decision Records appliqués:
+    - ADR #002: model_validator pour calculate_differentials
+    - ADR #003: field_serializer pour computed_at, expires_at
+    - ADR #004: Pattern Hybrid pour xg_differential, elo_differential, value_differential
 
     Attributes:
         match_id: ID unique du match
@@ -418,13 +455,31 @@ class MatchFeatures(BaseModel):
 
     # Derived Features (auto-calculated)
     xg_differential: Optional[float] = Field(
-        None, description="xG_home - xG_away (auto-calculé)"
+        None,
+        description=(
+            "Différentiel xG (home - away). "
+            "Auto-calculé si omis (default=None). "
+            "Peut être overridden si nécessaire. "
+            "ADR #004: Pattern Hybrid."
+        ),
     )
     elo_differential: Optional[int] = Field(
-        None, description="Elo_home - Elo_away (auto-calculé)"
+        None,
+        description=(
+            "Différentiel Elo (home - away). "
+            "Auto-calculé si omis (default=None). "
+            "Peut être overridden si nécessaire. "
+            "ADR #004: Pattern Hybrid."
+        ),
     )
     value_differential: Optional[float] = Field(
-        None, description="Valeur_home - Valeur_away (auto-calculé)"
+        None,
+        description=(
+            "Différentiel valeur effectif (home - away, millions €). "
+            "Auto-calculé si omis (default=None). "
+            "Peut être overridden si nécessaire. "
+            "ADR #004: Pattern Hybrid."
+        ),
     )
 
     # Quality Metrics
@@ -451,32 +506,62 @@ class MatchFeatures(BaseModel):
 
     @field_serializer("computed_at", "expires_at", when_used="json")
     def serialize_datetime(self, dt: Optional[datetime]) -> Optional[str]:
-        """Serialize datetime to ISO format."""
+        """Serialize datetime fields to ISO 8601 format.
+
+        ADR #003: field_serializer explicite avec when_used='json'.
+        - Compatible FastAPI (.model_dump_json())
+        - Type-safe (mypy vérifie)
+        - Testable unitairement
+        - Preserves Python datetime in .model_dump()
+
+        Args:
+            dt: Datetime to serialize (or None)
+
+        Returns:
+            ISO 8601 string (e.g. '2025-12-13T20:30:00Z') or None
+        """
         return dt.isoformat() if dt else None
 
     @model_validator(mode="after")
     def calculate_differentials(self):
         """Calcule automatiquement les differentials après validation.
 
+        ADR #002: model_validator garantit accès à tous les champs (y compris defaults).
+        ADR #004: Pattern Hybrid pour auto-calcul avec possibilité override.
+
+        Champs calculés:
+        - xg_differential: home_xg - away_xg (si sentinelle None)
+        - elo_differential: home_elo - away_elo (si sentinelle None)
+        - value_differential: home_value - away_value (si sentinelle None)
+
         Returns:
             Instance avec differentials calculés
         """
-        # xg_differential
-        if self.xg_differential is None:
+        # ─────────────────────────────────────────────────────────────────────
+        # AUTO-CALCUL : xg_differential (ADR #004)
+        # ─────────────────────────────────────────────────────────────────────
+
+        if self.xg_differential is None:  # Vérifie sentinelle None
             home_xg = self.home_team.xg_per_90
             away_xg = self.away_team.xg_per_90
             if home_xg is not None and away_xg is not None:
                 self.xg_differential = home_xg - away_xg
 
-        # elo_differential
-        if self.elo_differential is None:
+        # ─────────────────────────────────────────────────────────────────────
+        # AUTO-CALCUL : elo_differential (ADR #004)
+        # ─────────────────────────────────────────────────────────────────────
+
+        if self.elo_differential is None:  # Vérifie sentinelle None
             home_elo = self.home_team.elo_rating
             away_elo = self.away_team.elo_rating
             if home_elo is not None and away_elo is not None:
                 self.elo_differential = home_elo - away_elo
 
-        # value_differential
-        if self.value_differential is None:
+        # ─────────────────────────────────────────────────────────────────────
+        # AUTO-CALCUL : value_differential (ADR #004)
+        # ─────────────────────────────────────────────────────────────────────
+
+        if self.value_differential is None:  # Vérifie sentinelle None
             home_val = self.home_team.squad_value_millions
             away_val = self.away_team.squad_value_millions
             if home_val is not None and away_val is not None:
