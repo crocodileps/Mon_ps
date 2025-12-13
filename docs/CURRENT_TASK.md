@@ -82,14 +82,6 @@ Manchester City:
 
 ---
 
-## Probleme Identifie
-- `attacker_dna_v2.json` a des erreurs d'assignation d'equipe
-  - Hugo Ekitike liste sous Liverpool (devrait etre Eintracht Frankfurt)
-  - Alexander Isak liste sous Liverpool (devrait etre Newcastle)
-- A nettoyer dans une prochaine session
-
----
-
 ## Fichiers Modifies Session #08
 ```
 quantum_core/data/
