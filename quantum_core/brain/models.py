@@ -1,8 +1,8 @@
 """
-Models - Structures de donnees pour UnifiedBrain V2.1
+Models - Structures de donnees pour UnifiedBrain V2.2
 ===============================================================================
 
-44 MARCHES SUPPORTES:
+50 MARCHES SUPPORTES:
 - 1X2 (3): home_win, draw, away_win
 - Double Chance (3): dc_1x, dc_x2, dc_12
 - DNB (2): dnb_home, dnb_away
@@ -11,6 +11,7 @@ Models - Structures de donnees pour UnifiedBrain V2.1
 - Corners (6): over/under 8.5, 9.5, 10.5
 - Cards (6): over/under 2.5, 3.5, 4.5
 - Correct Score (10): top 10 scores (0-0, 1-0, 0-1, 1-1, 2-0, 0-2, 2-1, 1-2, 2-2, 3-1)
+- Half-Time (6): ht_1x2, ht_over_05, ht_under_05, ht_btts
 """
 
 from dataclasses import dataclass, field
@@ -88,6 +89,14 @@ class MarketType(Enum):
     CS_2_2 = "cs_2_2"
     CS_3_1 = "cs_3_1"
 
+    # === Half-Time (6) - Marchés première mi-temps ===
+    HT_HOME_WIN = "ht_home_win"
+    HT_DRAW = "ht_draw"
+    HT_AWAY_WIN = "ht_away_win"
+    HT_OVER_05 = "ht_over_05"
+    HT_UNDER_05 = "ht_under_05"
+    HT_BTTS = "ht_btts"
+
 
 # === MARKET CATEGORIES ===
 MARKET_CATEGORIES = {
@@ -106,6 +115,8 @@ MARKET_CATEGORIES = {
     "CORRECT_SCORE": [MarketType.CS_0_0, MarketType.CS_1_0, MarketType.CS_0_1, MarketType.CS_1_1,
                       MarketType.CS_2_0, MarketType.CS_0_2, MarketType.CS_2_1, MarketType.CS_1_2,
                       MarketType.CS_2_2, MarketType.CS_3_1],
+    "HALF_TIME": [MarketType.HT_HOME_WIN, MarketType.HT_DRAW, MarketType.HT_AWAY_WIN,
+                  MarketType.HT_OVER_05, MarketType.HT_UNDER_05, MarketType.HT_BTTS],
 }
 
 
@@ -330,7 +341,7 @@ class MatchPrediction:
     Prediction complete d'un match - OUTPUT PRINCIPAL.
 
     Contient toutes les probabilites, edges, et recommandations
-    pour les 44 marches supportes (34 standards + 10 Correct Score).
+    pour les 50 marches supportes (34 standards + 10 Correct Score + 6 Half-Time).
     """
     # Identifiants
     home_team: str
@@ -404,6 +415,15 @@ class MatchPrediction:
     correct_score_probs: Dict[str, float] = field(default_factory=dict)  # {cs_1_1: 0.12, ...}
     top_scores: List[str] = field(default_factory=list)  # ["1-1", "1-0", "2-1", ...]
 
+    # === Half-Time (6 marchés) ===
+    ht_home_win_prob: float = 0.25
+    ht_draw_prob: float = 0.50
+    ht_away_win_prob: float = 0.25
+    ht_over_05_prob: float = 0.55
+    ht_under_05_prob: float = 0.45
+    ht_btts_prob: float = 0.20
+    expected_ht_goals: float = 1.0
+
     # Toutes les probabilites par marche
     market_probabilities: Dict[str, MarketProbability] = field(default_factory=dict)
 
@@ -425,8 +445,8 @@ class MatchPrediction:
     data_quality_score: float = 0.5
 
     # Metadata
-    model_version: str = "UnifiedBrain_v2.1"
-    markets_count: int = 44
+    model_version: str = "UnifiedBrain_v2.2"
+    markets_count: int = 50
 
     def get_best_edges(self, min_edge: float = 0.02) -> List[MarketEdge]:
         """Retourne les meilleurs edges au-dessus du seuil."""

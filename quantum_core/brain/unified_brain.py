@@ -1,18 +1,19 @@
 """
-UnifiedBrain V2.1 - Cerveau Unifie Hedge Fund Grade
+UnifiedBrain V2.2 - Cerveau Unifie Hedge Fund Grade
 ===============================================================================
 
-ARCHITECTURE V2.1:
+ARCHITECTURE V2.2:
     1. DataHubAdapter -> Donnees unifiees
     2. 8 Engines -> Analyses specialisees
     3. PoissonCalculator -> Over/Under pour Goals/Corners/Cards
     4. DerivedMarketsCalculator -> DC et DNB depuis 1X2
     5. CorrectScoreCalculator -> Top 10 scores exacts
-    6. BayesianFusion -> Fusion probabilites
-    7. EdgeCalculator -> Calcul edges avec LIQUIDITY_TAX par marche
-    8. KellySizer -> Sizing optimal
+    6. HalfTimeCalculator -> Marches mi-temps
+    7. BayesianFusion -> Fusion probabilites
+    8. EdgeCalculator -> Calcul edges avec LIQUIDITY_TAX par marche
+    9. KellySizer -> Sizing optimal
 
-44 MARCHES SUPPORTES:
+50 MARCHES SUPPORTES:
     - 1X2 (3): home_win, draw, away_win
     - Double Chance (3): dc_1x, dc_x2, dc_12
     - DNB (2): dnb_home, dnb_away
@@ -21,9 +22,10 @@ ARCHITECTURE V2.1:
     - Corners (6): over/under 8.5, 9.5, 10.5
     - Cards (6): over/under 2.5, 3.5, 4.5
     - Correct Score (10): top 10 scores (0-0, 1-0, 0-1, 1-1, 2-0, 0-2, 2-1, 1-2, 2-2, 3-1)
+    - Half-Time (6): ht_1x2, ht_over_05, ht_under_05, ht_btts
 
 Auteur: Mon_PS Quant Team
-Version: 2.1.0
+Version: 2.2.0
 Date: 13 Decembre 2025
 """
 
@@ -46,6 +48,7 @@ from .models import (
     LIQUIDITY_TAX, MIN_EDGE_BY_MARKET, MARKET_CATEGORIES
 )
 from .correct_score import CorrectScoreCalculator
+from .half_time import HalfTimeCalculator
 
 # Logging
 logging.basicConfig(level=logging.INFO)
@@ -220,19 +223,19 @@ ENGINE_WEIGHTS = {
 
 
 # ===============================================================================
-# UNIFIED BRAIN V2.1
+# UNIFIED BRAIN V2.2
 # ===============================================================================
 
 class UnifiedBrain:
     """
-    Cerveau Unifie V2.1 - Orchestre tous les composants pour 44 marches.
+    Cerveau Unifie V2.2 - Orchestre tous les composants pour 50 marches.
 
     Usage:
         brain = UnifiedBrain()
         prediction = brain.analyze_match("Liverpool", "Manchester City")
     """
 
-    VERSION = "2.1.0"
+    VERSION = "2.2.0"
 
     def __init__(self):
         """Initialise le cerveau avec lazy loading."""
@@ -243,10 +246,11 @@ class UnifiedBrain:
         self._kelly_sizer = None
         self._initialized = False
 
-        # Calculateurs V2.1
+        # Calculateurs V2.2
         self._poisson = PoissonCalculator()
         self._derived = DerivedMarketsCalculator()
         self._correct_score = CorrectScoreCalculator()
+        self._half_time = HalfTimeCalculator()
 
         self._stats = {
             "matches_analyzed": 0,
@@ -256,7 +260,7 @@ class UnifiedBrain:
             "markets_processed": 0,
         }
 
-        logger.info("UnifiedBrain V2.1 initialise (lazy mode)")
+        logger.info("UnifiedBrain V2.2 initialise (lazy mode)")
 
     # ===========================================================================
     # LAZY LOADING
@@ -301,7 +305,7 @@ class UnifiedBrain:
             logger.warning(f"KellySizer non disponible: {e}")
 
         self._initialized = True
-        logger.info("UnifiedBrain V2.1 pret - 44 marches")
+        logger.info("UnifiedBrain V2.2 pret - 50 marches")
 
     def _load_engine(self, engine_name: str):
         """Charge un engine de maniere lazy."""
@@ -352,7 +356,7 @@ class UnifiedBrain:
         bankroll: float = 1000.0
     ) -> MatchPrediction:
         """
-        Analyse complete d'un match - 44 marches.
+        Analyse complete d'un match - 50 marches.
 
         Args:
             home: Equipe a domicile
@@ -362,12 +366,12 @@ class UnifiedBrain:
             bankroll: Bankroll pour calcul Kelly
 
         Returns:
-            MatchPrediction avec 44 marches de probabilites et recommandations
+            MatchPrediction avec 50 marches de probabilites et recommandations
         """
         self._ensure_initialized()
         self._stats["matches_analyzed"] += 1
 
-        logger.info(f"Analyse V2.1: {home} vs {away}")
+        logger.info(f"Analyse V2.2: {home} vs {away}")
 
         # Creer le resultat
         prediction = MatchPrediction(
@@ -491,7 +495,30 @@ class UnifiedBrain:
         }
         prediction.top_scores = [pred.score_str for pred in cs_analysis.top_scores]
 
-        self._stats["markets_processed"] += 44
+        # -------------------------------------------------------------------
+        # ETAPE 5c: Calculer Half-Time (6 marchés)
+        # -------------------------------------------------------------------
+        ht_analysis = self._half_time.calculate(
+            expected_goals=prediction.expected_goals,
+            home_win_prob=prediction.home_win_prob,
+            draw_prob=prediction.draw_prob,
+            away_win_prob=prediction.away_win_prob,
+            expected_home_goals=prediction.expected_home_goals,
+            expected_away_goals=prediction.expected_away_goals,
+            home_profile=prediction.home_profile,
+            away_profile=prediction.away_profile,
+            btts_prob=prediction.btts_prob
+        )
+
+        prediction.ht_home_win_prob = ht_analysis.ht_home_win_prob
+        prediction.ht_draw_prob = ht_analysis.ht_draw_prob
+        prediction.ht_away_win_prob = ht_analysis.ht_away_win_prob
+        prediction.ht_over_05_prob = ht_analysis.ht_over_05_prob
+        prediction.ht_under_05_prob = ht_analysis.ht_under_05_prob
+        prediction.ht_btts_prob = ht_analysis.ht_btts_prob
+        prediction.expected_ht_goals = ht_analysis.expected_ht_goals
+
+        self._stats["markets_processed"] += 50
 
         # -------------------------------------------------------------------
         # ETAPE 6: Calculer les edges (si cotes fournies)
@@ -529,8 +556,8 @@ class UnifiedBrain:
         prediction.data_quality_score = self._calculate_quality(prediction)
         prediction.overall_confidence = self._get_confidence_level(prediction.data_quality_score)
 
-        logger.info(f"Analyse V2.1 terminee: {len(prediction.engines_used)} engines, "
-                   f"44 marches, qualite {prediction.data_quality_score:.1%}")
+        logger.info(f"Analyse V2.2 terminee: {len(prediction.engines_used)} engines, "
+                   f"50 marches, qualite {prediction.data_quality_score:.1%}")
 
         return prediction
 
