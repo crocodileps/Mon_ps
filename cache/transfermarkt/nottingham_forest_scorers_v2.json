@@ -1,107 +1,107 @@
 [
   {
     "player_name": "Igor Jesus",
-    "goals": 6,
+    "goals": 7,
     "assists": 0,
-    "matches": 19,
-    "scraped_at": "2025-12-10T06:02:20.807104"
+    "matches": 20,
+    "scraped_at": "2025-12-13T06:02:17.775745"
   },
   {
     "player_name": "Morgan Gibbs-White",
     "goals": 4,
     "assists": 3,
-    "matches": 20,
-    "scraped_at": "2025-12-10T06:02:20.806566"
+    "matches": 21,
+    "scraped_at": "2025-12-13T06:02:17.775188"
   },
   {
     "player_name": "Chris Wood",
     "goals": 3,
     "assists": 0,
     "matches": 9,
-    "scraped_at": "2025-12-10T06:02:20.807214"
+    "scraped_at": "2025-12-13T06:02:17.775852"
   },
   {
     "player_name": "Dan Ndoye",
     "goals": 2,
     "assists": 1,
-    "matches": 19,
-    "scraped_at": "2025-12-10T06:02:20.806950"
+    "matches": 20,
+    "scraped_at": "2025-12-13T06:02:17.775578"
   },
   {
     "player_name": "Nicol\u00f2 Savona",
     "goals": 2,
     "assists": 0,
     "matches": 14,
-    "scraped_at": "2025-12-10T06:02:20.806285"
+    "scraped_at": "2025-12-13T06:02:17.774907"
+  },
+  {
+    "player_name": "Arnaud Kalimuendo",
+    "goals": 2,
+    "assists": 0,
+    "matches": 12,
+    "scraped_at": "2025-12-13T06:02:17.775699"
   },
   {
     "player_name": "Neco Williams",
     "goals": 1,
     "assists": 1,
     "matches": 20,
-    "scraped_at": "2025-12-10T06:02:20.806155"
+    "scraped_at": "2025-12-13T06:02:17.774785"
   },
   {
     "player_name": "Elliot Anderson",
     "goals": 1,
     "assists": 1,
-    "matches": 19,
-    "scraped_at": "2025-12-10T06:02:20.806606"
+    "matches": 20,
+    "scraped_at": "2025-12-13T06:02:17.775225"
   },
   {
     "player_name": "Ryan Yates",
     "goals": 1,
     "assists": 1,
     "matches": 16,
-    "scraped_at": "2025-12-10T06:02:20.806837"
+    "scraped_at": "2025-12-13T06:02:17.775467"
   },
   {
     "player_name": "Murillo",
     "goals": 1,
     "assists": 0,
-    "matches": 13,
-    "scraped_at": "2025-12-10T06:02:20.806062"
+    "matches": 14,
+    "scraped_at": "2025-12-13T06:02:17.774693"
   },
   {
     "player_name": "Nikola Milenkovi\u0107",
     "goals": 1,
     "assists": 0,
-    "matches": 20,
-    "scraped_at": "2025-12-10T06:02:20.806114"
+    "matches": 21,
+    "scraped_at": "2025-12-13T06:02:17.774745"
   },
   {
     "player_name": "Ibrahim Sangar\u00e9",
     "goals": 1,
     "assists": 0,
-    "matches": 18,
-    "scraped_at": "2025-12-10T06:02:20.806764"
+    "matches": 19,
+    "scraped_at": "2025-12-13T06:02:17.775381"
   },
   {
     "player_name": "Callum Hudson-Odoi",
     "goals": 1,
     "assists": 0,
-    "matches": 19,
-    "scraped_at": "2025-12-10T06:02:20.807026"
-  },
-  {
-    "player_name": "Arnaud Kalimuendo",
-    "goals": 1,
-    "assists": 0,
-    "matches": 11,
-    "scraped_at": "2025-12-10T06:02:20.807065"
+    "matches": 20,
+    "scraped_at": "2025-12-13T06:02:17.775654"
   },
   {
     "player_name": "Omari Hutchinson",
     "goals": 0,
     "assists": 5,
     "matches": 11,
-    "scraped_at": "2025-12-10T06:02:20.806646"
+    "scraped_at": "2025-12-13T06:02:17.775266"
   },
   {
     "player_name": "Douglas Luiz",
     "goals": 0,
     "assists": 1,
-    "matches": 7,
-    "scraped_at": "2025-12-10T06:02:20.806686"
+    "matches": 8,
+    "scraped_at": "2025-12-13T06:02:17.775305"
   }
 ]

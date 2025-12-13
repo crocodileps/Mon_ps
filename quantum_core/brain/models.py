@@ -1,8 +1,8 @@
 """
-Models - Structures de donnees pour UnifiedBrain V2.7
+Models - Structures de donnees pour UnifiedBrain V2.8
 ===============================================================================
 
-93 MARCHES SUPPORTES:
+99 MARCHES SUPPORTES:
 - 1X2 (3): home_win, draw, away_win
 - Double Chance (3): dc_1x, dc_x2, dc_12
 - DNB (2): dnb_home, dnb_away
@@ -22,6 +22,7 @@ Models - Structures de donnees pour UnifiedBrain V2.7
 - Score Both Halves (2): yes/no
 - Clean Sheet (2): home/away clean sheet yes
 - To Score in Half (4): home/away to score 1H/2H
+- Team Totals (6): home/away over 0.5, 1.5, 2.5 (V2.8)
 """
 
 from dataclasses import dataclass, field
@@ -170,6 +171,14 @@ class MarketType(Enum):
     AWAY_TO_SCORE_1H = "away_to_score_1h"
     AWAY_TO_SCORE_2H = "away_to_score_2h"
 
+    # === Team Totals (6) - V2.8 ===
+    HOME_OVER_05 = "home_over_05"
+    HOME_OVER_15 = "home_over_15"
+    HOME_OVER_25 = "home_over_25"
+    AWAY_OVER_05 = "away_over_05"
+    AWAY_OVER_15 = "away_over_15"
+    AWAY_OVER_25 = "away_over_25"
+
 
 # === MARKET CATEGORIES ===
 MARKET_CATEGORIES = {
@@ -208,6 +217,8 @@ MARKET_CATEGORIES = {
     "CLEAN_SHEET": [MarketType.HOME_CLEAN_SHEET_YES, MarketType.AWAY_CLEAN_SHEET_YES],
     "TO_SCORE_HALF": [MarketType.HOME_TO_SCORE_1H, MarketType.HOME_TO_SCORE_2H,
                       MarketType.AWAY_TO_SCORE_1H, MarketType.AWAY_TO_SCORE_2H],
+    "TEAM_TOTALS": [MarketType.HOME_OVER_05, MarketType.HOME_OVER_15, MarketType.HOME_OVER_25,
+                   MarketType.AWAY_OVER_05, MarketType.AWAY_OVER_15, MarketType.AWAY_OVER_25],
 }
 
 
@@ -346,6 +357,14 @@ LIQUIDITY_TAX = {
     MarketType.HOME_TO_SCORE_2H: 0.025,
     MarketType.AWAY_TO_SCORE_1H: 0.025,
     MarketType.AWAY_TO_SCORE_2H: 0.025,
+
+    # Team Totals - Très liquides (V2.8)
+    MarketType.HOME_OVER_05: 0.02,
+    MarketType.HOME_OVER_15: 0.02,
+    MarketType.HOME_OVER_25: 0.02,
+    MarketType.AWAY_OVER_05: 0.02,
+    MarketType.AWAY_OVER_15: 0.02,
+    MarketType.AWAY_OVER_25: 0.02,
 }
 
 
@@ -484,6 +503,14 @@ MIN_EDGE_BY_MARKET = {
     MarketType.HOME_TO_SCORE_2H: 0.04,
     MarketType.AWAY_TO_SCORE_1H: 0.04,
     MarketType.AWAY_TO_SCORE_2H: 0.04,
+
+    # Team Totals - Liquides (V2.8)
+    MarketType.HOME_OVER_05: 0.03,
+    MarketType.HOME_OVER_15: 0.03,
+    MarketType.HOME_OVER_25: 0.03,
+    MarketType.AWAY_OVER_05: 0.03,
+    MarketType.AWAY_OVER_15: 0.03,
+    MarketType.AWAY_OVER_25: 0.03,
 }
 
 
@@ -744,6 +771,14 @@ class MatchPrediction:
     away_to_score_1h_prob: float = 0.48
     away_to_score_2h_prob: float = 0.55
 
+    # === Team Totals (6 marchés) - V2.8 ===
+    home_over_05_prob: float = 0.0
+    home_over_15_prob: float = 0.0
+    home_over_25_prob: float = 0.0
+    away_over_05_prob: float = 0.0
+    away_over_15_prob: float = 0.0
+    away_over_25_prob: float = 0.0
+
     # Toutes les probabilites par marche
     market_probabilities: Dict[str, MarketProbability] = field(default_factory=dict)
 
@@ -765,8 +800,8 @@ class MatchPrediction:
     data_quality_score: float = 0.5
 
     # Metadata
-    model_version: str = "UnifiedBrain_v2.7"
-    markets_count: int = 93
+    model_version: str = "UnifiedBrain_v2.8"
+    markets_count: int = 99
 
     def get_best_edges(self, min_edge: float = 0.02) -> List[MarketEdge]:
         """Retourne les meilleurs edges au-dessus du seuil."""

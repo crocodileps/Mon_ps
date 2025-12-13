@@ -1,8 +1,8 @@
 """
-UnifiedBrain V2.7 - Cerveau Unifie Hedge Fund Grade
+UnifiedBrain V2.8 - Cerveau Unifie Hedge Fund Grade
 ===============================================================================
 
-ARCHITECTURE V2.7:
+ARCHITECTURE V2.8:
     1. DataHubAdapter -> Donnees unifiees
     2. 8 Engines -> Analyses specialisees
     3. PoissonCalculator -> Over/Under pour Goals/Corners/Cards
@@ -19,11 +19,12 @@ ARCHITECTURE V2.7:
     14. ScoreInBothHalvesCalculator -> 2 marches Score Both Halves
     15. CleanSheetCalculator -> 2 marches Clean Sheet
     16. ToScoreInHalfCalculator -> 4 marches To Score in Half
-    17. BayesianFusion -> Fusion probabilites
-    18. EdgeCalculator -> Calcul edges avec LIQUIDITY_TAX par marche
-    19. KellySizer -> Sizing optimal
+    17. TeamTotalsCalculator -> 6 marches Team Totals (V2.8)
+    18. BayesianFusion -> Fusion probabilites
+    19. EdgeCalculator -> Calcul edges avec LIQUIDITY_TAX par marche
+    20. KellySizer -> Sizing optimal
 
-93 MARCHES SUPPORTES:
+99 MARCHES SUPPORTES:
     - 1X2 (3): home_win, draw, away_win
     - Double Chance (3): dc_1x, dc_x2, dc_12
     - DNB (2): dnb_home, dnb_away
@@ -43,9 +44,10 @@ ARCHITECTURE V2.7:
     - Score Both Halves (2): yes/no
     - Clean Sheet (2): home/away clean sheet yes
     - To Score in Half (4): home/away to score 1H/2H
+    - Team Totals (6): home/away over 0.5, 1.5, 2.5 (V2.8)
 
 Auteur: Mon_PS Quant Team
-Version: 2.7.0
+Version: 2.8.0
 Date: 13 Decembre 2025
 """
 
@@ -79,6 +81,7 @@ from .btts_both_halves import BttsBothHalvesCalculator
 from .score_both_halves import ScoreInBothHalvesCalculator
 from .clean_sheet import CleanSheetCalculator
 from .to_score_half import ToScoreInHalfCalculator
+from .team_totals import TeamTotalsCalculator, TeamTotalsAnalysis
 
 # Logging
 logging.basicConfig(level=logging.INFO)
@@ -265,7 +268,7 @@ class UnifiedBrain:
         prediction = brain.analyze_match("Liverpool", "Manchester City")
     """
 
-    VERSION = "2.7.0"
+    VERSION = "2.8.0"
 
     def __init__(self):
         """Initialise le cerveau avec lazy loading."""
@@ -291,6 +294,7 @@ class UnifiedBrain:
         self._score_both_halves = ScoreInBothHalvesCalculator()
         self._clean_sheet = CleanSheetCalculator()
         self._to_score_half = ToScoreInHalfCalculator()
+        self._team_totals = TeamTotalsCalculator()
 
         self._stats = {
             "matches_analyzed": 0,
@@ -680,7 +684,23 @@ class UnifiedBrain:
         prediction.away_to_score_1h_prob = tsh_analysis.away_to_score_1h
         prediction.away_to_score_2h_prob = tsh_analysis.away_to_score_2h
 
-        self._stats["markets_processed"] += 93
+        # -------------------------------------------------------------------
+        # ETAPE 5n: Calculer Team Totals (6 marches) - V2.8
+        # -------------------------------------------------------------------
+        team_totals = self._team_totals.calculate(
+            prediction.expected_home_goals,
+            prediction.expected_away_goals
+        )
+        prediction.home_over_05_prob = team_totals.home_over_05_prob
+        prediction.home_over_15_prob = team_totals.home_over_15_prob
+        prediction.home_over_25_prob = team_totals.home_over_25_prob
+        prediction.away_over_05_prob = team_totals.away_over_05_prob
+        prediction.away_over_15_prob = team_totals.away_over_15_prob
+        prediction.away_over_25_prob = team_totals.away_over_25_prob
+
+        logger.debug(f"TeamTotals: Home O1.5={prediction.home_over_15_prob:.1%}, Away O1.5={prediction.away_over_15_prob:.1%}")
+
+        self._stats["markets_processed"] += 99
 
         # -------------------------------------------------------------------
         # ETAPE 6: Calculer les edges (si cotes fournies)

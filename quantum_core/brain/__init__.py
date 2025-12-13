@@ -2,7 +2,7 @@
 UnifiedBrain - Hedge Fund Grade Prediction Engine
 ═══════════════════════════════════════════════════════════════════════════
 
-93 MARCHÉS SUPPORTÉS:
+99 MARCHÉS SUPPORTÉS (V2.8):
     - 1X2 (3): home_win, draw, away_win
     - Double Chance (3): dc_1x, dc_x2, dc_12
     - Draw No Bet (2): dnb_home, dnb_away
@@ -22,6 +22,7 @@ UnifiedBrain - Hedge Fund Grade Prediction Engine
     - Score Both Halves (2): yes/no
     - Clean Sheet (2): home/away clean sheet yes
     - To Score in Half (4): home/away to score 1H/2H
+    - Team Totals (6): home/away over 0.5, 1.5, 2.5 (V2.8)
 
 Architecture:
     UnifiedBrain coordonne:
@@ -95,6 +96,9 @@ from .clean_sheet import (
 from .to_score_half import (
     ToScoreInHalfCalculator, ToScoreInHalfAnalysis, get_to_score_half_calculator
 )
+from .team_totals import (
+    TeamTotalsCalculator, TeamTotalsAnalysis, get_team_totals_calculator
+)
 
 __all__ = [
     # Brain
@@ -161,7 +165,11 @@ __all__ = [
     "ToScoreInHalfCalculator",
     "ToScoreInHalfAnalysis",
     "get_to_score_half_calculator",
+    # Team Totals (V2.8)
+    "TeamTotalsCalculator",
+    "TeamTotalsAnalysis",
+    "get_team_totals_calculator",
 ]
 
-__version__ = "2.7.0"
-__markets_count__ = 93
+__version__ = "2.8.0"
+__markets_count__ = 99

@@ -653,14 +653,14 @@
   "Real Sociedad": {
     "raw_data": {
       "Normal": {
-        "shots": 115,
-        "goals": 12,
-        "xG": 11.481
+        "shots": 123,
+        "goals": 13,
+        "xG": 12.494
       },
       "Standard": {
-        "shots": 65,
+        "shots": 66,
         "goals": 5,
-        "xG": 8.672
+        "xG": 8.682
       },
       "Slow": {
         "shots": 15,
@@ -1149,24 +1149,24 @@
   "Girona": {
     "raw_data": {
       "Normal": {
-        "shots": 98,
-        "goals": 6,
-        "xG": 11.155
+        "shots": 108,
+        "goals": 7,
+        "xG": 12.142
       },
       "Standard": {
-        "shots": 31,
+        "shots": 33,
         "goals": 5,
-        "xG": 5.637
+        "xG": 5.693
       },
       "Fast": {
-        "shots": 6,
-        "goals": 1,
-        "xG": 1.399
+        "shots": 7,
+        "goals": 2,
+        "xG": 1.495
       },
       "Slow": {
-        "shots": 5,
+        "shots": 6,
         "goals": 1,
-        "xG": 0.148
+        "xG": 0.201
       }
     },
     "insights": {
@@ -1676,14 +1676,14 @@
   "RasenBallsport Leipzig": {
     "raw_data": {
       "Normal": {
-        "shots": 123,
-        "goals": 17,
-        "xG": 15.674
+        "shots": 129,
+        "goals": 18,
+        "xG": 15.971
       },
       "Standard": {
-        "shots": 71,
+        "shots": 74,
         "goals": 6,
-        "xG": 8.449
+        "xG": 8.647
       },
       "Fast": {
         "shots": 17,
@@ -1707,24 +1707,24 @@
   "Union Berlin": {
     "raw_data": {
       "Standard": {
-        "shots": 76,
+        "shots": 78,
         "goals": 6,
-        "xG": 7.993
+        "xG": 8.052
       },
       "Normal": {
-        "shots": 59,
-        "goals": 7,
-        "xG": 7.057
-      },
-      "Slow": {
-        "shots": 13,
-        "goals": 0,
-        "xG": 0.943
+        "shots": 66,
+        "goals": 9,
+        "xG": 7.909
       },
       "Fast": {
-        "shots": 13,
-        "goals": 3,
-        "xG": 2.332
+        "shots": 15,
+        "goals": 4,
+        "xG": 2.774
+      },
+      "Slow": {
+        "shots": 14,
+        "goals": 0,
+        "xG": 1.07
       }
     },
     "insights": {
@@ -2296,19 +2296,19 @@
   "Lecce": {
     "raw_data": {
       "Normal": {
-        "shots": 69,
-        "goals": 5,
-        "xG": 6.393
+        "shots": 75,
+        "goals": 6,
+        "xG": 7.282
       },
       "Standard": {
-        "shots": 47,
+        "shots": 59,
         "goals": 5,
-        "xG": 4.457
+        "xG": 6.295
       },
       "Slow": {
-        "shots": 10,
+        "shots": 13,
         "goals": 0,
-        "xG": 0.435
+        "xG": 0.508
       },
       "Fast": {
         "shots": 7,
@@ -2389,14 +2389,14 @@
   "Pisa": {
     "raw_data": {
       "Normal": {
-        "shots": 85,
+        "shots": 88,
         "goals": 4,
-        "xG": 10.416
+        "xG": 10.591
       },
       "Standard": {
-        "shots": 38,
+        "shots": 40,
         "goals": 4,
-        "xG": 4.749
+        "xG": 4.878
       },
       "Slow": {
         "shots": 12,
@@ -2544,24 +2544,24 @@
   "Angers": {
     "raw_data": {
       "Normal": {
-        "shots": 85,
-        "goals": 9,
-        "xG": 11.627
+        "shots": 98,
+        "goals": 10,
+        "xG": 12.953
       },
       "Standard": {
-        "shots": 26,
-        "goals": 2,
-        "xG": 2.192
+        "shots": 31,
+        "goals": 4,
+        "xG": 3.475
       },
       "Fast": {
-        "shots": 12,
-        "goals": 1,
-        "xG": 1.384
+        "shots": 13,
+        "goals": 2,
+        "xG": 1.8
       },
       "Slow": {
-        "shots": 6,
+        "shots": 7,
         "goals": 1,
-        "xG": 0.277
+        "xG": 0.298
       }
     },
     "insights": {
@@ -2575,9 +2575,9 @@
   "Nantes": {
     "raw_data": {
       "Normal": {
-        "shots": 85,
-        "goals": 7,
-        "xG": 7.556
+        "shots": 92,
+        "goals": 8,
+        "xG": 7.823
       },
       "Standard": {
         "shots": 39,

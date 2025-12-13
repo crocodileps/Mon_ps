@@ -1036,12 +1036,20 @@
         "save_rate": 20.0
       },
       "penalty_area_center": {
-        "shots": 43,
-        "goals": 15,
-        "saves": 28,
-        "xG": 11.46,
-        "conversion": 34.9,
-        "save_rate": 65.1
+        "shots": 45,
+        "goals": 16,
+        "saves": 29,
+        "xG": 11.854,
+        "conversion": 35.6,
+        "save_rate": 64.4
+      },
+      "six_yard_left": {
+        "shots": 3,
+        "goals": 2,
+        "saves": 1,
+        "xG": 0.183,
+        "conversion": 66.7,
+        "save_rate": 33.3
       },
       "penalty_area_left": {
         "shots": 3,
@@ -1076,12 +1084,12 @@
         "save_rate": 81.8
       },
       "edge_box_left": {
-        "shots": 3,
+        "shots": 4,
         "goals": 1,
-        "saves": 2,
-        "xG": 0.086,
-        "conversion": 33.3,
-        "save_rate": 66.7
+        "saves": 3,
+        "xG": 0.115,
+        "conversion": 25.0,
+        "save_rate": 75.0
       }
     },
     "vulnerable_zones": [
@@ -1540,12 +1548,12 @@
   "Real Sociedad": {
     "zones": {
       "penalty_area_center": {
-        "shots": 23,
-        "goals": 11,
+        "shots": 25,
+        "goals": 13,
         "saves": 12,
-        "xG": 5.531,
-        "conversion": 47.8,
-        "save_rate": 52.2
+        "xG": 6.152,
+        "conversion": 52.0,
+        "save_rate": 48.0
       },
       "penalty_area_right": {
         "shots": 3,
@@ -2172,20 +2180,20 @@
   "RasenBallsport Leipzig": {
     "zones": {
       "penalty_area_left": {
-        "shots": 3,
+        "shots": 5,
         "goals": 0,
-        "saves": 3,
-        "xG": 0.397,
+        "saves": 5,
+        "xG": 0.514,
         "conversion": 0.0,
         "save_rate": 100.0
       },
       "penalty_area_center": {
-        "shots": 21,
-        "goals": 9,
+        "shots": 24,
+        "goals": 12,
         "saves": 12,
-        "xG": 4.115,
-        "conversion": 42.9,
-        "save_rate": 57.1
+        "xG": 5.009,
+        "conversion": 50.0,
+        "save_rate": 50.0
       },
       "six_yard_center": {
         "shots": 3,
@@ -2204,10 +2212,10 @@
         "save_rate": 60.0
       },
       "edge_box_center": {
-        "shots": 5,
+        "shots": 6,
         "goals": 0,
-        "saves": 5,
-        "xG": 0.147,
+        "saves": 6,
+        "xG": 0.186,
         "conversion": 0.0,
         "save_rate": 100.0
       }
@@ -2440,12 +2448,12 @@
   "Union Berlin": {
     "zones": {
       "penalty_area_center": {
-        "shots": 31,
+        "shots": 33,
         "goals": 17,
-        "saves": 14,
-        "xG": 8.262,
-        "conversion": 54.8,
-        "save_rate": 45.2
+        "saves": 16,
+        "xG": 8.416,
+        "conversion": 51.5,
+        "save_rate": 48.5
       },
       "edge_box_center": {
         "shots": 6,
@@ -2472,12 +2480,12 @@
         "save_rate": 66.7
       },
       "penalty_area_left": {
-        "shots": 6,
-        "goals": 1,
+        "shots": 7,
+        "goals": 2,
         "saves": 5,
-        "xG": 0.776,
-        "conversion": 16.7,
-        "save_rate": 83.3
+        "xG": 0.826,
+        "conversion": 28.6,
+        "save_rate": 71.4
       },
       "edge_box_left": {
         "shots": 6,
@@ -3777,20 +3785,20 @@
   "Pisa": {
     "zones": {
       "penalty_area_center": {
-        "shots": 27,
+        "shots": 29,
         "goals": 11,
-        "saves": 16,
-        "xG": 5.845,
-        "conversion": 40.7,
-        "save_rate": 59.3
+        "saves": 18,
+        "xG": 5.945,
+        "conversion": 37.9,
+        "save_rate": 62.1
       },
       "six_yard_center": {
-        "shots": 7,
-        "goals": 2,
+        "shots": 8,
+        "goals": 3,
         "saves": 5,
-        "xG": 2.021,
-        "conversion": 28.6,
-        "save_rate": 71.4
+        "xG": 2.656,
+        "conversion": 37.5,
+        "save_rate": 62.5
       },
       "edge_box_left": {
         "shots": 5,
@@ -3825,9 +3833,7 @@
         "save_rate": 66.7
       }
     },
-    "vulnerable_zones": [
-      "penalty_area_center"
-    ],
+    "vulnerable_zones": [],
     "most_dangerous_zone": "penalty_area_center"
   },
   "Juventus": {
@@ -4757,18 +4763,18 @@
   "Angers": {
     "zones": {
       "edge_box_center": {
-        "shots": 12,
+        "shots": 14,
         "goals": 1,
-        "saves": 11,
-        "xG": 0.412,
-        "conversion": 8.3,
-        "save_rate": 91.7
+        "saves": 13,
+        "xG": 0.485,
+        "conversion": 7.1,
+        "save_rate": 92.9
       },
       "penalty_area_left": {
-        "shots": 4,
+        "shots": 5,
         "goals": 0,
-        "saves": 4,
-        "xG": 0.169,
+        "saves": 5,
+        "xG": 0.215,
         "conversion": 0.0,
         "save_rate": 100.0
       },
@@ -4960,48 +4966,49 @@
         "save_rate": 87.5
       },
       "penalty_area_center": {
-        "shots": 33,
-        "goals": 15,
+        "shots": 36,
+        "goals": 18,
         "saves": 18,
-        "xG": 8.636,
-        "conversion": 45.5,
-        "save_rate": 54.5
+        "xG": 10.261,
+        "conversion": 50.0,
+        "save_rate": 50.0
       },
       "edge_box_center": {
-        "shots": 12,
+        "shots": 15,
         "goals": 2,
-        "saves": 10,
-        "xG": 0.843,
-        "conversion": 16.7,
-        "save_rate": 83.3
+        "saves": 13,
+        "xG": 0.908,
+        "conversion": 13.3,
+        "save_rate": 86.7
       },
       "edge_box_right": {
-        "shots": 3,
+        "shots": 4,
         "goals": 1,
-        "saves": 2,
-        "xG": 0.303,
-        "conversion": 33.3,
-        "save_rate": 66.7
+        "saves": 3,
+        "xG": 0.318,
+        "conversion": 25.0,
+        "save_rate": 75.0
       },
       "penalty_area_left": {
-        "shots": 9,
+        "shots": 10,
         "goals": 0,
-        "saves": 9,
-        "xG": 0.698,
+        "saves": 10,
+        "xG": 0.759,
         "conversion": 0.0,
         "save_rate": 100.0
       },
       "six_yard_center": {
-        "shots": 9,
-        "goals": 3,
+        "shots": 10,
+        "goals": 4,
         "saves": 6,
-        "xG": 4.059,
-        "conversion": 33.3,
-        "save_rate": 66.7
+        "xG": 4.476,
+        "conversion": 40.0,
+        "save_rate": 60.0
       }
     },
     "vulnerable_zones": [
-      "penalty_area_center"
+      "penalty_area_center",
+      "six_yard_center"
     ],
     "most_dangerous_zone": "penalty_area_center"
   },

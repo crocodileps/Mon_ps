@@ -3,98 +3,98 @@
     "player_name": "Donyell Malen",
     "goals": 7,
     "assists": 1,
-    "matches": 21,
-    "scraped_at": "2025-12-10T06:00:57.794652"
+    "matches": 22,
+    "scraped_at": "2025-12-13T06:00:56.466984"
   },
   {
     "player_name": "Emiliano Buend\u00eda",
     "goals": 5,
-    "assists": 2,
-    "matches": 19,
-    "scraped_at": "2025-12-10T06:00:57.794304"
+    "assists": 3,
+    "matches": 20,
+    "scraped_at": "2025-12-13T06:00:56.466650"
   },
   {
     "player_name": "Morgan Rogers",
     "goals": 3,
     "assists": 5,
-    "matches": 21,
-    "scraped_at": "2025-12-10T06:00:57.794099"
+    "matches": 22,
+    "scraped_at": "2025-12-13T06:00:56.466455"
   },
   {
     "player_name": "John McGinn",
     "goals": 3,
     "assists": 2,
-    "matches": 20,
-    "scraped_at": "2025-12-10T06:00:57.794343"
+    "matches": 21,
+    "scraped_at": "2025-12-13T06:00:56.466687"
   },
   {
     "player_name": "Matty Cash",
     "goals": 3,
     "assists": 1,
-    "matches": 19,
-    "scraped_at": "2025-12-10T06:00:57.793798"
+    "matches": 20,
+    "scraped_at": "2025-12-13T06:00:56.466145"
   },
   {
     "player_name": "Ollie Watkins",
     "goals": 3,
     "assists": 0,
-    "matches": 21,
-    "scraped_at": "2025-12-10T06:00:57.794574"
+    "matches": 22,
+    "scraped_at": "2025-12-13T06:00:56.466908"
   },
   {
     "player_name": "Amadou Onana",
     "goals": 2,
     "assists": 0,
-    "matches": 13,
-    "scraped_at": "2025-12-10T06:00:57.794138"
+    "matches": 14,
+    "scraped_at": "2025-12-13T06:00:56.466495"
+  },
+  {
+    "player_name": "Evann Guessand",
+    "goals": 2,
+    "assists": 0,
+    "matches": 18,
+    "scraped_at": "2025-12-13T06:00:56.466948"
   },
   {
     "player_name": "Boubacar Kamara",
     "goals": 1,
     "assists": 4,
-    "matches": 19,
-    "scraped_at": "2025-12-10T06:00:57.794175"
+    "matches": 20,
+    "scraped_at": "2025-12-13T06:00:56.466532"
+  },
+  {
+    "player_name": "Youri Tielemans",
+    "goals": 1,
+    "assists": 2,
+    "matches": 12,
+    "scraped_at": "2025-12-13T06:00:56.466570"
   },
   {
     "player_name": "Ian Maatsen",
     "goals": 1,
     "assists": 1,
     "matches": 16,
-    "scraped_at": "2025-12-10T06:00:57.793728"
+    "scraped_at": "2025-12-13T06:00:56.466097"
   },
   {
     "player_name": "Harvey Elliott",
     "goals": 1,
     "assists": 0,
     "matches": 5,
-    "scraped_at": "2025-12-10T06:00:57.794262"
+    "scraped_at": "2025-12-13T06:00:56.466608"
   },
   {
     "player_name": "Ross Barkley",
     "goals": 1,
     "assists": 0,
     "matches": 8,
-    "scraped_at": "2025-12-10T06:00:57.794428"
-  },
-  {
-    "player_name": "Evann Guessand",
-    "goals": 1,
-    "assists": 0,
-    "matches": 17,
-    "scraped_at": "2025-12-10T06:00:57.794616"
+    "scraped_at": "2025-12-13T06:00:56.466766"
   },
   {
     "player_name": "Lucas Digne",
     "goals": 0,
     "assists": 3,
-    "matches": 16,
-    "scraped_at": "2025-12-10T06:00:57.793873"
-  },
-  {
-    "player_name": "Youri Tielemans",
-    "goals": 0,
-    "assists": 2,
-    "matches": 11,
-    "scraped_at": "2025-12-10T06:00:57.794213"
+    "matches": 17,
+    "scraped_at": "2025-12-13T06:00:56.466220"
   }
 ]

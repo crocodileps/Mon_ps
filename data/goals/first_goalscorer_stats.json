@@ -1,0 +1,3765 @@
+{
+  "Bournemouth": {
+    "team_name": "Bournemouth",
+    "league": "Premier League",
+    "total_matches": 11,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.6363636363636364,
+    "top_first_scorers": [
+      {
+        "player": "Marcus Tavernier",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Alex Scott",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Amine Adli",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Evanilson",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Eli Junior Kroupi",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 12.285714285714286,
+    "first_goal_by_period": {
+      "0-15": 4,
+      "16-30": 3,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Newcastle United": {
+    "team_name": "Newcastle United",
+    "league": "Premier League",
+    "total_matches": 12,
+    "matches_scored_first": 10,
+    "scored_first_rate": 0.8333333333333334,
+    "top_first_scorers": [
+      {
+        "player": "Bruno Guimarães",
+        "first_goals": 3,
+        "rate": 0.3
+      },
+      {
+        "player": "Jacob Murphy",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Nick Woltemade",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Harvey Barnes",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Malick Thiaw",
+        "first_goals": 1,
+        "rate": 0.1
+      }
+    ],
+    "avg_first_goal_minute": 32.8,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 4,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 2,
+      "76-90": 0
+    }
+  },
+  "Everton": {
+    "team_name": "Everton",
+    "league": "Premier League",
+    "total_matches": 11,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.7272727272727273,
+    "top_first_scorers": [
+      {
+        "player": "Iliman Ndiaye",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Jack Grealish",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Idrissa Gueye",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Michael Keane",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Beto",
+        "first_goals": 1,
+        "rate": 0.125
+      }
+    ],
+    "avg_first_goal_minute": 32.375,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 3,
+      "31-45": 0,
+      "46-60": 2,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Crystal Palace": {
+    "team_name": "Crystal Palace",
+    "league": "Premier League",
+    "total_matches": 11,
+    "matches_scored_first": 10,
+    "scored_first_rate": 0.9090909090909091,
+    "top_first_scorers": [
+      {
+        "player": "Jean-Philippe Mateta",
+        "first_goals": 4,
+        "rate": 0.4
+      },
+      {
+        "player": "Daniel Muñoz",
+        "first_goals": 3,
+        "rate": 0.3
+      },
+      {
+        "player": "Ismaila Sarr",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Eddie Nketiah",
+        "first_goals": 1,
+        "rate": 0.1
+      }
+    ],
+    "avg_first_goal_minute": 32.4,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 3,
+      "31-45": 5,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Chelsea": {
+    "team_name": "Chelsea",
+    "league": "Premier League",
+    "total_matches": 13,
+    "matches_scored_first": 9,
+    "scored_first_rate": 0.6923076923076923,
+    "top_first_scorers": [
+      {
+        "player": "João Pedro",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Moisés Caicedo",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Enzo Fernández",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Alejandro Garnacho",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Pedro Neto",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      }
+    ],
+    "avg_first_goal_minute": 34.0,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 4,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Manchester United": {
+    "team_name": "Manchester United",
+    "league": "Premier League",
+    "total_matches": 11,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.7272727272727273,
+    "top_first_scorers": [
+      {
+        "player": "Bryan Mbeumo",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Bruno Fernandes",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Matheus Cunha",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Mason Mount",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Diogo Dalot",
+        "first_goals": 1,
+        "rate": 0.125
+      }
+    ],
+    "avg_first_goal_minute": 23.625,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Brentford": {
+    "team_name": "Brentford",
+    "league": "Premier League",
+    "total_matches": 11,
+    "matches_scored_first": 9,
+    "scored_first_rate": 0.8181818181818182,
+    "top_first_scorers": [
+      {
+        "player": "Thiago",
+        "first_goals": 5,
+        "rate": 0.5555555555555556
+      },
+      {
+        "player": "Dango Ouattara",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Mikkel Damsgaard",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Kevin Schade",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      }
+    ],
+    "avg_first_goal_minute": 33.55555555555556,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 2
+    }
+  },
+  "Manchester City": {
+    "team_name": "Manchester City",
+    "league": "Premier League",
+    "total_matches": 13,
+    "matches_scored_first": 11,
+    "scored_first_rate": 0.8461538461538461,
+    "top_first_scorers": [
+      {
+        "player": "Erling Haaland",
+        "first_goals": 8,
+        "rate": 0.7272727272727273
+      },
+      {
+        "player": "Phil Foden",
+        "first_goals": 2,
+        "rate": 0.18181818181818182
+      },
+      {
+        "player": "Rúben Dias",
+        "first_goals": 1,
+        "rate": 0.09090909090909091
+      }
+    ],
+    "avg_first_goal_minute": 22.363636363636363,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 5,
+      "31-45": 2,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Nottingham Forest": {
+    "team_name": "Nottingham Forest",
+    "league": "Premier League",
+    "total_matches": 7,
+    "matches_scored_first": 4,
+    "scored_first_rate": 0.5714285714285714,
+    "top_first_scorers": [
+      {
+        "player": "Murillo",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Neco Williams",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Igor Jesus",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Chris Wood",
+        "first_goals": 1,
+        "rate": 0.25
+      }
+    ],
+    "avg_first_goal_minute": 27.25,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 0,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Sunderland": {
+    "team_name": "Sunderland",
+    "league": "Premier League",
+    "total_matches": 10,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.5,
+    "top_first_scorers": [
+      {
+        "player": "Chemsdine Talbi",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Eliezer Mayenda",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Nordi Mukiele",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Omar Alderete",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Dan Ballard",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 42.8,
+    "first_goal_by_period": {
+      "0-15": 0,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Leeds": {
+    "team_name": "Leeds",
+    "league": "Premier League",
+    "total_matches": 10,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.5,
+    "top_first_scorers": [
+      {
+        "player": "Lukas Nmecha",
+        "first_goals": 3,
+        "rate": 0.6
+      },
+      {
+        "player": "Brenden Aaronson",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Jaka Bijol",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 21.8,
+    "first_goal_by_period": {
+      "0-15": 4,
+      "16-30": 0,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Liverpool": {
+    "team_name": "Liverpool",
+    "league": "Premier League",
+    "total_matches": 12,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.6666666666666666,
+    "top_first_scorers": [
+      {
+        "player": "Hugo Ekitike",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Mohamed Salah",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Ryan Gravenberch",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Alexander Isak",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Dominik Szoboszlai",
+        "first_goals": 1,
+        "rate": 0.125
+      }
+    ],
+    "avg_first_goal_minute": 50.75,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 0,
+      "31-45": 3,
+      "46-60": 2,
+      "61-75": 0,
+      "76-90": 2
+    }
+  },
+  "Brighton": {
+    "team_name": "Brighton",
+    "league": "Premier League",
+    "total_matches": 13,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.5384615384615384,
+    "top_first_scorers": [
+      {
+        "player": "Jan Paul van Hecke",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Danny Welbeck",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Matt O&#039;Riley",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Yankuba Minteh",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Maxim De Cuyper",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 35.57142857142857,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 0,
+      "31-45": 2,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Fulham": {
+    "team_name": "Fulham",
+    "league": "Premier League",
+    "total_matches": 11,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.5454545454545454,
+    "top_first_scorers": [
+      {
+        "player": "Ryan Sessegnon",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Raúl Jiménez",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Kenny Tete",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Emile Smith-Rowe",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 39.5,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 0,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 2,
+      "76-90": 1
+    }
+  },
+  "Aston Villa": {
+    "team_name": "Aston Villa",
+    "league": "Premier League",
+    "total_matches": 10,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.6,
+    "top_first_scorers": [
+      {
+        "player": "Matthew Cash",
+        "first_goals": 3,
+        "rate": 0.5
+      },
+      {
+        "player": "Emiliano Buendía",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Donyell Malen",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Boubacar Kamara",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 39.333333333333336,
+    "first_goal_by_period": {
+      "0-15": 0,
+      "16-30": 3,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 2,
+      "76-90": 0
+    }
+  },
+  "West Ham": {
+    "team_name": "West Ham",
+    "league": "Premier League",
+    "total_matches": 10,
+    "matches_scored_first": 4,
+    "scored_first_rate": 0.4,
+    "top_first_scorers": [
+      {
+        "player": "Jarrod Bowen",
+        "first_goals": 2,
+        "rate": 0.5
+      },
+      {
+        "player": "Callum Wilson",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Lucas Paquetá",
+        "first_goals": 1,
+        "rate": 0.25
+      }
+    ],
+    "avg_first_goal_minute": 42.75,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 0,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 1
+    }
+  },
+  "Burnley": {
+    "team_name": "Burnley",
+    "league": "Premier League",
+    "total_matches": 10,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.6,
+    "top_first_scorers": [
+      {
+        "player": "Zian Flemming",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Josh Cullen",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Jaidon Anthony",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Lyle Foster",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Chimuanya Ugochukwu",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 33.5,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 2,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Tottenham": {
+    "team_name": "Tottenham",
+    "league": "Premier League",
+    "total_matches": 13,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.5384615384615384,
+    "top_first_scorers": [
+      {
+        "player": "Richarlison",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Rodrigo Bentancur",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Pape Sarr",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Brennan Johnson",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Mathys Tel",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 22.428571428571427,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 3,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Arsenal": {
+    "team_name": "Arsenal",
+    "league": "Premier League",
+    "total_matches": 14,
+    "matches_scored_first": 9,
+    "scored_first_rate": 0.6428571428571429,
+    "top_first_scorers": [
+      {
+        "player": "Leandro Trossard",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Declan Rice",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Viktor Gyokeres",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Eberechi Eze",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Martín Zubimendi",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      }
+    ],
+    "avg_first_goal_minute": 29.555555555555557,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 0,
+      "31-45": 5,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Wolverhampton Wanderers": {
+    "team_name": "Wolverhampton Wanderers",
+    "league": "Premier League",
+    "total_matches": 5,
+    "matches_scored_first": 2,
+    "scored_first_rate": 0.4,
+    "top_first_scorers": [
+      {
+        "player": "Santiago Bueno",
+        "first_goals": 1,
+        "rate": 0.5
+      },
+      {
+        "player": "Ladislav Krejcí",
+        "first_goals": 1,
+        "rate": 0.5
+      }
+    ],
+    "avg_first_goal_minute": 30.0,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 0,
+      "31-45": 0,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Rayo Vallecano": {
+    "team_name": "Rayo Vallecano",
+    "league": "La Liga",
+    "total_matches": 8,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.625,
+    "top_first_scorers": [
+      {
+        "player": "Jorge De Frutos",
+        "first_goals": 2,
+        "rate": 0.4
+      },
+      {
+        "player": "Alemão",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Nobel Mendy",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Alfonso Espino",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 47.4,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 2
+    }
+  },
+  "Villarreal": {
+    "team_name": "Villarreal",
+    "league": "La Liga",
+    "total_matches": 14,
+    "matches_scored_first": 12,
+    "scored_first_rate": 0.8571428571428571,
+    "top_first_scorers": [
+      {
+        "player": "Gerard Moreno",
+        "first_goals": 4,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Nicolas Pepe",
+        "first_goals": 2,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Tajon Buchanan",
+        "first_goals": 2,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Etta Eyong",
+        "first_goals": 1,
+        "rate": 0.08333333333333333
+      },
+      {
+        "player": "Ayoze Pérez",
+        "first_goals": 1,
+        "rate": 0.08333333333333333
+      }
+    ],
+    "avg_first_goal_minute": 34.333333333333336,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 4,
+      "31-45": 3,
+      "46-60": 2,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Sevilla": {
+    "team_name": "Sevilla",
+    "league": "La Liga",
+    "total_matches": 11,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.6363636363636364,
+    "top_first_scorers": [
+      {
+        "player": "Ruben Vargas",
+        "first_goals": 3,
+        "rate": 0.42857142857142855
+      },
+      {
+        "player": "Alfon",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Akor Adams",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Alexis Sánchez",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Isaac Romero",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 32.57142857142857,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 2,
+      "31-45": 0,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Celta Vigo": {
+    "team_name": "Celta Vigo",
+    "league": "La Liga",
+    "total_matches": 13,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.6153846153846154,
+    "top_first_scorers": [
+      {
+        "player": "Iago Aspas",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Borja Iglesias",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Javier Rueda",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Óscar Mingueza",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Pablo Durán",
+        "first_goals": 1,
+        "rate": 0.125
+      }
+    ],
+    "avg_first_goal_minute": 42.75,
+    "first_goal_by_period": {
+      "0-15": 0,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 3,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Levante": {
+    "team_name": "Levante",
+    "league": "La Liga",
+    "total_matches": 10,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.7,
+    "top_first_scorers": [
+      {
+        "player": "Iván Romero",
+        "first_goals": 3,
+        "rate": 0.42857142857142855
+      },
+      {
+        "player": "Etta Eyong",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Carlos Álvarez",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Manuel Sánchez",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 21.714285714285715,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 4,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Athletic Club": {
+    "team_name": "Athletic Club",
+    "league": "La Liga",
+    "total_matches": 9,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.7777777777777778,
+    "top_first_scorers": [
+      {
+        "player": "Nico Williams",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Oihan Sancet",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Iñaki Williams",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Roberto Navarro",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Alex Berenguer",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 43.142857142857146,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 2
+    }
+  },
+  "Valencia": {
+    "team_name": "Valencia",
+    "league": "La Liga",
+    "total_matches": 10,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.7,
+    "top_first_scorers": [
+      {
+        "player": "Arnaut Danjuma Groeneveld",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Hugo Duro",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Diego López",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Mouctar Diakhaby",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Baptiste Santamaria",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 49.142857142857146,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 0,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 2
+    }
+  },
+  "Barcelona": {
+    "team_name": "Barcelona",
+    "league": "La Liga",
+    "total_matches": 16,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.5,
+    "top_first_scorers": [
+      {
+        "player": "Lamine Yamal",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Robert Lewandowski",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Pedri",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Raphinha",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Fermín López",
+        "first_goals": 1,
+        "rate": 0.125
+      }
+    ],
+    "avg_first_goal_minute": 14.875,
+    "first_goal_by_period": {
+      "0-15": 6,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Real Oviedo": {
+    "team_name": "Real Oviedo",
+    "league": "La Liga",
+    "total_matches": 4,
+    "matches_scored_first": 3,
+    "scored_first_rate": 0.75,
+    "top_first_scorers": [
+      {
+        "player": "Federico Viñas",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Alberto Reina",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Leander Dendoncker",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      }
+    ],
+    "avg_first_goal_minute": 36.0,
+    "first_goal_by_period": {
+      "0-15": 0,
+      "16-30": 0,
+      "31-45": 3,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Getafe": {
+    "team_name": "Getafe",
+    "league": "La Liga",
+    "total_matches": 9,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.8888888888888888,
+    "top_first_scorers": [
+      {
+        "player": "Mario Martín",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Mauro Arambarri",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Adrián Liso",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Borja Mayoral",
+        "first_goals": 2,
+        "rate": 0.25
+      }
+    ],
+    "avg_first_goal_minute": 49.0,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 0,
+      "46-60": 3,
+      "61-75": 3,
+      "76-90": 0
+    }
+  },
+  "Real Betis": {
+    "team_name": "Real Betis",
+    "league": "La Liga",
+    "total_matches": 14,
+    "matches_scored_first": 9,
+    "scored_first_rate": 0.6428571428571429,
+    "top_first_scorers": [
+      {
+        "player": "Antony",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Juan Camilo Hernández",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Giovani Lo Celso",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Marc Bartra",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Pablo Fornals",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      }
+    ],
+    "avg_first_goal_minute": 27.0,
+    "first_goal_by_period": {
+      "0-15": 4,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Real Madrid": {
+    "team_name": "Real Madrid",
+    "league": "La Liga",
+    "total_matches": 14,
+    "matches_scored_first": 10,
+    "scored_first_rate": 0.7142857142857143,
+    "top_first_scorers": [
+      {
+        "player": "Kylian Mbappe-Lottin",
+        "first_goals": 7,
+        "rate": 0.7
+      },
+      {
+        "player": "Vinícius Júnior",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Eder Militão",
+        "first_goals": 1,
+        "rate": 0.1
+      }
+    ],
+    "avg_first_goal_minute": 31.5,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 4,
+      "31-45": 1,
+      "46-60": 2,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Elche": {
+    "team_name": "Elche",
+    "league": "La Liga",
+    "total_matches": 12,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.5,
+    "top_first_scorers": [
+      {
+        "player": "André Silva",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "German Valera",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Rafa Mir",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Alvaro Rodríguez",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Aleix Febas",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 36.166666666666664,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 2,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Real Sociedad": {
+    "team_name": "Real Sociedad",
+    "league": "La Liga",
+    "total_matches": 13,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.38461538461538464,
+    "top_first_scorers": [
+      {
+        "player": "Mikel Oyarzabal",
+        "first_goals": 2,
+        "rate": 0.4
+      },
+      {
+        "player": "Gonçalo Guedes",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Álvaro Odriozola",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Brais Méndez",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 33.4,
+    "first_goal_by_period": {
+      "0-15": 0,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Girona": {
+    "team_name": "Girona",
+    "league": "La Liga",
+    "total_matches": 11,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.5454545454545454,
+    "top_first_scorers": [
+      {
+        "player": "Vladyslav Vanat",
+        "first_goals": 3,
+        "rate": 0.5
+      },
+      {
+        "player": "Azz-Eddine Ounahi",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Viktor Tsygankov",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 19.0,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Osasuna": {
+    "team_name": "Osasuna",
+    "league": "La Liga",
+    "total_matches": 9,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.6666666666666666,
+    "top_first_scorers": [
+      {
+        "player": "Ante Budimir",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Víctor Muñoz",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Raul García",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Alejandro Catena",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 22.333333333333332,
+    "first_goal_by_period": {
+      "0-15": 4,
+      "16-30": 0,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Atletico Madrid": {
+    "team_name": "Atletico Madrid",
+    "league": "La Liga",
+    "total_matches": 13,
+    "matches_scored_first": 12,
+    "scored_first_rate": 0.9230769230769231,
+    "top_first_scorers": [
+      {
+        "player": "Julián Álvarez",
+        "first_goals": 3,
+        "rate": 0.25
+      },
+      {
+        "player": "Alexander Sørloth",
+        "first_goals": 2,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Giuliano Simeone",
+        "first_goals": 2,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Pablo Barrios Rivas",
+        "first_goals": 1,
+        "rate": 0.08333333333333333
+      },
+      {
+        "player": "Conor Gallagher",
+        "first_goals": 1,
+        "rate": 0.08333333333333333
+      }
+    ],
+    "avg_first_goal_minute": 27.333333333333332,
+    "first_goal_by_period": {
+      "0-15": 7,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 2,
+      "76-90": 1
+    }
+  },
+  "Espanyol": {
+    "team_name": "Espanyol",
+    "league": "La Liga",
+    "total_matches": 12,
+    "matches_scored_first": 9,
+    "scored_first_rate": 0.75,
+    "top_first_scorers": [
+      {
+        "player": "Pere Milla",
+        "first_goals": 3,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Kike García",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Carlos Romero",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Roberto Fernández",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Pol Lozano",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      }
+    ],
+    "avg_first_goal_minute": 42.22222222222222,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 3,
+      "61-75": 1,
+      "76-90": 1
+    }
+  },
+  "Mallorca": {
+    "team_name": "Mallorca",
+    "league": "La Liga",
+    "total_matches": 11,
+    "matches_scored_first": 4,
+    "scored_first_rate": 0.36363636363636365,
+    "top_first_scorers": [
+      {
+        "player": "Vedat Muriqi",
+        "first_goals": 3,
+        "rate": 0.75
+      },
+      {
+        "player": "Takuma Asano",
+        "first_goals": 1,
+        "rate": 0.25
+      }
+    ],
+    "avg_first_goal_minute": 31.75,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Alaves": {
+    "team_name": "Alaves",
+    "league": "La Liga",
+    "total_matches": 8,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.625,
+    "top_first_scorers": [
+      {
+        "player": "Pablo Ibáñez",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Antonio Martínez",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Lucas Boyé",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Denis Suárez",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Carlos Vicente",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 32.4,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 0,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Augsburg": {
+    "team_name": "Augsburg",
+    "league": "Bundesliga",
+    "total_matches": 10,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.7,
+    "top_first_scorers": [
+      {
+        "player": "Fabian Rieder",
+        "first_goals": 3,
+        "rate": 0.42857142857142855
+      },
+      {
+        "player": "Dimitris Giannoulis",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Noahkai Banks",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Anton Kade",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 26.857142857142858,
+    "first_goal_by_period": {
+      "0-15": 4,
+      "16-30": 0,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Hoffenheim": {
+    "team_name": "Hoffenheim",
+    "league": "Bundesliga",
+    "total_matches": 10,
+    "matches_scored_first": 4,
+    "scored_first_rate": 0.4,
+    "top_first_scorers": [
+      {
+        "player": "Bazoumana Touré",
+        "first_goals": 2,
+        "rate": 0.5
+      },
+      {
+        "player": "Fisnik Asllani",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Andrej Kramaric",
+        "first_goals": 1,
+        "rate": 0.25
+      }
+    ],
+    "avg_first_goal_minute": 32.5,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Borussia Dortmund": {
+    "team_name": "Borussia Dortmund",
+    "league": "Bundesliga",
+    "total_matches": 13,
+    "matches_scored_first": 11,
+    "scored_first_rate": 0.8461538461538461,
+    "top_first_scorers": [
+      {
+        "player": "Serhou Guirassy",
+        "first_goals": 4,
+        "rate": 0.36363636363636365
+      },
+      {
+        "player": "Karim Adeyemi",
+        "first_goals": 1,
+        "rate": 0.09090909090909091
+      },
+      {
+        "player": "Aaron Anselmino",
+        "first_goals": 1,
+        "rate": 0.09090909090909091
+      },
+      {
+        "player": "Julian Brandt",
+        "first_goals": 1,
+        "rate": 0.09090909090909091
+      },
+      {
+        "player": "Emre Can",
+        "first_goals": 1,
+        "rate": 0.09090909090909091
+      }
+    ],
+    "avg_first_goal_minute": 42.0,
+    "first_goal_by_period": {
+      "0-15": 0,
+      "16-30": 2,
+      "31-45": 7,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 1
+    }
+  },
+  "Union Berlin": {
+    "team_name": "Union Berlin",
+    "league": "Bundesliga",
+    "total_matches": 9,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.7777777777777778,
+    "top_first_scorers": [
+      {
+        "player": "Danilho Doekhi",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Rani Khedira",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Ilyas Ansah",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Oliver Burke",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 27.714285714285715,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Freiburg": {
+    "team_name": "Freiburg",
+    "league": "Bundesliga",
+    "total_matches": 10,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.7,
+    "top_first_scorers": [
+      {
+        "player": "Yuito Suzuki",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Lukas Kübler",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Johan Manzambi",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Derry Scherhant",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Vincenzo Grifo",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 19.285714285714285,
+    "first_goal_by_period": {
+      "0-15": 4,
+      "16-30": 0,
+      "31-45": 3,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "St. Pauli": {
+    "team_name": "St. Pauli",
+    "league": "Bundesliga",
+    "total_matches": 7,
+    "matches_scored_first": 2,
+    "scored_first_rate": 0.2857142857142857,
+    "top_first_scorers": [
+      {
+        "player": "Andréas Hountondji",
+        "first_goals": 1,
+        "rate": 0.5
+      },
+      {
+        "player": "Adam Dzwigala",
+        "first_goals": 1,
+        "rate": 0.5
+      }
+    ],
+    "avg_first_goal_minute": 11.5,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Bayern Munich": {
+    "team_name": "Bayern Munich",
+    "league": "Bundesliga",
+    "total_matches": 13,
+    "matches_scored_first": 10,
+    "scored_first_rate": 0.7692307692307693,
+    "top_first_scorers": [
+      {
+        "player": "Serge Gnabry",
+        "first_goals": 3,
+        "rate": 0.3
+      },
+      {
+        "player": "Harry Kane",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Michael Olise",
+        "first_goals": 1,
+        "rate": 0.1
+      },
+      {
+        "player": "Konrad Laimer",
+        "first_goals": 1,
+        "rate": 0.1
+      },
+      {
+        "player": "Luis Díaz",
+        "first_goals": 1,
+        "rate": 0.1
+      }
+    ],
+    "avg_first_goal_minute": 23.7,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 5,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "FC Cologne": {
+    "team_name": "FC Cologne",
+    "league": "Bundesliga",
+    "total_matches": 12,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.6666666666666666,
+    "top_first_scorers": [
+      {
+        "player": "Jakub Kaminski",
+        "first_goals": 3,
+        "rate": 0.375
+      },
+      {
+        "player": "Said El Mala",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Gian-Luca Waldschmidt",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Marius Bülter",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Ragnar Ache",
+        "first_goals": 1,
+        "rate": 0.125
+      }
+    ],
+    "avg_first_goal_minute": 27.75,
+    "first_goal_by_period": {
+      "0-15": 4,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Hamburger SV": {
+    "team_name": "Hamburger SV",
+    "league": "Bundesliga",
+    "total_matches": 7,
+    "matches_scored_first": 3,
+    "scored_first_rate": 0.42857142857142855,
+    "top_first_scorers": [
+      {
+        "player": "Luka Vuskovic",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Robert Glatzel",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Albert Sambi Lokonga",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      }
+    ],
+    "avg_first_goal_minute": 20.666666666666668,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "VfB Stuttgart": {
+    "team_name": "VfB Stuttgart",
+    "league": "Bundesliga",
+    "total_matches": 12,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.4166666666666667,
+    "top_first_scorers": [
+      {
+        "player": "Ermedin Demirovic",
+        "first_goals": 2,
+        "rate": 0.4
+      },
+      {
+        "player": "Bilal El Khannouss",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Tiago Tomás",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Chema Andres",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 47.4,
+    "first_goal_by_period": {
+      "0-15": 0,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 1
+    }
+  },
+  "Wolfsburg": {
+    "team_name": "Wolfsburg",
+    "league": "Bundesliga",
+    "total_matches": 10,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.7,
+    "top_first_scorers": [
+      {
+        "player": "Aaron Zehnter",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Andreas Skov Olsen",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Mohammed Amoura",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Patrick Wimmer",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Mattias Svanberg",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 22.285714285714285,
+    "first_goal_by_period": {
+      "0-15": 4,
+      "16-30": 2,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "RasenBallsport Leipzig": {
+    "team_name": "RasenBallsport Leipzig",
+    "league": "Bundesliga",
+    "total_matches": 12,
+    "matches_scored_first": 11,
+    "scored_first_rate": 0.9166666666666666,
+    "top_first_scorers": [
+      {
+        "player": "Christoph Baumgartner",
+        "first_goals": 3,
+        "rate": 0.2727272727272727
+      },
+      {
+        "player": "Yan Diomande",
+        "first_goals": 3,
+        "rate": 0.2727272727272727
+      },
+      {
+        "player": "Johan Bakayoko",
+        "first_goals": 2,
+        "rate": 0.18181818181818182
+      },
+      {
+        "player": "Assan Ouédraogo",
+        "first_goals": 2,
+        "rate": 0.18181818181818182
+      },
+      {
+        "player": "Conrad Harder",
+        "first_goals": 1,
+        "rate": 0.09090909090909091
+      }
+    ],
+    "avg_first_goal_minute": 26.363636363636363,
+    "first_goal_by_period": {
+      "0-15": 6,
+      "16-30": 0,
+      "31-45": 2,
+      "46-60": 2,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Werder Bremen": {
+    "team_name": "Werder Bremen",
+    "league": "Bundesliga",
+    "total_matches": 10,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.6,
+    "top_first_scorers": [
+      {
+        "player": "Marco Grüll",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Samuel Mbangula",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Marco Friedl",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Jens Stage",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 33.333333333333336,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Eintracht Frankfurt": {
+    "team_name": "Eintracht Frankfurt",
+    "league": "Bundesliga",
+    "total_matches": 11,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.45454545454545453,
+    "top_first_scorers": [
+      {
+        "player": "Ritsu Doan",
+        "first_goals": 2,
+        "rate": 0.4
+      },
+      {
+        "player": "Can Uzun",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Jonathan Burkardt",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Robin Koch",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 32.0,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Bayer Leverkusen": {
+    "team_name": "Bayer Leverkusen",
+    "league": "Bundesliga",
+    "total_matches": 11,
+    "matches_scored_first": 10,
+    "scored_first_rate": 0.9090909090909091,
+    "top_first_scorers": [
+      {
+        "player": "Patrik Schick",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Ernest Poku",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Álex Grimaldo",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Jonas Hofmann",
+        "first_goals": 1,
+        "rate": 0.1
+      },
+      {
+        "player": "Jarell Quansah",
+        "first_goals": 1,
+        "rate": 0.1
+      }
+    ],
+    "avg_first_goal_minute": 18.3,
+    "first_goal_by_period": {
+      "0-15": 6,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Borussia M.Gladbach": {
+    "team_name": "Borussia M.Gladbach",
+    "league": "Bundesliga",
+    "total_matches": 6,
+    "matches_scored_first": 3,
+    "scored_first_rate": 0.5,
+    "top_first_scorers": [
+      {
+        "player": "Kevin Diks",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Haris Tabakovic",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Philipp Sander",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      }
+    ],
+    "avg_first_goal_minute": 35.0,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 0,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "FC Heidenheim": {
+    "team_name": "FC Heidenheim",
+    "league": "Bundesliga",
+    "total_matches": 8,
+    "matches_scored_first": 2,
+    "scored_first_rate": 0.25,
+    "top_first_scorers": [
+      {
+        "player": "Budu Zivzivadze",
+        "first_goals": 1,
+        "rate": 0.5
+      },
+      {
+        "player": "Mikkel Kaufmann",
+        "first_goals": 1,
+        "rate": 0.5
+      }
+    ],
+    "avg_first_goal_minute": 38.5,
+    "first_goal_by_period": {
+      "0-15": 0,
+      "16-30": 0,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Mainz 05": {
+    "team_name": "Mainz 05",
+    "league": "Bundesliga",
+    "total_matches": 6,
+    "matches_scored_first": 4,
+    "scored_first_rate": 0.6666666666666666,
+    "top_first_scorers": [
+      {
+        "player": "Danny da Costa",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Nadiem Amiri",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Silvan Widmer",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Kaishu Sano",
+        "first_goals": 1,
+        "rate": 0.25
+      }
+    ],
+    "avg_first_goal_minute": 40.75,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 0,
+      "31-45": 2,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Juventus": {
+    "team_name": "Juventus",
+    "league": "Serie A",
+    "total_matches": 10,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.6,
+    "top_first_scorers": [
+      {
+        "player": "Dusan Vlahovic",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Filip Kostic",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Jonathan Christian David",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Francisco Conceição",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Lloyd Kelly",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 27.666666666666668,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 1,
+      "31-45": 0,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Como": {
+    "team_name": "Como",
+    "league": "Serie A",
+    "total_matches": 9,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.7777777777777778,
+    "top_first_scorers": [
+      {
+        "player": "Tasos Douvikas",
+        "first_goals": 3,
+        "rate": 0.42857142857142855
+      },
+      {
+        "player": "Nico Paz",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Marc-Oliver Kempf",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Jayden Addai",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 21.142857142857142,
+    "first_goal_by_period": {
+      "0-15": 4,
+      "16-30": 0,
+      "31-45": 2,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Bologna": {
+    "team_name": "Bologna",
+    "league": "Serie A",
+    "total_matches": 11,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.5454545454545454,
+    "top_first_scorers": [
+      {
+        "player": "Thijs Dallinga",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Emil Holm",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Santiago Castro",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Riccardo Orsolini",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Nicolò Cambiaghi",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 39.5,
+    "first_goal_by_period": {
+      "0-15": 0,
+      "16-30": 3,
+      "31-45": 0,
+      "46-60": 3,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Lazio": {
+    "team_name": "Lazio",
+    "league": "Serie A",
+    "total_matches": 7,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.8571428571428571,
+    "top_first_scorers": [
+      {
+        "player": "Matteo Guendouzi",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Gustav Isaksen",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Matteo Cancellieri",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Toma Basic",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 23.666666666666668,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Napoli": {
+    "team_name": "Napoli",
+    "league": "Serie A",
+    "total_matches": 11,
+    "matches_scored_first": 9,
+    "scored_first_rate": 0.8181818181818182,
+    "top_first_scorers": [
+      {
+        "player": "Franck Zambo",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "David Neres",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Kevin De Bruyne",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Scott McTominay",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Billy Gilmour",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      }
+    ],
+    "avg_first_goal_minute": 34.44444444444444,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 2,
+      "31-45": 3,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 1
+    }
+  },
+  "Torino": {
+    "team_name": "Torino",
+    "league": "Serie A",
+    "total_matches": 9,
+    "matches_scored_first": 4,
+    "scored_first_rate": 0.4444444444444444,
+    "top_first_scorers": [
+      {
+        "player": "Giovanni Simeone",
+        "first_goals": 3,
+        "rate": 0.75
+      },
+      {
+        "player": "Nikola Vlasic",
+        "first_goals": 1,
+        "rate": 0.25
+      }
+    ],
+    "avg_first_goal_minute": 28.25,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 0,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Cremonese": {
+    "team_name": "Cremonese",
+    "league": "Serie A",
+    "total_matches": 11,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.6363636363636364,
+    "top_first_scorers": [
+      {
+        "player": "Federico Bonazzoli",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Filippo Terracciano",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Federico Baschirotto",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Martín Payero",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Jamie Vardy",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 32.57142857142857,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Sassuolo": {
+    "team_name": "Sassuolo",
+    "league": "Serie A",
+    "total_matches": 10,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.5,
+    "top_first_scorers": [
+      {
+        "player": "Armand Lauriente",
+        "first_goals": 2,
+        "rate": 0.4
+      },
+      {
+        "player": "Alieu Fadera",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Domenico Berardi",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Andrea Pinamonti",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 45.4,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 0,
+      "46-60": 1,
+      "61-75": 2,
+      "76-90": 0
+    }
+  },
+  "Fiorentina": {
+    "team_name": "Fiorentina",
+    "league": "Serie A",
+    "total_matches": 9,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.6666666666666666,
+    "top_first_scorers": [
+      {
+        "player": "Rolando Mandragora",
+        "first_goals": 4,
+        "rate": 0.6666666666666666
+      },
+      {
+        "player": "Robin Gosens",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Moise Kean",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 32.333333333333336,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 0,
+      "31-45": 0,
+      "46-60": 2,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Cagliari": {
+    "team_name": "Cagliari",
+    "league": "Serie A",
+    "total_matches": 9,
+    "matches_scored_first": 4,
+    "scored_first_rate": 0.4444444444444444,
+    "top_first_scorers": [
+      {
+        "player": "Gianluca Gaetano",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Sebastiano Esposito",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Yerry Mina",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Gennaro Borrelli",
+        "first_goals": 1,
+        "rate": 0.25
+      }
+    ],
+    "avg_first_goal_minute": 40.5,
+    "first_goal_by_period": {
+      "0-15": 0,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Verona": {
+    "team_name": "Verona",
+    "league": "Serie A",
+    "total_matches": 8,
+    "matches_scored_first": 3,
+    "scored_first_rate": 0.375,
+    "top_first_scorers": [
+      {
+        "player": "Rafik Belghali",
+        "first_goals": 2,
+        "rate": 0.6666666666666666
+      },
+      {
+        "player": "Roberto Gagliardini",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      }
+    ],
+    "avg_first_goal_minute": 23.0,
+    "first_goal_by_period": {
+      "0-15": 0,
+      "16-30": 3,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Udinese": {
+    "team_name": "Udinese",
+    "league": "Serie A",
+    "total_matches": 11,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.45454545454545453,
+    "top_first_scorers": [
+      {
+        "player": "Nicolo Zaniolo",
+        "first_goals": 2,
+        "rate": 0.4
+      },
+      {
+        "player": "Jesper Karlström",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Iker Bravo",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Thomas Thiesson Kristensen",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 25.8,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 0,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "AC Milan": {
+    "team_name": "AC Milan",
+    "league": "Serie A",
+    "total_matches": 13,
+    "matches_scored_first": 10,
+    "scored_first_rate": 0.7692307692307693,
+    "top_first_scorers": [
+      {
+        "player": "Alexis Saelemaekers",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Rafael Leão",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Christian Pulisic",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Ruben Loftus-Cheek",
+        "first_goals": 1,
+        "rate": 0.1
+      },
+      {
+        "player": "Strahinja Pavlovic",
+        "first_goals": 1,
+        "rate": 0.1
+      }
+    ],
+    "avg_first_goal_minute": 32.7,
+    "first_goal_by_period": {
+      "0-15": 4,
+      "16-30": 0,
+      "31-45": 2,
+      "46-60": 3,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Atalanta": {
+    "team_name": "Atalanta",
+    "league": "Serie A",
+    "total_matches": 11,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.6363636363636364,
+    "top_first_scorers": [
+      {
+        "player": "Giorgio Scalvini",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Odilon Kossounou",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Lazar Samardzic",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Gianluca Scamacca",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Kamaldeen Sulemana",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 40.285714285714285,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 3,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Inter": {
+    "team_name": "Inter",
+    "league": "Serie A",
+    "total_matches": 13,
+    "matches_scored_first": 11,
+    "scored_first_rate": 0.8461538461538461,
+    "top_first_scorers": [
+      {
+        "player": "Lautaro Martínez",
+        "first_goals": 5,
+        "rate": 0.45454545454545453
+      },
+      {
+        "player": "Federico Dimarco",
+        "first_goals": 1,
+        "rate": 0.09090909090909091
+      },
+      {
+        "player": "Ange-Yoan Bonny",
+        "first_goals": 1,
+        "rate": 0.09090909090909091
+      },
+      {
+        "player": "Hakan Calhanoglu",
+        "first_goals": 1,
+        "rate": 0.09090909090909091
+      },
+      {
+        "player": "Denzel Dumfries",
+        "first_goals": 1,
+        "rate": 0.09090909090909091
+      }
+    ],
+    "avg_first_goal_minute": 20.363636363636363,
+    "first_goal_by_period": {
+      "0-15": 7,
+      "16-30": 2,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 2,
+      "76-90": 0
+    }
+  },
+  "Roma": {
+    "team_name": "Roma",
+    "league": "Serie A",
+    "total_matches": 9,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.8888888888888888,
+    "top_first_scorers": [
+      {
+        "player": "Matìas Soulè Malvano",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Lorenzo Pellegrini",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Paulo Dybala",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Wesley",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Mario Hermoso",
+        "first_goals": 1,
+        "rate": 0.125
+      }
+    ],
+    "avg_first_goal_minute": 35.375,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 2,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Genoa": {
+    "team_name": "Genoa",
+    "league": "Serie A",
+    "total_matches": 9,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.7777777777777778,
+    "top_first_scorers": [
+      {
+        "player": "Ruslan Malinovskiy",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Jeff Ekhator",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Mikael Ellertsson",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Vitinha",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Leo Østigard",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 25.857142857142858,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 2,
+      "31-45": 2,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Pisa": {
+    "team_name": "Pisa",
+    "league": "Serie A",
+    "total_matches": 5,
+    "matches_scored_first": 3,
+    "scored_first_rate": 0.6,
+    "top_first_scorers": [
+      {
+        "player": "M&#039;Bala Nzola",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Idrissa Touré",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Stefano Moreo",
+        "first_goals": 1,
+        "rate": 0.3333333333333333
+      }
+    ],
+    "avg_first_goal_minute": 29.666666666666668,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 0,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Parma Calcio 1913": {
+    "team_name": "Parma Calcio 1913",
+    "league": "Serie A",
+    "total_matches": 7,
+    "matches_scored_first": 4,
+    "scored_first_rate": 0.5714285714285714,
+    "top_first_scorers": [
+      {
+        "player": "Mateo Pellegrino",
+        "first_goals": 2,
+        "rate": 0.5
+      },
+      {
+        "player": "Adrián Bernabé",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Adrian Benedyczak",
+        "first_goals": 1,
+        "rate": 0.25
+      }
+    ],
+    "avg_first_goal_minute": 22.75,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 2,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Lecce": {
+    "team_name": "Lecce",
+    "league": "Serie A",
+    "total_matches": 8,
+    "matches_scored_first": 6,
+    "scored_first_rate": 0.75,
+    "top_first_scorers": [
+      {
+        "player": "Lassana Coulibaly",
+        "first_goals": 2,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Tiago Gabriel",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Medon Berisha",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Nikola Stulic",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      },
+      {
+        "player": "Riccardo Sottil",
+        "first_goals": 1,
+        "rate": 0.16666666666666666
+      }
+    ],
+    "avg_first_goal_minute": 27.5,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Lorient": {
+    "team_name": "Lorient",
+    "league": "Ligue 1",
+    "total_matches": 9,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.7777777777777778,
+    "top_first_scorers": [
+      {
+        "player": "Aiyegun Tosin",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Pablo Pagis",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Mohamed Bamba",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Laurent Abergel",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Théo Le Bris",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 31.0,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 2,
+      "31-45": 3,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Angers": {
+    "team_name": "Angers",
+    "league": "Ligue 1",
+    "total_matches": 11,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.6363636363636364,
+    "top_first_scorers": [
+      {
+        "player": "Yassin Belkhdim",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Prosper Peter",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Sidiki Chérif",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Esteban Lepaul",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Himad Abdelli",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 28.0,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Lyon": {
+    "team_name": "Lyon",
+    "league": "Ligue 1",
+    "total_matches": 11,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.7272727272727273,
+    "top_first_scorers": [
+      {
+        "player": "Corentin Tolisso",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Malick Fofana",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Georges Mikautadze",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Tyler Morton",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Tanner Tessmann",
+        "first_goals": 1,
+        "rate": 0.125
+      }
+    ],
+    "avg_first_goal_minute": 29.375,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 2,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Nantes": {
+    "team_name": "Nantes",
+    "league": "Ligue 1",
+    "total_matches": 9,
+    "matches_scored_first": 4,
+    "scored_first_rate": 0.4444444444444444,
+    "top_first_scorers": [
+      {
+        "player": "Matthis Abline",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Mostafa Mohamed",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Chidozie Awaziem",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Youssef El-Arabi",
+        "first_goals": 1,
+        "rate": 0.25
+      }
+    ],
+    "avg_first_goal_minute": 25.25,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 0,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Le Havre": {
+    "team_name": "Le Havre",
+    "league": "Ligue 1",
+    "total_matches": 9,
+    "matches_scored_first": 4,
+    "scored_first_rate": 0.4444444444444444,
+    "top_first_scorers": [
+      {
+        "player": "Yassine Kechta",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Fodé Doucouré",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Arouna Sangante",
+        "first_goals": 1,
+        "rate": 0.25
+      },
+      {
+        "player": "Abdoulaye Touré",
+        "first_goals": 1,
+        "rate": 0.25
+      }
+    ],
+    "avg_first_goal_minute": 38.25,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 1,
+      "31-45": 0,
+      "46-60": 1,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Auxerre": {
+    "team_name": "Auxerre",
+    "league": "Ligue 1",
+    "total_matches": 7,
+    "matches_scored_first": 4,
+    "scored_first_rate": 0.5714285714285714,
+    "top_first_scorers": [
+      {
+        "player": "Danny Namaso",
+        "first_goals": 2,
+        "rate": 0.5
+      },
+      {
+        "player": "Lassine Sinayoko",
+        "first_goals": 2,
+        "rate": 0.5
+      }
+    ],
+    "avg_first_goal_minute": 35.0,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 0,
+      "31-45": 1,
+      "46-60": 2,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Nice": {
+    "team_name": "Nice",
+    "league": "Ligue 1",
+    "total_matches": 11,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.7272727272727273,
+    "top_first_scorers": [
+      {
+        "player": "Sofiane Diop",
+        "first_goals": 4,
+        "rate": 0.5
+      },
+      {
+        "player": "Jeremie Boga",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Melvin Bard",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Mohamed Ali-Cho",
+        "first_goals": 1,
+        "rate": 0.125
+      }
+    ],
+    "avg_first_goal_minute": 28.375,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 2,
+      "31-45": 3,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Toulouse": {
+    "team_name": "Toulouse",
+    "league": "Ligue 1",
+    "total_matches": 11,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.6363636363636364,
+    "top_first_scorers": [
+      {
+        "player": "Frank Magri",
+        "first_goals": 3,
+        "rate": 0.42857142857142855
+      },
+      {
+        "player": "Emersonn",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Djibril Sidibe",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Yann Gboho",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 37.857142857142854,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 0,
+      "46-60": 3,
+      "61-75": 0,
+      "76-90": 1
+    }
+  },
+  "Strasbourg": {
+    "team_name": "Strasbourg",
+    "league": "Ligue 1",
+    "total_matches": 13,
+    "matches_scored_first": 10,
+    "scored_first_rate": 0.7692307692307693,
+    "top_first_scorers": [
+      {
+        "player": "Joaquín Panichelli",
+        "first_goals": 5,
+        "rate": 0.5
+      },
+      {
+        "player": "Emanuel Emegha",
+        "first_goals": 2,
+        "rate": 0.2
+      },
+      {
+        "player": "Guemissongui Ouattara",
+        "first_goals": 1,
+        "rate": 0.1
+      },
+      {
+        "player": "Samuel Amo-Ameyaw",
+        "first_goals": 1,
+        "rate": 0.1
+      },
+      {
+        "player": "Kendry Páez",
+        "first_goals": 1,
+        "rate": 0.1
+      }
+    ],
+    "avg_first_goal_minute": 47.5,
+    "first_goal_by_period": {
+      "0-15": 1,
+      "16-30": 2,
+      "31-45": 3,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 3
+    }
+  },
+  "Monaco": {
+    "team_name": "Monaco",
+    "league": "Ligue 1",
+    "total_matches": 12,
+    "matches_scored_first": 7,
+    "scored_first_rate": 0.5833333333333334,
+    "top_first_scorers": [
+      {
+        "player": "Takumi Minamino",
+        "first_goals": 2,
+        "rate": 0.2857142857142857
+      },
+      {
+        "player": "Eric Dier",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Mohammed Salisu",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Folarin Balogun",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      },
+      {
+        "player": "Maghnes Akliouche",
+        "first_goals": 1,
+        "rate": 0.14285714285714285
+      }
+    ],
+    "avg_first_goal_minute": 36.57142857142857,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 0,
+      "31-45": 0,
+      "46-60": 2,
+      "61-75": 2,
+      "76-90": 0
+    }
+  },
+  "Paris Saint Germain": {
+    "team_name": "Paris Saint Germain",
+    "league": "Ligue 1",
+    "total_matches": 13,
+    "matches_scored_first": 13,
+    "scored_first_rate": 1.0,
+    "top_first_scorers": [
+      {
+        "player": "Bradley Barcola",
+        "first_goals": 2,
+        "rate": 0.15384615384615385
+      },
+      {
+        "player": "Nuno Mendes",
+        "first_goals": 2,
+        "rate": 0.15384615384615385
+      },
+      {
+        "player": "Khvicha Kvaratskhelia",
+        "first_goals": 1,
+        "rate": 0.07692307692307693
+      },
+      {
+        "player": "Warren Zaïre-Emery",
+        "first_goals": 1,
+        "rate": 0.07692307692307693
+      },
+      {
+        "player": "Lee Kang-In",
+        "first_goals": 1,
+        "rate": 0.07692307692307693
+      }
+    ],
+    "avg_first_goal_minute": 37.30769230769231,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 4,
+      "31-45": 1,
+      "46-60": 2,
+      "61-75": 2,
+      "76-90": 1
+    }
+  },
+  "Rennes": {
+    "team_name": "Rennes",
+    "league": "Ligue 1",
+    "total_matches": 12,
+    "matches_scored_first": 9,
+    "scored_first_rate": 0.75,
+    "top_first_scorers": [
+      {
+        "player": "Esteban Lepaul",
+        "first_goals": 3,
+        "rate": 0.3333333333333333
+      },
+      {
+        "player": "Ludovic Blas",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Breel Embolo",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Abdelhamid Aït Boudlal",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      },
+      {
+        "player": "Valentin Rongier",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      }
+    ],
+    "avg_first_goal_minute": 36.0,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 4,
+      "31-45": 0,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 2
+    }
+  },
+  "Paris FC": {
+    "team_name": "Paris FC",
+    "league": "Ligue 1",
+    "total_matches": 12,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.4166666666666667,
+    "top_first_scorers": [
+      {
+        "player": "Willem Geubbels",
+        "first_goals": 2,
+        "rate": 0.4
+      },
+      {
+        "player": "Ilan Kebbal",
+        "first_goals": 2,
+        "rate": 0.4
+      },
+      {
+        "player": "Moses Simon",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 26.0,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Lens": {
+    "team_name": "Lens",
+    "league": "Ligue 1",
+    "total_matches": 11,
+    "matches_scored_first": 9,
+    "scored_first_rate": 0.8181818181818182,
+    "top_first_scorers": [
+      {
+        "player": "Odsonne Edouard",
+        "first_goals": 4,
+        "rate": 0.4444444444444444
+      },
+      {
+        "player": "Wesley Said",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Florian Thauvin",
+        "first_goals": 2,
+        "rate": 0.2222222222222222
+      },
+      {
+        "player": "Pierre Ganiou",
+        "first_goals": 1,
+        "rate": 0.1111111111111111
+      }
+    ],
+    "avg_first_goal_minute": 26.0,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 3,
+      "31-45": 2,
+      "46-60": 0,
+      "61-75": 1,
+      "76-90": 0
+    }
+  },
+  "Lille": {
+    "team_name": "Lille",
+    "league": "Ligue 1",
+    "total_matches": 11,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.7272727272727273,
+    "top_first_scorers": [
+      {
+        "player": "Olivier Giroud",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Hamza Igamane",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Ethan Mbappé",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Romain Perraud",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Felix Correia",
+        "first_goals": 1,
+        "rate": 0.125
+      }
+    ],
+    "avg_first_goal_minute": 39.625,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 1,
+      "31-45": 1,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 2
+    }
+  },
+  "Brest": {
+    "team_name": "Brest",
+    "league": "Ligue 1",
+    "total_matches": 9,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.5555555555555556,
+    "top_first_scorers": [
+      {
+        "player": "Mama Baldé",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Kamory Doumbia",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Ludovic Ajorque",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Remy Labeau Lascary",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Pathé Mboup",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 16.2,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 3,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Marseille": {
+    "team_name": "Marseille",
+    "league": "Ligue 1",
+    "total_matches": 12,
+    "matches_scored_first": 8,
+    "scored_first_rate": 0.6666666666666666,
+    "top_first_scorers": [
+      {
+        "player": "Mason Greenwood",
+        "first_goals": 3,
+        "rate": 0.375
+      },
+      {
+        "player": "Angel Gomes",
+        "first_goals": 2,
+        "rate": 0.25
+      },
+      {
+        "player": "Pierre-Emerick Aubameyang",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Igor Paixão",
+        "first_goals": 1,
+        "rate": 0.125
+      },
+      {
+        "player": "Naif Aguerd",
+        "first_goals": 1,
+        "rate": 0.125
+      }
+    ],
+    "avg_first_goal_minute": 20.25,
+    "first_goal_by_period": {
+      "0-15": 3,
+      "16-30": 4,
+      "31-45": 0,
+      "46-60": 1,
+      "61-75": 0,
+      "76-90": 0
+    }
+  },
+  "Metz": {
+    "team_name": "Metz",
+    "league": "Ligue 1",
+    "total_matches": 9,
+    "matches_scored_first": 5,
+    "scored_first_rate": 0.5555555555555556,
+    "top_first_scorers": [
+      {
+        "player": "Gauthier Hein",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Habib Diallo",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Jean-Philippe Gbamin",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Sadibou Sané",
+        "first_goals": 1,
+        "rate": 0.2
+      },
+      {
+        "player": "Giorgi Abuashvili",
+        "first_goals": 1,
+        "rate": 0.2
+      }
+    ],
+    "avg_first_goal_minute": 42.6,
+    "first_goal_by_period": {
+      "0-15": 2,
+      "16-30": 1,
+      "31-45": 0,
+      "46-60": 0,
+      "61-75": 0,
+      "76-90": 2
+    }
+  }
+}
