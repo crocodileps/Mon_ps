@@ -29,7 +29,14 @@ Examples:
     ... )
 """
 
-from pydantic import BaseModel, Field, field_validator, ConfigDict, field_serializer
+from pydantic import (
+    BaseModel,
+    Field,
+    field_validator,
+    model_validator,
+    ConfigDict,
+    field_serializer,
+)
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 from enum import Enum
@@ -74,6 +81,9 @@ class BacktestRequest(BaseModel):
 
     Définit tous les paramètres pour exécuter un backtest: période,
     stratégie, filtres, sizing, etc.
+
+    Architecture Decision Records appliqués:
+    - ADR #003: field_serializer pour start_date, end_date, created_at
 
     Attributes:
         backtest_id: ID unique du backtest
@@ -187,7 +197,19 @@ class BacktestRequest(BaseModel):
 
     @field_serializer("start_date", "end_date", "created_at", when_used="json")
     def serialize_datetime(self, dt: datetime) -> str:
-        """Serialize datetime to ISO format."""
+        """Serialize datetime fields to ISO 8601 format.
+
+        ADR #003: field_serializer explicite avec when_used='json'.
+        - Compatible FastAPI (.model_dump_json())
+        - Type-safe (mypy vérifie input/output)
+        - Testable unitairement
+
+        Args:
+            dt: Datetime to serialize
+
+        Returns:
+            ISO 8601 string (e.g. '2025-12-13T22:00:00')
+        """
         return dt.isoformat()
 
     @field_validator("end_date")
@@ -215,6 +237,11 @@ class BacktestResult(BaseModel):
 
     Contient toutes les métriques de performance, statistiques de risque,
     et analyse détaillée du backtest.
+
+    Architecture Decision Records appliqués:
+    - ADR #002: model_validator pour calculate_performance_metrics
+    - ADR #003: field_serializer pour started_at, completed_at
+    - ADR #004: Pattern Hybrid pour win_rate, total_return_pct
 
     Attributes:
         result_id: ID unique du résultat
@@ -313,12 +340,32 @@ class BacktestResult(BaseModel):
     total_bets: int = Field(..., ge=0, description="Nombre total de paris")
     winning_bets: int = Field(..., ge=0, description="Paris gagnants")
     losing_bets: int = Field(..., ge=0, description="Paris perdants")
-    win_rate: float = Field(..., ge=0.0, le=1.0, description="Taux de réussite")
+    win_rate: Optional[float] = Field(
+        default=None,
+        ge=0.0,
+        le=1.0,
+        description=(
+            "Taux de réussite (winning_bets / total_bets). "
+            "Auto-calculé si omis (default=None). "
+            "Reste None si total_bets = 0 (division par zéro). "
+            "Peut être overridden si nécessaire. "
+            "ADR #004: Pattern Hybrid."
+        ),
+    )
 
     initial_bankroll: float = Field(..., gt=0.0, description="Bankroll initial (€)")
     final_bankroll: float = Field(..., ge=0.0, description="Bankroll final (€)")
     total_profit: float = Field(..., description="Profit total (€)")
-    total_return_pct: float = Field(..., description="Rendement total (%)")
+    total_return_pct: Optional[float] = Field(
+        default=None,
+        description=(
+            "Rendement total % (total_profit / initial_bankroll * 100). "
+            "Auto-calculé si omis (default=None). "
+            "Reste None si initial_bankroll = 0.0 (division par zéro). "
+            "Peut être overridden si nécessaire. "
+            "ADR #004: Pattern Hybrid."
+        ),
+    )
 
     total_staked: float = Field(..., ge=0.0, description="Total misé (€)")
     total_returns: float = Field(..., ge=0.0, description="Total des gains (€)")
@@ -381,43 +428,69 @@ class BacktestResult(BaseModel):
 
     @field_serializer("started_at", "completed_at", when_used="json")
     def serialize_datetime(self, dt: Optional[datetime]) -> Optional[str]:
-        """Serialize datetime to ISO format."""
+        """Serialize datetime fields to ISO 8601 format.
+
+        ADR #003: field_serializer explicite avec when_used='json'.
+        - Compatible FastAPI (.model_dump_json())
+        - Type-safe (mypy vérifie input/output)
+        - Testable unitairement
+
+        Args:
+            dt: Datetime to serialize (or None for optional fields)
+
+        Returns:
+            ISO 8601 string (e.g. '2025-12-13T22:00:00') or None
+        """
         return dt.isoformat() if dt else None
 
-    @field_validator("win_rate", mode="before")
-    @classmethod
-    def calculate_win_rate(cls, v: float, info) -> float:
-        """Calcule le taux de réussite si non fourni.
+    @model_validator(mode="after")
+    def calculate_performance_metrics(self):
+        """Calcule les métriques de performance après validation.
 
-        Args:
-            v: Valeur fournie
-            info: Contexte de validation
+        ADR #002: model_validator garantit accès à tous les champs (y compris defaults).
+        ADR #004: Pattern Hybrid pour auto-calcul avec possibilité override.
 
-        Returns:
-            Win rate calculé ou fourni
-        """
-        if v == 0.0 and "total_bets" in info.data and "winning_bets" in info.data:
-            total = info.data["total_bets"]
-            wins = info.data["winning_bets"]
-            if total > 0:
-                return wins / total
-        return v
+        Métriques calculées:
+        - win_rate: winning_bets / total_bets (si total_bets > 0)
+        - total_return_pct: (total_profit / initial_bankroll) * 100 (si initial_bankroll > 0)
 
-    @field_validator("total_return_pct", mode="before")
-    @classmethod
-    def calculate_return_pct(cls, v: float, info) -> float:
-        """Calcule le rendement % si non fourni.
-
-        Args:
-            v: Valeur fournie
-            info: Contexte de validation
+        Utilise model_fields_set pour distinguer:
+        - Champ omis (default None) → calcule
+        - Champ explicitement None → respecte override
+        - Champ explicitement 0.0 → respecte override
 
         Returns:
-            Rendement % calculé ou fourni
+            Instance avec métriques calculées ou overridées
         """
-        if v == 0.0 and "initial_bankroll" in info.data and "total_profit" in info.data:
-            initial = info.data["initial_bankroll"]
-            profit = info.data["total_profit"]
-            if initial > 0:
-                return (profit / initial) * 100
-        return v
+        # ─────────────────────────────────────────────────────────────────────
+        # AUTO-CALCUL : win_rate (ADR #004)
+        # ─────────────────────────────────────────────────────────────────────
+
+        # Ne calcule QUE si le champ n'a pas été explicitement fourni
+        if "win_rate" not in self.model_fields_set and self.win_rate is None:
+            # CRITIQUE: Gestion division par zéro
+            if self.total_bets is not None and self.total_bets > 0:
+                wins = self.winning_bets or 0
+                self.win_rate = wins / self.total_bets
+            # Sinon reste None (pas assez de données)
+
+        # ─────────────────────────────────────────────────────────────────────
+        # AUTO-CALCUL : total_return_pct (ADR #004)
+        # ─────────────────────────────────────────────────────────────────────
+
+        # Ne calcule QUE si le champ n'a pas été explicitement fourni
+        if (
+            "total_return_pct" not in self.model_fields_set
+            and self.total_return_pct is None
+        ):
+            # CRITIQUE: Gestion division par zéro
+            if (
+                self.total_profit is not None
+                and self.initial_bankroll is not None
+                and self.initial_bankroll > 0.0  # Protection division par zéro
+            ):
+                self.total_return_pct = (
+                    self.total_profit / self.initial_bankroll
+                ) * 100
+
+        return self
