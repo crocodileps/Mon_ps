@@ -1,8 +1,8 @@
 """
-Models - Structures de donnees pour UnifiedBrain V2.5
+Models - Structures de donnees pour UnifiedBrain V2.6
 ===============================================================================
 
-75 MARCHES SUPPORTES:
+85 MARCHES SUPPORTES:
 - 1X2 (3): home_win, draw, away_win
 - Double Chance (3): dc_1x, dc_x2, dc_12
 - DNB (2): dnb_home, dnb_away
@@ -16,6 +16,9 @@ Models - Structures de donnees pour UnifiedBrain V2.5
 - Goal Range (4): 0-1, 2-3, 4-5, 6+
 - Double Result (9): 9 combinaisons HT/FT
 - Win to Nil (4): home/away win to nil yes/no
+- Odd/Even (2): odd_goals, even_goals
+- Exact Goals (6): 0, 1, 2, 3, 4, 5+
+- BTTS Both Halves (2): yes/no
 """
 
 from dataclasses import dataclass, field
@@ -134,6 +137,22 @@ class MarketType(Enum):
     AWAY_WIN_TO_NIL = "away_win_to_nil"      # Away gagne, Home = 0
     AWAY_WIN_TO_NIL_NO = "away_win_to_nil_no"  # Away gagne, Home >= 1
 
+    # === Odd/Even (2) ===
+    ODD_GOALS = "odd_goals"    # Nombre impair de buts (1,3,5...)
+    EVEN_GOALS = "even_goals"  # Nombre pair de buts (0,2,4...)
+
+    # === Exact Goals (6) ===
+    EXACTLY_0_GOALS = "exactly_0_goals"
+    EXACTLY_1_GOAL = "exactly_1_goal"
+    EXACTLY_2_GOALS = "exactly_2_goals"
+    EXACTLY_3_GOALS = "exactly_3_goals"
+    EXACTLY_4_GOALS = "exactly_4_goals"
+    GOALS_5_PLUS = "goals_5_plus"
+
+    # === BTTS Both Halves (2) ===
+    BTTS_BOTH_HALVES_YES = "btts_both_halves_yes"
+    BTTS_BOTH_HALVES_NO = "btts_both_halves_no"
+
 
 # === MARKET CATEGORIES ===
 MARKET_CATEGORIES = {
@@ -163,6 +182,11 @@ MARKET_CATEGORIES = {
                       MarketType.DR_2_1, MarketType.DR_2_X, MarketType.DR_2_2],
     "WIN_TO_NIL": [MarketType.HOME_WIN_TO_NIL, MarketType.HOME_WIN_TO_NIL_NO,
                    MarketType.AWAY_WIN_TO_NIL, MarketType.AWAY_WIN_TO_NIL_NO],
+    "ODD_EVEN": [MarketType.ODD_GOALS, MarketType.EVEN_GOALS],
+    "EXACT_GOALS": [MarketType.EXACTLY_0_GOALS, MarketType.EXACTLY_1_GOAL,
+                   MarketType.EXACTLY_2_GOALS, MarketType.EXACTLY_3_GOALS,
+                   MarketType.EXACTLY_4_GOALS, MarketType.GOALS_5_PLUS],
+    "BTTS_BOTH_HALVES": [MarketType.BTTS_BOTH_HALVES_YES, MarketType.BTTS_BOTH_HALVES_NO],
 }
 
 
@@ -271,6 +295,22 @@ LIQUIDITY_TAX = {
     MarketType.HOME_WIN_TO_NIL_NO: 0.025,
     MarketType.AWAY_WIN_TO_NIL: 0.025,
     MarketType.AWAY_WIN_TO_NIL_NO: 0.025,
+
+    # Odd/Even - Liquide
+    MarketType.ODD_GOALS: 0.02,
+    MarketType.EVEN_GOALS: 0.02,
+
+    # Exact Goals - Secondaire
+    MarketType.EXACTLY_0_GOALS: 0.03,
+    MarketType.EXACTLY_1_GOAL: 0.03,
+    MarketType.EXACTLY_2_GOALS: 0.03,
+    MarketType.EXACTLY_3_GOALS: 0.03,
+    MarketType.EXACTLY_4_GOALS: 0.03,
+    MarketType.GOALS_5_PLUS: 0.035,
+
+    # BTTS Both Halves - Exotique
+    MarketType.BTTS_BOTH_HALVES_YES: 0.035,
+    MarketType.BTTS_BOTH_HALVES_NO: 0.035,
 }
 
 
@@ -379,6 +419,22 @@ MIN_EDGE_BY_MARKET = {
     MarketType.HOME_WIN_TO_NIL_NO: 0.04,
     MarketType.AWAY_WIN_TO_NIL: 0.04,
     MarketType.AWAY_WIN_TO_NIL_NO: 0.04,
+
+    # Odd/Even
+    MarketType.ODD_GOALS: 0.03,
+    MarketType.EVEN_GOALS: 0.03,
+
+    # Exact Goals
+    MarketType.EXACTLY_0_GOALS: 0.05,
+    MarketType.EXACTLY_1_GOAL: 0.05,
+    MarketType.EXACTLY_2_GOALS: 0.05,
+    MarketType.EXACTLY_3_GOALS: 0.05,
+    MarketType.EXACTLY_4_GOALS: 0.05,
+    MarketType.GOALS_5_PLUS: 0.06,
+
+    # BTTS Both Halves
+    MarketType.BTTS_BOTH_HALVES_YES: 0.06,
+    MarketType.BTTS_BOTH_HALVES_NO: 0.06,
 }
 
 
@@ -493,7 +549,7 @@ class MatchPrediction:
     Prediction complete d'un match - OUTPUT PRINCIPAL.
 
     Contient toutes les probabilites, edges, et recommandations
-    pour les 75 marches supportes (34 + 10 CS + 6 HT + 8 AH + 4 GR + 9 DR + 4 WTN).
+    pour les 85 marches supportes (34 + 10 CS + 6 HT + 8 AH + 4 GR + 9 DR + 4 WTN + 2 OE + 6 EG + 2 BBH).
     """
     # Identifiants
     home_team: str
@@ -609,6 +665,22 @@ class MatchPrediction:
     away_win_to_nil_prob: float = 0.12      # Away gagne, Home = 0
     away_win_to_nil_no_prob: float = 0.18   # Away gagne, Home >= 1
 
+    # === Odd/Even (2 marchés) ===
+    odd_goals_prob: float = 0.50
+    even_goals_prob: float = 0.50
+
+    # === Exact Goals (6 marchés) ===
+    exactly_0_goals_prob: float = 0.08
+    exactly_1_goal_prob: float = 0.18
+    exactly_2_goals_prob: float = 0.25
+    exactly_3_goals_prob: float = 0.22
+    exactly_4_goals_prob: float = 0.14
+    goals_5_plus_prob: float = 0.13
+
+    # === BTTS Both Halves (2 marchés) ===
+    btts_both_halves_yes_prob: float = 0.08
+    btts_both_halves_no_prob: float = 0.92
+
     # Toutes les probabilites par marche
     market_probabilities: Dict[str, MarketProbability] = field(default_factory=dict)
 
@@ -630,8 +702,8 @@ class MatchPrediction:
     data_quality_score: float = 0.5
 
     # Metadata
-    model_version: str = "UnifiedBrain_v2.5"
-    markets_count: int = 75
+    model_version: str = "UnifiedBrain_v2.6"
+    markets_count: int = 85
 
     def get_best_edges(self, min_edge: float = 0.02) -> List[MarketEdge]:
         """Retourne les meilleurs edges au-dessus du seuil."""

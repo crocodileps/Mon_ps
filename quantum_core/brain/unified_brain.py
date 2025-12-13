@@ -1,8 +1,8 @@
 """
-UnifiedBrain V2.5 - Cerveau Unifie Hedge Fund Grade
+UnifiedBrain V2.6 - Cerveau Unifie Hedge Fund Grade
 ===============================================================================
 
-ARCHITECTURE V2.5:
+ARCHITECTURE V2.6:
     1. DataHubAdapter -> Donnees unifiees
     2. 8 Engines -> Analyses specialisees
     3. PoissonCalculator -> Over/Under pour Goals/Corners/Cards
@@ -13,11 +13,14 @@ ARCHITECTURE V2.5:
     8. GoalRangeCalculator -> 4 marches Goal Range
     9. DoubleResultCalculator -> 9 marches HT/FT
     10. WinToNilCalculator -> 4 marches Win to Nil
-    11. BayesianFusion -> Fusion probabilites
-    12. EdgeCalculator -> Calcul edges avec LIQUIDITY_TAX par marche
-    13. KellySizer -> Sizing optimal
+    11. OddEvenCalculator -> 2 marches Odd/Even
+    12. ExactGoalsCalculator -> 6 marches Exact Goals
+    13. BttsBothHalvesCalculator -> 2 marches BTTS Both Halves
+    14. BayesianFusion -> Fusion probabilites
+    15. EdgeCalculator -> Calcul edges avec LIQUIDITY_TAX par marche
+    16. KellySizer -> Sizing optimal
 
-75 MARCHES SUPPORTES:
+85 MARCHES SUPPORTES:
     - 1X2 (3): home_win, draw, away_win
     - Double Chance (3): dc_1x, dc_x2, dc_12
     - DNB (2): dnb_home, dnb_away
@@ -31,9 +34,12 @@ ARCHITECTURE V2.5:
     - Goal Range (4): 0-1, 2-3, 4-5, 6+
     - Double Result (9): 9 combinaisons HT/FT
     - Win to Nil (4): home/away win to nil yes/no
+    - Odd/Even (2): odd_goals, even_goals
+    - Exact Goals (6): 0, 1, 2, 3, 4, 5+
+    - BTTS Both Halves (2): yes/no
 
 Auteur: Mon_PS Quant Team
-Version: 2.5.0
+Version: 2.6.0
 Date: 13 Decembre 2025
 """
 
@@ -61,6 +67,9 @@ from .asian_handicap import AsianHandicapCalculator
 from .goal_range import GoalRangeCalculator
 from .double_result import DoubleResultCalculator
 from .win_to_nil import WinToNilCalculator
+from .odd_even import OddEvenCalculator
+from .exact_goals import ExactGoalsCalculator
+from .btts_both_halves import BttsBothHalvesCalculator
 
 # Logging
 logging.basicConfig(level=logging.INFO)
@@ -235,19 +244,19 @@ ENGINE_WEIGHTS = {
 
 
 # ===============================================================================
-# UNIFIED BRAIN V2.5
+# UNIFIED BRAIN V2.6
 # ===============================================================================
 
 class UnifiedBrain:
     """
-    Cerveau Unifie V2.5 - Orchestre tous les composants pour 75 marches.
+    Cerveau Unifie V2.6 - Orchestre tous les composants pour 85 marches.
 
     Usage:
         brain = UnifiedBrain()
         prediction = brain.analyze_match("Liverpool", "Manchester City")
     """
 
-    VERSION = "2.5.0"
+    VERSION = "2.6.0"
 
     def __init__(self):
         """Initialise le cerveau avec lazy loading."""
@@ -258,7 +267,7 @@ class UnifiedBrain:
         self._kelly_sizer = None
         self._initialized = False
 
-        # Calculateurs V2.5
+        # Calculateurs V2.6
         self._poisson = PoissonCalculator()
         self._derived = DerivedMarketsCalculator()
         self._correct_score = CorrectScoreCalculator()
@@ -267,6 +276,9 @@ class UnifiedBrain:
         self._goal_range = GoalRangeCalculator()
         self._double_result = DoubleResultCalculator()
         self._win_to_nil = WinToNilCalculator()
+        self._odd_even = OddEvenCalculator()
+        self._exact_goals = ExactGoalsCalculator()
+        self._btts_both_halves = BttsBothHalvesCalculator()
 
         self._stats = {
             "matches_analyzed": 0,
@@ -276,7 +288,7 @@ class UnifiedBrain:
             "markets_processed": 0,
         }
 
-        logger.info("UnifiedBrain V2.5 initialise (lazy mode)")
+        logger.info("UnifiedBrain V2.6 initialise (lazy mode)")
 
     # ===========================================================================
     # LAZY LOADING
@@ -321,7 +333,7 @@ class UnifiedBrain:
             logger.warning(f"KellySizer non disponible: {e}")
 
         self._initialized = True
-        logger.info("UnifiedBrain V2.5 pret - 75 marches")
+        logger.info("UnifiedBrain V2.6 pret - 85 marches")
 
     def _load_engine(self, engine_name: str):
         """Charge un engine de maniere lazy."""
@@ -372,7 +384,7 @@ class UnifiedBrain:
         bankroll: float = 1000.0
     ) -> MatchPrediction:
         """
-        Analyse complete d'un match - 75 marches.
+        Analyse complete d'un match - 85 marches.
 
         Args:
             home: Equipe a domicile
@@ -382,12 +394,12 @@ class UnifiedBrain:
             bankroll: Bankroll pour calcul Kelly
 
         Returns:
-            MatchPrediction avec 75 marches de probabilites et recommandations
+            MatchPrediction avec 85 marches de probabilites et recommandations
         """
         self._ensure_initialized()
         self._stats["matches_analyzed"] += 1
 
-        logger.info(f"Analyse V2.5: {home} vs {away}")
+        logger.info(f"Analyse V2.6: {home} vs {away}")
 
         # Creer le resultat
         prediction = MatchPrediction(
@@ -599,7 +611,35 @@ class UnifiedBrain:
         prediction.away_win_to_nil_prob = wtn_analysis.away_win_to_nil_yes
         prediction.away_win_to_nil_no_prob = wtn_analysis.away_win_to_nil_no
 
-        self._stats["markets_processed"] += 75
+        # -------------------------------------------------------------------
+        # ETAPE 5h: Calculer Odd/Even (2 marches)
+        # -------------------------------------------------------------------
+        oe_analysis = self._odd_even.calculate(prediction.expected_goals)
+        prediction.odd_goals_prob = oe_analysis.odd_goals_prob
+        prediction.even_goals_prob = oe_analysis.even_goals_prob
+
+        # -------------------------------------------------------------------
+        # ETAPE 5i: Calculer Exact Goals (6 marches)
+        # -------------------------------------------------------------------
+        eg_analysis = self._exact_goals.calculate(prediction.expected_goals)
+        prediction.exactly_0_goals_prob = eg_analysis.exactly_0_prob
+        prediction.exactly_1_goal_prob = eg_analysis.exactly_1_prob
+        prediction.exactly_2_goals_prob = eg_analysis.exactly_2_prob
+        prediction.exactly_3_goals_prob = eg_analysis.exactly_3_prob
+        prediction.exactly_4_goals_prob = eg_analysis.exactly_4_prob
+        prediction.goals_5_plus_prob = eg_analysis.goals_5_plus_prob
+
+        # -------------------------------------------------------------------
+        # ETAPE 5j: Calculer BTTS Both Halves (2 marches)
+        # -------------------------------------------------------------------
+        bbh_analysis = self._btts_both_halves.calculate(
+            prediction.expected_home_goals,
+            prediction.expected_away_goals
+        )
+        prediction.btts_both_halves_yes_prob = bbh_analysis.btts_both_halves_yes
+        prediction.btts_both_halves_no_prob = bbh_analysis.btts_both_halves_no
+
+        self._stats["markets_processed"] += 85
 
         # -------------------------------------------------------------------
         # ETAPE 6: Calculer les edges (si cotes fournies)
@@ -637,8 +677,8 @@ class UnifiedBrain:
         prediction.data_quality_score = self._calculate_quality(prediction)
         prediction.overall_confidence = self._get_confidence_level(prediction.data_quality_score)
 
-        logger.info(f"Analyse V2.5 terminee: {len(prediction.engines_used)} engines, "
-                   f"75 marches, qualite {prediction.data_quality_score:.1%}")
+        logger.info(f"Analyse V2.6 terminee: {len(prediction.engines_used)} engines, "
+                   f"85 marches, qualite {prediction.data_quality_score:.1%}")
 
         return prediction
 
@@ -778,7 +818,7 @@ class UnifiedBrain:
         return probs
 
     def _build_all_probabilities(self, prediction: MatchPrediction) -> Dict[str, float]:
-        """Construit le dictionnaire complet des 75 probabilites."""
+        """Construit le dictionnaire complet des 85 probabilites."""
         return {
             # 1X2
             "home_win": prediction.home_win_prob,
@@ -866,6 +906,22 @@ class UnifiedBrain:
             "home_win_to_nil_no": prediction.home_win_to_nil_no_prob,
             "away_win_to_nil": prediction.away_win_to_nil_prob,
             "away_win_to_nil_no": prediction.away_win_to_nil_no_prob,
+
+            # Odd/Even
+            "odd_goals": prediction.odd_goals_prob,
+            "even_goals": prediction.even_goals_prob,
+
+            # Exact Goals
+            "exactly_0_goals": prediction.exactly_0_goals_prob,
+            "exactly_1_goal": prediction.exactly_1_goal_prob,
+            "exactly_2_goals": prediction.exactly_2_goals_prob,
+            "exactly_3_goals": prediction.exactly_3_goals_prob,
+            "exactly_4_goals": prediction.exactly_4_goals_prob,
+            "goals_5_plus": prediction.goals_5_plus_prob,
+
+            # BTTS Both Halves
+            "btts_both_halves_yes": prediction.btts_both_halves_yes_prob,
+            "btts_both_halves_no": prediction.btts_both_halves_no_prob,
         }
 
     def _calculate_edges(
@@ -1127,7 +1183,7 @@ class UnifiedBrain:
 
         return {
             "version": self.VERSION,
-            "markets_supported": 75,
+            "markets_supported": 85,
             "data_hub_adapter": self._data_hub_adapter is not None,
             "bayesian_fusion": self._bayesian_fusion is not None,
             "edge_calculator": self._edge_calculator is not None,
@@ -1141,6 +1197,9 @@ class UnifiedBrain:
             "goal_range_calculator": True,
             "double_result_calculator": True,
             "win_to_nil_calculator": True,
+            "odd_even_calculator": True,
+            "exact_goals_calculator": True,
+            "btts_both_halves_calculator": True,
             "stats": self._stats,
         }
 
@@ -1165,7 +1224,7 @@ def get_unified_brain() -> UnifiedBrain:
 
 if __name__ == "__main__":
     print("=" * 80)
-    print("TEST UNIFIED BRAIN V2.5 - 75 MARCHES")
+    print("TEST UNIFIED BRAIN V2.6 - 85 MARCHES")
     print("=" * 80)
 
     brain = get_unified_brain()
@@ -1284,5 +1343,5 @@ if __name__ == "__main__":
         print(f"  {key}: {value}")
 
     print("\n" + "=" * 80)
-    print("TESTS V2.5 TERMINES - 75 MARCHES")
+    print("TESTS V2.6 TERMINES - 85 MARCHES")
     print("=" * 80)

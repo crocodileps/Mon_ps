@@ -2,7 +2,7 @@
 UnifiedBrain - Hedge Fund Grade Prediction Engine
 ═══════════════════════════════════════════════════════════════════════════
 
-75 MARCHÉS SUPPORTÉS:
+85 MARCHÉS SUPPORTÉS:
     - 1X2 (3): home_win, draw, away_win
     - Double Chance (3): dc_1x, dc_x2, dc_12
     - Draw No Bet (2): dnb_home, dnb_away
@@ -16,6 +16,9 @@ UnifiedBrain - Hedge Fund Grade Prediction Engine
     - Goal Range (4): 0-1, 2-3, 4-5, 6+
     - Double Result (9): 9 combinaisons HT/FT
     - Win to Nil (4): home/away win to nil yes/no
+    - Odd/Even (2): odd_goals, even_goals
+    - Exact Goals (6): 0, 1, 2, 3, 4, 5+
+    - BTTS Both Halves (2): yes/no
 
 Architecture:
     UnifiedBrain coordonne:
@@ -71,6 +74,15 @@ from .double_result import (
 from .win_to_nil import (
     WinToNilCalculator, WinToNilAnalysis, get_win_to_nil_calculator
 )
+from .odd_even import (
+    OddEvenCalculator, OddEvenAnalysis, get_odd_even_calculator
+)
+from .exact_goals import (
+    ExactGoalsCalculator, ExactGoalsAnalysis, get_exact_goals_calculator
+)
+from .btts_both_halves import (
+    BttsBothHalvesCalculator, BttsBothHalvesAnalysis, get_btts_both_halves_calculator
+)
 
 __all__ = [
     # Brain
@@ -113,7 +125,19 @@ __all__ = [
     "WinToNilCalculator",
     "WinToNilAnalysis",
     "get_win_to_nil_calculator",
+    # Odd/Even
+    "OddEvenCalculator",
+    "OddEvenAnalysis",
+    "get_odd_even_calculator",
+    # Exact Goals
+    "ExactGoalsCalculator",
+    "ExactGoalsAnalysis",
+    "get_exact_goals_calculator",
+    # BTTS Both Halves
+    "BttsBothHalvesCalculator",
+    "BttsBothHalvesAnalysis",
+    "get_btts_both_halves_calculator",
 ]
 
-__version__ = "2.5.0"
-__markets_count__ = 75
+__version__ = "2.6.0"
+__markets_count__ = 85
