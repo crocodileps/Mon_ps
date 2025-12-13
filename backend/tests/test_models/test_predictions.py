@@ -454,3 +454,198 @@ class TestGoalscorerPrediction:
                 data_quality=DataQuality.GOOD,
                 confidence_score=0.70,
             )
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TESTS ADR COMPLIANCE
+# ═══════════════════════════════════════════════════════════════════════════════
+
+
+class TestADR002ModelValidatorPredictions:
+    """Tests validant ADR #002 pour predictions.py.
+
+    ADR #002: model_validator pour cross-field logic.
+    - Garantit accès aux defaults
+    - Plus rapide que field_validator × N
+    - Type-safe avec Self return
+    """
+
+    def test_model_validator_accesses_defaults(self):
+        """ADR #002: model_validator accède aux defaults."""
+        # Création sans spécifier implied_probability ni confidence_level
+        pred = MarketPrediction(
+            prediction_id="test_adr002_1",
+            match_id="match_adr",
+            market_id="btts_yes",
+            market_name="BTTS Yes",
+            market_category=MarketCategory.MAIN_LINE,
+            probability=0.68,
+            fair_odds=2.0,
+            confidence_score=0.82,  # > 0.70 → HIGH
+            data_quality=DataQuality.EXCELLENT,
+            # implied_probability omis → default 0.0 → sera calculé
+            # confidence_level omis → default LOW → sera calculé
+        )
+
+        # ADR #002: model_validator a calculé les valeurs
+        assert pred.implied_probability == pytest.approx(0.5, rel=1e-6)  # 1 / 2.0
+        assert pred.confidence_level == "high"  # 0.82 > 0.70
+
+    def test_model_validator_cross_field_logic(self):
+        """ADR #002: model_validator permet logique inter-champs."""
+        # confidence_level dépend de confidence_score
+        pred = MarketPrediction(
+            prediction_id="test_adr002_2",
+            match_id="match_adr",
+            market_id="over_25",
+            market_name="Over 2.5",
+            market_category=MarketCategory.MAIN_LINE,
+            probability=0.72,
+            fair_odds=1.39,
+            confidence_score=0.92,  # > 0.85 → VERY_HIGH
+            data_quality=DataQuality.EXCELLENT,
+        )
+
+        assert pred.confidence_level == "very_high"
+
+
+class TestADR003FieldSerializerPredictions:
+    """Tests validant ADR #003 pour predictions.py.
+
+    ADR #003: field_serializer explicite.
+    - when_used='json' → .model_dump() garde datetime, .model_dump_json() serialise
+    - Type-safe (mypy vérifie)
+    - Testable unitairement
+    """
+
+    def test_datetime_serializes_to_iso8601_json(self):
+        """ADR #003: .model_dump_json() serialise datetime en ISO 8601."""
+        pred = MarketPrediction(
+            prediction_id="test_adr003_1",
+            match_id="match_adr",
+            market_id="btts_yes",
+            market_name="BTTS Yes",
+            market_category=MarketCategory.MAIN_LINE,
+            probability=0.68,
+            fair_odds=1.47,
+            confidence_score=0.82,
+            data_quality=DataQuality.EXCELLENT,
+            computed_at=datetime(2025, 12, 13, 20, 30, 0),
+        )
+
+        json_str = pred.model_dump_json()
+
+        # Datetime serialisé en ISO 8601
+        assert '"computed_at":"2025-12-13T20:30:00"' in json_str
+
+    def test_datetime_preserved_in_model_dump(self):
+        """ADR #003: .model_dump() préserve datetime object (when_used='json')."""
+        pred = MarketPrediction(
+            prediction_id="test_adr003_2",
+            match_id="match_adr",
+            market_id="btts_yes",
+            market_name="BTTS Yes",
+            market_category=MarketCategory.MAIN_LINE,
+            probability=0.68,
+            fair_odds=1.47,
+            confidence_score=0.82,
+            data_quality=DataQuality.EXCELLENT,
+            computed_at=datetime(2025, 12, 13, 20, 30, 0),
+        )
+
+        data = pred.model_dump()
+
+        # Datetime object préservé (pas string)
+        assert isinstance(data["computed_at"], datetime)
+        assert data["computed_at"].year == 2025
+
+
+class TestADR004AutoCalculatedPredictions:
+    """Tests validant ADR #004 pour predictions.py.
+
+    ADR #004: Pattern Hybrid pour auto-calculs.
+    - Default sentinelle (0.0, LOW)
+    - Auto-calcul si sentinelle détectée
+    - Permet override si valeur fournie
+    """
+
+    def test_implied_probability_auto_calculated(self):
+        """ADR #004: implied_probability auto-calculé depuis fair_odds."""
+        pred = MarketPrediction(
+            prediction_id="test_adr004_1",
+            match_id="match_adr",
+            market_id="btts_yes",
+            market_name="BTTS Yes",
+            market_category=MarketCategory.MAIN_LINE,
+            probability=0.68,
+            fair_odds=2.0,
+            confidence_score=0.82,
+            data_quality=DataQuality.EXCELLENT,
+            # implied_probability omis → sera calculé
+        )
+
+        # ADR #004: implied_probability = 1 / fair_odds
+        assert pred.implied_probability == pytest.approx(0.5, rel=1e-6)
+
+    def test_implied_probability_can_be_overridden(self):
+        """ADR #004: Pattern Hybrid permet override."""
+        pred = MarketPrediction(
+            prediction_id="test_adr004_2",
+            match_id="match_adr",
+            market_id="btts_yes",
+            market_name="BTTS Yes",
+            market_category=MarketCategory.MAIN_LINE,
+            probability=0.68,
+            fair_odds=2.0,
+            confidence_score=0.82,
+            data_quality=DataQuality.EXCELLENT,
+            implied_probability=0.48,  # Override explicite (≠ sentinelle 0.0)
+        )
+
+        # Valeur override préservée
+        assert pred.implied_probability == 0.48
+
+    def test_confidence_level_auto_calculated(self):
+        """ADR #004: confidence_level auto-calculé depuis confidence_score."""
+        test_cases = [
+            (0.92, "very_high"),  # > 0.85
+            (0.78, "high"),  # 0.70 - 0.85
+            (0.62, "medium"),  # 0.50 - 0.70
+            (0.42, "low"),  # < 0.50
+        ]
+
+        for score, expected_level in test_cases:
+            pred = MarketPrediction(
+                prediction_id=f"test_adr004_3_{score}",
+                match_id="match_adr",
+                market_id="btts_yes",
+                market_name="BTTS Yes",
+                market_category=MarketCategory.MAIN_LINE,
+                probability=0.68,
+                fair_odds=1.47,
+                confidence_score=score,
+                data_quality=DataQuality.EXCELLENT,
+                # confidence_level omis → sera calculé
+            )
+
+            assert (
+                pred.confidence_level == expected_level
+            ), f"Score {score} should give {expected_level}"
+
+    def test_confidence_level_can_be_overridden(self):
+        """ADR #004: confidence_level peut être overridden si nécessaire."""
+        pred = MarketPrediction(
+            prediction_id="test_adr004_4",
+            match_id="match_adr",
+            market_id="exotic_score",
+            market_name="Exact Score",
+            market_category=MarketCategory.EXOTIC,
+            probability=0.05,
+            fair_odds=20.0,
+            confidence_score=0.82,  # Score élevé
+            data_quality=DataQuality.POOR,
+            confidence_level=ConfidenceLevel.MEDIUM,  # Override à MEDIUM malgré score > 0.70
+        )
+
+        # Valeur override préservée
+        assert pred.confidence_level == "medium"

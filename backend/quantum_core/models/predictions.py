@@ -91,6 +91,11 @@ class DataQuality(str, Enum):
 class MarketPrediction(BaseModel):
     """Prédiction pour un marché spécifique.
 
+    Architecture Decision Records appliqués:
+    - ADR #002: model_validator pour calculate_derived_fields
+    - ADR #003: field_serializer pour computed_at, expires_at
+    - ADR #004: Pattern Hybrid pour implied_probability, confidence_level
+
     Modèle complet avec traçabilité Hedge Fund Grade. Inclut les probabilités,
     cotes, edge, confiance, métadonnées et contexte complet.
 
@@ -158,7 +163,15 @@ class MarketPrediction(BaseModel):
     probability: float = Field(..., ge=0.0, le=1.0, description="Probabilité prédite")
     fair_odds: float = Field(..., gt=1.0, description="Cote fair calculée")
     implied_probability: float = Field(
-        default=0.0, ge=0.0, le=1.0, description="Probabilité implicite (auto-calculée)"
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+        description=(
+            "Probabilité implicite (1 / fair_odds). "
+            "Auto-calculée si omise (default=0.0). "
+            "Peut être overridden si nécessaire. "
+            "ADR #004: Pattern Hybrid."
+        ),
     )
 
     # Edge & Value
@@ -180,7 +193,13 @@ class MarketPrediction(BaseModel):
         ..., ge=0.0, le=1.0, description="Score de confiance"
     )
     confidence_level: ConfidenceLevel = Field(
-        default=ConfidenceLevel.LOW, description="Niveau de confiance (auto-calculé)"
+        default=ConfidenceLevel.LOW,
+        description=(
+            "Niveau de confiance basé sur confidence_score. "
+            "Auto-calculé si omis (default=LOW). "
+            "Peut être overridden si nécessaire. "
+            "ADR #004: Pattern Hybrid."
+        ),
     )
     data_quality: DataQuality = Field(..., description="Qualité des données sources")
     model_agreement: Optional[float] = Field(
@@ -225,36 +244,64 @@ class MarketPrediction(BaseModel):
 
     @field_serializer("computed_at", "expires_at", when_used="json")
     def serialize_datetime(self, dt: Optional[datetime]) -> Optional[str]:
-        """Serialize datetime to ISO format."""
+        """Serialize datetime fields to ISO 8601 format.
+
+        ADR #003: field_serializer explicite avec when_used='json'.
+        - Compatible FastAPI (.model_dump_json())
+        - Type-safe (mypy vérifie)
+        - Testable unitairement
+
+        Args:
+            dt: Datetime to serialize (or None)
+
+        Returns:
+            ISO 8601 string (e.g. '2025-12-13T20:30:00Z') or None
+        """
         return dt.isoformat() if dt else None
 
     @model_validator(mode="after")
     def calculate_derived_fields(self):
         """Calcule les champs dérivés après validation.
 
+        ADR #002: model_validator garantit accès à tous les champs (y compris defaults).
+        ADR #004: Pattern Hybrid pour auto-calcul avec possibilité override.
+
+        Champs calculés:
+        - implied_probability: 1.0 / fair_odds (si sentinelle 0.0)
+        - confidence_level: basé sur confidence_score (si sentinelle LOW)
+
         Returns:
             Instance avec champs calculés
         """
-        # Calcul implied_probability
+        # ─────────────────────────────────────────────────────────────────────
+        # AUTO-CALCUL : implied_probability (ADR #004)
+        # ─────────────────────────────────────────────────────────────────────
+
         if self.implied_probability == 0.0 and self.fair_odds > 1.0:
             self.implied_probability = 1.0 / self.fair_odds
 
-        # Calcul confidence_level
-        score = self.confidence_score
-        if score > 0.85:
-            self.confidence_level = ConfidenceLevel.VERY_HIGH
-        elif score > 0.70:
-            self.confidence_level = ConfidenceLevel.HIGH
-        elif score > 0.50:
-            self.confidence_level = ConfidenceLevel.MEDIUM
-        else:
-            self.confidence_level = ConfidenceLevel.LOW
+        # ─────────────────────────────────────────────────────────────────────
+        # AUTO-CALCUL : confidence_level (ADR #004)
+        # ─────────────────────────────────────────────────────────────────────
+
+        if self.confidence_level == ConfidenceLevel.LOW:
+            score = self.confidence_score
+            if score > 0.85:
+                self.confidence_level = ConfidenceLevel.VERY_HIGH
+            elif score > 0.70:
+                self.confidence_level = ConfidenceLevel.HIGH
+            elif score > 0.50:
+                self.confidence_level = ConfidenceLevel.MEDIUM
+            # else: reste LOW (< 0.50)
 
         return self
 
 
 class EnsemblePrediction(BaseModel):
     """Prédiction combinant plusieurs modèles.
+
+    Architecture Decision Records appliqués:
+    - ADR #003: field_serializer pour computed_at
 
     Agrège les prédictions de plusieurs modèles avec méthode d'ensemble,
     tracking de la variance et de l'incertitude.
@@ -339,12 +386,25 @@ class EnsemblePrediction(BaseModel):
 
     @field_serializer("computed_at", when_used="json")
     def serialize_datetime(self, dt: datetime) -> str:
-        """Serialize datetime to ISO format."""
+        """Serialize datetime to ISO 8601 format.
+
+        ADR #003: field_serializer explicite avec when_used='json'.
+        Compatible FastAPI, type-safe, testable.
+
+        Args:
+            dt: Datetime to serialize
+
+        Returns:
+            ISO 8601 string (e.g. '2025-12-13T20:30:00Z')
+        """
         return dt.isoformat()
 
 
 class GoalscorerPrediction(BaseModel):
     """Prédiction pour les marchés buteur (Anytime/First/Last).
+
+    Architecture Decision Records appliqués:
+    - ADR #003: field_serializer pour computed_at
 
     Modèle spécialisé pour les prédictions de buteur incluant le profil timing,
     la forme récente et l'historique vs adversaire.
@@ -445,5 +505,15 @@ class GoalscorerPrediction(BaseModel):
 
     @field_serializer("computed_at", when_used="json")
     def serialize_datetime(self, dt: datetime) -> str:
-        """Serialize datetime to ISO format."""
+        """Serialize datetime to ISO 8601 format.
+
+        ADR #003: field_serializer explicite avec when_used='json'.
+        Compatible FastAPI, type-safe, testable.
+
+        Args:
+            dt: Datetime to serialize
+
+        Returns:
+            ISO 8601 string (e.g. '2025-12-13T20:30:00Z')
+        """
         return dt.isoformat()
