@@ -99,6 +99,11 @@ from .to_score_half import (
 from .team_totals import (
     TeamTotalsCalculator, TeamTotalsAnalysis, get_team_totals_calculator
 )
+from .goalscorer import (
+    GoalscorerCalculator, GoalscorerDataLoader,
+    PlayerGoalscorerOdds, MatchGoalscorerAnalysis,
+    get_goalscorer_calculator
+)
 
 __all__ = [
     # Brain
@@ -169,6 +174,12 @@ __all__ = [
     "TeamTotalsCalculator",
     "TeamTotalsAnalysis",
     "get_team_totals_calculator",
+    # Goalscorer
+    "GoalscorerCalculator",
+    "GoalscorerDataLoader",
+    "PlayerGoalscorerOdds",
+    "MatchGoalscorerAnalysis",
+    "get_goalscorer_calculator",
 ]
 
 __version__ = "2.8.0"
