@@ -77,3 +77,17 @@ Si tu n'es pas sûr de quelque chose :
 1. Demande clarification AVANT d'agir
 2. Propose plusieurs options avec pros/cons
 3. Attends validation explicite
+
+## �� Notification fin de tâche
+À la fin de chaque mission complète, toujours exécuter:
+```bash
+echo "🎉 MISSION TERMINÉE - Mya je t'attends!"; for i in 1 2 3; do echo -e '\a'; sleep 0.3; done
+```
+
+Cela permet à Mya d'être notifiée quand une tâche longue est terminée.
+
+## �� Notification fin de tâche
+À la fin de chaque mission complète, toujours exécuter:
+```bash
+touch /tmp/mission_done && echo "✅ Signal envoyé - Mya sera notifiée!"
+```
