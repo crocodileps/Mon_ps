@@ -2,7 +2,7 @@
 UnifiedBrain - Hedge Fund Grade Prediction Engine
 ═══════════════════════════════════════════════════════════════════════════
 
-71 MARCHÉS SUPPORTÉS:
+75 MARCHÉS SUPPORTÉS:
     - 1X2 (3): home_win, draw, away_win
     - Double Chance (3): dc_1x, dc_x2, dc_12
     - Draw No Bet (2): dnb_home, dnb_away
@@ -15,6 +15,7 @@ UnifiedBrain - Hedge Fund Grade Prediction Engine
     - Asian Handicap (8): ah_-0.5, ah_-1.0, ah_-1.5, ah_-2.0 (home & away)
     - Goal Range (4): 0-1, 2-3, 4-5, 6+
     - Double Result (9): 9 combinaisons HT/FT
+    - Win to Nil (4): home/away win to nil yes/no
 
 Architecture:
     UnifiedBrain coordonne:
@@ -67,6 +68,9 @@ from .goal_range import (
 from .double_result import (
     DoubleResultCalculator, DoubleResultAnalysis, get_double_result_calculator
 )
+from .win_to_nil import (
+    WinToNilCalculator, WinToNilAnalysis, get_win_to_nil_calculator
+)
 
 __all__ = [
     # Brain
@@ -105,7 +109,11 @@ __all__ = [
     "DoubleResultCalculator",
     "DoubleResultAnalysis",
     "get_double_result_calculator",
+    # Win to Nil
+    "WinToNilCalculator",
+    "WinToNilAnalysis",
+    "get_win_to_nil_calculator",
 ]
 
-__version__ = "2.4.0"
-__markets_count__ = 71
+__version__ = "2.5.0"
+__markets_count__ = 75

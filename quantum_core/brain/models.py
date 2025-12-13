@@ -1,8 +1,8 @@
 """
-Models - Structures de donnees pour UnifiedBrain V2.4
+Models - Structures de donnees pour UnifiedBrain V2.5
 ===============================================================================
 
-71 MARCHES SUPPORTES:
+75 MARCHES SUPPORTES:
 - 1X2 (3): home_win, draw, away_win
 - Double Chance (3): dc_1x, dc_x2, dc_12
 - DNB (2): dnb_home, dnb_away
@@ -15,6 +15,7 @@ Models - Structures de donnees pour UnifiedBrain V2.4
 - Asian Handicap (8): ah_-0.5, ah_-1.0, ah_-1.5, ah_-2.0 (home & away)
 - Goal Range (4): 0-1, 2-3, 4-5, 6+
 - Double Result (9): 9 combinaisons HT/FT
+- Win to Nil (4): home/away win to nil yes/no
 """
 
 from dataclasses import dataclass, field
@@ -127,6 +128,12 @@ class MarketType(Enum):
     DR_2_X = "dr_2_x"  # HT Away, FT Draw
     DR_2_2 = "dr_2_2"  # HT Away, FT Away
 
+    # === Win to Nil (4) - Marchés défensifs ===
+    HOME_WIN_TO_NIL = "home_win_to_nil"      # Home gagne, Away = 0
+    HOME_WIN_TO_NIL_NO = "home_win_to_nil_no"  # Home gagne, Away >= 1
+    AWAY_WIN_TO_NIL = "away_win_to_nil"      # Away gagne, Home = 0
+    AWAY_WIN_TO_NIL_NO = "away_win_to_nil_no"  # Away gagne, Home >= 1
+
 
 # === MARKET CATEGORIES ===
 MARKET_CATEGORIES = {
@@ -154,6 +161,8 @@ MARKET_CATEGORIES = {
     "DOUBLE_RESULT": [MarketType.DR_1_1, MarketType.DR_1_X, MarketType.DR_1_2,
                       MarketType.DR_X_1, MarketType.DR_X_X, MarketType.DR_X_2,
                       MarketType.DR_2_1, MarketType.DR_2_X, MarketType.DR_2_2],
+    "WIN_TO_NIL": [MarketType.HOME_WIN_TO_NIL, MarketType.HOME_WIN_TO_NIL_NO,
+                   MarketType.AWAY_WIN_TO_NIL, MarketType.AWAY_WIN_TO_NIL_NO],
 }
 
 
@@ -256,6 +265,12 @@ LIQUIDITY_TAX = {
     MarketType.DR_2_1: 0.035,
     MarketType.DR_2_X: 0.035,
     MarketType.DR_2_2: 0.035,
+
+    # Win to Nil - Moderement liquide
+    MarketType.HOME_WIN_TO_NIL: 0.025,
+    MarketType.HOME_WIN_TO_NIL_NO: 0.025,
+    MarketType.AWAY_WIN_TO_NIL: 0.025,
+    MarketType.AWAY_WIN_TO_NIL_NO: 0.025,
 }
 
 
@@ -358,6 +373,12 @@ MIN_EDGE_BY_MARKET = {
     MarketType.DR_2_1: 0.06,
     MarketType.DR_2_X: 0.06,
     MarketType.DR_2_2: 0.06,
+
+    # Win to Nil
+    MarketType.HOME_WIN_TO_NIL: 0.04,
+    MarketType.HOME_WIN_TO_NIL_NO: 0.04,
+    MarketType.AWAY_WIN_TO_NIL: 0.04,
+    MarketType.AWAY_WIN_TO_NIL_NO: 0.04,
 }
 
 
@@ -472,7 +493,7 @@ class MatchPrediction:
     Prediction complete d'un match - OUTPUT PRINCIPAL.
 
     Contient toutes les probabilites, edges, et recommandations
-    pour les 71 marches supportes (34 + 10 CS + 6 HT + 8 AH + 4 GR + 9 DR).
+    pour les 75 marches supportes (34 + 10 CS + 6 HT + 8 AH + 4 GR + 9 DR + 4 WTN).
     """
     # Identifiants
     home_team: str
@@ -582,6 +603,12 @@ class MatchPrediction:
     dr_2_x_prob: float = 0.05  # HT Away, FT Draw
     dr_2_2_prob: float = 0.12  # HT Away, FT Away
 
+    # === Win to Nil (4 marchés) ===
+    home_win_to_nil_prob: float = 0.15      # Home gagne, Away = 0
+    home_win_to_nil_no_prob: float = 0.20   # Home gagne, Away >= 1
+    away_win_to_nil_prob: float = 0.12      # Away gagne, Home = 0
+    away_win_to_nil_no_prob: float = 0.18   # Away gagne, Home >= 1
+
     # Toutes les probabilites par marche
     market_probabilities: Dict[str, MarketProbability] = field(default_factory=dict)
 
@@ -603,8 +630,8 @@ class MatchPrediction:
     data_quality_score: float = 0.5
 
     # Metadata
-    model_version: str = "UnifiedBrain_v2.4"
-    markets_count: int = 71
+    model_version: str = "UnifiedBrain_v2.5"
+    markets_count: int = 75
 
     def get_best_edges(self, min_edge: float = 0.02) -> List[MarketEdge]:
         """Retourne les meilleurs edges au-dessus du seuil."""
