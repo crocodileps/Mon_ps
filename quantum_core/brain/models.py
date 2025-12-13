@@ -1,8 +1,8 @@
 """
-Models - Structures de donnees pour UnifiedBrain V2.6
+Models - Structures de donnees pour UnifiedBrain V2.7
 ===============================================================================
 
-85 MARCHES SUPPORTES:
+93 MARCHES SUPPORTES:
 - 1X2 (3): home_win, draw, away_win
 - Double Chance (3): dc_1x, dc_x2, dc_12
 - DNB (2): dnb_home, dnb_away
@@ -19,6 +19,9 @@ Models - Structures de donnees pour UnifiedBrain V2.6
 - Odd/Even (2): odd_goals, even_goals
 - Exact Goals (6): 0, 1, 2, 3, 4, 5+
 - BTTS Both Halves (2): yes/no
+- Score Both Halves (2): yes/no
+- Clean Sheet (2): home/away clean sheet yes
+- To Score in Half (4): home/away to score 1H/2H
 """
 
 from dataclasses import dataclass, field
@@ -153,6 +156,20 @@ class MarketType(Enum):
     BTTS_BOTH_HALVES_YES = "btts_both_halves_yes"
     BTTS_BOTH_HALVES_NO = "btts_both_halves_no"
 
+    # === Score in Both Halves (2) ===
+    SCORE_BOTH_HALVES_YES = "score_both_halves_yes"
+    SCORE_BOTH_HALVES_NO = "score_both_halves_no"
+
+    # === Clean Sheet (2) ===
+    HOME_CLEAN_SHEET_YES = "home_clean_sheet_yes"
+    AWAY_CLEAN_SHEET_YES = "away_clean_sheet_yes"
+
+    # === To Score in Half (4) ===
+    HOME_TO_SCORE_1H = "home_to_score_1h"
+    HOME_TO_SCORE_2H = "home_to_score_2h"
+    AWAY_TO_SCORE_1H = "away_to_score_1h"
+    AWAY_TO_SCORE_2H = "away_to_score_2h"
+
 
 # === MARKET CATEGORIES ===
 MARKET_CATEGORIES = {
@@ -187,6 +204,10 @@ MARKET_CATEGORIES = {
                    MarketType.EXACTLY_2_GOALS, MarketType.EXACTLY_3_GOALS,
                    MarketType.EXACTLY_4_GOALS, MarketType.GOALS_5_PLUS],
     "BTTS_BOTH_HALVES": [MarketType.BTTS_BOTH_HALVES_YES, MarketType.BTTS_BOTH_HALVES_NO],
+    "SCORE_BOTH_HALVES": [MarketType.SCORE_BOTH_HALVES_YES, MarketType.SCORE_BOTH_HALVES_NO],
+    "CLEAN_SHEET": [MarketType.HOME_CLEAN_SHEET_YES, MarketType.AWAY_CLEAN_SHEET_YES],
+    "TO_SCORE_HALF": [MarketType.HOME_TO_SCORE_1H, MarketType.HOME_TO_SCORE_2H,
+                      MarketType.AWAY_TO_SCORE_1H, MarketType.AWAY_TO_SCORE_2H],
 }
 
 
@@ -311,6 +332,20 @@ LIQUIDITY_TAX = {
     # BTTS Both Halves - Exotique
     MarketType.BTTS_BOTH_HALVES_YES: 0.035,
     MarketType.BTTS_BOTH_HALVES_NO: 0.035,
+
+    # Score Both Halves
+    MarketType.SCORE_BOTH_HALVES_YES: 0.025,
+    MarketType.SCORE_BOTH_HALVES_NO: 0.025,
+
+    # Clean Sheet - Liquide
+    MarketType.HOME_CLEAN_SHEET_YES: 0.02,
+    MarketType.AWAY_CLEAN_SHEET_YES: 0.02,
+
+    # To Score in Half
+    MarketType.HOME_TO_SCORE_1H: 0.025,
+    MarketType.HOME_TO_SCORE_2H: 0.025,
+    MarketType.AWAY_TO_SCORE_1H: 0.025,
+    MarketType.AWAY_TO_SCORE_2H: 0.025,
 }
 
 
@@ -435,6 +470,20 @@ MIN_EDGE_BY_MARKET = {
     # BTTS Both Halves
     MarketType.BTTS_BOTH_HALVES_YES: 0.06,
     MarketType.BTTS_BOTH_HALVES_NO: 0.06,
+
+    # Score Both Halves
+    MarketType.SCORE_BOTH_HALVES_YES: 0.04,
+    MarketType.SCORE_BOTH_HALVES_NO: 0.04,
+
+    # Clean Sheet
+    MarketType.HOME_CLEAN_SHEET_YES: 0.03,
+    MarketType.AWAY_CLEAN_SHEET_YES: 0.03,
+
+    # To Score in Half
+    MarketType.HOME_TO_SCORE_1H: 0.04,
+    MarketType.HOME_TO_SCORE_2H: 0.04,
+    MarketType.AWAY_TO_SCORE_1H: 0.04,
+    MarketType.AWAY_TO_SCORE_2H: 0.04,
 }
 
 
@@ -549,7 +598,7 @@ class MatchPrediction:
     Prediction complete d'un match - OUTPUT PRINCIPAL.
 
     Contient toutes les probabilites, edges, et recommandations
-    pour les 85 marches supportes (34 + 10 CS + 6 HT + 8 AH + 4 GR + 9 DR + 4 WTN + 2 OE + 6 EG + 2 BBH).
+    pour les 93 marches supportes (34 + 10 CS + 6 HT + 8 AH + 4 GR + 9 DR + 4 WTN + 2 OE + 6 EG + 2 BBH + 2 SBH + 2 CS + 4 TSH).
     """
     # Identifiants
     home_team: str
@@ -681,6 +730,20 @@ class MatchPrediction:
     btts_both_halves_yes_prob: float = 0.08
     btts_both_halves_no_prob: float = 0.92
 
+    # === Score Both Halves (2 marchés) ===
+    score_both_halves_yes_prob: float = 0.55
+    score_both_halves_no_prob: float = 0.45
+
+    # === Clean Sheet (2 marchés) ===
+    home_clean_sheet_yes_prob: float = 0.35
+    away_clean_sheet_yes_prob: float = 0.30
+
+    # === To Score in Half (4 marchés) ===
+    home_to_score_1h_prob: float = 0.55
+    home_to_score_2h_prob: float = 0.62
+    away_to_score_1h_prob: float = 0.48
+    away_to_score_2h_prob: float = 0.55
+
     # Toutes les probabilites par marche
     market_probabilities: Dict[str, MarketProbability] = field(default_factory=dict)
 
@@ -702,8 +765,8 @@ class MatchPrediction:
     data_quality_score: float = 0.5
 
     # Metadata
-    model_version: str = "UnifiedBrain_v2.6"
-    markets_count: int = 85
+    model_version: str = "UnifiedBrain_v2.7"
+    markets_count: int = 93
 
     def get_best_edges(self, min_edge: float = 0.02) -> List[MarketEdge]:
         """Retourne les meilleurs edges au-dessus du seuil."""

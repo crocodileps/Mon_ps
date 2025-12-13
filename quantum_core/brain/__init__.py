@@ -2,7 +2,7 @@
 UnifiedBrain - Hedge Fund Grade Prediction Engine
 ═══════════════════════════════════════════════════════════════════════════
 
-85 MARCHÉS SUPPORTÉS:
+93 MARCHÉS SUPPORTÉS:
     - 1X2 (3): home_win, draw, away_win
     - Double Chance (3): dc_1x, dc_x2, dc_12
     - Draw No Bet (2): dnb_home, dnb_away
@@ -19,6 +19,9 @@ UnifiedBrain - Hedge Fund Grade Prediction Engine
     - Odd/Even (2): odd_goals, even_goals
     - Exact Goals (6): 0, 1, 2, 3, 4, 5+
     - BTTS Both Halves (2): yes/no
+    - Score Both Halves (2): yes/no
+    - Clean Sheet (2): home/away clean sheet yes
+    - To Score in Half (4): home/away to score 1H/2H
 
 Architecture:
     UnifiedBrain coordonne:
@@ -83,6 +86,15 @@ from .exact_goals import (
 from .btts_both_halves import (
     BttsBothHalvesCalculator, BttsBothHalvesAnalysis, get_btts_both_halves_calculator
 )
+from .score_both_halves import (
+    ScoreInBothHalvesCalculator, ScoreInBothHalvesAnalysis, get_score_both_halves_calculator
+)
+from .clean_sheet import (
+    CleanSheetCalculator, CleanSheetAnalysis, get_clean_sheet_calculator
+)
+from .to_score_half import (
+    ToScoreInHalfCalculator, ToScoreInHalfAnalysis, get_to_score_half_calculator
+)
 
 __all__ = [
     # Brain
@@ -137,7 +149,19 @@ __all__ = [
     "BttsBothHalvesCalculator",
     "BttsBothHalvesAnalysis",
     "get_btts_both_halves_calculator",
+    # Score Both Halves
+    "ScoreInBothHalvesCalculator",
+    "ScoreInBothHalvesAnalysis",
+    "get_score_both_halves_calculator",
+    # Clean Sheet
+    "CleanSheetCalculator",
+    "CleanSheetAnalysis",
+    "get_clean_sheet_calculator",
+    # To Score in Half
+    "ToScoreInHalfCalculator",
+    "ToScoreInHalfAnalysis",
+    "get_to_score_half_calculator",
 ]
 
-__version__ = "2.6.0"
-__markets_count__ = 85
+__version__ = "2.7.0"
+__markets_count__ = 93
