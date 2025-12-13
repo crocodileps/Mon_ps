@@ -2,7 +2,7 @@
 UnifiedBrain - Hedge Fund Grade Prediction Engine
 ═══════════════════════════════════════════════════════════════════════════
 
-58 MARCHÉS SUPPORTÉS:
+71 MARCHÉS SUPPORTÉS:
     - 1X2 (3): home_win, draw, away_win
     - Double Chance (3): dc_1x, dc_x2, dc_12
     - Draw No Bet (2): dnb_home, dnb_away
@@ -13,6 +13,8 @@ UnifiedBrain - Hedge Fund Grade Prediction Engine
     - Correct Score (10): top 10 scores les plus probables
     - Half-Time (6): ht_1x2, ht_over_05, ht_btts
     - Asian Handicap (8): ah_-0.5, ah_-1.0, ah_-1.5, ah_-2.0 (home & away)
+    - Goal Range (4): 0-1, 2-3, 4-5, 6+
+    - Double Result (9): 9 combinaisons HT/FT
 
 Architecture:
     UnifiedBrain coordonne:
@@ -59,6 +61,12 @@ from .asian_handicap import (
     AsianHandicapCalculator, AsianHandicapAnalysis, AsianHandicapLine,
     get_asian_handicap_calculator
 )
+from .goal_range import (
+    GoalRangeCalculator, GoalRangeAnalysis, get_goal_range_calculator
+)
+from .double_result import (
+    DoubleResultCalculator, DoubleResultAnalysis, get_double_result_calculator
+)
 
 __all__ = [
     # Brain
@@ -89,7 +97,15 @@ __all__ = [
     "AsianHandicapAnalysis",
     "AsianHandicapLine",
     "get_asian_handicap_calculator",
+    # Goal Range
+    "GoalRangeCalculator",
+    "GoalRangeAnalysis",
+    "get_goal_range_calculator",
+    # Double Result
+    "DoubleResultCalculator",
+    "DoubleResultAnalysis",
+    "get_double_result_calculator",
 ]
 
-__version__ = "2.3.0"
-__markets_count__ = 58
+__version__ = "2.4.0"
+__markets_count__ = 71

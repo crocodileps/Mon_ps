@@ -1,8 +1,8 @@
 """
-Models - Structures de donnees pour UnifiedBrain V2.3
+Models - Structures de donnees pour UnifiedBrain V2.4
 ===============================================================================
 
-58 MARCHES SUPPORTES:
+71 MARCHES SUPPORTES:
 - 1X2 (3): home_win, draw, away_win
 - Double Chance (3): dc_1x, dc_x2, dc_12
 - DNB (2): dnb_home, dnb_away
@@ -13,6 +13,8 @@ Models - Structures de donnees pour UnifiedBrain V2.3
 - Correct Score (10): top 10 scores (0-0, 1-0, 0-1, 1-1, 2-0, 0-2, 2-1, 1-2, 2-2, 3-1)
 - Half-Time (6): ht_1x2, ht_over_05, ht_under_05, ht_btts
 - Asian Handicap (8): ah_-0.5, ah_-1.0, ah_-1.5, ah_-2.0 (home & away)
+- Goal Range (4): 0-1, 2-3, 4-5, 6+
+- Double Result (9): 9 combinaisons HT/FT
 """
 
 from dataclasses import dataclass, field
@@ -108,6 +110,23 @@ class MarketType(Enum):
     AH_HOME_M20 = "ah_home_m20"   # AH -2.0 Home (Home must win by 3+)
     AH_AWAY_P20 = "ah_away_p20"   # AH +2.0 Away (Away can lose by 2)
 
+    # === Goal Range (4) - Tranches de buts ===
+    GOALS_0_1 = "goals_0_1"        # 0-1 buts total
+    GOALS_2_3 = "goals_2_3"        # 2-3 buts total
+    GOALS_4_5 = "goals_4_5"        # 4-5 buts total
+    GOALS_6_PLUS = "goals_6_plus"  # 6+ buts total
+
+    # === Double Result (9) - HT/FT combinés ===
+    DR_1_1 = "dr_1_1"  # HT Home, FT Home
+    DR_1_X = "dr_1_x"  # HT Home, FT Draw
+    DR_1_2 = "dr_1_2"  # HT Home, FT Away
+    DR_X_1 = "dr_x_1"  # HT Draw, FT Home
+    DR_X_X = "dr_x_x"  # HT Draw, FT Draw
+    DR_X_2 = "dr_x_2"  # HT Draw, FT Away
+    DR_2_1 = "dr_2_1"  # HT Away, FT Home
+    DR_2_X = "dr_2_x"  # HT Away, FT Draw
+    DR_2_2 = "dr_2_2"  # HT Away, FT Away
+
 
 # === MARKET CATEGORIES ===
 MARKET_CATEGORIES = {
@@ -131,6 +150,10 @@ MARKET_CATEGORIES = {
     "ASIAN_HANDICAP": [MarketType.AH_HOME_M05, MarketType.AH_AWAY_P05, MarketType.AH_HOME_M10,
                        MarketType.AH_AWAY_P10, MarketType.AH_HOME_M15, MarketType.AH_AWAY_P15,
                        MarketType.AH_HOME_M20, MarketType.AH_AWAY_P20],
+    "GOAL_RANGE": [MarketType.GOALS_0_1, MarketType.GOALS_2_3, MarketType.GOALS_4_5, MarketType.GOALS_6_PLUS],
+    "DOUBLE_RESULT": [MarketType.DR_1_1, MarketType.DR_1_X, MarketType.DR_1_2,
+                      MarketType.DR_X_1, MarketType.DR_X_X, MarketType.DR_X_2,
+                      MarketType.DR_2_1, MarketType.DR_2_X, MarketType.DR_2_2],
 }
 
 
@@ -216,6 +239,23 @@ LIQUIDITY_TAX = {
     MarketType.AH_AWAY_P15: 0.015,
     MarketType.AH_HOME_M20: 0.015,
     MarketType.AH_AWAY_P20: 0.015,
+
+    # Goal Range - Moderement liquide
+    MarketType.GOALS_0_1: 0.025,
+    MarketType.GOALS_2_3: 0.025,
+    MarketType.GOALS_4_5: 0.025,
+    MarketType.GOALS_6_PLUS: 0.03,
+
+    # Double Result - Peu liquide
+    MarketType.DR_1_1: 0.035,
+    MarketType.DR_1_X: 0.035,
+    MarketType.DR_1_2: 0.035,
+    MarketType.DR_X_1: 0.035,
+    MarketType.DR_X_X: 0.035,
+    MarketType.DR_X_2: 0.035,
+    MarketType.DR_2_1: 0.035,
+    MarketType.DR_2_X: 0.035,
+    MarketType.DR_2_2: 0.035,
 }
 
 
@@ -301,6 +341,23 @@ MIN_EDGE_BY_MARKET = {
     MarketType.AH_AWAY_P15: 0.025,
     MarketType.AH_HOME_M20: 0.025,
     MarketType.AH_AWAY_P20: 0.025,
+
+    # Goal Range
+    MarketType.GOALS_0_1: 0.035,
+    MarketType.GOALS_2_3: 0.035,
+    MarketType.GOALS_4_5: 0.035,
+    MarketType.GOALS_6_PLUS: 0.04,
+
+    # Double Result - Edge eleve requis
+    MarketType.DR_1_1: 0.06,
+    MarketType.DR_1_X: 0.06,
+    MarketType.DR_1_2: 0.06,
+    MarketType.DR_X_1: 0.06,
+    MarketType.DR_X_X: 0.06,
+    MarketType.DR_X_2: 0.06,
+    MarketType.DR_2_1: 0.06,
+    MarketType.DR_2_X: 0.06,
+    MarketType.DR_2_2: 0.06,
 }
 
 
@@ -415,7 +472,7 @@ class MatchPrediction:
     Prediction complete d'un match - OUTPUT PRINCIPAL.
 
     Contient toutes les probabilites, edges, et recommandations
-    pour les 58 marches supportes (34 standards + 10 Correct Score + 6 Half-Time + 8 Asian Handicap).
+    pour les 71 marches supportes (34 + 10 CS + 6 HT + 8 AH + 4 GR + 9 DR).
     """
     # Identifiants
     home_team: str
@@ -508,6 +565,23 @@ class MatchPrediction:
     ah_home_m20_prob: float = 0.20  # AH -2.0 Home (Home must win by 3+)
     ah_away_p20_prob: float = 0.80  # AH +2.0 Away (Away can lose by 2)
 
+    # === Goal Range (4 marchés) ===
+    goals_0_1_prob: float = 0.20
+    goals_2_3_prob: float = 0.45
+    goals_4_5_prob: float = 0.25
+    goals_6_plus_prob: float = 0.10
+
+    # === Double Result (9 marchés) ===
+    dr_1_1_prob: float = 0.15  # HT Home, FT Home
+    dr_1_x_prob: float = 0.05  # HT Home, FT Draw
+    dr_1_2_prob: float = 0.03  # HT Home, FT Away
+    dr_x_1_prob: float = 0.15  # HT Draw, FT Home
+    dr_x_x_prob: float = 0.12  # HT Draw, FT Draw
+    dr_x_2_prob: float = 0.10  # HT Draw, FT Away
+    dr_2_1_prob: float = 0.03  # HT Away, FT Home
+    dr_2_x_prob: float = 0.05  # HT Away, FT Draw
+    dr_2_2_prob: float = 0.12  # HT Away, FT Away
+
     # Toutes les probabilites par marche
     market_probabilities: Dict[str, MarketProbability] = field(default_factory=dict)
 
@@ -529,8 +603,8 @@ class MatchPrediction:
     data_quality_score: float = 0.5
 
     # Metadata
-    model_version: str = "UnifiedBrain_v2.3"
-    markets_count: int = 58
+    model_version: str = "UnifiedBrain_v2.4"
+    markets_count: int = 71
 
     def get_best_edges(self, min_edge: float = 0.02) -> List[MarketEdge]:
         """Retourne les meilleurs edges au-dessus du seuil."""
