@@ -626,3 +626,327 @@ class TestADR004AutoCalculatedFeatures:
 
         # Valeur override préservée (pas de calcul)
         assert match.value_differential == pytest.approx(150.0, rel=1e-6)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TESTS EDGE CASES - HEDGE FUND GRADE
+# ═══════════════════════════════════════════════════════════════════════════════
+
+
+class TestADR004EdgeCasesFeatures:
+    """Tests edge cases critiques pour Pattern Hybrid features.py.
+
+    Ces tests documentent les comportements limites essentiels pour
+    la robustesse en production (équipes bunker, amateurs, données extrêmes).
+
+    Edge cases testés:
+    - Valeurs zéro (0.0, 0) - équipes faibles/bunker
+    - Valeurs None - données manquantes
+    - Valeurs extrêmes - cas limite
+    - Override à zéro - Pattern Hybrid validé
+    """
+
+    def test_xg_differential_with_zero_home_xg(self):
+        """Edge case CRITIQUE: Équipe bunker avec xG = 0.0.
+
+        Scénario réel: Burnley vs Man City (équipe défensive bunker)
+        Vérifie que 0.0 n'est PAS traité comme falsy.
+        """
+        home = TeamFeatures(
+            team_name="Burnley",  # Équipe défensive bunker
+            team_id="burnley",
+            is_home=True,
+            xg_per_90=0.0,  # ← Edge case: xG = 0.0
+        )
+
+        away = TeamFeatures(
+            team_name="Man City",
+            team_id="mancity",
+            is_home=False,
+            xg_per_90=2.1,
+        )
+
+        match = MatchFeatures(
+            match_id="edge_xg_zero_home",
+            competition="Premier League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+        )
+
+        # CRITIQUE: Doit calculer -2.1 (pas None!)
+        assert match.xg_differential == pytest.approx(-2.1, rel=1e-6)
+
+    def test_xg_differential_with_zero_away_xg(self):
+        """Edge case: Équipe extérieure défensive avec xG = 0.0."""
+        home = TeamFeatures(
+            team_name="Liverpool",
+            team_id="liverpool",
+            is_home=True,
+            xg_per_90=2.5,
+        )
+
+        away = TeamFeatures(
+            team_name="Sheffield Utd",  # Équipe faible
+            team_id="sheff_utd",
+            is_home=False,
+            xg_per_90=0.0,  # ← Edge case
+        )
+
+        match = MatchFeatures(
+            match_id="edge_xg_zero_away",
+            competition="Premier League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+        )
+
+        assert match.xg_differential == pytest.approx(2.5, rel=1e-6)
+
+    def test_xg_differential_with_both_zero(self):
+        """Edge case: Match très défensif 0-0 attendu (xG des deux = 0.0)."""
+        home = TeamFeatures(
+            team_name="Team A",
+            team_id="team_a",
+            is_home=True,
+            xg_per_90=0.0,
+        )
+
+        away = TeamFeatures(
+            team_name="Team B",
+            team_id="team_b",
+            is_home=False,
+            xg_per_90=0.0,
+        )
+
+        match = MatchFeatures(
+            match_id="edge_xg_both_zero",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+        )
+
+        # 0.0 - 0.0 = 0.0 (match équilibré défensivement)
+        assert match.xg_differential == pytest.approx(0.0, rel=1e-6)
+
+    def test_xg_differential_with_none_home_xg(self):
+        """Edge case: Données xG manquantes pour équipe domicile."""
+        home = TeamFeatures(
+            team_name="Team A",
+            team_id="team_a",
+            is_home=True,
+            xg_per_90=None,  # ← Données manquantes
+        )
+
+        away = TeamFeatures(
+            team_name="Team B",
+            team_id="team_b",
+            is_home=False,
+            xg_per_90=2.1,
+        )
+
+        match = MatchFeatures(
+            match_id="edge_xg_none_home",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+        )
+
+        # Pas assez de données → None (correct)
+        assert match.xg_differential is None
+
+    def test_elo_differential_with_zero_elo(self):
+        """Edge case CRITIQUE: ELO = 0 (équipe amateur).
+
+        Scénario réel: Coupe avec équipe amateur vs équipe pro
+        Vérifie que 0 n'est PAS traité comme falsy.
+        """
+        home = TeamFeatures(
+            team_name="Amateur Team",
+            team_id="amateur",
+            is_home=True,
+            elo_rating=0,  # ← Edge case: ELO = 0
+        )
+
+        away = TeamFeatures(
+            team_name="Pro Team",
+            team_id="pro",
+            is_home=False,
+            elo_rating=1800,
+        )
+
+        match = MatchFeatures(
+            match_id="edge_elo_zero",
+            competition="Cup",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+        )
+
+        # CRITIQUE: Doit calculer -1800 (pas None!)
+        assert match.elo_differential == -1800
+
+    def test_value_differential_with_zero_value(self):
+        """Edge case CRITIQUE: squad_value = 0.0 (équipe sans valeur).
+
+        Scénario réel: Équipe amateur sans valeur marchande
+        Vérifie que 0.0 n'est PAS traité comme falsy.
+        """
+        home = TeamFeatures(
+            team_name="Low Value Team",
+            team_id="low_value",
+            is_home=True,
+            squad_value_millions=0.0,  # ← Edge case
+        )
+
+        away = TeamFeatures(
+            team_name="Rich Team",
+            team_id="rich",
+            is_home=False,
+            squad_value_millions=800.0,
+        )
+
+        match = MatchFeatures(
+            match_id="edge_value_zero",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+        )
+
+        # CRITIQUE: Doit calculer -800.0 (pas None!)
+        assert match.value_differential == pytest.approx(-800.0, rel=1e-6)
+
+    def test_extreme_xg_values(self):
+        """Edge case: Valeurs xG extrêmes (attaque ultra-forte)."""
+        home = TeamFeatures(
+            team_name="Super Attack",
+            team_id="attack",
+            is_home=True,
+            xg_per_90=5.0,  # ← Extrême
+        )
+
+        away = TeamFeatures(
+            team_name="Weak Defense",
+            team_id="defense",
+            is_home=False,
+            xg_per_90=0.1,
+        )
+
+        match = MatchFeatures(
+            match_id="edge_xg_extreme",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+        )
+
+        assert match.xg_differential == pytest.approx(4.9, rel=1e-6)
+
+    def test_extreme_elo_differential(self):
+        """Edge case: Écart ELO massif (3000 vs 1000)."""
+        home = TeamFeatures(
+            team_name="Elite Team",
+            team_id="elite",
+            is_home=True,
+            elo_rating=3000,  # ← Extrême
+        )
+
+        away = TeamFeatures(
+            team_name="Weak Team",
+            team_id="weak",
+            is_home=False,
+            elo_rating=1000,
+        )
+
+        match = MatchFeatures(
+            match_id="edge_elo_extreme",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+        )
+
+        assert match.elo_differential == 2000
+
+    def test_override_zero_differential(self):
+        """Pattern Hybrid: 0.0 comme override valide (match parfaitement équilibré).
+
+        Vérifie que 0.0 est un override légitime et non une sentinelle.
+        Sentinelle = None (pas 0.0).
+        """
+        home = TeamFeatures(
+            team_name="Team A",
+            team_id="team_a",
+            is_home=True,
+            xg_per_90=1.8,
+        )
+
+        away = TeamFeatures(
+            team_name="Team B",
+            team_id="team_b",
+            is_home=False,
+            xg_per_90=1.3,
+        )
+
+        # Override explicite à 0.0 (match jugé équilibré malgré xG différents)
+        match = MatchFeatures(
+            match_id="override_zero",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+            xg_differential=0.0,  # Override à 0.0
+            elo_differential=0,  # Override à 0
+            value_differential=0.0,  # Override à 0.0
+        )
+
+        # Valeurs override préservées (pas recalculées)
+        assert match.xg_differential == pytest.approx(0.0, rel=1e-6)
+        assert match.elo_differential == 0
+        assert match.value_differential == pytest.approx(0.0, rel=1e-6)
+
+    def test_all_differentials_with_none_values(self):
+        """Edge case: Toutes les données manquantes (None partout)."""
+        home = TeamFeatures(
+            team_name="Team A",
+            team_id="team_a",
+            is_home=True,
+            xg_per_90=None,
+            elo_rating=None,
+            squad_value_millions=None,
+        )
+
+        away = TeamFeatures(
+            team_name="Team B",
+            team_id="team_b",
+            is_home=False,
+            xg_per_90=None,
+            elo_rating=None,
+            squad_value_millions=None,
+        )
+
+        match = MatchFeatures(
+            match_id="edge_all_none",
+            competition="Test League",
+            season="2025-26",
+            match_date=datetime.utcnow(),
+            home_team=home,
+            away_team=away,
+        )
+
+        # Toutes les données manquantes → None partout (correct)
+        assert match.xg_differential is None
+        assert match.elo_differential is None
+        assert match.value_differential is None
