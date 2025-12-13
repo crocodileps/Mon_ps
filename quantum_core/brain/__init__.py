@@ -2,7 +2,7 @@
 UnifiedBrain - Hedge Fund Grade Prediction Engine
 ═══════════════════════════════════════════════════════════════════════════
 
-50 MARCHÉS SUPPORTÉS:
+58 MARCHÉS SUPPORTÉS:
     - 1X2 (3): home_win, draw, away_win
     - Double Chance (3): dc_1x, dc_x2, dc_12
     - Draw No Bet (2): dnb_home, dnb_away
@@ -12,6 +12,7 @@ UnifiedBrain - Hedge Fund Grade Prediction Engine
     - Cards (6): over/under 2.5, 3.5, 4.5
     - Correct Score (10): top 10 scores les plus probables
     - Half-Time (6): ht_1x2, ht_over_05, ht_btts
+    - Asian Handicap (8): ah_-0.5, ah_-1.0, ah_-1.5, ah_-2.0 (home & away)
 
 Architecture:
     UnifiedBrain coordonne:
@@ -54,6 +55,10 @@ from .correct_score import (
 from .half_time import (
     HalfTimeCalculator, HalfTimeAnalysis, get_half_time_calculator
 )
+from .asian_handicap import (
+    AsianHandicapCalculator, AsianHandicapAnalysis, AsianHandicapLine,
+    get_asian_handicap_calculator
+)
 
 __all__ = [
     # Brain
@@ -79,7 +84,12 @@ __all__ = [
     "HalfTimeCalculator",
     "HalfTimeAnalysis",
     "get_half_time_calculator",
+    # Asian Handicap
+    "AsianHandicapCalculator",
+    "AsianHandicapAnalysis",
+    "AsianHandicapLine",
+    "get_asian_handicap_calculator",
 ]
 
-__version__ = "2.2.0"
-__markets_count__ = 50
+__version__ = "2.3.0"
+__markets_count__ = 58

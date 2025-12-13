@@ -1,8 +1,8 @@
 """
-Models - Structures de donnees pour UnifiedBrain V2.2
+Models - Structures de donnees pour UnifiedBrain V2.3
 ===============================================================================
 
-50 MARCHES SUPPORTES:
+58 MARCHES SUPPORTES:
 - 1X2 (3): home_win, draw, away_win
 - Double Chance (3): dc_1x, dc_x2, dc_12
 - DNB (2): dnb_home, dnb_away
@@ -12,6 +12,7 @@ Models - Structures de donnees pour UnifiedBrain V2.2
 - Cards (6): over/under 2.5, 3.5, 4.5
 - Correct Score (10): top 10 scores (0-0, 1-0, 0-1, 1-1, 2-0, 0-2, 2-1, 1-2, 2-2, 3-1)
 - Half-Time (6): ht_1x2, ht_over_05, ht_under_05, ht_btts
+- Asian Handicap (8): ah_-0.5, ah_-1.0, ah_-1.5, ah_-2.0 (home & away)
 """
 
 from dataclasses import dataclass, field
@@ -97,6 +98,16 @@ class MarketType(Enum):
     HT_UNDER_05 = "ht_under_05"
     HT_BTTS = "ht_btts"
 
+    # === Asian Handicap (8) - Marchés asiatiques ===
+    AH_HOME_M05 = "ah_home_m05"   # AH -0.5 Home (Home must win)
+    AH_AWAY_P05 = "ah_away_p05"   # AH +0.5 Away (Away must not lose)
+    AH_HOME_M10 = "ah_home_m10"   # AH -1.0 Home (Home must win by 2+)
+    AH_AWAY_P10 = "ah_away_p10"   # AH +1.0 Away (Away can lose by 1)
+    AH_HOME_M15 = "ah_home_m15"   # AH -1.5 Home (Home must win by 2+)
+    AH_AWAY_P15 = "ah_away_p15"   # AH +1.5 Away (Away can lose by 1)
+    AH_HOME_M20 = "ah_home_m20"   # AH -2.0 Home (Home must win by 3+)
+    AH_AWAY_P20 = "ah_away_p20"   # AH +2.0 Away (Away can lose by 2)
+
 
 # === MARKET CATEGORIES ===
 MARKET_CATEGORIES = {
@@ -117,6 +128,9 @@ MARKET_CATEGORIES = {
                       MarketType.CS_2_2, MarketType.CS_3_1],
     "HALF_TIME": [MarketType.HT_HOME_WIN, MarketType.HT_DRAW, MarketType.HT_AWAY_WIN,
                   MarketType.HT_OVER_05, MarketType.HT_UNDER_05, MarketType.HT_BTTS],
+    "ASIAN_HANDICAP": [MarketType.AH_HOME_M05, MarketType.AH_AWAY_P05, MarketType.AH_HOME_M10,
+                       MarketType.AH_AWAY_P10, MarketType.AH_HOME_M15, MarketType.AH_AWAY_P15,
+                       MarketType.AH_HOME_M20, MarketType.AH_AWAY_P20],
 }
 
 
@@ -172,6 +186,36 @@ LIQUIDITY_TAX = {
     MarketType.CARDS_UNDER_25: 0.03,
     MarketType.CARDS_UNDER_35: 0.025,
     MarketType.CARDS_UNDER_45: 0.03,
+
+    # Correct Score - Tres peu liquide
+    MarketType.CS_0_0: 0.05,
+    MarketType.CS_1_0: 0.05,
+    MarketType.CS_0_1: 0.05,
+    MarketType.CS_1_1: 0.05,
+    MarketType.CS_2_0: 0.05,
+    MarketType.CS_0_2: 0.05,
+    MarketType.CS_2_1: 0.05,
+    MarketType.CS_1_2: 0.05,
+    MarketType.CS_2_2: 0.05,
+    MarketType.CS_3_1: 0.05,
+
+    # Half-Time - Moderement liquide
+    MarketType.HT_HOME_WIN: 0.025,
+    MarketType.HT_DRAW: 0.025,
+    MarketType.HT_AWAY_WIN: 0.025,
+    MarketType.HT_OVER_05: 0.025,
+    MarketType.HT_UNDER_05: 0.025,
+    MarketType.HT_BTTS: 0.025,
+
+    # Asian Handicap - Tres liquide
+    MarketType.AH_HOME_M05: 0.015,
+    MarketType.AH_AWAY_P05: 0.015,
+    MarketType.AH_HOME_M10: 0.015,
+    MarketType.AH_AWAY_P10: 0.015,
+    MarketType.AH_HOME_M15: 0.015,
+    MarketType.AH_AWAY_P15: 0.015,
+    MarketType.AH_HOME_M20: 0.015,
+    MarketType.AH_AWAY_P20: 0.015,
 }
 
 
@@ -227,6 +271,36 @@ MIN_EDGE_BY_MARKET = {
     MarketType.CARDS_UNDER_25: 0.06,
     MarketType.CARDS_UNDER_35: 0.055,
     MarketType.CARDS_UNDER_45: 0.06,
+
+    # Correct Score - Edge eleve requis
+    MarketType.CS_0_0: 0.12,
+    MarketType.CS_1_0: 0.12,
+    MarketType.CS_0_1: 0.12,
+    MarketType.CS_1_1: 0.12,
+    MarketType.CS_2_0: 0.12,
+    MarketType.CS_0_2: 0.12,
+    MarketType.CS_2_1: 0.12,
+    MarketType.CS_1_2: 0.12,
+    MarketType.CS_2_2: 0.12,
+    MarketType.CS_3_1: 0.12,
+
+    # Half-Time
+    MarketType.HT_HOME_WIN: 0.04,
+    MarketType.HT_DRAW: 0.04,
+    MarketType.HT_AWAY_WIN: 0.04,
+    MarketType.HT_OVER_05: 0.04,
+    MarketType.HT_UNDER_05: 0.04,
+    MarketType.HT_BTTS: 0.04,
+
+    # Asian Handicap - Edge bas car tres liquide
+    MarketType.AH_HOME_M05: 0.025,
+    MarketType.AH_AWAY_P05: 0.025,
+    MarketType.AH_HOME_M10: 0.025,
+    MarketType.AH_AWAY_P10: 0.025,
+    MarketType.AH_HOME_M15: 0.025,
+    MarketType.AH_AWAY_P15: 0.025,
+    MarketType.AH_HOME_M20: 0.025,
+    MarketType.AH_AWAY_P20: 0.025,
 }
 
 
@@ -341,7 +415,7 @@ class MatchPrediction:
     Prediction complete d'un match - OUTPUT PRINCIPAL.
 
     Contient toutes les probabilites, edges, et recommandations
-    pour les 50 marches supportes (34 standards + 10 Correct Score + 6 Half-Time).
+    pour les 58 marches supportes (34 standards + 10 Correct Score + 6 Half-Time + 8 Asian Handicap).
     """
     # Identifiants
     home_team: str
@@ -424,6 +498,16 @@ class MatchPrediction:
     ht_btts_prob: float = 0.20
     expected_ht_goals: float = 1.0
 
+    # === Asian Handicap (8 marchés) ===
+    ah_home_m05_prob: float = 0.40  # AH -0.5 Home (Home must win)
+    ah_away_p05_prob: float = 0.60  # AH +0.5 Away (Away must not lose)
+    ah_home_m10_prob: float = 0.30  # AH -1.0 Home (Home must win by 2+)
+    ah_away_p10_prob: float = 0.70  # AH +1.0 Away (Away can lose by 1)
+    ah_home_m15_prob: float = 0.25  # AH -1.5 Home (Home must win by 2+)
+    ah_away_p15_prob: float = 0.75  # AH +1.5 Away (Away can lose by 1)
+    ah_home_m20_prob: float = 0.20  # AH -2.0 Home (Home must win by 3+)
+    ah_away_p20_prob: float = 0.80  # AH +2.0 Away (Away can lose by 2)
+
     # Toutes les probabilites par marche
     market_probabilities: Dict[str, MarketProbability] = field(default_factory=dict)
 
@@ -445,8 +529,8 @@ class MatchPrediction:
     data_quality_score: float = 0.5
 
     # Metadata
-    model_version: str = "UnifiedBrain_v2.2"
-    markets_count: int = 50
+    model_version: str = "UnifiedBrain_v2.3"
+    markets_count: int = 58
 
     def get_best_edges(self, min_edge: float = 0.02) -> List[MarketEdge]:
         """Retourne les meilleurs edges au-dessus du seuil."""
