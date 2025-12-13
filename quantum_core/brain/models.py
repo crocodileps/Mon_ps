@@ -1,8 +1,8 @@
 """
-Models - Structures de donnees pour UnifiedBrain V2.0
+Models - Structures de donnees pour UnifiedBrain V2.1
 ===============================================================================
 
-34 MARCHES SUPPORTES:
+44 MARCHES SUPPORTES:
 - 1X2 (3): home_win, draw, away_win
 - Double Chance (3): dc_1x, dc_x2, dc_12
 - DNB (2): dnb_home, dnb_away
@@ -10,6 +10,7 @@ Models - Structures de donnees pour UnifiedBrain V2.0
 - Goals (12): over/under 0.5, 1.5, 2.5, 3.5, 4.5, 5.5
 - Corners (6): over/under 8.5, 9.5, 10.5
 - Cards (6): over/under 2.5, 3.5, 4.5
+- Correct Score (10): top 10 scores (0-0, 1-0, 0-1, 1-1, 2-0, 0-2, 2-1, 1-2, 2-2, 3-1)
 """
 
 from dataclasses import dataclass, field
@@ -75,6 +76,18 @@ class MarketType(Enum):
     CARDS_UNDER_35 = "cards_under_3.5"
     CARDS_UNDER_45 = "cards_under_4.5"
 
+    # === Correct Score (10) - Top 10 scores les plus probables ===
+    CS_0_0 = "cs_0_0"
+    CS_1_0 = "cs_1_0"
+    CS_0_1 = "cs_0_1"
+    CS_1_1 = "cs_1_1"
+    CS_2_0 = "cs_2_0"
+    CS_0_2 = "cs_0_2"
+    CS_2_1 = "cs_2_1"
+    CS_1_2 = "cs_1_2"
+    CS_2_2 = "cs_2_2"
+    CS_3_1 = "cs_3_1"
+
 
 # === MARKET CATEGORIES ===
 MARKET_CATEGORIES = {
@@ -90,6 +103,9 @@ MARKET_CATEGORIES = {
     "CORNERS_UNDER": [MarketType.CORNERS_UNDER_85, MarketType.CORNERS_UNDER_95, MarketType.CORNERS_UNDER_105],
     "CARDS_OVER": [MarketType.CARDS_OVER_25, MarketType.CARDS_OVER_35, MarketType.CARDS_OVER_45],
     "CARDS_UNDER": [MarketType.CARDS_UNDER_25, MarketType.CARDS_UNDER_35, MarketType.CARDS_UNDER_45],
+    "CORRECT_SCORE": [MarketType.CS_0_0, MarketType.CS_1_0, MarketType.CS_0_1, MarketType.CS_1_1,
+                      MarketType.CS_2_0, MarketType.CS_0_2, MarketType.CS_2_1, MarketType.CS_1_2,
+                      MarketType.CS_2_2, MarketType.CS_3_1],
 }
 
 
@@ -314,7 +330,7 @@ class MatchPrediction:
     Prediction complete d'un match - OUTPUT PRINCIPAL.
 
     Contient toutes les probabilites, edges, et recommandations
-    pour les 34 marches supportes.
+    pour les 44 marches supportes (34 standards + 10 Correct Score).
     """
     # Identifiants
     home_team: str
@@ -384,6 +400,10 @@ class MatchPrediction:
     cards_under_35_prob: float = 0.45
     cards_under_45_prob: float = 0.60
 
+    # === Correct Score (Top 10) ===
+    correct_score_probs: Dict[str, float] = field(default_factory=dict)  # {cs_1_1: 0.12, ...}
+    top_scores: List[str] = field(default_factory=list)  # ["1-1", "1-0", "2-1", ...]
+
     # Toutes les probabilites par marche
     market_probabilities: Dict[str, MarketProbability] = field(default_factory=dict)
 
@@ -405,8 +425,8 @@ class MatchPrediction:
     data_quality_score: float = 0.5
 
     # Metadata
-    model_version: str = "UnifiedBrain_v2.0"
-    markets_count: int = 34
+    model_version: str = "UnifiedBrain_v2.1"
+    markets_count: int = 44
 
     def get_best_edges(self, min_edge: float = 0.02) -> List[MarketEdge]:
         """Retourne les meilleurs edges au-dessus du seuil."""
