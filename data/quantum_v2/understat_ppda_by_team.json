@@ -1,0 +1,578 @@
+{
+  "Aston Villa": {
+    "league": "EPL",
+    "ppda_avg": 12.47,
+    "deep_avg": 7.53,
+    "matches": 15
+  },
+  "Everton": {
+    "league": "EPL",
+    "ppda_avg": 15.32,
+    "deep_avg": 6.87,
+    "matches": 15
+  },
+  "Bournemouth": {
+    "league": "EPL",
+    "ppda_avg": 8.84,
+    "deep_avg": 7.33,
+    "matches": 15
+  },
+  "Sunderland": {
+    "league": "EPL",
+    "ppda_avg": 16.58,
+    "deep_avg": 4.2,
+    "matches": 15
+  },
+  "Crystal Palace": {
+    "league": "EPL",
+    "ppda_avg": 16.94,
+    "deep_avg": 6.53,
+    "matches": 15
+  },
+  "Chelsea": {
+    "league": "EPL",
+    "ppda_avg": 9.41,
+    "deep_avg": 7.4,
+    "matches": 15
+  },
+  "West Ham": {
+    "league": "EPL",
+    "ppda_avg": 16.7,
+    "deep_avg": 4.6,
+    "matches": 15
+  },
+  "Tottenham": {
+    "league": "EPL",
+    "ppda_avg": 10.32,
+    "deep_avg": 5.33,
+    "matches": 15
+  },
+  "Arsenal": {
+    "league": "EPL",
+    "ppda_avg": 10.4,
+    "deep_avg": 9.0,
+    "matches": 15
+  },
+  "Newcastle United": {
+    "league": "EPL",
+    "ppda_avg": 11.18,
+    "deep_avg": 6.93,
+    "matches": 15
+  },
+  "Liverpool": {
+    "league": "EPL",
+    "ppda_avg": 9.04,
+    "deep_avg": 8.73,
+    "matches": 15
+  },
+  "Manchester City": {
+    "league": "EPL",
+    "ppda_avg": 13.69,
+    "deep_avg": 9.4,
+    "matches": 15
+  },
+  "Manchester United": {
+    "league": "EPL",
+    "ppda_avg": 10.42,
+    "deep_avg": 6.8,
+    "matches": 15
+  },
+  "Burnley": {
+    "league": "EPL",
+    "ppda_avg": 14.59,
+    "deep_avg": 3.8,
+    "matches": 15
+  },
+  "Brighton": {
+    "league": "EPL",
+    "ppda_avg": 9.5,
+    "deep_avg": 6.13,
+    "matches": 15
+  },
+  "Fulham": {
+    "league": "EPL",
+    "ppda_avg": 13.24,
+    "deep_avg": 7.07,
+    "matches": 15
+  },
+  "Wolverhampton Wanderers": {
+    "league": "EPL",
+    "ppda_avg": 11.03,
+    "deep_avg": 5.2,
+    "matches": 15
+  },
+  "Brentford": {
+    "league": "EPL",
+    "ppda_avg": 13.6,
+    "deep_avg": 5.47,
+    "matches": 15
+  },
+  "Leeds": {
+    "league": "EPL",
+    "ppda_avg": 14.08,
+    "deep_avg": 4.13,
+    "matches": 15
+  },
+  "Nottingham Forest": {
+    "league": "EPL",
+    "ppda_avg": 12.42,
+    "deep_avg": 5.73,
+    "matches": 15
+  },
+  "Sevilla": {
+    "league": "La_liga",
+    "ppda_avg": 8.28,
+    "deep_avg": 4.87,
+    "matches": 15
+  },
+  "Real Sociedad": {
+    "league": "La_liga",
+    "ppda_avg": 9.87,
+    "deep_avg": 6.13,
+    "matches": 15
+  },
+  "Espanyol": {
+    "league": "La_liga",
+    "ppda_avg": 13.38,
+    "deep_avg": 5.33,
+    "matches": 15
+  },
+  "Getafe": {
+    "league": "La_liga",
+    "ppda_avg": 10.21,
+    "deep_avg": 2.6,
+    "matches": 15
+  },
+  "Atletico Madrid": {
+    "league": "La_liga",
+    "ppda_avg": 12.16,
+    "deep_avg": 9.75,
+    "matches": 16
+  },
+  "Rayo Vallecano": {
+    "league": "La_liga",
+    "ppda_avg": 9.4,
+    "deep_avg": 4.87,
+    "matches": 15
+  },
+  "Valencia": {
+    "league": "La_liga",
+    "ppda_avg": 14.79,
+    "deep_avg": 3.87,
+    "matches": 15
+  },
+  "Athletic Club": {
+    "league": "La_liga",
+    "ppda_avg": 11.1,
+    "deep_avg": 6.38,
+    "matches": 16
+  },
+  "Barcelona": {
+    "league": "La_liga",
+    "ppda_avg": 7.85,
+    "deep_avg": 12.31,
+    "matches": 16
+  },
+  "Real Madrid": {
+    "league": "La_liga",
+    "ppda_avg": 10.06,
+    "deep_avg": 10.19,
+    "matches": 16
+  },
+  "Levante": {
+    "league": "La_liga",
+    "ppda_avg": 14.53,
+    "deep_avg": 5.13,
+    "matches": 15
+  },
+  "Celta Vigo": {
+    "league": "La_liga",
+    "ppda_avg": 14.53,
+    "deep_avg": 7.53,
+    "matches": 15
+  },
+  "Real Betis": {
+    "league": "La_liga",
+    "ppda_avg": 12.89,
+    "deep_avg": 7.87,
+    "matches": 15
+  },
+  "Villarreal": {
+    "league": "La_liga",
+    "ppda_avg": 15.86,
+    "deep_avg": 8.87,
+    "matches": 15
+  },
+  "Osasuna": {
+    "league": "La_liga",
+    "ppda_avg": 14.46,
+    "deep_avg": 4.73,
+    "matches": 15
+  },
+  "Alaves": {
+    "league": "La_liga",
+    "ppda_avg": 9.89,
+    "deep_avg": 3.47,
+    "matches": 15
+  },
+  "Elche": {
+    "league": "La_liga",
+    "ppda_avg": 9.35,
+    "deep_avg": 5.07,
+    "matches": 15
+  },
+  "Girona": {
+    "league": "La_liga",
+    "ppda_avg": 18.15,
+    "deep_avg": 4.6,
+    "matches": 15
+  },
+  "Mallorca": {
+    "league": "La_liga",
+    "ppda_avg": 14.61,
+    "deep_avg": 3.47,
+    "matches": 15
+  },
+  "Real Oviedo": {
+    "league": "La_liga",
+    "ppda_avg": 16.86,
+    "deep_avg": 4.53,
+    "matches": 15
+  },
+  "Bayern Munich": {
+    "league": "Bundesliga",
+    "ppda_avg": 10.03,
+    "deep_avg": 13.08,
+    "matches": 13
+  },
+  "Hamburger SV": {
+    "league": "Bundesliga",
+    "ppda_avg": 15.62,
+    "deep_avg": 5.23,
+    "matches": 13
+  },
+  "Bayer Leverkusen": {
+    "league": "Bundesliga",
+    "ppda_avg": 14.62,
+    "deep_avg": 7.54,
+    "matches": 13
+  },
+  "Hoffenheim": {
+    "league": "Bundesliga",
+    "ppda_avg": 8.67,
+    "deep_avg": 7.0,
+    "matches": 13
+  },
+  "Augsburg": {
+    "league": "Bundesliga",
+    "ppda_avg": 12.92,
+    "deep_avg": 4.31,
+    "matches": 13
+  },
+  "Werder Bremen": {
+    "league": "Bundesliga",
+    "ppda_avg": 16.99,
+    "deep_avg": 6.54,
+    "matches": 13
+  },
+  "Mainz 05": {
+    "league": "Bundesliga",
+    "ppda_avg": 10.54,
+    "deep_avg": 8.0,
+    "matches": 13
+  },
+  "Borussia Dortmund": {
+    "league": "Bundesliga",
+    "ppda_avg": 12.23,
+    "deep_avg": 10.08,
+    "matches": 13
+  },
+  "Borussia M.Gladbach": {
+    "league": "Bundesliga",
+    "ppda_avg": 17.56,
+    "deep_avg": 7.92,
+    "matches": 13
+  },
+  "Wolfsburg": {
+    "league": "Bundesliga",
+    "ppda_avg": 14.23,
+    "deep_avg": 4.54,
+    "matches": 13
+  },
+  "Eintracht Frankfurt": {
+    "league": "Bundesliga",
+    "ppda_avg": 12.22,
+    "deep_avg": 7.77,
+    "matches": 13
+  },
+  "VfB Stuttgart": {
+    "league": "Bundesliga",
+    "ppda_avg": 11.09,
+    "deep_avg": 7.54,
+    "matches": 13
+  },
+  "FC Cologne": {
+    "league": "Bundesliga",
+    "ppda_avg": 17.62,
+    "deep_avg": 5.62,
+    "matches": 13
+  },
+  "Freiburg": {
+    "league": "Bundesliga",
+    "ppda_avg": 13.74,
+    "deep_avg": 5.92,
+    "matches": 13
+  },
+  "RasenBallsport Leipzig": {
+    "league": "Bundesliga",
+    "ppda_avg": 16.36,
+    "deep_avg": 8.92,
+    "matches": 13
+  },
+  "Union Berlin": {
+    "league": "Bundesliga",
+    "ppda_avg": 18.01,
+    "deep_avg": 4.62,
+    "matches": 13
+  },
+  "FC Heidenheim": {
+    "league": "Bundesliga",
+    "ppda_avg": 18.57,
+    "deep_avg": 5.15,
+    "matches": 13
+  },
+  "St. Pauli": {
+    "league": "Bundesliga",
+    "ppda_avg": 18.51,
+    "deep_avg": 5.77,
+    "matches": 13
+  },
+  "Verona": {
+    "league": "Serie_A",
+    "ppda_avg": 12.67,
+    "deep_avg": 4.86,
+    "matches": 14
+  },
+  "Roma": {
+    "league": "Serie_A",
+    "ppda_avg": 8.29,
+    "deep_avg": 7.57,
+    "matches": 14
+  },
+  "Lazio": {
+    "league": "Serie_A",
+    "ppda_avg": 14.86,
+    "deep_avg": 4.21,
+    "matches": 14
+  },
+  "Bologna": {
+    "league": "Serie_A",
+    "ppda_avg": 8.4,
+    "deep_avg": 5.0,
+    "matches": 14
+  },
+  "Juventus": {
+    "league": "Serie_A",
+    "ppda_avg": 10.55,
+    "deep_avg": 6.86,
+    "matches": 14
+  },
+  "Udinese": {
+    "league": "Serie_A",
+    "ppda_avg": 10.75,
+    "deep_avg": 5.36,
+    "matches": 14
+  },
+  "Genoa": {
+    "league": "Serie_A",
+    "ppda_avg": 9.78,
+    "deep_avg": 3.5,
+    "matches": 14
+  },
+  "Sassuolo": {
+    "league": "Serie_A",
+    "ppda_avg": 16.5,
+    "deep_avg": 5.36,
+    "matches": 14
+  },
+  "Napoli": {
+    "league": "Serie_A",
+    "ppda_avg": 11.77,
+    "deep_avg": 5.64,
+    "matches": 14
+  },
+  "Inter": {
+    "league": "Serie_A",
+    "ppda_avg": 9.73,
+    "deep_avg": 11.0,
+    "matches": 14
+  },
+  "Atalanta": {
+    "league": "Serie_A",
+    "ppda_avg": 12.38,
+    "deep_avg": 9.29,
+    "matches": 14
+  },
+  "Fiorentina": {
+    "league": "Serie_A",
+    "ppda_avg": 11.15,
+    "deep_avg": 3.64,
+    "matches": 14
+  },
+  "AC Milan": {
+    "league": "Serie_A",
+    "ppda_avg": 18.3,
+    "deep_avg": 8.14,
+    "matches": 14
+  },
+  "Torino": {
+    "league": "Serie_A",
+    "ppda_avg": 17.73,
+    "deep_avg": 4.57,
+    "matches": 14
+  },
+  "Cagliari": {
+    "league": "Serie_A",
+    "ppda_avg": 14.1,
+    "deep_avg": 3.36,
+    "matches": 14
+  },
+  "Parma Calcio 1913": {
+    "league": "Serie_A",
+    "ppda_avg": 14.25,
+    "deep_avg": 3.43,
+    "matches": 14
+  },
+  "Lecce": {
+    "league": "Serie_A",
+    "ppda_avg": 12.5,
+    "deep_avg": 3.43,
+    "matches": 14
+  },
+  "Cremonese": {
+    "league": "Serie_A",
+    "ppda_avg": 14.64,
+    "deep_avg": 2.86,
+    "matches": 14
+  },
+  "Como": {
+    "league": "Serie_A",
+    "ppda_avg": 7.64,
+    "deep_avg": 5.0,
+    "matches": 14
+  },
+  "Pisa": {
+    "league": "Serie_A",
+    "ppda_avg": 14.21,
+    "deep_avg": 4.07,
+    "matches": 14
+  },
+  "Lille": {
+    "league": "Ligue_1",
+    "ppda_avg": 10.16,
+    "deep_avg": 10.73,
+    "matches": 15
+  },
+  "Paris Saint Germain": {
+    "league": "Ligue_1",
+    "ppda_avg": 7.74,
+    "deep_avg": 11.73,
+    "matches": 15
+  },
+  "Rennes": {
+    "league": "Ligue_1",
+    "ppda_avg": 15.35,
+    "deep_avg": 4.27,
+    "matches": 15
+  },
+  "Marseille": {
+    "league": "Ligue_1",
+    "ppda_avg": 11.04,
+    "deep_avg": 7.47,
+    "matches": 15
+  },
+  "Angers": {
+    "league": "Ligue_1",
+    "ppda_avg": 20.52,
+    "deep_avg": 3.27,
+    "matches": 15
+  },
+  "Nantes": {
+    "league": "Ligue_1",
+    "ppda_avg": 17.88,
+    "deep_avg": 3.47,
+    "matches": 15
+  },
+  "Nice": {
+    "league": "Ligue_1",
+    "ppda_avg": 19.34,
+    "deep_avg": 5.6,
+    "matches": 15
+  },
+  "Monaco": {
+    "league": "Ligue_1",
+    "ppda_avg": 8.31,
+    "deep_avg": 8.4,
+    "matches": 15
+  },
+  "Toulouse": {
+    "league": "Ligue_1",
+    "ppda_avg": 15.24,
+    "deep_avg": 5.6,
+    "matches": 15
+  },
+  "Lyon": {
+    "league": "Ligue_1",
+    "ppda_avg": 10.33,
+    "deep_avg": 6.13,
+    "matches": 15
+  },
+  "Lorient": {
+    "league": "Ligue_1",
+    "ppda_avg": 22.17,
+    "deep_avg": 5.33,
+    "matches": 15
+  },
+  "Metz": {
+    "league": "Ligue_1",
+    "ppda_avg": 22.13,
+    "deep_avg": 3.2,
+    "matches": 15
+  },
+  "Lens": {
+    "league": "Ligue_1",
+    "ppda_avg": 12.96,
+    "deep_avg": 7.73,
+    "matches": 15
+  },
+  "Strasbourg": {
+    "league": "Ligue_1",
+    "ppda_avg": 13.14,
+    "deep_avg": 6.8,
+    "matches": 15
+  },
+  "Brest": {
+    "league": "Ligue_1",
+    "ppda_avg": 12.17,
+    "deep_avg": 4.73,
+    "matches": 15
+  },
+  "Auxerre": {
+    "league": "Ligue_1",
+    "ppda_avg": 14.98,
+    "deep_avg": 4.0,
+    "matches": 15
+  },
+  "Le Havre": {
+    "league": "Ligue_1",
+    "ppda_avg": 12.21,
+    "deep_avg": 3.8,
+    "matches": 15
+  },
+  "Paris FC": {
+    "league": "Ligue_1",
+    "ppda_avg": 14.75,
+    "deep_avg": 5.8,
+    "matches": 15
+  }
+}

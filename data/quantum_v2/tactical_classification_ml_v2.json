@@ -1,0 +1,862 @@
+[
+  {
+    "team": "AC Milan",
+    "league": "Serie A",
+    "ppda": 18.3,
+    "possession_pct": 50.9,
+    "current_profile": "BALANCED",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.8538986444473267,
+    "ground_truth": "GEGENPRESS"
+  },
+  {
+    "team": "Alaves",
+    "league": "La Liga",
+    "ppda": 9.89,
+    "possession_pct": 49.2,
+    "current_profile": "BALANCED",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.44877389073371887,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Angers",
+    "league": "Ligue 1",
+    "ppda": 20.52,
+    "possession_pct": 41.0,
+    "current_profile": "LOW_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8904176950454712,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Arsenal",
+    "league": "Premier League",
+    "ppda": 10.4,
+    "possession_pct": 58.4,
+    "current_profile": "POSSESSION",
+    "ml_profile": "POSSESSION",
+    "ml_confidence": 0.8434361219406128,
+    "ground_truth": "POSSESSION"
+  },
+  {
+    "team": "Aston Villa",
+    "league": "Premier League",
+    "ppda": 12.47,
+    "possession_pct": 52.4,
+    "current_profile": "TRANSITION",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.9050946235656738,
+    "ground_truth": "TRANSITION"
+  },
+  {
+    "team": "Atalanta",
+    "league": "Serie A",
+    "ppda": 12.38,
+    "possession_pct": 56.7,
+    "current_profile": "WIDE_ATTACK",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.779718279838562,
+    "ground_truth": "GEGENPRESS"
+  },
+  {
+    "team": "Athletic Club",
+    "league": "La Liga",
+    "ppda": 11.1,
+    "possession_pct": 48.1,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.8234571218490601,
+    "ground_truth": "TRANSITION"
+  },
+  {
+    "team": "Atletico Madrid",
+    "league": "La Liga",
+    "ppda": 12.16,
+    "possession_pct": 54.2,
+    "current_profile": "ADAPTIVE",
+    "ml_profile": "BALANCED",
+    "ml_confidence": 0.779531717300415,
+    "ground_truth": "BALANCED"
+  },
+  {
+    "team": "Augsburg",
+    "league": "Bundesliga",
+    "ppda": 12.92,
+    "possession_pct": 45.0,
+    "current_profile": "TRANSITION",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.869000256061554,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Auxerre",
+    "league": "Ligue 1",
+    "ppda": 14.98,
+    "possession_pct": 44.1,
+    "current_profile": "TRANSITION",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.9117326736450195,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Barcelona",
+    "league": "La Liga",
+    "ppda": 7.85,
+    "possession_pct": 66.1,
+    "current_profile": "POSSESSION",
+    "ml_profile": "POSSESSION",
+    "ml_confidence": 0.9257136583328247,
+    "ground_truth": "POSSESSION"
+  },
+  {
+    "team": "Bayer Leverkusen",
+    "league": "Bundesliga",
+    "ppda": 14.62,
+    "possession_pct": 59.3,
+    "current_profile": "POSSESSION",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.961024820804596,
+    "ground_truth": "GEGENPRESS"
+  },
+  {
+    "team": "Bayern Munich",
+    "league": "Bundesliga",
+    "ppda": 10.03,
+    "possession_pct": 65.8,
+    "current_profile": "POSSESSION",
+    "ml_profile": "POSSESSION",
+    "ml_confidence": 0.9183763265609741,
+    "ground_truth": "POSSESSION"
+  },
+  {
+    "team": "Real Betis",
+    "league": "La Liga",
+    "ppda": 12.89,
+    "possession_pct": 50.4,
+    "current_profile": "BALANCED",
+    "ml_profile": "POSSESSION",
+    "ml_confidence": 0.5749804973602295,
+    "ground_truth": "POSSESSION"
+  },
+  {
+    "team": "Bologna",
+    "league": "Serie A",
+    "ppda": 8.4,
+    "possession_pct": 56.7,
+    "current_profile": "WIDE_ATTACK",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.6904729604721069,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Borussia Dortmund",
+    "league": "Bundesliga",
+    "ppda": 12.23,
+    "possession_pct": 52.8,
+    "current_profile": "BALANCED",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.8658718466758728,
+    "ground_truth": "GEGENPRESS"
+  },
+  {
+    "team": "Bournemouth",
+    "league": "Premier League",
+    "ppda": 8.84,
+    "possession_pct": 52.3,
+    "current_profile": "BALANCED",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.9568397998809814,
+    "ground_truth": "GEGENPRESS"
+  },
+  {
+    "team": "Brentford",
+    "league": "Premier League",
+    "ppda": 13.6,
+    "possession_pct": 43.4,
+    "current_profile": "MID_BLOCK",
+    "ml_profile": "BALANCED",
+    "ml_confidence": 0.546844482421875,
+    "ground_truth": "BALANCED"
+  },
+  {
+    "team": "Brest",
+    "league": "Ligue 1",
+    "ppda": 12.17,
+    "possession_pct": 44.4,
+    "current_profile": "MID_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.861565113067627,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Brighton",
+    "league": "Premier League",
+    "ppda": 9.5,
+    "possession_pct": 51.5,
+    "current_profile": "GEGENPRESS",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.9250075817108154,
+    "ground_truth": "GEGENPRESS"
+  },
+  {
+    "team": "Burnley",
+    "league": "Premier League",
+    "ppda": 14.59,
+    "possession_pct": 40.6,
+    "current_profile": "ADAPTIVE",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.9103056788444519,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Cagliari",
+    "league": "Serie A",
+    "ppda": 14.1,
+    "possession_pct": 44.5,
+    "current_profile": "MID_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8725448846817017,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Celta Vigo",
+    "league": "La Liga",
+    "ppda": 14.53,
+    "possession_pct": 51.0,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.6478841304779053,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Chelsea",
+    "league": "Premier League",
+    "ppda": 9.41,
+    "possession_pct": 58.5,
+    "current_profile": "GEGENPRESS",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.9324390888214111,
+    "ground_truth": "GEGENPRESS"
+  },
+  {
+    "team": "Como",
+    "league": "Serie A",
+    "ppda": 7.64,
+    "possession_pct": 60.3,
+    "current_profile": "POSSESSION",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.6481865048408508,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Cremonese",
+    "league": "Serie A",
+    "ppda": 14.64,
+    "possession_pct": 45.9,
+    "current_profile": "TRANSITION",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8652806878089905,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Crystal Palace",
+    "league": "Premier League",
+    "ppda": 16.94,
+    "possession_pct": 42.5,
+    "current_profile": "LOW_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8530960083007812,
+    "ground_truth": "LOW_BLOCK"
+  },
+  {
+    "team": "Eintracht Frankfurt",
+    "league": "Bundesliga",
+    "ppda": 12.22,
+    "possession_pct": 55.0,
+    "current_profile": "ADAPTIVE",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.7714638710021973,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Elche",
+    "league": "La Liga",
+    "ppda": 9.35,
+    "possession_pct": 58.6,
+    "current_profile": "POSSESSION",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.7912389039993286,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Espanyol",
+    "league": "La Liga",
+    "ppda": 13.38,
+    "possession_pct": 41.5,
+    "current_profile": "ADAPTIVE",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.6762648224830627,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Everton",
+    "league": "Premier League",
+    "ppda": 15.32,
+    "possession_pct": 44.3,
+    "current_profile": "LOW_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8410755395889282,
+    "ground_truth": "LOW_BLOCK"
+  },
+  {
+    "team": "FC Cologne",
+    "league": "Bundesliga",
+    "ppda": 17.62,
+    "possession_pct": 48.1,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.6724445819854736,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Fiorentina",
+    "league": "Serie A",
+    "ppda": 11.15,
+    "possession_pct": 50.6,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.7296738028526306,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Freiburg",
+    "league": "Bundesliga",
+    "ppda": 13.74,
+    "possession_pct": 51.2,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.9319396615028381,
+    "ground_truth": "TRANSITION"
+  },
+  {
+    "team": "Fulham",
+    "league": "Premier League",
+    "ppda": 13.24,
+    "possession_pct": 51.2,
+    "current_profile": "TRANSITION",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.8656760454177856,
+    "ground_truth": "TRANSITION"
+  },
+  {
+    "team": "Genoa",
+    "league": "Serie A",
+    "ppda": 9.78,
+    "possession_pct": 48.6,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.5481827855110168,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Getafe",
+    "league": "La Liga",
+    "ppda": 10.21,
+    "possession_pct": 40.7,
+    "current_profile": "ADAPTIVE",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.876963198184967,
+    "ground_truth": "LOW_BLOCK"
+  },
+  {
+    "team": "Girona",
+    "league": "La Liga",
+    "ppda": 18.15,
+    "possession_pct": 46.9,
+    "current_profile": "BALANCED",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8436101675033569,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Hamburger SV",
+    "league": "Bundesliga",
+    "ppda": 15.62,
+    "possession_pct": 47.5,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.8288469314575195,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Hoffenheim",
+    "league": "Bundesliga",
+    "ppda": 8.67,
+    "possession_pct": 53.2,
+    "current_profile": "BALANCED",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.9531534314155579,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Juventus",
+    "league": "Serie A",
+    "ppda": 10.55,
+    "possession_pct": 57.8,
+    "current_profile": "WIDE_ATTACK",
+    "ml_profile": "BALANCED",
+    "ml_confidence": 0.8243454694747925,
+    "ground_truth": "BALANCED"
+  },
+  {
+    "team": "Lazio",
+    "league": "Serie A",
+    "ppda": 14.86,
+    "possession_pct": 50.4,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.8237597346305847,
+    "ground_truth": "TRANSITION"
+  },
+  {
+    "team": "Le Havre",
+    "league": "Ligue 1",
+    "ppda": 12.21,
+    "possession_pct": 46.0,
+    "current_profile": "BALANCED",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8493554592132568,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Lecce",
+    "league": "Serie A",
+    "ppda": 12.5,
+    "possession_pct": 45.3,
+    "current_profile": "TRANSITION",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8089770078659058,
+    "ground_truth": "LOW_BLOCK"
+  },
+  {
+    "team": "Lens",
+    "league": "Ligue 1",
+    "ppda": 12.96,
+    "possession_pct": 48.4,
+    "current_profile": "BALANCED",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.8214184045791626,
+    "ground_truth": "GEGENPRESS"
+  },
+  {
+    "team": "Levante",
+    "league": "La Liga",
+    "ppda": 14.53,
+    "possession_pct": 41.8,
+    "current_profile": "ADAPTIVE",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8018403053283691,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Lille",
+    "league": "Ligue 1",
+    "ppda": 10.16,
+    "possession_pct": 56.0,
+    "current_profile": "WIDE_ATTACK",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.8411737084388733,
+    "ground_truth": "GEGENPRESS"
+  },
+  {
+    "team": "Liverpool",
+    "league": "Premier League",
+    "ppda": 9.04,
+    "possession_pct": 61.1,
+    "current_profile": "GEGENPRESS",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.8334142565727234,
+    "ground_truth": "GEGENPRESS"
+  },
+  {
+    "team": "Lorient",
+    "league": "Ligue 1",
+    "ppda": 22.17,
+    "possession_pct": 43.9,
+    "current_profile": "MID_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.7601454854011536,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Lyon",
+    "league": "Ligue 1",
+    "ppda": 10.33,
+    "possession_pct": 55.4,
+    "current_profile": "WIDE_ATTACK",
+    "ml_profile": "BALANCED",
+    "ml_confidence": 0.9301937222480774,
+    "ground_truth": "BALANCED"
+  },
+  {
+    "team": "Mainz 05",
+    "league": "Bundesliga",
+    "ppda": 10.54,
+    "possession_pct": 48.0,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.4245840907096863,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Mallorca",
+    "league": "La Liga",
+    "ppda": 14.61,
+    "possession_pct": 44.9,
+    "current_profile": "MID_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8818041086196899,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Manchester City",
+    "league": "Premier League",
+    "ppda": 13.69,
+    "possession_pct": 57.1,
+    "current_profile": "POSSESSION",
+    "ml_profile": "POSSESSION",
+    "ml_confidence": 0.9308273792266846,
+    "ground_truth": "POSSESSION"
+  },
+  {
+    "team": "Manchester United",
+    "league": "Premier League",
+    "ppda": 10.42,
+    "possession_pct": 53.9,
+    "current_profile": "BALANCED",
+    "ml_profile": "BALANCED",
+    "ml_confidence": 0.9812158942222595,
+    "ground_truth": "BALANCED"
+  },
+  {
+    "team": "Marseille",
+    "league": "Ligue 1",
+    "ppda": 11.04,
+    "possession_pct": 59.7,
+    "current_profile": "POSSESSION",
+    "ml_profile": "BALANCED",
+    "ml_confidence": 0.8545785546302795,
+    "ground_truth": "BALANCED"
+  },
+  {
+    "team": "Metz",
+    "league": "Ligue 1",
+    "ppda": 22.13,
+    "possession_pct": 49.1,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.5377929210662842,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Monaco",
+    "league": "Ligue 1",
+    "ppda": 8.31,
+    "possession_pct": 54.4,
+    "current_profile": "WIDE_ATTACK",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.889319896697998,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Nantes",
+    "league": "Ligue 1",
+    "ppda": 17.88,
+    "possession_pct": 42.7,
+    "current_profile": "MID_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8904176950454712,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Napoli",
+    "league": "Serie A",
+    "ppda": 11.77,
+    "possession_pct": 56.1,
+    "current_profile": "WIDE_ATTACK",
+    "ml_profile": "POSSESSION",
+    "ml_confidence": 0.6086450815200806,
+    "ground_truth": "POSSESSION"
+  },
+  {
+    "team": "Newcastle United",
+    "league": "Premier League",
+    "ppda": 11.18,
+    "possession_pct": 51.3,
+    "current_profile": "TRANSITION",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.94534832239151,
+    "ground_truth": "TRANSITION"
+  },
+  {
+    "team": "Nice",
+    "league": "Ligue 1",
+    "ppda": 19.34,
+    "possession_pct": 47.3,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.646202027797699,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Nottingham Forest",
+    "league": "Premier League",
+    "ppda": 12.42,
+    "possession_pct": 50.9,
+    "current_profile": "BALANCED",
+    "ml_profile": "BALANCED",
+    "ml_confidence": 0.881232500076294,
+    "ground_truth": "BALANCED"
+  },
+  {
+    "team": "Osasuna",
+    "league": "La Liga",
+    "ppda": 14.46,
+    "possession_pct": 46.3,
+    "current_profile": "BALANCED",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8354358673095703,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Real Oviedo",
+    "league": "La Liga",
+    "ppda": 16.86,
+    "possession_pct": 44.8,
+    "current_profile": "LOW_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8906635046005249,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Paris FC",
+    "league": "Ligue 1",
+    "ppda": 14.75,
+    "possession_pct": 54.4,
+    "current_profile": "ADAPTIVE",
+    "ml_profile": "BALANCED",
+    "ml_confidence": 0.7887565493583679,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Pisa",
+    "league": "Serie A",
+    "ppda": 14.21,
+    "possession_pct": 40.2,
+    "current_profile": "LOW_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8803964257240295,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Rayo Vallecano",
+    "league": "La Liga",
+    "ppda": 9.4,
+    "possession_pct": 53.9,
+    "current_profile": "BALANCED",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.6358731985092163,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Real Madrid",
+    "league": "La Liga",
+    "ppda": 10.06,
+    "possession_pct": 59.4,
+    "current_profile": "POSSESSION",
+    "ml_profile": "POSSESSION",
+    "ml_confidence": 0.9183763265609741,
+    "ground_truth": "POSSESSION"
+  },
+  {
+    "team": "Real Sociedad",
+    "league": "La Liga",
+    "ppda": 9.87,
+    "possession_pct": 51.9,
+    "current_profile": "BALANCED",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.9230242967605591,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Rennes",
+    "league": "Ligue 1",
+    "ppda": 15.35,
+    "possession_pct": 49.7,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.7071536779403687,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Sassuolo",
+    "league": "Serie A",
+    "ppda": 16.5,
+    "possession_pct": 45.8,
+    "current_profile": "MID_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.7028279304504395,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Sevilla",
+    "league": "La Liga",
+    "ppda": 8.28,
+    "possession_pct": 54.0,
+    "current_profile": "BALANCED",
+    "ml_profile": "BALANCED",
+    "ml_confidence": 0.8453112840652466,
+    "ground_truth": "BALANCED"
+  },
+  {
+    "team": "St. Pauli",
+    "league": "Bundesliga",
+    "ppda": 18.51,
+    "possession_pct": 48.5,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.44079163670539856,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Strasbourg",
+    "league": "Ligue 1",
+    "ppda": 13.14,
+    "possession_pct": 52.0,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.4603455066680908,
+    "ground_truth": NaN
+  },
+  {
+    "team": "VfB Stuttgart",
+    "league": "Bundesliga",
+    "ppda": 11.09,
+    "possession_pct": 58.0,
+    "current_profile": "WIDE_ATTACK",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.6884481310844421,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Sunderland",
+    "league": "Premier League",
+    "ppda": 16.58,
+    "possession_pct": 42.1,
+    "current_profile": "TRANSITION",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.9103056788444519,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Torino",
+    "league": "Serie A",
+    "ppda": 17.73,
+    "possession_pct": 43.1,
+    "current_profile": "TRANSITION",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.916248619556427,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Tottenham",
+    "league": "Premier League",
+    "ppda": 10.32,
+    "possession_pct": 53.1,
+    "current_profile": "GEGENPRESS",
+    "ml_profile": "GEGENPRESS",
+    "ml_confidence": 0.9111258387565613,
+    "ground_truth": "GEGENPRESS"
+  },
+  {
+    "team": "Toulouse",
+    "league": "Ligue 1",
+    "ppda": 15.24,
+    "possession_pct": 41.6,
+    "current_profile": "ADAPTIVE",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.6991111040115356,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Udinese",
+    "league": "Serie A",
+    "ppda": 10.75,
+    "possession_pct": 48.1,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.6720794439315796,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Union Berlin",
+    "league": "Bundesliga",
+    "ppda": 18.01,
+    "possession_pct": 36.6,
+    "current_profile": "LOW_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8904176950454712,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Valencia",
+    "league": "La Liga",
+    "ppda": 14.79,
+    "possession_pct": 47.2,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.8133948445320129,
+    "ground_truth": NaN
+  },
+  {
+    "team": "Villarreal",
+    "league": "La Liga",
+    "ppda": 15.86,
+    "possession_pct": 47.2,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.7384187579154968,
+    "ground_truth": "TRANSITION"
+  },
+  {
+    "team": "Werder Bremen",
+    "league": "Bundesliga",
+    "ppda": 16.99,
+    "possession_pct": 49.2,
+    "current_profile": "BALANCED",
+    "ml_profile": "TRANSITION",
+    "ml_confidence": 0.9066327810287476,
+    "ground_truth": NaN
+  },
+  {
+    "team": "West Ham",
+    "league": "Premier League",
+    "ppda": 16.7,
+    "possession_pct": 42.7,
+    "current_profile": "LOW_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8975299000740051,
+    "ground_truth": "LOW_BLOCK"
+  },
+  {
+    "team": "Wolfsburg",
+    "league": "Bundesliga",
+    "ppda": 14.23,
+    "possession_pct": 45.2,
+    "current_profile": "MID_BLOCK",
+    "ml_profile": "LOW_BLOCK",
+    "ml_confidence": 0.8725448846817017,
+    "ground_truth": NaN
+  }
+]
