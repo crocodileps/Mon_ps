@@ -1,93 +1,99 @@
 # TACHE EN COURS - MON_PS
 
 **Derniere MAJ:** 2025-12-13 Session #08
-**Statut:** DataManager V2.6 COMPLET - Coach/GK/Attackers integres
+**Statut:** DataOrchestrator COMPLET - Architecture Hedge Fund Grade
 
 ## Contexte General
 Projet Mon_PS: Systeme de betting football avec donnees multi-sources (FBRef, Understat, SofaScore).
 Paradigme Chess Engine: ADN unique par equipe + Friction entre 2 ADN = marches exploitables.
 
-## Session #08 - DataManager V2.6 COMPLET
+## Session #08 - DataOrchestrator Facade Pattern
 
 ### Accomplissement Majeur
-**DataManager V2.6 avec integration Coach, Goalkeeper et Attackers DNA**
+**Refactoring architectural: DataOrchestrator qui REUTILISE les composants existants**
 
-Architecture Hybrid Cascade:
+Principe: ZERO duplication, 100% reutilisation
+
 ```
-PostgreSQL quantum.team_profiles (99 equipes)
-    ↓ fallback
-JSON DNA Files (96 equipes)
-    ↓ fallback
-Intelligent Imputation (league averages)
-```
-
-### Nouvelles Fonctionnalites V2.6
-
-#### Coach Integration
-- Source: PostgreSQL `coach_intelligence` via `coach_team_mapping`
-- CoachData dataclass avec style tactique
-- Exemples: Pep Guardiola, Arne Slot
-
-#### Goalkeeper Integration
-- Source: JSON `goalkeeper_dna_v4_4_final.json`
-- GoalkeeperData dataclass avec save_rate, status
-- 96 gardiens avec profils complets
-- Status: ELITE, SOLID, AVERAGE, LEAKY
-
-#### Attackers/MVP Integration
-- Source: JSON `attacker_dna_v2.json`
-- Top scorers par equipe avec goals et xG
-- MVP identification avec dependency score
-- 1199 joueurs indexes
-
-### TeamData V2.6 Enrichi
-```python
-@dataclass
-class TeamData:
-    # Core
-    name: str
-    canonical_name: str
-    xg_for: float
-    xg_against: float
-
-    # V2.6 Coach
-    coach_name: str
-    coach_style: str  # possession, counter, balanced
-
-    # V2.6 Goalkeeper
-    goalkeeper_name: str
-    gk_save_rate: float
-    gk_status: str  # ELITE, SOLID, AVERAGE, LEAKY
-
-    # V2.6 MVP/Attackers
-    mvp_name: str
-    mvp_goals: int
-    mvp_dependency: float
-    top_scorers: List[Dict]
+┌─────────────────────────────────────────────────────────────────────────┐
+│                      DataOrchestrator (695L)                            │
+│                      Point d'entree UNIQUE                              │
+│                              │                                          │
+│              ┌───────────────┼───────────────┐                         │
+│              ▼               ▼               ▼                          │
+│  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐               │
+│  │ UnifiedLoader │  │  PostgreSQL   │  │  dna_vectors  │               │
+│  │   (915L)      │  │quantum.*(3403)│  │   (1106L)     │               │
+│  │  96 equipes   │  │ team_profiles │  │  11 DNA types │               │
+│  └───────────────┘  └───────────────┘  └───────────────┘               │
+│     REUTILISE          REUTILISE          REUTILISE                    │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Test Results
+### Commits Session #08
 ```
-Liverpool:
-  xG For: 2.45, xG Against: 1.44
-  Coach: Arne Slot
-  GK: Alisson Becker (LEAKY)
-  Sources: 10, Quality: 1.00
+95cf31c feat(quantum_core): DataOrchestrator - Facade Pattern Hedge Fund Grade
+12ef1ca feat(quantum_core): DataManager V2.6 - Coach/GK/Attackers integration
+```
 
-Manchester City:
-  Coach: Pep Guardiola
-  GK: Ederson
-  MVP: Erling Haaland
-```
+### Resultats Tests
+| Test | Resultat |
+|------|----------|
+| Team DNA (Liverpool) | ELITE, 61.5% WR |
+| Friction (LIV vs MCI) | 3.77 goals, 63% BTTS, 73% O2.5 |
+| Match Context | 100% data quality |
+| UnifiedLoader | 96 equipes CONNECTED |
+| Players | Salah found |
+| Referees | Michael Oliver found |
 
 ---
 
-## Fichiers Modifies Session #08
-```
-quantum_core/data/
-├── manager.py              # DataManager V2.6 COMPLET (~740 lignes)
-├── manager_v25_backup.py   # Backup V2.5
-└── manager_v1_backup.py    # Backup V1 original
+## Fichiers Session #08
+
+### Crees
+- `quantum_core/data/orchestrator.py` (695 lignes) - Facade principale
+- `quantum_core/data/archive/manager_v26_archived.py` - DataManager V2.6 archive
+
+### Modifies
+- `quantum_core/data/__init__.py` - Export DataOrchestrator
+- `docs/CURRENT_TASK.md`
+- `docs/sessions/2025-12-13_08.md`
+
+---
+
+## Composants Reutilises
+
+| Composant | Lignes | Contenu |
+|-----------|--------|---------|
+| unified_loader.py | 915 | Teams, Players, Referees JSON |
+| dna_vectors.py | 1106 | 11 DNA dataclasses |
+| quantum.matchup_friction | 3403 rows | Frictions pre-calculees |
+| quantum.team_profiles | 99 rows | Equipes PostgreSQL |
+
+---
+
+## Usage DataOrchestrator
+
+```python
+from quantum_core.data import get_orchestrator
+
+orchestrator = get_orchestrator()
+
+# Team DNA (PostgreSQL + JSON fusion)
+liverpool = orchestrator.get_team_dna("Liverpool")
+
+# Friction pre-calculee
+friction = orchestrator.get_friction("Liverpool", "Man City")
+print(f"Predicted goals: {friction.predicted_goals}")
+print(f"BTTS prob: {friction.btts_prob:.1%}")
+
+# Contexte match complet
+context = orchestrator.get_match_context("Arsenal", "Chelsea")
+print(f"Expected goals: {context.expected_goals}")
+
+# Players et Referees
+salah = orchestrator.get_player("Mohamed Salah", "Liverpool")
+ref = orchestrator.get_referee("Michael Oliver")
 ```
 
 ---
@@ -95,50 +101,15 @@ quantum_core/data/
 ## Prochaines Etapes
 
 ### Priorite Haute
-1. [ ] Nettoyer attacker_dna_v2.json (erreurs team assignment)
+1. [ ] Connecter DataOrchestrator au QuantumEngine (probability/edge)
 2. [ ] Ajouter predicteur Scorers (buteurs)
 3. [ ] Ajouter predicteur Cards (cartons)
 4. [ ] Creer API FastAPI pour exposer le systeme
 
 ### Priorite Moyenne
 5. [ ] Backtest sur donnees historiques
-6. [ ] Integrer Coach DNA dans friction matrix
-7. [ ] Utiliser GK status pour Clean Sheet predictions
-
----
-
-## Usage Quantum Core
-
-```python
-from quantum_core.engine import QuantumEngine
-
-engine = QuantumEngine()
-
-# Prediction simple
-pred = engine.predict("Liverpool", "Man City", "over_25", odds=1.85)
-print(f"Prob: {pred.probability*100:.1f}%")
-print(f"Edge: {pred.edge_percentage:.1f}%")
-print(f"Recommendation: {pred.recommendation}")
-
-# Analyse complete
-analysis = engine.analyze_match("Liverpool", "Man City", {
-    "over_25": 1.85,
-    "btts_yes": 1.70
-})
-print(analysis.summary)
-```
-
----
-
-## Donnees Chargees V2.6
-- team_dna: 96 equipes
-- narrative_dna: 96 equipes
-- referee_dna: 61 arbitres
-- scorer_profiles: 238 buteurs
-- attacker_dna: 1199 joueurs
-- goalkeeper_dna: 96 gardiens
-- coach_intelligence: via PostgreSQL
-- team_name_mapping: 29 mappings
+6. [ ] Implementer conversion complete Dict -> TeamDNA dataclass
+7. [ ] Ajouter cache Redis pour production
 
 ---
 
@@ -149,8 +120,7 @@ docker exec monps_postgres psql -U monps_user -d monps_db
 
 ---
 
-## Commits Recents
+## Dernier Commit
 ```
-Session #07: 8b57db0 feat(quantum_core): MVP Quant Grade - Dixon-Coles + Remove Vig + Kelly
-Session #08: [pending] feat(quantum_core): DataManager V2.6 - Coach/GK/Attackers integration
+95cf31c feat(quantum_core): DataOrchestrator - Facade Pattern Hedge Fund Grade
 ```
