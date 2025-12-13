@@ -1,0 +1,161 @@
+{
+  "version": "2.0",
+  "description": "Liste complète des marchés Betclic supportés par Mon_PS",
+  "generated": "2025-12-13",
+  
+  "markets": {
+    "1X2": {
+      "home": {"name": "Victoire domicile", "betclic_id": "1x2_home"},
+      "draw": {"name": "Match nul", "betclic_id": "1x2_draw"},
+      "away": {"name": "Victoire extérieur", "betclic_id": "1x2_away"}
+    },
+    
+    "DOUBLE_CHANCE": {
+      "dc_1x": {"name": "1 ou N", "betclic_id": "dc_1x"},
+      "dc_12": {"name": "1 ou 2", "betclic_id": "dc_12"},
+      "dc_x2": {"name": "N ou 2", "betclic_id": "dc_x2"}
+    },
+    
+    "GOALS_TOTAL": {
+      "over_05": {"name": "+0.5 buts", "betclic_id": "over_0_5"},
+      "over_15": {"name": "+1.5 buts", "betclic_id": "over_1_5"},
+      "over_25": {"name": "+2.5 buts", "betclic_id": "over_2_5"},
+      "over_35": {"name": "+3.5 buts", "betclic_id": "over_3_5"},
+      "over_45": {"name": "+4.5 buts", "betclic_id": "over_4_5"},
+      "under_15": {"name": "-1.5 buts", "betclic_id": "under_1_5"},
+      "under_25": {"name": "-2.5 buts", "betclic_id": "under_2_5"},
+      "under_35": {"name": "-3.5 buts", "betclic_id": "under_3_5"},
+      "under_45": {"name": "-4.5 buts", "betclic_id": "under_4_5"}
+    },
+    
+    "BTTS": {
+      "btts_yes": {"name": "Les 2 équipes marquent - Oui", "betclic_id": "btts_yes"},
+      "btts_no": {"name": "Les 2 équipes marquent - Non", "betclic_id": "btts_no"}
+    },
+    
+    "SCORE_EXACT": {
+      "score_1_0": {"name": "1-0", "betclic_id": "score_1_0"},
+      "score_2_0": {"name": "2-0", "betclic_id": "score_2_0"},
+      "score_2_1": {"name": "2-1", "betclic_id": "score_2_1"},
+      "score_3_0": {"name": "3-0", "betclic_id": "score_3_0"},
+      "score_3_1": {"name": "3-1", "betclic_id": "score_3_1"},
+      "score_3_2": {"name": "3-2", "betclic_id": "score_3_2"},
+      "score_0_0": {"name": "0-0", "betclic_id": "score_0_0"},
+      "score_1_1": {"name": "1-1", "betclic_id": "score_1_1"},
+      "score_2_2": {"name": "2-2", "betclic_id": "score_2_2"},
+      "score_0_1": {"name": "0-1", "betclic_id": "score_0_1"},
+      "score_0_2": {"name": "0-2", "betclic_id": "score_0_2"},
+      "score_1_2": {"name": "1-2", "betclic_id": "score_1_2"},
+      "score_0_3": {"name": "0-3", "betclic_id": "score_0_3"},
+      "score_1_3": {"name": "1-3", "betclic_id": "score_1_3"},
+      "score_2_3": {"name": "2-3", "betclic_id": "score_2_3"}
+    },
+    
+    "MI_TEMPS_FIN_MATCH": {
+      "ht_ft_1_1": {"name": "1/1 (Dom-Dom)", "betclic_id": "ht_ft_1_1"},
+      "ht_ft_1_x": {"name": "1/N (Dom-Nul)", "betclic_id": "ht_ft_1_x"},
+      "ht_ft_1_2": {"name": "1/2 (Dom-Ext)", "betclic_id": "ht_ft_1_2"},
+      "ht_ft_x_1": {"name": "N/1 (Nul-Dom)", "betclic_id": "ht_ft_x_1"},
+      "ht_ft_x_x": {"name": "N/N (Nul-Nul)", "betclic_id": "ht_ft_x_x"},
+      "ht_ft_x_2": {"name": "N/2 (Nul-Ext)", "betclic_id": "ht_ft_x_2"},
+      "ht_ft_2_1": {"name": "2/1 (Ext-Dom)", "betclic_id": "ht_ft_2_1"},
+      "ht_ft_2_x": {"name": "2/N (Ext-Nul)", "betclic_id": "ht_ft_2_x"},
+      "ht_ft_2_2": {"name": "2/2 (Ext-Ext)", "betclic_id": "ht_ft_2_2"}
+    },
+    
+    "HANDICAP_ASIATIQUE": {
+      "ah_home_-1": {"name": "Dom -1", "betclic_id": "ah_home_-1"},
+      "ah_home_-15": {"name": "Dom -1.5", "betclic_id": "ah_home_-1.5"},
+      "ah_home_-2": {"name": "Dom -2", "betclic_id": "ah_home_-2"},
+      "ah_away_+1": {"name": "Ext +1", "betclic_id": "ah_away_+1"},
+      "ah_away_+15": {"name": "Ext +1.5", "betclic_id": "ah_away_+1.5"},
+      "ah_away_+2": {"name": "Ext +2", "betclic_id": "ah_away_+2"}
+    },
+    
+    "TIMING": {
+      "1h_over_05": {"name": "1H +0.5 buts", "betclic_id": "1h_over_0_5"},
+      "1h_over_15": {"name": "1H +1.5 buts", "betclic_id": "1h_over_1_5"},
+      "2h_over_05": {"name": "2H +0.5 buts", "betclic_id": "2h_over_0_5"},
+      "2h_over_15": {"name": "2H +1.5 buts", "betclic_id": "2h_over_1_5"},
+      "late_goal": {"name": "But après 75'", "betclic_id": "late_goal"},
+      "first_goal_0_15": {"name": "1er but 0-15'", "betclic_id": "first_goal_0_15"},
+      "first_goal_16_30": {"name": "1er but 16-30'", "betclic_id": "first_goal_16_30"}
+    },
+    
+    "TEAM_SPECIFIC": {
+      "team_home_over_05": {"name": "Dom +0.5 buts", "betclic_id": "team_home_over_0_5"},
+      "team_home_over_15": {"name": "Dom +1.5 buts", "betclic_id": "team_home_over_1_5"},
+      "team_away_over_05": {"name": "Ext +0.5 buts", "betclic_id": "team_away_over_0_5"},
+      "team_away_over_15": {"name": "Ext +1.5 buts", "betclic_id": "team_away_over_1_5"},
+      "clean_sheet_home": {"name": "Clean sheet domicile", "betclic_id": "cs_home"},
+      "clean_sheet_away": {"name": "Clean sheet extérieur", "betclic_id": "cs_away"},
+      "fail_to_score_home": {"name": "Dom ne marque pas", "betclic_id": "fts_home"},
+      "fail_to_score_away": {"name": "Ext ne marque pas", "betclic_id": "fts_away"}
+    },
+    
+    "BUTEURS": {
+      "anytime_scorer": {"name": "Buteur (n'importe quand)", "betclic_id": "anytime"},
+      "first_goalscorer": {"name": "1er buteur", "betclic_id": "first_gs"},
+      "last_goalscorer": {"name": "Dernier buteur", "betclic_id": "last_gs"},
+      "scorer_2plus": {"name": "Buteur 2+ buts", "betclic_id": "scorer_2plus"},
+      "header_goal": {"name": "Buteur de la tête", "betclic_id": "header"},
+      "penalty_scorer": {"name": "Buteur sur penalty", "betclic_id": "penalty"}
+    },
+    
+    "PASSES_DECISIVES": {
+      "assist_over_05": {"name": "Joueur +0.5 passe déc.", "betclic_id": "assist_over_0_5"},
+      "assist_over_15": {"name": "Joueur +1.5 passes déc.", "betclic_id": "assist_over_1_5"},
+      "decisive_player": {"name": "Joueur décisif (but ou passe)", "betclic_id": "decisive"},
+      "dc_assist": {"name": "Double chance passeur", "betclic_id": "dc_assist"},
+      "tc_assist": {"name": "Triple chance passeur", "betclic_id": "tc_assist"}
+    },
+    
+    "TIRS": {
+      "shots_total_over": {"name": "Tirs totaux +X", "betclic_id": "shots_total_over"},
+      "shots_on_target_over": {"name": "Tirs cadrés +X", "betclic_id": "sot_over"},
+      "most_shots_home": {"name": "Plus de tirs - Dom", "betclic_id": "most_shots_home"},
+      "most_shots_away": {"name": "Plus de tirs - Ext", "betclic_id": "most_shots_away"},
+      "most_sot_home": {"name": "Plus de tirs cadrés - Dom", "betclic_id": "most_sot_home"},
+      "most_sot_away": {"name": "Plus de tirs cadrés - Ext", "betclic_id": "most_sot_away"}
+    },
+    
+    "CORNERS": {
+      "corners_over_85": {"name": "Corners +8.5", "betclic_id": "corners_over_8_5"},
+      "corners_over_95": {"name": "Corners +9.5", "betclic_id": "corners_over_9_5"},
+      "corners_over_105": {"name": "Corners +10.5", "betclic_id": "corners_over_10_5"},
+      "corners_under_95": {"name": "Corners -9.5", "betclic_id": "corners_under_9_5"},
+      "most_corners_home": {"name": "Plus de corners - Dom", "betclic_id": "most_corners_home"},
+      "most_corners_away": {"name": "Plus de corners - Ext", "betclic_id": "most_corners_away"},
+      "corner_goal": {"name": "But sur corner", "betclic_id": "corner_goal"}
+    },
+    
+    "CARTONS": {
+      "cards_over_35": {"name": "Cartons +3.5", "betclic_id": "cards_over_3_5"},
+      "cards_over_45": {"name": "Cartons +4.5", "betclic_id": "cards_over_4_5"},
+      "cards_over_55": {"name": "Cartons +5.5", "betclic_id": "cards_over_5_5"},
+      "red_card_yes": {"name": "Carton rouge - Oui", "betclic_id": "red_yes"},
+      "red_card_no": {"name": "Carton rouge - Non", "betclic_id": "red_no"},
+      "player_carded": {"name": "Joueur cartonné", "betclic_id": "player_carded"}
+    },
+    
+    "SET_PIECES": {
+      "set_piece_goal": {"name": "But sur coup de pied arrêté", "betclic_id": "sp_goal"},
+      "free_kick_goal": {"name": "But sur coup franc direct", "betclic_id": "fk_goal"},
+      "penalty_awarded": {"name": "Penalty accordé", "betclic_id": "penalty_awarded"}
+    }
+  },
+  
+  "total_markets": 85,
+  
+  "data_sources": {
+    "1X2": "team_dna_unified_v2.json",
+    "GOALS": "team_dna + all_goals_2025.json",
+    "TIMING": "defensive_line.temporal",
+    "BUTEURS": "attacker_dna_v2.json + all_goals_2025.json",
+    "PASSES_DECISIVES": "all_goals_2025.json (assister field)",
+    "TIRS": "fbref data in team_dna",
+    "CORNERS": "team_dna.corners_for/against",
+    "CARTONS": "referee_dna_v4.json + team_dna",
+    "SET_PIECES": "all_goals_2025.json (situation field)"
+  }
+}
