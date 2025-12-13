@@ -17,8 +17,8 @@ class RefereeEngine:
         if not ref_data:
             return {"style": "unknown", "cards_over_prob": 0.50, "goals_modifier": 0.0}
         
-        style = safe_get(ref_data, "style", "balanced")
-        cards_per90 = safe_get(ref_data, "cards_per90", 4.0)
+        style = safe_get(ref_data, "style", default="balanced")
+        cards_per90 = safe_get(ref_data, "cards_per90", default=4.0)
         
         if cards_per90 > 5.0:
             cards_over_prob = 0.65
