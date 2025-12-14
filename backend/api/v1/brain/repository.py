@@ -42,6 +42,11 @@ class BrainRepository:
             # Production initialization
             self._initialize_production_brain()
 
+        # Register X-Fetch callback for background refresh
+        if smart_cache.enabled:
+            smart_cache.set_refresh_callback(self._xfetch_refresh_callback)
+            logger.info("X-Fetch callback registered with SmartCache")
+
     def _initialize_production_brain(self):
         """
         Initialize real UnifiedBrain (production path)
@@ -157,6 +162,117 @@ class BrainRepository:
         else:
             # PRE_MATCH: Low volatility (odds stable)
             return 3600  # 1 hour
+
+    def _xfetch_refresh_callback(self, cache_key: str) -> Dict[str, Any]:
+        """
+        X-Fetch background refresh callback.
+
+        Called by SmartCache when probabilistic refresh is triggered.
+        Parses cache key, computes fresh prediction, returns result.
+
+        Args:
+            cache_key: Full cache key (e.g., "monps:prod:v1:pred:{m_arsenal_vs_chelsea}:default")
+
+        Returns:
+            Fresh prediction result dict (same format as calculate_predictions)
+
+        Raises:
+            Exception: Re-raised for SmartCache to handle gracefully
+        """
+        try:
+            # 1. Parse cache key to extract match_id
+            match_id = self._extract_match_id_from_key(cache_key)
+
+            # 2. Parse match_id to extract team names
+            home_team, away_team = self._parse_match_id(match_id)
+
+            # 3. Compute fresh prediction
+            logger.info(
+                "X-Fetch background refresh: Computing fresh prediction",
+                extra={"home": home_team, "away": away_team, "cache_key": cache_key}
+            )
+
+            start = datetime.now()
+
+            # ════════════════════════════════════════════════════════════════
+            # INSTRUMENTATION CRITICAL: Compute call counter
+            # ════════════════════════════════════════════════════════════════
+            cache_metrics.increment("compute_calls")  # ← CRITICAL COUNTER
+            # ════════════════════════════════════════════════════════════════
+
+            # Call brain (same as calculate_predictions)
+            result = self.brain.analyze_match(home=home_team, away=away_team)
+
+            calc_time = (datetime.now() - start).total_seconds()
+
+            # 4. Format result (same as calculate_predictions)
+            from datetime import timezone
+            computed_result = {
+                "markets": self._convert_match_prediction_to_markets(result),
+                "calculation_time": calc_time,
+                "brain_version": self.version,
+                "created_at": datetime.now(timezone.utc).isoformat()
+            }
+
+            logger.info(
+                "X-Fetch background refresh: Completed",
+                extra={
+                    "home": home_team,
+                    "away": away_team,
+                    "calc_time_ms": calc_time * 1000
+                }
+            )
+
+            return computed_result
+
+        except Exception as e:
+            logger.error(
+                "X-Fetch callback error",
+                extra={"cache_key": cache_key, "error": str(e)}
+            )
+            raise  # Re-raise so SmartCache worker can handle gracefully
+
+    def _extract_match_id_from_key(self, cache_key: str) -> str:
+        """Extract match_id from cache key.
+
+        Args:
+            cache_key: "monps:prod:v1:pred:{m_arsenal_vs_chelsea}:default"
+
+        Returns:
+            match_id: "m_arsenal_vs_chelsea"
+        """
+        # Find content within curly braces
+        parts = cache_key.split(":")
+        for part in parts:
+            if part.startswith("{") and part.endswith("}"):
+                return part[1:-1]  # Remove { }
+        raise ValueError(f"Invalid cache key format: {cache_key}")
+
+    def _parse_match_id(self, match_id: str) -> tuple:
+        """Parse match_id to extract team names.
+
+        Args:
+            match_id: "m_arsenal_vs_chelsea"
+
+        Returns:
+            (home_team, away_team): ("Arsenal", "Chelsea")
+        """
+        if not match_id.startswith("m_"):
+            raise ValueError(f"Invalid match_id: {match_id}")
+
+        # Remove "m_" prefix
+        teams_str = match_id[2:]
+
+        # Split by "_vs_"
+        teams = teams_str.split("_vs_")
+        if len(teams) != 2:
+            raise ValueError(f"Invalid match_id format: {match_id}")
+
+        # Convert "arsenal" → "Arsenal", "manchester_united" → "Manchester United"
+        home = teams[0].replace("_", " ").title()
+        away = teams[1].replace("_", " ").title()
+
+        return home, away
 
     def calculate_predictions(
         self,
