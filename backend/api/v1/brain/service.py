@@ -21,10 +21,19 @@ logger = logging.getLogger(__name__)
 
 
 class BrainService:
-    """Service layer pour Brain API"""
+    """Service layer pour Brain API
 
-    def __init__(self):
-        self.repository = BrainRepository()
+    Supports dependency injection for testing.
+    """
+
+    def __init__(self, repository=None):
+        """
+        Initialize service
+
+        Args:
+            repository: Optional BrainRepository (for dependency injection in tests)
+        """
+        self.repository = repository or BrainRepository()
 
     def calculate_predictions(self, request: BrainCalculateRequest) -> BrainCalculateResponse:
         """Calculate 99 markets predictions"""
