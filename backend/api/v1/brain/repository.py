@@ -7,6 +7,11 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 
+# Cache integration
+from cache.smart_cache import smart_cache
+from cache.key_factory import key_factory
+import unicodedata  # For team name normalization
+
 logger = logging.getLogger(__name__)
 
 
@@ -89,6 +94,69 @@ class BrainRepository:
                 f"Failed to initialize UnifiedBrain: {e}"
             )
 
+    def _normalize_team_name(self, team: str) -> str:
+        """Normalize team name for consistent cache keys.
+
+        Removes accents, converts to lowercase, replaces spaces/dashes with underscores.
+
+        Examples:
+            "Manchester United" → "manchester_united"
+            "Saint-Étienne" → "saint_etienne"
+            "Liverpool" → "liverpool"
+
+        Args:
+            team: Original team name
+
+        Returns:
+            Normalized team name for cache key
+        """
+        # Remove accents (NFD decomposition)
+        normalized = unicodedata.normalize('NFKD', team)
+        normalized = normalized.encode('ASCII', 'ignore').decode('ASCII')
+
+        # Lowercase + replace spaces/dashes with underscores
+        normalized = normalized.lower().replace(" ", "_").replace("-", "_")
+
+        return normalized
+
+    def _calculate_ttl(self, match_date: datetime) -> int:
+        """Calculate cache TTL based on match timing.
+
+        Strategy:
+        - POST_MATCH (finished): 24h (result is final)
+        - LIVE/VERY SOON (<2h): 1min (high volatility)
+        - SOON (<24h): 15min (moderate volatility)
+        - PRE_MATCH (>24h): 1h (low volatility)
+
+        Args:
+            match_date: Scheduled match datetime
+
+        Returns:
+            TTL in seconds (60 to 86400)
+        """
+        from datetime import timezone
+
+        now = datetime.now(timezone.utc)
+
+        # Handle timezone-naive match_date
+        if match_date.tzinfo is None:
+            match_date = match_date.replace(tzinfo=timezone.utc)
+
+        time_to_match = (match_date - now).total_seconds()
+
+        if time_to_match < 0:
+            # POST_MATCH: Result is final
+            return 86400  # 24 hours
+        elif time_to_match < 7200:  # < 2 hours
+            # LIVE or VERY SOON: High volatility (odds changing rapidly)
+            return 60  # 1 minute
+        elif time_to_match < 86400:  # < 24 hours
+            # SOON: Moderate volatility (team news possible)
+            return 900  # 15 minutes
+        else:
+            # PRE_MATCH: Low volatility (odds stable)
+            return 3600  # 1 hour
+
     def calculate_predictions(
         self,
         home_team: str,
@@ -96,59 +164,164 @@ class BrainRepository:
         match_date: datetime,
         dna_context: Optional[Dict] = None
     ) -> Dict[str, Any]:
-        """
-        Calculate 93 markets predictions
+        """Calculate 93 markets predictions with SmartCache integration.
 
-        Circuit breaker pattern: Fail fast with clear errors
+        Cache Strategy:
+        - Key: normalized(home_team) + normalized(away_team) + config_hash
+        - TTL: Dynamic (60s to 24h) based on match_date
+        - X-Fetch: Probabilistic refresh near expiry (99%+ stampede prevention)
+        - Graceful degradation: Redis unavailable → fallback to compute
 
         Args:
             home_team: Home team name
             away_team: Away team name
-            match_date: Match date (not used by UnifiedBrain V2.8.0)
-            dna_context: DNA context (not used by UnifiedBrain V2.8.0)
+            match_date: Scheduled match datetime (for TTL calculation)
+            dna_context: Optional DNA context (not used by UnifiedBrain V2.8.0)
 
         Returns:
-            Dict with markets, calculation_time, brain_version, created_at
+            Dict with:
+            - markets: List of 93 market predictions
+            - calculation_time: Seconds taken for computation
+            - brain_version: UnifiedBrain version (2.8.0)
+            - created_at: ISO timestamp of prediction creation
+
+        Raises:
+            RuntimeError: If brain not initialized or computation fails
         """
-        # Circuit breaker: Check brain initialized
+        # 1. Generate cache key with normalized team names
+        normalized_home = self._normalize_team_name(home_team)
+        normalized_away = self._normalize_team_name(away_team)
+        match_id = f"{normalized_home}_vs_{normalized_away}"
+
+        cache_key = key_factory.prediction_key(
+            match_id=match_id,
+            config=None  # dna_context not used by UnifiedBrain V2.8.0
+        )
+
+        # 2. Check cache (SmartCache with X-Fetch algorithm)
+        cached, is_stale = smart_cache.get(cache_key)
+
+        if cached and not is_stale:
+            # Cache HIT fresh → Return immediately (<10ms)
+            logger.info(
+                "BrainRepository: Cache HIT (fresh)",
+                extra={
+                    "cache_key": cache_key,
+                    "match_id": match_id,
+                    "home_team": home_team,
+                    "away_team": away_team
+                }
+            )
+            return cached
+
+        if cached and is_stale:
+            # Cache HIT stale → X-Fetch triggered
+            # Return stale value immediately (zero latency)
+            # Background refresh will happen probabilistically
+            logger.info(
+                "BrainRepository: Cache HIT (stale, X-Fetch refresh)",
+                extra={
+                    "cache_key": cache_key,
+                    "match_id": match_id,
+                    "home_team": home_team,
+                    "away_team": away_team
+                }
+            )
+            return cached
+
+        # 3. Cache MISS → Compute prediction
+        logger.info(
+            "BrainRepository: Cache MISS",
+            extra={
+                "cache_key": cache_key,
+                "match_id": match_id,
+                "home_team": home_team,
+                "away_team": away_team
+            }
+        )
+
+        # Circuit breaker check
         if not self.brain:
             raise RuntimeError(
-                "Brain engine not initialized. "
-                "Repository in invalid state."
+                "Brain not initialized - check circuit breaker status"
             )
 
+        # 4. Compute prediction (expensive ~150ms)
         try:
-            # Call UnifiedBrain V2.8.0 API
-            # IMPORTANT: Uses home= and away= (not home_team= and away_team=)
-            # IMPORTANT: match_date and dna_context not supported by v2.8.0
             start = datetime.now()
 
+            # Call UnifiedBrain V2.8.0
+            # Note: Uses home=/away= parameters (not home_team=/away_team=)
             result = self.brain.analyze_match(
-                home=home_team,  # Note: home= not home_team=
-                away=away_team   # Note: away= not away_team=
+                home=home_team,  # Original team name (not normalized)
+                away=away_team
             )
 
             calc_time = (datetime.now() - start).total_seconds()
 
-            # Convert MatchPrediction → API format
-            return {
+            # 5. Build result dict (MUST be JSON serializable!)
+            from datetime import timezone
+
+            computed_result = {
                 "markets": self._convert_match_prediction_to_markets(result),
                 "calculation_time": calc_time,
                 "brain_version": self.version,
-                "created_at": datetime.now()
+                "created_at": datetime.now(timezone.utc).isoformat()  # ✅ ISO string (not datetime object)
             }
 
+            # 6. Store in cache with dynamic TTL (graceful degradation)
+            ttl = self._calculate_ttl(match_date)
+            try:
+                smart_cache.set(cache_key, computed_result, ttl=ttl)
+            except Exception as cache_error:
+                # Redis unavailable → Log warning but continue
+                # Graceful degradation: Prediction computed successfully, just not cached
+                logger.warning(
+                    f"Failed to cache prediction (Redis unavailable): {cache_error}",
+                    extra={
+                        "cache_key": cache_key,
+                        "home_team": home_team,
+                        "away_team": away_team
+                    }
+                )
+
+            logger.info(
+                "BrainRepository: Computed and cached",
+                extra={
+                    "cache_key": cache_key,
+                    "match_id": match_id,
+                    "ttl": ttl,
+                    "calculation_time_ms": calc_time * 1000,
+                    "home_team": home_team,
+                    "away_team": away_team
+                }
+            )
+
+            return computed_result
+
         except AttributeError as e:
-            # Brain corruption: Method not found
-            raise RuntimeError(
-                f"Brain engine corruption: {e}. "
-                f"Expected method 'analyze_match' not found."
+            # Brain corruption (missing analyze_match method)
+            logger.error(
+                f"Brain corruption detected: {e}",
+                exc_info=True,
+                extra={
+                    "home_team": home_team,
+                    "away_team": away_team
+                }
             )
+            raise RuntimeError(f"Brain corruption: {e}")
+
         except Exception as e:
-            # Catch-all: Quantum Core internal failure
-            raise RuntimeError(
-                f"Quantum Core calculation failure: {type(e).__name__}: {e}"
+            # Quantum Core failure (any other error)
+            logger.error(
+                f"Quantum Core failure: {e}",
+                exc_info=True,
+                extra={
+                    "home_team": home_team,
+                    "away_team": away_team
+                }
             )
+            raise RuntimeError(f"Quantum Core failure: {e}")
 
     def _convert_match_prediction_to_markets(self, prediction) -> Dict:
         """

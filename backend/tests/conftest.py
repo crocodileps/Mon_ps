@@ -189,3 +189,32 @@ def prod_env(monkeypatch):
     monkeypatch.setenv("MIN_CONFIDENCE_THRESHOLD", "0.85")
 
     yield
+
+
+# ═══════════════════════════════════════════════════════════════════
+# CACHE FIXTURES - SmartCache Integration
+# ═══════════════════════════════════════════════════════════════════
+
+
+@pytest.fixture
+def disable_cache(monkeypatch):
+    """Disable SmartCache for tests (always cache miss).
+
+    Use this fixture in tests that should not use cache,
+    or to ensure tests are deterministic.
+
+    Example:
+        def test_something(disable_cache):
+            # Cache is disabled, always computes fresh
+            result = repository.calculate_predictions(...)
+    """
+    from unittest.mock import MagicMock
+
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = (None, False)  # Always cache miss
+    mock_cache.set.return_value = True
+    mock_cache.enabled = False
+
+    monkeypatch.setattr("api.v1.brain.repository.smart_cache", mock_cache)
+
+    return mock_cache
