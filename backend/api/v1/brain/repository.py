@@ -63,8 +63,14 @@ class BrainRepository:
                 f"Cannot initialize BrainRepository without quantum_core."
             )
 
-        # Add to sys.path
+        # Add BOTH paths to sys.path for complete compatibility
+        # 1. Parent directory (/) allows "from quantum_core.adapters..." (UnifiedBrain internal imports)
+        # 2. quantum_core itself allows "from brain.unified_brain..." (our imports)
         import sys
+        parent_path = str(quantum_core_path.parent)
+        if parent_path not in sys.path:
+            sys.path.insert(0, parent_path)
+
         if str(quantum_core_path) not in sys.path:
             sys.path.insert(0, str(quantum_core_path))
 

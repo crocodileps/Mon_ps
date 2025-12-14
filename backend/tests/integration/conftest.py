@@ -52,7 +52,13 @@ def quantum_core_path():
             f"Integration tests require quantum_core."
         )
 
-    # Add to sys.path if needed
+    # Add BOTH paths to sys.path for complete compatibility
+    # 1. Parent directory (/) allows "from quantum_core.adapters..." (UnifiedBrain internal imports)
+    # 2. quantum_core itself allows "from brain.unified_brain..." (our imports)
+    parent_path = str(path.parent)
+    if parent_path not in sys.path:
+        sys.path.insert(0, parent_path)
+
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
