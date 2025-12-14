@@ -14,10 +14,23 @@ from fastapi.testclient import TestClient
 # Add parent to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from backend.infrastructure.database.base import Base
-from backend.infrastructure.database.models import PredictionORM
-from backend.infrastructure.config.settings import Settings
-from backend.api.main import app
+# Try to import database dependencies (optional for unit tests like cache)
+try:
+    from infrastructure.database.base import Base
+    from infrastructure.database.models import PredictionORM
+    HAS_DATABASE = True
+except ModuleNotFoundError as e:
+    # quantum_core not available → database tests will skip
+    # but unit tests (cache, etc.) can still run
+    if "quantum_core" in str(e):
+        Base = None
+        PredictionORM = None
+        HAS_DATABASE = False
+    else:
+        raise  # Re-raise if it's not a quantum_core issue
+
+from infrastructure.config.settings import Settings
+from api.main import app
 # from tests.factories import (
 #     create_market_prediction,
 #     create_ensemble_realistic,
