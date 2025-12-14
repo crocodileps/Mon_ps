@@ -321,3 +321,9 @@ app.include_router(ml_prediction_router)
 # ============================================================================
 from api.routes.orchestrator_v11_routes import router as orchestrator_v11_router
 app.include_router(orchestrator_v11_router, prefix="/api/v11", tags=["Orchestrator V11 Quant Sniper"])
+
+# ============================================================================
+# BRAIN API - UNIFIEDBRAIN V2.8.0 (NEW!)
+# ============================================================================
+from api.v1.brain import router as brain_router
+app.include_router(brain_router, tags=["UnifiedBrain V2.8"])

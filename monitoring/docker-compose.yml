@@ -38,6 +38,8 @@ services:
     ports:
     - 8001:8000
     restart: always
+    volumes:
+      - /home/Mon_ps/quantum_core:/quantum_core:ro
   frontend:
     build:
       context: ../frontend
