@@ -270,9 +270,13 @@ class BrainRepository:
             }
 
             # 6. Store in cache with dynamic TTL (graceful degradation)
+            # Track cache storage success for accurate logging
             ttl = self._calculate_ttl(match_date)
+            cache_stored = False
+
             try:
                 smart_cache.set(cache_key, computed_result, ttl=ttl)
+                cache_stored = True  # ✅ Cache operation succeeded
             except Exception as cache_error:
                 # Redis unavailable → Log warning but continue
                 # Graceful degradation: Prediction computed successfully, just not cached
@@ -281,21 +285,38 @@ class BrainRepository:
                     extra={
                         "cache_key": cache_key,
                         "home_team": home_team,
-                        "away_team": away_team
+                        "away_team": away_team,
+                        "error_type": type(cache_error).__name__
                     }
                 )
 
-            logger.info(
-                "BrainRepository: Computed and cached",
-                extra={
-                    "cache_key": cache_key,
-                    "match_id": match_id,
-                    "ttl": ttl,
-                    "calculation_time_ms": calc_time * 1000,
-                    "home_team": home_team,
-                    "away_team": away_team
-                }
-            )
+            # Log accurate status based on actual cache operation result
+            if cache_stored:
+                logger.info(
+                    "BrainRepository: Computed and cached",
+                    extra={
+                        "cache_key": cache_key,
+                        "match_id": match_id,
+                        "ttl": ttl,
+                        "calculation_time_ms": calc_time * 1000,
+                        "cached": True,  # ✅ Explicit for monitoring
+                        "home_team": home_team,
+                        "away_team": away_team
+                    }
+                )
+            else:
+                logger.info(
+                    "BrainRepository: Computed (cache storage FAILED)",
+                    extra={
+                        "cache_key": cache_key,
+                        "match_id": match_id,
+                        "calculation_time_ms": calc_time * 1000,
+                        "cached": False,  # ✅ Explicit for monitoring
+                        "home_team": home_team,
+                        "away_team": away_team,
+                        "warning": "Redis unavailable - operating without cache"
+                    }
+                )
 
             return computed_result
 
