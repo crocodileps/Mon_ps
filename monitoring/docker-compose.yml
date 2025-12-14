@@ -135,6 +135,35 @@ services:
     volumes:
     - ./config/prometheus:/etc/prometheus
     - prometheus_data:/prometheus
+  redis:
+    image: redis:7.4-alpine
+    container_name: monps_redis
+    restart: unless-stopped
+    command: >
+      redis-server
+      --maxmemory 1gb
+      --maxmemory-policy allkeys-lfu
+      --save ""
+      --appendonly no
+      --requirepass ${REDIS_PASSWORD:-monps_redis_dev_password_change_in_prod}
+      --lazyfree-lazy-eviction yes
+      --lazyfree-lazy-expire yes
+    ports:
+      - "6379:6379"
+    networks:
+      - monps_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    volumes:
+      - redis_data:/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1.5G
   uptime-kuma:
     container_name: monps_uptime
     image: louislam/uptime-kuma:1
@@ -151,4 +180,6 @@ volumes:
   n8n_data: null
   postgres_data: null
   prometheus_data: null
+  redis_data:
+    driver: local
   uptime-kuma-data: null
