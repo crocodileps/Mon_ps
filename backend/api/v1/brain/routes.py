@@ -4,6 +4,7 @@ Brain API Routes - 4 endpoints FastAPI
 
 from fastapi import APIRouter, HTTPException, status
 from typing import Dict, Any
+from datetime import datetime
 import logging
 
 from .schemas import (
@@ -16,6 +17,7 @@ from .schemas import (
     ErrorResponse
 )
 from .service import BrainService
+from cache.metrics import cache_metrics  # Metrics API
 
 logger = logging.getLogger(__name__)
 
@@ -115,3 +117,86 @@ async def get_markets() -> MarketsListResponse:
     except Exception as e:
         logger.error(f"Markets list error: {e}")
         raise HTTPException(status_code=500, detail="Failed to retrieve markets")
+
+
+# ════════════════════════════════════════════════════════════════
+# METRICS API - Stress Test Validation
+# ════════════════════════════════════════════════════════════════
+
+@router.get(
+    "/metrics/cache",
+    response_model=dict,
+    tags=["metrics"],
+    summary="Get cache metrics",
+    description="""
+    Get current cache metrics for validation.
+
+    Returns exact counts:
+    - cache_hit_fresh: Requests served from fresh cache
+    - cache_hit_stale: Requests served from stale cache (X-Fetch)
+    - cache_miss: Requests that computed fresh
+    - compute_calls: DIRECT count of brain.analyze_match() calls (GROUND TRUTH)
+    - xfetch_triggers: X-Fetch probabilistic refresh triggers
+    - total_requests: Sum of all cache operations
+
+    Usage (stress test):
+        # Reset before test
+        POST /api/v1/brain/metrics/cache/reset
+
+        # Run concurrent requests
+        POST /api/v1/brain/calculate (100x concurrent)
+
+        # Get exact counts
+        GET /api/v1/brain/metrics/cache
+
+        # Validate
+        assert counts['compute_calls'] <= 2  # X-Fetch working
+        assert counts['cache_hit_stale'] >= 85  # Stale serving working
+    """
+)
+async def get_cache_metrics():
+    """Get current cache metrics."""
+    counts = cache_metrics.get_counts()
+
+    logger.info(
+        "Cache metrics retrieved",
+        extra=counts
+    )
+
+    return counts
+
+
+@router.post(
+    "/metrics/cache/reset",
+    response_model=dict,
+    tags=["metrics"],
+    summary="Reset cache metrics",
+    description="""
+    Reset all cache metrics to 0.
+
+    Use before stress tests to get clean baseline.
+
+    Example:
+        POST /api/v1/brain/metrics/cache/reset
+        → All counters reset to 0
+
+        POST /api/v1/brain/calculate (100x)
+        → Counters track this test only
+
+        GET /api/v1/brain/metrics/cache
+        → Clean results for this test
+    """
+)
+async def reset_cache_metrics():
+    """Reset cache metrics."""
+    cache_metrics.reset()
+
+    logger.info("Cache metrics reset to 0")
+
+    return {
+        "status": "reset",
+        "message": "All cache metrics reset to 0",
+        "timestamp": datetime.now().isoformat()
+    }
+
+# ════════════════════════════════════════════════════════════════

@@ -10,6 +10,7 @@ from typing import Dict, Any, Optional, List
 # Cache integration
 from cache.smart_cache import smart_cache
 from cache.key_factory import key_factory
+from cache.metrics import cache_metrics  # Direct instrumentation
 import unicodedata  # For team name normalization
 
 logger = logging.getLogger(__name__)
@@ -203,6 +204,12 @@ class BrainRepository:
 
         if cached and not is_stale:
             # Cache HIT fresh → Return immediately (<10ms)
+            # ════════════════════════════════════════════════════════════════
+            # INSTRUMENTATION: Cache HIT (fresh)
+            # ════════════════════════════════════════════════════════════════
+            cache_metrics.increment("cache_hit_fresh")  # ← COUNTER
+            # ════════════════════════════════════════════════════════════════
+
             logger.info(
                 "BrainRepository: Cache HIT (fresh)",
                 extra={
@@ -218,6 +225,15 @@ class BrainRepository:
             # Cache HIT stale → X-Fetch triggered
             # Return stale value immediately (zero latency)
             # Background refresh will happen probabilistically
+            # ════════════════════════════════════════════════════════════════
+            # INSTRUMENTATION: Cache HIT (stale, X-Fetch)
+            # ════════════════════════════════════════════════════════════════
+            cache_metrics.increment("cache_hit_stale")  # ← COUNTER
+            cache_metrics.increment("xfetch_triggers")  # ← COUNTER (approximation)
+            # Note: X-Fetch probabilistic refresh happens in smart_cache.get()
+            # All stale hits counted as potential X-Fetch triggers
+            # ════════════════════════════════════════════════════════════════
+
             logger.info(
                 "BrainRepository: Cache HIT (stale, X-Fetch refresh)",
                 extra={
@@ -230,6 +246,12 @@ class BrainRepository:
             return cached
 
         # 3. Cache MISS → Compute prediction
+        # ════════════════════════════════════════════════════════════════
+        # INSTRUMENTATION: Cache MISS
+        # ════════════════════════════════════════════════════════════════
+        cache_metrics.increment("cache_miss")  # ← COUNTER
+        # ════════════════════════════════════════════════════════════════
+
         logger.info(
             "BrainRepository: Cache MISS",
             extra={
@@ -249,6 +271,54 @@ class BrainRepository:
         # 4. Compute prediction (expensive ~150ms)
         try:
             start = datetime.now()
+
+            # ════════════════════════════════════════════════════════════════
+            # LATENCY INJECTOR - Simulate Production Compute Load
+            # ════════════════════════════════════════════════════════════════
+            # Purpose: Enable realistic stress testing in development
+            #
+            # Context:
+            # - Development UnifiedBrain: 0 engines = 9ms (stub mode)
+            # - Production UnifiedBrain: 8+ engines = 150ms (full ML)
+            # - Problem: Cannot validate concurrent load behavior in dev
+            #
+            # Solution:
+            # - Inject artificial latency to simulate production
+            # - Enable with env var SIMULATE_PROD_LATENCY=true
+            # - Configurable latency with SIMULATE_LATENCY_MS (default 150ms)
+            #
+            # Usage:
+            # - Stress testing: SIMULATE_PROD_LATENCY=true
+            # - Normal dev: SIMULATE_PROD_LATENCY=false (default)
+            # ════════════════════════════════════════════════════════════════
+            import os
+            import time as time_module  # Alias to avoid conflict with calc_time
+
+            if os.getenv("SIMULATE_PROD_LATENCY", "false").lower() == "true":
+                # Simulate real UnifiedBrain computation time
+                latency_ms = int(os.getenv("SIMULATE_LATENCY_MS", "150"))
+
+                logger.info(
+                    "LATENCY INJECTOR: Simulating production compute latency",
+                    extra={
+                        "latency_ms": latency_ms,
+                        "home_team": home_team,
+                        "away_team": away_team,
+                        "reason": "Stress test validation"
+                    }
+                )
+
+                # Sleep to simulate compute time
+                time_module.sleep(latency_ms / 1000.0)  # Convert ms to seconds
+            # ════════════════════════════════════════════════════════════════
+
+            # ════════════════════════════════════════════════════════════════
+            # INSTRUMENTATION CRITICAL: Compute call counter
+            # ════════════════════════════════════════════════════════════════
+            # This is the GROUND TRUTH for stampede detection
+            # Every brain.analyze_match() call MUST increment this counter
+            cache_metrics.increment("compute_calls")  # ← CRITICAL COUNTER
+            # ════════════════════════════════════════════════════════════════
 
             # Call UnifiedBrain V2.8.0
             # Note: Uses home=/away= parameters (not home_team=/away_team=)
