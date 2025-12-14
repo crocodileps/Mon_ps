@@ -50,6 +50,7 @@ class CacheMetrics:
         self.cache_miss = 0           # Cache miss → compute required
         self.compute_calls = 0        # CRITICAL: Direct brain.analyze_match() calls
         self.xfetch_triggers = 0      # X-Fetch probabilistic refresh triggers
+        self.xfetch_lock_contention_total = 0  # Lock rejections (stampede prevention)
 
     def increment(self, metric: str):
         """Increment a metric counter (thread-safe).
@@ -77,6 +78,7 @@ class CacheMetrics:
                 "cache_miss": self.cache_miss,
                 "compute_calls": self.compute_calls,
                 "xfetch_triggers": self.xfetch_triggers,
+                "xfetch_lock_contention_total": self.xfetch_lock_contention_total,
                 "total_requests": (
                     self.cache_hit_fresh +
                     self.cache_hit_stale +
@@ -95,6 +97,7 @@ class CacheMetrics:
             self.cache_miss = 0
             self.compute_calls = 0
             self.xfetch_triggers = 0
+            self.xfetch_lock_contention_total = 0
 
 
 # Global singleton instance
