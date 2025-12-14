@@ -1,100 +1,107 @@
 [
   {
     "player_name": "Harry Wilson",
+    "goals": 5,
+    "assists": 3,
+    "matches": 17,
+    "scraped_at": "2025-12-14T06:01:32.492508"
+  },
+  {
+    "player_name": "Emile Smith Rowe",
     "goals": 4,
-    "assists": 1,
-    "matches": 16,
-    "scraped_at": "2025-12-13T06:01:32.619631"
+    "assists": 0,
+    "matches": 18,
+    "scraped_at": "2025-12-14T06:01:32.491740"
   },
   {
     "player_name": "Ra\u00fal Jim\u00e9nez",
     "goals": 3,
     "assists": 2,
-    "matches": 17,
-    "scraped_at": "2025-12-13T06:01:32.619872"
-  },
-  {
-    "player_name": "Emile Smith Rowe",
-    "goals": 3,
-    "assists": 0,
-    "matches": 17,
-    "scraped_at": "2025-12-13T06:01:32.618861"
+    "matches": 18,
+    "scraped_at": "2025-12-14T06:01:32.492742"
   },
   {
     "player_name": "Samuel Chukwueze",
     "goals": 2,
-    "assists": 3,
-    "matches": 9,
-    "scraped_at": "2025-12-13T06:01:32.619719"
+    "assists": 4,
+    "matches": 10,
+    "scraped_at": "2025-12-14T06:01:32.492592"
   },
   {
     "player_name": "Ryan Sessegnon",
     "goals": 2,
     "assists": 2,
     "matches": 15,
-    "scraped_at": "2025-12-13T06:01:32.618273"
+    "scraped_at": "2025-12-14T06:01:32.491196"
   },
   {
     "player_name": "Alex Iwobi",
     "goals": 2,
     "assists": 2,
-    "matches": 17,
-    "scraped_at": "2025-12-13T06:01:32.619554"
+    "matches": 18,
+    "scraped_at": "2025-12-14T06:01:32.492435"
   },
   {
     "player_name": "Sa\u0161a Luki\u0107",
     "goals": 1,
     "assists": 2,
-    "matches": 14,
-    "scraped_at": "2025-12-13T06:01:32.619084"
+    "matches": 15,
+    "scraped_at": "2025-12-14T06:01:32.491961"
   },
   {
     "player_name": "Josh King",
     "goals": 1,
     "assists": 1,
-    "matches": 18,
-    "scraped_at": "2025-12-13T06:01:32.618937"
+    "matches": 19,
+    "scraped_at": "2025-12-14T06:01:32.491815"
   },
   {
     "player_name": "Rodrigo Muniz",
     "goals": 1,
     "assists": 1,
     "matches": 9,
-    "scraped_at": "2025-12-13T06:01:32.619480"
+    "scraped_at": "2025-12-14T06:01:32.492327"
+  },
+  {
+    "player_name": "Calvin Bassey",
+    "goals": 1,
+    "assists": 0,
+    "matches": 18,
+    "scraped_at": "2025-12-14T06:01:32.491034"
   },
   {
     "player_name": "Kenny Tete",
     "goals": 1,
     "assists": 0,
-    "matches": 12,
-    "scraped_at": "2025-12-13T06:01:32.618368"
+    "matches": 13,
+    "scraped_at": "2025-12-14T06:01:32.491275"
   },
   {
     "player_name": "Timothy Castagne",
     "goals": 0,
     "assists": 1,
-    "matches": 14,
-    "scraped_at": "2025-12-13T06:01:32.618472"
+    "matches": 15,
+    "scraped_at": "2025-12-14T06:01:32.491351"
   },
   {
     "player_name": "Harrison Reed",
     "goals": 0,
     "assists": 1,
     "matches": 4,
-    "scraped_at": "2025-12-13T06:01:32.619156"
+    "scraped_at": "2025-12-14T06:01:32.492034"
   },
   {
     "player_name": "Kevin",
     "goals": 0,
     "assists": 1,
     "matches": 14,
-    "scraped_at": "2025-12-13T06:01:32.619383"
+    "scraped_at": "2025-12-14T06:01:32.492253"
   },
   {
     "player_name": "Adama Traor\u00e9",
     "goals": 0,
     "assists": 1,
-    "matches": 13,
-    "scraped_at": "2025-12-13T06:01:32.619799"
+    "matches": 14,
+    "scraped_at": "2025-12-14T06:01:32.492666"
   }
 ]

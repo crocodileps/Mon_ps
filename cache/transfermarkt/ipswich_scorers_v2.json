@@ -3,112 +3,112 @@
     "player_name": "Jaden Philogene",
     "goals": 7,
     "assists": 2,
-    "matches": 19,
-    "scraped_at": "2025-12-13T06:02:24.827935"
+    "matches": 20,
+    "scraped_at": "2025-12-14T06:02:22.297968"
   },
   {
     "player_name": "Jack Clarke",
     "goals": 6,
     "assists": 2,
-    "matches": 21,
-    "scraped_at": "2025-12-13T06:02:24.828006"
+    "matches": 22,
+    "scraped_at": "2025-12-14T06:02:22.298040"
   },
   {
     "player_name": "George Hirst",
     "goals": 6,
     "assists": 1,
-    "matches": 20,
-    "scraped_at": "2025-12-13T06:02:24.828123"
+    "matches": 21,
+    "scraped_at": "2025-12-14T06:02:22.298115"
   },
   {
     "player_name": "Marcelino N\u00fa\u00f1ez",
     "goals": 3,
     "assists": 4,
-    "matches": 16,
-    "scraped_at": "2025-12-13T06:02:24.827325"
+    "matches": 17,
+    "scraped_at": "2025-12-14T06:02:22.297347"
   },
   {
     "player_name": "Sindre Walle Egeli",
     "goals": 2,
     "assists": 1,
     "matches": 14,
-    "scraped_at": "2025-12-13T06:02:24.827862"
+    "scraped_at": "2025-12-14T06:02:22.297894"
   },
   {
     "player_name": "Iv\u00e1n Az\u00f3n",
     "goals": 2,
     "assists": 0,
     "matches": 15,
-    "scraped_at": "2025-12-13T06:02:24.828510"
+    "scraped_at": "2025-12-14T06:02:22.298492"
   },
   {
     "player_name": "Leif Davis",
     "goals": 1,
     "assists": 2,
-    "matches": 20,
-    "scraped_at": "2025-12-13T06:02:24.826307"
+    "matches": 21,
+    "scraped_at": "2025-12-14T06:02:22.296312"
+  },
+  {
+    "player_name": "Jens Cajuste",
+    "goals": 1,
+    "assists": 2,
+    "matches": 18,
+    "scraped_at": "2025-12-14T06:02:22.297439"
   },
   {
     "player_name": "Dara O'Shea",
     "goals": 1,
     "assists": 1,
-    "matches": 20,
-    "scraped_at": "2025-12-13T06:02:24.826492"
+    "matches": 21,
+    "scraped_at": "2025-12-14T06:02:22.296501"
   },
   {
     "player_name": "C\u00e9dric Kipr\u00e9",
     "goals": 1,
     "assists": 1,
-    "matches": 12,
-    "scraped_at": "2025-12-13T06:02:24.826880"
+    "matches": 13,
+    "scraped_at": "2025-12-14T06:02:22.296890"
   },
   {
     "player_name": "Chuba Akpom",
     "goals": 1,
     "assists": 1,
-    "matches": 16,
-    "scraped_at": "2025-12-13T06:02:24.828342"
+    "matches": 17,
+    "scraped_at": "2025-12-14T06:02:22.298331"
   },
   {
     "player_name": "Jacob Greaves",
     "goals": 1,
     "assists": 0,
     "matches": 11,
-    "scraped_at": "2025-12-13T06:02:24.826394"
+    "scraped_at": "2025-12-14T06:02:22.296420"
   },
   {
     "player_name": "Ben Johnson",
     "goals": 1,
     "assists": 0,
     "matches": 9,
-    "scraped_at": "2025-12-13T06:02:24.826565"
+    "scraped_at": "2025-12-14T06:02:22.296588"
   },
   {
     "player_name": "Darnell Furlong",
     "goals": 0,
     "assists": 2,
-    "matches": 14,
-    "scraped_at": "2025-12-13T06:02:24.826724"
-  },
-  {
-    "player_name": "Jens Cajuste",
-    "goals": 0,
-    "assists": 2,
-    "matches": 17,
-    "scraped_at": "2025-12-13T06:02:24.827418"
+    "matches": 15,
+    "scraped_at": "2025-12-14T06:02:22.296740"
   },
   {
     "player_name": "Jack Taylor",
     "goals": 0,
     "assists": 2,
-    "matches": 17,
-    "scraped_at": "2025-12-13T06:02:24.827561"
+    "matches": 18,
+    "scraped_at": "2025-12-14T06:02:22.297598"
   },
   {
     "player_name": "Ashley Young",
     "goals": 0,
     "assists": 1,
-    "matches": 10,
-    "scraped_at": "2025-12-13T06:02:24.827028"
+    "matches": 11,
+    "scraped_at": "2025-12-14T06:02:22.297043"
   }
 ]

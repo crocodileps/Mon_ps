@@ -43,6 +43,13 @@
         "conversion": 20.0,
         "goal_share": 4.2
       },
+      "Throughball": {
+        "shots": 3,
+        "goals": 2,
+        "xG": 1.362,
+        "conversion": 66.7,
+        "goal_share": 8.3
+      },
       "Aerial": {
         "shots": 3,
         "goals": 1,
@@ -252,19 +259,19 @@
         "goals": 8,
         "xG": 2.894,
         "conversion": 33.3,
-        "goal_share": 42.1
+        "goal_share": 38.1
       },
       "None": {
-        "shots": 6,
+        "shots": 7,
         "goals": 4,
-        "xG": 2.713,
-        "conversion": 66.7,
-        "goal_share": 21.1
+        "xG": 2.829,
+        "conversion": 57.1,
+        "goal_share": 19.0
       },
       "TakeOn": {
-        "shots": 5,
+        "shots": 6,
         "goals": 0,
-        "xG": 0.354,
+        "xG": 0.45,
         "conversion": 0.0,
         "goal_share": 0.0
       },
@@ -280,21 +287,35 @@
         "goals": 2,
         "xG": 1.184,
         "conversion": 66.7,
-        "goal_share": 10.5
+        "goal_share": 9.5
+      },
+      "Cross": {
+        "shots": 3,
+        "goals": 2,
+        "xG": 1.097,
+        "conversion": 66.7,
+        "goal_share": 9.5
       },
       "Standard": {
         "shots": 6,
         "goals": 2,
         "xG": 2.433,
         "conversion": 33.3,
-        "goal_share": 10.5
+        "goal_share": 9.5
       },
       "Rebound": {
         "shots": 3,
         "goals": 1,
         "xG": 1.122,
         "conversion": 33.3,
-        "goal_share": 5.3
+        "goal_share": 4.8
+      },
+      "BallRecovery": {
+        "shots": 3,
+        "goals": 2,
+        "xG": 0.38,
+        "conversion": 66.7,
+        "goal_share": 9.5
       }
     },
     "dangerous_actions": [
@@ -305,74 +326,74 @@
   "Fulham": {
     "actions": {
       "Pass": {
-        "shots": 19,
+        "shots": 22,
         "goals": 4,
-        "xG": 2.085,
-        "conversion": 21.1,
-        "goal_share": 18.2
+        "xG": 2.579,
+        "conversion": 18.2,
+        "goal_share": 16.7
       },
       "Aerial": {
         "shots": 5,
         "goals": 1,
         "xG": 0.726,
         "conversion": 20.0,
-        "goal_share": 4.5
+        "goal_share": 4.2
       },
       "Standard": {
         "shots": 4,
         "goals": 2,
         "xG": 1.611,
         "conversion": 50.0,
-        "goal_share": 9.1
+        "goal_share": 8.3
       },
       "BallRecovery": {
-        "shots": 6,
+        "shots": 7,
         "goals": 2,
-        "xG": 0.59,
-        "conversion": 33.3,
-        "goal_share": 9.1
+        "xG": 0.855,
+        "conversion": 28.6,
+        "goal_share": 8.3
       },
       "None": {
-        "shots": 6,
-        "goals": 3,
-        "xG": 1.846,
+        "shots": 8,
+        "goals": 4,
+        "xG": 2.172,
         "conversion": 50.0,
-        "goal_share": 13.6
+        "goal_share": 16.7
       },
       "Cross": {
         "shots": 5,
         "goals": 3,
         "xG": 1.396,
         "conversion": 60.0,
-        "goal_share": 13.6
+        "goal_share": 12.5
       },
       "TakeOn": {
         "shots": 3,
         "goals": 1,
         "xG": 0.396,
         "conversion": 33.3,
-        "goal_share": 4.5
+        "goal_share": 4.2
       },
       "Chipped": {
-        "shots": 3,
+        "shots": 4,
         "goals": 1,
-        "xG": 0.135,
-        "conversion": 33.3,
-        "goal_share": 4.5
+        "xG": 0.431,
+        "conversion": 25.0,
+        "goal_share": 4.2
       },
       "Throughball": {
-        "shots": 3,
-        "goals": 2,
-        "xG": 1.168,
-        "conversion": 66.7,
-        "goal_share": 9.1
+        "shots": 4,
+        "goals": 3,
+        "xG": 1.532,
+        "conversion": 75.0,
+        "goal_share": 12.5
       },
       "Rebound": {
         "shots": 3,
         "goals": 1,
         "xG": 1.335,
         "conversion": 33.3,
-        "goal_share": 4.5
+        "goal_share": 4.2
       }
     },
     "dangerous_actions": [
@@ -587,28 +608,28 @@
         "goals": 3,
         "xG": 2.329,
         "conversion": 30.0,
-        "goal_share": 11.1
+        "goal_share": 10.0
       },
       "Cross": {
-        "shots": 9,
-        "goals": 4,
-        "xG": 1.406,
-        "conversion": 44.4,
-        "goal_share": 14.8
+        "shots": 11,
+        "goals": 6,
+        "xG": 2.6,
+        "conversion": 54.5,
+        "goal_share": 20.0
       },
       "Rebound": {
         "shots": 4,
         "goals": 3,
         "xG": 3.039,
         "conversion": 75.0,
-        "goal_share": 11.1
+        "goal_share": 10.0
       },
       "Throughball": {
         "shots": 3,
         "goals": 3,
         "xG": 0.957,
         "conversion": 100.0,
-        "goal_share": 11.1
+        "goal_share": 10.0
       },
       "TakeOn": {
         "shots": 6,
@@ -622,28 +643,28 @@
         "goals": 1,
         "xG": 1.126,
         "conversion": 33.3,
-        "goal_share": 3.7
+        "goal_share": 3.3
       },
       "Chipped": {
         "shots": 3,
         "goals": 1,
         "xG": 0.601,
         "conversion": 33.3,
-        "goal_share": 3.7
+        "goal_share": 3.3
       },
       "Pass": {
-        "shots": 29,
-        "goals": 6,
-        "xG": 5.728,
-        "conversion": 20.7,
-        "goal_share": 22.2
+        "shots": 31,
+        "goals": 7,
+        "xG": 5.975,
+        "conversion": 22.6,
+        "goal_share": 23.3
       },
       "Standard": {
         "shots": 7,
         "goals": 5,
         "xG": 3.963,
         "conversion": 71.4,
-        "goal_share": 18.5
+        "goal_share": 16.7
       },
       "BallRecovery": {
         "shots": 5,
@@ -669,17 +690,17 @@
   "Wolverhampton Wanderers": {
     "actions": {
       "Pass": {
-        "shots": 27,
+        "shots": 28,
         "goals": 12,
-        "xG": 5.458,
-        "conversion": 44.4,
+        "xG": 5.484,
+        "conversion": 42.9,
         "goal_share": 38.7
       },
       "Chipped": {
-        "shots": 6,
+        "shots": 7,
         "goals": 2,
-        "xG": 0.998,
-        "conversion": 33.3,
+        "xG": 1.131,
+        "conversion": 28.6,
         "goal_share": 6.5
       },
       "HeadPass": {
@@ -792,10 +813,10 @@
   "Chelsea": {
     "actions": {
       "Pass": {
-        "shots": 20,
+        "shots": 21,
         "goals": 5,
-        "xG": 2.744,
-        "conversion": 25.0,
+        "xG": 2.78,
+        "conversion": 23.8,
         "goal_share": 33.3
       },
       "HeadPass": {
@@ -1072,7 +1093,7 @@
         "goals": 1,
         "xG": 1.266,
         "conversion": 7.7,
-        "goal_share": 11.1
+        "goal_share": 10.0
       },
       "TakeOn": {
         "shots": 3,
@@ -1086,14 +1107,21 @@
         "goals": 2,
         "xG": 0.932,
         "conversion": 50.0,
-        "goal_share": 22.2
+        "goal_share": 20.0
+      },
+      "Aerial": {
+        "shots": 3,
+        "goals": 1,
+        "xG": 0.134,
+        "conversion": 33.3,
+        "goal_share": 10.0
       },
       "Cross": {
         "shots": 6,
         "goals": 2,
         "xG": 1.2,
         "conversion": 33.3,
-        "goal_share": 22.2
+        "goal_share": 20.0
       }
     },
     "dangerous_actions": [],
@@ -1166,14 +1194,21 @@
         "goals": 1,
         "xG": 1.833,
         "conversion": 10.0,
-        "goal_share": 5.9
+        "goal_share": 5.3
+      },
+      "Standard": {
+        "shots": 3,
+        "goals": 1,
+        "xG": 1.576,
+        "conversion": 33.3,
+        "goal_share": 5.3
       },
       "Pass": {
-        "shots": 18,
-        "goals": 4,
-        "xG": 2.113,
-        "conversion": 22.2,
-        "goal_share": 23.5
+        "shots": 20,
+        "goals": 5,
+        "xG": 2.694,
+        "conversion": 25.0,
+        "goal_share": 26.3
       },
       "TakeOn": {
         "shots": 3,
@@ -1187,40 +1222,40 @@
         "goals": 4,
         "xG": 1.477,
         "conversion": 80.0,
-        "goal_share": 23.5
+        "goal_share": 21.1
       },
       "Chipped": {
         "shots": 4,
         "goals": 1,
         "xG": 0.69,
         "conversion": 25.0,
-        "goal_share": 5.9
+        "goal_share": 5.3
       },
       "Throughball": {
-        "shots": 4,
-        "goals": 1,
-        "xG": 1.193,
-        "conversion": 25.0,
-        "goal_share": 5.9
+        "shots": 5,
+        "goals": 2,
+        "xG": 1.53,
+        "conversion": 40.0,
+        "goal_share": 10.5
       },
       "Aerial": {
-        "shots": 8,
+        "shots": 9,
         "goals": 3,
-        "xG": 2.233,
-        "conversion": 37.5,
-        "goal_share": 17.6
+        "xG": 2.293,
+        "conversion": 33.3,
+        "goal_share": 15.8
       },
       "BallTouch": {
         "shots": 3,
         "goals": 2,
         "xG": 0.374,
         "conversion": 66.7,
-        "goal_share": 11.8
+        "goal_share": 10.5
       }
     },
     "dangerous_actions": [
       "Cross",
-      "Aerial"
+      "Throughball"
     ],
     "most_conceded_from": "Pass"
   },
@@ -1562,10 +1597,10 @@
         "goal_share": 15.0
       },
       "Cross": {
-        "shots": 4,
+        "shots": 5,
         "goals": 1,
-        "xG": 0.445,
-        "conversion": 25.0,
+        "xG": 0.476,
+        "conversion": 20.0,
         "goal_share": 5.0
       },
       "Throughball": {
@@ -1590,10 +1625,10 @@
         "goal_share": 5.0
       },
       "HeadPass": {
-        "shots": 3,
+        "shots": 4,
         "goals": 2,
-        "xG": 0.822,
-        "conversion": 66.7,
+        "xG": 0.917,
+        "conversion": 50.0,
         "goal_share": 10.0
       },
       "Chipped": {
@@ -1738,46 +1773,55 @@
         "goals": 4,
         "xG": 2.623,
         "conversion": 12.9,
-        "goal_share": 18.2
+        "goal_share": 16.7
       },
       "None": {
         "shots": 9,
         "goals": 3,
         "xG": 1.279,
         "conversion": 33.3,
-        "goal_share": 13.6
+        "goal_share": 12.5
       },
       "Cross": {
-        "shots": 11,
+        "shots": 12,
         "goals": 5,
-        "xG": 2.75,
-        "conversion": 45.5,
-        "goal_share": 22.7
+        "xG": 2.881,
+        "conversion": 41.7,
+        "goal_share": 20.8
       },
       "Throughball": {
-        "shots": 4,
-        "goals": 3,
-        "xG": 1.264,
-        "conversion": 75.0,
-        "goal_share": 13.6
+        "shots": 6,
+        "goals": 4,
+        "xG": 1.773,
+        "conversion": 66.7,
+        "goal_share": 16.7
       },
       "Rebound": {
-        "shots": 4,
-        "goals": 3,
-        "xG": 1.696,
-        "conversion": 75.0,
-        "goal_share": 13.6
+        "shots": 6,
+        "goals": 4,
+        "xG": 2.213,
+        "conversion": 66.7,
+        "goal_share": 16.7
       },
       "Standard": {
         "shots": 3,
         "goals": 2,
         "xG": 2.23,
         "conversion": 66.7,
-        "goal_share": 9.1
+        "goal_share": 8.3
+      },
+      "TakeOn": {
+        "shots": 3,
+        "goals": 1,
+        "xG": 0.429,
+        "conversion": 33.3,
+        "goal_share": 4.2
       }
     },
     "dangerous_actions": [
-      "Cross"
+      "Cross",
+      "Throughball",
+      "Rebound"
     ],
     "most_conceded_from": "Cross"
   },
@@ -1910,33 +1954,33 @@
         "goals": 1,
         "xG": 1.221,
         "conversion": 33.3,
-        "goal_share": 6.7
+        "goal_share": 6.2
       },
       "Pass": {
         "shots": 21,
         "goals": 5,
         "xG": 2.585,
         "conversion": 23.8,
-        "goal_share": 33.3
+        "goal_share": 31.2
       },
       "None": {
-        "shots": 8,
+        "shots": 9,
         "goals": 2,
-        "xG": 2.361,
-        "conversion": 25.0,
-        "goal_share": 13.3
+        "xG": 2.435,
+        "conversion": 22.2,
+        "goal_share": 12.5
       },
       "Cross": {
-        "shots": 11,
-        "goals": 3,
-        "xG": 2.075,
-        "conversion": 27.3,
-        "goal_share": 20.0
+        "shots": 12,
+        "goals": 4,
+        "xG": 2.143,
+        "conversion": 33.3,
+        "goal_share": 25.0
       },
       "Chipped": {
-        "shots": 6,
+        "shots": 7,
         "goals": 0,
-        "xG": 0.484,
+        "xG": 0.533,
         "conversion": 0.0,
         "goal_share": 0.0
       },
@@ -1945,14 +1989,14 @@
         "goals": 1,
         "xG": 0.655,
         "conversion": 33.3,
-        "goal_share": 6.7
+        "goal_share": 6.2
       },
       "Standard": {
-        "shots": 4,
+        "shots": 5,
         "goals": 1,
-        "xG": 0.911,
-        "conversion": 25.0,
-        "goal_share": 6.7
+        "xG": 0.964,
+        "conversion": 20.0,
+        "goal_share": 6.2
       },
       "Aerial": {
         "shots": 4,
@@ -2155,6 +2199,13 @@
         "xG": 1.132,
         "conversion": 25.0,
         "goal_share": 6.2
+      },
+      "BallTouch": {
+        "shots": 3,
+        "goals": 0,
+        "xG": 0.628,
+        "conversion": 0.0,
+        "goal_share": 0.0
       }
     },
     "dangerous_actions": [
@@ -2165,11 +2216,11 @@
   "Atletico Madrid": {
     "actions": {
       "TakeOn": {
-        "shots": 5,
-        "goals": 2,
-        "xG": 1.426,
-        "conversion": 40.0,
-        "goal_share": 13.3
+        "shots": 6,
+        "goals": 3,
+        "xG": 1.446,
+        "conversion": 50.0,
+        "goal_share": 18.8
       },
       "Aerial": {
         "shots": 4,
@@ -2183,21 +2234,21 @@
         "goals": 3,
         "xG": 1.584,
         "conversion": 33.3,
-        "goal_share": 20.0
+        "goal_share": 18.8
       },
       "Pass": {
-        "shots": 13,
+        "shots": 14,
         "goals": 4,
-        "xG": 1.858,
-        "conversion": 30.8,
-        "goal_share": 26.7
+        "xG": 1.884,
+        "conversion": 28.6,
+        "goal_share": 25.0
       },
       "Rebound": {
         "shots": 3,
         "goals": 2,
         "xG": 1.423,
         "conversion": 66.7,
-        "goal_share": 13.3
+        "goal_share": 12.5
       }
     },
     "dangerous_actions": [
@@ -2208,18 +2259,18 @@
   "Elche": {
     "actions": {
       "Pass": {
-        "shots": 21,
-        "goals": 4,
-        "xG": 2.7,
-        "conversion": 19.0,
-        "goal_share": 23.5
+        "shots": 23,
+        "goals": 5,
+        "xG": 3.354,
+        "conversion": 21.7,
+        "goal_share": 25.0
       },
       "TakeOn": {
         "shots": 3,
         "goals": 2,
         "xG": 0.779,
         "conversion": 66.7,
-        "goal_share": 11.8
+        "goal_share": 10.0
       },
       "None": {
         "shots": 6,
@@ -2229,49 +2280,51 @@
         "goal_share": 0.0
       },
       "BallRecovery": {
-        "shots": 3,
-        "goals": 2,
-        "xG": 0.258,
-        "conversion": 66.7,
-        "goal_share": 11.8
+        "shots": 6,
+        "goals": 3,
+        "xG": 0.885,
+        "conversion": 50.0,
+        "goal_share": 15.0
       },
       "Chipped": {
-        "shots": 6,
+        "shots": 7,
         "goals": 1,
-        "xG": 0.932,
-        "conversion": 16.7,
-        "goal_share": 5.9
+        "xG": 1.203,
+        "conversion": 14.3,
+        "goal_share": 5.0
       },
       "BallTouch": {
         "shots": 4,
         "goals": 2,
         "xG": 0.672,
         "conversion": 50.0,
-        "goal_share": 11.8
+        "goal_share": 10.0
       },
       "Cross": {
-        "shots": 7,
-        "goals": 1,
-        "xG": 1.317,
-        "conversion": 14.3,
-        "goal_share": 5.9
+        "shots": 9,
+        "goals": 2,
+        "xG": 1.79,
+        "conversion": 22.2,
+        "goal_share": 10.0
       },
       "Standard": {
         "shots": 3,
         "goals": 2,
         "xG": 1.523,
         "conversion": 66.7,
-        "goal_share": 11.8
+        "goal_share": 10.0
       },
       "HeadPass": {
         "shots": 4,
         "goals": 1,
         "xG": 0.734,
         "conversion": 25.0,
-        "goal_share": 5.9
+        "goal_share": 5.0
       }
     },
-    "dangerous_actions": [],
+    "dangerous_actions": [
+      "BallRecovery"
+    ],
     "most_conceded_from": "Pass"
   },
   "Real Betis": {
@@ -2392,39 +2445,39 @@
         "goal_share": 0.0
       },
       "Pass": {
-        "shots": 30,
-        "goals": 7,
-        "xG": 3.778,
-        "conversion": 23.3,
-        "goal_share": 38.9
+        "shots": 33,
+        "goals": 8,
+        "xG": 3.918,
+        "conversion": 24.2,
+        "goal_share": 40.0
       },
       "Standard": {
-        "shots": 3,
+        "shots": 4,
         "goals": 3,
-        "xG": 2.23,
-        "conversion": 100.0,
-        "goal_share": 16.7
+        "xG": 2.335,
+        "conversion": 75.0,
+        "goal_share": 15.0
       },
       "TakeOn": {
-        "shots": 5,
+        "shots": 6,
         "goals": 1,
-        "xG": 0.571,
-        "conversion": 20.0,
-        "goal_share": 5.6
+        "xG": 0.606,
+        "conversion": 16.7,
+        "goal_share": 5.0
       },
       "Cross": {
         "shots": 6,
         "goals": 2,
         "xG": 1.208,
         "conversion": 33.3,
-        "goal_share": 11.1
+        "goal_share": 10.0
       },
       "None": {
-        "shots": 10,
-        "goals": 3,
-        "xG": 1.625,
-        "conversion": 30.0,
-        "goal_share": 16.7
+        "shots": 12,
+        "goals": 4,
+        "xG": 2.267,
+        "conversion": 33.3,
+        "goal_share": 20.0
       },
       "Aerial": {
         "shots": 3,
@@ -2438,7 +2491,7 @@
         "goals": 2,
         "xG": 1.435,
         "conversion": 50.0,
-        "goal_share": 11.1
+        "goal_share": 10.0
       }
     },
     "dangerous_actions": [],
@@ -2517,50 +2570,51 @@
   "FC Heidenheim": {
     "actions": {
       "Pass": {
-        "shots": 35,
+        "shots": 36,
         "goals": 11,
-        "xG": 5.194,
-        "conversion": 31.4,
-        "goal_share": 39.3
+        "xG": 5.223,
+        "conversion": 30.6,
+        "goal_share": 36.7
       },
       "None": {
         "shots": 7,
         "goals": 2,
         "xG": 1.682,
         "conversion": 28.6,
-        "goal_share": 7.1
+        "goal_share": 6.7
       },
       "Chipped": {
         "shots": 4,
         "goals": 1,
         "xG": 0.731,
         "conversion": 25.0,
-        "goal_share": 3.6
+        "goal_share": 3.3
       },
       "Cross": {
-        "shots": 8,
+        "shots": 9,
         "goals": 6,
-        "xG": 2.614,
-        "conversion": 75.0,
-        "goal_share": 21.4
+        "xG": 2.722,
+        "conversion": 66.7,
+        "goal_share": 20.0
       },
       "TakeOn": {
         "shots": 3,
         "goals": 2,
         "xG": 1.013,
         "conversion": 66.7,
-        "goal_share": 7.1
+        "goal_share": 6.7
       },
       "Throughball": {
-        "shots": 3,
-        "goals": 3,
-        "xG": 1.813,
+        "shots": 5,
+        "goals": 5,
+        "xG": 2.086,
         "conversion": 100.0,
-        "goal_share": 10.7
+        "goal_share": 16.7
       }
     },
     "dangerous_actions": [
-      "Cross"
+      "Cross",
+      "Throughball"
     ],
     "most_conceded_from": "Pass"
   },
@@ -2588,10 +2642,10 @@
         "goal_share": 13.0
       },
       "Pass": {
-        "shots": 18,
+        "shots": 21,
         "goals": 6,
-        "xG": 2.406,
-        "conversion": 33.3,
+        "xG": 2.464,
+        "conversion": 28.6,
         "goal_share": 26.1
       },
       "None": {
@@ -2607,6 +2661,13 @@
         "xG": 0.168,
         "conversion": 0.0,
         "goal_share": 0.0
+      },
+      "Aerial": {
+        "shots": 3,
+        "goals": 1,
+        "xG": 0.62,
+        "conversion": 33.3,
+        "goal_share": 4.3
       }
     },
     "dangerous_actions": [
@@ -2618,24 +2679,24 @@
   "Bayer Leverkusen": {
     "actions": {
       "Pass": {
-        "shots": 22,
+        "shots": 23,
         "goals": 1,
-        "xG": 1.274,
-        "conversion": 4.5,
+        "xG": 1.311,
+        "conversion": 4.3,
         "goal_share": 5.6
       },
       "Standard": {
-        "shots": 3,
+        "shots": 4,
         "goals": 2,
-        "xG": 1.568,
-        "conversion": 66.7,
+        "xG": 1.617,
+        "conversion": 50.0,
         "goal_share": 11.1
       },
       "None": {
-        "shots": 7,
+        "shots": 8,
         "goals": 3,
-        "xG": 0.957,
-        "conversion": 42.9,
+        "xG": 1.27,
+        "conversion": 37.5,
         "goal_share": 16.7
       },
       "Aerial": {
@@ -2681,46 +2742,52 @@
         "goals": 1,
         "xG": 0.809,
         "conversion": 20.0,
-        "goal_share": 5.3
+        "goal_share": 5.0
       },
       "None": {
         "shots": 6,
         "goals": 1,
         "xG": 1.401,
         "conversion": 16.7,
-        "goal_share": 5.3
+        "goal_share": 5.0
       },
       "Pass": {
-        "shots": 21,
-        "goals": 5,
-        "xG": 2.162,
-        "conversion": 23.8,
-        "goal_share": 26.3
+        "shots": 24,
+        "goals": 6,
+        "xG": 2.433,
+        "conversion": 25.0,
+        "goal_share": 30.0
       },
       "Throughball": {
-        "shots": 5,
+        "shots": 6,
         "goals": 2,
-        "xG": 1.966,
-        "conversion": 40.0,
-        "goal_share": 10.5
+        "xG": 2.082,
+        "conversion": 33.3,
+        "goal_share": 10.0
+      },
+      "Aerial": {
+        "shots": 3,
+        "goals": 0,
+        "xG": 0.97,
+        "conversion": 0.0,
+        "goal_share": 0.0
       },
       "Rebound": {
         "shots": 5,
         "goals": 4,
         "xG": 2.553,
         "conversion": 80.0,
-        "goal_share": 21.1
+        "goal_share": 20.0
       },
       "TakeOn": {
         "shots": 5,
         "goals": 3,
         "xG": 1.556,
         "conversion": 60.0,
-        "goal_share": 15.8
+        "goal_share": 15.0
       }
     },
     "dangerous_actions": [
-      "Throughball",
       "Rebound",
       "TakeOn"
     ],
@@ -2880,10 +2947,10 @@
         "goal_share": 3.4
       },
       "TakeOn": {
-        "shots": 3,
+        "shots": 4,
         "goals": 2,
-        "xG": 1.011,
-        "conversion": 66.7,
+        "xG": 1.06,
+        "conversion": 50.0,
         "goal_share": 6.9
       },
       "Throughball": {
@@ -3037,28 +3104,28 @@
         "goals": 11,
         "xG": 5.056,
         "conversion": 44.0,
-        "goal_share": 42.3
+        "goal_share": 40.7
       },
       "Standard": {
         "shots": 5,
         "goals": 3,
         "xG": 2.5,
         "conversion": 60.0,
-        "goal_share": 11.5
+        "goal_share": 11.1
       },
       "Aerial": {
         "shots": 3,
         "goals": 1,
         "xG": 0.15,
         "conversion": 33.3,
-        "goal_share": 3.8
+        "goal_share": 3.7
       },
       "None": {
         "shots": 9,
         "goals": 4,
         "xG": 2.261,
         "conversion": 44.4,
-        "goal_share": 15.4
+        "goal_share": 14.8
       },
       "Chipped": {
         "shots": 3,
@@ -3072,21 +3139,21 @@
         "goals": 1,
         "xG": 0.536,
         "conversion": 25.0,
-        "goal_share": 3.8
+        "goal_share": 3.7
       },
       "Rebound": {
-        "shots": 3,
+        "shots": 4,
         "goals": 2,
-        "xG": 1.154,
-        "conversion": 66.7,
-        "goal_share": 7.7
+        "xG": 1.204,
+        "conversion": 50.0,
+        "goal_share": 7.4
       },
       "TakeOn": {
-        "shots": 3,
-        "goals": 2,
-        "xG": 0.779,
-        "conversion": 66.7,
-        "goal_share": 7.7
+        "shots": 4,
+        "goals": 3,
+        "xG": 0.888,
+        "conversion": 75.0,
+        "goal_share": 11.1
       }
     },
     "dangerous_actions": [
@@ -3099,18 +3166,18 @@
   "St. Pauli": {
     "actions": {
       "Pass": {
-        "shots": 29,
+        "shots": 30,
         "goals": 9,
-        "xG": 6.456,
-        "conversion": 31.0,
-        "goal_share": 36.0
+        "xG": 6.51,
+        "conversion": 30.0,
+        "goal_share": 34.6
       },
       "Aerial": {
-        "shots": 4,
+        "shots": 5,
         "goals": 1,
-        "xG": 1.046,
-        "conversion": 25.0,
-        "goal_share": 4.0
+        "xG": 1.059,
+        "conversion": 20.0,
+        "goal_share": 3.8
       },
       "Standard": {
         "shots": 3,
@@ -3124,35 +3191,42 @@
         "goals": 2,
         "xG": 1.632,
         "conversion": 28.6,
-        "goal_share": 8.0
+        "goal_share": 7.7
       },
       "None": {
-        "shots": 9,
+        "shots": 11,
         "goals": 6,
-        "xG": 2.631,
-        "conversion": 66.7,
-        "goal_share": 24.0
+        "xG": 2.715,
+        "conversion": 54.5,
+        "goal_share": 23.1
       },
       "Cross": {
         "shots": 6,
         "goals": 2,
         "xG": 2.378,
         "conversion": 33.3,
-        "goal_share": 8.0
+        "goal_share": 7.7
+      },
+      "Throughball": {
+        "shots": 3,
+        "goals": 2,
+        "xG": 1.274,
+        "conversion": 66.7,
+        "goal_share": 7.7
       },
       "Rebound": {
-        "shots": 3,
-        "goals": 1,
-        "xG": 1.132,
-        "conversion": 33.3,
-        "goal_share": 4.0
+        "shots": 4,
+        "goals": 2,
+        "xG": 1.98,
+        "conversion": 50.0,
+        "goal_share": 7.7
       },
       "BallTouch": {
         "shots": 3,
         "goals": 1,
         "xG": 0.199,
         "conversion": 33.3,
-        "goal_share": 4.0
+        "goal_share": 3.8
       }
     },
     "dangerous_actions": [
@@ -3270,67 +3344,67 @@
   "FC Cologne": {
     "actions": {
       "Pass": {
-        "shots": 16,
+        "shots": 18,
         "goals": 3,
-        "xG": 3.484,
-        "conversion": 18.8,
-        "goal_share": 14.3
+        "xG": 3.869,
+        "conversion": 16.7,
+        "goal_share": 13.0
       },
       "Cross": {
-        "shots": 9,
-        "goals": 2,
-        "xG": 1.158,
-        "conversion": 22.2,
-        "goal_share": 9.5
+        "shots": 11,
+        "goals": 3,
+        "xG": 1.282,
+        "conversion": 27.3,
+        "goal_share": 13.0
       },
       "Aerial": {
-        "shots": 3,
-        "goals": 2,
-        "xG": 0.505,
-        "conversion": 66.7,
-        "goal_share": 9.5
+        "shots": 4,
+        "goals": 3,
+        "xG": 0.562,
+        "conversion": 75.0,
+        "goal_share": 13.0
       },
       "Chipped": {
         "shots": 4,
         "goals": 1,
         "xG": 0.584,
         "conversion": 25.0,
-        "goal_share": 4.8
+        "goal_share": 4.3
       },
       "Standard": {
         "shots": 6,
         "goals": 5,
         "xG": 3.19,
         "conversion": 83.3,
-        "goal_share": 23.8
+        "goal_share": 21.7
       },
       "None": {
         "shots": 5,
         "goals": 1,
         "xG": 0.8,
         "conversion": 20.0,
-        "goal_share": 4.8
+        "goal_share": 4.3
       },
       "Rebound": {
         "shots": 4,
         "goals": 4,
         "xG": 1.811,
         "conversion": 100.0,
-        "goal_share": 19.0
+        "goal_share": 17.4
       },
       "TakeOn": {
         "shots": 3,
         "goals": 1,
         "xG": 0.961,
         "conversion": 33.3,
-        "goal_share": 4.8
+        "goal_share": 4.3
       },
       "BallTouch": {
         "shots": 3,
         "goals": 1,
         "xG": 0.631,
         "conversion": 33.3,
-        "goal_share": 4.8
+        "goal_share": 4.3
       }
     },
     "dangerous_actions": [
@@ -3341,46 +3415,53 @@
   "Borussia M.Gladbach": {
     "actions": {
       "Pass": {
-        "shots": 25,
-        "goals": 4,
-        "xG": 2.089,
-        "conversion": 16.0,
-        "goal_share": 21.1
+        "shots": 26,
+        "goals": 5,
+        "xG": 2.616,
+        "conversion": 19.2,
+        "goal_share": 22.7
       },
       "TakeOn": {
-        "shots": 3,
+        "shots": 4,
         "goals": 0,
-        "xG": 0.281,
+        "xG": 0.409,
         "conversion": 0.0,
         "goal_share": 0.0
       },
       "Aerial": {
-        "shots": 5,
+        "shots": 6,
         "goals": 1,
-        "xG": 0.364,
-        "conversion": 20.0,
-        "goal_share": 5.3
+        "xG": 0.413,
+        "conversion": 16.7,
+        "goal_share": 4.5
       },
       "Cross": {
         "shots": 8,
         "goals": 4,
         "xG": 2.393,
         "conversion": 50.0,
-        "goal_share": 21.1
+        "goal_share": 18.2
+      },
+      "None": {
+        "shots": 3,
+        "goals": 2,
+        "xG": 0.627,
+        "conversion": 66.7,
+        "goal_share": 9.1
       },
       "Standard": {
         "shots": 3,
         "goals": 2,
         "xG": 1.593,
         "conversion": 66.7,
-        "goal_share": 10.5
+        "goal_share": 9.1
       },
       "Throughball": {
-        "shots": 5,
-        "goals": 3,
-        "xG": 2.293,
-        "conversion": 60.0,
-        "goal_share": 15.8
+        "shots": 6,
+        "goals": 4,
+        "xG": 2.68,
+        "conversion": 66.7,
+        "goal_share": 18.2
       },
       "Chipped": {
         "shots": 4,
@@ -3390,11 +3471,11 @@
         "goal_share": 0.0
       },
       "Rebound": {
-        "shots": 5,
+        "shots": 6,
         "goals": 4,
-        "xG": 1.347,
-        "conversion": 80.0,
-        "goal_share": 21.1
+        "xG": 1.887,
+        "conversion": 66.7,
+        "goal_share": 18.2
       }
     },
     "dangerous_actions": [
@@ -3407,18 +3488,18 @@
   "Hamburger SV": {
     "actions": {
       "Aerial": {
-        "shots": 3,
+        "shots": 4,
         "goals": 0,
-        "xG": 0.138,
+        "xG": 0.149,
         "conversion": 0.0,
         "goal_share": 0.0
       },
       "Chipped": {
-        "shots": 4,
+        "shots": 5,
         "goals": 1,
-        "xG": 0.321,
-        "conversion": 25.0,
-        "goal_share": 5.0
+        "xG": 0.746,
+        "conversion": 20.0,
+        "goal_share": 4.2
       },
       "None": {
         "shots": 4,
@@ -3428,46 +3509,46 @@
         "goal_share": 0.0
       },
       "Pass": {
-        "shots": 27,
-        "goals": 7,
-        "xG": 3.923,
-        "conversion": 25.9,
-        "goal_share": 35.0
+        "shots": 29,
+        "goals": 9,
+        "xG": 5.083,
+        "conversion": 31.0,
+        "goal_share": 37.5
       },
       "Cross": {
-        "shots": 5,
-        "goals": 3,
-        "xG": 1.181,
-        "conversion": 60.0,
-        "goal_share": 15.0
+        "shots": 6,
+        "goals": 4,
+        "xG": 1.455,
+        "conversion": 66.7,
+        "goal_share": 16.7
       },
       "TakeOn": {
         "shots": 5,
         "goals": 1,
         "xG": 0.548,
         "conversion": 20.0,
-        "goal_share": 5.0
+        "goal_share": 4.2
       },
       "Standard": {
         "shots": 4,
         "goals": 2,
         "xG": 1.654,
         "conversion": 50.0,
-        "goal_share": 10.0
+        "goal_share": 8.3
       },
       "BallRecovery": {
         "shots": 3,
         "goals": 1,
         "xG": 0.111,
         "conversion": 33.3,
-        "goal_share": 5.0
+        "goal_share": 4.2
       },
       "Rebound": {
         "shots": 3,
         "goals": 3,
         "xG": 1.479,
         "conversion": 100.0,
-        "goal_share": 15.0
+        "goal_share": 12.5
       }
     },
     "dangerous_actions": [
@@ -3764,32 +3845,32 @@
   "Cremonese": {
     "actions": {
       "Chipped": {
-        "shots": 5,
+        "shots": 7,
         "goals": 2,
-        "xG": 0.825,
-        "conversion": 40.0,
-        "goal_share": 11.8
+        "xG": 0.929,
+        "conversion": 28.6,
+        "goal_share": 11.1
       },
       "Pass": {
-        "shots": 32,
+        "shots": 34,
         "goals": 7,
-        "xG": 4.722,
-        "conversion": 21.9,
-        "goal_share": 41.2
+        "xG": 5.356,
+        "conversion": 20.6,
+        "goal_share": 38.9
       },
       "BallTouch": {
-        "shots": 4,
-        "goals": 0,
-        "xG": 0.183,
-        "conversion": 0.0,
-        "goal_share": 0.0
+        "shots": 5,
+        "goals": 1,
+        "xG": 0.587,
+        "conversion": 20.0,
+        "goal_share": 5.6
       },
       "Cross": {
         "shots": 7,
         "goals": 2,
         "xG": 1.491,
         "conversion": 28.6,
-        "goal_share": 11.8
+        "goal_share": 11.1
       },
       "Aerial": {
         "shots": 4,
@@ -3803,19 +3884,17 @@
         "goals": 2,
         "xG": 1.562,
         "conversion": 66.7,
-        "goal_share": 11.8
+        "goal_share": 11.1
       },
       "None": {
         "shots": 9,
         "goals": 3,
         "xG": 1.583,
         "conversion": 33.3,
-        "goal_share": 17.6
+        "goal_share": 16.7
       }
     },
-    "dangerous_actions": [
-      "Chipped"
-    ],
+    "dangerous_actions": [],
     "most_conceded_from": "Pass"
   },
   "Roma": {
@@ -3923,14 +4002,14 @@
         "goals": 1,
         "xG": 0.984,
         "conversion": 25.0,
-        "goal_share": 5.3
+        "goal_share": 4.8
       },
       "Pass": {
-        "shots": 23,
+        "shots": 27,
         "goals": 7,
-        "xG": 4.254,
-        "conversion": 30.4,
-        "goal_share": 36.8
+        "xG": 4.665,
+        "conversion": 25.9,
+        "goal_share": 33.3
       },
       "TakeOn": {
         "shots": 6,
@@ -3940,43 +4019,44 @@
         "goal_share": 0.0
       },
       "BallRecovery": {
-        "shots": 7,
+        "shots": 8,
         "goals": 1,
-        "xG": 0.25,
-        "conversion": 14.3,
-        "goal_share": 5.3
+        "xG": 0.368,
+        "conversion": 12.5,
+        "goal_share": 4.8
       },
       "Cross": {
         "shots": 12,
         "goals": 5,
         "xG": 2.556,
         "conversion": 41.7,
-        "goal_share": 26.3
+        "goal_share": 23.8
       },
       "Rebound": {
-        "shots": 3,
-        "goals": 0,
-        "xG": 1.652,
-        "conversion": 0.0,
-        "goal_share": 0.0
-      },
-      "None": {
         "shots": 4,
         "goals": 1,
-        "xG": 0.161,
+        "xG": 2.331,
         "conversion": 25.0,
-        "goal_share": 5.3
+        "goal_share": 4.8
+      },
+      "None": {
+        "shots": 5,
+        "goals": 2,
+        "xG": 0.699,
+        "conversion": 40.0,
+        "goal_share": 9.5
       },
       "HeadPass": {
         "shots": 3,
         "goals": 2,
         "xG": 1.141,
         "conversion": 66.7,
-        "goal_share": 10.5
+        "goal_share": 9.5
       }
     },
     "dangerous_actions": [
-      "Cross"
+      "Cross",
+      "None"
     ],
     "most_conceded_from": "Pass"
   },
@@ -4116,10 +4196,10 @@
         "goal_share": 9.1
       },
       "Pass": {
-        "shots": 18,
+        "shots": 20,
         "goals": 2,
-        "xG": 1.096,
-        "conversion": 11.1,
+        "xG": 1.269,
+        "conversion": 10.0,
         "goal_share": 18.2
       },
       "Throughball": {
@@ -4129,10 +4209,17 @@
         "conversion": 20.0,
         "goal_share": 9.1
       },
+      "Standard": {
+        "shots": 3,
+        "goals": 1,
+        "xG": 0.139,
+        "conversion": 33.3,
+        "goal_share": 9.1
+      },
       "Chipped": {
-        "shots": 4,
+        "shots": 5,
         "goals": 0,
-        "xG": 0.44,
+        "xG": 0.476,
         "conversion": 0.0,
         "goal_share": 0.0
       },
@@ -4144,10 +4231,10 @@
         "goal_share": 0.0
       },
       "Rebound": {
-        "shots": 7,
+        "shots": 8,
         "goals": 3,
-        "xG": 2.695,
-        "conversion": 42.9,
+        "xG": 2.722,
+        "conversion": 37.5,
         "goal_share": 27.3
       },
       "None": {
@@ -4173,53 +4260,53 @@
   "Atalanta": {
     "actions": {
       "Pass": {
-        "shots": 19,
-        "goals": 5,
-        "xG": 1.942,
-        "conversion": 26.3,
-        "goal_share": 31.2
+        "shots": 20,
+        "goals": 6,
+        "xG": 2.225,
+        "conversion": 30.0,
+        "goal_share": 35.3
       },
       "Aerial": {
         "shots": 4,
         "goals": 1,
         "xG": 1.383,
         "conversion": 25.0,
-        "goal_share": 6.2
+        "goal_share": 5.9
       },
       "None": {
         "shots": 6,
         "goals": 4,
         "xG": 0.648,
         "conversion": 66.7,
-        "goal_share": 25.0
+        "goal_share": 23.5
       },
       "Cross": {
         "shots": 5,
         "goals": 1,
         "xG": 0.482,
         "conversion": 20.0,
-        "goal_share": 6.2
+        "goal_share": 5.9
       },
       "Rebound": {
         "shots": 5,
         "goals": 2,
         "xG": 2.896,
         "conversion": 40.0,
-        "goal_share": 12.5
+        "goal_share": 11.8
       },
       "TakeOn": {
         "shots": 5,
         "goals": 1,
         "xG": 1.257,
         "conversion": 20.0,
-        "goal_share": 6.2
+        "goal_share": 5.9
       },
       "Standard": {
         "shots": 7,
         "goals": 1,
         "xG": 1.868,
         "conversion": 14.3,
-        "goal_share": 6.2
+        "goal_share": 5.9
       },
       "BallRecovery": {
         "shots": 4,
@@ -4346,46 +4433,46 @@
   "Parma Calcio 1913": {
     "actions": {
       "None": {
-        "shots": 4,
+        "shots": 5,
         "goals": 0,
-        "xG": 0.124,
+        "xG": 0.183,
         "conversion": 0.0,
         "goal_share": 0.0
       },
       "Pass": {
-        "shots": 26,
+        "shots": 28,
         "goals": 8,
-        "xG": 4.141,
-        "conversion": 30.8,
-        "goal_share": 47.1
+        "xG": 4.259,
+        "conversion": 28.6,
+        "goal_share": 44.4
       },
       "Cross": {
         "shots": 9,
         "goals": 2,
         "xG": 1.937,
         "conversion": 22.2,
-        "goal_share": 11.8
+        "goal_share": 11.1
       },
       "Chipped": {
         "shots": 3,
         "goals": 1,
         "xG": 0.7,
         "conversion": 33.3,
-        "goal_share": 5.9
+        "goal_share": 5.6
       },
       "Rebound": {
         "shots": 4,
         "goals": 3,
         "xG": 1.074,
         "conversion": 75.0,
-        "goal_share": 17.6
+        "goal_share": 16.7
       },
       "Standard": {
         "shots": 4,
         "goals": 2,
         "xG": 2.343,
         "conversion": 50.0,
-        "goal_share": 11.8
+        "goal_share": 11.1
       }
     },
     "dangerous_actions": [],
@@ -4579,17 +4666,17 @@
         "goal_share": 30.8
       },
       "Aerial": {
-        "shots": 6,
+        "shots": 7,
         "goals": 2,
-        "xG": 0.535,
-        "conversion": 33.3,
+        "xG": 0.597,
+        "conversion": 28.6,
         "goal_share": 7.7
       },
       "None": {
-        "shots": 4,
+        "shots": 5,
         "goals": 2,
-        "xG": 1.514,
-        "conversion": 50.0,
+        "xG": 1.525,
+        "conversion": 40.0,
         "goal_share": 7.7
       },
       "Throughball": {
@@ -4613,6 +4700,13 @@
         "conversion": 66.7,
         "goal_share": 7.7
       },
+      "HeadPass": {
+        "shots": 3,
+        "goals": 0,
+        "xG": 0.609,
+        "conversion": 0.0,
+        "goal_share": 0.0
+      },
       "Standard": {
         "shots": 4,
         "goals": 3,
@@ -4623,39 +4717,40 @@
     },
     "dangerous_actions": [
       "Cross",
-      "Pass"
+      "Pass",
+      "None"
     ],
     "most_conceded_from": "Pass"
   },
   "Rennes": {
     "actions": {
       "None": {
-        "shots": 4,
+        "shots": 6,
         "goals": 1,
-        "xG": 1.582,
-        "conversion": 25.0,
-        "goal_share": 4.3
+        "xG": 1.618,
+        "conversion": 16.7,
+        "goal_share": 4.2
       },
       "Pass": {
-        "shots": 20,
-        "goals": 8,
-        "xG": 3.083,
-        "conversion": 40.0,
-        "goal_share": 34.8
+        "shots": 23,
+        "goals": 9,
+        "xG": 3.519,
+        "conversion": 39.1,
+        "goal_share": 37.5
       },
       "TakeOn": {
         "shots": 7,
         "goals": 2,
         "xG": 1.564,
         "conversion": 28.6,
-        "goal_share": 8.7
+        "goal_share": 8.3
       },
       "Cross": {
-        "shots": 4,
+        "shots": 5,
         "goals": 2,
-        "xG": 0.682,
-        "conversion": 50.0,
-        "goal_share": 8.7
+        "xG": 0.736,
+        "conversion": 40.0,
+        "goal_share": 8.3
       },
       "BallRecovery": {
         "shots": 3,
@@ -4669,39 +4764,40 @@
         "goals": 2,
         "xG": 1.272,
         "conversion": 40.0,
-        "goal_share": 8.7
+        "goal_share": 8.3
       },
       "BallTouch": {
-        "shots": 4,
+        "shots": 5,
         "goals": 1,
-        "xG": 0.533,
-        "conversion": 25.0,
-        "goal_share": 4.3
+        "xG": 0.598,
+        "conversion": 20.0,
+        "goal_share": 4.2
       },
       "Rebound": {
         "shots": 4,
         "goals": 1,
         "xG": 0.851,
         "conversion": 25.0,
-        "goal_share": 4.3
+        "goal_share": 4.2
       },
       "Standard": {
         "shots": 4,
         "goals": 3,
         "xG": 3.04,
         "conversion": 75.0,
-        "goal_share": 13.0
+        "goal_share": 12.5
       },
       "Throughball": {
         "shots": 4,
         "goals": 1,
         "xG": 1.137,
         "conversion": 25.0,
-        "goal_share": 4.3
+        "goal_share": 4.2
       }
     },
     "dangerous_actions": [
       "Pass",
+      "Cross",
       "Aerial"
     ],
     "most_conceded_from": "Pass"
@@ -5080,10 +5176,10 @@
   "Toulouse": {
     "actions": {
       "Pass": {
-        "shots": 16,
+        "shots": 17,
         "goals": 2,
-        "xG": 2.395,
-        "conversion": 12.5,
+        "xG": 2.422,
+        "conversion": 11.8,
         "goal_share": 10.5
       },
       "TakeOn": {
@@ -5094,10 +5190,10 @@
         "goal_share": 5.3
       },
       "None": {
-        "shots": 6,
+        "shots": 7,
         "goals": 3,
-        "xG": 0.648,
-        "conversion": 50.0,
+        "xG": 0.666,
+        "conversion": 42.9,
         "goal_share": 15.8
       },
       "Throughball": {
@@ -5137,65 +5233,74 @@
   },
   "Brest": {
     "actions": {
+      "BallRecovery": {
+        "shots": 3,
+        "goals": 1,
+        "xG": 0.538,
+        "conversion": 33.3,
+        "goal_share": 3.8
+      },
       "Chipped": {
         "shots": 8,
         "goals": 3,
         "xG": 1.814,
         "conversion": 37.5,
-        "goal_share": 13.0
+        "goal_share": 11.5
       },
       "Pass": {
-        "shots": 19,
-        "goals": 4,
-        "xG": 2.89,
-        "conversion": 21.1,
-        "goal_share": 17.4
+        "shots": 20,
+        "goals": 5,
+        "xG": 3.345,
+        "conversion": 25.0,
+        "goal_share": 19.2
       },
       "Cross": {
-        "shots": 12,
-        "goals": 4,
-        "xG": 1.656,
-        "conversion": 33.3,
-        "goal_share": 17.4
+        "shots": 13,
+        "goals": 5,
+        "xG": 2.002,
+        "conversion": 38.5,
+        "goal_share": 19.2
       },
       "TakeOn": {
-        "shots": 4,
+        "shots": 5,
         "goals": 2,
-        "xG": 1.628,
-        "conversion": 50.0,
-        "goal_share": 8.7
+        "xG": 1.723,
+        "conversion": 40.0,
+        "goal_share": 7.7
       },
       "Rebound": {
         "shots": 3,
         "goals": 2,
         "xG": 1.404,
         "conversion": 66.7,
-        "goal_share": 8.7
+        "goal_share": 7.7
       },
       "Standard": {
         "shots": 5,
         "goals": 3,
         "xG": 1.714,
         "conversion": 60.0,
-        "goal_share": 13.0
+        "goal_share": 11.5
       },
       "Aerial": {
         "shots": 4,
         "goals": 1,
         "xG": 0.61,
         "conversion": 25.0,
-        "goal_share": 4.3
+        "goal_share": 3.8
       },
       "None": {
         "shots": 6,
         "goals": 1,
         "xG": 1.044,
         "conversion": 16.7,
-        "goal_share": 4.3
+        "goal_share": 3.8
       }
     },
     "dangerous_actions": [
       "Chipped",
+      "Cross",
+      "TakeOn",
       "Standard"
     ],
     "most_conceded_from": "Pass"
@@ -5461,21 +5566,21 @@
         "goals": 7,
         "xG": 2.563,
         "conversion": 53.8,
-        "goal_share": 26.9
+        "goal_share": 24.1
       },
       "Standard": {
-        "shots": 7,
+        "shots": 8,
         "goals": 4,
-        "xG": 3.895,
-        "conversion": 57.1,
-        "goal_share": 15.4
+        "xG": 4.655,
+        "conversion": 50.0,
+        "goal_share": 13.8
       },
       "Cross": {
-        "shots": 15,
-        "goals": 5,
-        "xG": 3.094,
-        "conversion": 33.3,
-        "goal_share": 19.2
+        "shots": 16,
+        "goals": 6,
+        "xG": 3.715,
+        "conversion": 37.5,
+        "goal_share": 20.7
       },
       "Aerial": {
         "shots": 5,
@@ -5489,19 +5594,27 @@
         "goals": 3,
         "xG": 1.033,
         "conversion": 60.0,
-        "goal_share": 11.5
+        "goal_share": 10.3
+      },
+      "BallRecovery": {
+        "shots": 3,
+        "goals": 1,
+        "xG": 0.425,
+        "conversion": 33.3,
+        "goal_share": 3.4
       },
       "Throughball": {
         "shots": 4,
         "goals": 3,
         "xG": 1.029,
         "conversion": 75.0,
-        "goal_share": 11.5
+        "goal_share": 10.3
       }
     },
     "dangerous_actions": [
       "Pass",
       "Standard",
+      "Cross",
       "None"
     ],
     "most_conceded_from": "Pass"
@@ -5513,49 +5626,49 @@
         "goals": 1,
         "xG": 0.49,
         "conversion": 20.0,
-        "goal_share": 3.0
+        "goal_share": 2.8
       },
       "Chipped": {
         "shots": 4,
         "goals": 2,
         "xG": 0.631,
         "conversion": 50.0,
-        "goal_share": 6.1
+        "goal_share": 5.6
       },
       "Pass": {
-        "shots": 32,
-        "goals": 14,
-        "xG": 6.092,
-        "conversion": 43.8,
-        "goal_share": 42.4
+        "shots": 36,
+        "goals": 15,
+        "xG": 6.942,
+        "conversion": 41.7,
+        "goal_share": 41.7
       },
       "TakeOn": {
         "shots": 7,
         "goals": 2,
         "xG": 0.936,
         "conversion": 28.6,
-        "goal_share": 6.1
+        "goal_share": 5.6
       },
       "Cross": {
-        "shots": 9,
-        "goals": 3,
-        "xG": 2.69,
-        "conversion": 33.3,
-        "goal_share": 9.1
+        "shots": 11,
+        "goals": 4,
+        "xG": 2.869,
+        "conversion": 36.4,
+        "goal_share": 11.1
       },
       "HeadPass": {
         "shots": 3,
         "goals": 2,
         "xG": 0.183,
         "conversion": 66.7,
-        "goal_share": 6.1
+        "goal_share": 5.6
       },
       "Standard": {
         "shots": 7,
         "goals": 5,
         "xG": 4.604,
         "conversion": 71.4,
-        "goal_share": 15.2
+        "goal_share": 13.9
       },
       "None": {
         "shots": 6,
@@ -5565,22 +5678,23 @@
         "goal_share": 0.0
       },
       "Throughball": {
-        "shots": 6,
+        "shots": 7,
         "goals": 2,
-        "xG": 2.299,
-        "conversion": 33.3,
-        "goal_share": 6.1
+        "xG": 2.429,
+        "conversion": 28.6,
+        "goal_share": 5.6
       },
       "BallRecovery": {
-        "shots": 3,
-        "goals": 1,
-        "xG": 0.269,
-        "conversion": 33.3,
-        "goal_share": 3.0
+        "shots": 4,
+        "goals": 2,
+        "xG": 0.606,
+        "conversion": 50.0,
+        "goal_share": 5.6
       }
     },
     "dangerous_actions": [
       "Pass",
+      "Cross",
       "Standard"
     ],
     "most_conceded_from": "Pass"
@@ -5721,25 +5835,32 @@
   "Paris Saint Germain": {
     "actions": {
       "Rebound": {
+        "shots": 4,
+        "goals": 2,
+        "xG": 0.944,
+        "conversion": 50.0,
+        "goal_share": 14.3
+      },
+      "Standard": {
         "shots": 3,
-        "goals": 1,
-        "xG": 0.927,
-        "conversion": 33.3,
-        "goal_share": 8.3
+        "goals": 0,
+        "xG": 0.85,
+        "conversion": 0.0,
+        "goal_share": 0.0
       },
       "None": {
-        "shots": 6,
+        "shots": 7,
         "goals": 2,
-        "xG": 0.702,
-        "conversion": 33.3,
-        "goal_share": 16.7
+        "xG": 0.717,
+        "conversion": 28.6,
+        "goal_share": 14.3
       },
       "Pass": {
-        "shots": 14,
-        "goals": 4,
-        "xG": 2.261,
-        "conversion": 28.6,
-        "goal_share": 33.3
+        "shots": 15,
+        "goals": 5,
+        "xG": 2.314,
+        "conversion": 33.3,
+        "goal_share": 35.7
       },
       "Cross": {
         "shots": 4,
@@ -5748,12 +5869,19 @@
         "conversion": 0.0,
         "goal_share": 0.0
       },
+      "Aerial": {
+        "shots": 3,
+        "goals": 2,
+        "xG": 0.499,
+        "conversion": 66.7,
+        "goal_share": 14.3
+      },
       "Throughball": {
         "shots": 4,
         "goals": 3,
         "xG": 1.163,
         "conversion": 75.0,
-        "goal_share": 25.0
+        "goal_share": 21.4
       },
       "TakeOn": {
         "shots": 3,

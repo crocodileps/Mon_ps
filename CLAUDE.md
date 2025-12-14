@@ -91,3 +91,19 @@ Cela permet à Mya d'être notifiée quand une tâche longue est terminée.
 ```bash
 touch /tmp/mission_done && echo "✅ Signal envoyé - Mya sera notifiée!"
 ```
+
+## �� Notification sonore - OBLIGATOIRE
+TOUJOURS exécuter cette commande AVANT d'attendre une réponse de Mya:
+```bash
+touch /tmp/mission_done && echo "🔔 Mya notifiée"
+```
+
+Cas où tu DOIS notifier:
+- ✅ Fin d'une tâche ou étape
+- ✅ Question posée à Mya  
+- ✅ Proposition de pause
+- ✅ Demande de validation
+- ✅ Attente d'instruction
+- ✅ Erreur nécessitant une décision
+
+En résumé: À CHAQUE FOIS que tu t'arrêtes et attends Mya, notifie-la!

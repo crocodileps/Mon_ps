@@ -3,126 +3,126 @@
     "player_name": "Jordan James",
     "goals": 5,
     "assists": 2,
-    "matches": 16,
-    "scraped_at": "2025-12-13T06:02:09.463542"
+    "matches": 17,
+    "scraped_at": "2025-12-14T06:02:08.056548"
   },
   {
-    "player_name": "Issahaku Fatawu",
-    "goals": 3,
+    "player_name": "Abdul Fatawu",
+    "goals": 4,
     "assists": 6,
-    "matches": 20,
-    "scraped_at": "2025-12-13T06:02:09.463852"
+    "matches": 21,
+    "scraped_at": "2025-12-14T06:02:08.056857"
   },
   {
     "player_name": "Jordan Ayew",
-    "goals": 3,
+    "goals": 4,
     "assists": 1,
-    "matches": 19,
-    "scraped_at": "2025-12-13T06:02:09.464039"
+    "matches": 20,
+    "scraped_at": "2025-12-14T06:02:08.057047"
   },
   {
     "player_name": "Bobby De Cordova-Reid",
-    "goals": 3,
+    "goals": 4,
     "assists": 1,
-    "matches": 13,
-    "scraped_at": "2025-12-13T06:02:09.464076"
+    "matches": 14,
+    "scraped_at": "2025-12-14T06:02:08.057084"
   },
   {
     "player_name": "Stephy Mavididi",
     "goals": 2,
     "assists": 2,
-    "matches": 17,
-    "scraped_at": "2025-12-13T06:02:09.463927"
+    "matches": 18,
+    "scraped_at": "2025-12-14T06:02:08.056933"
   },
   {
     "player_name": "Ricardo Pereira",
     "goals": 2,
-    "assists": 0,
-    "matches": 13,
-    "scraped_at": "2025-12-13T06:02:09.463265"
+    "assists": 1,
+    "matches": 14,
+    "scraped_at": "2025-12-14T06:02:08.056267"
   },
   {
     "player_name": "Jannik Vestergaard",
     "goals": 2,
     "assists": 0,
-    "matches": 20,
-    "scraped_at": "2025-12-13T06:02:09.463303"
+    "matches": 21,
+    "scraped_at": "2025-12-14T06:02:08.056304"
   },
   {
     "player_name": "Aaron Ramsey",
     "goals": 2,
     "assists": 0,
     "matches": 5,
-    "scraped_at": "2025-12-13T06:02:09.463580"
+    "scraped_at": "2025-12-14T06:02:08.056586"
   },
   {
     "player_name": "Harry Winks",
     "goals": 1,
     "assists": 2,
     "matches": 18,
-    "scraped_at": "2025-12-13T06:02:09.463617"
+    "scraped_at": "2025-12-14T06:02:08.056623"
   },
   {
     "player_name": "Patson Daka",
     "goals": 1,
     "assists": 2,
-    "matches": 21,
-    "scraped_at": "2025-12-13T06:02:09.463964"
+    "matches": 22,
+    "scraped_at": "2025-12-14T06:02:08.056970"
   },
   {
     "player_name": "Wout Faes",
     "goals": 1,
     "assists": 1,
     "matches": 16,
-    "scraped_at": "2025-12-13T06:02:09.463103"
+    "scraped_at": "2025-12-14T06:02:08.056107"
   },
   {
     "player_name": "Jeremy Monga",
     "goals": 1,
     "assists": 1,
     "matches": 13,
-    "scraped_at": "2025-12-13T06:02:09.463891"
+    "scraped_at": "2025-12-14T06:02:08.056897"
   },
   {
     "player_name": "Oliver Skipp",
     "goals": 1,
     "assists": 0,
-    "matches": 13,
-    "scraped_at": "2025-12-13T06:02:09.463653"
+    "matches": 14,
+    "scraped_at": "2025-12-14T06:02:08.056659"
   },
   {
     "player_name": "Hamza Choudhury",
     "goals": 1,
     "assists": 0,
-    "matches": 14,
-    "scraped_at": "2025-12-13T06:02:09.463702"
+    "matches": 15,
+    "scraped_at": "2025-12-14T06:02:08.056700"
+  },
+  {
+    "player_name": "Luke Thomas",
+    "goals": 0,
+    "assists": 2,
+    "matches": 21,
+    "scraped_at": "2025-12-14T06:02:08.056230"
   },
   {
     "player_name": "Bilal El Khannouss",
     "goals": 0,
     "assists": 2,
     "matches": 3,
-    "scraped_at": "2025-12-13T06:02:09.463425"
+    "scraped_at": "2025-12-14T06:02:08.056426"
   },
   {
     "player_name": "Boubakary Soumar\u00e9",
     "goals": 0,
     "assists": 2,
     "matches": 15,
-    "scraped_at": "2025-12-13T06:02:09.463501"
-  },
-  {
-    "player_name": "Luke Thomas",
-    "goals": 0,
-    "assists": 1,
-    "matches": 20,
-    "scraped_at": "2025-12-13T06:02:09.463228"
+    "scraped_at": "2025-12-14T06:02:08.056501"
   },
   {
     "player_name": "Louis Page",
     "goals": 0,
     "assists": 1,
-    "matches": 6,
-    "scraped_at": "2025-12-13T06:02:09.463777"
+    "matches": 7,
+    "scraped_at": "2025-12-14T06:02:08.056784"
   }
 ]

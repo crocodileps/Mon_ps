@@ -2,11 +2,16 @@
   {
     "player_name": "Kieran Trippier",
     "injury_type": "35",
-    "scraped_at": "2025-12-13T06:00:44.046585"
+    "scraped_at": "2025-12-14T06:00:48.238735"
   },
   {
     "player_name": "Sven Botman",
     "injury_type": "25",
-    "scraped_at": "2025-12-13T06:00:44.046686"
+    "scraped_at": "2025-12-14T06:00:48.238848"
+  },
+  {
+    "player_name": "Nick Pope",
+    "injury_type": "33",
+    "scraped_at": "2025-12-14T06:00:48.238931"
   }
 ]
