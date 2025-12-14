@@ -56,6 +56,32 @@ class SmartCache:
             logger.info("Serving stale, refresh in background")
 
         return value
+
+    X-FETCH PROBABILITY REFERENCE TABLE (beta=1.0):
+
+    ┌───────────────────┬──────────────────┬──────────────────┐
+    │ Remaining Time    │ Refresh Prob (%) │ Fresh Prob (%)   │
+    ├───────────────────┼──────────────────┼──────────────────┤
+    │ 0s (at expiry)    │ 100.0            │ 0.0              │
+    │ 10s               │ 99.7             │ 0.3              │
+    │ 60s (1 min)       │ 98.3             │ 1.7              │
+    │ 300s (5 min)      │ 91.9             │ 8.1              │
+    │ 600s (10 min)     │ 84.6             │ 15.4             │
+    │ 1800s (30 min)    │ 60.7             │ 39.3             │
+    │ 3600s (1 hour)    │ 36.8             │ 63.2             │
+    │ 7200s (2 hours)   │ 13.5             │ 86.5             │
+    └───────────────────┴──────────────────┴──────────────────┘
+
+    Formula: P(refresh) = exp(-remaining_time / delta)
+
+    EXPECTED BEHAVIOR IN PRODUCTION:
+    - Freshly cached (remaining ≈ delta): ~37% refresh probability
+    - Halfway to expiry: ~61% refresh probability
+    - Near expiry (< 60s remaining): >98% refresh probability
+    - At expiry: 100% refresh (always serves stale)
+
+    This exponential distribution ensures ONE request probabilistically
+    refreshes BEFORE cache stampede, while others serve cached value.
     """
 
     def __init__(

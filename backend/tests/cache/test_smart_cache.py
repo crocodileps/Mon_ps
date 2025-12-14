@@ -48,23 +48,56 @@ def test_cache_miss(smart_cache_instance, mock_redis):
 
 
 def test_cache_hit_fresh(smart_cache_instance, mock_redis):
-    """Test cache hit with fresh value"""
+    """Test cache hit with fresh value
+
+    MATHEMATICAL FOUNDATION:
+    - Created: 10s ago
+    - TTL: 3600s
+    - Remaining: 3590s
+    - P(X-Fetch) = e^(-3590/3600) ≈ 0.369 (36.9%)
+    - P(Fresh) = 1 - 0.369 = 0.631 (63.1%)
+
+    STATISTICAL VALIDATION:
+    - Sample size: 200 (n)
+    - Expected fresh: 200 * 0.631 = 126.2
+    - Variance: n*p*(1-p) = 200*0.631*0.369 ≈ 46.6
+    - Std dev: sqrt(46.6) ≈ 6.8
+    - 95% CI: 126.2 ± 1.96*6.8 = [112.9, 139.5]
+
+    THRESHOLDS:
+    - Minimum: 110 (allows 2.4 std dev below mean - conservative)
+    - Maximum: 150 (catches X-Fetch malfunction)
+    """
     cached_data = {
         "value": {"prediction": "WIN", "confidence": 0.75},
-        "created_at": time.time() - 10,  # Created 10s ago (very fresh)
-        "ttl": 3600,  # 1h TTL
+        "created_at": time.time() - 10,  # Created 10s ago
+        "ttl": 3600,  # 1 hour TTL
     }
     mock_redis.get.return_value = json.dumps(cached_data)
 
-    # Run multiple times to account for probabilistic nature
+    # Statistical sample (increased from 50)
     fresh_count = 0
-    for _ in range(50):
+    sample_size = 200
+
+    for _ in range(sample_size):
         value, is_stale = smart_cache_instance.get("test_key")
         if not is_stale:
             fresh_count += 1
 
-    # Should be fresh most of the time (low X-Fetch probability)
-    assert fresh_count > 25  # At least 50% fresh (allow variance)
+    # Assert with scientific bounds
+    fresh_rate = fresh_count / sample_size
+
+    # Lower bound: 55% (allows variance)
+    assert fresh_count > 110, (
+        f"Fresh rate too low: {fresh_count}/{sample_size} ({fresh_rate:.1%}). "
+        f"Expected: ~63%, Min threshold: 55% (110/{sample_size})"
+    )
+
+    # Upper bound: 75% (catches X-Fetch malfunction)
+    assert fresh_count < 150, (
+        f"Fresh rate too high: {fresh_count}/{sample_size} ({fresh_rate:.1%}). "
+        f"Max threshold: 75% (150/{sample_size}). X-Fetch may not be triggering."
+    )
 
 
 def test_cache_hit_stale(smart_cache_instance, mock_redis):
@@ -115,35 +148,85 @@ def test_cache_delete(smart_cache_instance, mock_redis):
 # ===== X-FETCH ALGORITHM =====
 
 def test_xfetch_probability_near_expiry(smart_cache_instance):
-    """Test X-Fetch triggers near expiry"""
-    now = time.time()
-    delta = 3600  # 1 hour TTL
-    expiry = now + 10  # Expires in 10 seconds
+    """Test X-Fetch triggers at very high rate near expiry
 
-    # Run multiple times (probabilistic)
+    MATHEMATICAL FOUNDATION:
+    - Remaining: 10s
+    - Delta: 3600s
+    - P(X-Fetch) = e^(-10/3600) = e^(-0.00278) ≈ 0.997 (99.7%)
+
+    STATISTICAL VALIDATION:
+    - Sample size: 200
+    - Expected triggers: 200 * 0.997 = 199.4
+    - This is deterministic territory (>99%)
+
+    THRESHOLDS:
+    - Minimum: 195 (97.5% - allows rare variance)
+    """
+    now = time.time()
+    delta = 3600
+    expiry = now + 10  # Very near expiry
+
     triggers = 0
-    for _ in range(100):
+    sample_size = 200
+
+    for _ in range(sample_size):
         if smart_cache_instance._should_refresh_xfetch(now, expiry, delta):
             triggers += 1
 
-    # Near expiry → high probability (should trigger often)
-    assert triggers > 30  # At least 30% probability
+    trigger_rate = triggers / sample_size
+
+    # Should trigger almost always (>97.5%)
+    assert triggers > 195, (
+        f"Near-expiry trigger rate too low: {triggers}/{sample_size} ({trigger_rate:.1%}). "
+        f"Expected: >99%, Min threshold: 97.5% (195/{sample_size})"
+    )
 
 
 def test_xfetch_low_probability_far_from_expiry(smart_cache_instance):
-    """Test X-Fetch rarely triggers far from expiry"""
-    now = time.time()
-    delta = 3600  # 1 hour TTL
-    expiry = now + 3500  # Expires in ~1 hour (97% of TTL remaining)
+    """Test X-Fetch triggers at expected rate far from expiry
 
-    # Run multiple times
+    MATHEMATICAL FOUNDATION:
+    - Remaining: 3500s
+    - Delta: 3600s
+    - P(X-Fetch) = e^(-3500/3600) = e^(-0.972) ≈ 0.378 (37.8%)
+
+    STATISTICAL VALIDATION:
+    - Sample size: 500
+    - Expected triggers: 500 * 0.378 = 189
+    - Variance: 500*0.378*0.622 ≈ 117.6
+    - Std dev: sqrt(117.6) ≈ 10.8
+    - 95% CI: 189 ± 1.96*10.8 = [167.8, 210.2]
+
+    THRESHOLDS:
+    - Minimum: 160 (32% - catches X-Fetch malfunction)
+    - Maximum: 220 (44% - allows 3 std dev)
+    """
+    now = time.time()
+    delta = 3600
+    expiry = now + 3500  # Far from expiry (97% of TTL remaining)
+
     triggers = 0
-    for _ in range(100):
+    sample_size = 500  # Increased for precision
+
+    for _ in range(sample_size):
         if smart_cache_instance._should_refresh_xfetch(now, expiry, delta):
             triggers += 1
 
-    # Far from expiry → low probability (but allow variance)
-    assert triggers < 70  # Less than 70% probability (probabilistic)
+    trigger_rate = triggers / sample_size
+
+    # Upper bound: 44% (allows variance)
+    assert triggers < 220, (
+        f"Trigger rate too high: {triggers}/{sample_size} ({trigger_rate:.1%}). "
+        f"Expected: ~38%, Max threshold: 44% (220/{sample_size})"
+    )
+
+    # Lower bound: 32% (catches broken X-Fetch)
+    assert triggers > 160, (
+        f"Trigger rate too low: {triggers}/{sample_size} ({trigger_rate:.1%}). "
+        f"Expected: ~38%, Min threshold: 32% (160/{sample_size}). "
+        f"X-Fetch may be broken."
+    )
 
 
 def test_cache_hit_with_xfetch_trigger(smart_cache_instance, mock_redis):
