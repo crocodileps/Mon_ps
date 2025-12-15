@@ -82,6 +82,15 @@ class CacheMetrics:
         self.swr_background_error = 0    # Background refresh failed
 
         # ═══════════════════════════════════════════════════════════════
+        # CIRCUIT BREAKER METRICS (Protection Backend)
+        # ═══════════════════════════════════════════════════════════════
+        self.circuit_breaker_mode_normal = 0
+        self.circuit_breaker_mode_high_vol = 0
+        self.circuit_breaker_mode_circuit_open = 0
+        self.circuit_breaker_activations_total = 0
+        self.adaptive_ttl_applied = 0
+
+        # ═══════════════════════════════════════════════════════════════
         # TAGMANAGER METRICS (Surgical Invalidation)
         # ═══════════════════════════════════════════════════════════════
         self.surgical_invalidation = 0       # Event-based surgical invalidations
@@ -283,6 +292,13 @@ class CacheMetrics:
                 'swr_too_stale': self.swr_too_stale,
                 'swr_background_success': self.swr_background_success,
                 'swr_background_error': self.swr_background_error,
+
+                # Circuit Breaker
+                'circuit_breaker_mode_normal': self.circuit_breaker_mode_normal,
+                'circuit_breaker_mode_high_vol': self.circuit_breaker_mode_high_vol,
+                'circuit_breaker_mode_circuit_open': self.circuit_breaker_mode_circuit_open,
+                'circuit_breaker_activations_total': self.circuit_breaker_activations_total,
+                'adaptive_ttl_applied': self.adaptive_ttl_applied,
 
                 # TagManager
                 'surgical_invalidation': self.surgical_invalidation,
