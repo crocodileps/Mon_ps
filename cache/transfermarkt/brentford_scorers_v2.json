@@ -3,98 +3,98 @@
     "player_name": "Igor Thiago",
     "goals": 12,
     "assists": 0,
-    "matches": 16,
-    "scraped_at": "2025-12-14T06:01:24.468047"
+    "matches": 17,
+    "scraped_at": "2025-12-16T06:01:22.884873"
   },
   {
     "player_name": "Dango Ouattara",
     "goals": 3,
     "assists": 4,
-    "matches": 17,
-    "scraped_at": "2025-12-14T06:01:24.468088"
+    "matches": 18,
+    "scraped_at": "2025-12-16T06:01:22.884913"
   },
   {
     "player_name": "Mathias Jensen",
     "goals": 3,
     "assists": 1,
-    "matches": 15,
-    "scraped_at": "2025-12-14T06:01:24.467704"
+    "matches": 16,
+    "scraped_at": "2025-12-16T06:01:22.884526"
   },
   {
     "player_name": "F\u00e1bio Carvalho",
     "goals": 3,
     "assists": 1,
     "matches": 9,
-    "scraped_at": "2025-12-14T06:01:24.467743"
+    "scraped_at": "2025-12-16T06:01:22.884568"
   },
   {
     "player_name": "Kevin Schade",
     "goals": 3,
     "assists": 1,
     "matches": 17,
-    "scraped_at": "2025-12-14T06:01:24.468008"
+    "scraped_at": "2025-12-16T06:01:22.884834"
+  },
+  {
+    "player_name": "Jordan Henderson",
+    "goals": 1,
+    "assists": 3,
+    "matches": 16,
+    "scraped_at": "2025-12-16T06:01:22.884721"
   },
   {
     "player_name": "Keane Lewis-Potter",
     "goals": 1,
     "assists": 2,
-    "matches": 14,
-    "scraped_at": "2025-12-14T06:01:24.467583"
+    "matches": 15,
+    "scraped_at": "2025-12-16T06:01:22.884392"
   },
   {
     "player_name": "Mikkel Damsgaard",
     "goals": 1,
     "assists": 1,
-    "matches": 14,
-    "scraped_at": "2025-12-14T06:01:24.467500"
+    "matches": 15,
+    "scraped_at": "2025-12-16T06:01:22.884303"
   },
   {
     "player_name": "Reiss Nelson",
     "goals": 1,
     "assists": 1,
     "matches": 5,
-    "scraped_at": "2025-12-14T06:01:24.468128"
+    "scraped_at": "2025-12-16T06:01:22.884952"
   },
   {
     "player_name": "Nathan Collins",
     "goals": 1,
     "assists": 0,
-    "matches": 18,
-    "scraped_at": "2025-12-14T06:01:24.467129"
+    "matches": 19,
+    "scraped_at": "2025-12-16T06:01:22.883940"
   },
   {
     "player_name": "Aaron Hickey",
     "goals": 1,
     "assists": 0,
-    "matches": 11,
-    "scraped_at": "2025-12-14T06:01:24.467256"
-  },
-  {
-    "player_name": "Jordan Henderson",
-    "goals": 0,
-    "assists": 3,
-    "matches": 15,
-    "scraped_at": "2025-12-14T06:01:24.467898"
+    "matches": 12,
+    "scraped_at": "2025-12-16T06:01:22.884073"
   },
   {
     "player_name": "Kristoffer Ajer",
     "goals": 0,
     "assists": 2,
-    "matches": 12,
-    "scraped_at": "2025-12-14T06:01:24.467294"
+    "matches": 13,
+    "scraped_at": "2025-12-16T06:01:22.884113"
   },
   {
     "player_name": "Frank Onyeka",
     "goals": 0,
     "assists": 2,
     "matches": 9,
-    "scraped_at": "2025-12-14T06:01:24.467783"
+    "scraped_at": "2025-12-16T06:01:22.884607"
   },
   {
     "player_name": "Yegor Yarmolyuk",
     "goals": 0,
     "assists": 1,
-    "matches": 17,
-    "scraped_at": "2025-12-14T06:01:24.467539"
+    "matches": 18,
+    "scraped_at": "2025-12-16T06:01:22.884354"
   }
 ]

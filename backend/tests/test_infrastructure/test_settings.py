@@ -4,8 +4,8 @@ Architecture: 4 test classes for separation of concerns.
 """
 
 import pytest
-from quantum_core.config.settings import Settings
-from quantum_core.config.dependencies import get_settings
+from infrastructure.config.settings import Settings
+from infrastructure.config.dependencies import get_settings
 
 
 class TestSettingsDefaults:

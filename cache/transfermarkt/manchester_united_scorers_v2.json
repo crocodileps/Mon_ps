@@ -3,112 +3,112 @@
     "player_name": "Bryan Mbeumo",
     "goals": 7,
     "assists": 1,
-    "matches": 16,
-    "scraped_at": "2025-12-14T06:00:36.315168"
+    "matches": 17,
+    "scraped_at": "2025-12-16T06:00:33.085216"
   },
   {
     "player_name": "Bruno Fernandes",
+    "goals": 5,
+    "assists": 7,
+    "matches": 17,
+    "scraped_at": "2025-12-16T06:00:33.084779"
+  },
+  {
+    "player_name": "Casemiro",
     "goals": 4,
-    "assists": 6,
-    "matches": 16,
-    "scraped_at": "2025-12-14T06:00:36.314936"
+    "assists": 1,
+    "matches": 15,
+    "scraped_at": "2025-12-16T06:00:33.085068"
   },
   {
     "player_name": "Mason Mount",
     "goals": 3,
     "assists": 1,
-    "matches": 13,
-    "scraped_at": "2025-12-14T06:00:36.315015"
+    "matches": 14,
+    "scraped_at": "2025-12-16T06:00:33.084925"
   },
   {
-    "player_name": "Casemiro",
-    "goals": 3,
-    "assists": 1,
-    "matches": 14,
-    "scraped_at": "2025-12-14T06:00:36.315092"
+    "player_name": "Amad Diallo",
+    "goals": 2,
+    "assists": 3,
+    "matches": 16,
+    "scraped_at": "2025-12-16T06:00:33.085469"
   },
   {
     "player_name": "Harry Maguire",
     "goals": 2,
     "assists": 1,
     "matches": 9,
-    "scraped_at": "2025-12-14T06:00:36.314710"
+    "scraped_at": "2025-12-16T06:00:33.084289"
+  },
+  {
+    "player_name": "Matheus Cunha",
+    "goals": 2,
+    "assists": 1,
+    "matches": 14,
+    "scraped_at": "2025-12-16T06:00:33.085292"
   },
   {
     "player_name": "Benjamin Sesko",
     "goals": 2,
     "assists": 1,
-    "matches": 12,
-    "scraped_at": "2025-12-14T06:00:36.315248"
-  },
-  {
-    "player_name": "Amad Diallo",
-    "goals": 1,
-    "assists": 3,
-    "matches": 15,
-    "scraped_at": "2025-12-14T06:00:36.315284"
+    "matches": 13,
+    "scraped_at": "2025-12-16T06:00:33.085380"
   },
   {
     "player_name": "Diogo Dalot",
     "goals": 1,
     "assists": 2,
-    "matches": 14,
-    "scraped_at": "2025-12-14T06:00:36.314626"
-  },
-  {
-    "player_name": "Matheus Cunha",
-    "goals": 1,
-    "assists": 1,
-    "matches": 13,
-    "scraped_at": "2025-12-14T06:00:36.315207"
+    "matches": 15,
+    "scraped_at": "2025-12-16T06:00:33.084142"
   },
   {
     "player_name": "Matthijs de Ligt",
     "goals": 1,
     "assists": 0,
     "matches": 14,
-    "scraped_at": "2025-12-14T06:00:36.314507"
+    "scraped_at": "2025-12-16T06:00:33.083917"
   },
   {
     "player_name": "Joshua Zirkzee",
     "goals": 1,
     "assists": 0,
-    "matches": 9,
-    "scraped_at": "2025-12-14T06:00:36.315321"
+    "matches": 10,
+    "scraped_at": "2025-12-16T06:00:33.085541"
   },
   {
     "player_name": "Leny Yoro",
     "goals": 0,
     "assists": 1,
-    "matches": 15,
-    "scraped_at": "2025-12-14T06:00:36.314455"
+    "matches": 16,
+    "scraped_at": "2025-12-16T06:00:33.083829"
   },
   {
     "player_name": "Patrick Dorgu",
     "goals": 0,
     "assists": 1,
-    "matches": 15,
-    "scraped_at": "2025-12-14T06:00:36.314581"
+    "matches": 16,
+    "scraped_at": "2025-12-16T06:00:33.084067"
   },
   {
     "player_name": "Luke Shaw",
     "goals": 0,
     "assists": 1,
-    "matches": 15,
-    "scraped_at": "2025-12-14T06:00:36.314748"
+    "matches": 16,
+    "scraped_at": "2025-12-16T06:00:33.084376"
   },
   {
     "player_name": "Ayden Heaven",
     "goals": 0,
     "assists": 1,
-    "matches": 5,
-    "scraped_at": "2025-12-14T06:00:36.314784"
+    "matches": 6,
+    "scraped_at": "2025-12-16T06:00:33.084481"
   },
   {
     "player_name": "Kobbie Mainoo",
     "goals": 0,
     "assists": 1,
-    "matches": 11,
-    "scraped_at": "2025-12-14T06:00:36.314973"
+    "matches": 12,
+    "scraped_at": "2025-12-16T06:00:33.084850"
   }
 ]
