@@ -344,3 +344,170 @@ class TestIntegrationSanity:
 if __name__ == "__main__":
     # Allow running directly for quick testing
     pytest.main([__file__, "-v", "--tb=short"])
+
+
+# ═══════════════════════════════════════════════════════════════
+# ASYNC TESTS
+# ═══════════════════════════════════════════════════════════════
+
+import asyncio
+import pytest
+
+# Mark all async tests
+pytestmark_async = pytest.mark.asyncio
+
+
+class TestAsyncConnection:
+    """Tests for async database connections."""
+
+    @pytest.mark.asyncio
+    async def test_async_engine_exists(self):
+        """Test that async engine is configured."""
+        from core.database import async_engine
+
+        assert async_engine is not None
+        assert "asyncpg" in str(async_engine.url)
+
+    @pytest.mark.asyncio
+    async def test_async_session_factory_exists(self):
+        """Test that async session factory is configured."""
+        from core.database import AsyncSessionLocal
+
+        assert AsyncSessionLocal is not None
+
+    @pytest.mark.asyncio
+    async def test_async_connection_check(self):
+        """Test async connection health check."""
+        from core.database import check_async_connection
+
+        result = await check_async_connection()
+        assert result == True, "Async connection should be healthy"
+
+    @pytest.mark.asyncio
+    async def test_async_context_manager(self):
+        """Test async context manager for sessions."""
+        from core.database import get_async_db
+
+        # Note: This test may have event loop issues in pytest
+        # Skip gracefully if that's the case
+        try:
+            async with get_async_db() as session:
+                # Session should be usable
+                from sqlalchemy import text
+                result = await session.execute(text("SELECT 1"))
+                row = result.scalar()
+                assert row == 1
+        except RuntimeError as e:
+            if "different loop" in str(e):
+                pytest.skip(f"Event loop issue (expected in some test environments): {e}")
+            raise
+
+
+class TestAsyncRepository:
+    """Tests for async repository operations."""
+
+    @pytest.mark.asyncio
+    async def test_async_base_repository_exists(self):
+        """Test that AsyncBaseRepository is defined."""
+        from repositories.base import AsyncBaseRepository
+
+        assert AsyncBaseRepository is not None
+
+    @pytest.mark.asyncio
+    async def test_async_repository_methods(self):
+        """Test async repository method signatures."""
+        from repositories.base import AsyncBaseRepository
+
+        # Check that async methods exist
+        assert hasattr(AsyncBaseRepository, 'get_by_id')
+        assert hasattr(AsyncBaseRepository, 'get_all')
+        assert hasattr(AsyncBaseRepository, 'count')
+        assert hasattr(AsyncBaseRepository, 'create')
+
+    @pytest.mark.asyncio
+    async def test_async_count_method_callable(self):
+        """Test async count method is callable (table may not exist yet)."""
+        from core.database import get_async_db
+        from repositories.base import AsyncBaseRepository
+        from models.quantum import TeamQuantumDNA
+        import inspect
+
+        async with get_async_db() as session:
+            repo = AsyncBaseRepository(TeamQuantumDNA, session)
+
+            # Verify count method exists and is async
+            assert hasattr(repo, 'count')
+            assert inspect.iscoroutinefunction(repo.count)
+
+            # Note: We don't actually call count() because quantum tables don't exist yet
+            # This is expected - see models/MODELS_STRATEGY.md
+
+
+# ═══════════════════════════════════════════════════════════════
+# COLUMN VALIDATION TESTS
+# ═══════════════════════════════════════════════════════════════
+
+class TestColumnValidation:
+    """Tests to validate ORM model columns match expectations."""
+
+    def test_odds_model_has_required_columns(self):
+        """Test Odds model has minimum required columns."""
+        from models.odds import Odds
+
+        required_columns = ['id', 'match_id', 'home_team', 'away_team']
+        model_columns = [col.name for col in Odds.__table__.columns]
+
+        for col in required_columns:
+            assert col in model_columns, f"Odds missing column: {col}"
+
+    def test_tracking_model_has_required_columns(self):
+        """Test TrackingCLVPicks model has required columns."""
+        from models.odds import TrackingCLVPicks
+
+        required_columns = ['id']  # Minimum required
+        model_columns = [col.name for col in TrackingCLVPicks.__table__.columns]
+
+        for col in required_columns:
+            assert col in model_columns, f"TrackingCLVPicks missing column: {col}"
+
+    def test_team_dna_model_columns(self):
+        """Test TeamQuantumDNA model columns."""
+        from models.quantum import TeamQuantumDNA
+
+        required_columns = ['team_id', 'team_name']
+        model_columns = [col.name for col in TeamQuantumDNA.__table__.columns]
+
+        for col in required_columns:
+            assert col in model_columns, f"TeamQuantumDNA missing column: {col}"
+
+    def test_timestamp_mixin_columns(self):
+        """Test TimestampMixin adds correct columns."""
+        from models.odds import Odds
+
+        model_columns = [col.name for col in Odds.__table__.columns]
+
+        assert 'created_at' in model_columns, "Missing created_at from TimestampMixin"
+        assert 'updated_at' in model_columns, "Missing updated_at from TimestampMixin"
+
+    def test_audit_mixin_columns(self):
+        """Test AuditMixin column definitions."""
+        from models.base import AuditMixin
+
+        # AuditMixin should define these as declared_attr
+        assert hasattr(AuditMixin, 'created_by')
+        assert hasattr(AuditMixin, 'updated_by')
+        assert hasattr(AuditMixin, 'change_reason')
+
+    def test_schema_definitions(self):
+        """Test schema constants are defined."""
+        from models.base import SCHEMA_PUBLIC, SCHEMA_QUANTUM
+
+        assert SCHEMA_PUBLIC is None, "Public schema should be None (default)"
+        assert SCHEMA_QUANTUM == "quantum", "Quantum schema should be 'quantum'"
+
+    def test_quantum_models_use_quantum_schema(self):
+        """Test quantum models are assigned to quantum schema."""
+        from models.quantum import TeamQuantumDNA, QuantumFrictionMatrix
+
+        assert TeamQuantumDNA.__table__.schema == "quantum"
+        assert QuantumFrictionMatrix.__table__.schema == "quantum"
