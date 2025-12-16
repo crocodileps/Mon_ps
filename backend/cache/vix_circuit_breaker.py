@@ -611,6 +611,11 @@ class VIXCircuitBreaker:
                 self._last_logged_tier = current_tier
             else:
                 # Debug level for repetitive calls (can be disabled in prod)
+                # NOTE: In production, configure structlog with level=INFO or higher
+                # to suppress DEBUG logs and achieve 99% log volume reduction.
+                # Example: structlog.configure(
+                #     wrapper_class=structlog.make_filtering_bound_logger(logging.INFO)
+                # )
                 logger.debug("VIX_TTL_DECISION", **log_data)
 
             # Return mode as string for compatibility

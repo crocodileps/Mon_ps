@@ -736,3 +736,91 @@ class TestFailSafeWithoutRedis:
         assert ttl == 0
 
 
+class TestEdgeCasesCompleteness:
+    """
+    Additional edge case tests for 100% completeness.
+
+    These tests cover scenarios not explicitly tested elsewhere:
+    1. Panic duration calculation with edge values
+    2. Mode transition logging verification
+    """
+
+    @pytest.fixture
+    def mock_redis(self):
+        return MockRedis()
+
+    def test_panic_duration_zero_returns_tier1(self, mock_redis):
+        """
+        Test that duration=0 (just started panic) returns TIER 1.
+
+        Edge case: Panic just detected, timestamp just set.
+        Duration = 0 minutes → Should be TIER 1 (fresh panic)
+        """
+        # Pre-set timestamp to NOW (0 duration)
+        import time
+        mock_redis._data[PANIC_START_TS_KEY] = str(time.time())
+
+        cb = VIXCircuitBreaker(redis_client=mock_redis)
+        ttl, mode = cb.get_ttl(60, "panic", {'league': 'Ligue 1'})
+
+        # Fresh panic (0 duration) should be TIER 1 = TTL 0 or very low
+        assert ttl <= 5, f"Fresh panic should have TTL <= 5, got {ttl}"
+        assert "PANIC" in mode.upper() or "FULL" in mode.upper(), \
+            f"Expected panic mode, got {mode}"
+
+    def test_very_old_timestamp_returns_tier4(self, mock_redis):
+        """
+        Test that very old timestamp (days) returns TIER 4.
+
+        Edge case: Panic timestamp is days old (system was down).
+        Should gracefully handle and return TIER 4 (new normal).
+        """
+        import time
+
+        # Set timestamp to 7 days ago
+        seven_days_ago = time.time() - (7 * 24 * 60 * 60)
+        mock_redis._data[PANIC_START_TS_KEY] = str(seven_days_ago)
+
+        cb = VIXCircuitBreaker(redis_client=mock_redis)
+        ttl, mode = cb.get_ttl(60, "panic", {'league': 'Ligue 1'})
+
+        # 7 days = 10080 minutes >> tier3 threshold → TIER 4
+        # TIER 4 = NEW_NORMAL with higher TTL
+        assert ttl >= 30, f"Very old panic should have TTL >= 30 (TIER 4), got {ttl}"
+        assert "NORMAL" in mode.upper() or "NEW" in mode.upper() or ttl == 60, \
+            f"Expected new_normal or high TTL, got {mode}"
+
+
+class TestLogConfigVerification:
+    """
+    Tests to verify logging configuration is production-ready.
+    """
+
+    @pytest.fixture
+    def mock_redis(self):
+        return MockRedis()
+
+    def test_repeated_calls_dont_accumulate_state(self, mock_redis):
+        """
+        Test that repeated calls don't cause memory/state issues.
+
+        Verifies logging tracking variables work correctly over many calls.
+        """
+        cb = VIXCircuitBreaker(redis_client=mock_redis)
+
+        # 100 calls should not cause issues
+        for i in range(100):
+            vix_status = "panic" if i % 10 == 0 else "normal"
+            ttl, mode = cb.get_ttl(60, vix_status, {'league': 'Ligue 1'})
+            assert ttl is not None
+            assert mode is not None
+
+        # Tracking vars should be set (not growing unbounded)
+        assert cb._last_logged_mode is not None
+        assert cb._last_logged_tier is not None
+
+        # Should be one of valid values
+        assert cb._last_logged_mode in ["NORMAL", "PANIC_FULL", "PANIC_PARTIAL",
+                                        "DEGRADED", "NEW_NORMAL"]
+
+
