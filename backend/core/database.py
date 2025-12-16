@@ -198,19 +198,61 @@ def get_pool_status() -> dict:
 # EVENT LISTENERS (Logging & Monitoring)
 # ═══════════════════════════════════════════════════════════════
 
+# VIX Pattern: Log only on state changes, not every operation
+# This reduces logging noise and improves performance
+
+# Track pool state to detect changes
+_pool_state = {
+    "checked_out": 0,
+    "overflow": 0,
+    "total_connects": 0,
+}
+
+
 @event.listens_for(sync_engine, "connect")
 def on_connect(dbapi_connection, connection_record):
-    """Log new database connections."""
-    logger.debug("database_connection_established")
+    """Log new database connections (state change only)."""
+    _pool_state["total_connects"] += 1
+    # Only log every 10th connection to reduce noise
+    if _pool_state["total_connects"] % 10 == 1:
+        logger.info(
+            "database_connections_established",
+            total=_pool_state["total_connects"],
+        )
 
 
 @event.listens_for(sync_engine, "checkout")
 def on_checkout(dbapi_connection, connection_record, connection_proxy):
-    """Log connection checkouts from pool."""
-    logger.debug("database_connection_checkout")
+    """Log connection checkout (on overflow only - VIX pattern)."""
+    pool = sync_engine.pool
+    current_checked_out = pool.checkedout()
+    current_overflow = pool.overflow()
+
+    # Log only if we entered overflow state (high load indicator)
+    if current_overflow > _pool_state["overflow"]:
+        logger.warning(
+            "database_pool_overflow",
+            checked_out=current_checked_out,
+            overflow=current_overflow,
+            pool_size=pool.size(),
+        )
+
+    _pool_state["checked_out"] = current_checked_out
+    _pool_state["overflow"] = current_overflow
 
 
 @event.listens_for(sync_engine, "checkin")
 def on_checkin(dbapi_connection, connection_record):
-    """Log connection returns to pool."""
-    logger.debug("database_connection_checkin")
+    """Log connection return (on overflow recovery only - VIX pattern)."""
+    pool = sync_engine.pool
+    current_overflow = pool.overflow()
+
+    # Log only if we exited overflow state (recovery indicator)
+    if _pool_state["overflow"] > 0 and current_overflow == 0:
+        logger.info(
+            "database_pool_recovered",
+            checked_out=pool.checkedout(),
+            pool_size=pool.size(),
+        )
+
+    _pool_state["overflow"] = current_overflow

@@ -9,9 +9,9 @@ Provides:
 """
 
 from datetime import datetime
-from typing import Any
+from typing import Any, Optional
 
-from sqlalchemy import MetaData, Column, DateTime, func
+from sqlalchemy import MetaData, Column, DateTime, String, Text, func
 from sqlalchemy.orm import DeclarativeBase, declared_attr, Mapped, mapped_column
 
 
@@ -75,6 +75,52 @@ class TimestampMixin:
             server_default=func.now(),
             onupdate=func.now(),
             nullable=False,
+        )
+
+
+class AuditMixin:
+    """
+    Mixin for audit trail - tracks who created/updated records and why.
+
+    Provides:
+    - created_by: User/system that created the record
+    - updated_by: User/system that last updated the record
+    - change_reason: Optional reason for the change
+
+    Usage:
+        class MyModel(Base, TimestampMixin, AuditMixin):
+            __tablename__ = "my_table"
+            ...
+
+    Note: This is passive tracking. Application code must set these fields.
+    Consider integrating with authentication system to auto-populate.
+    """
+
+    @declared_attr
+    def created_by(cls) -> Mapped[Optional[str]]:
+        """User or system that created this record."""
+        return mapped_column(
+            String(100),
+            nullable=True,
+            comment="User or system that created this record",
+        )
+
+    @declared_attr
+    def updated_by(cls) -> Mapped[Optional[str]]:
+        """User or system that last updated this record."""
+        return mapped_column(
+            String(100),
+            nullable=True,
+            comment="User or system that last updated this record",
+        )
+
+    @declared_attr
+    def change_reason(cls) -> Mapped[Optional[str]]:
+        """Optional reason for the last change."""
+        return mapped_column(
+            Text,
+            nullable=True,
+            comment="Reason for the last change to this record",
         )
 
 

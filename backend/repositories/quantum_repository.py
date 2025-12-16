@@ -6,7 +6,7 @@ Specialized repository for Quantum DNA system.
 
 from typing import List, Optional
 from sqlalchemy import select, and_, or_, desc
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload, joinedload
 
 from repositories.base import BaseRepository
 from models.quantum import (
@@ -57,14 +57,37 @@ class FrictionMatrixRepository(BaseRepository[QuantumFrictionMatrix]):
     def __init__(self, session: Session):
         super().__init__(QuantumFrictionMatrix, session)
 
-    def get_friction(self, home_id: int, away_id: int) -> Optional[QuantumFrictionMatrix]:
-        """Get friction between two teams."""
+    def get_friction(
+        self,
+        home_id: int,
+        away_id: int,
+        eager_load: bool = True
+    ) -> Optional[QuantumFrictionMatrix]:
+        """
+        Get friction between two teams.
+
+        Args:
+            home_id: Home team ID
+            away_id: Away team ID
+            eager_load: If True, eager load relationships (avoids N+1)
+
+        Returns:
+            Friction matrix record or None
+        """
         stmt = select(QuantumFrictionMatrix).where(
             and_(
                 QuantumFrictionMatrix.team_home_id == home_id,
                 QuantumFrictionMatrix.team_away_id == away_id
             )
         )
+
+        # Eager load relationships to avoid N+1 queries
+        if eager_load:
+            stmt = stmt.options(
+                selectinload(QuantumFrictionMatrix.home_team),
+                selectinload(QuantumFrictionMatrix.away_team),
+            )
+
         result = self.session.execute(stmt)
         return result.scalars().first()
 
@@ -75,13 +98,31 @@ class StrategyRepository(BaseRepository[QuantumStrategy]):
     def __init__(self, session: Session):
         super().__init__(QuantumStrategy, session)
 
-    def get_team_strategies(self, team_id: int) -> List[QuantumStrategy]:
-        """Get all strategies for a team."""
+    def get_team_strategies(
+        self,
+        team_id: int,
+        eager_load: bool = True
+    ) -> List[QuantumStrategy]:
+        """
+        Get all strategies for a team.
+
+        Args:
+            team_id: Team ID
+            eager_load: If True, eager load team relationship (avoids N+1)
+
+        Returns:
+            List of strategies ordered by ROI (descending)
+        """
         stmt = (
             select(QuantumStrategy)
             .where(QuantumStrategy.team_id == team_id)
             .order_by(desc(QuantumStrategy.roi))
         )
+
+        # Eager load team relationship
+        if eager_load:
+            stmt = stmt.options(selectinload(QuantumStrategy.team))
+
         result = self.session.execute(stmt)
         return list(result.scalars().all())
 

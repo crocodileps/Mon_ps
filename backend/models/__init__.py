@@ -4,7 +4,7 @@ Models Package - Mon_PS Hedge Fund Grade
 Exports all SQLAlchemy models for easy importing.
 """
 
-from models.base import Base, TimestampMixin, SCHEMA_PUBLIC, SCHEMA_QUANTUM
+from models.base import Base, TimestampMixin, AuditMixin, SCHEMA_PUBLIC, SCHEMA_QUANTUM
 
 # Public schema models
 from models.odds import Odds, TrackingCLVPicks
@@ -23,6 +23,7 @@ __all__ = [
     # Base
     "Base",
     "TimestampMixin",
+    "AuditMixin",
     "SCHEMA_PUBLIC",
     "SCHEMA_QUANTUM",
     # Public models
