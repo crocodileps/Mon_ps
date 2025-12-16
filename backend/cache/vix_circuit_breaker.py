@@ -26,9 +26,29 @@ from enum import Enum
 from collections import deque
 from datetime import datetime, timezone
 from typing import Optional, Dict, Tuple
+import time
 import structlog
 
+# Try relative import first, fall back to direct import for testing
+try:
+    from .adaptive_panic_quota import AdaptivePanicQuota, PanicMode
+except ImportError:
+    from adaptive_panic_quota import AdaptivePanicQuota, PanicMode
+
 logger = structlog.get_logger()
+
+
+# ═══════════════════════════════════════════════════════════════
+# REDIS KEYS - Panic State Management (Phase 3)
+# ═══════════════════════════════════════════════════════════════
+
+PANIC_START_TS_KEY = "brain:panic_start_ts"
+
+# Dead Man's Switch: TTL basé sur tier3 max (high_stakes) + marge sécurité
+# tier3_high_stakes = 360 min = 6h
+# safety_margin = 4x → 24h
+# Si système crash, clé expire automatiquement après 24h
+PANIC_TS_TTL_SECONDS = 86400  # 24 heures
 
 
 class CircuitBreakerMode(Enum):
@@ -88,6 +108,7 @@ class VIXCircuitBreaker:
 
     def __init__(
         self,
+        redis_client=None,
         window_seconds: int = 1800,
         panic_threshold_enter: float = 0.50,
         panic_threshold_exit: float = 0.30,
@@ -97,6 +118,7 @@ class VIXCircuitBreaker:
         Initialize VIX Circuit Breaker
 
         Args:
+            redis_client: Optional Redis client for panic timestamp persistence
             window_seconds: Rolling window size (default 1800 = 30min)
             panic_threshold_enter: Ratio to enter HIGH_VOL (0.50 = 50%)
             panic_threshold_exit: Ratio to exit HIGH_VOL (0.30 = 30%)
@@ -105,6 +127,8 @@ class VIXCircuitBreaker:
         Raises:
             ValueError: Si thresholds invalides ou pas d'hystérésis
         """
+        # Redis client for panic timestamp persistence (Phase 3)
+        self.redis = redis_client
         # Validate thresholds
         if not (0 <= panic_threshold_enter <= 1):
             raise ValueError(
@@ -142,9 +166,24 @@ class VIXCircuitBreaker:
         self.mode_changes = []
         self.last_mode_change = None
 
+        # ═══════════════════════════════════════════════════════════════
+        # PHASE 3: Adaptive Panic Quota Integration
+        # Stateless module for context-aware TTL calculation
+        # ═══════════════════════════════════════════════════════════════
+        self._panic_quota = AdaptivePanicQuota()
+
+        # ═══════════════════════════════════════════════════════════════
+        # Logging optimization: Track last state to log only on change
+        # Prevents 8.6M logs/day in high-frequency production
+        # ═══════════════════════════════════════════════════════════════
+        self._last_logged_mode: Optional[str] = None
+        self._last_logged_tier: Optional[int] = None
+
         logger.info(
             "VIXCircuitBreaker initialized",
             window_seconds=window_seconds,
+            redis_enabled=redis_client is not None,
+            panic_quota_enabled=True,
             thresholds={
                 'enter_high_vol': panic_threshold_enter,
                 'exit_high_vol': panic_threshold_exit,
@@ -353,6 +392,242 @@ class VIXCircuitBreaker:
                 return (0, "bypass")
             else:
                 return (base_ttl, "normal")
+
+    def _manage_panic_timestamp(self, is_panic: bool) -> Optional[float]:
+        """
+        Manage panic start timestamp in Redis with atomic guarantees.
+
+        Implements:
+        - SETNX "First Writer Wins": Only first worker sets timestamp
+        - Dead Man's Switch: Auto-expire after 24h if system crashes
+        - Atomic cleanup: DELETE when panic ends
+
+        Args:
+            is_panic: Current panic state from VIX detection
+
+        Returns:
+            Panic start timestamp (float) if in panic, None otherwise
+
+        Raises:
+            Never raises - returns None on Redis errors (Fail-Safe)
+        """
+        if self.redis is None:
+            # No Redis configured - skip persistence (backward compatibility)
+            return None
+
+        try:
+            if is_panic:
+                # ─────────────────────────────────────────────────────
+                # SETNX "First Writer Wins"
+                # Only the FIRST worker detecting panic sets the timestamp
+                # All subsequent workers read the same value
+                # ─────────────────────────────────────────────────────
+                current_ts = time.time()
+
+                # SET NX=True: Set only if key does NOT exist (atomic)
+                # EX=86400: Dead Man's Switch - auto-expire after 24h
+                was_set = self.redis.set(
+                    PANIC_START_TS_KEY,
+                    current_ts,
+                    nx=True,  # Only set if not exists
+                    ex=PANIC_TS_TTL_SECONDS  # 24h TTL (Dead Man's Switch)
+                )
+
+                if was_set:
+                    logger.warning(
+                        "PANIC_TIMESTAMP_INITIALIZED",
+                        timestamp=current_ts,
+                        ttl_seconds=PANIC_TS_TTL_SECONDS,
+                        source="first_writer"
+                    )
+
+                # Read the authoritative timestamp (might be from another worker)
+                stored_ts = self.redis.get(PANIC_START_TS_KEY)
+
+                if stored_ts is not None:
+                    # Refresh TTL (extend Dead Man's Switch while system is alive)
+                    self.redis.expire(PANIC_START_TS_KEY, PANIC_TS_TTL_SECONDS)
+
+                    # Handle both bytes (real Redis) and str (some clients/mocks)
+                    if isinstance(stored_ts, bytes):
+                        stored_ts = stored_ts.decode('utf-8')
+                    return float(stored_ts)
+                else:
+                    # Edge case: Key expired between SET and GET (unlikely)
+                    logger.error("PANIC_TS_RACE_CONDITION", action="retry_next_cycle")
+                    return current_ts  # Use local timestamp as fallback
+
+            else:
+                # ─────────────────────────────────────────────────────
+                # Panic ended: Clean up timestamp
+                # ─────────────────────────────────────────────────────
+                deleted = self.redis.delete(PANIC_START_TS_KEY)
+
+                if deleted:
+                    logger.info(
+                        "PANIC_TIMESTAMP_CLEARED",
+                        reason="panic_ended"
+                    )
+
+                return None
+
+        except Exception as e:
+            # ─────────────────────────────────────────────────────────
+            # FAIL-SAFE: Redis down → Return None (will trigger PANIC_FULL)
+            # ─────────────────────────────────────────────────────────
+            logger.error(
+                "REDIS_ERROR_PANIC_TS",
+                error=str(e),
+                action="fail_safe_mode"
+            )
+            return None
+
+    def _calculate_panic_duration(self, panic_start_ts: Optional[float]) -> float:
+        """
+        Calculate panic duration in minutes from start timestamp.
+
+        Args:
+            panic_start_ts: Panic start timestamp from Redis (or None)
+
+        Returns:
+            Duration in minutes (0.0 if no panic or invalid timestamp)
+        """
+        if panic_start_ts is None:
+            return 0.0
+
+        try:
+            duration_seconds = time.time() - panic_start_ts
+            duration_minutes = duration_seconds / 60.0
+
+            # Sanity check: Duration should not be negative
+            if duration_minutes < 0:
+                logger.warning(
+                    "NEGATIVE_PANIC_DURATION",
+                    duration_min=duration_minutes,
+                    action="reset_to_zero"
+                )
+                return 0.0
+
+            return duration_minutes
+
+        except (TypeError, ValueError) as e:
+            logger.error(
+                "INVALID_PANIC_TIMESTAMP",
+                timestamp=panic_start_ts,
+                error=str(e)
+            )
+            return 0.0
+
+    def get_ttl(
+        self,
+        base_ttl: int,
+        vix_status: str = "normal",
+        match_context: Optional[Dict] = None
+    ) -> Tuple[int, str]:
+        """
+        Get adaptive TTL based on market volatility (VIX) and panic duration.
+
+        Implements the complete VIX Circuit Breaker + Adaptive Panic Quota:
+        1. Detect market panic via VIX-style analysis
+        2. Manage panic timestamp atomically (SETNX + Dead Man's Switch)
+        3. Calculate context-aware TTL via stateless AdaptivePanicQuota
+
+        Args:
+            base_ttl: Base TTL in seconds (normal conditions)
+            vix_status: 'panic' | 'warning' | 'normal' (default: 'normal')
+            match_context: Optional context dict with 'league', 'competition', etc.
+
+        Returns:
+            Tuple of (ttl_seconds, mode_string)
+
+        Fail-Safe Behavior:
+            If Redis is down → Returns (0, "PANIC_FULL") for maximum caution
+        """
+        try:
+            # ═══════════════════════════════════════════════════════════════
+            # STEP 1: Detect panic state
+            # ═══════════════════════════════════════════════════════════════
+            is_panic = (vix_status == "panic")
+
+            # ═══════════════════════════════════════════════════════════════
+            # STEP 2: Manage panic timestamp (SETNX + Dead Man's Switch)
+            # ═══════════════════════════════════════════════════════════════
+            panic_start_ts = self._manage_panic_timestamp(is_panic)
+
+            # ═══════════════════════════════════════════════════════════════
+            # FAIL-SAFE: Panic detected but no reliable timestamp
+            # Two scenarios trigger this:
+            # 1. Redis configured but error occurred → Critical failure
+            # 2. Redis NOT configured → No persistence = no duration tracking
+            # In BOTH cases: Better safe than sorry → PANIC_FULL
+            # ═══════════════════════════════════════════════════════════════
+            if is_panic and panic_start_ts is None:
+                redis_status = "configured_but_error" if self.redis is not None else "not_configured"
+                logger.warning(
+                    "PANIC_WITHOUT_RELIABLE_TIMESTAMP",
+                    redis_status=redis_status,
+                    action="fail_safe_panic_full",
+                    reason="cannot_calculate_duration_safely"
+                )
+                return (0, "PANIC_FULL")
+
+            # ═══════════════════════════════════════════════════════════════
+            # STEP 3: Calculate panic duration
+            # ═══════════════════════════════════════════════════════════════
+            panic_duration_min = self._calculate_panic_duration(panic_start_ts)
+
+            # ═══════════════════════════════════════════════════════════════
+            # STEP 4: Call stateless AdaptivePanicQuota for TTL decision
+            # ═══════════════════════════════════════════════════════════════
+            ttl, mode, metadata = self._panic_quota.calculate_ttl_strategy(
+                base_ttl=base_ttl,
+                panic_duration_minutes=panic_duration_min,
+                match_context=match_context or {}
+            )
+
+            # ═══════════════════════════════════════════════════════════════
+            # STEP 5: Log decision for observability (optimized)
+            # Pattern "Log on Change": INFO only when mode/tier changes
+            # DEBUG for repetitive calls (disabled in prod by default)
+            # ═══════════════════════════════════════════════════════════════
+            current_mode = mode.value if hasattr(mode, 'value') else str(mode)
+            current_tier = metadata.get('tier', 0)
+
+            log_data = {
+                "is_panic": is_panic,
+                "panic_duration_min": round(panic_duration_min, 1),
+                "tier": current_tier,
+                "mode": current_mode,
+                "ttl_seconds": ttl,
+                "match_importance": metadata.get('match_importance', 'unknown')
+            }
+
+            # Log INFO only on state change (mode or tier)
+            if current_mode != self._last_logged_mode or current_tier != self._last_logged_tier:
+                logger.info("VIX_TTL_STATE_CHANGE", **log_data,
+                           previous_mode=self._last_logged_mode,
+                           previous_tier=self._last_logged_tier)
+                self._last_logged_mode = current_mode
+                self._last_logged_tier = current_tier
+            else:
+                # Debug level for repetitive calls (can be disabled in prod)
+                logger.debug("VIX_TTL_DECISION", **log_data)
+
+            # Return mode as string for compatibility
+            mode_str = mode.value if hasattr(mode, 'value') else str(mode)
+            return (ttl, mode_str)
+
+        except Exception as e:
+            # ═══════════════════════════════════════════════════════════════
+            # FAIL-SAFE: Any error → Maximum caution (PANIC_FULL, TTL=0)
+            # Better to recalculate everything than serve stale data
+            # ═══════════════════════════════════════════════════════════════
+            logger.error(
+                "VIX_CIRCUIT_BREAKER_ERROR",
+                error=str(e),
+                action="fail_safe_panic_full"
+            )
+            return (0, "PANIC_FULL")
 
     def get_metrics(self) -> Dict:
         """
