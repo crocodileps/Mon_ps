@@ -2,9 +2,9 @@
   "Aston Villa": {
     "raw_data": {
       "Normal": {
-        "shots": 102,
-        "goals": 9,
-        "xG": 10.39
+        "shots": 108,
+        "goals": 11,
+        "xG": 10.949
       },
       "Standard": {
         "shots": 51,
@@ -17,9 +17,9 @@
         "xG": 2.311
       },
       "Slow": {
-        "shots": 10,
-        "goals": 1,
-        "xG": 1.491
+        "shots": 12,
+        "goals": 2,
+        "xG": 2.527
       }
     },
     "insights": {
@@ -64,24 +64,24 @@
   "Bournemouth": {
     "raw_data": {
       "Normal": {
-        "shots": 134,
-        "goals": 10,
-        "xG": 12.846
+        "shots": 139,
+        "goals": 11,
+        "xG": 14.039
       },
       "Standard": {
-        "shots": 39,
-        "goals": 7,
-        "xG": 7.633
+        "shots": 42,
+        "goals": 8,
+        "xG": 7.814
       },
       "Slow": {
-        "shots": 14,
+        "shots": 17,
         "goals": 0,
-        "xG": 1.303
+        "xG": 1.691
       },
       "Fast": {
-        "shots": 9,
-        "goals": 4,
-        "xG": 1.507
+        "shots": 12,
+        "goals": 6,
+        "xG": 2.208
       }
     },
     "insights": {
@@ -95,9 +95,9 @@
   "Sunderland": {
     "raw_data": {
       "Normal": {
-        "shots": 78,
+        "shots": 82,
         "goals": 9,
-        "xG": 7.439
+        "xG": 8.054
       },
       "Standard": {
         "shots": 44,
@@ -105,9 +105,9 @@
         "xG": 5.807
       },
       "Slow": {
-        "shots": 13,
-        "goals": 1,
-        "xG": 1.819
+        "shots": 15,
+        "goals": 2,
+        "xG": 2.835
       },
       "Fast": {
         "shots": 9,
@@ -126,24 +126,24 @@
   "Crystal Palace": {
     "raw_data": {
       "Normal": {
-        "shots": 101,
+        "shots": 114,
         "goals": 10,
-        "xG": 15.274
+        "xG": 16.353
       },
       "Standard": {
-        "shots": 45,
+        "shots": 46,
         "goals": 8,
-        "xG": 7.995
+        "xG": 8.01
       },
       "Fast": {
-        "shots": 18,
+        "shots": 19,
         "goals": 1,
-        "xG": 3.418
+        "xG": 3.528
       },
       "Slow": {
-        "shots": 10,
+        "shots": 11,
         "goals": 1,
-        "xG": 1.863
+        "xG": 1.962
       }
     },
     "insights": {
@@ -188,19 +188,19 @@
   "West Ham": {
     "raw_data": {
       "Normal": {
-        "shots": 78,
-        "goals": 5,
-        "xG": 6.625
+        "shots": 84,
+        "goals": 7,
+        "xG": 7.858
       },
       "Standard": {
-        "shots": 49,
+        "shots": 52,
         "goals": 7,
-        "xG": 6.808
+        "xG": 6.886
       },
       "Slow": {
-        "shots": 16,
+        "shots": 17,
         "goals": 2,
-        "xG": 1.735
+        "xG": 1.746
       },
       "Fast": {
         "shots": 9,
@@ -219,19 +219,19 @@
   "Tottenham": {
     "raw_data": {
       "Normal": {
-        "shots": 83,
+        "shots": 86,
         "goals": 10,
-        "xG": 11.157
+        "xG": 11.394
       },
       "Standard": {
-        "shots": 38,
+        "shots": 39,
         "goals": 7,
-        "xG": 3.839
+        "xG": 3.895
       },
       "Slow": {
-        "shots": 17,
+        "shots": 19,
         "goals": 5,
-        "xG": 2.127
+        "xG": 2.213
       },
       "Fast": {
         "shots": 9,
@@ -281,19 +281,19 @@
   "Newcastle United": {
     "raw_data": {
       "Normal": {
-        "shots": 110,
+        "shots": 114,
         "goals": 9,
-        "xG": 11.196
+        "xG": 11.279
       },
       "Standard": {
-        "shots": 51,
+        "shots": 52,
         "goals": 9,
-        "xG": 8.99
+        "xG": 9.031
       },
       "Slow": {
-        "shots": 20,
+        "shots": 21,
         "goals": 3,
-        "xG": 2.045
+        "xG": 2.09
       },
       "Fast": {
         "shots": 8,
@@ -343,19 +343,19 @@
   "Manchester City": {
     "raw_data": {
       "Normal": {
-        "shots": 131,
-        "goals": 19,
-        "xG": 20.718
+        "shots": 134,
+        "goals": 20,
+        "xG": 20.914
       },
       "Standard": {
-        "shots": 46,
-        "goals": 5,
-        "xG": 5.821
+        "shots": 49,
+        "goals": 6,
+        "xG": 6.683
       },
       "Slow": {
-        "shots": 25,
-        "goals": 6,
-        "xG": 4.26
+        "shots": 26,
+        "goals": 7,
+        "xG": 4.555
       },
       "Fast": {
         "shots": 16,
@@ -374,24 +374,24 @@
   "Manchester United": {
     "raw_data": {
       "Normal": {
-        "shots": 160,
-        "goals": 11,
-        "xG": 20.542
+        "shots": 176,
+        "goals": 12,
+        "xG": 22.347
       },
       "Standard": {
-        "shots": 62,
-        "goals": 11,
-        "xG": 9.907
+        "shots": 66,
+        "goals": 13,
+        "xG": 10.34
       },
       "Fast": {
-        "shots": 13,
-        "goals": 3,
-        "xG": 2.805
+        "shots": 15,
+        "goals": 4,
+        "xG": 3.606
       },
       "Slow": {
-        "shots": 9,
+        "shots": 12,
         "goals": 1,
-        "xG": 0.915
+        "xG": 1.093
       }
     },
     "insights": {
@@ -529,24 +529,24 @@
   "Brentford": {
     "raw_data": {
       "Normal": {
-        "shots": 88,
-        "goals": 12,
-        "xG": 12.775
+        "shots": 94,
+        "goals": 13,
+        "xG": 13.393
       },
       "Standard": {
         "shots": 44,
         "goals": 5,
         "xG": 11.281
       },
+      "Fast": {
+        "shots": 11,
+        "goals": 4,
+        "xG": 2.178
+      },
       "Slow": {
         "shots": 10,
         "goals": 0,
         "xG": 0.817
-      },
-      "Fast": {
-        "shots": 10,
-        "goals": 4,
-        "xG": 2.099
       }
     },
     "insights": {
@@ -560,24 +560,24 @@
   "Leeds": {
     "raw_data": {
       "Normal": {
-        "shots": 109,
-        "goals": 8,
-        "xG": 12.244
+        "shots": 122,
+        "goals": 9,
+        "xG": 13.683
       },
       "Standard": {
-        "shots": 55,
+        "shots": 56,
         "goals": 10,
-        "xG": 7.986
+        "xG": 8.009
       },
       "Slow": {
-        "shots": 11,
+        "shots": 13,
         "goals": 0,
-        "xG": 1.046
+        "xG": 1.149
       },
       "Fast": {
-        "shots": 9,
+        "shots": 10,
         "goals": 1,
-        "xG": 0.956
+        "xG": 1.024
       }
     },
     "insights": {
@@ -591,19 +591,19 @@
   "Nottingham Forest": {
     "raw_data": {
       "Normal": {
-        "shots": 108,
-        "goals": 7,
-        "xG": 10.344
+        "shots": 118,
+        "goals": 10,
+        "xG": 11.93
       },
       "Standard": {
-        "shots": 53,
+        "shots": 56,
         "goals": 5,
-        "xG": 3.622
+        "xG": 3.79
       },
       "Fast": {
-        "shots": 13,
+        "shots": 15,
         "goals": 2,
-        "xG": 1.911
+        "xG": 2.539
       },
       "Slow": {
         "shots": 7,
@@ -622,24 +622,24 @@
   "Sevilla": {
     "raw_data": {
       "Normal": {
-        "shots": 100,
-        "goals": 9,
-        "xG": 9.067
+        "shots": 106,
+        "goals": 11,
+        "xG": 10.267
       },
       "Standard": {
-        "shots": 44,
+        "shots": 46,
         "goals": 4,
-        "xG": 3.984
+        "xG": 4.128
+      },
+      "Fast": {
+        "shots": 14,
+        "goals": 6,
+        "xG": 2.912
       },
       "Slow": {
         "shots": 9,
         "goals": 3,
         "xG": 2.226
-      },
-      "Fast": {
-        "shots": 9,
-        "goals": 4,
-        "xG": 1.937
       }
     },
     "insights": {
@@ -777,24 +777,24 @@
   "Rayo Vallecano": {
     "raw_data": {
       "Normal": {
-        "shots": 109,
+        "shots": 120,
         "goals": 7,
-        "xG": 15.188
+        "xG": 15.617
       },
       "Standard": {
-        "shots": 52,
+        "shots": 61,
         "goals": 4,
-        "xG": 3.951
+        "xG": 5.511
       },
       "Fast": {
-        "shots": 17,
+        "shots": 19,
         "goals": 2,
-        "xG": 2.065
+        "xG": 2.317
       },
       "Slow": {
-        "shots": 11,
+        "shots": 12,
         "goals": 0,
-        "xG": 1.392
+        "xG": 1.401
       }
     },
     "insights": {
@@ -839,19 +839,19 @@
   "Athletic Club": {
     "raw_data": {
       "Normal": {
-        "shots": 118,
+        "shots": 128,
         "goals": 6,
-        "xG": 10.905
+        "xG": 11.409
       },
       "Standard": {
-        "shots": 56,
+        "shots": 59,
         "goals": 8,
-        "xG": 9.405
+        "xG": 10.502
       },
       "Slow": {
-        "shots": 20,
+        "shots": 21,
         "goals": 0,
-        "xG": 1.457
+        "xG": 1.531
       },
       "Fast": {
         "shots": 14,
@@ -901,14 +901,14 @@
   "Real Madrid": {
     "raw_data": {
       "Normal": {
-        "shots": 178,
-        "goals": 17,
-        "xG": 21.801
+        "shots": 187,
+        "goals": 18,
+        "xG": 22.959
       },
       "Standard": {
-        "shots": 82,
+        "shots": 85,
         "goals": 9,
-        "xG": 13.035
+        "xG": 13.223
       },
       "Slow": {
         "shots": 41,
@@ -916,9 +916,9 @@
         "xG": 2.315
       },
       "Fast": {
-        "shots": 17,
-        "goals": 3,
-        "xG": 2.677
+        "shots": 18,
+        "goals": 4,
+        "xG": 3.316
       }
     },
     "insights": {
@@ -963,9 +963,9 @@
   "Celta Vigo": {
     "raw_data": {
       "Normal": {
-        "shots": 114,
-        "goals": 10,
-        "xG": 13.343
+        "shots": 117,
+        "goals": 11,
+        "xG": 14.622
       },
       "Standard": {
         "shots": 35,
@@ -978,9 +978,9 @@
         "xG": 0.467
       },
       "Fast": {
-        "shots": 6,
-        "goals": 1,
-        "xG": 0.531
+        "shots": 8,
+        "goals": 2,
+        "xG": 1.223
       }
     },
     "insights": {
@@ -994,19 +994,19 @@
   "Real Betis": {
     "raw_data": {
       "Normal": {
-        "shots": 148,
+        "shots": 158,
         "goals": 15,
-        "xG": 14.473
+        "xG": 15.091
       },
       "Standard": {
-        "shots": 46,
+        "shots": 47,
         "goals": 6,
-        "xG": 5.596
+        "xG": 5.63
       },
       "Fast": {
-        "shots": 17,
+        "shots": 19,
         "goals": 4,
-        "xG": 4.134
+        "xG": 4.27
       },
       "Slow": {
         "shots": 13,
@@ -1087,24 +1087,24 @@
   "Alaves": {
     "raw_data": {
       "Normal": {
-        "shots": 103,
-        "goals": 2,
-        "xG": 9.921
+        "shots": 106,
+        "goals": 3,
+        "xG": 10.645
       },
       "Standard": {
-        "shots": 49,
+        "shots": 50,
         "goals": 9,
-        "xG": 10.061
+        "xG": 10.611
       },
       "Slow": {
-        "shots": 10,
+        "shots": 11,
         "goals": 1,
-        "xG": 0.907
+        "xG": 0.927
       },
       "Fast": {
-        "shots": 9,
+        "shots": 10,
         "goals": 1,
-        "xG": 1.162
+        "xG": 1.182
       }
     },
     "insights": {
@@ -1211,14 +1211,14 @@
   "Real Oviedo": {
     "raw_data": {
       "Normal": {
-        "shots": 91,
+        "shots": 94,
         "goals": 4,
-        "xG": 9.783
+        "xG": 10.16
       },
       "Standard": {
-        "shots": 35,
+        "shots": 36,
         "goals": 3,
-        "xG": 4.13
+        "xG": 4.17
       },
       "Slow": {
         "shots": 5,
@@ -1242,24 +1242,24 @@
   "Bayern Munich": {
     "raw_data": {
       "Normal": {
-        "shots": 164,
-        "goals": 28,
-        "xG": 24.562
+        "shots": 180,
+        "goals": 29,
+        "xG": 27.422
       },
       "Standard": {
-        "shots": 45,
-        "goals": 12,
-        "xG": 7.832
+        "shots": 48,
+        "goals": 13,
+        "xG": 8.679
       },
       "Slow": {
-        "shots": 32,
+        "shots": 36,
         "goals": 7,
-        "xG": 4.797
+        "xG": 5.528
       },
       "Fast": {
-        "shots": 10,
+        "shots": 11,
         "goals": 2,
-        "xG": 1.782
+        "xG": 2.153
       }
     },
     "insights": {
@@ -1397,24 +1397,24 @@
   "Werder Bremen": {
     "raw_data": {
       "Normal": {
-        "shots": 104,
+        "shots": 110,
         "goals": 12,
-        "xG": 9.037
+        "xG": 9.443
       },
       "Standard": {
-        "shots": 44,
+        "shots": 45,
         "goals": 4,
-        "xG": 6.064
+        "xG": 6.122
       },
       "Fast": {
-        "shots": 11,
+        "shots": 12,
         "goals": 2,
-        "xG": 2.262
+        "xG": 2.364
       },
       "Slow": {
-        "shots": 5,
+        "shots": 6,
         "goals": 0,
-        "xG": 0.295
+        "xG": 0.337
       }
     },
     "insights": {
@@ -1428,14 +1428,14 @@
   "Mainz 05": {
     "raw_data": {
       "Normal": {
-        "shots": 88,
-        "goals": 6,
-        "xG": 8.482
+        "shots": 91,
+        "goals": 7,
+        "xG": 8.789
       },
       "Standard": {
-        "shots": 44,
-        "goals": 4,
-        "xG": 5.99
+        "shots": 46,
+        "goals": 5,
+        "xG": 6.486
       },
       "Slow": {
         "shots": 8,
@@ -1459,19 +1459,19 @@
   "Borussia Dortmund": {
     "raw_data": {
       "Normal": {
-        "shots": 96,
+        "shots": 102,
         "goals": 12,
-        "xG": 13.647
+        "xG": 14.037
       },
       "Standard": {
-        "shots": 48,
-        "goals": 8,
-        "xG": 5.619
+        "shots": 49,
+        "goals": 9,
+        "xG": 6.136
       },
       "Slow": {
-        "shots": 9,
+        "shots": 11,
         "goals": 0,
-        "xG": 0.524
+        "xG": 1.091
       },
       "Fast": {
         "shots": 6,
@@ -1583,24 +1583,24 @@
   "VfB Stuttgart": {
     "raw_data": {
       "Normal": {
-        "shots": 128,
-        "goals": 11,
-        "xG": 13.085
+        "shots": 142,
+        "goals": 13,
+        "xG": 14.291
       },
       "Standard": {
-        "shots": 49,
+        "shots": 55,
         "goals": 5,
-        "xG": 6.224
+        "xG": 6.639
       },
       "Slow": {
-        "shots": 15,
-        "goals": 3,
-        "xG": 0.699
+        "shots": 17,
+        "goals": 4,
+        "xG": 0.949
       },
       "Fast": {
-        "shots": 7,
-        "goals": 2,
-        "xG": 0.732
+        "shots": 9,
+        "goals": 3,
+        "xG": 0.913
       }
     },
     "insights": {
@@ -1645,19 +1645,19 @@
   "Freiburg": {
     "raw_data": {
       "Normal": {
-        "shots": 94,
+        "shots": 103,
         "goals": 8,
-        "xG": 10.142
+        "xG": 10.551
       },
       "Standard": {
-        "shots": 48,
+        "shots": 55,
         "goals": 10,
-        "xG": 7.665
+        "xG": 8.092
       },
       "Slow": {
-        "shots": 13,
-        "goals": 2,
-        "xG": 1.955
+        "shots": 18,
+        "goals": 3,
+        "xG": 2.228
       },
       "Fast": {
         "shots": 5,
@@ -1800,24 +1800,24 @@
   "Verona": {
     "raw_data": {
       "Normal": {
-        "shots": 121,
-        "goals": 6,
-        "xG": 13.922
+        "shots": 128,
+        "goals": 7,
+        "xG": 14.661
       },
       "Standard": {
-        "shots": 29,
+        "shots": 31,
         "goals": 3,
-        "xG": 2.914
+        "xG": 3.016
       },
       "Fast": {
-        "shots": 15,
-        "goals": 2,
-        "xG": 2.286
+        "shots": 18,
+        "goals": 3,
+        "xG": 2.956
       },
       "Slow": {
-        "shots": 5,
+        "shots": 6,
         "goals": 0,
-        "xG": 0.17
+        "xG": 0.197
       }
     },
     "insights": {
@@ -1831,19 +1831,19 @@
   "Roma": {
     "raw_data": {
       "Normal": {
-        "shots": 107,
-        "goals": 7,
-        "xG": 11.917
+        "shots": 114,
+        "goals": 8,
+        "xG": 12.622
       },
       "Standard": {
-        "shots": 57,
+        "shots": 60,
         "goals": 4,
-        "xG": 5.248
+        "xG": 5.653
       },
       "Slow": {
-        "shots": 15,
+        "shots": 19,
         "goals": 4,
-        "xG": 1.58
+        "xG": 2.126
       },
       "Fast": {
         "shots": 4,
@@ -1893,19 +1893,19 @@
   "Bologna": {
     "raw_data": {
       "Normal": {
-        "shots": 114,
+        "shots": 122,
         "goals": 13,
-        "xG": 14.14
+        "xG": 14.656
       },
       "Standard": {
-        "shots": 55,
+        "shots": 58,
         "goals": 7,
-        "xG": 7.307
+        "xG": 7.769
       },
       "Slow": {
-        "shots": 13,
+        "shots": 14,
         "goals": 1,
-        "xG": 0.538
+        "xG": 0.57
       },
       "Fast": {
         "shots": 12,
@@ -1924,24 +1924,24 @@
   "Juventus": {
     "raw_data": {
       "Normal": {
-        "shots": 141,
+        "shots": 149,
         "goals": 9,
-        "xG": 13.458
+        "xG": 14.456
       },
       "Standard": {
-        "shots": 54,
-        "goals": 8,
-        "xG": 5.84
+        "shots": 56,
+        "goals": 9,
+        "xG": 6.448
       },
       "Slow": {
-        "shots": 18,
+        "shots": 19,
         "goals": 0,
-        "xG": 0.968
+        "xG": 0.984
       },
       "Fast": {
-        "shots": 9,
+        "shots": 11,
         "goals": 1,
-        "xG": 1.244
+        "xG": 1.695
       }
     },
     "insights": {
@@ -1955,19 +1955,19 @@
   "Udinese": {
     "raw_data": {
       "Normal": {
-        "shots": 112,
-        "goals": 9,
-        "xG": 10.708
+        "shots": 126,
+        "goals": 10,
+        "xG": 12.337
       },
       "Standard": {
-        "shots": 46,
+        "shots": 49,
         "goals": 5,
-        "xG": 5.699
+        "xG": 5.916
       },
       "Slow": {
-        "shots": 11,
+        "shots": 12,
         "goals": 0,
-        "xG": 1.2
+        "xG": 1.222
       },
       "Fast": {
         "shots": 7,
@@ -1986,14 +1986,14 @@
   "Genoa": {
     "raw_data": {
       "Normal": {
-        "shots": 88,
+        "shots": 90,
         "goals": 6,
-        "xG": 10.223
+        "xG": 10.306
       },
       "Standard": {
-        "shots": 62,
+        "shots": 64,
         "goals": 7,
-        "xG": 7.888
+        "xG": 7.946
       },
       "Slow": {
         "shots": 14,
@@ -2001,9 +2001,9 @@
         "xG": 1.112
       },
       "Fast": {
-        "shots": 8,
-        "goals": 2,
-        "xG": 1.72
+        "shots": 9,
+        "goals": 3,
+        "xG": 2.475
       }
     },
     "insights": {
@@ -2017,14 +2017,14 @@
   "Sassuolo": {
     "raw_data": {
       "Normal": {
-        "shots": 103,
-        "goals": 8,
-        "xG": 10.633
+        "shots": 108,
+        "goals": 10,
+        "xG": 11.54
       },
       "Standard": {
-        "shots": 36,
+        "shots": 38,
         "goals": 8,
-        "xG": 6.851
+        "xG": 6.907
       },
       "Slow": {
         "shots": 10,
@@ -2032,9 +2032,9 @@
         "xG": 0.693
       },
       "Fast": {
-        "shots": 8,
+        "shots": 9,
         "goals": 2,
-        "xG": 1.192
+        "xG": 1.258
       }
     },
     "insights": {
@@ -2048,14 +2048,14 @@
   "Napoli": {
     "raw_data": {
       "Normal": {
-        "shots": 115,
+        "shots": 120,
         "goals": 11,
-        "xG": 12.675
+        "xG": 13.532
       },
       "Standard": {
-        "shots": 51,
+        "shots": 53,
         "goals": 7,
-        "xG": 7.722
+        "xG": 7.796
       },
       "Fast": {
         "shots": 9,
@@ -2079,19 +2079,19 @@
   "Inter": {
     "raw_data": {
       "Normal": {
-        "shots": 139,
-        "goals": 18,
-        "xG": 17.484
+        "shots": 148,
+        "goals": 20,
+        "xG": 18.684
       },
       "Standard": {
-        "shots": 77,
+        "shots": 81,
         "goals": 9,
-        "xG": 10.118
+        "xG": 10.346
       },
       "Slow": {
-        "shots": 19,
+        "shots": 24,
         "goals": 4,
-        "xG": 2.95
+        "xG": 3.567
       },
       "Fast": {
         "shots": 11,
@@ -2141,19 +2141,19 @@
   "Fiorentina": {
     "raw_data": {
       "Normal": {
-        "shots": 83,
-        "goals": 3,
-        "xG": 7.197
+        "shots": 93,
+        "goals": 4,
+        "xG": 9.118
       },
       "Standard": {
-        "shots": 61,
+        "shots": 70,
         "goals": 7,
-        "xG": 9.877
+        "xG": 11.022
       },
       "Fast": {
-        "shots": 10,
+        "shots": 12,
         "goals": 1,
-        "xG": 1.236
+        "xG": 1.588
       },
       "Slow": {
         "shots": 8,
@@ -2172,24 +2172,24 @@
   "AC Milan": {
     "raw_data": {
       "Normal": {
-        "shots": 112,
-        "goals": 14,
-        "xG": 14.803
+        "shots": 121,
+        "goals": 15,
+        "xG": 15.767
       },
       "Standard": {
-        "shots": 49,
+        "shots": 51,
         "goals": 6,
-        "xG": 6.467
+        "xG": 6.954
       },
       "Slow": {
-        "shots": 18,
-        "goals": 1,
-        "xG": 1.325
+        "shots": 19,
+        "goals": 2,
+        "xG": 1.629
       },
       "Fast": {
-        "shots": 10,
+        "shots": 11,
         "goals": 1,
-        "xG": 2.494
+        "xG": 2.573
       }
     },
     "insights": {
@@ -2358,24 +2358,24 @@
   "Como": {
     "raw_data": {
       "Normal": {
-        "shots": 128,
+        "shots": 134,
         "goals": 11,
-        "xG": 11.919
+        "xG": 12.185
       },
       "Standard": {
-        "shots": 47,
+        "shots": 52,
         "goals": 6,
-        "xG": 6.241
+        "xG": 6.452
+      },
+      "Fast": {
+        "shots": 11,
+        "goals": 2,
+        "xG": 1.367
       },
       "Slow": {
         "shots": 11,
         "goals": 0,
         "xG": 0.939
-      },
-      "Fast": {
-        "shots": 9,
-        "goals": 2,
-        "xG": 1.206
       }
     },
     "insights": {
@@ -2420,19 +2420,19 @@
   "Lille": {
     "raw_data": {
       "Normal": {
-        "shots": 131,
-        "goals": 20,
-        "xG": 19.527
+        "shots": 135,
+        "goals": 23,
+        "xG": 20.203
       },
       "Standard": {
-        "shots": 71,
-        "goals": 6,
-        "xG": 8.888
+        "shots": 74,
+        "goals": 7,
+        "xG": 8.983
       },
       "Slow": {
-        "shots": 16,
+        "shots": 17,
         "goals": 0,
-        "xG": 0.577
+        "xG": 0.587
       },
       "Fast": {
         "shots": 9,
@@ -2513,24 +2513,24 @@
   "Marseille": {
     "raw_data": {
       "Normal": {
-        "shots": 116,
-        "goals": 19,
-        "xG": 16.19
+        "shots": 128,
+        "goals": 20,
+        "xG": 17.981
       },
       "Standard": {
-        "shots": 57,
+        "shots": 59,
         "goals": 10,
-        "xG": 8.727
+        "xG": 8.795
       },
       "Slow": {
-        "shots": 25,
+        "shots": 27,
         "goals": 3,
-        "xG": 2.556
+        "xG": 2.628
       },
       "Fast": {
-        "shots": 13,
+        "shots": 15,
         "goals": 3,
-        "xG": 4.216
+        "xG": 4.309
       }
     },
     "insights": {
@@ -2606,14 +2606,14 @@
   "Nice": {
     "raw_data": {
       "Normal": {
-        "shots": 114,
+        "shots": 120,
         "goals": 11,
-        "xG": 12.962
+        "xG": 13.658
       },
       "Standard": {
-        "shots": 42,
+        "shots": 44,
         "goals": 3,
-        "xG": 4.773
+        "xG": 4.81
       },
       "Slow": {
         "shots": 10,
@@ -2637,24 +2637,24 @@
   "Monaco": {
     "raw_data": {
       "Normal": {
-        "shots": 107,
+        "shots": 119,
         "goals": 12,
-        "xG": 16.978
+        "xG": 18.515
       },
       "Standard": {
-        "shots": 48,
+        "shots": 51,
         "goals": 7,
-        "xG": 8.825
+        "xG": 9.052
       },
       "Slow": {
-        "shots": 18,
+        "shots": 19,
         "goals": 4,
-        "xG": 3.078
+        "xG": 3.165
       },
       "Fast": {
-        "shots": 17,
+        "shots": 19,
         "goals": 3,
-        "xG": 3.52
+        "xG": 3.626
       }
     },
     "insights": {
@@ -2699,24 +2699,24 @@
   "Lyon": {
     "raw_data": {
       "Normal": {
-        "shots": 103,
-        "goals": 10,
-        "xG": 13.129
+        "shots": 113,
+        "goals": 11,
+        "xG": 14.495
       },
       "Standard": {
-        "shots": 56,
+        "shots": 60,
         "goals": 4,
-        "xG": 6.313
+        "xG": 6.898
       },
       "Slow": {
-        "shots": 16,
+        "shots": 17,
         "goals": 5,
-        "xG": 3.82
+        "xG": 3.886
       },
       "Fast": {
-        "shots": 11,
+        "shots": 14,
         "goals": 2,
-        "xG": 2.678
+        "xG": 3.674
       }
     },
     "insights": {
@@ -2730,19 +2730,19 @@
   "Lorient": {
     "raw_data": {
       "Normal": {
-        "shots": 105,
+        "shots": 110,
         "goals": 10,
-        "xG": 13.112
+        "xG": 13.321
       },
       "Standard": {
-        "shots": 53,
+        "shots": 56,
         "goals": 5,
-        "xG": 8.778
+        "xG": 8.932
       },
       "Slow": {
-        "shots": 17,
+        "shots": 18,
         "goals": 4,
-        "xG": 3.01
+        "xG": 3.062
       },
       "Fast": {
         "shots": 8,
@@ -2792,24 +2792,24 @@
   "Lens": {
     "raw_data": {
       "Normal": {
-        "shots": 105,
-        "goals": 10,
-        "xG": 14.199
+        "shots": 115,
+        "goals": 12,
+        "xG": 15.835
       },
       "Standard": {
-        "shots": 70,
+        "shots": 73,
         "goals": 13,
-        "xG": 13.759
+        "xG": 13.9
       },
       "Slow": {
-        "shots": 19,
+        "shots": 20,
         "goals": 0,
-        "xG": 2.322
+        "xG": 2.358
       },
       "Fast": {
-        "shots": 16,
+        "shots": 17,
         "goals": 3,
-        "xG": 4.849
+        "xG": 4.952
       }
     },
     "insights": {
@@ -2823,24 +2823,24 @@
   "Strasbourg": {
     "raw_data": {
       "Normal": {
-        "shots": 107,
+        "shots": 111,
         "goals": 20,
-        "xG": 16.561
+        "xG": 16.829
       },
       "Standard": {
-        "shots": 40,
+        "shots": 45,
         "goals": 4,
-        "xG": 4.937
+        "xG": 5.095
       },
       "Fast": {
-        "shots": 11,
+        "shots": 12,
         "goals": 1,
-        "xG": 3.473
+        "xG": 3.879
       },
       "Slow": {
-        "shots": 8,
+        "shots": 10,
         "goals": 0,
-        "xG": 0.903
+        "xG": 0.982
       }
     },
     "insights": {
@@ -2885,24 +2885,24 @@
   "Auxerre": {
     "raw_data": {
       "Normal": {
-        "shots": 90,
-        "goals": 5,
-        "xG": 9.108
+        "shots": 97,
+        "goals": 6,
+        "xG": 10.311
       },
       "Standard": {
-        "shots": 47,
-        "goals": 5,
-        "xG": 7.647
+        "shots": 55,
+        "goals": 7,
+        "xG": 10.201
       },
       "Slow": {
-        "shots": 15,
+        "shots": 17,
         "goals": 1,
-        "xG": 0.912
+        "xG": 0.991
       },
       "Fast": {
-        "shots": 11,
+        "shots": 13,
         "goals": 0,
-        "xG": 1.589
+        "xG": 1.802
       }
     },
     "insights": {
@@ -2916,14 +2916,14 @@
   "Le Havre": {
     "raw_data": {
       "Normal": {
-        "shots": 102,
+        "shots": 106,
         "goals": 6,
-        "xG": 9.72
+        "xG": 10.178
       },
       "Standard": {
-        "shots": 51,
+        "shots": 57,
         "goals": 4,
-        "xG": 6.267
+        "xG": 7.634
       },
       "Slow": {
         "shots": 13,

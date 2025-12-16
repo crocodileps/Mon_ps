@@ -1,0 +1,15 @@
+  SCENARIO A: Normal Match Context (Complete)
+2025-12-15 16:07:30 [info     ] Cache MISS - Computing fresh   cache_key=test:v2:vix_results:scenario_a
+✅ PASS: Scenario A executed successfully
+ℹ️ INFO:   vix_status: normal
+  SCENARIO B: NO Match Context
+⚠️ WARN: Scenario B error (non-critical): 'NoneType' object has no attribute 'get'
+  SCENARIO C: Incomplete Match Context
+2025-12-15 16:07:30 [info     ] Cache MISS - Computing fresh   cache_key=test:v2:vix_results:scenario_c
+✅ PASS: Scenario C executed successfully
+ℹ️ INFO:   vix_status: normal
+Scenario Results:
+  Scenario A (Normal):     ✅ PASS
+  Scenario B (No context): ⚠️ N/A
+  Scenario C (Incomplete): ✅ PASS
+Exit Code: 0

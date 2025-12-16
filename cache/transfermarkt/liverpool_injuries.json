@@ -2,21 +2,31 @@
   {
     "player_name": "Stefan Bajcetic",
     "injury_type": "21",
-    "scraped_at": "2025-12-14T06:00:05.422710"
+    "scraped_at": "2025-12-16T06:00:03.845700"
   },
   {
     "player_name": "Giovanni Leoni",
     "injury_type": "18",
-    "scraped_at": "2025-12-14T06:00:05.422821"
+    "scraped_at": "2025-12-16T06:00:03.845812"
+  },
+  {
+    "player_name": "Jeremie Frimpong",
+    "injury_type": "25",
+    "scraped_at": "2025-12-16T06:00:03.845896"
   },
   {
     "player_name": "Cody Gakpo",
     "injury_type": "26",
-    "scraped_at": "2025-12-14T06:00:05.422906"
+    "scraped_at": "2025-12-16T06:00:03.845974"
   },
   {
     "player_name": "Wataru Endo",
     "injury_type": "32",
-    "scraped_at": "2025-12-14T06:00:05.422989"
+    "scraped_at": "2025-12-16T06:00:03.846055"
+  },
+  {
+    "player_name": "Joe Gomez",
+    "injury_type": "28",
+    "scraped_at": "2025-12-16T06:00:03.846135"
   }
 ]

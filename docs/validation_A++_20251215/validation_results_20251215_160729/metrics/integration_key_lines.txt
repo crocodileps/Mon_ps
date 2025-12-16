@@ -1,0 +1,248 @@
+✅ PASS: SmartCache imported successfully
+    ⏳ PROGRESS: Progress: 5/10 (50.0%) | Mode: normal | Panic: 0.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 10/10 (100.0%) | Mode: normal | Panic: 0.0% | ETA: 0s
+  ✅ PASS: Completed 10/10 calls
+    ✅ PASS: Mode: normal (expected: normal)
+    ✅ PASS: Panic ratio: 0.0% (expected: 0.0-1.0%)
+    ⏳ PROGRESS: Progress: 1/1 (100.0%) | Mode: normal | Panic: 0.0% | ETA: 0s
+  ✅ PASS: Completed 1/1 calls
+    ✅ PASS: Mode: normal (expected: normal)
+    ✅ PASS: Panic ratio: 0.0% (expected: 0.0-1.0%)
+  ℹ️ INFO: Panic ratio: 0.000% (1 panic / 1800 window = 0.056%)
+ℹ️ INFO: 🎯 Panic Ratio Target: 30.0%
+ℹ️ INFO: Expected Mode: NORMAL
+    ⏳ PROGRESS: Progress: 100/900 (11.1%) | Mode: normal | Panic: 25.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 200/900 (22.2%) | Mode: normal | Panic: 27.5% | ETA: 1s
+    ⏳ PROGRESS: Progress: 300/900 (33.3%) | Mode: normal | Panic: 26.7% | ETA: 1s
+    ⏳ PROGRESS: Progress: 400/900 (44.4%) | Mode: normal | Panic: 27.5% | ETA: 1s
+    ⏳ PROGRESS: Progress: 500/900 (55.6%) | Mode: normal | Panic: 26.8% | ETA: 1s
+    ⏳ PROGRESS: Progress: 600/900 (66.7%) | Mode: normal | Panic: 27.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 700/900 (77.8%) | Mode: normal | Panic: 27.4% | ETA: 0s
+    ⏳ PROGRESS: Progress: 800/900 (88.9%) | Mode: normal | Panic: 27.1% | ETA: 0s
+    ⏳ PROGRESS: Progress: 900/900 (100.0%) | Mode: normal | Panic: 27.3% | ETA: 0s
+  ✅ PASS: Completed 900/900 calls
+  ✅ PASS: VIX Mock called 1800 times
+    ✅ PASS: Mode: normal ✅
+    ✅ PASS: Panic ratio: 27.33% ✅
+    ✅ PASS: Window size: 900 ✅
+    ✅ PASS: Adaptive TTL: 60s (expected: 60s) ✅
+  ℹ️ INFO: Mode: normal (expected: normal)
+ℹ️ INFO: 🎯 Panic Ratio Target: 45.0%
+ℹ️ INFO: Expected Mode: NORMAL
+    ⏳ PROGRESS: Progress: 100/900 (11.1%) | Mode: normal | Panic: 39.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 200/900 (22.2%) | Mode: normal | Panic: 43.5% | ETA: 1s
+    ⏳ PROGRESS: Progress: 300/900 (33.3%) | Mode: normal | Panic: 44.3% | ETA: 1s
+    ⏳ PROGRESS: Progress: 400/900 (44.4%) | Mode: normal | Panic: 43.5% | ETA: 1s
+    ⏳ PROGRESS: Progress: 500/900 (55.6%) | Mode: normal | Panic: 42.8% | ETA: 1s
+    ⏳ PROGRESS: Progress: 600/900 (66.7%) | Mode: normal | Panic: 43.2% | ETA: 0s
+    ⏳ PROGRESS: Progress: 700/900 (77.8%) | Mode: normal | Panic: 44.1% | ETA: 0s
+    ⏳ PROGRESS: Progress: 800/900 (88.9%) | Mode: normal | Panic: 43.2% | ETA: 0s
+    ⏳ PROGRESS: Progress: 900/900 (100.0%) | Mode: normal | Panic: 43.3% | ETA: 0s
+  ✅ PASS: Completed 900/900 calls
+  ✅ PASS: VIX Mock called 1800 times
+    ✅ PASS: Mode: normal ✅
+    ✅ PASS: Panic ratio: 43.33% ✅
+    ✅ PASS: Window size: 900 ✅
+    ✅ PASS: Adaptive TTL: 60s (expected: 60s) ✅
+  ℹ️ INFO: Mode: normal (expected: normal)
+ℹ️ INFO: 🎯 Panic Ratio Target: 49.0%
+ℹ️ INFO: Expected Mode: NORMAL
+    ⏳ PROGRESS: Progress: 100/900 (11.1%) | Mode: normal | Panic: 44.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 200/900 (22.2%) | Mode: normal | Panic: 48.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 300/900 (33.3%) | Mode: high_volatility | Panic: 48.7% | ETA: 1s
+    ⏳ PROGRESS: Progress: 400/900 (44.4%) | Mode: high_volatility | Panic: 47.2% | ETA: 1s
+    ⏳ PROGRESS: Progress: 500/900 (55.6%) | Mode: high_volatility | Panic: 46.4% | ETA: 1s
+    ⏳ PROGRESS: Progress: 600/900 (66.7%) | Mode: high_volatility | Panic: 46.8% | ETA: 0s
+    ⏳ PROGRESS: Progress: 700/900 (77.8%) | Mode: high_volatility | Panic: 48.1% | ETA: 0s
+    ⏳ PROGRESS: Progress: 800/900 (88.9%) | Mode: high_volatility | Panic: 47.1% | ETA: 0s
+    ⏳ PROGRESS: Progress: 900/900 (100.0%) | Mode: high_volatility | Panic: 46.9% | ETA: 0s
+  ✅ PASS: Completed 900/900 calls
+  ✅ PASS: VIX Mock called 1800 times
+    ✅ PASS: Mode: high_volatility ✅ (hysteresis: stays in higher mode)
+    ✅ PASS: Panic ratio: 46.89% ✅
+    ✅ PASS: Window size: 900 ✅
+    ✅ PASS: Adaptive TTL: 5s (expected: 60s) ✅
+  ℹ️ INFO: Mode: high_volatility (expected: normal)
+ℹ️ INFO: 🎯 Panic Ratio Target: 50.0%
+ℹ️ INFO: Expected Mode: HIGH_VOLATILITY
+    ⏳ PROGRESS: Progress: 100/900 (11.1%) | Mode: normal | Panic: 45.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 200/900 (22.2%) | Mode: high_volatility | Panic: 49.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 300/900 (33.3%) | Mode: high_volatility | Panic: 50.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 400/900 (44.4%) | Mode: high_volatility | Panic: 48.8% | ETA: 1s
+    ⏳ PROGRESS: Progress: 500/900 (55.6%) | Mode: high_volatility | Panic: 47.8% | ETA: 0s
+    ⏳ PROGRESS: Progress: 600/900 (66.7%) | Mode: high_volatility | Panic: 48.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 700/900 (77.8%) | Mode: high_volatility | Panic: 49.6% | ETA: 0s
+    ⏳ PROGRESS: Progress: 800/900 (88.9%) | Mode: high_volatility | Panic: 48.5% | ETA: 0s
+    ⏳ PROGRESS: Progress: 900/900 (100.0%) | Mode: high_volatility | Panic: 48.2% | ETA: 0s
+  ✅ PASS: Completed 900/900 calls
+  ✅ PASS: VIX Mock called 1800 times
+    ✅ PASS: Mode: high_volatility ✅
+    ✅ PASS: Panic ratio: 48.22% ✅
+    ✅ PASS: Window size: 900 ✅
+    ✅ PASS: Adaptive TTL: 5s (expected: 5s) ✅
+  ℹ️ INFO: Mode: high_volatility (expected: high_volatility)
+ℹ️ INFO: 🎯 Panic Ratio Target: 51.0%
+ℹ️ INFO: Expected Mode: HIGH_VOLATILITY
+    ⏳ PROGRESS: Progress: 100/900 (11.1%) | Mode: normal | Panic: 47.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 200/900 (22.2%) | Mode: high_volatility | Panic: 51.5% | ETA: 1s
+    ⏳ PROGRESS: Progress: 300/900 (33.3%) | Mode: high_volatility | Panic: 51.7% | ETA: 1s
+    ⏳ PROGRESS: Progress: 400/900 (44.4%) | Mode: high_volatility | Panic: 50.2% | ETA: 1s
+    ⏳ PROGRESS: Progress: 500/900 (55.6%) | Mode: high_volatility | Panic: 49.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 600/900 (66.7%) | Mode: high_volatility | Panic: 49.7% | ETA: 0s
+    ⏳ PROGRESS: Progress: 700/900 (77.8%) | Mode: high_volatility | Panic: 51.1% | ETA: 0s
+    ⏳ PROGRESS: Progress: 800/900 (88.9%) | Mode: high_volatility | Panic: 50.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 900/900 (100.0%) | Mode: high_volatility | Panic: 49.6% | ETA: 0s
+  ✅ PASS: Completed 900/900 calls
+  ✅ PASS: VIX Mock called 1800 times
+    ✅ PASS: Mode: high_volatility ✅
+    ✅ PASS: Panic ratio: 49.56% ✅
+    ✅ PASS: Window size: 900 ✅
+    ✅ PASS: Adaptive TTL: 5s (expected: 5s) ✅
+  ℹ️ INFO: Mode: high_volatility (expected: high_volatility)
+ℹ️ INFO: 🎯 Panic Ratio Target: 55.0%
+ℹ️ INFO: Expected Mode: HIGH_VOLATILITY
+    ⏳ PROGRESS: Progress: 100/900 (11.1%) | Mode: high_volatility | Panic: 52.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 200/900 (22.2%) | Mode: high_volatility | Panic: 56.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 300/900 (33.3%) | Mode: high_volatility | Panic: 56.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 400/900 (44.4%) | Mode: high_volatility | Panic: 54.5% | ETA: 1s
+    ⏳ PROGRESS: Progress: 500/900 (55.6%) | Mode: high_volatility | Panic: 53.4% | ETA: 1s
+    ⏳ PROGRESS: Progress: 600/900 (66.7%) | Mode: high_volatility | Panic: 53.8% | ETA: 0s
+    ⏳ PROGRESS: Progress: 700/900 (77.8%) | Mode: high_volatility | Panic: 55.3% | ETA: 0s
+    ⏳ PROGRESS: Progress: 800/900 (88.9%) | Mode: high_volatility | Panic: 54.2% | ETA: 0s
+    ⏳ PROGRESS: Progress: 900/900 (100.0%) | Mode: high_volatility | Panic: 53.6% | ETA: 0s
+  ✅ PASS: Completed 900/900 calls
+  ✅ PASS: VIX Mock called 1800 times
+    ✅ PASS: Mode: high_volatility ✅
+    ✅ PASS: Panic ratio: 53.56% ✅
+    ✅ PASS: Window size: 900 ✅
+    ✅ PASS: Adaptive TTL: 5s (expected: 5s) ✅
+  ℹ️ INFO: Mode: high_volatility (expected: high_volatility)
+ℹ️ INFO: 🎯 Panic Ratio Target: 70.0%
+ℹ️ INFO: Expected Mode: HIGH_VOLATILITY
+    ⏳ PROGRESS: Progress: 100/900 (11.1%) | Mode: high_volatility | Panic: 70.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 200/900 (22.2%) | Mode: high_volatility | Panic: 72.5% | ETA: 1s
+    ⏳ PROGRESS: Progress: 300/900 (33.3%) | Mode: high_volatility | Panic: 72.3% | ETA: 1s
+    ⏳ PROGRESS: Progress: 400/900 (44.4%) | Mode: high_volatility | Panic: 70.2% | ETA: 1s
+    ⏳ PROGRESS: Progress: 500/900 (55.6%) | Mode: high_volatility | Panic: 69.4% | ETA: 0s
+    ⏳ PROGRESS: Progress: 600/900 (66.7%) | Mode: high_volatility | Panic: 69.7% | ETA: 0s
+    ⏳ PROGRESS: Progress: 700/900 (77.8%) | Mode: high_volatility | Panic: 70.9% | ETA: 0s
+    ⏳ PROGRESS: Progress: 800/900 (88.9%) | Mode: high_volatility | Panic: 70.1% | ETA: 0s
+    ⏳ PROGRESS: Progress: 900/900 (100.0%) | Mode: high_volatility | Panic: 69.3% | ETA: 0s
+  ✅ PASS: Completed 900/900 calls
+  ✅ PASS: VIX Mock called 1800 times
+    ✅ PASS: Mode: high_volatility ✅
+    ✅ PASS: Panic ratio: 69.33% ✅
+    ✅ PASS: Window size: 900 ✅
+    ✅ PASS: Adaptive TTL: 5s (expected: 5s) ✅
+  ℹ️ INFO: Mode: high_volatility (expected: high_volatility)
+ℹ️ INFO: 🎯 Panic Ratio Target: 79.0%
+ℹ️ INFO: Expected Mode: HIGH_VOLATILITY
+    ⏳ PROGRESS: Progress: 100/900 (11.1%) | Mode: circuit_open | Panic: 76.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 200/900 (22.2%) | Mode: circuit_open | Panic: 79.5% | ETA: 1s
+    ⏳ PROGRESS: Progress: 300/900 (33.3%) | Mode: circuit_open | Panic: 79.7% | ETA: 1s
+    ⏳ PROGRESS: Progress: 400/900 (44.4%) | Mode: circuit_open | Panic: 78.2% | ETA: 1s
+    ⏳ PROGRESS: Progress: 500/900 (55.6%) | Mode: circuit_open | Panic: 78.2% | ETA: 0s
+    ⏳ PROGRESS: Progress: 600/900 (66.7%) | Mode: circuit_open | Panic: 78.2% | ETA: 0s
+    ⏳ PROGRESS: Progress: 700/900 (77.8%) | Mode: circuit_open | Panic: 79.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 800/900 (88.9%) | Mode: circuit_open | Panic: 78.5% | ETA: 0s
+    ⏳ PROGRESS: Progress: 900/900 (100.0%) | Mode: circuit_open | Panic: 78.0% | ETA: 0s
+  ✅ PASS: Completed 900/900 calls
+  ✅ PASS: VIX Mock called 1800 times
+    ✅ PASS: Mode: circuit_open ✅ (hysteresis: stays in higher mode)
+    ✅ PASS: Panic ratio: 78.00% ✅
+    ✅ PASS: Window size: 900 ✅
+    ✅ PASS: Adaptive TTL: 10s (expected: 5s) ✅
+  ℹ️ INFO: Mode: circuit_open (expected: high_volatility)
+ℹ️ INFO: 🎯 Panic Ratio Target: 80.0%
+ℹ️ INFO: Expected Mode: CIRCUIT_OPEN
+    ⏳ PROGRESS: Progress: 100/900 (11.1%) | Mode: circuit_open | Panic: 77.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 200/900 (22.2%) | Mode: circuit_open | Panic: 80.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 300/900 (33.3%) | Mode: circuit_open | Panic: 80.7% | ETA: 1s
+    ⏳ PROGRESS: Progress: 400/900 (44.4%) | Mode: circuit_open | Panic: 79.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 500/900 (55.6%) | Mode: circuit_open | Panic: 79.2% | ETA: 1s
+    ⏳ PROGRESS: Progress: 600/900 (66.7%) | Mode: circuit_open | Panic: 79.2% | ETA: 0s
+    ⏳ PROGRESS: Progress: 700/900 (77.8%) | Mode: circuit_open | Panic: 80.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 800/900 (88.9%) | Mode: circuit_open | Panic: 79.5% | ETA: 0s
+    ⏳ PROGRESS: Progress: 900/900 (100.0%) | Mode: circuit_open | Panic: 79.1% | ETA: 0s
+  ✅ PASS: Completed 900/900 calls
+  ✅ PASS: VIX Mock called 1800 times
+    ✅ PASS: Mode: circuit_open ✅
+    ✅ PASS: Panic ratio: 79.11% ✅
+    ✅ PASS: Window size: 900 ✅
+    ✅ PASS: Adaptive TTL: 10s (expected: 10s) ✅
+  ℹ️ INFO: Mode: circuit_open (expected: circuit_open)
+ℹ️ INFO: 🎯 Panic Ratio Target: 95.0%
+ℹ️ INFO: Expected Mode: CIRCUIT_OPEN
+    ⏳ PROGRESS: Progress: 100/900 (11.1%) | Mode: circuit_open | Panic: 94.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 200/900 (22.2%) | Mode: circuit_open | Panic: 94.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 300/900 (33.3%) | Mode: circuit_open | Panic: 95.3% | ETA: 1s
+    ⏳ PROGRESS: Progress: 400/900 (44.4%) | Mode: circuit_open | Panic: 94.2% | ETA: 1s
+    ⏳ PROGRESS: Progress: 500/900 (55.6%) | Mode: circuit_open | Panic: 94.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 600/900 (66.7%) | Mode: circuit_open | Panic: 94.2% | ETA: 0s
+    ⏳ PROGRESS: Progress: 700/900 (77.8%) | Mode: circuit_open | Panic: 94.6% | ETA: 0s
+    ⏳ PROGRESS: Progress: 800/900 (88.9%) | Mode: circuit_open | Panic: 94.5% | ETA: 0s
+    ⏳ PROGRESS: Progress: 900/900 (100.0%) | Mode: circuit_open | Panic: 94.2% | ETA: 0s
+  ✅ PASS: Completed 900/900 calls
+  ✅ PASS: VIX Mock called 1800 times
+    ✅ PASS: Mode: circuit_open ✅
+    ✅ PASS: Panic ratio: 94.22% ✅
+    ✅ PASS: Window size: 900 ✅
+    ✅ PASS: Adaptive TTL: 10s (expected: 10s) ✅
+  ℹ️ INFO: Mode: circuit_open (expected: circuit_open)
+ℹ️ INFO: 🎯 Panic Ratio Target: 100.0%
+ℹ️ INFO: Expected Mode: CIRCUIT_OPEN
+    ⏳ PROGRESS: Progress: 100/900 (11.1%) | Mode: circuit_open | Panic: 100.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 200/900 (22.2%) | Mode: circuit_open | Panic: 100.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 300/900 (33.3%) | Mode: circuit_open | Panic: 100.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 400/900 (44.4%) | Mode: circuit_open | Panic: 100.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 500/900 (55.6%) | Mode: circuit_open | Panic: 100.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 600/900 (66.7%) | Mode: circuit_open | Panic: 100.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 700/900 (77.8%) | Mode: circuit_open | Panic: 100.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 800/900 (88.9%) | Mode: circuit_open | Panic: 100.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 900/900 (100.0%) | Mode: circuit_open | Panic: 100.0% | ETA: 0s
+  ✅ PASS: Completed 900/900 calls
+  ✅ PASS: VIX Mock called 1800 times
+    ✅ PASS: Mode: circuit_open ✅
+    ✅ PASS: Panic ratio: 100.00% ✅
+    ✅ PASS: Window size: 900 ✅
+    ✅ PASS: Adaptive TTL: 10s (expected: 10s) ✅
+  ℹ️ INFO: Mode: circuit_open (expected: circuit_open)
+ℹ️ INFO: Panic %    Mode               TTL      Status    
+ℹ️ INFO:   30.0%   normal             60    s  ✅ PASS
+ℹ️ INFO:   45.0%   normal             60    s  ✅ PASS
+ℹ️ INFO:   49.0%   normal             60    s  ✅ PASS
+ℹ️ INFO:   50.0%   high_volatility    5     s  ✅ PASS
+ℹ️ INFO:   51.0%   high_volatility    5     s  ✅ PASS
+ℹ️ INFO:   55.0%   high_volatility    5     s  ✅ PASS
+ℹ️ INFO:   70.0%   high_volatility    5     s  ✅ PASS
+ℹ️ INFO:   79.0%   high_volatility    5     s  ✅ PASS
+ℹ️ INFO:   80.0%   circuit_open       10    s  ✅ PASS
+ℹ️ INFO:   95.0%   circuit_open       10    s  ✅ PASS
+ℹ️ INFO:  100.0%   circuit_open       10    s  ✅ PASS
+    ⏳ PROGRESS: Progress: 100/1800 (5.6%) | Mode: circuit_open | Panic: 100.0% | ETA: 2s
+    ⏳ PROGRESS: Progress: 200/1800 (11.1%) | Mode: circuit_open | Panic: 100.0% | ETA: 2s
+    ⏳ PROGRESS: Progress: 300/1800 (16.7%) | Mode: circuit_open | Panic: 100.0% | ETA: 2s
+    ⏳ PROGRESS: Progress: 400/1800 (22.2%) | Mode: circuit_open | Panic: 100.0% | ETA: 2s
+    ⏳ PROGRESS: Progress: 500/1800 (27.8%) | Mode: circuit_open | Panic: 100.0% | ETA: 2s
+    ⏳ PROGRESS: Progress: 600/1800 (33.3%) | Mode: circuit_open | Panic: 100.0% | ETA: 2s
+    ⏳ PROGRESS: Progress: 700/1800 (38.9%) | Mode: circuit_open | Panic: 100.0% | ETA: 2s
+    ⏳ PROGRESS: Progress: 800/1800 (44.4%) | Mode: circuit_open | Panic: 100.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 900/1800 (50.0%) | Mode: circuit_open | Panic: 100.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 1000/1800 (55.6%) | Mode: circuit_open | Panic: 100.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 1100/1800 (61.1%) | Mode: circuit_open | Panic: 100.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 1200/1800 (66.7%) | Mode: circuit_open | Panic: 100.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 1300/1800 (72.2%) | Mode: circuit_open | Panic: 100.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 1400/1800 (77.8%) | Mode: circuit_open | Panic: 100.0% | ETA: 1s
+    ⏳ PROGRESS: Progress: 1500/1800 (83.3%) | Mode: circuit_open | Panic: 100.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 1600/1800 (88.9%) | Mode: circuit_open | Panic: 100.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 1700/1800 (94.4%) | Mode: circuit_open | Panic: 100.0% | ETA: 0s
+    ⏳ PROGRESS: Progress: 1800/1800 (100.0%) | Mode: circuit_open | Panic: 100.0% | ETA: 0s
+  ✅ PASS: Completed 1800/1800 calls
+  ✅ PASS: VIX Mock called 3600 times
+    ✅ PASS: Mode: circuit_open (expected: circuit_open)
+    ✅ PASS: Panic ratio: 100.0% (expected: 95.0-100.0%)
+    ✅ PASS: Adaptive TTL: 10s (expected: 10s max protection)
+  ✅ test_1_panic_ratio: Panic ratio in range: 0.0%
+  ✅ test_2_panic_ratio: Panic ratio in range: 0.0%
+  ✅ test_4_forced_extreme_panic_ratio: Panic ratio in range: 100.0%
+✅ PASS: ✅ ALL TESTS PASSED

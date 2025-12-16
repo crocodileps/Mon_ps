@@ -10,7 +10,7 @@ Architecture:
 
 from functools import lru_cache
 from typing import Optional
-from quantum_core.config.settings import Settings
+from infrastructure.config.settings import Settings
 
 # ─────────────────────────────────────────────────────────────────────────
 # SETTINGS (Singleton)

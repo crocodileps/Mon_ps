@@ -11,8 +11,8 @@ Provides:
 from datetime import datetime
 from typing import Any, Optional
 
-from sqlalchemy import MetaData, Column, DateTime, String, Text, func
-from sqlalchemy.orm import DeclarativeBase, declared_attr, Mapped, mapped_column
+from sqlalchemy import MetaData, DateTime, String, Text, func
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 # Naming convention for constraints (important for Alembic)
@@ -52,30 +52,33 @@ class Base(DeclarativeBase):
 
 class TimestampMixin:
     """
-    Mixin for created_at and updated_at timestamps.
+    Mixin for automatic timestamp tracking.
+
+    Provides:
+    - created_at: Set automatically on insert
+    - updated_at: Updated automatically on every update
 
     Usage:
         class MyModel(Base, TimestampMixin):
             __tablename__ = "my_table"
             ...
+
+    Note: Uses mapped_column directly to avoid SAWarning about
+    "Unmanaged access of declarative attribute from non-mapped class"
     """
 
-    @declared_attr
-    def created_at(cls) -> Mapped[datetime]:
-        return mapped_column(
-            DateTime(timezone=True),
-            server_default=func.now(),
-            nullable=False,
-        )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False,
+    )
 
-    @declared_attr
-    def updated_at(cls) -> Mapped[datetime]:
-        return mapped_column(
-            DateTime(timezone=True),
-            server_default=func.now(),
-            onupdate=func.now(),
-            nullable=False,
-        )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False,
+    )
 
 
 class AuditMixin:
@@ -93,35 +96,25 @@ class AuditMixin:
             ...
 
     Note: This is passive tracking. Application code must set these fields.
-    Consider integrating with authentication system to auto-populate.
     """
 
-    @declared_attr
-    def created_by(cls) -> Mapped[Optional[str]]:
-        """User or system that created this record."""
-        return mapped_column(
-            String(100),
-            nullable=True,
-            comment="User or system that created this record",
-        )
+    created_by: Mapped[Optional[str]] = mapped_column(
+        String(100),
+        nullable=True,
+        comment="User or system that created this record",
+    )
 
-    @declared_attr
-    def updated_by(cls) -> Mapped[Optional[str]]:
-        """User or system that last updated this record."""
-        return mapped_column(
-            String(100),
-            nullable=True,
-            comment="User or system that last updated this record",
-        )
+    updated_by: Mapped[Optional[str]] = mapped_column(
+        String(100),
+        nullable=True,
+        comment="User or system that last updated this record",
+    )
 
-    @declared_attr
-    def change_reason(cls) -> Mapped[Optional[str]]:
-        """Optional reason for the last change."""
-        return mapped_column(
-            Text,
-            nullable=True,
-            comment="Reason for the last change to this record",
-        )
+    change_reason: Mapped[Optional[str]] = mapped_column(
+        Text,
+        nullable=True,
+        comment="Reason for the last change to this record",
+    )
 
 
 # Schema definitions

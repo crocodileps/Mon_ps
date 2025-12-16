@@ -125,3 +125,95 @@ def mock_session():
     session.refresh = Mock()
 
     return session
+
+
+# ═══════════════════════════════════════════════════════════════
+# LEGACY FIXTURES (Restored for test_settings.py compatibility)
+# ═══════════════════════════════════════════════════════════════
+
+@pytest.fixture(autouse=False)
+def reset_settings_cache():
+    """Reset Settings singleton cache between tests.
+
+    Critical: Prevents state pollution across tests.
+    """
+    try:
+        from infrastructure.config.dependencies import get_settings
+        get_settings.cache_clear()
+        yield
+        get_settings.cache_clear()
+    except ImportError:
+        yield
+
+
+@pytest.fixture
+def isolated_env(monkeypatch):
+    """Provide clean environment for deterministic tests.
+
+    Used by: tests/test_infrastructure/test_settings.py
+    """
+    env_vars = [
+        "ENVIRONMENT",
+        "DEBUG",
+        "DATABASE_URL",
+        "CACHE_ENABLED",
+        "MIN_CONFIDENCE_THRESHOLD",
+        "MAX_PREDICTION_DAYS",
+        "LOG_LEVEL",
+    ]
+
+    for var in env_vars:
+        monkeypatch.delenv(var, raising=False)
+
+    yield
+
+
+@pytest.fixture
+def prod_env(monkeypatch):
+    """Simulate production environment.
+
+    Used by: tests/test_infrastructure/test_settings.py
+    """
+    monkeypatch.setenv("ENVIRONMENT", "production")
+    monkeypatch.setenv("DEBUG", "false")
+    monkeypatch.setenv("MIN_CONFIDENCE_THRESHOLD", "0.85")
+
+    yield
+
+
+@pytest.fixture
+def test_settings():
+    """Test settings (override defaults).
+
+    Provides Settings instance for tests that need it.
+    """
+    try:
+        from infrastructure.config.settings import Settings
+        return Settings(
+            environment="test",
+            debug=True,
+            database_url="sqlite:///:memory:",
+            cache_enabled=False,
+            min_confidence_threshold=0.70,
+            max_prediction_days=60,
+        )
+    except ImportError:
+        pytest.skip("Settings not available")
+
+
+@pytest.fixture
+def disable_cache(monkeypatch):
+    """Disable SmartCache for tests (always cache miss)."""
+    from unittest.mock import MagicMock
+
+    mock_cache = MagicMock()
+    mock_cache.get.return_value = (None, False)
+    mock_cache.set.return_value = True
+    mock_cache.enabled = False
+
+    try:
+        monkeypatch.setattr("api.v1.brain.repository.smart_cache", mock_cache)
+    except (ImportError, AttributeError):
+        pass
+
+    return mock_cache
