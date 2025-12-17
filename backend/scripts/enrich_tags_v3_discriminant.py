@@ -74,11 +74,12 @@ MVP_STATUS_TAGS = ["MVP_DEPENDENT", "COLLECTIVE"]
 # Tags gamestate valides (discriminants 10-50%)
 VALID_GAMESTATE = ["COLLAPSE_LEADER", "COMEBACK_KING", "NEUTRAL", "FAST_STARTER"]
 
-# Mapping noms équipes JSON → DB (hérité Phase 5.1)
+# Mapping noms équipes JSON → DB (hérité Phase 5.1 + Fix V3.1)
 NAME_MAPPING = {
+    # Phase 5.1 mappings
     "Paris Saint-Germain": "Paris Saint Germain",
     "Paris Saint Germain": "Paris Saint Germain",
-    "Wolverhampton Wanderers": "Wolverhampton",
+    "Wolverhampton": "Wolverhampton Wanderers",  # JSON → DB
     "West Ham United": "West Ham",
     "Tottenham Hotspur": "Tottenham",
     "Newcastle United": "Newcastle",
@@ -88,7 +89,31 @@ NAME_MAPPING = {
     "Leeds United": "Leeds",
     "Brighton & Hove Albion": "Brighton",
     "AFC Bournemouth": "Bournemouth",
+    # Phase 5.2 V3.1 - Fix 11 équipes manquantes
+    "Borussia Monchengladbach": "Borussia M.Gladbach",
+    "Borussia Mönchengladbach": "Borussia M.Gladbach",
+    "Heidenheim": "FC Heidenheim",
+    "1. FC Heidenheim 1846": "FC Heidenheim",
+    "Inter Milan": "Inter",
+    "Internazionale": "Inter",
+    "Ipswich Town": "Ipswich",
+    "Leicester City": "Leicester",
+    "Parma": "Parma Calcio 1913",
+    "Parma Calcio": "Parma Calcio 1913",
+    "RB Leipzig": "RasenBallsport Leipzig",
+    "Leipzig": "RasenBallsport Leipzig",
+    "AS Roma": "Roma",
+    "Roma": "Roma",
+    "Southampton": "Southampton",
+    "Southampton FC": "Southampton",
+    "Hellas Verona": "Verona",
+    "Verona": "Verona",
+    "Wolverhampton": "Wolverhampton Wanderers",  # JSON → DB
 }
+
+# Mapping inverse automatique (pour recherche bidirectionnelle)
+NAME_MAPPING_INVERSE = {v: k for k, v in NAME_MAPPING.items()}
+
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
