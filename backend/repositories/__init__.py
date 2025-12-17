@@ -12,6 +12,7 @@ from repositories.quantum_repository import (
     StrategyRepository,
     GoalscorerRepository,
 )
+from repositories.quantum_v3_repository import QuantumV3Repository
 from repositories.unit_of_work import UnitOfWork
 
 __all__ = [
@@ -21,11 +22,13 @@ __all__ = [
     # Odds
     "OddsRepository",
     "TrackingCLVRepository",
-    # Quantum
+    # Quantum (legacy)
     "TeamDNARepository",
     "FrictionMatrixRepository",
     "StrategyRepository",
     "GoalscorerRepository",
+    # Quantum V3
+    "QuantumV3Repository",
     # Unit of Work
     "UnitOfWork",
 ]
