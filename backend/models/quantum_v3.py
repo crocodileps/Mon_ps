@@ -20,7 +20,7 @@ Usage:
 """
 
 from datetime import datetime
-from typing import Optional, List, Any, TYPE_CHECKING
+from typing import Optional, List, Any, TYPE_CHECKING, ClassVar
 from functools import cached_property
 
 from sqlalchemy import (
@@ -33,6 +33,21 @@ from sqlalchemy.orm import Mapped, mapped_column, Session
 
 from models.base import Base, TimestampMixin
 from schemas.enums import Tier, League, GKStatus, GamestateType, BestStrategy
+
+# Import DNA Schemas for Option D+ (typed properties)
+from schemas.dna import (
+    TacticalDNA,
+    MarketDNA,
+    GamestateDNA,
+    MomentumDNA,
+    GoalkeeperDNA,
+    TimingDNA,
+    PsycheDNA,
+    LuckDNA,
+    ContextDNA,
+    HomeAwayDNA,
+    FormDNA,
+)
 
 if TYPE_CHECKING:
     from sqlalchemy.orm import Session
@@ -149,7 +164,65 @@ class TeamQuantumDnaV3(Base):
     # Legacy
     quantum_dna_legacy: Mapped[Optional[dict]] = mapped_column(JSONB)
     betting_identity: Mapped[Optional[dict]] = mapped_column(JSONB)
-    
+
+    # ══════════════════════════════════════════════════════════════════════
+    # OPTION D+: TYPED DNA PROPERTIES (avec lazy parsing)
+    # ══════════════════════════════════════════════════════════════════════
+
+    @property
+    def tactical_dna_typed(self) -> Optional[TacticalDNA]:
+        """
+        Tactical DNA avec validation Pydantic (Option D+).
+
+        Returns:
+            TacticalDNA object avec autocomplétion IDE
+
+        Usage:
+            team.tactical_dna_typed.possession_pct  # float
+            team.tactical_dna_typed.pressing_intensity  # str
+        """
+        if not hasattr(self, '_tactical_dna_parsed'):
+            self._tactical_dna_parsed = None
+        if self._tactical_dna_parsed is None and self.tactical_dna:
+            self._tactical_dna_parsed = TacticalDNA.from_dict(self.tactical_dna)
+        return self._tactical_dna_parsed
+
+    @property
+    def market_dna_typed(self) -> Optional[MarketDNA]:
+        """Market DNA avec validation Pydantic."""
+        if not hasattr(self, '_market_dna_parsed'):
+            self._market_dna_parsed = None
+        if self._market_dna_parsed is None and self.market_dna:
+            self._market_dna_parsed = MarketDNA.from_dict(self.market_dna)
+        return self._market_dna_parsed
+
+    @property
+    def psyche_dna_typed(self) -> Optional[PsycheDNA]:
+        """Psyche DNA avec validation Pydantic."""
+        if not hasattr(self, '_psyche_dna_parsed'):
+            self._psyche_dna_parsed = None
+        if self._psyche_dna_parsed is None and self.psyche_dna:
+            self._psyche_dna_parsed = PsycheDNA.from_dict(self.psyche_dna)
+        return self._psyche_dna_parsed
+
+    @property
+    def luck_dna_typed(self) -> Optional[LuckDNA]:
+        """Luck DNA avec validation Pydantic."""
+        if not hasattr(self, '_luck_dna_parsed'):
+            self._luck_dna_parsed = None
+        if self._luck_dna_parsed is None and self.luck_dna:
+            self._luck_dna_parsed = LuckDNA.from_dict(self.luck_dna)
+        return self._luck_dna_parsed
+
+    @property
+    def context_dna_typed(self) -> Optional[ContextDNA]:
+        """Context DNA avec validation Pydantic."""
+        if not hasattr(self, '_context_dna_parsed'):
+            self._context_dna_parsed = None
+        if self._context_dna_parsed is None and self.context_dna:
+            self._context_dna_parsed = ContextDNA.from_dict(self.context_dna)
+        return self._context_dna_parsed
+
     # ══════════════════════════════════════════════════════════════════════
     # COMPUTED PROPERTIES (Métriques dérivées)
     # ══════════════════════════════════════════════════════════════════════
@@ -163,7 +236,17 @@ class TeamQuantumDnaV3(Base):
             except ValueError:
                 return Tier.UNKNOWN
         return None
-    
+
+    @property
+    def league_enum(self) -> Optional[League]:
+        """League as enum (type-safe)."""
+        if self.league:
+            try:
+                return League(self.league)
+            except ValueError:
+                return None
+        return None
+
     @property
     def is_elite(self) -> bool:
         """True if team is ELITE tier with win_rate > 55%."""
@@ -311,7 +394,22 @@ class TeamQuantumDnaV3(Base):
     def count(cls, session: Session) -> int:
         """Count total teams."""
         return session.query(func.count(cls.team_id)).scalar() or 0
-    
+
+    @classmethod
+    def count_by_league(cls, session: Session) -> dict:
+        """
+        Count teams per league.
+
+        Returns:
+            Dict[str, int] - League name to team count
+            Example: {'Premier League': 20, 'La Liga': 20, ...}
+        """
+        results = session.query(
+            cls.league,
+            func.count(cls.team_id)
+        ).group_by(cls.league).all()
+        return {league: count for league, count in results if league}
+
     # ══════════════════════════════════════════════════════════════════════
     # SERIALIZATION
     # ══════════════════════════════════════════════════════════════════════
@@ -370,7 +468,8 @@ class TeamQuantumDnaV3(Base):
         return (
             f"<TeamQuantumDnaV3 "
             f"id={self.team_id} "
-            f"name='{self.team_name}' "
+            f"'{self.team_name}' "
+            f"[{self.league}] "
             f"[{self.tier}] "
             f"{wr} "
             f"Tags:{self.tag_count}>"
