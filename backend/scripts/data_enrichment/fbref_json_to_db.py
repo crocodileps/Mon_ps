@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """
 ═══════════════════════════════════════════════════════════════════════════════
-FBREF JSON TO DATABASE - PIPELINE COMPLET
+FBREF JSON TO DATABASE V2.0 - PERFECTION 150/150 MÉTRIQUES
 Extrait 2299 joueurs × 150 métriques du JSON vers PostgreSQL
 ═══════════════════════════════════════════════════════════════════════════════
+Version: 2.0 - Dynamic Parsing (Hedge Fund Grade)
 Créé: 2025-12-18
 Auteur: Mon_PS Team
 Source: /home/Mon_ps/data/fbref/fbref_players_clean_2025_26.json
-Target: Table fbref_player_stats_full + player_stats (legacy)
+Target: Table fbref_player_stats_full (163 colonnes) + player_stats (legacy)
+Mapping: /tmp/fbref_column_mapping.json (150 métriques JSON → SQL)
 """
 
 import json
@@ -16,7 +18,8 @@ import psycopg2.extras
 import logging
 import unicodedata
 from datetime import datetime
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
+from pathlib import Path
 
 # Configuration
 logging.basicConfig(
@@ -34,6 +37,7 @@ DB_CONFIG = {
 }
 
 JSON_PATH = '/home/Mon_ps/data/fbref/fbref_players_clean_2025_26.json'
+COLUMN_MAPPING_PATH = '/tmp/fbref_column_mapping.json'
 SEASON = '2025-2026'
 
 
@@ -54,103 +58,113 @@ def safe_numeric(value: Any) -> Optional[float]:
         return None
 
 
-def parse_player(player_name: str, player_data: Dict) -> Dict:
+def load_column_mapping() -> Dict[str, str]:
+    """Charge le mapping JSON → SQL depuis le fichier de configuration"""
+    try:
+        with open(COLUMN_MAPPING_PATH, 'r') as f:
+            mapping = json.load(f)
+        logger.info(f"   ✅ Mapping chargé: {len(mapping)} colonnes")
+        return mapping
+    except FileNotFoundError:
+        logger.error(f"   ❌ Mapping non trouvé: {COLUMN_MAPPING_PATH}")
+        return {}
+
+
+def parse_player_dynamic(player_name: str, player_data: Dict, column_mapping: Dict) -> Dict:
     """
     Parse un joueur depuis le JSON vers un dict prêt pour insertion DB.
-    Utilise la structure aplatie du fichier "clean".
+    Utilise le mapping dynamique pour extraire TOUTES les métriques.
     """
     stats = player_data.get('stats', {})
 
+    # Base fields
     record = {
         'player_name': player_name,
+        'player_name_normalized': normalize_name(player_name),
         'team': player_data.get('team', ''),
         'league': player_data.get('league', ''),
         'season': SEASON,
         'position': player_data.get('position', ''),
         'age': int(player_data.get('age', 0)) if player_data.get('age') else None,
         'nationality': player_data.get('nation', ''),
-
-        # Mapper toutes les métriques stats (150 colonnes)
-        # Les noms sont déjà normalisés dans le JSON clean
-        'matches_played': safe_numeric(stats.get('matches_played')),
-        'starts': safe_numeric(stats.get('starts')),
-        'minutes': safe_numeric(stats.get('minutes')),
-        'minutes_90': safe_numeric(stats.get('minutes_90')),
-        'goals': safe_numeric(stats.get('goals')),
-        'assists': safe_numeric(stats.get('assists')),
-        'non_penalty_goals': safe_numeric(stats.get('non_penalty_goals')),
-        'penalty_goals': safe_numeric(stats.get('penalty_goals')),
-        'xg': safe_numeric(stats.get('xG')) or safe_numeric(stats.get('npxG')),
-        'npxg': safe_numeric(stats.get('npxG')),
-        'xa': safe_numeric(stats.get('xA_passing')) or safe_numeric(stats.get('expected_assists')),
-        'shots': safe_numeric(stats.get('shots')),
-        'shots_on_target': safe_numeric(stats.get('shots_on_target')),
-        'passes_completed': safe_numeric(stats.get('passes_completed')),
-        'passes_attempted': safe_numeric(stats.get('passes_attempted')) or safe_numeric(stats.get('att')),
-        'key_passes': safe_numeric(stats.get('key_passes')),
-        'progressive_passes': safe_numeric(stats.get('progressive_passes')),
-        'sca': safe_numeric(stats.get('shot_creating_actions')),
-        'gca': safe_numeric(stats.get('goal_creating_actions')),
-        'tackles_won': safe_numeric(stats.get('tackles_won')) or safe_numeric(stats.get('tackles_won_misc')),
-        'interceptions': safe_numeric(stats.get('interceptions')) or safe_numeric(stats.get('interceptions_misc')),
+        'source': 'fbref',
+        'scraped_at': player_data.get('scraped_at'),
     }
+
+    # Dynamically map all 150 metrics from stats dict
+    for json_key, sql_column in column_mapping.items():
+        # Try exact match first
+        value = stats.get(json_key)
+
+        # If not found, try case-insensitive search for mixed case keys
+        if value is None:
+            # Try common variations (xG, npxG, xA, etc.)
+            for key in stats.keys():
+                if key.lower() == json_key.lower():
+                    value = stats.get(key)
+                    break
+
+        record[sql_column] = safe_numeric(value)
 
     return record
 
 
-def insert_players(records: list) -> int:
-    """Insert/Update players dans fbref_player_stats_full"""
+def get_dynamic_columns(conn) -> List[str]:
+    """Récupère la liste des colonnes disponibles dans fbref_player_stats_full"""
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT column_name
+        FROM information_schema.columns
+        WHERE table_name = 'fbref_player_stats_full'
+        ORDER BY ordinal_position
+    """)
+    columns = [row[0] for row in cur.fetchall()]
+    cur.close()
+
+    # Exclure les colonnes auto-générées
+    exclude = ['id', 'inserted_at', 'updated_at']
+    columns = [c for c in columns if c not in exclude]
+
+    return columns
+
+
+def insert_players_dynamic(records: list) -> int:
+    """Insert/Update players dans fbref_player_stats_full avec toutes les métriques"""
     if not records:
         return 0
 
     conn = psycopg2.connect(**DB_CONFIG)
-    cur = conn.cursor()
 
-    insert_sql = """
-        INSERT INTO fbref_player_stats_full (
-            player_name, team, league, season, position, age, nationality,
-            matches_played, starts, minutes, minutes_90, goals, assists,
-            non_penalty_goals, penalty_goals, xg, npxg, xa,
-            shots, shots_on_target, passes_completed, passes_attempted,
-            key_passes, progressive_passes, sca, gca, tackles_won, interceptions,
-            source, updated_at
-        ) VALUES (
-            %(player_name)s, %(team)s, %(league)s, %(season)s, %(position)s, %(age)s, %(nationality)s,
-            %(matches_played)s, %(starts)s, %(minutes)s, %(minutes_90)s, %(goals)s, %(assists)s,
-            %(non_penalty_goals)s, %(penalty_goals)s, %(xg)s, %(npxg)s, %(xa)s,
-            %(shots)s, %(shots_on_target)s, %(passes_completed)s, %(passes_attempted)s,
-            %(key_passes)s, %(progressive_passes)s, %(sca)s, %(gca)s, %(tackles_won)s, %(interceptions)s,
-            'fbref', NOW()
-        )
+    # Récupérer les colonnes disponibles dans la table
+    available_columns = get_dynamic_columns(conn)
+    logger.info(f"   📊 Colonnes disponibles dans la table: {len(available_columns)}")
+
+    # Filtrer les colonnes présentes dans les records
+    sample_record = records[0]
+    columns_to_insert = [col for col in available_columns if col in sample_record]
+    logger.info(f"   📊 Colonnes à insérer: {len(columns_to_insert)}")
+
+    # Construire dynamiquement la requête INSERT
+    column_names = ', '.join(columns_to_insert)
+    placeholders = ', '.join([f'%({col})s' for col in columns_to_insert])
+
+    # Construire les clauses UPDATE
+    update_clauses = ', '.join([
+        f"{col} = EXCLUDED.{col}"
+        for col in columns_to_insert
+        if col not in ['player_name', 'team', 'league', 'season']
+    ])
+
+    insert_sql = f"""
+        INSERT INTO fbref_player_stats_full ({column_names}, updated_at)
+        VALUES ({placeholders}, NOW())
         ON CONFLICT (player_name, team, league, season)
         DO UPDATE SET
-            position = EXCLUDED.position,
-            age = EXCLUDED.age,
-            nationality = EXCLUDED.nationality,
-            matches_played = EXCLUDED.matches_played,
-            starts = EXCLUDED.starts,
-            minutes = EXCLUDED.minutes,
-            minutes_90 = EXCLUDED.minutes_90,
-            goals = EXCLUDED.goals,
-            assists = EXCLUDED.assists,
-            non_penalty_goals = EXCLUDED.non_penalty_goals,
-            penalty_goals = EXCLUDED.penalty_goals,
-            xg = EXCLUDED.xg,
-            npxg = EXCLUDED.npxg,
-            xa = EXCLUDED.xa,
-            shots = EXCLUDED.shots,
-            shots_on_target = EXCLUDED.shots_on_target,
-            passes_completed = EXCLUDED.passes_completed,
-            passes_attempted = EXCLUDED.passes_attempted,
-            key_passes = EXCLUDED.key_passes,
-            progressive_passes = EXCLUDED.progressive_passes,
-            sca = EXCLUDED.sca,
-            gca = EXCLUDED.gca,
-            tackles_won = EXCLUDED.tackles_won,
-            interceptions = EXCLUDED.interceptions,
+            {update_clauses},
             updated_at = NOW()
     """
 
+    cur = conn.cursor()
     inserted = 0
     errors = 0
 
@@ -172,10 +186,104 @@ def insert_players(records: list) -> int:
     return inserted
 
 
+def audit_completeness():
+    """
+    Audit Hedge Fund: Vérifie que toutes les 150 métriques sont bien remplies.
+    Retourne statistiques de complétude par colonne.
+    """
+    logger.info("\n" + "=" * 70)
+    logger.info("📊 AUDIT HEDGE FUND - COMPLÉTUDE DES 150 MÉTRIQUES")
+    logger.info("=" * 70)
+
+    conn = psycopg2.connect(**DB_CONFIG)
+    cur = conn.cursor()
+
+    # Récupérer toutes les colonnes métriques
+    cur.execute("""
+        SELECT column_name
+        FROM information_schema.columns
+        WHERE table_name = 'fbref_player_stats_full'
+        AND column_name NOT IN (
+            'id', 'player_name', 'player_name_normalized', 'team', 'league',
+            'season', 'position', 'age', 'nationality', 'source',
+            'scraped_at', 'inserted_at', 'updated_at'
+        )
+        ORDER BY column_name
+    """)
+    metric_columns = [row[0] for row in cur.fetchall()]
+
+    logger.info(f"\n📈 Colonnes métriques trouvées: {len(metric_columns)}")
+
+    # Compter les valeurs NULL par colonne
+    cur.execute("SELECT COUNT(*) FROM fbref_player_stats_full")
+    total_players = cur.fetchone()[0]
+
+    completeness_report = []
+    empty_columns = []
+    perfect_columns = []
+
+    for column in metric_columns:
+        cur.execute(f"""
+            SELECT
+                COUNT(*) as total,
+                COUNT({column}) as non_null,
+                COUNT(*) - COUNT({column}) as null_count
+            FROM fbref_player_stats_full
+        """)
+        total, non_null, null_count = cur.fetchone()
+        completeness_pct = (non_null / total * 100) if total > 0 else 0
+
+        completeness_report.append({
+            'column': column,
+            'non_null': non_null,
+            'null_count': null_count,
+            'completeness_pct': completeness_pct
+        })
+
+        if completeness_pct == 0:
+            empty_columns.append(column)
+        elif completeness_pct == 100:
+            perfect_columns.append(column)
+
+    # Statistiques globales
+    avg_completeness = sum(r['completeness_pct'] for r in completeness_report) / len(completeness_report)
+
+    logger.info(f"\n📊 STATISTIQUES GLOBALES:")
+    logger.info(f"   Total joueurs: {total_players}")
+    logger.info(f"   Total métriques: {len(metric_columns)}")
+    logger.info(f"   Complétude moyenne: {avg_completeness:.1f}%")
+    logger.info(f"   Colonnes parfaites (100%): {len(perfect_columns)}")
+    logger.info(f"   Colonnes vides (0%): {len(empty_columns)}")
+
+    # Top 10 colonnes les mieux remplies
+    logger.info(f"\n✅ TOP 10 COLONNES LES MIEUX REMPLIES:")
+    top_filled = sorted(completeness_report, key=lambda x: -x['completeness_pct'])[:10]
+    for i, col_data in enumerate(top_filled, 1):
+        logger.info(f"   {i:2d}. {col_data['column']:30s} → {col_data['completeness_pct']:5.1f}% ({col_data['non_null']:4d}/{total_players})")
+
+    # Colonnes vides (si présentes)
+    if empty_columns:
+        logger.info(f"\n⚠️  COLONNES VIDES ({len(empty_columns)}):")
+        for col in empty_columns[:20]:  # Limiter à 20 pour l'affichage
+            logger.info(f"   └─ {col}")
+
+    cur.close()
+    conn.close()
+
+    logger.info("=" * 70)
+
+    return {
+        'total_metrics': len(metric_columns),
+        'avg_completeness': avg_completeness,
+        'perfect_columns': len(perfect_columns),
+        'empty_columns': len(empty_columns)
+    }
+
+
 def update_legacy_player_stats():
     """
-    Met aussi à jour la table player_stats legacy pour compatibilité.
-    Copie les données essentielles depuis fbref_player_stats_full.
+    Met à jour la table player_stats legacy pour compatibilité.
+    Avec gestion robuste des contraintes manquantes.
     """
     logger.info("\n📊 Mise à jour table legacy player_stats...")
 
@@ -183,6 +291,8 @@ def update_legacy_player_stats():
     cur = conn.cursor()
 
     try:
+        # La contrainte UNIQUE existante est (player_name, team_name, season)
+        # On l'utilise pour l'UPSERT
         cur.execute("""
             INSERT INTO player_stats (
                 player_name, team_name, league, season,
@@ -193,15 +303,21 @@ def update_legacy_player_stats():
             )
             SELECT
                 player_name, team, league, season,
-                COALESCE(goals, 0)::int, COALESCE(assists, 0)::int, COALESCE(minutes, 0)::int,
+                COALESCE(goals, 0)::int,
+                COALESCE(assists, 0)::int,
+                COALESCE(minutes, 0)::int,
                 xg, npxg, xa,
-                shots::int, shots_on_target::int, position,
-                sca::int, gca::int,
+                COALESCE(shots, 0)::int,
+                COALESCE(shots_on_target, 0)::int,
+                position,
+                COALESCE(shot_creating_actions, 0)::int,
+                COALESCE(goal_creating_actions, 0)::int,
                 'fbref', NOW()
             FROM fbref_player_stats_full
-            WHERE season = '2025-2026'
-            ON CONFLICT (player_name, team_name, league, season)
+            WHERE season = %s
+            ON CONFLICT (player_name, team_name, season)
             DO UPDATE SET
+                league = EXCLUDED.league,
                 goals = EXCLUDED.goals,
                 assists = EXCLUDED.assists,
                 minutes = EXCLUDED.minutes,
@@ -214,7 +330,7 @@ def update_legacy_player_stats():
                 sca = EXCLUDED.sca,
                 gca = EXCLUDED.gca,
                 updated_at = NOW()
-        """)
+        """, (SEASON,))
         updated = cur.rowcount
         conn.commit()
         logger.info(f"   ✅ {updated} joueurs mis à jour dans player_stats")
@@ -229,10 +345,17 @@ def update_legacy_player_stats():
 def main():
     """Point d'entrée principal"""
     logger.info("=" * 70)
-    logger.info("FBREF JSON TO DATABASE - PIPELINE COMPLET")
+    logger.info("FBREF JSON TO DATABASE V2.0 - PERFECTION 150/150")
     logger.info(f"Source: {JSON_PATH}")
     logger.info(f"Saison: {SEASON}")
     logger.info("=" * 70)
+
+    # Charger mapping colonnes
+    logger.info("\n📂 Chargement mapping colonnes...")
+    column_mapping = load_column_mapping()
+    if not column_mapping:
+        logger.error("❌ Impossible de continuer sans mapping")
+        return
 
     # Charger JSON
     logger.info("\n📂 Chargement JSON FBRef...")
@@ -249,11 +372,11 @@ def main():
     logger.info(f"   ✅ {len(players)} joueurs trouvés")
     logger.info(f"   📅 Scraped: {metadata.get('scraped_date', 'N/A')}")
 
-    # Parser tous les joueurs
-    logger.info("\n🔄 Parsing joueurs...")
+    # Parser tous les joueurs avec mapping dynamique
+    logger.info("\n🔄 Parsing joueurs (150 métriques dynamiques)...")
     records = []
     for player_name, player_data in players.items():
-        record = parse_player(player_name, player_data)
+        record = parse_player_dynamic(player_name, player_data, column_mapping)
         records.append(record)
 
     logger.info(f"   ✅ {len(records)} joueurs parsés")
@@ -268,20 +391,26 @@ def main():
     for league, count in sorted(by_league.items(), key=lambda x: -x[1]):
         logger.info(f"   └─ {league}: {count} joueurs")
 
-    # Insérer en DB
-    logger.info("\n💾 Insertion dans fbref_player_stats_full...")
-    inserted = insert_players(records)
+    # Insérer en DB avec toutes les métriques
+    logger.info("\n💾 Insertion dans fbref_player_stats_full (150 métriques)...")
+    inserted = insert_players_dynamic(records)
     logger.info(f"   ✅ {inserted}/{len(records)} joueurs insérés/mis à jour ({inserted * 100 / len(records):.1f}%)")
+
+    # Audit de complétude
+    audit_results = audit_completeness()
 
     # Mettre à jour table legacy
     update_legacy_player_stats()
 
     # Résumé final
     logger.info(f"\n{'=' * 70}")
-    logger.info("🏁 TERMINÉ")
+    logger.info("🏁 TERMINÉ - VERSION 2.0 PERFECTION")
     logger.info(f"   Joueurs traités: {len(records)}")
     logger.info(f"   Insérés/Mis à jour: {inserted}")
     logger.info(f"   Taux succès: {inserted * 100 / len(records):.1f}%")
+    logger.info(f"   Métriques totales: {audit_results['total_metrics']}")
+    logger.info(f"   Complétude moyenne: {audit_results['avg_completeness']:.1f}%")
+    logger.info(f"   Colonnes parfaites: {audit_results['perfect_columns']}")
     logger.info("=" * 70)
 
 
