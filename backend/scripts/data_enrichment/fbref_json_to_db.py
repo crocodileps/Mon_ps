@@ -315,9 +315,8 @@ def update_legacy_player_stats():
                 'fbref', NOW()
             FROM fbref_player_stats_full
             WHERE season = %s
-            ON CONFLICT (player_name, team_name, season)
+            ON CONFLICT (player_name, team_name, league, season)
             DO UPDATE SET
-                league = EXCLUDED.league,
                 goals = EXCLUDED.goals,
                 assists = EXCLUDED.assists,
                 minutes = EXCLUDED.minutes,

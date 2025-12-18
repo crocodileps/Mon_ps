@@ -82,7 +82,21 @@ node_modules/
 
 # Backups
 *.backup_*
+*.backup*
+*.bak
+*.bak.*
+*_backup_*/
+*.before_*
 scripts/*.backup_*
+
+# Python testing & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Docs sessions (not tracked in main branch)
+docs/sessions/
 
 # Archives legacy
 archive/
+backups/
