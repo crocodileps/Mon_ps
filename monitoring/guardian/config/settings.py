@@ -57,6 +57,7 @@ CRON_JOBS = {
         "schedule": "0 6 * * *",
         "log_file": LOGS_DIR / "fbref.log",
         "max_age_hours": 48,
+        "success_max_age_hours": 26,  # 24h interval + 2h margin
         "script_path": SCRIPTS_DIR / "scrape_fbref_complete_2025_26.py",
         "critical": True
     },
@@ -65,6 +66,7 @@ CRON_JOBS = {
         "schedule": "15 6 * * *",
         "log_file": LOGS_DIR / "fbref_db.log",
         "max_age_hours": 48,
+        "success_max_age_hours": 26,  # 24h interval + 2h margin
         "script_path": BASE_DIR / "backend/scripts/data_enrichment/fbref_json_to_db.py",
         "critical": True
     },
@@ -73,6 +75,7 @@ CRON_JOBS = {
         "schedule": "0 6,18 * * *",
         "log_file": LOGS_DIR / "understat_main.log",
         "max_age_hours": 24,
+        "success_max_age_hours": 14,  # 12h interval + 2h margin
         "script_path": BASE_DIR / "backend/scripts/data_enrichment/understat_all_leagues_scraper.py",
         "critical": False
     },
@@ -81,6 +84,7 @@ CRON_JOBS = {
         "schedule": "0 3,9,15,21 * * *",
         "log_file": LOGS_DIR / "football_data.log",
         "max_age_hours": 12,
+        "success_max_age_hours": 8,   # 6h interval + 2h margin
         "script_path": BASE_DIR / "backend/scripts/fetch_results_football_data_v2.py",
         "critical": False
     }
@@ -165,3 +169,90 @@ ALERT_CONFIG = {
 # =============================================================================
 GUARDIAN_LOG_FILE = LOGS_DIR / "guardian.log"
 GUARDIAN_ALERTS_FILE = LOGS_DIR / "guardian_alerts.log"
+
+# =============================================================================
+# TOLÉRANCE SÉLECTIVE - HEDGE FUND GRADE
+# Configuration centralisée pour maintenance facilitée
+# =============================================================================
+
+# Patterns à IGNORER dans les warnings (faux positifs connus)
+IGNORE_WARNING_PATTERNS = [
+    "FutureWarning",
+    "DeprecationWarning",
+    "UserWarning",
+    "ResourceWarning",
+    "SyntaxWarning",
+    "Status 403",
+    "Status: 403",
+    "PendingDeprecationWarning",
+    "Overall status: WARNING",
+    "Complete (WARNING)",
+]
+
+# Patterns à IGNORER dans les erreurs (faux positifs connus)
+IGNORE_ERROR_PATTERNS = [
+    "non-critical",
+    "Overall status:",
+    "Complete (",
+]
+
+# Patterns CRITIQUES même dans les warnings (vrais problèmes à promouvoir en erreur)
+CRITICAL_IN_WARNINGS = [
+    "Status 429",
+    "Status: 429",
+    "Connection refused",
+    "Connection reset",
+    "failed to fetch",
+    "could not connect",
+    "authentication failed",
+    "permission denied",
+    "Timeout exceeded",
+    "Max retries exceeded",
+]
+
+# Patterns indiquant ZÉRO RÉSULTATS (échec silencieux) - Point 1 amélioré
+# Note: Patterns spécifiques pour éviter faux positifs (ex: "Milieux: 0" = OK)
+ZERO_RESULTS_PATTERNS = [
+    "0 rows saved",
+    "0 rows inserted",
+    "0 matchs récupérés",
+    "0 matchs sauvegardés",
+    "0 records saved",
+    "saved 0 rows",
+    "inserted 0 rows",
+    "scraped 0 players",
+    "fetched 0 results",
+    "no data found",
+    "empty result set",
+    "no results found",
+    "failed to fetch any",
+    "could not retrieve",
+]
+
+# Patterns de SUCCÈS pour validation positive - Point 1 amélioré
+SUCCESS_PATTERNS = [
+    "✅",
+    "rows saved",
+    "rows inserted",
+    "matchs récupérés",
+    "matchs sauvegardés",
+    "records saved",
+    "completed successfully",
+    "SUCCESS",
+    "successfully",
+    "xG sauvegardés",
+    "équipes trouvées",
+    "SCRAPING TERMINE",
+    "Total joueurs",
+    "Aucun match pending",
+    "matchs pending",
+    "finished",
+    "done",
+    "completed",
+]
+
+# Configuration scan logs - Point 2
+LOG_SCAN_CONFIG = {
+    "lines_to_scan": 150,
+    "success_max_age_minutes": 120,
+}
