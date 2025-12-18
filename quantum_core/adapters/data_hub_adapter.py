@@ -262,17 +262,17 @@ class DataHubAdapter:
                         team_data.over25_rate = float(betting.get("over25_rate", 0.55))
                         team_data.clean_sheet_rate = float(betting.get("clean_sheet_rate", 0.30))
 
-                    # Corner DNA
-                    if "corners" in dna:
-                        corners = dna["corners"]
-                        team_data.corners_for_avg = float(corners.get("corners_for", 5.0))
-                        team_data.corners_against_avg = float(corners.get("corners_against", 5.0))
+                    # Corner DNA (depuis TSE)
+                    if "corner_dna" in dna:
+                        corner_dna = dna["corner_dna"]
+                        team_data.corners_for_avg = float(corner_dna.get("corners_for_avg", 5.0))
+                        team_data.corners_against_avg = float(corner_dna.get("corners_against_avg", 5.0))
 
-                    # Card DNA
-                    if "cards" in dna:
-                        cards = dna["cards"]
-                        team_data.yellow_cards_avg = float(cards.get("yellow_cards", 1.8))
-                        team_data.fouls_committed_avg = float(cards.get("fouls", 12.0))
+                    # Card DNA (depuis TSE)
+                    if "card_dna" in dna:
+                        card_dna = dna["card_dna"]
+                        team_data.yellow_cards_avg = float(card_dna.get("yellows_for_avg", 1.8))
+                        team_data.fouls_committed_avg = float(card_dna.get("fouls_for_avg", 12.0))
 
                     # Tactical
                     if "tactical" in dna:
@@ -486,6 +486,8 @@ class DataHubAdapter:
         matchup_data = {
             "home": home_data,
             "away": away_data,
+            "home_team": home_data,  # Alias pour UnifiedBrain
+            "away_team": away_data,  # Alias pour UnifiedBrain
             "team_a": home_data,  # Alias pour compatibilite
             "team_b": away_data,  # Alias pour compatibilite
 

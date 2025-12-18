@@ -845,13 +845,13 @@ class UnifiedBrain:
 
             # CornerEngine
             if name == "corner":
-                if "expected_total" in data:
-                    probs["corners_expected"] = float(data["expected_total"])
+                if "expected_total_corners" in data:
+                    probs["corners_expected"] = float(data["expected_total_corners"])
 
             # CardEngine
             if name == "card":
-                if "expected_cards" in data:
-                    probs["cards_expected"] = float(data["expected_cards"])
+                if "expected_total_cards" in data:
+                    probs["cards_expected"] = float(data["expected_total_cards"])
 
             # RefereeEngine
             if name == "referee":
