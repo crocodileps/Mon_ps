@@ -144,19 +144,33 @@ class InstitutionalGuardian:
             self.log("Dry run mode - skipping self-healing")
             return actions
 
-        # Heal Docker containers
+        # Restart failed containers (both critical AND non-critical with auto_restart)
         docker_check = self.results["checks"].get("docker", {})
-        if not docker_check.get("passed"):
-            details = docker_check.get("details", {})
-            for container in details.get("critical_down", []):
-                self.log(f"Attempting to restart container: {container}")
-                success, message = self.healer.restart_container(container)
-                actions.append({
-                    "type": "container_restart",
-                    "target": container,
-                    "success": success,
-                    "message": message
-                })
+        details = docker_check.get("details", {})
+
+        # Critical containers first
+        for container in details.get("critical_down", []):
+            self.log(f"Attempting to restart CRITICAL container: {container}")
+            success, message = self.healer.restart_container(container)
+            actions.append({
+                "type": "container_restart",
+                "target": container,
+                "critical": True,
+                "success": success,
+                "message": message
+            })
+
+        # Non-critical containers with auto_restart enabled
+        for container in details.get("non_critical_down", []):
+            self.log(f"Attempting to restart non-critical container: {container}")
+            success, message = self.healer.restart_container(container)
+            actions.append({
+                "type": "container_restart",
+                "target": container,
+                "critical": False,
+                "success": success,
+                "message": message
+            })
 
         # Clean up disk if needed
         disk_check = self.results["checks"].get("disk", {})
@@ -188,18 +202,31 @@ class InstitutionalGuardian:
             for action in self.results.get("healing_actions", [])
         )
 
-        if all_passed:
-            status = "HEALTHY"
-        elif healing_success and self.results.get("healing_actions"):
-            status = "RECOVERED"
-        else:
-            # Check if any critical checks failed
-            critical_checks = ["database", "docker"]
+        # Check for non-critical containers down
+        docker_details = self.results.get("checks", {}).get("docker", {}).get("details", {})
+        non_critical_down = docker_details.get("non_critical_down", [])
+        critical_down = docker_details.get("critical_down", [])
+
+        # Check for cron warnings
+        cron_details = self.results.get("checks", {}).get("cron", {}).get("details", {})
+        cron_warnings = cron_details.get("warnings", [])
+
+        if critical_down:
+            status = "CRITICAL"
+        elif not all_passed:
+            critical_checks = ["docker", "database"]
             critical_failed = any(
                 not self.results["checks"].get(c, {}).get("passed", True)
                 for c in critical_checks
             )
             status = "CRITICAL" if critical_failed else "DEGRADED"
+        elif non_critical_down or cron_warnings:
+            # Non-critical issues exist - WARNING not HEALTHY
+            status = "WARNING"
+        elif healing_success and self.results.get("healing_actions"):
+            status = "RECOVERED"
+        else:
+            status = "HEALTHY"
 
         self.results["overall_status"] = status
         return status
@@ -208,10 +235,35 @@ class InstitutionalGuardian:
         """Send appropriate notifications based on results."""
         status = self.results["overall_status"]
 
+        # Get details for message
+        docker_details = self.results.get("checks", {}).get("docker", {}).get("details", {})
+        non_critical_down = docker_details.get("non_critical_down", [])
+        cron_details = self.results.get("checks", {}).get("cron", {}).get("details", {})
+        cron_warnings = cron_details.get("warnings", [])
+
         if status == "HEALTHY":
             # Only send daily summary in verbose mode
             if self.verbose:
                 self.notifier.send_success("Daily health check passed. All systems operational.")
+
+        elif status == "WARNING":
+            # Build warning message with details
+            issues = []
+            if non_critical_down:
+                issues.append(f"Containers down: {', '.join(non_critical_down)}")
+            if cron_warnings:
+                issues.append(f"Cron issues: {', '.join(cron_warnings)}")
+
+            message = "System operational with warnings:\n" + "\n".join(f"• {i}" for i in issues)
+
+            # Check if self-healing fixed any issues
+            healing_actions = self.results.get("healing_actions", [])
+            if healing_actions:
+                successful = [a for a in healing_actions if a.get("success")]
+                if successful:
+                    message += f"\n\nAuto-healed: {len(successful)} issue(s)"
+
+            self.notifier.send_warning(message)
 
         elif status == "RECOVERED":
             # Send recovery notification
@@ -393,6 +445,7 @@ def main():
     exit_codes = {
         "HEALTHY": 0,
         "RECOVERED": 0,
+        "WARNING": 1,
         "DEGRADED": 1,
         "CRITICAL": 2,
         "ERROR": 3
