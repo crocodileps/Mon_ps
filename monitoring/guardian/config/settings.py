@@ -75,7 +75,7 @@ CRON_JOBS = {
         "schedule": "0 3,9,15,21 * * *",
         "log_file": LOGS_DIR / "football_data.log",
         "max_age_hours": 12,
-        "script_path": BASE_DIR / "backend/scripts/data_enrichment/fetch_results_football_data_v2.py",
+        "script_path": BASE_DIR / "backend/scripts/fetch_results_football_data_v2.py",
         "critical": False
     }
 }

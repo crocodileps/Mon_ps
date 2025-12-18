@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 API_TOKEN = "d40eee7eea3342179f16636ce9806fff"
 
 DB_CONFIG = {
-    "host": "monps_postgres",
+    "host": "localhost",
     "database": "monps_db",
     "user": "monps_user",
     "password": "monps_secure_password_2024"
