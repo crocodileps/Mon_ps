@@ -4,7 +4,6 @@
 ║                                                                                       ║
 ║  Services pour l'Agent Quantum V1:                                                   ║
 ║  - DNALoader: Chargement des 11 vecteurs DNA                                         ║
-║  - DNALoaderDB: Chargement depuis PostgreSQL                                         ║
 ║  - FeatureCalculator: Calcul des 150+ features                                       ║
 ║  - ScenarioDetector: Détection des 20 scénarios                                      ║
 ║  - RuleEngine: Orchestrateur principal                                               ║
@@ -14,7 +13,6 @@
 """
 
 from .dna_loader import QuantumDNALoader, DNACache
-from .dna_loader_db import DNALoaderDB, SimpleTeamDNA, SimpleFriction, load_team, load_match, get_all_teams
 from .feature_calculator import QuantumFeatureCalculator, MatchFeatures
 from .scenario_detector import (
     QuantumScenarioDetector,
@@ -45,15 +43,7 @@ __all__ = [
     # DNA Loader (simulated)
     "QuantumDNALoader",
     "DNACache",
-    
-    # DNA Loader (PostgreSQL)
-    "DNALoaderDB",
-    "SimpleTeamDNA",
-    "SimpleFriction",
-    "load_team",
-    "load_match",
-    "get_all_teams",
-    
+
     # Feature Calculator
     "QuantumFeatureCalculator",
     "MatchFeatures",
