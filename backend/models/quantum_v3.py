@@ -3,7 +3,7 @@ TeamQuantumDnaV3 ORM Model - Hedge Fund Grade Alpha
 ====================================================
 
 SQLAlchemy 2.0 ORM model for quantum.team_quantum_dna_v3 table.
-MAPPING EXACT des 60 colonnes de la table PostgreSQL.
+MAPPING EXACT des 59 colonnes de la table PostgreSQL.
 
 Architecture Option D+:
 - Typed JSONB columns via Pydantic schemas
@@ -57,9 +57,9 @@ class TeamQuantumDnaV3(Base):
     """
     ORM Model for quantum.team_quantum_dna_v3 table.
     
-    MAPPING EXACT des 60 colonnes PostgreSQL:
+    MAPPING EXACT des 59 colonnes PostgreSQL:
     - 28 colonnes scalaires (TEXT, FLOAT, INTEGER, TIMESTAMP)
-    - 31 colonnes JSONB (vecteurs ADN)
+    - 30 colonnes JSONB (vecteurs ADN)
     - 1 colonne ARRAY (narrative_fingerprint_tags)
     """
     
@@ -161,8 +161,6 @@ class TeamQuantumDnaV3(Base):
     optimal_scenarios: Mapped[Optional[dict]] = mapped_column(JSONB)
     optimal_strategies: Mapped[Optional[dict]] = mapped_column(JSONB)
     
-    # Legacy
-    quantum_dna_legacy: Mapped[Optional[dict]] = mapped_column(JSONB)
     betting_identity: Mapped[Optional[dict]] = mapped_column(JSONB)
 
     # ══════════════════════════════════════════════════════════════════════

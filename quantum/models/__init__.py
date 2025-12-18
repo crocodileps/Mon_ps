@@ -161,6 +161,28 @@ from .team_dna import (
 )
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
+# SCENARIOS & STRATEGY
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+from .scenarios_strategy import (
+    ScenarioID,
+    ScenarioCategory,
+    StakeTier,
+    DecisionSource,
+    ScenarioCondition,
+    ScenarioMarket,
+    ScenarioDefinition,
+    ScenarioDetectionResult,
+    MarketProbabilities,
+    MarketRecommendation,
+    QuantumStrategy,
+    DailyQuantumPicks,
+    BetResult,
+    ScenarioPerformance,
+    QuantumPerformanceReport,
+)
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
 # ALL EXPORTS
 # ═══════════════════════════════════════════════════════════════════════════════════════
 
@@ -267,6 +289,23 @@ __all__ = [
     # Team DNA (Main)
     "TeamIdentity",
     "TeamDNA",
+
+    # Scenarios & Strategy
+    "ScenarioID",
+    "ScenarioCategory",
+    "StakeTier",
+    "DecisionSource",
+    "ScenarioCondition",
+    "ScenarioMarket",
+    "ScenarioDefinition",
+    "ScenarioDetectionResult",
+    "MarketProbabilities",
+    "MarketRecommendation",
+    "QuantumStrategy",
+    "DailyQuantumPicks",
+    "BetResult",
+    "ScenarioPerformance",
+    "QuantumPerformanceReport",
 ]
 
 # Version info
