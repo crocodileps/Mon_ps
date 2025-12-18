@@ -9,7 +9,7 @@ Créé: 2025-12-18
 Auteur: Mon_PS Team
 Source: /home/Mon_ps/data/fbref/fbref_players_clean_2025_26.json
 Target: Table fbref_player_stats_full (163 colonnes) + player_stats (legacy)
-Mapping: /tmp/fbref_column_mapping.json (150 métriques JSON → SQL)
+Mapping: /home/Mon_ps/config/fbref_column_mapping.json (150 métriques JSON → SQL)
 """
 
 import json
