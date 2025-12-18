@@ -1,142 +1,142 @@
 [
   {
-    "player_name": "Jo\u00e3o Pedro",
-    "goals": 5,
+    "player_name": "Pedro Neto",
+    "goals": 6,
     "assists": 3,
-    "matches": 20,
-    "scraped_at": "2025-12-16T06:00:27.694328"
+    "matches": 23,
+    "scraped_at": "2025-12-18T06:00:29.983554"
   },
   {
-    "player_name": "Pedro Neto",
+    "player_name": "Jo\u00e3o Pedro",
     "goals": 5,
-    "assists": 3,
-    "matches": 22,
-    "scraped_at": "2025-12-16T06:00:27.694364"
+    "assists": 4,
+    "matches": 21,
+    "scraped_at": "2025-12-18T06:00:29.983511"
   },
   {
     "player_name": "Enzo Fern\u00e1ndez",
     "goals": 5,
     "assists": 2,
     "matches": 23,
-    "scraped_at": "2025-12-16T06:00:27.693975"
+    "scraped_at": "2025-12-18T06:00:29.983165"
   },
   {
     "player_name": "Est\u00eav\u00e3o",
     "goals": 5,
     "assists": 1,
     "matches": 21,
-    "scraped_at": "2025-12-16T06:00:27.694282"
+    "scraped_at": "2025-12-18T06:00:29.983471"
+  },
+  {
+    "player_name": "Alejandro Garnacho",
+    "goals": 4,
+    "assists": 2,
+    "matches": 17,
+    "scraped_at": "2025-12-18T06:00:29.983593"
   },
   {
     "player_name": "Mois\u00e9s Caicedo",
     "goals": 4,
     "assists": 1,
-    "matches": 19,
-    "scraped_at": "2025-12-16T06:00:27.693938"
+    "matches": 20,
+    "scraped_at": "2025-12-18T06:00:29.983128"
   },
   {
     "player_name": "Tyrique George",
     "goals": 3,
     "assists": 1,
-    "matches": 10,
-    "scraped_at": "2025-12-16T06:00:27.694532"
+    "matches": 11,
+    "scraped_at": "2025-12-18T06:00:29.983710"
   },
   {
     "player_name": "Trevoh Chalobah",
     "goals": 3,
     "assists": 0,
-    "matches": 21,
-    "scraped_at": "2025-12-16T06:00:27.693633"
+    "matches": 22,
+    "scraped_at": "2025-12-18T06:00:29.982829"
   },
   {
     "player_name": "Cole Palmer",
     "goals": 3,
     "assists": 0,
     "matches": 7,
-    "scraped_at": "2025-12-16T06:00:27.693900"
+    "scraped_at": "2025-12-18T06:00:29.983090"
   },
   {
     "player_name": "Malo Gusto",
     "goals": 2,
     "assists": 3,
-    "matches": 20,
-    "scraped_at": "2025-12-16T06:00:27.693674"
-  },
-  {
-    "player_name": "Alejandro Garnacho",
-    "goals": 2,
-    "assists": 2,
-    "matches": 16,
-    "scraped_at": "2025-12-16T06:00:27.694414"
+    "matches": 21,
+    "scraped_at": "2025-12-18T06:00:29.982868"
   },
   {
     "player_name": "Reece James",
     "goals": 1,
     "assists": 5,
     "matches": 20,
-    "scraped_at": "2025-12-16T06:00:27.693555"
+    "scraped_at": "2025-12-18T06:00:29.982747"
   },
   {
     "player_name": "Jamie Gittens",
     "goals": 1,
     "assists": 5,
-    "matches": 19,
-    "scraped_at": "2025-12-16T06:00:27.694453"
+    "matches": 20,
+    "scraped_at": "2025-12-18T06:00:29.983632"
   },
   {
     "player_name": "Andrey Santos",
     "goals": 1,
-    "assists": 3,
-    "matches": 17,
-    "scraped_at": "2025-12-16T06:00:27.694013"
+    "assists": 4,
+    "matches": 18,
+    "scraped_at": "2025-12-18T06:00:29.983200"
+  },
+  {
+    "player_name": "Facundo Buonanotte",
+    "goals": 1,
+    "assists": 1,
+    "matches": 7,
+    "scraped_at": "2025-12-18T06:00:29.983317"
   },
   {
     "player_name": "Marc Guiu",
     "goals": 1,
     "assists": 1,
-    "matches": 8,
-    "scraped_at": "2025-12-16T06:00:27.694575"
+    "matches": 9,
+    "scraped_at": "2025-12-18T06:00:29.983749"
   },
   {
     "player_name": "Josh Acheampong",
     "goals": 1,
     "assists": 0,
-    "matches": 10,
-    "scraped_at": "2025-12-16T06:00:27.693785"
-  },
-  {
-    "player_name": "Facundo Buonanotte",
-    "goals": 1,
-    "assists": 0,
-    "matches": 6,
-    "scraped_at": "2025-12-16T06:00:27.694134"
+    "matches": 11,
+    "scraped_at": "2025-12-18T06:00:29.982979"
   },
   {
     "player_name": "Liam Delap",
     "goals": 1,
     "assists": 0,
     "matches": 11,
-    "scraped_at": "2025-12-16T06:00:27.694496"
+    "scraped_at": "2025-12-18T06:00:29.983674"
   },
   {
     "player_name": "Marc Cucurella",
     "goals": 0,
     "assists": 2,
     "matches": 23,
-    "scraped_at": "2025-12-16T06:00:27.693469"
+    "scraped_at": "2025-12-18T06:00:29.982663"
   },
   {
     "player_name": "Jorrel Hato",
     "goals": 0,
     "assists": 1,
-    "matches": 8,
-    "scraped_at": "2025-12-16T06:00:27.693597"
+    "matches": 9,
+    "scraped_at": "2025-12-18T06:00:29.982788"
   },
   {
     "player_name": "Wesley Fofana",
     "goals": 0,
     "assists": 1,
     "matches": 12,
-    "scraped_at": "2025-12-16T06:00:27.693711"
+    "scraped_at": "2025-12-18T06:00:29.982905"
   }
 ]

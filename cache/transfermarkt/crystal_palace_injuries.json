@@ -1,22 +1,22 @@
 [
   {
-    "player_name": "Cheick Doucour\u00e9",
-    "injury_type": "25",
-    "scraped_at": "2025-12-16T06:01:41.947856"
-  },
-  {
     "player_name": "Chadi Riad",
     "injury_type": "22",
-    "scraped_at": "2025-12-16T06:01:41.947955"
+    "scraped_at": "2025-12-18T06:01:43.590335"
+  },
+  {
+    "player_name": "Cheick Doucour\u00e9",
+    "injury_type": "25",
+    "scraped_at": "2025-12-18T06:01:43.590463"
   },
   {
     "player_name": "Caleb Kporha",
     "injury_type": "19",
-    "scraped_at": "2025-12-16T06:01:41.948041"
+    "scraped_at": "2025-12-18T06:01:43.590552"
   },
   {
     "player_name": "Daniel Mu\u00f1oz",
     "injury_type": "29",
-    "scraped_at": "2025-12-16T06:01:41.948124"
+    "scraped_at": "2025-12-18T06:01:43.590649"
   }
 ]

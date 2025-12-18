@@ -4,118 +4,118 @@
     "goals": 23,
     "assists": 3,
     "matches": 22,
-    "scraped_at": "2025-12-16T06:00:22.200127"
+    "scraped_at": "2025-12-18T06:00:23.288231"
   },
   {
     "player_name": "Phil Foden",
     "goals": 10,
     "assists": 4,
-    "matches": 21,
-    "scraped_at": "2025-12-16T06:00:22.200204"
+    "matches": 22,
+    "scraped_at": "2025-12-18T06:00:23.288267"
   },
   {
     "player_name": "Rayan Cherki",
-    "goals": 3,
+    "goals": 4,
     "assists": 7,
-    "matches": 16,
-    "scraped_at": "2025-12-16T06:00:22.200496"
+    "matches": 17,
+    "scraped_at": "2025-12-18T06:00:23.287898"
   },
   {
     "player_name": "J\u00e9r\u00e9my Doku",
     "goals": 3,
     "assists": 6,
     "matches": 22,
-    "scraped_at": "2025-12-16T06:00:22.200382"
+    "scraped_at": "2025-12-18T06:00:23.288346"
   },
   {
     "player_name": "Tijjani Reijnders",
     "goals": 2,
-    "assists": 5,
-    "matches": 22,
-    "scraped_at": "2025-12-16T06:00:22.199532"
+    "assists": 6,
+    "matches": 23,
+    "scraped_at": "2025-12-18T06:00:23.287858"
   },
   {
     "player_name": "Josko Gvardiol",
     "goals": 2,
     "assists": 4,
-    "matches": 18,
-    "scraped_at": "2025-12-16T06:00:22.198495"
+    "matches": 19,
+    "scraped_at": "2025-12-18T06:00:23.287315"
   },
   {
     "player_name": "Nico O'Reilly",
     "goals": 2,
     "assists": 4,
-    "matches": 21,
-    "scraped_at": "2025-12-16T06:00:22.198751"
+    "matches": 22,
+    "scraped_at": "2025-12-18T06:00:23.287462"
+  },
+  {
+    "player_name": "Savinho",
+    "goals": 2,
+    "assists": 3,
+    "matches": 20,
+    "scraped_at": "2025-12-18T06:00:23.288384"
   },
   {
     "player_name": "R\u00faben Dias",
     "goals": 2,
     "assists": 0,
     "matches": 21,
-    "scraped_at": "2025-12-16T06:00:22.198589"
+    "scraped_at": "2025-12-18T06:00:23.287369"
   },
   {
     "player_name": "Matheus Nunes",
     "goals": 1,
     "assists": 4,
-    "matches": 19,
-    "scraped_at": "2025-12-16T06:00:22.198828"
-  },
-  {
-    "player_name": "Savinho",
-    "goals": 1,
-    "assists": 3,
-    "matches": 19,
-    "scraped_at": "2025-12-16T06:00:22.200570"
+    "matches": 20,
+    "scraped_at": "2025-12-18T06:00:23.287499"
   },
   {
     "player_name": "Bernardo Silva",
     "goals": 1,
     "assists": 2,
-    "matches": 21,
-    "scraped_at": "2025-12-16T06:00:22.199681"
+    "matches": 22,
+    "scraped_at": "2025-12-18T06:00:23.287972"
   },
   {
     "player_name": "Omar Marmoush",
     "goals": 1,
     "assists": 1,
     "matches": 15,
-    "scraped_at": "2025-12-16T06:00:22.200279"
+    "scraped_at": "2025-12-18T06:00:23.288305"
   },
   {
     "player_name": "Nico Gonz\u00e1lez",
     "goals": 1,
     "assists": 0,
-    "matches": 23,
-    "scraped_at": "2025-12-16T06:00:22.199605"
+    "matches": 24,
+    "scraped_at": "2025-12-18T06:00:23.287936"
   },
   {
     "player_name": "Rico Lewis",
     "goals": 0,
     "assists": 2,
-    "matches": 12,
-    "scraped_at": "2025-12-16T06:00:22.198977"
+    "matches": 13,
+    "scraped_at": "2025-12-18T06:00:23.287600"
   },
   {
     "player_name": "Rayan A\u00eft-Nouri",
     "goals": 0,
     "assists": 1,
     "matches": 8,
-    "scraped_at": "2025-12-16T06:00:22.198672"
+    "scraped_at": "2025-12-18T06:00:23.287422"
   },
   {
     "player_name": "Divine Mukasa",
     "goals": 0,
     "assists": 1,
-    "matches": 2,
-    "scraped_at": "2025-12-16T06:00:22.200050"
+    "matches": 3,
+    "scraped_at": "2025-12-18T06:00:23.288193"
   },
   {
     "player_name": "Oscar Bobb",
     "goals": 0,
     "assists": 1,
-    "matches": 14,
-    "scraped_at": "2025-12-16T06:00:22.200643"
+    "matches": 15,
+    "scraped_at": "2025-12-18T06:00:23.288431"
   }
 ]
