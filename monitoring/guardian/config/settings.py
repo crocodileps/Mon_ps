@@ -7,6 +7,12 @@ Hedge Fund Grade Monitoring System
 import os
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
+
+# Load .env file from guardian directory
+_env_file = Path(__file__).parent.parent / ".env"
+if _env_file.exists():
+    load_dotenv(_env_file)
 
 # =============================================================================
 # PATHS
