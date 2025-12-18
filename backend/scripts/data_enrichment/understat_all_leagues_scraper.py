@@ -111,6 +111,294 @@ def get_understat_matches(league: str, season: str) -> list:
         return []
 
 
+def get_team_statistics(team_name: str, season: str, session: requests.Session) -> dict:
+    """
+    Récupère les statistiques d'une équipe via l'API (post 8 décembre 2025).
+
+    Args:
+        team_name: Nom de l'équipe (ex: "Liverpool", "Manchester_United")
+        season: Année de début saison (2025 pour 2025-26)
+        session: Session requests avec cookies
+
+    Returns:
+        Dict avec gameState, timing, attackSpeed, situation
+    """
+    try:
+        # Appeler API équipe
+        time.sleep(random.uniform(0.5, 1))
+        response = session.get(
+            f"https://understat.com/getTeamData/{team_name}/{season}",
+            headers={'Referer': f'https://understat.com/team/{team_name}/{season}'}
+        )
+
+        if response.status_code != 200:
+            logger.error(f"   ❌ Erreur API équipe {team_name}: HTTP {response.status_code}")
+            return {}
+
+        data = response.json()
+        return data.get('statistics', {})
+
+    except Exception as e:
+        logger.error(f"   ❌ Erreur get_team_statistics {team_name}: {e}")
+        return {}
+
+
+def get_league_teams_from_api(league_code: str, season: str, session: requests.Session) -> list:
+    """
+    Récupère la liste des équipes d'une ligue depuis l'API (post 8 décembre 2025).
+
+    Returns:
+        Liste de dicts avec 'id', 'title' (nom équipe), 'url_name' (pour API)
+    """
+    try:
+        # Appeler API ligue
+        response = session.get(
+            f"https://understat.com/getLeagueData/{league_code}/{season}",
+            headers={'Referer': f'https://understat.com/league/{league_code}/{season}'}
+        )
+
+        if response.status_code != 200:
+            logger.error(f"   ❌ Erreur API ligue {league_code}: HTTP {response.status_code}")
+            return []
+
+        data = response.json()
+        teams = data.get('teams', {})
+
+        result = []
+        for team_id, team_data in teams.items():
+            title = team_data.get('title', '')
+            # Convertir nom en format URL (espaces → underscores)
+            url_name = title.replace(' ', '_')
+            result.append({
+                'id': team_id,
+                'title': title,
+                'url_name': url_name
+            })
+
+        return result
+
+    except Exception as e:
+        logger.error(f"   ❌ Erreur get_league_teams_from_api {league_code}: {e}")
+        return []
+
+
+def parse_statistics_to_gamestate(team_name: str, stats: dict, league: str, season: str) -> dict:
+    """
+    Parse les statistics de l'API vers le format team_gamestate_stats.
+
+    MAPPING:
+    - gameState["Goal diff 0"] → gs_drawing_*
+    - gameState["Goal diff +1"] + ["Goal diff > +1"] → gs_leading_*
+    - gameState["Goal diff -1"] + ["Goal diff < -1"] → gs_trailing_*
+    - timing["1-15"], etc. → timing_*_goals
+    - attackSpeed["Fast"] → fast_attack_*
+    - situation["SetPiece"] → set_piece_*
+    """
+    gameState = stats.get('gameState', {})
+    timing = stats.get('timing', {})
+    attackSpeed = stats.get('attackSpeed', {})
+    situation = stats.get('situation', {})
+
+    # Helper pour extraire avec défaut
+    def get_stat(data, key, field, default=0):
+        return data.get(key, {}).get(field, default)
+
+    def get_against(data, key, field, default=0):
+        return data.get(key, {}).get('against', {}).get(field, default)
+
+    # Game State - Drawing (égalité)
+    drawing = gameState.get('Goal diff 0', {})
+
+    # Game State - Leading (mène: +1 et >+1 combinés)
+    lead1 = gameState.get('Goal diff +1', {})
+    lead_more = gameState.get('Goal diff > +1', {})
+
+    # Game State - Trailing (mené: -1 et <-1 combinés)
+    trail1 = gameState.get('Goal diff -1', {})
+    trail_more = gameState.get('Goal diff < -1', {})
+
+    # Fast Attack
+    fast = attackSpeed.get('Fast', {})
+
+    # Set Piece
+    set_piece = situation.get('SetPiece', {})
+    set_piece_goals = set_piece.get('goals', 0)
+    set_piece_xg = set_piece.get('xG', 0)
+
+    return {
+        'team_name': team_name,
+        'league': league,
+        'season': season,
+
+        # Drawing
+        'gs_drawing_time': drawing.get('time', 0),
+        'gs_drawing_shots': drawing.get('shots', 0),
+        'gs_drawing_goals': drawing.get('goals', 0),
+        'gs_drawing_xg': drawing.get('xG', 0),
+        'gs_drawing_conceded_goals': drawing.get('against', {}).get('goals', 0),
+        'gs_drawing_conceded_xg': drawing.get('against', {}).get('xG', 0),
+
+        # Leading (somme +1 et >+1)
+        'gs_leading_time': lead1.get('time', 0) + lead_more.get('time', 0),
+        'gs_leading_shots': lead1.get('shots', 0) + lead_more.get('shots', 0),
+        'gs_leading_goals': lead1.get('goals', 0) + lead_more.get('goals', 0),
+        'gs_leading_xg': lead1.get('xG', 0) + lead_more.get('xG', 0),
+        'gs_leading_conceded_goals': lead1.get('against', {}).get('goals', 0) + lead_more.get('against', {}).get('goals', 0),
+        'gs_leading_conceded_xg': lead1.get('against', {}).get('xG', 0) + lead_more.get('against', {}).get('xG', 0),
+
+        # Trailing (somme -1 et <-1)
+        'gs_trailing_time': trail1.get('time', 0) + trail_more.get('time', 0),
+        'gs_trailing_shots': trail1.get('shots', 0) + trail_more.get('shots', 0),
+        'gs_trailing_goals': trail1.get('goals', 0) + trail_more.get('goals', 0),
+        'gs_trailing_xg': trail1.get('xG', 0) + trail_more.get('xG', 0),
+        'gs_trailing_conceded_goals': trail1.get('against', {}).get('goals', 0) + trail_more.get('against', {}).get('goals', 0),
+        'gs_trailing_conceded_xg': trail1.get('against', {}).get('xG', 0) + trail_more.get('against', {}).get('xG', 0),
+
+        # Timing
+        'timing_1_15_goals': timing.get('1-15', {}).get('goals', 0),
+        'timing_16_30_goals': timing.get('16-30', {}).get('goals', 0),
+        'timing_31_45_goals': timing.get('31-45', {}).get('goals', 0),
+        'timing_46_60_goals': timing.get('46-60', {}).get('goals', 0),
+        'timing_61_75_goals': timing.get('61-75', {}).get('goals', 0),
+        'timing_76_90_goals': timing.get('76+', {}).get('goals', 0),
+
+        # Fast Attack
+        'fast_attack_goals': fast.get('goals', 0),
+        'fast_attack_xg': fast.get('xG', 0),
+        'fast_attack_conceded': fast.get('against', {}).get('goals', 0),
+        'fast_attack_conceded_xg': fast.get('against', {}).get('xG', 0),
+
+        # Set Piece
+        'set_piece_goals': set_piece_goals,
+        'set_piece_xg': set_piece_xg,
+        'set_piece_luck': set_piece_goals - set_piece_xg,
+    }
+
+
+def save_gamestate_stats_from_api(data: dict) -> bool:
+    """
+    Sauvegarde les stats game state depuis le format API parsé.
+
+    Args:
+        data: Dict retourné par parse_statistics_to_gamestate()
+
+    Returns:
+        True si sauvegarde réussie, False sinon
+    """
+    conn = psycopg2.connect(**DB_CONFIG)
+    cur = conn.cursor()
+
+    # Calculer les profils
+    gs_leading_time = data['gs_leading_time']
+    gs_drawing_time = data['gs_drawing_time']
+    gs_leading_xg = data['gs_leading_xg']
+    gs_drawing_xg = data['gs_drawing_xg']
+
+    # is_killer: continue d'attaquer quand il mène
+    if gs_leading_time > 0 and gs_drawing_time > 0:
+        leading_xg_per_min = gs_leading_xg / gs_leading_time * 90
+        drawing_xg_per_min = gs_drawing_xg / gs_drawing_time * 90
+        is_killer = leading_xg_per_min > drawing_xg_per_min * 0.7
+    else:
+        is_killer = False
+
+    # is_fast_vulnerable: concède beaucoup en contre-attaque rapide
+    fast_conceded = data['fast_attack_conceded']
+    fast_conceded_xg = data['fast_attack_conceded_xg']
+    is_fast_vulnerable = fast_conceded >= fast_conceded_xg + 1
+
+    # Timing profiles
+    timing_goals = [
+        data['timing_1_15_goals'],
+        data['timing_16_30_goals'],
+        data['timing_31_45_goals'],
+        data['timing_46_60_goals'],
+        data['timing_61_75_goals'],
+        data['timing_76_90_goals']
+    ]
+    total_goals = sum(timing_goals)
+    is_slow_starter = timing_goals[0] < total_goals * 0.1 if total_goals > 0 else False
+    is_strong_finisher = timing_goals[5] > total_goals * 0.2 if total_goals > 0 else False
+
+    try:
+        cur.execute("""
+            INSERT INTO team_gamestate_stats
+            (team_name, league, season,
+             gs_drawing_time, gs_drawing_shots, gs_drawing_goals, gs_drawing_xg,
+             gs_drawing_conceded_goals, gs_drawing_conceded_xg,
+             gs_leading_time, gs_leading_shots, gs_leading_goals, gs_leading_xg,
+             gs_leading_conceded_goals, gs_leading_conceded_xg,
+             gs_trailing_time, gs_trailing_shots, gs_trailing_goals, gs_trailing_xg,
+             gs_trailing_conceded_goals, gs_trailing_conceded_xg,
+             timing_1_15_goals, timing_16_30_goals, timing_31_45_goals,
+             timing_46_60_goals, timing_61_75_goals, timing_76_90_goals,
+             fast_attack_goals, fast_attack_xg, fast_attack_conceded, fast_attack_conceded_xg,
+             set_piece_goals, set_piece_xg, set_piece_luck,
+             is_killer, is_manager, is_fast_vulnerable, is_slow_starter, is_strong_finisher,
+             updated_at)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW())
+            ON CONFLICT (team_name, league, season) DO UPDATE SET
+                gs_drawing_time = EXCLUDED.gs_drawing_time,
+                gs_drawing_shots = EXCLUDED.gs_drawing_shots,
+                gs_drawing_goals = EXCLUDED.gs_drawing_goals,
+                gs_drawing_xg = EXCLUDED.gs_drawing_xg,
+                gs_drawing_conceded_goals = EXCLUDED.gs_drawing_conceded_goals,
+                gs_drawing_conceded_xg = EXCLUDED.gs_drawing_conceded_xg,
+                gs_leading_time = EXCLUDED.gs_leading_time,
+                gs_leading_shots = EXCLUDED.gs_leading_shots,
+                gs_leading_goals = EXCLUDED.gs_leading_goals,
+                gs_leading_xg = EXCLUDED.gs_leading_xg,
+                gs_leading_conceded_goals = EXCLUDED.gs_leading_conceded_goals,
+                gs_leading_conceded_xg = EXCLUDED.gs_leading_conceded_xg,
+                gs_trailing_time = EXCLUDED.gs_trailing_time,
+                gs_trailing_shots = EXCLUDED.gs_trailing_shots,
+                gs_trailing_goals = EXCLUDED.gs_trailing_goals,
+                gs_trailing_xg = EXCLUDED.gs_trailing_xg,
+                gs_trailing_conceded_goals = EXCLUDED.gs_trailing_conceded_goals,
+                gs_trailing_conceded_xg = EXCLUDED.gs_trailing_conceded_xg,
+                timing_1_15_goals = EXCLUDED.timing_1_15_goals,
+                timing_16_30_goals = EXCLUDED.timing_16_30_goals,
+                timing_31_45_goals = EXCLUDED.timing_31_45_goals,
+                timing_46_60_goals = EXCLUDED.timing_46_60_goals,
+                timing_61_75_goals = EXCLUDED.timing_61_75_goals,
+                timing_76_90_goals = EXCLUDED.timing_76_90_goals,
+                fast_attack_goals = EXCLUDED.fast_attack_goals,
+                fast_attack_xg = EXCLUDED.fast_attack_xg,
+                fast_attack_conceded = EXCLUDED.fast_attack_conceded,
+                fast_attack_conceded_xg = EXCLUDED.fast_attack_conceded_xg,
+                set_piece_goals = EXCLUDED.set_piece_goals,
+                set_piece_xg = EXCLUDED.set_piece_xg,
+                set_piece_luck = EXCLUDED.set_piece_luck,
+                is_killer = EXCLUDED.is_killer,
+                is_manager = EXCLUDED.is_manager,
+                is_fast_vulnerable = EXCLUDED.is_fast_vulnerable,
+                is_slow_starter = EXCLUDED.is_slow_starter,
+                is_strong_finisher = EXCLUDED.is_strong_finisher,
+                updated_at = NOW()
+        """, (
+            data['team_name'], data['league'], data['season'],
+            data['gs_drawing_time'], data['gs_drawing_shots'], data['gs_drawing_goals'], data['gs_drawing_xg'],
+            data['gs_drawing_conceded_goals'], data['gs_drawing_conceded_xg'],
+            data['gs_leading_time'], data['gs_leading_shots'], data['gs_leading_goals'], data['gs_leading_xg'],
+            data['gs_leading_conceded_goals'], data['gs_leading_conceded_xg'],
+            data['gs_trailing_time'], data['gs_trailing_shots'], data['gs_trailing_goals'], data['gs_trailing_xg'],
+            data['gs_trailing_conceded_goals'], data['gs_trailing_conceded_xg'],
+            data['timing_1_15_goals'], data['timing_16_30_goals'], data['timing_31_45_goals'],
+            data['timing_46_60_goals'], data['timing_61_75_goals'], data['timing_76_90_goals'],
+            data['fast_attack_goals'], data['fast_attack_xg'],
+            data['fast_attack_conceded'], data['fast_attack_conceded_xg'],
+            data['set_piece_goals'], data['set_piece_xg'], data['set_piece_luck'],
+            is_killer, not is_killer, is_fast_vulnerable, is_slow_starter, is_strong_finisher
+        ))
+        conn.commit()
+        conn.close()
+        return True
+    except Exception as e:
+        logger.error(f"   ❌ Erreur sauvegarde {data['team_name']}: {e}")
+        conn.close()
+        return False
+
+
 def get_league_teams(league_code):
     """Récupère toutes les équipes d'une ligue depuis Understat"""
     url = f"https://understat.com/league/{league_code}/{SEASON}"
@@ -379,21 +667,44 @@ def main():
         total_matches += league_matches
         logger.info(f"   📊 {league_matches} matchs xG sauvegardés")
 
-        # 2. Scraper game state PAR ÉQUIPE (garde ancienne méthode HTML)
-        logger.info(f"   Scraping game state par équipe...")
-        teams = get_league_teams(league_code)
+        # 2. Scraper game state PAR ÉQUIPE via nouvelle API
+        logger.info(f"   Scraping game state par équipe (API)...")
+
+        # Créer session partagée pour toutes les équipes de la ligue
+        session = requests.Session()
+        session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'X-Requested-With': 'XMLHttpRequest'
+        })
+
+        # Obtenir cookies en visitant la page de la ligue
+        time.sleep(random.uniform(0.5, 1))
+        session.get(f"https://understat.com/league/{league_code}/{SEASON}")
+
+        # Récupérer liste des équipes via API
+        teams = get_league_teams_from_api(league_code, SEASON, session)
         logger.info(f"   {len(teams)} équipes trouvées")
 
         for team in teams:
-            # On ne récupère plus dates_data ici (déjà fait avec API ci-dessus)
-            # On récupère SEULEMENT stats_data (game state, timing, etc.)
-            dates_data, stats_data, team_name = scrape_team_data(
-                team['url_name'], league_code, league_name
-            )
+            team_name = team['title']
+            url_name = team['url_name']
 
-            if stats_data:
-                save_gamestate_stats(team_name, stats_data, league_name)
-                logger.info(f"   ✅ {team_name}")
+            # Récupérer statistics via API
+            stats = get_team_statistics(url_name, SEASON, session)
+
+            if stats:
+                # Parser vers format DB
+                gamestate_data = parse_statistics_to_gamestate(
+                    team_name, stats, league_name, f'{SEASON}-{int(SEASON)+1}'
+                )
+
+                # Sauvegarder
+                if save_gamestate_stats_from_api(gamestate_data):
+                    logger.info(f"   ✅ {team_name}")
+                else:
+                    logger.warning(f"   ⚠️ {team_name}: erreur sauvegarde")
+            else:
+                logger.warning(f"   ⚠️ {team_name}: pas de statistics")
 
             total_teams += 1
     
