@@ -4,12 +4,12 @@
 UNDERSTAT ADVANCED SCRAPER - ALL LEAGUES
 Big Chances + Shot Quality pour toutes les ligues européennes
 ═══════════════════════════════════════════════════════════════════════════════
+MIGRATION API (2025-12-18): Utilise getMatchData API au lieu de HTML scraping
+Raison: Cloudflare bloque requests classiques depuis 8 décembre 2025
 """
 
 import requests
-from bs4 import BeautifulSoup
 import json
-import re
 import psycopg2
 import psycopg2.extras
 import time
@@ -26,6 +26,7 @@ DB_CONFIG = {
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'X-Requested-With': 'XMLHttpRequest'
 }
 
 BIG_CHANCE_THRESHOLD = 0.30
@@ -59,30 +60,54 @@ def get_match_ids_to_process():
     return matches
 
 
-def get_match_shots(match_id):
-    """Récupère les données de tirs détaillées"""
-    url = f"https://understat.com/match/{match_id}"
-    
+def get_match_shots(match_id, session=None):
+    """
+    Récupère les données de tirs détaillées via l'API Understat (post 8 décembre 2025).
+
+    MIGRATION API:
+    - Avant: HTML scraping de shotsData (bloqué par Cloudflare)
+    - Après: API getMatchData/{match_id} retourne JSON directement
+
+    Args:
+        match_id: ID du match Understat
+        session: Session requests (optionnel, créée si None)
+
+    Returns:
+        Dict avec keys 'h' (home shots) et 'a' (away shots)
+        None si erreur
+    """
+    # Créer session si pas fournie
+    if session is None:
+        session = requests.Session()
+        session.headers.update(HEADERS)
+
     try:
         time.sleep(random.uniform(1, 2))
-        response = requests.get(url, headers=HEADERS, timeout=30)
-        
+
+        # Appeler API getMatchData (nouvelle architecture Understat)
+        response = session.get(
+            f"https://understat.com/getMatchData/{match_id}",
+            headers={'Referer': f'https://understat.com/match/{match_id}'},
+            timeout=30
+        )
+
         if response.status_code != 200:
+            logger.warning(f"   ⚠️ HTTP {response.status_code} pour match {match_id}")
             return None
-        
-        soup = BeautifulSoup(response.text, 'html.parser')
-        
-        for script in soup.find_all('script'):
-            script_text = str(script)
-            if 'shotsData' in script_text:
-                match = re.search(r"var shotsData\s*=\s*JSON\.parse\('(.+?)'\)", script_text)
-                if match:
-                    decoded = match.group(1).encode().decode('unicode_escape')
-                    return json.loads(decoded)
-        
-        return None
-        
+
+        # Parser JSON response
+        data = response.json()
+        shots_data = data.get('shots', {})
+
+        # Vérifier structure
+        if 'h' not in shots_data or 'a' not in shots_data:
+            logger.warning(f"   ⚠️ Structure shots invalide pour match {match_id}")
+            return None
+
+        return shots_data
+
     except Exception as e:
+        logger.error(f"   ❌ Erreur get_match_shots pour match {match_id}: {e}")
         return None
 
 
@@ -402,30 +427,36 @@ def calculate_all_xg_tendencies():
 
 def main():
     print("═══════════════════════════════════════════════════════════════════")
-    print("UNDERSTAT ADVANCED SCRAPER - ALL LEAGUES")
+    print("UNDERSTAT ADVANCED SCRAPER - ALL LEAGUES (API VERSION)")
     print("═══════════════════════════════════════════════════════════════════")
-    
+
+    # Créer session partagée pour réutiliser cookies
+    session = requests.Session()
+    session.headers.update(HEADERS)
+    logger.info("✅ Session API créée avec headers anti-Cloudflare")
+
     # Get matches to process
     matches = get_match_ids_to_process()
     logger.info(f"\n📊 {len(matches)} matchs à analyser pour Big Chances")
-    
+
     processed = 0
     by_league = {}
-    
+
     for match_info in matches:
         match_id = match_info[0]
         league = match_info[4]
-        
-        shots_data = get_match_shots(match_id)
-        
+
+        # Passer session pour réutiliser cookies
+        shots_data = get_match_shots(match_id, session=session)
+
         if shots_data:
             home_stats = analyze_shots(shots_data.get('h', []))
             away_stats = analyze_shots(shots_data.get('a', []))
-            
+
             if save_advanced_stats(match_info, home_stats, away_stats):
                 processed += 1
                 by_league[league] = by_league.get(league, 0) + 1
-                
+
                 if processed % 50 == 0:
                     logger.info(f"   Processed {processed}/{len(matches)} matchs")
     
