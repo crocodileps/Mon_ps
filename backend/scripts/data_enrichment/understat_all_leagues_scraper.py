@@ -62,6 +62,55 @@ LEAGUES = {
 }
 
 
+def get_understat_matches(league: str, season: str) -> list:
+    """
+    Récupère les matchs Understat via la nouvelle API (post 8 décembre 2025).
+
+    CHANGEMENT ARCHITECTURE:
+    - Avant: Scraping HTML avec BeautifulSoup + regex pour extraire datesData
+    - Après: API directe getLeagueData/{league}/{season} retourne JSON
+
+    Args:
+        league: Code ligue (EPL, La_Liga, Bundesliga, Serie_A, Ligue_1)
+        season: Année de début saison (2025 pour 2025-26)
+
+    Returns:
+        Liste des matchs avec xG, goals, datetime, isResult, etc.
+    """
+    session = requests.Session()
+    session.headers.update({
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'X-Requested-With': 'XMLHttpRequest'
+    })
+
+    try:
+        # 1. Obtenir les cookies en visitant la page de la ligue
+        logger.info(f"   Obtention cookies pour {league}...")
+        time.sleep(random.uniform(1, 2))
+        session.get(f"https://understat.com/league/{league}/{season}")
+
+        # 2. Appeler l'API avec les cookies
+        logger.info(f"   Appel API getLeagueData/{league}/{season}...")
+        time.sleep(random.uniform(0.5, 1))
+        response = session.get(
+            f"https://understat.com/getLeagueData/{league}/{season}",
+            headers={'Referer': f'https://understat.com/league/{league}/{season}'}
+        )
+
+        if response.status_code != 200:
+            logger.error(f"   ❌ Erreur API Understat: HTTP {response.status_code} pour {league}")
+            return []
+
+        data = response.json()
+        matches = data.get('dates', [])
+        logger.info(f"   ✅ {len(matches)} matchs récupérés depuis API")
+        return matches
+
+    except Exception as e:
+        logger.error(f"   ❌ Erreur get_understat_matches pour {league}: {e}")
+        return []
+
+
 def get_league_teams(league_code):
     """Récupère toutes les équipes d'une ligue depuis Understat"""
     url = f"https://understat.com/league/{league_code}/{SEASON}"
@@ -322,29 +371,31 @@ def main():
         print(f"�� {league_name} ({league_info['country']})")
         print('='*70)
         
-        # Récupérer les équipes
+        # NOUVELLE ARCHITECTURE (post 8 décembre 2025):
+        # 1. Scraper TOUS les matchs de la ligue via API (1 seule requête)
+        logger.info(f"   Scraping matchs xG via API...")
+        matches = get_understat_matches(league_code, SEASON)
+        league_matches = save_xg_matches(matches, league_name)
+        total_matches += league_matches
+        logger.info(f"   📊 {league_matches} matchs xG sauvegardés")
+
+        # 2. Scraper game state PAR ÉQUIPE (garde ancienne méthode HTML)
+        logger.info(f"   Scraping game state par équipe...")
         teams = get_league_teams(league_code)
         logger.info(f"   {len(teams)} équipes trouvées")
-        
-        league_matches = 0
-        
+
         for team in teams:
+            # On ne récupère plus dates_data ici (déjà fait avec API ci-dessus)
+            # On récupère SEULEMENT stats_data (game state, timing, etc.)
             dates_data, stats_data, team_name = scrape_team_data(
                 team['url_name'], league_code, league_name
             )
-            
-            if dates_data:
-                saved = save_xg_matches(dates_data, league_name)
-                league_matches += saved
-            
+
             if stats_data:
                 save_gamestate_stats(team_name, stats_data, league_name)
                 logger.info(f"   ✅ {team_name}")
-            
+
             total_teams += 1
-        
-        total_matches += league_matches
-        logger.info(f"   📊 {league_matches} matchs xG sauvegardés")
     
     # Résumé final
     print("\n" + "="*70)
