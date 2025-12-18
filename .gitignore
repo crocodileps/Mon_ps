@@ -94,8 +94,8 @@ scripts/*.backup_*
 .coverage
 htmlcov/
 
-# Docs sessions (not tracked in main branch)
-docs/sessions/
+# Docs sessions (tracked for important sessions only)
+# docs/sessions/
 
 # Archives legacy
 archive/
