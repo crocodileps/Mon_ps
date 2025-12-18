@@ -1,0 +1,20 @@
+# Secrets - NEVER commit
+.env
+
+# Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local data
+.circuit_breaker_history.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Reports (optional - may want to commit some)
+# guardian_reports/

@@ -1,0 +1,13 @@
+# Mon_PS Institutional Guardian - Dependencies
+# All functionality uses Python stdlib - no external packages required for v1.0
+#
+# Core features using stdlib:
+# - urllib.request for HTTP (Telegram API)
+# - subprocess for shell commands (Docker, DB queries)
+# - json for data handling
+# - pathlib for file paths
+#
+# Future optional dependencies (not required):
+# psycopg2-binary  # Direct PostgreSQL access (instead of docker exec)
+# python-telegram-bot  # Advanced Telegram features
+# requests  # Simpler HTTP client
