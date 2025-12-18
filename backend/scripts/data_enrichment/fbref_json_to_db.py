@@ -37,7 +37,7 @@ DB_CONFIG = {
 }
 
 JSON_PATH = '/home/Mon_ps/data/fbref/fbref_players_clean_2025_26.json'
-COLUMN_MAPPING_PATH = '/tmp/fbref_column_mapping.json'
+COLUMN_MAPPING_PATH = '/home/Mon_ps/config/fbref_column_mapping.json'
 SEASON = '2025-2026'
 
 
