@@ -34,6 +34,7 @@ from typing import Dict, List, Optional, Any, Tuple
 
 import psycopg2
 from psycopg2 import pool
+from psycopg2.extras import RealDictCursor
 
 # ═══════════════════════════════════════════════════════════════════════════
 # CONFIGURATION PATH - Ajouter les paths necessaires
@@ -252,15 +253,17 @@ class DataOrchestrator:
 
     def get_team_dna(self, team_name: str) -> Optional[Any]:
         """
-        Recupere le DNA complet d'une equipe.
+        Recupere le DNA complet d'une equipe depuis TOUTES les sources.
 
-        Cascade:
+        Cascade (ordre de priorite):
         1. Cache local
-        2. PostgreSQL quantum.team_profiles
-        3. UnifiedLoader (JSON)
+        2. TSE (team_stats_extended) - corner/card/goalscorer/timing/handicap/scorer DNA
+        3. V3 (team_quantum_dna_v3) - status/signature/profile_2d/exploit/clutch/luck/roi/clv
+        4. UnifiedLoader (JSON) - donnees granulaires
+        5. team_profiles (fallback legacy)
 
         Returns:
-            TeamDNA si dna_vectors disponible, sinon Dict
+            Dict avec toutes les donnees fusionnees
         """
         self._stats["team_queries"] += 1
 
@@ -272,34 +275,104 @@ class DataOrchestrator:
             self._stats["cache_hits"] += 1
             return self._team_cache[canonical]
 
-        team_data = None
+        team_data = {}
         sources_used = []
 
-        # SOURCE 1: PostgreSQL quantum.team_profiles
-        pg_data = self._get_team_from_postgresql(canonical)
-        if pg_data:
-            team_data = pg_data
-            sources_used.append("postgresql_quantum")
-            self._stats["pg_queries"] += 1
+        # SOURCE 1: TSE (team_stats_extended) - PRIORITAIRE pour DNA specialises
+        tse_data = self._get_tse_data(canonical)
+        if tse_data:
+            # DNA specialises depuis TSE
+            team_data["corner_dna"] = tse_data.get("corner_dna")
+            team_data["card_dna"] = tse_data.get("card_dna")
+            team_data["goalscorer_dna"] = tse_data.get("goalscorer_dna")
+            team_data["goal_timing_dna"] = tse_data.get("goal_timing_dna")
+            team_data["handicap_dna"] = tse_data.get("handicap_dna")
+            team_data["scorer_dna"] = tse_data.get("scorer_dna")
+            team_data["tse_matches_analyzed"] = tse_data.get("matches_analyzed")
+            sources_used.append("tse_team_stats_extended")
 
-        # SOURCE 2: UnifiedLoader (JSON) - Fallback ou Enrichissement
+        # SOURCE 2: V3 (team_quantum_dna_v3) - Metriques enrichies
+        v3_data = self._get_team_from_v3(canonical)
+        if v3_data:
+            # Metriques V3 (prioritaires sur legacy)
+            team_data["team_name"] = v3_data.get("team_name", canonical)
+            team_data["tier"] = v3_data.get("tier")
+            team_data["tier_rank"] = v3_data.get("tier_rank")
+            team_data["win_rate"] = v3_data.get("win_rate")
+            team_data["total_pnl"] = v3_data.get("total_pnl")
+            team_data["roi"] = v3_data.get("roi")
+            team_data["avg_clv"] = v3_data.get("avg_clv")
+
+            # DNA V3 specifiques
+            team_data["status_2025_2026"] = v3_data.get("status_2025_2026")
+            team_data["signature_v3"] = v3_data.get("signature_v3")
+            team_data["profile_2d"] = v3_data.get("profile_2d")
+            team_data["exploit_markets"] = v3_data.get("exploit_markets")
+            team_data["avoid_markets"] = v3_data.get("avoid_markets")
+            team_data["optimal_scenarios"] = v3_data.get("optimal_scenarios")
+
+            # JSONB DNA vectors
+            team_data["market_dna"] = v3_data.get("market_dna")
+            team_data["context_dna"] = v3_data.get("context_dna")
+            team_data["temporal_dna"] = v3_data.get("temporal_dna")
+            team_data["nemesis_dna"] = v3_data.get("nemesis_dna")
+            team_data["psyche_dna"] = v3_data.get("psyche_dna")
+            team_data["roster_dna"] = v3_data.get("roster_dna")
+            team_data["physical_dna"] = v3_data.get("physical_dna")
+            team_data["luck_dna"] = v3_data.get("luck_dna")
+            team_data["tactical_dna"] = v3_data.get("tactical_dna")
+            team_data["chameleon_dna"] = v3_data.get("chameleon_dna")
+            team_data["meta_dna"] = v3_data.get("meta_dna")
+            team_data["sentiment_dna"] = v3_data.get("sentiment_dna")
+            team_data["clutch_dna"] = v3_data.get("clutch_dna")
+            team_data["shooting_dna"] = v3_data.get("shooting_dna")
+            team_data["form_analysis"] = v3_data.get("form_analysis")
+            team_data["current_season"] = v3_data.get("current_season")
+
+            # Fallback corner/card depuis V3 si TSE n'a pas fourni
+            if not team_data.get("corner_dna") and v3_data.get("corner_dna"):
+                team_data["corner_dna"] = v3_data.get("corner_dna")
+            if not team_data.get("card_dna") and v3_data.get("card_dna"):
+                team_data["card_dna"] = v3_data.get("card_dna")
+
+            sources_used.append("v3_team_quantum_dna")
+
+        # SOURCE 3: UnifiedLoader (JSON) - Donnees granulaires
         if self.unified_loader:
             try:
                 json_data = self.unified_loader.get_team(canonical)
                 if json_data:
-                    if team_data is None:
-                        team_data = json_data
-                    else:
-                        # Fusionner (enrichir PostgreSQL avec JSON)
-                        team_data = self._merge_team_data(team_data, json_data)
+                    # Fusionner (JSON enrichit sans ecraser)
+                    for key, value in json_data.items():
+                        if key not in team_data or team_data[key] is None:
+                            team_data[key] = value
                     sources_used.append("unified_loader_json")
                     self._stats["json_queries"] += 1
             except Exception as e:
                 logger.debug(f"UnifiedLoader error: {e}")
 
+        # SOURCE 4: team_profiles (fallback legacy)
+        if not v3_data:
+            pg_data = self._get_team_from_postgresql(canonical)
+            if pg_data:
+                # Enrichir avec legacy si pas de V3
+                for key, value in pg_data.items():
+                    if key not in team_data or team_data[key] is None:
+                        team_data[key] = value
+                team_data["_legacy_profiles"] = True
+                sources_used.append("postgresql_team_profiles")
+
+        # Si aucune donnee, retourner None
+        if not team_data:
+            return None
+
+        # Metadata
+        team_data["_sources"] = sources_used
+        team_data["_data_quality"] = len(sources_used) / 4.0  # 4 sources possibles
+
         # CONVERSION EN TeamDNA si disponible
         TeamDNAClass = _load_dna_vectors()
-        if team_data and TeamDNAClass:
+        if TeamDNAClass:
             try:
                 team_dna = self._convert_to_team_dna(team_data, sources_used)
                 self._team_cache[canonical] = team_dna
@@ -307,11 +380,8 @@ class DataOrchestrator:
             except Exception as e:
                 logger.warning(f"Conversion TeamDNA failed: {e}")
 
-        # Retourner Dict si TeamDNA non disponible
-        if team_data:
-            team_data["_sources"] = sources_used
-            self._team_cache[canonical] = team_data
-
+        # Cacher et retourner Dict
+        self._team_cache[canonical] = team_data
         return team_data
 
     # ═══════════════════════════════════════════════════════════════════
@@ -457,7 +527,10 @@ class DataOrchestrator:
     # ═══════════════════════════════════════════════════════════════════
 
     def _get_team_from_postgresql(self, team_name: str) -> Optional[Dict]:
-        """Recupere une equipe depuis quantum.team_profiles"""
+        """
+        Recupere une equipe depuis quantum.team_profiles (legacy fallback)
+        Utilise exact match case-insensitive, puis fallback ILIKE intelligent.
+        """
         if not self.db_pool.is_available():
             return None
 
@@ -466,14 +539,31 @@ class DataOrchestrator:
             conn = self.db_pool.get_connection()
             cursor = conn.cursor()
 
+            # 1. Exact match case-insensitive
             cursor.execute("""
                 SELECT team_name, quantum_dna, tier, win_rate, total_pnl
                 FROM quantum.team_profiles
-                WHERE team_name ILIKE %s OR team_name ILIKE %s
+                WHERE LOWER(team_name) = LOWER(%s)
                 LIMIT 1
-            """, (team_name, f"%{team_name}%"))
+            """, (team_name,))
 
             row = cursor.fetchone()
+
+            # 2. Fallback ILIKE intelligent si exact match echoue
+            if not row:
+                cursor.execute("""
+                    SELECT team_name, quantum_dna, tier, win_rate, total_pnl
+                    FROM quantum.team_profiles
+                    WHERE team_name ILIKE %s
+                """, (f"%{team_name}%",))
+
+                results = cursor.fetchall()
+                if len(results) == 1:  # Un seul match = safe
+                    row = results[0]
+                    logger.debug(f"Profiles fallback ILIKE: {team_name} -> {row[0]}")
+                elif len(results) > 1:
+                    logger.debug(f"Profiles fallback ILIKE ambiguous: {team_name} -> {len(results)} matches")
+
             cursor.close()
 
             if row:
@@ -539,6 +629,160 @@ class DataOrchestrator:
 
         return None
 
+    def _get_team_from_v3(self, team_name: str) -> Optional[Dict]:
+        """
+        Charge les donnees depuis quantum.team_quantum_dna_v3
+        Table enrichie: 59 colonnes, 30 JSONB
+        Prioritaire sur team_profiles (plus riche)
+
+        Strategie de recherche:
+        1. Exact match (case-insensitive)
+        2. Fallback ILIKE avec ORDER BY pour determinisme
+        """
+        if not self.db_pool.is_available():
+            return None
+
+        conn = None
+        try:
+            conn = self.db_pool.get_connection()
+            with conn.cursor(cursor_factory=RealDictCursor) as cur:
+                # 1. Exact match d'abord (case-insensitive)
+                cur.execute("""
+                    SELECT team_name, tier, tier_rank, win_rate, total_pnl, roi, avg_clv,
+                           status_2025_2026, signature_v3, profile_2d,
+                           exploit_markets, avoid_markets, optimal_scenarios,
+                           market_dna, context_dna, temporal_dna, nemesis_dna,
+                           psyche_dna, roster_dna, physical_dna, luck_dna,
+                           tactical_dna, chameleon_dna, meta_dna, sentiment_dna,
+                           clutch_dna, shooting_dna, form_analysis, current_season,
+                           corner_dna, card_dna
+                    FROM quantum.team_quantum_dna_v3
+                    WHERE LOWER(team_name) = LOWER(%s)
+                    LIMIT 1
+                """, (team_name,))
+
+                row = cur.fetchone()
+                if row:
+                    self._stats["pg_queries"] += 1
+                    return dict(row)
+
+                # Fallback ILIKE intelligent si exact match echoue
+                cur.execute("""
+                    SELECT team_name, tier, tier_rank, win_rate, total_pnl, roi, avg_clv,
+                           status_2025_2026, signature_v3, profile_2d,
+                           exploit_markets, avoid_markets, optimal_scenarios,
+                           market_dna, context_dna, temporal_dna, nemesis_dna,
+                           psyche_dna, roster_dna, physical_dna, luck_dna,
+                           tactical_dna, chameleon_dna, meta_dna, sentiment_dna,
+                           clutch_dna, shooting_dna, form_analysis, current_season,
+                           corner_dna, card_dna
+                    FROM quantum.team_quantum_dna_v3
+                    WHERE team_name ILIKE %s
+                """, (f"%{team_name}%",))
+
+                results = cur.fetchall()
+                if len(results) == 1:  # Un seul match = safe
+                    self._stats["pg_queries"] += 1
+                    logger.debug(f"V3 fallback ILIKE: {team_name} -> {results[0]['team_name']}")
+                    return dict(results[0])
+                elif len(results) > 1:
+                    logger.debug(f"V3 fallback ILIKE ambiguous: {team_name} -> {len(results)} matches")
+
+        except Exception as e:
+            logger.warning(f"V3 lookup failed for {team_name}: {e}")
+        finally:
+            if conn:
+                self.db_pool.release_connection(conn)
+
+        return None
+
+    def _get_tse_name(self, quantum_name: str) -> str:
+        """
+        Convertit quantum_name vers tse_name via quantum.team_name_mapping
+        5 equipes ont des noms differents: AC Milan→Milan, VfB Stuttgart→Stuttgart, etc.
+        Utilise exact match case-insensitive pour eviter les faux positifs.
+        """
+        if not self.db_pool.is_available():
+            return quantum_name
+
+        conn = None
+        try:
+            conn = self.db_pool.get_connection()
+            with conn.cursor() as cur:
+                # Exact match case-insensitive
+                cur.execute("""
+                    SELECT tse_name FROM quantum.team_name_mapping
+                    WHERE LOWER(quantum_name) = LOWER(%s)
+                    LIMIT 1
+                """, (quantum_name,))
+                row = cur.fetchone()
+                if row and row[0]:
+                    return row[0]
+        except Exception as e:
+            logger.debug(f"TSE name mapping failed for {quantum_name}: {e}")
+        finally:
+            if conn:
+                self.db_pool.release_connection(conn)
+
+        return quantum_name
+
+    def _get_tse_data(self, team_name: str) -> Optional[Dict]:
+        """
+        Charge corner/card/goalscorer DNA depuis quantum.team_stats_extended
+        Utilise tse_name du mapping pour conversion (5 equipes differentes)
+        Pattern copie de data_hub.py
+
+        Strategie de recherche:
+        1. Exact match (case-insensitive) avec tse_name converti
+        """
+        if not self.db_pool.is_available():
+            return None
+
+        # Convertir via mapping si necessaire
+        tse_name = self._get_tse_name(team_name)
+
+        conn = None
+        try:
+            conn = self.db_pool.get_connection()
+            with conn.cursor(cursor_factory=RealDictCursor) as cur:
+                # Exact match (case-insensitive)
+                cur.execute("""
+                    SELECT team_name, corner_dna, card_dna, goalscorer_dna,
+                           goal_timing_dna, handicap_dna, scorer_dna, matches_analyzed
+                    FROM quantum.team_stats_extended
+                    WHERE LOWER(team_name) = LOWER(%s)
+                    LIMIT 1
+                """, (tse_name,))
+
+                row = cur.fetchone()
+                if row:
+                    self._stats["pg_queries"] += 1
+                    return dict(row)
+
+                # Fallback ILIKE intelligent si exact match echoue
+                cur.execute("""
+                    SELECT team_name, corner_dna, card_dna, goalscorer_dna,
+                           goal_timing_dna, handicap_dna, scorer_dna, matches_analyzed
+                    FROM quantum.team_stats_extended
+                    WHERE team_name ILIKE %s
+                """, (f"%{tse_name}%",))
+
+                results = cur.fetchall()
+                if len(results) == 1:  # Un seul match = safe
+                    self._stats["pg_queries"] += 1
+                    logger.debug(f"TSE fallback ILIKE: {tse_name} -> {results[0]['team_name']}")
+                    return dict(results[0])
+                elif len(results) > 1:
+                    logger.debug(f"TSE fallback ILIKE ambiguous: {tse_name} -> {len(results)} matches")
+
+        except Exception as e:
+            logger.warning(f"TSE lookup failed for {team_name} (tse_name={tse_name}): {e}")
+        finally:
+            if conn:
+                self.db_pool.release_connection(conn)
+
+        return None
+
     # ═══════════════════════════════════════════════════════════════════
     # METHODES PRIVEES - Helpers
     # ═══════════════════════════════════════════════════════════════════
@@ -548,7 +792,7 @@ class DataOrchestrator:
         if not name:
             return name
 
-        # Mapping courant
+        # Mapping courant (alias → nom officiel)
         mapping = {
             "Man City": "Manchester City",
             "Man United": "Manchester United",
@@ -556,6 +800,14 @@ class DataOrchestrator:
             "Spurs": "Tottenham",
             "Wolves": "Wolverhampton",
             "Nott'm Forest": "Nottingham Forest",
+            # Alias internationaux
+            "PSG": "Paris Saint Germain",
+            "Barca": "Barcelona",
+            "Bayern": "Bayern Munich",
+            "Dortmund": "Borussia Dortmund",
+            "BVB": "Borussia Dortmund",
+            "Juve": "Juventus",
+            "Atleti": "Atletico Madrid",
         }
 
         # Utiliser UnifiedLoader si disponible
@@ -563,7 +815,13 @@ class DataOrchestrator:
             try:
                 canonical = self.unified_loader.get_canonical_team_name(name)
                 if canonical:
-                    return canonical
+                    # Correction pour aligner avec les noms TSE/V3 en base
+                    # UnifiedLoader utilise des variantes qui ne matchent pas la DB
+                    db_alignment = {
+                        "Paris Saint-Germain": "Paris Saint Germain",
+                        "Borussia Monchengladbach": "Borussia M.Gladbach",
+                    }
+                    return db_alignment.get(canonical, canonical)
             except:
                 pass
 
