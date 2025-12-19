@@ -6,6 +6,8 @@ CORRECTIONS V3.4.2:
 1. Smart Conflict: Momentum BLAZING/HOT override Z faible
 2. Seuils ajustés: moins de faux EXTREME
 3. Resolution: Suivre le signal le PLUS FORT, pas SKIP
+
+Modifié: 2025-12-19 - Documenté divergence market_registry
 """
 
 import math
@@ -20,6 +22,10 @@ import statistics
 import sys
 sys.path.append('/home/Mon_ps/app/services')
 from quantum_scorer_v2_4 import QuantumScorerV24
+
+# Note: market_registry.MarketType utilise des valeurs normalisées ("home", "ah_home_m05")
+# Ce fichier garde ses propres valeurs descriptives pour compatibilité ("1X2", "Asian Total")
+# Migration future: aligner les valeurs avec market_registry
 
 DB_CONFIG = {
     "host": "localhost", "port": 5432, "database": "monps_db",

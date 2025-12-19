@@ -30,6 +30,10 @@ from collections import defaultdict
 from dataclasses import dataclass, asdict
 from enum import Enum
 
+# === IMPORT DEPUIS MARKET_REGISTRY (Source Unique de Vérité) ===
+# Note: MarketType n'est pas utilisé activement dans ce fichier mais importé pour cohérence
+from quantum.models.market_registry import MarketType
+
 # Configuration
 DB_CONFIG = {
     'host': os.getenv('DB_HOST', 'localhost'),
@@ -50,21 +54,7 @@ logging.basicConfig(
 logger = logging.getLogger('AgentCLV_V3')
 
 
-class MarketType(Enum):
-    """Types de marchés supportés"""
-    BTTS_YES = 'btts_yes'
-    BTTS_NO = 'btts_no'
-    OVER15 = 'over15'
-    UNDER15 = 'under15'
-    OVER25 = 'over25'
-    UNDER25 = 'under25'
-    OVER35 = 'over35'
-    UNDER35 = 'under35'
-    DC_1X = 'dc_1x'
-    DC_X2 = 'dc_x2'
-    DC_12 = 'dc_12'
-    DNB_HOME = 'dnb_home'
-    DNB_AWAY = 'dnb_away'
+# MarketType importé depuis quantum.models.market_registry (ligne 35)
 
 
 @dataclass

@@ -7,6 +7,8 @@ Meta-Analyste Professionnel avec:
 - Scoring unifié multi-marchés
 - Logging pour CLV tracking
 - Rétrocompatibilité avec système existant
+
+Modifié: 2025-12-19 - Migration vers market_registry
 """
 import os
 import sys
@@ -19,6 +21,9 @@ from datetime import datetime
 from dataclasses import dataclass
 from enum import Enum
 import logging
+
+# === IMPORT DEPUIS MARKET_REGISTRY (Source Unique de Vérité) ===
+from quantum.models.market_registry import MarketType
 
 # Coach Intelligence Integration
 import sys
@@ -35,12 +40,8 @@ logger = logging.getLogger(__name__)
 sys.path.append('/app/api/services/fullgain')
 
 
-class MarketType(Enum):
-    MATCH_WINNER = "1X2"
-    BTTS = "btts"
-    OVER_25 = "over25"
-    OVER_15 = "over15"
-    OVER_35 = "over35"
+# MarketType importé depuis quantum.models.market_registry (ligne 26)
+# Note: Utiliser BTTS_YES au lieu de BTTS, OVER_25 au lieu de OVER_25
 
 
 class Confidence(Enum):
@@ -460,7 +461,7 @@ class PatronDiamondV3:
             reasoning = f"BTTS peu probable ({score:.0f}%). Équipes défensives ou clean sheets fréquents."
         
         return MarketPrediction(
-            market=MarketType.BTTS,
+            market=MarketType.BTTS_YES,
             score=round(score, 1),
             probability=poisson_btts,
             recommendation=recommendation,

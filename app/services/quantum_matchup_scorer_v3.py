@@ -12,6 +12,8 @@ LOGIQUE DE PRIORITÉ:
 2. VALUE forte + Friction neutre → Asian Handicap (sécuriser)
 3. Friction haute + xG bas → UNDER market
 4. xG > 3.5 → Asian Total Over (festival offensif)
+
+Modifié: 2025-12-19 - Import market_registry pour référence future
 """
 
 import math
@@ -25,6 +27,10 @@ import sys
 sys.path.append('/home/Mon_ps/app/services')
 from quantum_scorer_v2_4 import QuantumScorerV24
 
+# Note: market_registry.MarketType utilise des valeurs normalisées ("home", "ah_home_m05")
+# Ce fichier garde ses propres valeurs descriptives pour compatibilité ("1X2", "Asian Handicap")
+# Migration future: aligner les valeurs avec market_registry
+
 DB_CONFIG = {
     "host": "localhost", "port": 5432, "database": "monps_db",
     "user": "monps_user", "password": "monps_secure_password_2024"
@@ -32,7 +38,7 @@ DB_CONFIG = {
 
 
 class MarketType(Enum):
-    """Types de marchés disponibles"""
+    """Types de marchés disponibles (valeurs descriptives locales)"""
     MATCH_WINNER = "1X2"
     ASIAN_HANDICAP = "Asian Handicap"
     ASIAN_TOTAL = "Asian Total"

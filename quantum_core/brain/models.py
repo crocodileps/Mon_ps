@@ -1,6 +1,14 @@
 """
 Models - Structures de donnees pour UnifiedBrain V2.8
 ===============================================================================
+Modifié: 2025-12-19 - Documenté divergence market_registry
+
+NOTE IMPORTANTE (2025-12-19):
+Ce fichier définit son propre MarketType avec des valeurs différentes de
+quantum.models.market_registry. Migration non effectuée car:
+- MARKET_CATEGORIES et LIQUIDITY_TAX dépendent des noms locaux
+- Noms différents: HOME_WIN vs HOME, OVER_05="over_0.5" vs "over_05"
+- Migration future: harmoniser les valeurs avec market_registry
 
 99 MARCHES SUPPORTES:
 - 1X2 (3): home_win, draw, away_win
