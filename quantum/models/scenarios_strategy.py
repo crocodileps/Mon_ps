@@ -4,7 +4,7 @@
 ║                                                                                       ║
 ║  20 scénarios identifiés par le système.                                             ║
 ║  Output final: QuantumStrategy avec recommandations de paris.                        ║
-║                                                                                       ║
+║  Modifié: 2025-12-19 - Migration vers market_registry                               ║
 ╚═══════════════════════════════════════════════════════════════════════════════════════╝
 """
 
@@ -12,6 +12,9 @@ from dataclasses import dataclass, field
 from typing import Optional, List, Dict, Any, Callable
 from enum import Enum
 from datetime import datetime
+
+# === IMPORT DEPUIS MARKET_REGISTRY (Source Unique de Vérité) ===
+from quantum.models.market_registry import MarketType
 
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
@@ -63,77 +66,7 @@ class ScenarioID(str, Enum):
     AERIAL_RAID = "AERIAL_RAID"           # ✈️ Raid aérien
 
 
-class MarketType(str, Enum):
-    """Types de marchés disponibles"""
-    # Over/Under
-    OVER_15 = "over_15"
-    OVER_25 = "over_25"
-    OVER_35 = "over_35"
-    OVER_45 = "over_45"
-    UNDER_15 = "under_15"
-    UNDER_25 = "under_25"
-    UNDER_35 = "under_35"
-    
-    # BTTS
-    BTTS_YES = "btts_yes"
-    BTTS_NO = "btts_no"
-    
-    # 1X2
-    HOME_WIN = "home_win"
-    DRAW = "draw"
-    AWAY_WIN = "away_win"
-    
-    # Double Chance
-    HOME_OR_DRAW = "home_or_draw"
-    AWAY_OR_DRAW = "away_or_draw"
-    HOME_OR_AWAY = "home_or_away"
-    
-    # Asian Handicap
-    HOME_MINUS_05 = "home_-0.5"
-    HOME_MINUS_15 = "home_-1.5"
-    AWAY_PLUS_05 = "away_+0.5"
-    AWAY_PLUS_15 = "away_+1.5"
-    
-    # Team Goals
-    HOME_OVER_05 = "home_over_0.5"
-    HOME_OVER_15 = "home_over_1.5"
-    HOME_OVER_25 = "home_over_2.5"
-    AWAY_OVER_05 = "away_over_0.5"
-    AWAY_OVER_15 = "away_over_1.5"
-    AWAY_OVER_25 = "away_over_2.5"
-    
-    # Half Goals
-    FIRST_HALF_OVER_05 = "1h_over_0.5"
-    FIRST_HALF_OVER_15 = "1h_over_1.5"
-    SECOND_HALF_OVER_05 = "2h_over_0.5"
-    SECOND_HALF_OVER_15 = "2h_over_1.5"
-    
-    # Highest Scoring Half
-    FIRST_HALF_HIGHEST = "1h_highest"
-    SECOND_HALF_HIGHEST = "2h_highest"
-    EQUAL_HALVES = "equal_halves"
-    
-    # Period Goals
-    GOAL_0_15_YES = "goal_0_15"
-    GOAL_75_90_YES = "goal_75_90"
-    HOME_GOAL_2H = "home_goal_2h"
-    AWAY_GOAL_2H = "away_goal_2h"
-    
-    # Team Goals 2H
-    HOME_2H_OVER_05 = "home_2h_over_0.5"
-    AWAY_2H_OVER_05 = "away_2h_over_0.5"
-    
-    # Clean Sheet
-    HOME_CLEAN_SHEET = "home_clean_sheet"
-    AWAY_CLEAN_SHEET = "away_clean_sheet"
-    
-    # Corners
-    CORNERS_OVER_85 = "corners_over_8.5"
-    CORNERS_OVER_105 = "corners_over_10.5"
-    
-    # Cards
-    CARDS_OVER_35 = "cards_over_3.5"
-    CARDS_OVER_45 = "cards_over_4.5"
+# MarketType importé depuis quantum.models.market_registry (ligne 17)
 
 
 class StakeTier(str, Enum):

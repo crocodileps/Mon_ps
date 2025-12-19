@@ -1,12 +1,13 @@
 """
 ╔═══════════════════════════════════════════════════════════════════════════════════════╗
 ║  QUANTUM ENUMS - Classifications Strictes                                            ║
-║  Version: 2.0                                                                        ║
+║  Version: 2.1 (Migration market_registry)                                            ║
 ║  "Pas de strings libres. Chaque valeur est contrôlée et documentée."                 ║
 ╚═══════════════════════════════════════════════════════════════════════════════════════╝
 
 Architecture Mon_PS - Chess Engine V2.0
 Créé le: 2025-12-10
+Modifié le: 2025-12-19 (Migration vers market_registry)
 
 Installation: /home/Mon_ps/quantum/models/enums.py
 
@@ -18,6 +19,9 @@ Pourquoi des Enums ?
 """
 
 from enum import Enum
+
+# === IMPORT DEPUIS MARKET_REGISTRY (Source Unique de Vérité) ===
+from quantum.models.market_registry import MarketType, MarketCategory
 
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
@@ -235,112 +239,9 @@ class TimingSignature(str, Enum):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
-# MARCHÉS DE PARIS
+# MARCHÉS DE PARIS - IMPORTÉS DEPUIS market_registry.py (Source Unique de Vérité)
+# MarketType et MarketCategory sont définis dans quantum.models.market_registry
 # ═══════════════════════════════════════════════════════════════════════════════════════
-
-class MarketType(str, Enum):
-    """
-    Types de marchés disponibles.
-    Chaque équipe a des edges spécifiques sur certains marchés.
-    """
-    
-    # ─────────────────────────────────────────────────────────────────────────────────
-    # GOALS TOTAUX
-    # ─────────────────────────────────────────────────────────────────────────────────
-    OVER_05 = "over_0.5"
-    OVER_15 = "over_1.5"
-    OVER_25 = "over_2.5"
-    OVER_35 = "over_3.5"
-    OVER_45 = "over_4.5"
-    UNDER_05 = "under_0.5"
-    UNDER_15 = "under_1.5"
-    UNDER_25 = "under_2.5"
-    UNDER_35 = "under_3.5"
-    
-    # ─────────────────────────────────────────────────────────────────────────────────
-    # BTTS (Both Teams To Score)
-    # ─────────────────────────────────────────────────────────────────────────────────
-    BTTS_YES = "btts_yes"
-    BTTS_NO = "btts_no"
-    
-    # ─────────────────────────────────────────────────────────────────────────────────
-    # CLEAN SHEET
-    # ─────────────────────────────────────────────────────────────────────────────────
-    CLEAN_SHEET_HOME = "cs_home"
-    CLEAN_SHEET_AWAY = "cs_away"
-    NO_CLEAN_SHEET_HOME = "no_cs_home"
-    NO_CLEAN_SHEET_AWAY = "no_cs_away"
-    
-    # ─────────────────────────────────────────────────────────────────────────────────
-    # TEAM GOALS
-    # ─────────────────────────────────────────────────────────────────────────────────
-    HOME_OVER_05 = "home_over_0.5"
-    HOME_OVER_15 = "home_over_1.5"
-    HOME_OVER_25 = "home_over_2.5"
-    AWAY_OVER_05 = "away_over_0.5"
-    AWAY_OVER_15 = "away_over_1.5"
-    AWAY_OVER_25 = "away_over_2.5"
-    HOME_UNDER_05 = "home_under_0.5"   # Home clean sheet pour away
-    AWAY_UNDER_05 = "away_under_0.5"   # Away clean sheet pour home
-    
-    # ─────────────────────────────────────────────────────────────────────────────────
-    # HALF GOALS
-    # ─────────────────────────────────────────────────────────────────────────────────
-    FIRST_HALF_OVER_05 = "1h_over_0.5"
-    FIRST_HALF_OVER_15 = "1h_over_1.5"
-    FIRST_HALF_UNDER_05 = "1h_under_0.5"
-    SECOND_HALF_OVER_05 = "2h_over_0.5"
-    SECOND_HALF_OVER_15 = "2h_over_1.5"
-    SECOND_HALF_OVER_25 = "2h_over_2.5"
-    
-    # ─────────────────────────────────────────────────────────────────────────────────
-    # TIMING GOALS
-    # ─────────────────────────────────────────────────────────────────────────────────
-    GOAL_0_15 = "goal_0_15"
-    GOAL_76_90 = "goal_76_90"
-    NO_GOAL_0_15 = "no_goal_0_15"
-    GOAL_BOTH_HALVES = "goal_both_halves"
-    
-    # ─────────────────────────────────────────────────────────────────────────────────
-    # CORNERS
-    # ─────────────────────────────────────────────────────────────────────────────────
-    CORNERS_OVER_75 = "corners_over_7.5"
-    CORNERS_OVER_85 = "corners_over_8.5"
-    CORNERS_OVER_95 = "corners_over_9.5"
-    CORNERS_OVER_105 = "corners_over_10.5"
-    CORNERS_OVER_115 = "corners_over_11.5"
-    CORNERS_OVER_125 = "corners_over_12.5"
-    CORNERS_UNDER_95 = "corners_under_9.5"
-    CORNERS_UNDER_105 = "corners_under_10.5"
-    
-    # ─────────────────────────────────────────────────────────────────────────────────
-    # CARDS
-    # ─────────────────────────────────────────────────────────────────────────────────
-    CARDS_OVER_25 = "cards_over_2.5"
-    CARDS_OVER_35 = "cards_over_3.5"
-    CARDS_OVER_45 = "cards_over_4.5"
-    CARDS_OVER_55 = "cards_over_5.5"
-    CARDS_UNDER_35 = "cards_under_3.5"
-    CARDS_UNDER_45 = "cards_under_4.5"
-    
-    # ─────────────────────────────────────────────────────────────────────────────────
-    # SPECIALS
-    # ─────────────────────────────────────────────────────────────────────────────────
-    PENALTY_YES = "penalty_yes"
-    RED_CARD_YES = "red_card_yes"
-
-
-class MarketCategory(str, Enum):
-    """Catégorie de marché pour regroupement."""
-    GOALS = "goals"
-    BTTS = "btts"
-    CLEAN_SHEET = "clean_sheet"
-    TEAM_GOALS = "team_goals"
-    HALF_GOALS = "half_goals"
-    TIMING = "timing"
-    CORNERS = "corners"
-    CARDS = "cards"
-    SPECIALS = "specials"
 
 
 # ═══════════════════════════════════════════════════════════════════════════════════════

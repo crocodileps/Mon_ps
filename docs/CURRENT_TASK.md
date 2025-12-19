@@ -1,117 +1,87 @@
-# CURRENT TASK - SESSION #82 - AUDIT ARCHITECTURE FACTUEL
+# CURRENT TASK - SESSION #92 - MARKET REGISTRY COMPLET
 
 **Status**: COMPLETE
-**Date**: 2025-12-19 09:00 UTC
-**Derniere session**: #82 (Audit Architecture Factuel)
-**Mode**: GIT PROPRE (pas de modifications code)
+**Date**: 2025-12-19
+**Derniere session**: #92 (Market Registry 106/106)
 
 ===============================================================================
 
-## SESSION #82 - RESULTATS
+## SESSION #92 - CONFIGURATION COMPLETE MARKET_REGISTRY
 
-### Audit quantum_orchestrator_v1 Usage
+### OBJECTIF
+Configurer les 85 marchés manquants dans market_registry.py pour atteindre 106/106
+
+### RESULTATS
+
+| Metrique | Avant | Apres |
+|----------|-------|-------|
+| Marchés configurés | 21 | **106** |
+| normalize_market() coverage | ~20% | **100%** |
+| Tests normalize | N/A | **31/31** |
+| Erreurs validation | N/A | **0** |
+
+### MARCHÉS AJOUTÉS PAR CATÉGORIE
+
+| Catégorie | Ajoutés | Total |
+|-----------|---------|-------|
+| Goals Over/Under | 8 | 10 |
+| Team Goals | 6 | 8 |
+| BTTS Specials | 2 | 4 |
+| Corners | 7 | 7 |
+| Cards | 6 | 6 |
+| Half-Time | 8 | 8 |
+| HT/FT | 9 | 9 |
+| Asian Handicap | 8 | 8 |
+| Correct Score | 13 | 13 |
+| Timing | 9 | 11 |
+| Player Props | 3 | 5 |
+| Specials | 4 | 7 |
+
+### AMÉLIORATIONS
+
+1. **Normalisation cohérente** - `_build_alias_registry()` applique la même normalisation que `normalize_market()`
+2. **Aliases complets** - Chaque marché a 3-5 aliases couvrant les formats courants
+3. **Corrélations mathématiques** - Tous les marchés ont des corrélations cohérentes (opposés = -1.0)
+4. **Liquidité calibrée** - LiquidityTier et min_edge appropriés par catégorie
+
+### TESTS VALIDES
+
 ```
-IMPORTS: Aucun fichier n'importe quantum_orchestrator_v1
-API: Expose uniquement UnifiedBrain
-CRON: Aucun cron ne lance quantum_orchestrator_v1
-DERNIER COMMIT: 2025-12-08 (f9021fb)
+normalize_market('over_0.5') -> over_05 ✓
+normalize_market('corners_over_8.5') -> corners_over_85 ✓
+normalize_market('ah_-0.5_home') -> ah_home_m05 ✓
+normalize_market('1-1') -> cs_1_1 ✓
+normalize_market('btts') -> btts_yes ✓
 ```
 
-### Audit Composants Factuels
-```
-quantum_orchestrator_v1.py: 82K, 11 DNA vectors, AUTONOME
-rule_engine.py: 36K, importe dna_loader + scenario_detector
-scenario_detector.py: 25K, 20 scenarios
-agents/defense_v2: 11K, standalone
-agents/attack_v1: 20K, standalone
-```
+### FICHIER MODIFIÉ
 
-### Verification dna_loader_db.py
-```
-SUPPRIME: a72630f "chore: Remove obsolete dna_loader_db.py"
-BACKUP: dna_loader_db.py.backup_OBSOLETE (17K)
-TABLES: quantum.team_profiles (99), quantum.matchup_friction (3403)
-REMPLACE PAR: DataOrchestrator (utilise memes tables + V3 + TSE)
-```
-
-### Graphe Dependances Architecture
-```
-ACTIF:
-API → UnifiedBrain → DataHubAdapter → DataOrchestrator
-                                       ├── TSE (corner/card)
-                                       ├── V3 (23 vectors)
-                                       └── JSON (fallback)
-
-NON APPELE PAR FLUX ACTIF:
-- quantum/orchestrator/quantum_orchestrator_v1.py
-- quantum/services/rule_engine.py
-- quantum/services/scenario_detector.py
-- agents/defense_v2/
-- agents/attack_v1/
-```
-
-### Observation Cle
-```
-quantum_orchestrator_v1 et rule_engine: architectures PARALLELES
-- Tous deux: 6 modeles / ensemble / scenarios / Monte Carlo
-- quantum_orchestrator_v1: AUTONOME (pas d'imports internes)
-- rule_engine: IMPORTE dna_loader, scenario_detector, etc.
-- Pas d'imbrication entre eux
-```
+| Fichier | Taille | Description |
+|---------|--------|-------------|
+| `quantum/models/market_registry.py` | ~90KB | 106 MarketMetadata complets |
 
 ===============================================================================
 
-## HISTORIQUE GIT
+## HISTORIQUE SESSIONS
 
-### Tags
-```
-Total: 103 tags
-Premier: v1.0 (2025-11-09)
-Dernier: v7.3-quantum-regime-meta (2025-12-11)
-quantum-core-mvp-v1.0: 2025-12-13
-```
-
-### Branches
-```
-Active: main
-Locales: 55
-Remote: 121
-```
+| Date | Session | Description |
+|------|---------|-------------|
+| 2025-12-19 | #92 | Market Registry 106/106 COMPLET |
+| 2025-12-19 | #91 | Market Registry ADN-Centric + Bug fix BTTS |
+| 2025-12-19 | #90 | Fix Real Sociedad (alias faux supprime) |
+| 2025-12-19 | #89 | Migration mappings code vers DB (perfection) |
+| 2025-12-19 | #88 | Couverture maximisee 73.1% + fallbacks |
 
 ===============================================================================
 
-## ARCHITECTURE ACTIVE CONFIRMEE
+## PROCHAINES ETAPES
 
-```
-DB (quantum schema)
-├── team_quantum_dna_v3 (96 equipes, 59 colonnes, 23 vectors)
-├── team_stats_extended (TSE - corner/card DNA)
-├── team_profiles (99 equipes, 11 vectors - fallback)
-├── matchup_friction (3403 frictions)
-└── team_name_mapping (aliases)
-
-JSON (data/quantum_v2/) - 113MB
-├── player_dna_unified.json (44M)
-├── team_dna_unified_v2.json (5.7M)
-└── referee_dna_unified.json (524K)
-
-Flux:
-DataOrchestrator → DataHubAdapter → UnifiedBrain → API
-```
+1. **Intégration**: Connecter market_registry avec le système de trading
+2. **Synthèse DNA**: Implémenter les formules pour chaque catégorie
+3. **CLV Pipeline**: Utiliser le registry pour calculer CLV pondéré
 
 ===============================================================================
 
-## PROCHAINES ETAPES (A DECIDER)
-
-- [ ] Que faire des composants non utilises par flux actif?
-  - quantum_orchestrator_v1.py (82K)
-  - rule_engine.py + scenario_detector.py
-  - agents/defense_v2/, attack_v1/
-- [ ] Exploiter temporal_dna, psyche_dna, signature_v3 dans UnifiedBrain
-
-===============================================================================
-
-**Last Update**: 2025-12-19 09:00 UTC
-**Status**: COMPLETE - AUDIT FACTUEL TERMINE
-**Next Action**: Decision utilisateur sur composants non utilises
-
+**Last Update**: 2025-12-19 22:00
+**Status**: COMPLETE
+**Next Action**: Prochaine tâche Mya
