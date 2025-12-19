@@ -117,3 +117,19 @@
 ---
 
 **Dernière mise à jour:** 2025-12-19
+
+---
+
+## MISE À JOUR 2025-12-20
+
+### AUDIT ML COMPLET RÉALISÉ
+
+**Découvertes:**
+- team_intelligence: 675 équipes avec 70+ métriques
+- market_alerts DÉJÀ REMPLI avec structure TRAP/CAUTION/alternative
+- tracking_clv_picks: 3,361 picks (2,477 résolus = 74%)
+- auto_learning_v7: facteurs globaux par marché existants
+
+**Décision:** ÉTENDRE team_intelligence (pas créer nouvelle table)
+
+### PHASE 2-3: IMPLÉMENTATION EN COURS
