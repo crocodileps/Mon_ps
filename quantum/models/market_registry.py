@@ -1384,7 +1384,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CORNERS_OVER_85: MarketMetadata(
         canonical_name="corners_over_8.5",
-        aliases=["corners_o85", "corn_over_8.5", "corners_over_8_5", "corners_over_8.5"],
+        aliases=["corners_o85", "corn_over_8.5", "corners_over_8_5", "corners_over_8.5", "total_corners_over_8.5", "match_corners_over_8.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1403,7 +1403,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CORNERS_OVER_95: MarketMetadata(
         canonical_name="corners_over_9.5",
-        aliases=["corners_o95", "corn_over_9.5", "corners_over_9_5", "corners_over_9.5"],
+        aliases=["corners_o95", "corn_over_9.5", "corners_over_9_5", "corners_over_9.5", "total_corners_over_9.5", "match_corners_over_9.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1422,7 +1422,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CORNERS_OVER_105: MarketMetadata(
         canonical_name="corners_over_10.5",
-        aliases=["corners_o105", "corn_over_10.5", "corners_over_10_5", "corners_over_10.5"],
+        aliases=["corners_o105", "corn_over_10.5", "corners_over_10_5", "corners_over_10.5", "total_corners_over_10.5", "match_corners_over_10.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1441,7 +1441,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CORNERS_OVER_115: MarketMetadata(
         canonical_name="corners_over_11.5",
-        aliases=["corners_o115", "corn_over_11.5", "corners_over_11_5", "corners_over_11.5"],
+        aliases=["corners_o115", "corn_over_11.5", "corners_over_11_5", "corners_over_11.5", "total_corners_over_11.5", "match_corners_over_11.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1460,7 +1460,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CORNERS_UNDER_85: MarketMetadata(
         canonical_name="corners_under_8.5",
-        aliases=["corners_u85", "corn_under_8.5", "corners_under_8_5", "corners_under_8.5"],
+        aliases=["corners_u85", "corn_under_8.5", "corners_under_8_5", "corners_under_8.5", "total_corners_under_8.5", "match_corners_under_8.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1479,7 +1479,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CORNERS_UNDER_95: MarketMetadata(
         canonical_name="corners_under_9.5",
-        aliases=["corners_u95", "corn_under_9.5", "corners_under_9_5", "corners_under_9.5"],
+        aliases=["corners_u95", "corn_under_9.5", "corners_under_9_5", "corners_under_9.5", "total_corners_under_9.5", "match_corners_under_9.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1498,7 +1498,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CORNERS_UNDER_105: MarketMetadata(
         canonical_name="corners_under_10.5",
-        aliases=["corners_u105", "corn_under_10.5", "corners_under_10_5", "corners_under_10.5"],
+        aliases=["corners_u105", "corn_under_10.5", "corners_under_10_5", "corners_under_10.5", "total_corners_under_10.5", "match_corners_under_10.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1521,7 +1521,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CARDS_OVER_25: MarketMetadata(
         canonical_name="cards_over_2.5",
-        aliases=["cards_o25", "cards_over_2.5", "cards_over_2_5"],
+        aliases=["cards_o25", "cards_over_2.5", "cards_over_2_5", "total_cards_over_2.5", "match_cards_over_2.5", "bookings_over_2.5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1540,7 +1540,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CARDS_OVER_35: MarketMetadata(
         canonical_name="cards_over_3.5",
-        aliases=["cards_o35", "cards_over_3.5", "cards_over_3_5"],
+        aliases=["cards_o35", "cards_over_3.5", "cards_over_3_5", "total_cards_over_3.5", "match_cards_over_3.5", "bookings_over_3.5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1559,7 +1559,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CARDS_OVER_45: MarketMetadata(
         canonical_name="cards_over_4.5",
-        aliases=["cards_o45", "cards_over_4.5", "cards_over_4_5"],
+        aliases=["cards_o45", "cards_over_4.5", "cards_over_4_5", "total_cards_over_4.5", "match_cards_over_4.5", "bookings_over_4.5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1578,7 +1578,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CARDS_OVER_55: MarketMetadata(
         canonical_name="cards_over_5.5",
-        aliases=["cards_o55", "cards_over_5.5", "cards_over_5_5"],
+        aliases=["cards_o55", "cards_over_5.5", "cards_over_5_5", "total_cards_over_5.5", "match_cards_over_5.5", "bookings_over_5.5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1597,7 +1597,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CARDS_UNDER_35: MarketMetadata(
         canonical_name="cards_under_3.5",
-        aliases=["cards_u35", "cards_under_3.5", "cards_under_3_5"],
+        aliases=["cards_u35", "cards_under_3.5", "cards_under_3_5", "total_cards_under_3.5", "match_cards_under_3.5", "bookings_under_3.5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1616,7 +1616,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.CARDS_UNDER_45: MarketMetadata(
         canonical_name="cards_under_4.5",
-        aliases=["cards_u45", "cards_under_4.5", "cards_under_4_5"],
+        aliases=["cards_u45", "cards_under_4.5", "cards_under_4_5", "total_cards_under_4.5", "match_cards_under_4.5", "bookings_under_4.5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1970,7 +1970,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.AH_HOME_M05: MarketMetadata(
         canonical_name="ah_home_-0.5",
-        aliases=["ah_-0.5_home", "asian_home_m05", "ah_home_minus_05", "ah_home_-0.5"],
+        aliases=["ah_-0.5_home", "asian_home_m05", "ah_home_minus_05", "ah_home_-0.5", "asian_handicap_home_-0.5", "spread_home_-0.5", "handicap_home_-0.5"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
         closing_config=ClosingConfig(
@@ -1991,7 +1991,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.AH_HOME_M10: MarketMetadata(
         canonical_name="ah_home_-1.0",
-        aliases=["ah_-1.0_home", "asian_home_m10", "ah_home_minus_10", "ah_home_-1.0"],
+        aliases=["ah_-1.0_home", "asian_home_m10", "ah_home_minus_10", "ah_home_-1.0", "asian_handicap_home_-1.0", "spread_home_-1.0", "handicap_home_-1.0"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
         closing_config=ClosingConfig(
@@ -2010,7 +2010,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.AH_HOME_M15: MarketMetadata(
         canonical_name="ah_home_-1.5",
-        aliases=["ah_-1.5_home", "asian_home_m15", "ah_home_minus_15", "ah_home_-1.5"],
+        aliases=["ah_-1.5_home", "asian_home_m15", "ah_home_minus_15", "ah_home_-1.5", "asian_handicap_home_-1.5", "spread_home_-1.5", "handicap_home_-1.5"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
         closing_config=ClosingConfig(
@@ -2029,7 +2029,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.AH_HOME_M20: MarketMetadata(
         canonical_name="ah_home_-2.0",
-        aliases=["ah_-2.0_home", "asian_home_m20", "ah_home_minus_20", "ah_home_-2.0"],
+        aliases=["ah_-2.0_home", "asian_home_m20", "ah_home_minus_20", "ah_home_-2.0", "asian_handicap_home_-2.0", "spread_home_-2.0", "handicap_home_-2.0"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
         closing_config=ClosingConfig(
@@ -2048,7 +2048,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.AH_AWAY_P05: MarketMetadata(
         canonical_name="ah_away_+0.5",
-        aliases=["ah_+0.5_away", "asian_away_p05", "ah_away_plus_05", "ah_away_+0.5"],
+        aliases=["ah_+0.5_away", "asian_away_p05", "ah_away_plus_05", "ah_away_+0.5", "asian_handicap_away_+0.5", "spread_away_+0.5", "handicap_away_+0.5"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
         closing_config=ClosingConfig(
@@ -2069,7 +2069,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.AH_AWAY_P10: MarketMetadata(
         canonical_name="ah_away_+1.0",
-        aliases=["ah_+1.0_away", "asian_away_p10", "ah_away_plus_10", "ah_away_+1.0"],
+        aliases=["ah_+1.0_away", "asian_away_p10", "ah_away_plus_10", "ah_away_+1.0", "asian_handicap_away_+1.0", "spread_away_+1.0", "handicap_away_+1.0"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
         closing_config=ClosingConfig(
@@ -2088,7 +2088,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.AH_AWAY_P15: MarketMetadata(
         canonical_name="ah_away_+1.5",
-        aliases=["ah_+1.5_away", "asian_away_p15", "ah_away_plus_15", "ah_away_+1.5"],
+        aliases=["ah_+1.5_away", "asian_away_p15", "ah_away_plus_15", "ah_away_+1.5", "asian_handicap_away_+1.5", "spread_away_+1.5", "handicap_away_+1.5"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
         closing_config=ClosingConfig(
@@ -2107,7 +2107,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.AH_AWAY_P20: MarketMetadata(
         canonical_name="ah_away_+2.0",
-        aliases=["ah_+2.0_away", "asian_away_p20", "ah_away_plus_20", "ah_away_+2.0"],
+        aliases=["ah_+2.0_away", "asian_away_p20", "ah_away_plus_20", "ah_away_+2.0", "asian_handicap_away_+2.0", "spread_away_+2.0", "handicap_away_+2.0"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
         closing_config=ClosingConfig(
@@ -2991,6 +2991,7 @@ def _build_alias_registry() -> Dict[str, MarketType]:
     def _normalize_alias(alias: str) -> str:
         """Applique la meme normalisation que normalize_market()"""
         normalized = alias.lower().strip()
+        normalized = re.sub(r'(?<!_)-|\s+', '_', normalized)  # tirets (sauf après _) + espaces -> underscores
         normalized = re.sub(r'_(\d)_(\d)', r'_\1\2', normalized)  # over_2_5 -> over_25
         normalized = re.sub(r'\.', '', normalized)  # over_2.5 -> over_25
         return normalized
@@ -3037,7 +3038,7 @@ def normalize_market(market_name: str) -> Optional[MarketType]:
 
     # Normaliser: lowercase, remplacer tirets/espaces, puis digits
     normalized = market_name.lower().strip()
-    normalized = re.sub(r'[-\s]+', '_', normalized)  # tirets/espaces -> underscores
+    normalized = re.sub(r'(?<!_)-|\s+', '_', normalized)  # tirets (sauf après _) + espaces -> underscores
     normalized = re.sub(r'_(\d)_(\d)', r'_\1\2', normalized)  # over_2_5 -> over_25
     normalized = re.sub(r'\.', '', normalized)  # over_2.5 -> over_25
 
