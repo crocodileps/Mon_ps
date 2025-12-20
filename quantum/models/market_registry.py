@@ -209,6 +209,36 @@ class MarketType(Enum):
     OUTSIDE_BOX_GOAL = "outside_box_goal"
     SHOTS_ON_TARGET_OVER = "shots_on_target_over"
 
+    # ═══════════════════════════════════════════════════════════════
+    # EXACT GOALS (5)
+    # ═══════════════════════════════════════════════════════════════
+    EXACTLY_0 = "exactly_0_goals"
+    EXACTLY_1 = "exactly_1_goals"
+    EXACTLY_2 = "exactly_2_goals"
+    EXACTLY_3 = "exactly_3_goals"
+    EXACTLY_4 = "exactly_4_goals"
+
+    # ═══════════════════════════════════════════════════════════════
+    # GOAL RANGES (5)
+    # ═══════════════════════════════════════════════════════════════
+    GOALS_0_1 = "goals_0_1"
+    GOALS_2_3 = "goals_2_3"
+    GOALS_4_5 = "goals_4_5"
+    GOALS_5_PLUS = "goals_5_plus"
+    GOALS_6_PLUS = "goals_6_plus"
+
+    # ═══════════════════════════════════════════════════════════════
+    # ODD/EVEN GOALS (2)
+    # ═══════════════════════════════════════════════════════════════
+    ODD_GOALS = "odd_goals"
+    EVEN_GOALS = "even_goals"
+
+    # ═══════════════════════════════════════════════════════════════
+    # WIN TO NIL NO (2)
+    # ═══════════════════════════════════════════════════════════════
+    HOME_WIN_TO_NIL_NO = "home_win_to_nil_no"
+    AWAY_WIN_TO_NIL_NO = "away_win_to_nil_no"
+
 
 # ===============================================================================
 #                              CONFIGURATIONS
@@ -2659,6 +2689,288 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tax=0.03,
         min_edge=0.04,
         correlations={"over_2.5": 0.50, "corners_over_9.5": 0.40},
+    ),
+
+    # ═══════════════════════════════════════════════════════════════
+    # EXACT GOALS (5)
+    # ═══════════════════════════════════════════════════════════════
+
+    MarketType.EXACTLY_0: MarketMetadata(
+        canonical_name="exactly_0_goals",
+        aliases=["exact_0", "0_goals", "no_goals", "scoreless"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.CATEGORICAL,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.MEDIUM,
+        liquidity_tax=0.03,
+        min_edge=0.04,
+        correlations={"under_0.5": 1.0, "under_1.5": 0.85, "btts_no": 0.90, "exactly_1_goals": -0.30},
+    ),
+
+    MarketType.EXACTLY_1: MarketMetadata(
+        canonical_name="exactly_1_goals",
+        aliases=["exact_1", "1_goal", "one_goal"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.CATEGORICAL,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.MEDIUM,
+        liquidity_tax=0.03,
+        min_edge=0.04,
+        correlations={"under_1.5": 0.70, "under_2.5": 0.85, "exactly_0_goals": -0.30, "exactly_2_goals": -0.25},
+    ),
+
+    MarketType.EXACTLY_2: MarketMetadata(
+        canonical_name="exactly_2_goals",
+        aliases=["exact_2", "total_2_goals", "two_goals"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.CATEGORICAL,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.MEDIUM,
+        liquidity_tax=0.03,
+        min_edge=0.04,
+        correlations={"under_2.5": 0.55, "over_1.5": 0.70, "exactly_1_goals": -0.25, "exactly_3_goals": -0.20},
+    ),
+
+    MarketType.EXACTLY_3: MarketMetadata(
+        canonical_name="exactly_3_goals",
+        aliases=["exact_3", "total_3_goals", "three_goals"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.CATEGORICAL,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.MEDIUM,
+        liquidity_tax=0.03,
+        min_edge=0.04,
+        correlations={"over_2.5": 0.70, "under_3.5": 0.55, "exactly_2_goals": -0.20, "exactly_4_goals": -0.15},
+    ),
+
+    MarketType.EXACTLY_4: MarketMetadata(
+        canonical_name="exactly_4_goals",
+        aliases=["exact_4", "4_goals", "four_goals"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.CATEGORICAL,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.LOW,
+        liquidity_tax=0.03,
+        min_edge=0.04,
+        correlations={"over_3.5": 0.70, "under_4.5": 0.55, "exactly_3_goals": -0.15},
+    ),
+
+    # ═══════════════════════════════════════════════════════════════
+    # GOAL RANGES (5)
+    # ═══════════════════════════════════════════════════════════════
+
+    MarketType.GOALS_0_1: MarketMetadata(
+        canonical_name="goals_0_1",
+        aliases=["0_1_goals", "zero_one_goals", "low_scoring"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.CATEGORICAL,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.MEDIUM,
+        liquidity_tax=0.03,
+        min_edge=0.04,
+        correlations={"under_1.5": 1.0, "under_2.5": 0.85, "btts_no": 0.70, "goals_2_3": -0.50},
+    ),
+
+    MarketType.GOALS_2_3: MarketMetadata(
+        canonical_name="goals_2_3",
+        aliases=["2_3_goals", "two_three_goals", "medium_scoring"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.CATEGORICAL,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.MEDIUM,
+        liquidity_tax=0.03,
+        min_edge=0.04,
+        correlations={"over_1.5": 0.80, "under_3.5": 0.60, "goals_0_1": -0.50, "goals_4_5": -0.40},
+    ),
+
+    MarketType.GOALS_4_5: MarketMetadata(
+        canonical_name="goals_4_5",
+        aliases=["4_5_goals", "four_five_goals", "high_scoring"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.CATEGORICAL,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.75,
+                ClosingSource.ESTIMATED: 0.5
+            }
+        ),
+        liquidity_tier=LiquidityTier.LOW,
+        liquidity_tax=0.03,
+        min_edge=0.05,
+        correlations={"over_3.5": 0.85, "over_2.5": 0.95, "goals_2_3": -0.40},
+    ),
+
+    MarketType.GOALS_5_PLUS: MarketMetadata(
+        canonical_name="goals_5_plus",
+        aliases=["5_plus_goals", "five_plus", "5+"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.CATEGORICAL,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.70,
+                ClosingSource.ESTIMATED: 0.5
+            }
+        ),
+        liquidity_tier=LiquidityTier.LOW,
+        liquidity_tax=0.04,
+        min_edge=0.05,
+        correlations={"over_4.5": 1.0, "over_3.5": 0.90, "goals_0_1": -0.80},
+    ),
+
+    MarketType.GOALS_6_PLUS: MarketMetadata(
+        canonical_name="goals_6_plus",
+        aliases=["6_plus_goals", "six_plus", "6+"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.CATEGORICAL,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.65,
+                ClosingSource.ESTIMATED: 0.5
+            }
+        ),
+        liquidity_tier=LiquidityTier.EXOTIC,
+        liquidity_tax=0.05,
+        min_edge=0.06,
+        correlations={"over_4.5": 0.85, "goals_5_plus": 0.70, "goals_0_1": -0.90},
+    ),
+
+    # ═══════════════════════════════════════════════════════════════
+    # ODD/EVEN GOALS (2)
+    # ═══════════════════════════════════════════════════════════════
+
+    MarketType.ODD_GOALS: MarketMetadata(
+        canonical_name="odd_goals",
+        aliases=["odd", "odd_total", "impair"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.BINARY,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.75,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.MEDIUM,
+        liquidity_tax=0.02,
+        min_edge=0.03,
+        correlations={"even_goals": -1.0, "exactly_1_goals": 0.25, "exactly_3_goals": 0.25},
+    ),
+
+    MarketType.EVEN_GOALS: MarketMetadata(
+        canonical_name="even_goals",
+        aliases=["even", "even_total", "pair"],
+        category=MarketCategory.GOALS,
+        payoff_type=PayoffType.BINARY,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.75,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.MEDIUM,
+        liquidity_tax=0.02,
+        min_edge=0.03,
+        correlations={"odd_goals": -1.0, "exactly_0_goals": 0.30, "exactly_2_goals": 0.25, "exactly_4_goals": 0.20},
+    ),
+
+    # ═══════════════════════════════════════════════════════════════
+    # WIN TO NIL NO (2)
+    # ═══════════════════════════════════════════════════════════════
+
+    MarketType.HOME_WIN_TO_NIL_NO: MarketMetadata(
+        canonical_name="home_win_to_nil_no",
+        aliases=["home_wtn_no", "home_win_concede", "home_dirty_win"],
+        category=MarketCategory.RESULT,
+        payoff_type=PayoffType.BINARY,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.LOW,
+        liquidity_tax=0.03,
+        min_edge=0.04,
+        correlations={"home_win_to_nil": -0.60, "home": 0.70, "btts_yes": 0.50},
+    ),
+
+    MarketType.AWAY_WIN_TO_NIL_NO: MarketMetadata(
+        canonical_name="away_win_to_nil_no",
+        aliases=["away_wtn_no", "away_win_concede", "away_dirty_win"],
+        category=MarketCategory.RESULT,
+        payoff_type=PayoffType.BINARY,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.LOW,
+        liquidity_tax=0.03,
+        min_edge=0.04,
+        correlations={"away_win_to_nil": -0.60, "away": 0.70, "btts_yes": 0.50},
     ),
 }
 
