@@ -299,7 +299,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.HOME_WIN: MarketMetadata(
         canonical_name="home",
-        aliases=["home_win", "1", "home_victory", "h"],
+        aliases=["home_win", "1", "home_victory", "h", "home", "match_result_1", "ft_1", "win_home", "result_1"],
         category=MarketCategory.RESULT,
         payoff_type=PayoffType.CATEGORICAL,
         closing_config=ClosingConfig(
@@ -319,7 +319,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.DRAW: MarketMetadata(
         canonical_name="draw",
-        aliases=["x", "tie", "d"],
+        aliases=["x", "tie", "d", "draw", "match_result_x", "ft_x", "result_x", "match_draw"],
         category=MarketCategory.RESULT,
         payoff_type=PayoffType.CATEGORICAL,
         closing_config=ClosingConfig(
@@ -339,7 +339,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.AWAY_WIN: MarketMetadata(
         canonical_name="away",
-        aliases=["away_win", "2", "away_victory", "a"],
+        aliases=["away_win", "2", "away_victory", "a", "away", "match_result_2", "ft_2", "win_away", "result_2"],
         category=MarketCategory.RESULT,
         payoff_type=PayoffType.CATEGORICAL,
         closing_config=ClosingConfig(
@@ -359,7 +359,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.DNB_HOME: MarketMetadata(
         canonical_name="dnb_home",
-        aliases=["draw_no_bet_home", "dnb_1"],
+        aliases=["draw_no_bet_home", "dnb_1", "dnb_home", "draw_no_bet_1", "money_line_home", "ml_home"],
         category=MarketCategory.RESULT,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -387,7 +387,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.DNB_AWAY: MarketMetadata(
         canonical_name="dnb_away",
-        aliases=["draw_no_bet_away", "dnb_2"],
+        aliases=["draw_no_bet_away", "dnb_2", "dnb_away", "draw_no_bet_2", "money_line_away", "ml_away"],
         category=MarketCategory.RESULT,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -415,7 +415,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.DC_1X: MarketMetadata(
         canonical_name="dc_1x",
-        aliases=["double_chance_1x", "home_or_draw"],
+        aliases=["double_chance_1x", "home_or_draw", "1x", "dc1x", "dc_home_draw", "home_draw", "result_1x"],
         category=MarketCategory.RESULT,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -443,7 +443,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.DC_X2: MarketMetadata(
         canonical_name="dc_x2",
-        aliases=["double_chance_x2", "draw_or_away"],
+        aliases=["double_chance_x2", "draw_or_away", "x2", "dcx2", "dc_draw_away", "draw_away", "result_x2"],
         category=MarketCategory.RESULT,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -471,7 +471,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.DC_12: MarketMetadata(
         canonical_name="dc_12",
-        aliases=["double_chance_12", "home_or_away", "no_draw"],
+        aliases=["double_chance_12", "home_or_away", "no_draw", "12", "dc12", "dc_home_away", "home_away", "result_12"],
         category=MarketCategory.RESULT,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -543,7 +543,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.BTTS_YES: MarketMetadata(
         canonical_name="btts_yes",
-        aliases=["btts", "bts_yes", "both_teams_to_score", "gg"],
+        aliases=["btts", "bts_yes", "both_teams_to_score", "gg", "btts_yes", "bts", "both_to_score", "goals_both_teams", "gol_gol"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -581,7 +581,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.BTTS_NO: MarketMetadata(
         canonical_name="btts_no",
-        aliases=["bts_no", "both_teams_to_score_no", "ng"],
+        aliases=["bts_no", "both_teams_to_score_no", "ng", "btts_no", "no_btts", "both_to_score_no", "no_gol_gol"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -618,7 +618,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.HOME_CLEAN_SHEET_YES: MarketMetadata(
         canonical_name="home_clean_sheet",
-        aliases=["home_cs", "home_to_nil"],
+        aliases=["home_cs", "home_shutout", "home_no_goals_against", "clean_sheet_home"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -651,7 +651,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.AWAY_CLEAN_SHEET_YES: MarketMetadata(
         canonical_name="away_clean_sheet",
-        aliases=["away_cs"],
+        aliases=["away_cs", "away_shutout", "away_no_goals_against", "clean_sheet_away"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1685,7 +1685,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
 
     MarketType.HT_UNDER_05: MarketMetadata(
         canonical_name="ht_under_0.5",
-        aliases=["ht_u05", "halftime_under_0.5", "ht_under_0_5", "no_goal_first_half"],
+        aliases=["ht_u05", "halftime_under_0.5", "ht_under_0_5", "first_half_0_goals"],
         category=MarketCategory.TIMING,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
