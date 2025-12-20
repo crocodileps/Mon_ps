@@ -107,3 +107,6 @@ data/fbref/*.json
 data/understat/*.json
 monitoring/guardian/.env
 crontab_backup*.txt
+
+# Cache data (auto-generated)
+cache/
