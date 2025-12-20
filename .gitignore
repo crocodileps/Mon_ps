@@ -110,3 +110,6 @@ crontab_backup*.txt
 
 # Cache data (auto-generated)
 cache/
+
+# Data files (auto-generated)
+data/
