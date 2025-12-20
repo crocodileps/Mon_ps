@@ -92,7 +92,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Les deux équipes marquent dans le chaos"
             ),
         ],
-        avoid_markets=[MarketType.UNDER_25, MarketType.HOME_CLEAN_SHEET, MarketType.AWAY_CLEAN_SHEET],
+        avoid_markets=[MarketType.UNDER_25, MarketType.HOME_CLEAN_SHEET_YES, MarketType.AWAY_CLEAN_SHEET_YES],
         historical_roi=15.2,
         historical_win_rate=68.5,
         min_confidence_threshold=65,
@@ -194,7 +194,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Efficacité des deux côtés"
             ),
         ],
-        avoid_markets=[MarketType.HOME_CLEAN_SHEET, MarketType.AWAY_CLEAN_SHEET, MarketType.UNDER_15],
+        avoid_markets=[MarketType.HOME_CLEAN_SHEET_YES, MarketType.AWAY_CLEAN_SHEET_YES, MarketType.UNDER_15],
         historical_roi=13.8,
         historical_win_rate=71.0,
         min_confidence_threshold=65,
@@ -301,7 +301,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Les deux vont marquer"
             ),
         ],
-        avoid_markets=[MarketType.HOME_CLEAN_SHEET, MarketType.UNDER_15],
+        avoid_markets=[MarketType.HOME_CLEAN_SHEET_YES, MarketType.UNDER_15],
         historical_roi=14.5,
         historical_win_rate=69.0,
         min_confidence_threshold=62,
@@ -347,7 +347,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Diesel + adversaire fatigué = but tardif"
             ),
             ScenarioMarket(
-                market=MarketType.GOAL_75_90_YES,
+                market=MarketType.GOAL_76_90,
                 priority="PRIMARY",
                 typical_edge=0.18,
                 typical_confidence=70,
@@ -405,7 +405,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Deux équipes qui démarrent fort"
             ),
             ScenarioMarket(
-                market=MarketType.GOAL_0_15_YES,
+                market=MarketType.GOAL_0_15,
                 priority="PRIMARY",
                 typical_edge=0.16,
                 typical_confidence=65,
@@ -472,7 +472,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Plus d'action en 2ème période"
             ),
         ],
-        avoid_markets=[MarketType.FIRST_HALF_OVER_15, MarketType.GOAL_0_15_YES],
+        avoid_markets=[MarketType.FIRST_HALF_OVER_15, MarketType.GOAL_0_15],
         historical_roi=14.8,
         historical_win_rate=70.0,
         min_confidence_threshold=65,
@@ -507,7 +507,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
         ],
         primary_markets=[
             ScenarioMarket(
-                market=MarketType.GOAL_75_90_YES,
+                market=MarketType.GOAL_76_90,
                 priority="PRIMARY",
                 typical_edge=0.20,
                 typical_confidence=72,
@@ -521,7 +521,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="But tardif très probable"
             ),
         ],
-        avoid_markets=[MarketType.AWAY_CLEAN_SHEET],
+        avoid_markets=[MarketType.AWAY_CLEAN_SHEET_YES],
         historical_roi=17.5,
         historical_win_rate=71.0,
         min_confidence_threshold=68,
@@ -782,7 +782,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Conservative = peu de buts"
             ),
             ScenarioMarket(
-                market=MarketType.HOME_CLEAN_SHEET,
+                market=MarketType.HOME_CLEAN_SHEET_YES,
                 priority="PRIMARY",
                 typical_edge=0.12,
                 typical_confidence=65,
@@ -825,14 +825,14 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Killer instinct + adversaire fragile"
             ),
             ScenarioMarket(
-                market=MarketType.GOAL_75_90_YES,
+                market=MarketType.GOAL_76_90,
                 priority="SECONDARY",
                 typical_edge=0.12,
                 typical_confidence=65,
                 reasoning="Finisseur naturel"
             ),
         ],
-        avoid_markets=[MarketType.AWAY_CLEAN_SHEET],
+        avoid_markets=[MarketType.AWAY_CLEAN_SHEET_YES],
         historical_roi=12.8,
         historical_win_rate=68.0,
         min_confidence_threshold=62,
@@ -881,7 +881,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Effondrement = chaos"
             ),
         ],
-        avoid_markets=[MarketType.HOME_CLEAN_SHEET, MarketType.HOME_WIN],
+        avoid_markets=[MarketType.HOME_CLEAN_SHEET_YES, MarketType.HOME_WIN],
         historical_roi=11.5,
         historical_win_rate=66.0,
         min_confidence_threshold=60,
@@ -916,14 +916,14 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
         ],
         primary_markets=[
             ScenarioMarket(
-                market=MarketType.AWAY_PLUS_15,
+                market=MarketType.AH_AWAY_P15,
                 priority="PRIMARY",
                 typical_edge=0.15,
                 typical_confidence=70,
                 reasoning="Outsider libéré peut surprendre"
             ),
             ScenarioMarket(
-                market=MarketType.HOME_OR_DRAW,
+                market=MarketType.DC_1X,
                 priority="SECONDARY",
                 typical_edge=0.08,
                 typical_confidence=72,
@@ -939,7 +939,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Value bet si cote > 4.0"
             ),
         ],
-        avoid_markets=[MarketType.HOME_MINUS_15],
+        avoid_markets=[MarketType.AH_HOME_M15],
         historical_roi=16.5,
         historical_win_rate=64.0,
         min_confidence_threshold=58,
@@ -978,7 +978,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
         ],
         primary_markets=[
             ScenarioMarket(
-                market=MarketType.HOME_OR_DRAW,
+                market=MarketType.DC_1X,
                 priority="PRIMARY",
                 typical_edge=0.12,
                 typical_confidence=68,
@@ -1001,7 +1001,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Value contrarian"
             ),
         ],
-        avoid_markets=[MarketType.HOME_WIN, MarketType.HOME_MINUS_15],
+        avoid_markets=[MarketType.HOME_WIN, MarketType.AH_HOME_M15],
         historical_roi=15.8,
         historical_win_rate=65.0,
         min_confidence_threshold=62,
@@ -1036,7 +1036,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
         ],
         primary_markets=[
             ScenarioMarket(
-                market=MarketType.HOME_MINUS_15,
+                market=MarketType.AH_HOME_M15,
                 priority="PRIMARY",
                 typical_edge=0.14,
                 typical_confidence=68,
@@ -1108,7 +1108,7 @@ def get_scenario_definitions() -> Dict[ScenarioID, ScenarioDefinition]:
                 reasoning="Beaucoup de corners attendus"
             ),
         ],
-        avoid_markets=[MarketType.AWAY_CLEAN_SHEET],
+        avoid_markets=[MarketType.AWAY_CLEAN_SHEET_YES],
         historical_roi=11.8,
         historical_win_rate=69.0,
         min_confidence_threshold=62,

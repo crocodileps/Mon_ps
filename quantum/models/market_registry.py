@@ -73,9 +73,9 @@ class MarketType(Enum):
     """
 
     # === RESULT (1X2 et derives) ===
-    HOME = "home"
+    HOME_WIN = "home"
     DRAW = "draw"
-    AWAY = "away"
+    AWAY_WIN = "away"
     DNB_HOME = "dnb_home"
     DNB_AWAY = "dnb_away"
     DC_1X = "dc_1x"
@@ -107,8 +107,8 @@ class MarketType(Enum):
     AWAY_OVER_05 = "away_over_05"
     AWAY_OVER_15 = "away_over_15"
     AWAY_OVER_25 = "away_over_25"
-    HOME_CLEAN_SHEET = "home_clean_sheet"
-    AWAY_CLEAN_SHEET = "away_clean_sheet"
+    HOME_CLEAN_SHEET_YES = "home_clean_sheet"
+    AWAY_CLEAN_SHEET_YES = "away_clean_sheet"
     HOME_WIN_TO_NIL = "home_win_to_nil"
     AWAY_WIN_TO_NIL = "away_win_to_nil"
 
@@ -128,9 +128,9 @@ class MarketType(Enum):
     CS_1_3 = "cs_1_3"
 
     # === HALF-TIME ===
-    HT_HOME = "ht_home"
+    HT_HOME_WIN = "ht_home"
     HT_DRAW = "ht_draw"
-    HT_AWAY = "ht_away"
+    HT_AWAY_WIN = "ht_away"
     HT_OVER_05 = "ht_over_05"
     HT_UNDER_05 = "ht_under_05"
     HT_OVER_15 = "ht_over_15"
@@ -138,15 +138,15 @@ class MarketType(Enum):
     HT_BTTS_NO = "ht_btts_no"
 
     # === HT/FT ===
-    HT_FT_1_1 = "ht_ft_1_1"
-    HT_FT_1_X = "ht_ft_1_x"
-    HT_FT_1_2 = "ht_ft_1_2"
-    HT_FT_X_1 = "ht_ft_x_1"
-    HT_FT_X_X = "ht_ft_x_x"
-    HT_FT_X_2 = "ht_ft_x_2"
-    HT_FT_2_1 = "ht_ft_2_1"
-    HT_FT_2_X = "ht_ft_2_x"
-    HT_FT_2_2 = "ht_ft_2_2"
+    DR_1_1 = "ht_ft_1_1"
+    DR_1_X = "ht_ft_1_x"
+    DR_1_2 = "ht_ft_1_2"
+    DR_X_1 = "ht_ft_x_1"
+    DR_X_X = "ht_ft_x_x"
+    DR_X_2 = "ht_ft_x_2"
+    DR_2_1 = "ht_ft_2_1"
+    DR_2_X = "ht_ft_2_x"
+    DR_2_2 = "ht_ft_2_2"
 
     # === ASIAN HANDICAP ===
     AH_HOME_M05 = "ah_home_m05"    # Home -0.5
@@ -187,6 +187,11 @@ class MarketType(Enum):
     FIRST_HALF_OVER_15 = "first_half_over_15"
     SECOND_HALF_OVER_05 = "second_half_over_05"
     SECOND_HALF_OVER_15 = "second_half_over_15"
+
+    # === HALF COMPARISON ===
+    HOME_2H_OVER_05 = "home_2h_over_05"
+    FIRST_HALF_HIGHEST = "first_half_highest"
+    SECOND_HALF_HIGHEST = "second_half_highest"
 
     # === PLAYER PROPS ===
     ANYTIME_SCORER = "anytime_scorer"
@@ -292,7 +297,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
     #                              RESULT MARKETS
     # ===========================================================================
 
-    MarketType.HOME: MarketMetadata(
+    MarketType.HOME_WIN: MarketMetadata(
         canonical_name="home",
         aliases=["home_win", "1", "home_victory", "h"],
         category=MarketCategory.RESULT,
@@ -309,6 +314,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.ELITE,
         liquidity_tax=0.01,
         min_edge=0.02,
+        correlations={"draw": -0.40, "away": -0.60, "dc_1x": 0.70, "dc_12": 0.65, "dnb_home": 0.85},
     ),
 
     MarketType.DRAW: MarketMetadata(
@@ -328,9 +334,10 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.ELITE,
         liquidity_tax=0.01,
         min_edge=0.02,
+        correlations={"home": -0.40, "away": -0.40, "dc_1x": 0.65, "dc_x2": 0.65, "under_25": 0.35},
     ),
 
-    MarketType.AWAY: MarketMetadata(
+    MarketType.AWAY_WIN: MarketMetadata(
         canonical_name="away",
         aliases=["away_win", "2", "away_victory", "a"],
         category=MarketCategory.RESULT,
@@ -347,6 +354,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.ELITE,
         liquidity_tax=0.01,
         min_edge=0.02,
+        correlations={"home": -0.60, "draw": -0.40, "dc_x2": 0.70, "dc_12": 0.65, "dnb_away": 0.85},
     ),
 
     MarketType.DNB_HOME: MarketMetadata(
@@ -374,7 +382,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.03,
-        dependencies=[MarketType.HOME, MarketType.DRAW],
+        dependencies=[MarketType.HOME_WIN, MarketType.DRAW],
     ),
 
     MarketType.DNB_AWAY: MarketMetadata(
@@ -402,7 +410,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.03,
-        dependencies=[MarketType.AWAY, MarketType.DRAW],
+        dependencies=[MarketType.AWAY_WIN, MarketType.DRAW],
     ),
 
     MarketType.DC_1X: MarketMetadata(
@@ -430,7 +438,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.03,
-        dependencies=[MarketType.HOME, MarketType.DRAW],
+        dependencies=[MarketType.HOME_WIN, MarketType.DRAW],
     ),
 
     MarketType.DC_X2: MarketMetadata(
@@ -458,7 +466,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.03,
-        dependencies=[MarketType.DRAW, MarketType.AWAY],
+        dependencies=[MarketType.DRAW, MarketType.AWAY_WIN],
     ),
 
     MarketType.DC_12: MarketMetadata(
@@ -486,7 +494,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.03,
-        dependencies=[MarketType.HOME, MarketType.AWAY],
+        dependencies=[MarketType.HOME_WIN, MarketType.AWAY_WIN],
     ),
 
     # ===========================================================================
@@ -608,7 +616,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         dna_sources=["team_dna_unified_v2.json"],
     ),
 
-    MarketType.HOME_CLEAN_SHEET: MarketMetadata(
+    MarketType.HOME_CLEAN_SHEET_YES: MarketMetadata(
         canonical_name="home_clean_sheet",
         aliases=["home_cs", "home_to_nil"],
         category=MarketCategory.GOALS,
@@ -641,7 +649,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         dna_sources=["team_dna_unified_v2.json"],
     ),
 
-    MarketType.AWAY_CLEAN_SHEET: MarketMetadata(
+    MarketType.AWAY_CLEAN_SHEET_YES: MarketMetadata(
         canonical_name="away_clean_sheet",
         aliases=["away_cs"],
         category=MarketCategory.GOALS,
@@ -849,6 +857,67 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tax=0.05,
         min_edge=0.10,
         dna_sources=["team_dna_unified_v2.json", "goalscorer_profiles_2025.json"],
+    ),
+
+    # ===========================================================================
+    #                              HALF COMPARISON MARKETS
+    # ===========================================================================
+
+    MarketType.HOME_2H_OVER_05: MarketMetadata(
+        canonical_name="home_2h_over_05",
+        aliases=["home_to_score_2h", "home_2nd_half_goal", "home_score_2h"],
+        category=MarketCategory.TIMING,
+        payoff_type=PayoffType.BINARY,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.LOW,
+        liquidity_tax=0.025,
+        min_edge=0.03,
+        correlations={"home_over_05": 0.60, "over_25": 0.40, "second_half_over_05": 0.50},
+    ),
+
+    MarketType.FIRST_HALF_HIGHEST: MarketMetadata(
+        canonical_name="first_half_highest",
+        aliases=["1h_highest_scoring", "more_goals_first_half"],
+        category=MarketCategory.TIMING,
+        payoff_type=PayoffType.BINARY,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.LOW,
+        liquidity_tax=0.025,
+        min_edge=0.03,
+        correlations={"first_half_over_15": 0.55, "ht_over_05": 0.50},
+    ),
+
+    MarketType.SECOND_HALF_HIGHEST: MarketMetadata(
+        canonical_name="second_half_highest",
+        aliases=["2h_highest_scoring", "more_goals_second_half"],
+        category=MarketCategory.TIMING,
+        payoff_type=PayoffType.BINARY,
+        closing_config=ClosingConfig(
+            primary_source=ClosingSource.SYNTHESIZED_DNA,
+            fallback_sources=[ClosingSource.ESTIMATED],
+            quality_by_source={
+                ClosingSource.SYNTHESIZED_DNA: 0.80,
+                ClosingSource.ESTIMATED: 0.6
+            }
+        ),
+        liquidity_tier=LiquidityTier.LOW,
+        liquidity_tax=0.025,
+        min_edge=0.03,
+        correlations={"second_half_over_15": 0.55, "second_half_over_05": 0.50},
     ),
 
     # ===========================================================================
@@ -1538,7 +1607,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
     #                              HALF-TIME MARKETS
     # ===========================================================================
 
-    MarketType.HT_HOME: MarketMetadata(
+    MarketType.HT_HOME_WIN: MarketMetadata(
         canonical_name="ht_home",
         aliases=["ht_1", "halftime_home", "ht_home_win"],
         category=MarketCategory.TIMING,
@@ -1576,7 +1645,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         correlations={"draw": 0.50, "ht_home": -0.50, "ht_away": -0.50, "ht_under_05": 0.70},
     ),
 
-    MarketType.HT_AWAY: MarketMetadata(
+    MarketType.HT_AWAY_WIN: MarketMetadata(
         canonical_name="ht_away",
         aliases=["ht_2", "halftime_away", "ht_away_win"],
         category=MarketCategory.TIMING,
@@ -1694,9 +1763,9 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
     #                              HT/FT DOUBLE RESULT
     # ===========================================================================
 
-    MarketType.HT_FT_1_1: MarketMetadata(
+    MarketType.DR_1_1: MarketMetadata(
         canonical_name="ht_ft_1_1",
-        aliases=["htft_1_1", "halftime_fulltime_1_1", "ht_ft_home_home"],
+        aliases=["htft_1_1", "halftime_fulltime_1_1", "ht_ft_home_home", "ht_ft_1_1"],
         category=MarketCategory.SPECIAL,
         payoff_type=PayoffType.CATEGORICAL,
         closing_config=ClosingConfig(
@@ -1713,7 +1782,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         correlations={"home": 0.80, "ht_home": 0.85},
     ),
 
-    MarketType.HT_FT_1_X: MarketMetadata(
+    MarketType.DR_1_X: MarketMetadata(
         canonical_name="ht_ft_1_x",
         aliases=["htft_1_x", "halftime_fulltime_1_x", "ht_ft_home_draw"],
         category=MarketCategory.SPECIAL,
@@ -1732,9 +1801,9 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         correlations={"draw": 0.60, "ht_home": 0.55},
     ),
 
-    MarketType.HT_FT_1_2: MarketMetadata(
+    MarketType.DR_1_2: MarketMetadata(
         canonical_name="ht_ft_1_2",
-        aliases=["htft_1_2", "halftime_fulltime_1_2", "ht_ft_home_away"],
+        aliases=["htft_1_2", "halftime_fulltime_1_2", "ht_ft_home_away", "ht_ft_1_2"],
         category=MarketCategory.SPECIAL,
         payoff_type=PayoffType.CATEGORICAL,
         closing_config=ClosingConfig(
@@ -1751,7 +1820,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         correlations={"away": 0.50, "ht_home": 0.30},
     ),
 
-    MarketType.HT_FT_X_1: MarketMetadata(
+    MarketType.DR_X_1: MarketMetadata(
         canonical_name="ht_ft_x_1",
         aliases=["htft_x_1", "halftime_fulltime_x_1", "ht_ft_draw_home"],
         category=MarketCategory.SPECIAL,
@@ -1770,7 +1839,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         correlations={"home": 0.55, "ht_draw": 0.60},
     ),
 
-    MarketType.HT_FT_X_X: MarketMetadata(
+    MarketType.DR_X_X: MarketMetadata(
         canonical_name="ht_ft_x_x",
         aliases=["htft_x_x", "halftime_fulltime_x_x", "ht_ft_draw_draw"],
         category=MarketCategory.SPECIAL,
@@ -1789,7 +1858,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         correlations={"draw": 0.80, "ht_draw": 0.85, "under_25": 0.55},
     ),
 
-    MarketType.HT_FT_X_2: MarketMetadata(
+    MarketType.DR_X_2: MarketMetadata(
         canonical_name="ht_ft_x_2",
         aliases=["htft_x_2", "halftime_fulltime_x_2", "ht_ft_draw_away"],
         category=MarketCategory.SPECIAL,
@@ -1808,9 +1877,9 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         correlations={"away": 0.55, "ht_draw": 0.60},
     ),
 
-    MarketType.HT_FT_2_1: MarketMetadata(
+    MarketType.DR_2_1: MarketMetadata(
         canonical_name="ht_ft_2_1",
-        aliases=["htft_2_1", "halftime_fulltime_2_1", "ht_ft_away_home"],
+        aliases=["htft_2_1", "halftime_fulltime_2_1", "ht_ft_away_home", "ht_ft_2_1"],
         category=MarketCategory.SPECIAL,
         payoff_type=PayoffType.CATEGORICAL,
         closing_config=ClosingConfig(
@@ -1827,7 +1896,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         correlations={"home": 0.50, "ht_away": 0.30},
     ),
 
-    MarketType.HT_FT_2_X: MarketMetadata(
+    MarketType.DR_2_X: MarketMetadata(
         canonical_name="ht_ft_2_x",
         aliases=["htft_2_x", "halftime_fulltime_2_x", "ht_ft_away_draw"],
         category=MarketCategory.SPECIAL,
@@ -1846,9 +1915,9 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         correlations={"draw": 0.60, "ht_away": 0.55},
     ),
 
-    MarketType.HT_FT_2_2: MarketMetadata(
+    MarketType.DR_2_2: MarketMetadata(
         canonical_name="ht_ft_2_2",
-        aliases=["htft_2_2", "halftime_fulltime_2_2", "ht_ft_away_away"],
+        aliases=["htft_2_2", "halftime_fulltime_2_2", "ht_ft_away_away", "ht_ft_2_2"],
         category=MarketCategory.SPECIAL,
         payoff_type=PayoffType.CATEGORICAL,
         closing_config=ClosingConfig(
