@@ -83,16 +83,16 @@ class MarketType(Enum):
     DC_12 = "dc_12"
 
     # === GOALS (Over/Under) ===
-    OVER_05 = "over_05"
-    OVER_15 = "over_15"
-    OVER_25 = "over_25"
-    OVER_35 = "over_35"
-    OVER_45 = "over_45"
-    UNDER_05 = "under_05"
-    UNDER_15 = "under_15"
-    UNDER_25 = "under_25"
-    UNDER_35 = "under_35"
-    UNDER_45 = "under_45"
+    OVER_05 = "over_0.5"
+    OVER_15 = "over_1.5"
+    OVER_25 = "over_2.5"
+    OVER_35 = "over_3.5"
+    OVER_45 = "over_4.5"
+    UNDER_05 = "under_0.5"
+    UNDER_15 = "under_1.5"
+    UNDER_25 = "under_2.5"
+    UNDER_35 = "under_3.5"
+    UNDER_45 = "under_4.5"
 
     # === GOALS (BTTS) ===
     BTTS_YES = "btts_yes"
@@ -101,12 +101,12 @@ class MarketType(Enum):
     BTTS_BOTH_HALVES_NO = "btts_both_halves_no"
 
     # === GOALS (Team specific) ===
-    HOME_OVER_05 = "home_over_05"
-    HOME_OVER_15 = "home_over_15"
-    HOME_OVER_25 = "home_over_25"
-    AWAY_OVER_05 = "away_over_05"
-    AWAY_OVER_15 = "away_over_15"
-    AWAY_OVER_25 = "away_over_25"
+    HOME_OVER_05 = "home_over_0.5"
+    HOME_OVER_15 = "home_over_1.5"
+    HOME_OVER_25 = "home_over_2.5"
+    AWAY_OVER_05 = "away_over_0.5"
+    AWAY_OVER_15 = "away_over_1.5"
+    AWAY_OVER_25 = "away_over_2.5"
     HOME_CLEAN_SHEET_YES = "home_clean_sheet"
     AWAY_CLEAN_SHEET_YES = "away_clean_sheet"
     HOME_WIN_TO_NIL = "home_win_to_nil"
@@ -131,9 +131,9 @@ class MarketType(Enum):
     HT_HOME_WIN = "ht_home"
     HT_DRAW = "ht_draw"
     HT_AWAY_WIN = "ht_away"
-    HT_OVER_05 = "ht_over_05"
-    HT_UNDER_05 = "ht_under_05"
-    HT_OVER_15 = "ht_over_15"
+    HT_OVER_05 = "ht_over_0.5"
+    HT_UNDER_05 = "ht_under_0.5"
+    HT_OVER_15 = "ht_over_1.5"
     HT_BTTS_YES = "ht_btts_yes"
     HT_BTTS_NO = "ht_btts_no"
 
@@ -149,31 +149,31 @@ class MarketType(Enum):
     DR_2_2 = "ht_ft_2_2"
 
     # === ASIAN HANDICAP ===
-    AH_HOME_M05 = "ah_home_m05"    # Home -0.5
-    AH_HOME_M10 = "ah_home_m10"    # Home -1.0
-    AH_HOME_M15 = "ah_home_m15"    # Home -1.5
-    AH_HOME_M20 = "ah_home_m20"    # Home -2.0
-    AH_AWAY_P05 = "ah_away_p05"    # Away +0.5
-    AH_AWAY_P10 = "ah_away_p10"    # Away +1.0
-    AH_AWAY_P15 = "ah_away_p15"    # Away +1.5
-    AH_AWAY_P20 = "ah_away_p20"    # Away +2.0
+    AH_HOME_M05 = "ah_home_-0.5"    # Home -0.5
+    AH_HOME_M10 = "ah_home_-1.0"    # Home -1.0
+    AH_HOME_M15 = "ah_home_-1.5"    # Home -1.5
+    AH_HOME_M20 = "ah_home_-2.0"    # Home -2.0
+    AH_AWAY_P05 = "ah_away_+0.5"    # Away +0.5
+    AH_AWAY_P10 = "ah_away_+1.0"    # Away +1.0
+    AH_AWAY_P15 = "ah_away_+1.5"    # Away +1.5
+    AH_AWAY_P20 = "ah_away_+2.0"    # Away +2.0
 
     # === CORNERS ===
-    CORNERS_OVER_85 = "corners_over_85"
-    CORNERS_OVER_95 = "corners_over_95"
-    CORNERS_OVER_105 = "corners_over_105"
-    CORNERS_OVER_115 = "corners_over_115"
-    CORNERS_UNDER_85 = "corners_under_85"
-    CORNERS_UNDER_95 = "corners_under_95"
-    CORNERS_UNDER_105 = "corners_under_105"
+    CORNERS_OVER_85 = "corners_over_8.5"
+    CORNERS_OVER_95 = "corners_over_9.5"
+    CORNERS_OVER_105 = "corners_over_10.5"
+    CORNERS_OVER_115 = "corners_over_11.5"
+    CORNERS_UNDER_85 = "corners_under_8.5"
+    CORNERS_UNDER_95 = "corners_under_9.5"
+    CORNERS_UNDER_105 = "corners_under_10.5"
 
     # === CARDS ===
-    CARDS_OVER_25 = "cards_over_25"
-    CARDS_OVER_35 = "cards_over_35"
-    CARDS_OVER_45 = "cards_over_45"
-    CARDS_OVER_55 = "cards_over_55"
-    CARDS_UNDER_35 = "cards_under_35"
-    CARDS_UNDER_45 = "cards_under_45"
+    CARDS_OVER_25 = "cards_over_2.5"
+    CARDS_OVER_35 = "cards_over_3.5"
+    CARDS_OVER_45 = "cards_over_4.5"
+    CARDS_OVER_55 = "cards_over_5.5"
+    CARDS_UNDER_35 = "cards_under_3.5"
+    CARDS_UNDER_45 = "cards_under_4.5"
 
     # === TIMING ===
     GOAL_0_15 = "goal_0_15"
@@ -183,10 +183,10 @@ class MarketType(Enum):
     GOAL_61_75 = "goal_61_75"
     GOAL_76_90 = "goal_76_90"
     NO_GOAL_FIRST_HALF = "no_goal_first_half"
-    FIRST_HALF_OVER_05 = "first_half_over_05"
-    FIRST_HALF_OVER_15 = "first_half_over_15"
-    SECOND_HALF_OVER_05 = "second_half_over_05"
-    SECOND_HALF_OVER_15 = "second_half_over_15"
+    FIRST_HALF_OVER_05 = "first_half_over_0.5"
+    FIRST_HALF_OVER_15 = "first_half_over_1.5"
+    SECOND_HALF_OVER_05 = "second_half_over_0.5"
+    SECOND_HALF_OVER_15 = "second_half_over_1.5"
 
     # === HALF COMPARISON ===
     HOME_2H_OVER_05 = "home_2h_over_05"
@@ -334,7 +334,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.ELITE,
         liquidity_tax=0.01,
         min_edge=0.02,
-        correlations={"home": -0.40, "away": -0.40, "dc_1x": 0.65, "dc_x2": 0.65, "under_25": 0.35},
+        correlations={"home": -0.40, "away": -0.40, "dc_1x": 0.65, "dc_x2": 0.65, "under_2.5": 0.35},
     ),
 
     MarketType.AWAY_WIN: MarketMetadata(
@@ -502,8 +502,8 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
     # ===========================================================================
 
     MarketType.OVER_25: MarketMetadata(
-        canonical_name="over_25",
-        aliases=["over_2_5", "over25", "o25", "over_2.5"],
+        canonical_name="over_2.5",
+        aliases=["over_2_5", "over25", "o25", "over_2.5", "total_over_2.5", "match_goals_over_2.5", "totals_over_2.5", "goals_over_2.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -518,12 +518,12 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.ELITE,
         liquidity_tax=0.01,
         min_edge=0.02,
-        correlations={"btts_yes": 0.65, "over_35": 0.75, "under_25": -1.0},
+        correlations={"btts_yes": 0.65, "over_3.5": 0.75, "under_2.5": -1.0},
     ),
 
     MarketType.UNDER_25: MarketMetadata(
-        canonical_name="under_25",
-        aliases=["under_2_5", "under25", "u25", "under_2.5"],
+        canonical_name="under_2.5",
+        aliases=["under_2_5", "under25", "u25", "under_2.5", "total_under_2.5", "match_goals_under_2.5", "totals_under_2.5", "goals_under_2.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -538,7 +538,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.ELITE,
         liquidity_tax=0.01,
         min_edge=0.02,
-        correlations={"btts_no": 0.55, "under_35": 0.80, "over_25": -1.0},
+        correlations={"btts_no": 0.55, "under_3.5": 0.80, "over_2.5": -1.0},
     ),
 
     MarketType.BTTS_YES: MarketMetadata(
@@ -575,7 +575,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.HIGH,
         liquidity_tax=0.015,
         min_edge=0.03,
-        correlations={"over_25": 0.65, "btts_no": -1.0},
+        correlations={"over_2.5": 0.65, "btts_no": -1.0},
         dna_sources=["team_dna_unified_v2.json"],
     ),
 
@@ -612,7 +612,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.HIGH,
         liquidity_tax=0.015,
         min_edge=0.03,
-        correlations={"under_25": 0.55, "btts_yes": -1.0},
+        correlations={"under_2.5": 0.55, "btts_yes": -1.0},
         dna_sources=["team_dna_unified_v2.json"],
     ),
 
@@ -879,7 +879,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"home_over_05": 0.60, "over_25": 0.40, "second_half_over_05": 0.50},
+        correlations={"home_over_0.5": 0.60, "over_2.5": 0.40, "second_half_over_0.5": 0.50},
     ),
 
     MarketType.FIRST_HALF_HIGHEST: MarketMetadata(
@@ -898,7 +898,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"first_half_over_15": 0.55, "ht_over_05": 0.50},
+        correlations={"first_half_over_1.5": 0.55, "ht_over_0.5": 0.50},
     ),
 
     MarketType.SECOND_HALF_HIGHEST: MarketMetadata(
@@ -917,7 +917,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"second_half_over_15": 0.55, "second_half_over_05": 0.50},
+        correlations={"second_half_over_1.5": 0.55, "second_half_over_0.5": 0.50},
     ),
 
     # ===========================================================================
@@ -995,8 +995,8 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
     # ===========================================================================
 
     MarketType.OVER_05: MarketMetadata(
-        canonical_name="over_05",
-        aliases=["over_0_5", "over05", "o05", "over_0.5"],
+        canonical_name="over_0.5",
+        aliases=["over_0_5", "over05", "o05", "over_0.5", "total_over_0.5", "match_goals_over_0.5", "totals_over_0.5", "goals_over_0.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1010,12 +1010,12 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.HIGH,
         liquidity_tax=0.015,
         min_edge=0.02,
-        correlations={"over_15": 0.95, "over_25": 0.85, "under_05": -1.0, "btts_yes": 0.75},
+        correlations={"over_1.5": 0.95, "over_2.5": 0.85, "under_0.5": -1.0, "btts_yes": 0.75},
     ),
 
     MarketType.OVER_15: MarketMetadata(
-        canonical_name="over_15",
-        aliases=["over_1_5", "over15", "o15", "over_1.5"],
+        canonical_name="over_1.5",
+        aliases=["over_1_5", "over15", "o15", "over_1.5", "total_over_1.5", "match_goals_over_1.5", "totals_over_1.5", "goals_over_1.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1029,12 +1029,12 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.ELITE,
         liquidity_tax=0.01,
         min_edge=0.02,
-        correlations={"over_05": 0.95, "over_25": 0.90, "over_35": 0.75, "under_15": -1.0, "btts_yes": 0.70},
+        correlations={"over_0.5": 0.95, "over_2.5": 0.90, "over_3.5": 0.75, "under_1.5": -1.0, "btts_yes": 0.70},
     ),
 
     MarketType.OVER_35: MarketMetadata(
-        canonical_name="over_35",
-        aliases=["over_3_5", "over35", "o35", "over_3.5"],
+        canonical_name="over_3.5",
+        aliases=["over_3_5", "over35", "o35", "over_3.5", "total_over_3.5", "match_goals_over_3.5", "totals_over_3.5", "goals_over_3.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1048,12 +1048,12 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.HIGH,
         liquidity_tax=0.015,
         min_edge=0.02,
-        correlations={"over_25": 0.95, "over_45": 0.85, "under_35": -1.0, "btts_yes": 0.55},
+        correlations={"over_2.5": 0.95, "over_4.5": 0.85, "under_3.5": -1.0, "btts_yes": 0.55},
     ),
 
     MarketType.OVER_45: MarketMetadata(
-        canonical_name="over_45",
-        aliases=["over_4_5", "over45", "o45", "over_4.5"],
+        canonical_name="over_4.5",
+        aliases=["over_4_5", "over45", "o45", "over_4.5", "total_over_4.5", "match_goals_over_4.5", "totals_over_4.5", "goals_over_4.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1067,12 +1067,12 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"over_35": 0.95, "under_45": -1.0},
+        correlations={"over_3.5": 0.95, "under_4.5": -1.0},
     ),
 
     MarketType.UNDER_05: MarketMetadata(
-        canonical_name="under_05",
-        aliases=["under_0_5", "under05", "u05", "under_0.5"],
+        canonical_name="under_0.5",
+        aliases=["under_0_5", "under05", "u05", "under_0.5", "total_under_0.5", "match_goals_under_0.5", "totals_under_0.5", "goals_under_0.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1086,12 +1086,12 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.HIGH,
         liquidity_tax=0.015,
         min_edge=0.02,
-        correlations={"under_15": 0.95, "over_05": -1.0, "btts_no": 0.99},
+        correlations={"under_1.5": 0.95, "over_0.5": -1.0, "btts_no": 0.99},
     ),
 
     MarketType.UNDER_15: MarketMetadata(
-        canonical_name="under_15",
-        aliases=["under_1_5", "under15", "u15", "under_1.5"],
+        canonical_name="under_1.5",
+        aliases=["under_1_5", "under15", "u15", "under_1.5", "total_under_1.5", "match_goals_under_1.5", "totals_under_1.5", "goals_under_1.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1105,12 +1105,12 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.ELITE,
         liquidity_tax=0.01,
         min_edge=0.02,
-        correlations={"under_05": 0.95, "under_25": 0.90, "over_15": -1.0, "btts_no": 0.75},
+        correlations={"under_0.5": 0.95, "under_2.5": 0.90, "over_1.5": -1.0, "btts_no": 0.75},
     ),
 
     MarketType.UNDER_35: MarketMetadata(
-        canonical_name="under_35",
-        aliases=["under_3_5", "under35", "u35", "under_3.5"],
+        canonical_name="under_3.5",
+        aliases=["under_3_5", "under35", "u35", "under_3.5", "total_under_3.5", "match_goals_under_3.5", "totals_under_3.5", "goals_under_3.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1124,12 +1124,12 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.HIGH,
         liquidity_tax=0.015,
         min_edge=0.02,
-        correlations={"under_25": 0.95, "under_45": 0.90, "over_35": -1.0},
+        correlations={"under_2.5": 0.95, "under_4.5": 0.90, "over_3.5": -1.0},
     ),
 
     MarketType.UNDER_45: MarketMetadata(
-        canonical_name="under_45",
-        aliases=["under_4_5", "under45", "u45", "under_4.5"],
+        canonical_name="under_4.5",
+        aliases=["under_4_5", "under45", "u45", "under_4.5", "total_under_4.5", "match_goals_under_4.5", "totals_under_4.5", "goals_under_4.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
         closing_config=ClosingConfig(
@@ -1143,7 +1143,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"under_35": 0.95, "over_45": -1.0},
+        correlations={"under_3.5": 0.95, "over_4.5": -1.0},
     ),
 
     # ===========================================================================
@@ -1151,7 +1151,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
     # ===========================================================================
 
     MarketType.HOME_OVER_05: MarketMetadata(
-        canonical_name="home_over_05",
+        canonical_name="home_over_0.5",
         aliases=["home_over_0_5", "home_o05", "home_over_0.5", "home_to_score"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
@@ -1166,11 +1166,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"home_over_15": 0.90, "btts_yes": 0.70, "home": 0.55, "away_clean_sheet": -0.95},
+        correlations={"home_over_1.5": 0.90, "btts_yes": 0.70, "home": 0.55, "away_clean_sheet": -0.95},
     ),
 
     MarketType.HOME_OVER_15: MarketMetadata(
-        canonical_name="home_over_15",
+        canonical_name="home_over_1.5",
         aliases=["home_over_1_5", "home_o15", "home_over_1.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
@@ -1185,11 +1185,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"home_over_05": 0.95, "home_over_25": 0.85, "home": 0.65},
+        correlations={"home_over_0.5": 0.95, "home_over_2.5": 0.85, "home": 0.65},
     ),
 
     MarketType.HOME_OVER_25: MarketMetadata(
-        canonical_name="home_over_25",
+        canonical_name="home_over_2.5",
         aliases=["home_over_2_5", "home_o25", "home_over_2.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
@@ -1204,11 +1204,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"home_over_15": 0.95, "home": 0.70, "over_25": 0.75},
+        correlations={"home_over_1.5": 0.95, "home": 0.70, "over_2.5": 0.75},
     ),
 
     MarketType.AWAY_OVER_05: MarketMetadata(
-        canonical_name="away_over_05",
+        canonical_name="away_over_0.5",
         aliases=["away_over_0_5", "away_o05", "away_over_0.5", "away_to_score"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
@@ -1223,11 +1223,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"away_over_15": 0.90, "btts_yes": 0.70, "away": 0.50, "home_clean_sheet": -0.95},
+        correlations={"away_over_1.5": 0.90, "btts_yes": 0.70, "away": 0.50, "home_clean_sheet": -0.95},
     ),
 
     MarketType.AWAY_OVER_15: MarketMetadata(
-        canonical_name="away_over_15",
+        canonical_name="away_over_1.5",
         aliases=["away_over_1_5", "away_o15", "away_over_1.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
@@ -1242,11 +1242,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"away_over_05": 0.95, "away_over_25": 0.85, "away": 0.60},
+        correlations={"away_over_0.5": 0.95, "away_over_2.5": 0.85, "away": 0.60},
     ),
 
     MarketType.AWAY_OVER_25: MarketMetadata(
-        canonical_name="away_over_25",
+        canonical_name="away_over_2.5",
         aliases=["away_over_2_5", "away_o25", "away_over_2.5"],
         category=MarketCategory.GOALS,
         payoff_type=PayoffType.BINARY,
@@ -1261,7 +1261,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"away_over_15": 0.95, "away": 0.65, "over_25": 0.70},
+        correlations={"away_over_1.5": 0.95, "away": 0.65, "over_2.5": 0.70},
     ),
 
     # ===========================================================================
@@ -1326,7 +1326,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.035,
-        correlations={"btts_yes": 0.85, "over_25": 0.75, "btts_both_halves_no": -1.0},
+        correlations={"btts_yes": 0.85, "over_2.5": 0.75, "btts_both_halves_no": -1.0},
     ),
 
     MarketType.BTTS_BOTH_HALVES_NO: MarketMetadata(
@@ -1353,7 +1353,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
     # ===========================================================================
 
     MarketType.CORNERS_OVER_85: MarketMetadata(
-        canonical_name="corners_over_85",
+        canonical_name="corners_over_8.5",
         aliases=["corners_o85", "corn_over_8.5", "corners_over_8_5", "corners_over_8.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
@@ -1368,11 +1368,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"corners_over_95": 0.90, "corners_over_105": 0.75, "corners_under_85": -1.0},
+        correlations={"corners_over_9.5": 0.90, "corners_over_10.5": 0.75, "corners_under_8.5": -1.0},
     ),
 
     MarketType.CORNERS_OVER_95: MarketMetadata(
-        canonical_name="corners_over_95",
+        canonical_name="corners_over_9.5",
         aliases=["corners_o95", "corn_over_9.5", "corners_over_9_5", "corners_over_9.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
@@ -1387,11 +1387,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"corners_over_85": 0.95, "corners_over_105": 0.85, "corners_under_95": -1.0},
+        correlations={"corners_over_8.5": 0.95, "corners_over_10.5": 0.85, "corners_under_9.5": -1.0},
     ),
 
     MarketType.CORNERS_OVER_105: MarketMetadata(
-        canonical_name="corners_over_105",
+        canonical_name="corners_over_10.5",
         aliases=["corners_o105", "corn_over_10.5", "corners_over_10_5", "corners_over_10.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
@@ -1406,11 +1406,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"corners_over_95": 0.95, "corners_over_115": 0.85, "corners_under_105": -1.0},
+        correlations={"corners_over_9.5": 0.95, "corners_over_11.5": 0.85, "corners_under_10.5": -1.0},
     ),
 
     MarketType.CORNERS_OVER_115: MarketMetadata(
-        canonical_name="corners_over_115",
+        canonical_name="corners_over_11.5",
         aliases=["corners_o115", "corn_over_11.5", "corners_over_11_5", "corners_over_11.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
@@ -1425,11 +1425,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.035,
-        correlations={"corners_over_105": 0.95},
+        correlations={"corners_over_10.5": 0.95},
     ),
 
     MarketType.CORNERS_UNDER_85: MarketMetadata(
-        canonical_name="corners_under_85",
+        canonical_name="corners_under_8.5",
         aliases=["corners_u85", "corn_under_8.5", "corners_under_8_5", "corners_under_8.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
@@ -1444,11 +1444,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"corners_under_95": 0.90, "corners_over_85": -1.0},
+        correlations={"corners_under_9.5": 0.90, "corners_over_8.5": -1.0},
     ),
 
     MarketType.CORNERS_UNDER_95: MarketMetadata(
-        canonical_name="corners_under_95",
+        canonical_name="corners_under_9.5",
         aliases=["corners_u95", "corn_under_9.5", "corners_under_9_5", "corners_under_9.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
@@ -1463,11 +1463,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"corners_under_85": 0.95, "corners_under_105": 0.90, "corners_over_95": -1.0},
+        correlations={"corners_under_8.5": 0.95, "corners_under_10.5": 0.90, "corners_over_9.5": -1.0},
     ),
 
     MarketType.CORNERS_UNDER_105: MarketMetadata(
-        canonical_name="corners_under_105",
+        canonical_name="corners_under_10.5",
         aliases=["corners_u105", "corn_under_10.5", "corners_under_10_5", "corners_under_10.5"],
         category=MarketCategory.CORNERS,
         payoff_type=PayoffType.BINARY,
@@ -1482,7 +1482,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"corners_under_95": 0.95, "corners_over_105": -1.0},
+        correlations={"corners_under_9.5": 0.95, "corners_over_10.5": -1.0},
     ),
 
     # ===========================================================================
@@ -1490,7 +1490,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
     # ===========================================================================
 
     MarketType.CARDS_OVER_25: MarketMetadata(
-        canonical_name="cards_over_25",
+        canonical_name="cards_over_2.5",
         aliases=["cards_o25", "cards_over_2.5", "cards_over_2_5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
@@ -1505,11 +1505,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"cards_over_35": 0.90, "cards_over_45": 0.75},
+        correlations={"cards_over_3.5": 0.90, "cards_over_4.5": 0.75},
     ),
 
     MarketType.CARDS_OVER_35: MarketMetadata(
-        canonical_name="cards_over_35",
+        canonical_name="cards_over_3.5",
         aliases=["cards_o35", "cards_over_3.5", "cards_over_3_5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
@@ -1524,11 +1524,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"cards_over_25": 0.95, "cards_over_45": 0.85, "cards_under_35": -1.0},
+        correlations={"cards_over_2.5": 0.95, "cards_over_4.5": 0.85, "cards_under_3.5": -1.0},
     ),
 
     MarketType.CARDS_OVER_45: MarketMetadata(
-        canonical_name="cards_over_45",
+        canonical_name="cards_over_4.5",
         aliases=["cards_o45", "cards_over_4.5", "cards_over_4_5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
@@ -1543,11 +1543,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"cards_over_35": 0.95, "cards_over_55": 0.85, "cards_under_45": -1.0},
+        correlations={"cards_over_3.5": 0.95, "cards_over_5.5": 0.85, "cards_under_4.5": -1.0},
     ),
 
     MarketType.CARDS_OVER_55: MarketMetadata(
-        canonical_name="cards_over_55",
+        canonical_name="cards_over_5.5",
         aliases=["cards_o55", "cards_over_5.5", "cards_over_5_5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
@@ -1562,11 +1562,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.035,
-        correlations={"cards_over_45": 0.95},
+        correlations={"cards_over_4.5": 0.95},
     ),
 
     MarketType.CARDS_UNDER_35: MarketMetadata(
-        canonical_name="cards_under_35",
+        canonical_name="cards_under_3.5",
         aliases=["cards_u35", "cards_under_3.5", "cards_under_3_5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
@@ -1581,11 +1581,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"cards_under_45": 0.90, "cards_over_35": -1.0},
+        correlations={"cards_under_4.5": 0.90, "cards_over_3.5": -1.0},
     ),
 
     MarketType.CARDS_UNDER_45: MarketMetadata(
-        canonical_name="cards_under_45",
+        canonical_name="cards_under_4.5",
         aliases=["cards_u45", "cards_under_4.5", "cards_under_4_5"],
         category=MarketCategory.CARDS,
         payoff_type=PayoffType.BINARY,
@@ -1600,7 +1600,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.03,
-        correlations={"cards_under_35": 0.95, "cards_over_45": -1.0},
+        correlations={"cards_under_3.5": 0.95, "cards_over_4.5": -1.0},
     ),
 
     # ===========================================================================
@@ -1642,7 +1642,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"draw": 0.50, "ht_home": -0.50, "ht_away": -0.50, "ht_under_05": 0.70},
+        correlations={"draw": 0.50, "ht_home": -0.50, "ht_away": -0.50, "ht_under_0.5": 0.70},
     ),
 
     MarketType.HT_AWAY_WIN: MarketMetadata(
@@ -1665,7 +1665,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
     ),
 
     MarketType.HT_OVER_05: MarketMetadata(
-        canonical_name="ht_over_05",
+        canonical_name="ht_over_0.5",
         aliases=["ht_o05", "halftime_over_0.5", "ht_over_0_5"],
         category=MarketCategory.TIMING,
         payoff_type=PayoffType.BINARY,
@@ -1680,11 +1680,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"over_15": 0.70, "btts_yes": 0.55, "ht_under_05": -1.0, "ht_over_15": 0.85},
+        correlations={"over_1.5": 0.70, "btts_yes": 0.55, "ht_under_0.5": -1.0, "ht_over_1.5": 0.85},
     ),
 
     MarketType.HT_UNDER_05: MarketMetadata(
-        canonical_name="ht_under_05",
+        canonical_name="ht_under_0.5",
         aliases=["ht_u05", "halftime_under_0.5", "ht_under_0_5", "no_goal_first_half"],
         category=MarketCategory.TIMING,
         payoff_type=PayoffType.BINARY,
@@ -1699,11 +1699,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"ht_draw": 0.70, "ht_over_05": -1.0},
+        correlations={"ht_draw": 0.70, "ht_over_0.5": -1.0},
     ),
 
     MarketType.HT_OVER_15: MarketMetadata(
-        canonical_name="ht_over_15",
+        canonical_name="ht_over_1.5",
         aliases=["ht_o15", "halftime_over_1.5", "ht_over_1_5"],
         category=MarketCategory.TIMING,
         payoff_type=PayoffType.BINARY,
@@ -1718,7 +1718,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"ht_over_05": 0.95, "over_25": 0.65, "ht_btts_yes": 0.75},
+        correlations={"ht_over_0.5": 0.95, "over_2.5": 0.65, "ht_btts_yes": 0.75},
     ),
 
     MarketType.HT_BTTS_YES: MarketMetadata(
@@ -1737,7 +1737,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.035,
-        correlations={"btts_yes": 0.70, "over_15": 0.60, "ht_btts_no": -1.0},
+        correlations={"btts_yes": 0.70, "over_1.5": 0.60, "ht_btts_no": -1.0},
     ),
 
     MarketType.HT_BTTS_NO: MarketMetadata(
@@ -1855,7 +1855,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.035,
         min_edge=0.04,
-        correlations={"draw": 0.80, "ht_draw": 0.85, "under_25": 0.55},
+        correlations={"draw": 0.80, "ht_draw": 0.85, "under_2.5": 0.55},
     ),
 
     MarketType.DR_X_2: MarketMetadata(
@@ -1939,7 +1939,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
     # ===========================================================================
 
     MarketType.AH_HOME_M05: MarketMetadata(
-        canonical_name="ah_home_m05",
+        canonical_name="ah_home_-0.5",
         aliases=["ah_-0.5_home", "asian_home_m05", "ah_home_minus_05", "ah_home_-0.5"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
@@ -1956,11 +1956,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.HIGH,
         liquidity_tax=0.015,
         min_edge=0.02,
-        correlations={"home": 0.95, "dnb_home": 0.85, "ah_home_m10": 0.80},
+        correlations={"home": 0.95, "dnb_home": 0.85, "ah_home_-1.0": 0.80},
     ),
 
     MarketType.AH_HOME_M10: MarketMetadata(
-        canonical_name="ah_home_m10",
+        canonical_name="ah_home_-1.0",
         aliases=["ah_-1.0_home", "asian_home_m10", "ah_home_minus_10", "ah_home_-1.0"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
@@ -1975,11 +1975,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.HIGH,
         liquidity_tax=0.015,
         min_edge=0.02,
-        correlations={"ah_home_m05": 0.90, "home": 0.85, "ah_home_m15": 0.80},
+        correlations={"ah_home_-0.5": 0.90, "home": 0.85, "ah_home_-1.5": 0.80},
     ),
 
     MarketType.AH_HOME_M15: MarketMetadata(
-        canonical_name="ah_home_m15",
+        canonical_name="ah_home_-1.5",
         aliases=["ah_-1.5_home", "asian_home_m15", "ah_home_minus_15", "ah_home_-1.5"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
@@ -1994,11 +1994,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"ah_home_m10": 0.90, "home": 0.75, "ah_home_m20": 0.80},
+        correlations={"ah_home_-1.0": 0.90, "home": 0.75, "ah_home_-2.0": 0.80},
     ),
 
     MarketType.AH_HOME_M20: MarketMetadata(
-        canonical_name="ah_home_m20",
+        canonical_name="ah_home_-2.0",
         aliases=["ah_-2.0_home", "asian_home_m20", "ah_home_minus_20", "ah_home_-2.0"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
@@ -2013,11 +2013,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"ah_home_m15": 0.90, "home": 0.65},
+        correlations={"ah_home_-1.5": 0.90, "home": 0.65},
     ),
 
     MarketType.AH_AWAY_P05: MarketMetadata(
-        canonical_name="ah_away_p05",
+        canonical_name="ah_away_+0.5",
         aliases=["ah_+0.5_away", "asian_away_p05", "ah_away_plus_05", "ah_away_+0.5"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
@@ -2034,11 +2034,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.HIGH,
         liquidity_tax=0.015,
         min_edge=0.02,
-        correlations={"dc_x2": 0.95, "away": 0.70, "draw": 0.60, "ah_away_p10": 0.80},
+        correlations={"dc_x2": 0.95, "away": 0.70, "draw": 0.60, "ah_away_+1.0": 0.80},
     ),
 
     MarketType.AH_AWAY_P10: MarketMetadata(
-        canonical_name="ah_away_p10",
+        canonical_name="ah_away_+1.0",
         aliases=["ah_+1.0_away", "asian_away_p10", "ah_away_plus_10", "ah_away_+1.0"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
@@ -2053,11 +2053,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.HIGH,
         liquidity_tax=0.015,
         min_edge=0.02,
-        correlations={"ah_away_p05": 0.90, "dc_x2": 0.85, "ah_away_p15": 0.80},
+        correlations={"ah_away_+0.5": 0.90, "dc_x2": 0.85, "ah_away_+1.5": 0.80},
     ),
 
     MarketType.AH_AWAY_P15: MarketMetadata(
-        canonical_name="ah_away_p15",
+        canonical_name="ah_away_+1.5",
         aliases=["ah_+1.5_away", "asian_away_p15", "ah_away_plus_15", "ah_away_+1.5"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
@@ -2072,11 +2072,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"ah_away_p10": 0.90, "ah_away_p20": 0.80},
+        correlations={"ah_away_+1.0": 0.90, "ah_away_+2.0": 0.80},
     ),
 
     MarketType.AH_AWAY_P20: MarketMetadata(
-        canonical_name="ah_away_p20",
+        canonical_name="ah_away_+2.0",
         aliases=["ah_+2.0_away", "asian_away_p20", "ah_away_plus_20", "ah_away_+2.0"],
         category=MarketCategory.HANDICAP,
         payoff_type=PayoffType.CONTINUOUS,
@@ -2091,7 +2091,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"ah_away_p15": 0.90},
+        correlations={"ah_away_+1.5": 0.90},
     ),
 
     # ===========================================================================
@@ -2114,7 +2114,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.05,
         min_edge=0.05,
-        correlations={"under_05": 0.99, "btts_no": 0.99, "draw": 0.30},
+        correlations={"under_0.5": 0.99, "btts_no": 0.99, "draw": 0.30},
     ),
 
     MarketType.CS_1_0: MarketMetadata(
@@ -2133,7 +2133,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.05,
         min_edge=0.05,
-        correlations={"home": 0.40, "under_15": 0.50, "btts_no": 0.50, "home_win_to_nil": 0.60},
+        correlations={"home": 0.40, "under_1.5": 0.50, "btts_no": 0.50, "home_win_to_nil": 0.60},
     ),
 
     MarketType.CS_0_1: MarketMetadata(
@@ -2152,7 +2152,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.05,
         min_edge=0.05,
-        correlations={"away": 0.40, "under_15": 0.50, "btts_no": 0.50, "away_win_to_nil": 0.60},
+        correlations={"away": 0.40, "under_1.5": 0.50, "btts_no": 0.50, "away_win_to_nil": 0.60},
     ),
 
     MarketType.CS_1_1: MarketMetadata(
@@ -2171,7 +2171,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.05,
         min_edge=0.05,
-        correlations={"btts_yes": 0.50, "draw": 0.35, "over_15": 0.50},
+        correlations={"btts_yes": 0.50, "draw": 0.35, "over_1.5": 0.50},
     ),
 
     MarketType.CS_2_0: MarketMetadata(
@@ -2190,7 +2190,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.05,
         min_edge=0.05,
-        correlations={"home": 0.50, "under_25": 0.50, "btts_no": 0.50, "home_win_to_nil": 0.70},
+        correlations={"home": 0.50, "under_2.5": 0.50, "btts_no": 0.50, "home_win_to_nil": 0.70},
     ),
 
     MarketType.CS_0_2: MarketMetadata(
@@ -2209,7 +2209,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.05,
         min_edge=0.05,
-        correlations={"away": 0.50, "under_25": 0.50, "btts_no": 0.50, "away_win_to_nil": 0.70},
+        correlations={"away": 0.50, "under_2.5": 0.50, "btts_no": 0.50, "away_win_to_nil": 0.70},
     ),
 
     MarketType.CS_2_1: MarketMetadata(
@@ -2228,7 +2228,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.05,
         min_edge=0.05,
-        correlations={"home": 0.45, "btts_yes": 0.50, "over_25": 0.50},
+        correlations={"home": 0.45, "btts_yes": 0.50, "over_2.5": 0.50},
     ),
 
     MarketType.CS_1_2: MarketMetadata(
@@ -2247,7 +2247,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.05,
         min_edge=0.05,
-        correlations={"away": 0.45, "btts_yes": 0.50, "over_25": 0.50},
+        correlations={"away": 0.45, "btts_yes": 0.50, "over_2.5": 0.50},
     ),
 
     MarketType.CS_2_2: MarketMetadata(
@@ -2266,7 +2266,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.EXOTIC,
         liquidity_tax=0.05,
         min_edge=0.06,
-        correlations={"btts_yes": 0.55, "draw": 0.40, "over_35": 0.50},
+        correlations={"btts_yes": 0.55, "draw": 0.40, "over_3.5": 0.50},
     ),
 
     MarketType.CS_3_0: MarketMetadata(
@@ -2285,7 +2285,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.EXOTIC,
         liquidity_tax=0.05,
         min_edge=0.06,
-        correlations={"home": 0.55, "over_25": 0.50, "btts_no": 0.50, "home_win_to_nil": 0.75},
+        correlations={"home": 0.55, "over_2.5": 0.50, "btts_no": 0.50, "home_win_to_nil": 0.75},
     ),
 
     MarketType.CS_0_3: MarketMetadata(
@@ -2304,7 +2304,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.EXOTIC,
         liquidity_tax=0.05,
         min_edge=0.06,
-        correlations={"away": 0.55, "over_25": 0.50, "btts_no": 0.50, "away_win_to_nil": 0.75},
+        correlations={"away": 0.55, "over_2.5": 0.50, "btts_no": 0.50, "away_win_to_nil": 0.75},
     ),
 
     MarketType.CS_3_1: MarketMetadata(
@@ -2323,7 +2323,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.EXOTIC,
         liquidity_tax=0.05,
         min_edge=0.06,
-        correlations={"home": 0.50, "btts_yes": 0.50, "over_35": 0.50},
+        correlations={"home": 0.50, "btts_yes": 0.50, "over_3.5": 0.50},
     ),
 
     MarketType.CS_1_3: MarketMetadata(
@@ -2342,7 +2342,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.EXOTIC,
         liquidity_tax=0.05,
         min_edge=0.06,
-        correlations={"away": 0.50, "btts_yes": 0.50, "over_35": 0.50},
+        correlations={"away": 0.50, "btts_yes": 0.50, "over_3.5": 0.50},
     ),
 
     # ===========================================================================
@@ -2365,7 +2365,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.05,
-        correlations={"over_15": 0.55, "goal_0_15": 0.40, "goal_31_45": 0.40},
+        correlations={"over_1.5": 0.55, "goal_0_15": 0.40, "goal_31_45": 0.40},
     ),
 
     MarketType.GOAL_31_45: MarketMetadata(
@@ -2384,7 +2384,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.05,
-        correlations={"over_15": 0.55, "goal_16_30": 0.40, "goal_46_60": 0.35},
+        correlations={"over_1.5": 0.55, "goal_16_30": 0.40, "goal_46_60": 0.35},
     ),
 
     MarketType.GOAL_46_60: MarketMetadata(
@@ -2403,7 +2403,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.05,
-        correlations={"over_15": 0.55, "goal_31_45": 0.35, "goal_61_75": 0.40},
+        correlations={"over_1.5": 0.55, "goal_31_45": 0.35, "goal_61_75": 0.40},
     ),
 
     MarketType.GOAL_61_75: MarketMetadata(
@@ -2422,7 +2422,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.025,
         min_edge=0.05,
-        correlations={"over_15": 0.55, "goal_46_60": 0.40, "goal_76_90": 0.45},
+        correlations={"over_1.5": 0.55, "goal_46_60": 0.40, "goal_76_90": 0.45},
     ),
 
     MarketType.NO_GOAL_FIRST_HALF: MarketMetadata(
@@ -2441,11 +2441,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"ht_under_05": 0.99, "ht_draw": 0.70, "under_25": 0.50},
+        correlations={"ht_under_0.5": 0.99, "ht_draw": 0.70, "under_2.5": 0.50},
     ),
 
     MarketType.FIRST_HALF_OVER_05: MarketMetadata(
-        canonical_name="first_half_over_05",
+        canonical_name="first_half_over_0.5",
         aliases=["fh_over_05", "1h_over_0.5"],
         category=MarketCategory.TIMING,
         payoff_type=PayoffType.BINARY,
@@ -2460,11 +2460,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"ht_over_05": 0.99, "over_15": 0.70, "first_half_over_15": 0.85},
+        correlations={"ht_over_0.5": 0.99, "over_1.5": 0.70, "first_half_over_1.5": 0.85},
     ),
 
     MarketType.FIRST_HALF_OVER_15: MarketMetadata(
-        canonical_name="first_half_over_15",
+        canonical_name="first_half_over_1.5",
         aliases=["fh_over_15", "1h_over_1.5"],
         category=MarketCategory.TIMING,
         payoff_type=PayoffType.BINARY,
@@ -2479,11 +2479,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"ht_over_15": 0.99, "first_half_over_05": 0.95, "over_25": 0.60},
+        correlations={"ht_over_1.5": 0.99, "first_half_over_0.5": 0.95, "over_2.5": 0.60},
     ),
 
     MarketType.SECOND_HALF_OVER_05: MarketMetadata(
-        canonical_name="second_half_over_05",
+        canonical_name="second_half_over_0.5",
         aliases=["sh_over_05", "2h_over_0.5"],
         category=MarketCategory.TIMING,
         payoff_type=PayoffType.BINARY,
@@ -2498,11 +2498,11 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"over_15": 0.65, "second_half_over_15": 0.85},
+        correlations={"over_1.5": 0.65, "second_half_over_1.5": 0.85},
     ),
 
     MarketType.SECOND_HALF_OVER_15: MarketMetadata(
-        canonical_name="second_half_over_15",
+        canonical_name="second_half_over_1.5",
         aliases=["sh_over_15", "2h_over_1.5"],
         category=MarketCategory.TIMING,
         payoff_type=PayoffType.BINARY,
@@ -2517,7 +2517,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.MEDIUM,
         liquidity_tax=0.02,
         min_edge=0.025,
-        correlations={"second_half_over_05": 0.95, "over_25": 0.55},
+        correlations={"second_half_over_0.5": 0.95, "over_2.5": 0.55},
     ),
 
     # ===========================================================================
@@ -2578,7 +2578,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.EXOTIC,
         liquidity_tax=0.10,
         min_edge=0.15,
-        correlations={"scorer_2plus": 0.90, "over_35": 0.60},
+        correlations={"scorer_2plus": 0.90, "over_3.5": 0.60},
     ),
 
     # ===========================================================================
@@ -2601,7 +2601,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.EXOTIC,
         liquidity_tax=0.05,
         min_edge=0.08,
-        correlations={"corner_goal": 0.70, "over_15": 0.50},
+        correlations={"corner_goal": 0.70, "over_1.5": 0.50},
     ),
 
     MarketType.OWN_GOAL: MarketMetadata(
@@ -2620,7 +2620,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.EXOTIC,
         liquidity_tax=0.08,
         min_edge=0.10,
-        correlations={"over_15": 0.30},
+        correlations={"over_1.5": 0.30},
     ),
 
     MarketType.OUTSIDE_BOX_GOAL: MarketMetadata(
@@ -2639,7 +2639,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.EXOTIC,
         liquidity_tax=0.08,
         min_edge=0.10,
-        correlations={"over_15": 0.40},
+        correlations={"over_1.5": 0.40},
     ),
 
     MarketType.SHOTS_ON_TARGET_OVER: MarketMetadata(
@@ -2658,7 +2658,7 @@ MARKET_REGISTRY: Dict[MarketType, MarketMetadata] = {
         liquidity_tier=LiquidityTier.LOW,
         liquidity_tax=0.03,
         min_edge=0.04,
-        correlations={"over_25": 0.50, "corners_over_95": 0.40},
+        correlations={"over_2.5": 0.50, "corners_over_9.5": 0.40},
     ),
 }
 
