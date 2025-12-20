@@ -2723,8 +2723,9 @@ def normalize_market(market_name: str) -> Optional[MarketType]:
     """
     import re
 
-    # Normaliser: lowercase, remplacer _ par rien entre chiffres
+    # Normaliser: lowercase, remplacer tirets/espaces, puis digits
     normalized = market_name.lower().strip()
+    normalized = re.sub(r'[-\s]+', '_', normalized)  # tirets/espaces -> underscores
     normalized = re.sub(r'_(\d)_(\d)', r'_\1\2', normalized)  # over_2_5 -> over_25
     normalized = re.sub(r'\.', '', normalized)  # over_2.5 -> over_25
 
