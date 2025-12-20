@@ -2998,8 +2998,14 @@ def _build_alias_registry() -> Dict[str, MarketType]:
 
     registry = {}
     for market_type, metadata in MARKET_REGISTRY.items():
-        # Ajouter le canonical_name (deja normalise)
+        # Ajouter le canonical_name ORIGINAL
         registry[metadata.canonical_name] = market_type
+
+        # Ajouter le canonical_name NORMALISÉ (si différent)
+        normalized_canonical = _normalize_alias(metadata.canonical_name)
+        if normalized_canonical != metadata.canonical_name:
+            registry[normalized_canonical] = market_type
+
         # Ajouter tous les aliases (normalises)
         for alias in metadata.aliases:
             normalized_alias = _normalize_alias(alias)
