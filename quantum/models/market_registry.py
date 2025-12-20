@@ -3180,6 +3180,86 @@ def validate_registry() -> Dict[str, List[str]]:
 
 
 # ===============================================================================
+#                         FONCTIONS UTILITAIRES CORRÉLATIONS
+# ===============================================================================
+
+def get_all_correlations(market_type: MarketType) -> Dict[str, Dict[str, float]]:
+    """
+    Retourne TOUTES les corrélations liées à un marché (sortantes ET entrantes).
+
+    ⚠️ ATTENTION ASYMÉTRIE MATHÉMATIQUE:
+    - outgoing: Ce que CE marché implique directement (coefficients définis)
+    - incoming: Ce qui implique CE marché (coefficients = sens INVERSE)
+
+    Les coefficients incoming sont les MÊMES que ceux définis dans le sens direct.
+    ILS NE REPRÉSENTENT PAS P(A|B) dans le sens inverse!
+
+    Exemple:
+    - WIN_TO_NIL → HOME_WIN (0.85): "WTN implique fortement WIN"
+    - Mais HOME_WIN → WIN_TO_NIL n'est PAS 0.85!
+      (Arsenal peut gagner 3-1, donc WIN sans WTN)
+
+    L'asymétrie est une RÉALITÉ MATHÉMATIQUE (inclusion d'ensembles),
+    pas un bug à corriger.
+
+    Args:
+        market_type: Le MarketType à analyser
+
+    Returns:
+        Dict avec 'outgoing' et 'incoming', chacun mappant target → coefficient
+
+    Example:
+        >>> result = get_all_correlations(MarketType.HOME_WIN)
+        >>> result['outgoing']  # Ce que HOME_WIN implique
+        {'DC_1X': 0.7, 'DNB_HOME': 0.85, ...}
+        >>> result['incoming']  # Ce qui implique HOME_WIN
+        {'HOME_WIN_TO_NIL': 0.85, 'CS_1_0': 0.4, ...}
+    """
+    result = {'outgoing': {}, 'incoming': {}}
+
+    # 1. Corrélations SORTANTES (normalisées vers enum names)
+    meta = MARKET_REGISTRY.get(market_type)
+    if meta and meta.correlations:
+        for target_alias, weight in meta.correlations.items():
+            target_mt = normalize_market(target_alias)
+            if target_mt:
+                result['outgoing'][target_mt.name] = weight
+
+    # 2. Corrélations ENTRANTES (scan inverse)
+    for mt, m in MARKET_REGISTRY.items():
+        if mt == market_type:
+            continue
+        if m.correlations:
+            for target_name, weight in m.correlations.items():
+                target_mt = normalize_market(target_name)
+                if target_mt == market_type:
+                    result['incoming'][mt.name] = weight
+
+    return result
+
+
+def get_correlation_graph() -> Dict[str, Dict[str, float]]:
+    """
+    Retourne le graphe COMPLET des corrélations (toutes les relations).
+
+    Format: {source_name: {target_name: coefficient, ...}, ...}
+
+    Utile pour visualisation ou analyse du réseau de corrélations.
+    """
+    graph = {}
+
+    for mt, meta in MARKET_REGISTRY.items():
+        if meta.correlations:
+            graph[mt.name] = {}
+            for target_name, weight in meta.correlations.items():
+                target_mt = normalize_market(target_name)
+                if target_mt:
+                    graph[mt.name][target_mt.name] = weight
+
+    return graph
+
+
+# ===============================================================================
 #                              EXPORT
 # ===============================================================================
 
@@ -3206,4 +3286,7 @@ __all__ = [
     "get_liquidity_tax",
     "get_min_edge",
     "validate_registry",
+    # Correlation functions
+    "get_all_correlations",
+    "get_correlation_graph",
 ]
