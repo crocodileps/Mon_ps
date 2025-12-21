@@ -1,87 +1,83 @@
-# CURRENT TASK - SESSION #92 - MARKET REGISTRY COMPLET
+# CURRENT TASK - SESSION #100 - TEAM MARKET PROFILER V3 BUGFIX
 
-**Status**: COMPLETE
-**Date**: 2025-12-19
-**Derniere session**: #92 (Market Registry 106/106)
+**Status**: MISSION ACCOMPLIE
+**Date**: 2025-12-20
+**Dernière session**: #100 (Bugfix V3)
 
 ===============================================================================
 
-## SESSION #92 - CONFIGURATION COMPLETE MARKET_REGISTRY
+## CONTEXTE
 
-### OBJECTIF
-Configurer les 85 marchés manquants dans market_registry.py pour atteindre 106/106
+Suite à l'audit Hedge Fund de la session #99, 3 bugs critiques corrigés:
+- Bug 1: Double comptage système (UNION ALL)
+- Bug 2: Composite score biaisé (ROI au lieu de win_rate)
+- Bug 3: Seuils trop laxistes (85% en "bet")
 
-### RESULTATS
+===============================================================================
 
-| Metrique | Avant | Apres |
-|----------|-------|-------|
-| Marchés configurés | 21 | **106** |
-| normalize_market() coverage | ~20% | **100%** |
-| Tests normalize | N/A | **31/31** |
-| Erreurs validation | N/A | **0** |
+## CORRECTIONS APPLIQUÉES
 
-### MARCHÉS AJOUTÉS PAR CATÉGORIE
-
-| Catégorie | Ajoutés | Total |
-|-----------|---------|-------|
-| Goals Over/Under | 8 | 10 |
-| Team Goals | 6 | 8 |
-| BTTS Specials | 2 | 4 |
-| Corners | 7 | 7 |
-| Cards | 6 | 6 |
-| Half-Time | 8 | 8 |
-| HT/FT | 9 | 9 |
-| Asian Handicap | 8 | 8 |
-| Correct Score | 13 | 13 |
-| Timing | 9 | 11 |
-| Player Props | 3 | 5 |
-| Specials | 4 | 7 |
-
-### AMÉLIORATIONS
-
-1. **Normalisation cohérente** - `_build_alias_registry()` applique la même normalisation que `normalize_market()`
-2. **Aliases complets** - Chaque marché a 3-5 aliases couvrant les formats courants
-3. **Corrélations mathématiques** - Tous les marchés ont des corrélations cohérentes (opposés = -1.0)
-4. **Liquidité calibrée** - LiquidityTier et min_edge appropriés par catégorie
-
-### TESTS VALIDES
-
-```
-normalize_market('over_0.5') -> over_05 ✓
-normalize_market('corners_over_8.5') -> corners_over_85 ✓
-normalize_market('ah_-0.5_home') -> ah_home_m05 ✓
-normalize_market('1-1') -> cs_1_1 ✓
-normalize_market('btts') -> btts_yes ✓
+### Bug 1 - Double comptage système
+```python
+def extract_system_data():
+    # DÉSACTIVÉ - retourne {}
+    # Données insuffisantes + risque double comptage
 ```
 
-### FICHIER MODIFIÉ
+### Bug 2 - Composite score
+```python
+# Basé sur team_win market win_rate
+# 60%+ → 75-100, 40-60% → 50-75, etc.
+```
 
-| Fichier | Taille | Description |
-|---------|--------|-------------|
-| `quantum/models/market_registry.py` | ~90KB | 106 MarketMetadata complets |
-
-===============================================================================
-
-## HISTORIQUE SESSIONS
-
-| Date | Session | Description |
-|------|---------|-------------|
-| 2025-12-19 | #92 | Market Registry 106/106 COMPLET |
-| 2025-12-19 | #91 | Market Registry ADN-Centric + Bug fix BTTS |
-| 2025-12-19 | #90 | Fix Real Sociedad (alias faux supprime) |
-| 2025-12-19 | #89 | Migration mappings code vers DB (perfection) |
-| 2025-12-19 | #88 | Couverture maximisee 73.1% + fallbacks |
+### Bug 3 - Seuils recommandation
+```python
+# win_rate < 20% → strong_avoid
+# win_rate < 30% → avoid
+# composite >= 75 ET win_rate >= 55% → strong_bet
+# composite >= 60 ET win_rate >= 45% → bet
+```
 
 ===============================================================================
 
-## PROCHAINES ETAPES
+## RÉSULTATS
 
-1. **Intégration**: Connecter market_registry avec le système de trading
-2. **Synthèse DNA**: Implémenter les formules pour chaque catégorie
-3. **CLV Pipeline**: Utiliser le registry pour calculer CLV pondéré
+### Distribution Recommandations
+| Action | Count | % |
+|--------|-------|---|
+| strong_avoid | 64 | 21.5% |
+| avoid | 73 | 24.6% |
+| wait | 59 | 19.9% |
+| bet | 44 | 14.8% |
+| strong_bet | 57 | 19.2% |
+
+### Distribution Scores
+| Range | Count | % |
+|-------|-------|---|
+| 80-100 | 34 | 11.4% |
+| 60-79 | 67 | 22.6% |
+| 40-59 | 65 | 21.9% |
+| 20-39 | 73 | 24.6% |
+| 0-19 | 58 | 19.5% |
 
 ===============================================================================
 
-**Last Update**: 2025-12-19 22:00
-**Status**: COMPLETE
-**Next Action**: Prochaine tâche Mya
+## FICHIERS MODIFIÉS
+
+| Fichier | Action |
+|---------|--------|
+| `backend/ml/profilers/team_market_profiler_v3.py` | MODIFIÉ |
+| `backend/ml/profilers/team_market_profiler_v3.py.backup_20251220_1755` | CRÉÉ |
+
+===============================================================================
+
+## NEXT STEPS (OPTIONNEL)
+
+1. [ ] Ajouter colonne target_team à tracking_clv_picks
+2. [ ] Réactiver données système quand 3+ mois disponibles
+3. [ ] Ajouter check V3 à Guardian (fraîcheur <48h)
+
+===============================================================================
+
+**Last Update**: 2025-12-20 17:58
+**Status**: V3 CORRIGÉE - Prochaine exécution 05h00
