@@ -170,6 +170,16 @@ class HybridDNALoader:
             merged["league"] = db_data.get("league")
             merged["current_style"] = db_data.get("current_style")
             merged["team_archetype"] = db_data.get("team_archetype")
+            merged["tier_rank"] = db_data.get("tier_rank")
+            merged["style_confidence"] = db_data.get("style_confidence")
+            merged["unlucky_pct"] = db_data.get("unlucky_pct")
+            merged["team_id"] = db_data.get("team_id")
+            merged["avg_clv"] = db_data.get("avg_clv")
+            merged["dna_fingerprint"] = db_data.get("dna_fingerprint")
+            merged["season"] = db_data.get("season")
+            merged["created_at"] = str(db_data.get("created_at")) if db_data.get("created_at") else None
+            merged["updated_at"] = str(db_data.get("updated_at")) if db_data.get("updated_at") else None
+
 
             # DNA vectors from DB
             merged["market_dna_db"] = db_data.get("market_dna", {})
