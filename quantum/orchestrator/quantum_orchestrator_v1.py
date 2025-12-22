@@ -63,9 +63,9 @@ class Signal(Enum):
 
 class Conviction(Enum):
     """Niveau de conviction basé sur le consensus"""
-    MAXIMUM = "MAXIMUM"      # 6/6 modèles
-    STRONG = "STRONG"        # 5/6 modèles
-    MODERATE = "MODERATE"    # 4/6 modèles
+    MAXIMUM = "MAXIMUM"      # 7/7 modèles
+    STRONG = "STRONG"        # 6/7 modèles
+    MODERATE = "MODERATE"    # 5/7 modèles
     WEAK = "WEAK"            # <4/6 modèles (SKIP)
 
 class MomentumTrend(Enum):
@@ -1344,16 +1344,16 @@ class WeightedConsensusEngine:
         consensus_count = sum(1 for v in votes if v.is_positive)
         
         # Déterminer la conviction
-        if consensus_count == 6:
+        if consensus_count == 7:
             conviction = Conviction.MAXIMUM
-        elif consensus_count >= 5:
+        elif consensus_count >= 6:
             conviction = Conviction.STRONG
-        elif consensus_count >= 4:
+        elif consensus_count >= 5:
             conviction = Conviction.MODERATE
         else:
             conviction = Conviction.WEAK
         
-        consensus_reached = consensus_score >= self.CONSENSUS_THRESHOLD and consensus_count >= 4
+        consensus_reached = consensus_score >= self.CONSENSUS_THRESHOLD and consensus_count >= 5
         
         return consensus_reached, consensus_score, conviction, vote_details
 
