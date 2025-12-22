@@ -505,6 +505,55 @@ class DNAConverterV2:
         )
     
     # ═══════════════════════════════════════════════════════════════════════════
+    # VECTEUR 12: MICROSTRATEGY DNA
+    # ═══════════════════════════════════════════════════════════════════════════
+
+    def _convert_microstrategy_dna(self, merged: Dict, team_name: str = None) -> 'MicroStrategyDNA':
+        """
+        Convertit les données MicroStrategy depuis le loader dédié.
+        
+        Note: Les données complètes (126 marchés) sont dans microstrategy_dna.json
+        Cette méthode crée un résumé pour la dataclass.
+        """
+        from quantum.loaders.microstrategy_loader import get_microstrategy_loader, MicroStrategyDNA as LoaderMicroDNA
+        from quantum.orchestrator.dataclasses_v2 import MicroStrategyDNA
+        
+        try:
+            loader = get_microstrategy_loader()
+            name = team_name or merged.get('team_name', 'Unknown')
+            micro_profile = loader.get_team(name)
+            
+            if not micro_profile:
+                logger.warning(f"No MicroStrategy profile found for {name}")
+                return MicroStrategyDNA(has_full_profile=False)
+            
+            # Extraire les résumés
+            home_specs = micro_profile.home_specialists
+            away_specs = micro_profile.away_specialists
+            
+            return MicroStrategyDNA(
+                sample_size=micro_profile.sample_size,
+                home_matches=micro_profile.home_matches,
+                away_matches=micro_profile.away_matches,
+                data_quality=min(1.0, micro_profile.sample_size / 20),
+                last_updated=micro_profile.last_updated,
+                home_specialists_count=len(home_specs),
+                away_specialists_count=len(away_specs),
+                universal_specialists_count=0,  # Calculé si besoin
+                top_home_market=home_specs[0]['market'] if home_specs else None,
+                top_home_edge=home_specs[0]['edge'] if home_specs else 0.0,
+                top_away_market=away_specs[0]['market'] if away_specs else None,
+                top_away_edge=away_specs[0]['edge'] if away_specs else 0.0,
+                fade_home_count=len(micro_profile.fade_markets_home),
+                fade_away_count=len(micro_profile.fade_markets_away),
+                has_full_profile=True
+            )
+            
+        except Exception as e:
+            logger.error(f"Error converting MicroStrategy DNA: {e}")
+            return MicroStrategyDNA(has_full_profile=False)
+
+    # ═══════════════════════════════════════════════════════════════════════════
     # MÉTHODE PRINCIPALE: convert
     # ═══════════════════════════════════════════════════════════════════════════
     
@@ -517,7 +566,7 @@ class DNAConverterV2:
             team_name: Nom de l'équipe (optionnel)
         
         Returns:
-            TeamDNA avec les 11 vecteurs peuplés
+            TeamDNA avec les 12 vecteurs peuplés
         """
         name = team_name or merged.get('team_name', 'Unknown')
         
@@ -542,6 +591,7 @@ class DNAConverterV2:
             physical=self._convert_physical_dna(merged),
             luck=self._convert_luck_dna(merged),
             chameleon=self._convert_chameleon_dna(merged),
+            microstrategy=self._convert_microstrategy_dna(merged, name),
             dna_fingerprint=merged.get('dna_fingerprint'),
             created_at=merged.get('created_at'),
             updated_at=merged.get('updated_at')

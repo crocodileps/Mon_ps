@@ -14,7 +14,7 @@
 ╚═══════════════════════════════════════════════════════════════════════════════╝
 """
 
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from typing import Dict, List, Optional, Any
 
 
@@ -437,15 +437,62 @@ class ChameleonDNA:
     shot_accuracy: float
 
 
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# VECTEUR 12: MICROSTRATEGY DNA (126 marchés × HOME/AWAY)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@dataclass
+class MicroStrategyDNA:
+    """
+    Vecteur 12: MicroStrategy DNA
+    Source: microstrategy_dna.json (126 marchés × HOME/AWAY = 252 micro-stratégies)
+    Refresh: Cron nocturne 03h00
+    ROI Attendu: +15-25%
+    """
+    # Métadonnées
+    sample_size: int = 0
+    home_matches: int = 0
+    away_matches: int = 0
+    data_quality: float = 0.0
+    last_updated: Optional[str] = None
+    
+    # Spécialistes (edge >= 20%)
+    home_specialists_count: int = 0
+    away_specialists_count: int = 0
+    universal_specialists_count: int = 0
+    
+    # Top edges
+    top_home_market: Optional[str] = None
+    top_home_edge: float = 0.0
+    top_away_market: Optional[str] = None
+    top_away_edge: float = 0.0
+    
+    # Fade markets (edge <= -15%)
+    fade_home_count: int = 0
+    fade_away_count: int = 0
+    
+    # Never/Always happens
+    never_happens_home: List[str] = field(default_factory=list)
+    never_happens_away: List[str] = field(default_factory=list)
+    always_happens_home: List[str] = field(default_factory=list)
+    always_happens_away: List[str] = field(default_factory=list)
+    
+    # Référence au loader pour données détaillées
+    # (les 126 marchés complets sont dans microstrategy_dna.json)
+    has_full_profile: bool = False
+
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # STRUCTURE PRINCIPALE: TeamDNA V2
 # ═══════════════════════════════════════════════════════════════════════════════
 @dataclass
 class TeamDNA:
     """
-    Structure complète des 11 vecteurs DNA V2
+    Structure complète des 12 vecteurs DNA V2
     
-    137 mesures uniques (vs 58 avant)
+    168+ mesures uniques (vs 58 avant)
     100% données réelles, 0% génériques
     """
     # Identifiants
@@ -459,7 +506,7 @@ class TeamDNA:
     style_confidence: int = 50
     unlucky_pct: float = 0.0
     
-    # Les 11 vecteurs DNA
+    # Les 12 vecteurs DNA
     market: Optional[MarketDNA] = None
     context: Optional[ContextDNA] = None
     risk: Optional[RiskDNA] = None
@@ -471,6 +518,7 @@ class TeamDNA:
     physical: Optional[PhysicalDNA] = None
     luck: Optional[LuckDNA] = None
     chameleon: Optional[ChameleonDNA] = None
+    microstrategy: Optional[MicroStrategyDNA] = None  # 12ème vecteur
     
     # Métadonnées
     dna_fingerprint: Optional[str] = None
@@ -483,7 +531,7 @@ class TeamDNA:
     
     def get_total_metrics(self) -> int:
         """Retourne le nombre total de métriques"""
-        return 137
+        return 168
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -491,5 +539,5 @@ class TeamDNA:
 # ═══════════════════════════════════════════════════════════════════════════════
 DATACLASSES_VERSION = "2.0"
 DATACLASSES_PHILOSOPHY = "LES DONNÉES DICTENT LE PROFIL, PAS LA RÉPUTATION"
-TOTAL_METRICS = 137
+TOTAL_METRICS = 168
 GENERIC_FIELDS = 0

@@ -35,6 +35,19 @@ except ImportError:
     MICROSTRATEGY_AVAILABLE = False
     MicroStrategyDNA = None
 
+# Import HybridDNALoader + DNAConverterV2 (connexion vraies données)
+try:
+    from quantum.orchestrator.hybrid_dna_loader import HybridDNALoader
+    from quantum.orchestrator.dna_converter_v2 import DNAConverterV2
+    from quantum.orchestrator.dataclasses_v2 import TeamDNA as TeamDNAV2
+    HYBRID_DNA_AVAILABLE = True
+except ImportError as e:
+    HYBRID_DNA_AVAILABLE = False
+    HybridDNALoader = None
+    DNAConverterV2 = None
+    TeamDNAV2 = None
+    print(f"⚠️ HybridDNA not available: {e}")
+
 logger = logging.getLogger("QuantumOrchestrator")
 
 
@@ -1971,92 +1984,282 @@ class QuantumOrchestrator:
     
     async def load_team_dna(self, team_name: str) -> TeamDNA:
         """
-        Charge les 11 vecteurs DNA d'une équipe
-        En production: query quantum.team_profiles
+        Charge les 12 vecteurs DNA d'une équipe via HybridDNALoader + DNAConverterV2
+        
+        Pipeline:
+        1. HybridDNALoader charge les données (DB + JSON fusionnés)
+        2. DNAConverterV2 convertit Dict → TeamDNA V2
+        3. Bridge adapte V2 → dataclasses locales
+        4. Fallback sur template si échec
         """
-        # Template - en production, query la DB
+        # Essayer le vrai pipeline
+        if HYBRID_DNA_AVAILABLE:
+            try:
+                # Charger via HybridDNALoader
+                loader = HybridDNALoader()
+                await loader.initialize()
+                
+                raw_data = await loader.load_team_dna(team_name)
+                
+                if raw_data and raw_data.get('merged'):
+                    merged = raw_data['merged']
+                    
+                    # Convertir avec DNAConverterV2
+                    converter = DNAConverterV2()
+                    team_dna_v2 = converter.convert(merged, team_name)
+                    
+                    # Bridge: Adapter V2 → dataclasses locales
+                    logger.info(f"✅ Loaded REAL DNA for {team_name} via HybridDNALoader")
+                    
+                    return self._bridge_dna_v2_to_local(team_dna_v2, team_name)
+                    
+            except Exception as e:
+                logger.warning(f"⚠️ HybridDNALoader failed for {team_name}: {e}")
+                logger.warning("Falling back to template data")
+        
+        # Fallback: Template data (ancien comportement)
+        logger.info(f"📋 Using TEMPLATE DNA for {team_name} (no real data)")
+        return self._get_template_dna(team_name)
+    
+    def _bridge_dna_v2_to_local(self, dna_v2, team_name: str) -> TeamDNA:
+        """
+        Bridge: Convertit TeamDNA V2 (168+ métriques) → TeamDNA local (simplifié)
+        Mappings corrigés pour dataclasses_v2.py
+        """
+        # Tier mapping: tier_rank (1-100) → tier string
+        tier_rank = getattr(dna_v2, 'tier_rank', 50)
+        if tier_rank >= 80:
+            tier = "GOLD"
+        elif tier_rank >= 50:
+            tier = "SILVER"
+        else:
+            tier = "BRONZE"
+        
+        # Market DNA - MAPPINGS CORRIGÉS
+        market_v2 = getattr(dna_v2, 'market', None)
+        if market_v2:
+            # Dériver best_strategy depuis les spécialistes
+            if getattr(market_v2, 'over_specialist', False):
+                best_strategy = "OVER_SPECIALIST"
+            elif getattr(market_v2, 'under_specialist', False):
+                best_strategy = "UNDER_SPECIALIST"
+            elif getattr(market_v2, 'btts_yes_specialist', False):
+                best_strategy = "BTTS_YES_SPECIALIST"
+            elif getattr(market_v2, 'btts_no_specialist', False):
+                best_strategy = "BTTS_NO_SPECIALIST"
+            else:
+                best_strategy = "BALANCED"
+            
+            # Extraire les noms de marchés depuis exploit_markets (liste de dicts)
+            exploit_list = getattr(market_v2, 'exploit_markets', []) or []
+            best_markets = [m.get('market', m) if isinstance(m, dict) else str(m) for m in exploit_list[:5]]
+            
+            avoid_list = getattr(market_v2, 'avoid_markets', []) or []
+            blacklisted = [m.get('market', m) if isinstance(m, dict) else str(m) for m in avoid_list[:5]]
+            
+            market = MarketDNA(
+                best_strategy=best_strategy,
+                best_strategy_roi=getattr(market_v2, 'avg_edge', 0.0) * 100,  # Convertir en %
+                best_strategy_wr=getattr(market_v2, 'win_rate', 50.0),
+                best_strategy_n=getattr(market_v2, 'sample_size', 0),
+                best_strategy_profit=getattr(market_v2, 'total_pnl', 0.0),
+                best_markets=best_markets,
+                blacklisted_markets=blacklisted
+            )
+        else:
+            market = self._get_template_dna(team_name).market
+        
+        # Context DNA
+        context_v2 = getattr(dna_v2, 'context', None)
+        context = ContextDNA(
+            home_strength=getattr(context_v2, 'home_strength', 50.0) if context_v2 else 50.0,
+            away_strength=getattr(context_v2, 'away_strength', 50.0) if context_v2 else 50.0,
+            home_wr=getattr(context_v2, 'home_win_rate', 0.5) if context_v2 else 0.5,
+            away_wr=getattr(context_v2, 'away_win_rate', 0.5) if context_v2 else 0.5,
+            home_beast=getattr(context_v2, 'home_strength', 50.0) > 70 if context_v2 else False,
+            differential=getattr(context_v2, 'home_strength', 50.0) - getattr(context_v2, 'away_strength', 50.0) if context_v2 else 0.0
+        ) if context_v2 else self._get_template_dna(team_name).context
+        
+        # Risk DNA
+        risk_v2 = getattr(dna_v2, 'risk', None)
+        risk = RiskDNA(
+            variance=getattr(risk_v2, 'variance', 0.5) if risk_v2 else 0.5,
+            offensive_variance=getattr(risk_v2, 'offensive_variance', 0.5) if risk_v2 else 0.5,
+            stake_modifier=getattr(risk_v2, 'stake_modifier', 1.0) if risk_v2 else 1.0,
+            max_stake_tier=getattr(risk_v2, 'max_stake_tier', 'TIER_2') if risk_v2 else 'TIER_2',
+            kelly_fraction=getattr(risk_v2, 'kelly_fraction', 0.15) if risk_v2 else 0.15
+        ) if risk_v2 else self._get_template_dna(team_name).risk
+        
+        # Temporal DNA
+        temporal_v2 = getattr(dna_v2, 'temporal', None)
+        temporal = TemporalDNA(
+            diesel_factor=getattr(temporal_v2, 'diesel_factor', 0.5) if temporal_v2 else 0.5,
+            sprinter_factor=getattr(temporal_v2, 'fast_starter', 0.5) if temporal_v2 else 0.5,
+            clutch_factor=getattr(temporal_v2, 'clutch_factor', 0.5) if temporal_v2 else 0.5,
+            best_scoring_period=getattr(temporal_v2, 'best_period', '45-60') if temporal_v2 else '45-60',
+            late_game_killer=getattr(temporal_v2, 'diesel_factor', 0.5) > 0.6 if temporal_v2 else False,
+            periods=getattr(temporal_v2, 'period_distribution', {}) if temporal_v2 else {}
+        ) if temporal_v2 else self._get_template_dna(team_name).temporal
+        
+        # Nemesis DNA
+        nemesis_v2 = getattr(dna_v2, 'nemesis', None)
+        nemesis = NemesisDNA(
+            style_primary=getattr(nemesis_v2, 'style_primary', 'BALANCED') if nemesis_v2 else 'BALANCED',
+            verticality=getattr(nemesis_v2, 'verticality', 50.0) if nemesis_v2 else 50.0,
+            weaknesses=getattr(nemesis_v2, 'weaknesses', []) if nemesis_v2 else [],
+            prey_teams=getattr(nemesis_v2, 'prey_teams', []) if nemesis_v2 else [],
+            nemesis_teams=getattr(nemesis_v2, 'nemesis_teams', []) if nemesis_v2 else []
+        ) if nemesis_v2 else self._get_template_dna(team_name).nemesis
+        
+        # Psyche DNA
+        psyche_v2 = getattr(dna_v2, 'psyche', None)
+        psyche = PsycheDNA(
+            mentality=getattr(psyche_v2, 'mentality', 'BALANCED') if psyche_v2 else 'BALANCED',
+            killer_instinct=getattr(psyche_v2, 'killer_instinct', 0.5) if psyche_v2 else 0.5,
+            resilience_index=getattr(psyche_v2, 'resilience_index', 50.0) if psyche_v2 else 50.0,
+            collapse_rate=getattr(psyche_v2, 'collapse_rate', 0.1) if psyche_v2 else 0.1,
+            panic_factor=getattr(psyche_v2, 'panic_factor', 0.1) if psyche_v2 else 0.1
+        ) if psyche_v2 else self._get_template_dna(team_name).psyche
+        
+        # Sentiment DNA
+        sentiment_v2 = getattr(dna_v2, 'sentiment', None)
+        sentiment = SentimentDNA(
+            public_team=getattr(sentiment_v2, 'public_team', False) if sentiment_v2 else False,
+            brand_premium=getattr(sentiment_v2, 'brand_premium', 0.0) if sentiment_v2 else 0.0,
+            avg_clv=getattr(sentiment_v2, 'avg_clv', 0.0) if sentiment_v2 else 0.0,
+            positive_clv_rate=getattr(sentiment_v2, 'positive_clv_rate', 0.5) if sentiment_v2 else 0.5
+        ) if sentiment_v2 else self._get_template_dna(team_name).sentiment
+        
+        # Roster DNA
+        roster_v2 = getattr(dna_v2, 'roster', None)
+        roster = RosterDNA(
+            mvp_dependency=getattr(roster_v2, 'mvp_dependency', 0.3) if roster_v2 else 0.3,
+            bench_impact=getattr(roster_v2, 'bench_impact', 5.0) if roster_v2 else 5.0,
+            keeper_status=getattr(roster_v2, 'keeper_status', 'AVERAGE') if roster_v2 else 'AVERAGE',
+            squad_depth=getattr(roster_v2, 'squad_depth', 5.0) if roster_v2 else 5.0
+        ) if roster_v2 else self._get_template_dna(team_name).roster
+        
+        # Physical DNA
+        physical_v2 = getattr(dna_v2, 'physical', None)
+        physical = PhysicalDNA(
+            pressing_decay=getattr(physical_v2, 'pressing_decay', 0.2) if physical_v2 else 0.2,
+            late_game_threat=getattr(physical_v2, 'late_game_threat', 'MEDIUM') if physical_v2 else 'MEDIUM',
+            intensity_60_plus=getattr(physical_v2, 'intensity_60_plus', 0.5) if physical_v2 else 0.5,
+            recovery_rate=getattr(physical_v2, 'recovery_rate', 0.5) if physical_v2 else 0.5
+        ) if physical_v2 else self._get_template_dna(team_name).physical
+        
+        # Luck DNA - MAPPINGS CORRIGÉS
+        luck_v2 = getattr(dna_v2, 'luck', None)
+        if luck_v2:
+            total_luck = getattr(luck_v2, 'total_luck', 0.0)
+            xpoints_delta = getattr(luck_v2, 'xpoints_delta', 0.0)
+            unlucky_pct = getattr(dna_v2, 'unlucky_pct', 0.0)
+            
+            # Dériver luck_profile depuis total_luck
+            if total_luck > 2:
+                luck_profile = "LUCKY"
+            elif total_luck < -2:
+                luck_profile = "UNLUCKY"
+            else:
+                luck_profile = "NEUTRAL"
+            
+            # Dériver regression_direction
+            if total_luck > 2:
+                regression_direction = "DOWN"
+            elif total_luck < -2:
+                regression_direction = "UP"
+            else:
+                regression_direction = "STABLE"
+            
+            luck = LuckDNA(
+                xpoints=0.0,  # Non disponible directement
+                actual_points=0.0,  # Non disponible directement
+                xpoints_delta=xpoints_delta,
+                luck_profile=luck_profile,
+                regression_direction=regression_direction,
+                regression_magnitude=abs(total_luck) * 10
+            )
+        else:
+            luck = self._get_template_dna(team_name).luck
+        
+        # Chameleon DNA
+        chameleon_v2 = getattr(dna_v2, 'chameleon', None)
+        chameleon = ChameleonDNA(
+            adaptability_index=getattr(chameleon_v2, 'adaptability_index', 50.0) if chameleon_v2 else 50.0,
+            comeback_ability=getattr(chameleon_v2, 'comeback_ability', 0.0) if chameleon_v2 else 0.0,
+            comeback_rate=getattr(chameleon_v2, 'comeback_ability', 0.0) / 100 if chameleon_v2 else 0.0,
+            tactical_flexibility=getattr(chameleon_v2, 'tempo_flexibility', 50.0) if chameleon_v2 else 50.0,
+            formations_used=3,  # Non disponible dans V2
+            halftime_adjustment_success=0.5  # Non disponible dans V2
+        ) if chameleon_v2 else self._get_template_dna(team_name).chameleon
+        
+        return TeamDNA(
+            team_name=team_name,
+            team_id=str(getattr(dna_v2, 'team_id', '')) if dna_v2 else None,
+            tier=tier,
+            market=market,
+            context=context,
+            risk=risk,
+            temporal=temporal,
+            nemesis=nemesis,
+            psyche=psyche,
+            sentiment=sentiment,
+            roster=roster,
+            physical=physical,
+            luck=luck,
+            chameleon=chameleon
+        )
+    
+    def _get_template_dna(self, team_name: str) -> TeamDNA:
+        """Template DNA de fallback (ancien comportement hardcodé)"""
         return TeamDNA(
             team_name=team_name,
             tier="SILVER",
             market=MarketDNA(
-                best_strategy="CONVERGENCE_OVER_MC",
-                best_strategy_roi=45.0,
-                best_strategy_wr=72.0,
-                best_strategy_n=25,
-                best_strategy_profit=18.5,
-                best_markets=["over_25"],
+                best_strategy="TEMPLATE",
+                best_strategy_roi=0.0,
+                best_strategy_wr=50.0,
+                best_strategy_n=0,
+                best_strategy_profit=0.0,
+                best_markets=[],
                 blacklisted_markets=[]
             ),
             context=ContextDNA(
-                home_strength=72,
-                away_strength=58,
-                home_wr=0.68,
-                away_wr=0.45,
-                home_beast=True,
-                differential=14
+                home_strength=50, away_strength=50, home_wr=0.5,
+                away_wr=0.5, home_beast=False, differential=0
             ),
             risk=RiskDNA(
-                variance=0.65,
-                offensive_variance=0.72,
-                stake_modifier=0.85,
-                max_stake_tier="TIER_2",
-                kelly_fraction=0.15
+                variance=0.5, offensive_variance=0.5, stake_modifier=1.0,
+                max_stake_tier="TIER_2", kelly_fraction=0.15
             ),
             temporal=TemporalDNA(
-                diesel_factor=0.72,
-                sprinter_factor=0.28,
-                clutch_factor=0.68,
-                best_scoring_period="75-90",
-                late_game_killer=True,
-                periods={"0-15": 0.15, "15-30": 0.12, "30-45": 0.18, "45-60": 0.15, "60-75": 0.18, "75-90": 0.22}
+                diesel_factor=0.5, sprinter_factor=0.5, clutch_factor=0.5,
+                best_scoring_period="45-60", late_game_killer=False, periods={}
             ),
             nemesis=NemesisDNA(
-                style_primary="POSSESSION",
-                verticality=65,
-                weaknesses=[],
-                prey_teams=[],
-                nemesis_teams=[]
+                style_primary="BALANCED", verticality=50, weaknesses=[],
+                prey_teams=[], nemesis_teams=[]
             ),
             psyche=PsycheDNA(
-                mentality="BALANCED",
-                killer_instinct=0.65,
-                resilience_index=72,
-                collapse_rate=0.12,
-                panic_factor=0.18
+                mentality="BALANCED", killer_instinct=0.5, resilience_index=50,
+                collapse_rate=0.1, panic_factor=0.1
             ),
             sentiment=SentimentDNA(
-                public_team=False,
-                brand_premium=0.02,
-                avg_clv=1.8,
-                positive_clv_rate=0.55
+                public_team=False, brand_premium=0.0, avg_clv=0.0, positive_clv_rate=0.5
             ),
             roster=RosterDNA(
-                mvp_dependency=0.35,
-                bench_impact=6.5,
-                keeper_status="AVERAGE",
-                squad_depth=7.2
+                mvp_dependency=0.3, bench_impact=5.0, keeper_status="AVERAGE", squad_depth=5.0
             ),
             physical=PhysicalDNA(
-                pressing_decay=0.22,
-                late_game_threat="HIGH",
-                intensity_60_plus=0.72,
-                recovery_rate=0.85
+                pressing_decay=0.2, late_game_threat="MEDIUM", intensity_60_plus=0.5, recovery_rate=0.5
             ),
             luck=LuckDNA(
-                xpoints=42.5,
-                actual_points=38,
-                xpoints_delta=4.5,
-                luck_profile="UNLUCKY",
-                regression_direction="UP",
-                regression_magnitude=65
+                xpoints=0.0, actual_points=0.0, xpoints_delta=0.0,
+                luck_profile="NEUTRAL", regression_direction="NEUTRAL", regression_magnitude=0.0
             ),
             chameleon=ChameleonDNA(
-                adaptability_index=72,
-                comeback_ability=68,
-                comeback_rate=0.32,
-                tactical_flexibility=75,
-                formations_used=3,
-                halftime_adjustment_success=0.62
+                adaptability_index=50, comeback_ability=0.0, comeback_rate=0.0,
+                tactical_flexibility=50, formations_used=1, halftime_adjustment_success=0.5
             )
         )
     
