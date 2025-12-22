@@ -66,7 +66,7 @@ class Conviction(Enum):
     MAXIMUM = "MAXIMUM"      # 7/7 modèles
     STRONG = "STRONG"        # 6/7 modèles
     MODERATE = "MODERATE"    # 5/7 modèles
-    WEAK = "WEAK"            # <4/6 modèles (SKIP)
+    WEAK = "WEAK"            # <5/7 modèles (SKIP)
 
 class MomentumTrend(Enum):
     """Trends Momentum L5"""
