@@ -1694,9 +1694,13 @@ class MicroStrategyModel(BaseModel):
     ROI Attendu: +15-25% (basé sur backtests internes)
     """
     
-    def __init__(self):
-        super().__init__(ModelName.MICROSTRATEGY)
+    def __init__(self, db_pool=None):
+        self.db_pool = db_pool
         self.loader = get_microstrategy_loader() if MICROSTRATEGY_AVAILABLE else None
+    
+    @property
+    def name(self) -> ModelName:
+        return ModelName.MICROSTRATEGY
     
     async def generate_signal(
         self,
