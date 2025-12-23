@@ -52,6 +52,106 @@ TIMING_THRESHOLDS = {
     "EARLY_KILLER_MIN_PCT": 20,     # 20%+ dans 0-15 min → EARLY_KILLER
 }
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# MARKET SCORING THRESHOLDS - HEDGE FUND GRADE CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════════════════
+# Ces seuils définissent les points attribués pour chaque critère de scoring.
+# Structure: liste de tuples (seuil, points) - Le premier seuil atteint donne les points.
+#
+# FIRST GOALSCORER (FGS): Qui marque en premier ?
+#   → Favorise: EARLY_BIRD + TITULAIRE + PENALTY_TAKER + Volume
+#
+# LAST GOALSCORER (LGS): Qui marque en dernier ?
+#   → Favorise: DIESEL + CLUTCH + SUPER_SUB + Volume
+#
+# ANYTIME VALUE (AVS): Qui va régresser positivement ?
+#   → Favorise: xG élevé + Sous-performance + Volume shots
+# ═══════════════════════════════════════════════════════════════════════════════
+
+FGS_SCORING = {
+    # Timing 1H: (seuil_pct, points) - max 40 pts
+    "timing_1h_tiers": [(70, 40), (60, 35), (55, 30), (50, 20)],
+
+    # Volume goals: (seuil_goals, points) - max 20 pts
+    "volume_goals_tiers": [(10, 20), (7, 15), (5, 10), (3, 5)],
+
+    # Early killer bonus
+    "early_killer_min_pct": 25,     # Seuil % pour bonus
+    "early_killer_bonus": 10,       # Points bonus
+
+    # Penalty taker bonus
+    "penalty_bonus": 15,            # Points si penalty taker
+
+    # Points par profil de titularisation - max 25 pts
+    "starter_points": {
+        "UNDISPUTED_STARTER": 25,
+        "STARTER": 20,
+        "REGULAR": 10,
+    },
+}
+
+LGS_SCORING = {
+    # Timing 2H: (seuil_pct, points) - max 35 pts
+    "timing_2h_tiers": [(80, 35), (70, 30), (60, 25), (50, 15)],
+
+    # Clutch: (seuil_pct, points) - max 30 pts
+    "clutch_tiers": [(50, 30), (35, 25), (25, 20), (15, 10)],
+
+    # Volume goals: (seuil_goals, points) - max 15 pts
+    "volume_goals_tiers": [(7, 15), (5, 10), (3, 5)],
+
+    # Super sub bonus - max 35 pts (25 + 10)
+    "supersub_base_bonus": 25,      # Points de base si SUPER_SUB
+    "supersub_g90_tiers": [(0.8, 10), (0.6, 5)],  # Bonus G/90
+}
+
+AVS_SCORING = {
+    # xG: (seuil_xg, points) - max 40 pts
+    "xg_tiers": [(12, 40), (9, 35), (6, 25), (4, 15), (2, 5)],
+
+    # Sous-performance xG: (seuil_diff, points) - max 35 pts
+    # Note: valeurs négatives, on compare avec <=
+    "underperf_tiers": [(-5, 35), (-4, 30), (-3, 25), (-2, 15), (-1, 5)],
+
+    # Volume shots: (seuil_shots, points) - max 15 pts
+    "shots_tiers": [(40, 15), (30, 10), (20, 5)],
+
+    # Wasteful malus
+    "wasteful_min_shots": 20,       # Minimum shots pour appliquer malus
+    "wasteful_max_conversion": 8,   # Conversion % en dessous = wasteful
+    "wasteful_malus": -20,          # Points malus
+
+    # Quality bonus
+    "quality_bonus": 10,            # Points si shot_quality OK
+    "quality_profiles": ["CLINICAL", "ELITE_FINISHER", "EFFICIENT"],
+}
+
+
+def _score_from_tiers(value: float, tiers: list, comparison: str = ">=") -> float:
+    """
+    Calcule le score basé sur une liste de tiers (seuil, points).
+
+    Args:
+        value: La valeur à évaluer
+        tiers: Liste de tuples (seuil, points) triés par seuil décroissant
+        comparison: ">=" pour valeurs croissantes, "<=" pour valeurs décroissantes
+
+    Returns:
+        Les points du premier tier atteint, ou 0 si aucun
+
+    Example:
+        _score_from_tiers(65, [(70, 40), (60, 35), (50, 20)]) → 35
+        _score_from_tiers(-4, [(-5, 35), (-3, 25)], "<=") → 25
+    """
+    for threshold, points in tiers:
+        if comparison == ">=":
+            if value >= threshold:
+                return points
+        elif comparison == "<=":
+            if value <= threshold:
+                return points
+    return 0
+
 
 def safe_int(v):
     """Convertit en int de façon sûre"""
@@ -351,40 +451,21 @@ class PlayerFullProfile2025:
         score = 0.0
 
         # Timing 1H (max 40 pts)
-        if self.pct_1h >= 70:
-            score += 40
-        elif self.pct_1h >= 60:
-            score += 35
-        elif self.pct_1h >= 55:
-            score += 30
-        elif self.pct_1h >= 50:
-            score += 20
+        score += _score_from_tiers(self.pct_1h, FGS_SCORING["timing_1h_tiers"])
 
         # Titulaire (max 25 pts)
-        if self.playing_time_profile == "UNDISPUTED_STARTER":
-            score += 25
-        elif self.playing_time_profile == "STARTER":
-            score += 20
-        elif self.playing_time_profile == "REGULAR":
-            score += 10
+        score += FGS_SCORING["starter_points"].get(self.playing_time_profile, 0)
 
         # Penalty taker bonus (max 15 pts)
         if self.is_penalty_taker:
-            score += 15
+            score += FGS_SCORING["penalty_bonus"]
 
         # Volume/Efficacite (max 20 pts)
-        if self.goals >= 10:
-            score += 20
-        elif self.goals >= 7:
-            score += 15
-        elif self.goals >= 5:
-            score += 10
-        elif self.goals >= 3:
-            score += 5
+        score += _score_from_tiers(self.goals, FGS_SCORING["volume_goals_tiers"])
 
         # Early Killer bonus (0-15 min)
-        if self.pct_early >= 25:
-            score += 10
+        if self.pct_early >= FGS_SCORING["early_killer_min_pct"]:
+            score += FGS_SCORING["early_killer_bonus"]
 
         self.first_goalscorer_score = score
 
@@ -395,40 +476,18 @@ class PlayerFullProfile2025:
         score = 0.0
 
         # Timing 2H (max 35 pts)
-        if self.pct_2h >= 80:
-            score += 35
-        elif self.pct_2h >= 70:
-            score += 30
-        elif self.pct_2h >= 60:
-            score += 25
-        elif self.pct_2h >= 50:
-            score += 15
+        score += _score_from_tiers(self.pct_2h, LGS_SCORING["timing_2h_tiers"])
 
         # Clutch (max 30 pts)
-        if self.pct_clutch >= 50:
-            score += 30
-        elif self.pct_clutch >= 35:
-            score += 25
-        elif self.pct_clutch >= 25:
-            score += 20
-        elif self.pct_clutch >= 15:
-            score += 10
+        score += _score_from_tiers(self.pct_clutch, LGS_SCORING["clutch_tiers"])
 
-        # SUPER_SUB bonus (max 25 pts)
+        # SUPER_SUB bonus (max 35 pts)
         if self.playing_time_profile == "SUPER_SUB":
-            score += 25
-            if self.goals_per_90 >= 0.8:
-                score += 10
-            elif self.goals_per_90 >= 0.6:
-                score += 5
+            score += LGS_SCORING["supersub_base_bonus"]
+            score += _score_from_tiers(self.goals_per_90, LGS_SCORING["supersub_g90_tiers"])
 
         # Volume (max 15 pts)
-        if self.goals >= 7:
-            score += 15
-        elif self.goals >= 5:
-            score += 10
-        elif self.goals >= 3:
-            score += 5
+        score += _score_from_tiers(self.goals, LGS_SCORING["volume_goals_tiers"])
 
         self.last_goalscorer_score = score
 
@@ -439,44 +498,22 @@ class PlayerFullProfile2025:
         score = 0.0
 
         # xG eleve = occasions existent (max 40 pts)
-        if self.xG >= 12:
-            score += 40
-        elif self.xG >= 9:
-            score += 35
-        elif self.xG >= 6:
-            score += 25
-        elif self.xG >= 4:
-            score += 15
-        elif self.xG >= 2:
-            score += 5
+        score += _score_from_tiers(self.xG, AVS_SCORING["xg_tiers"])
 
-        # Sous-performance (max 35 pts)
-        if self.xG_overperformance <= -5:
-            score += 35
-        elif self.xG_overperformance <= -4:
-            score += 30
-        elif self.xG_overperformance <= -3:
-            score += 25
-        elif self.xG_overperformance <= -2:
-            score += 15
-        elif self.xG_overperformance <= -1:
-            score += 5
+        # Sous-performance (max 35 pts) - comparaison <=
+        score += _score_from_tiers(self.xG_overperformance, AVS_SCORING["underperf_tiers"], "<=")
 
         # Volume shots (max 15 pts)
-        if self.shots >= 40:
-            score += 15
-        elif self.shots >= 30:
-            score += 10
-        elif self.shots >= 20:
-            score += 5
+        score += _score_from_tiers(self.shots, AVS_SCORING["shots_tiers"])
 
         # Malus si VRAIMENT wasteful chronique
-        if self.shots >= 20 and self.conversion_rate < 8:
-            score -= 20
+        if (self.shots >= AVS_SCORING["wasteful_min_shots"] and
+            self.conversion_rate < AVS_SCORING["wasteful_max_conversion"]):
+            score += AVS_SCORING["wasteful_malus"]
 
         # Bonus si shot quality OK
-        if self.shot_quality in ["CLINICAL", "ELITE_FINISHER", "EFFICIENT"]:
-            score += 10
+        if self.shot_quality in AVS_SCORING["quality_profiles"]:
+            score += AVS_SCORING["quality_bonus"]
 
         self.anytime_value_score = max(0, score)
 
@@ -702,7 +739,7 @@ class AttackDataLoaderV6:
                     insights['diesel'].append(p)
                 elif p.timing_profile == "EARLY_BIRD":
                     insights['early_bird'].append(p)
-                if p.pct_clutch >= 25:
+                if p.pct_clutch >= TIMING_THRESHOLDS["CLUTCH_MIN_LATE_PCT"]:
                     insights['clutch'].append(p)
                 if p.shot_quality == "ELITE_FINISHER":
                     insights['elite'].append(p)
@@ -768,7 +805,7 @@ class AttackDataLoaderV6:
         
     def get_clutch_scorers(self, min_goals: int = 3) -> List[PlayerFullProfile2025]:
         return sorted(
-            [p for p in self.players.values() if p.pct_clutch >= 25 and p.goals >= min_goals],
+            [p for p in self.players.values() if p.pct_clutch >= TIMING_THRESHOLDS["CLUTCH_MIN_LATE_PCT"] and p.goals >= min_goals],
             key=lambda x: -x.pct_clutch
         )
         
