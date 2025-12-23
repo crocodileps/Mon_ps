@@ -26,6 +26,9 @@ from pathlib import Path
 from collections import defaultdict
 import json
 
+# Migration SQL - Phase 4.2
+from services.goals.data_provider import GoalsDataProvider
+
 DATA_DIR = Path('/home/Mon_ps/data')
 
 
@@ -396,12 +399,13 @@ class AttackDataLoaderV5:
         print(f"   ✅ {len(self.players)} joueurs chargés")
         
     def _load_goals_timing_style(self) -> None:
-        """Charge all_goals_2025.json pour timing et style"""
-        print("\n📊 [2/4] Chargement all_goals_2025.json (timing/style)...")
-        
-        path = DATA_DIR / 'goal_analysis/all_goals_2025.json'
-        with open(path) as f:
-            goals = json.load(f)
+        """Charge goals depuis PostgreSQL (GoalsDataProvider)"""
+        print("\n📊 [2/4] Chargement goals depuis PostgreSQL (timing/style)...")
+
+        # Migration SQL - remplace all_goals_2025.json
+        provider = GoalsDataProvider()
+        goals = provider.get_all_goals()
+        provider.close()
             
         # Enrichir les joueurs avec timing et style
         goals_enriched = 0
@@ -451,8 +455,8 @@ class AttackDataLoaderV5:
             elif shot == 'Head':
                 p.goals_header += 1
                 
-            # Home/Away
-            if g.get('home_away') == 'h':
+            # Home/Away (is_home est un boolean depuis PostgreSQL)
+            if g.get('is_home'):
                 p.goals_home += 1
             else:
                 p.goals_away += 1
