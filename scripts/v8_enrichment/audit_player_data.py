@@ -4,8 +4,12 @@
 """
 
 import json
+import sys
 from pathlib import Path
 from collections import defaultdict
+
+sys.path.insert(0, '/home/Mon_ps')
+from services.data.normalizer import DataNormalizer
 
 DATA_DIR = Path('/home/Mon_ps/data')
 
@@ -19,27 +23,31 @@ print("📊 PLAYERS IMPACT DNA")
 print(f"{'='*40}")
 
 with open(DATA_DIR / 'quantum_v2' / 'players_impact_dna.json', 'r') as f:
-    players_impact = json.load(f)
+    raw_data = json.load(f)
 
-print(f"Type: {type(players_impact)}")
+# Normalisation: liste -> liste (passthrough) ou dict -> liste
+players_list = DataNormalizer.to_list(raw_data)
+print(f"Nombre total joueurs: {len(players_list)}")
 
-if isinstance(players_impact, dict):
-    print(f"Clés principales: {list(players_impact.keys())[:10]}")
-    # Première équipe
-    first_team = list(players_impact.keys())[0]
-    print(f"\nÉquipe: {first_team}")
-    print(f"Type données équipe: {type(players_impact[first_team])}")
-    
-    if isinstance(players_impact[first_team], list):
-        print(f"Nombre joueurs: {len(players_impact[first_team])}")
-        if players_impact[first_team]:
-            sample = players_impact[first_team][0]
-            print(f"\nClés joueur: {list(sample.keys())}")
-            print(f"\nExemple joueur:")
-            for k, v in sample.items():
-                print(f"  {k}: {v}")
-    elif isinstance(players_impact[first_team], dict):
-        print(f"Clés: {list(players_impact[first_team].keys())[:10]}")
+# Grouper par equipe pour l'audit
+players_impact = defaultdict(list)
+for player in players_list:
+    team = player.get('team', 'Unknown')
+    players_impact[team].append(player)
+
+print(f"Nombre equipes: {len(players_impact)}")
+print(f"Top 5 equipes: {list(players_impact.keys())[:5]}")
+
+# Premiere equipe
+first_team = list(players_impact.keys())[0]
+print(f"\nEquipe: {first_team}")
+print(f"Nombre joueurs: {len(players_impact[first_team])}")
+if players_impact[first_team]:
+    sample = players_impact[first_team][0]
+    print(f"\nCles joueur: {list(sample.keys())}")
+    print(f"\nExemple joueur:")
+    for k, v in sample.items():
+        print(f"  {k}: {v}")
 
 # Chercher un défenseur spécifique
 print(f"\n{'='*40}")
