@@ -10,7 +10,7 @@
 ║  - teams_context_dna.json (96 equipes)                                       ║
 ║                                                                              ║
 ║  FONCTIONNALITES:                                                            ║
-║  - Timing DNA (DIESEL, FAST_STARTER, EARLY_BIRD, CLUTCH)                     ║
+║  - Timing DNA (DIESEL, EARLY_BIRD, CLUTCH, EARLY_KILLER, BALANCED)           ║
 ║  - Style DNA (open_play, headers, set_pieces)                                ║
 ║  - Home/Away DNA (HOME_SPECIALIST, AWAY_SPECIALIST)                          ║
 ║  - Market Scores (FGS, LGS, Anytime Value)                                   ║
@@ -31,6 +31,26 @@ from services.goals.data_provider import GoalsDataProvider
 from services.data.normalizer import DataNormalizer
 
 DATA_DIR = Path('/home/Mon_ps/data')
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TIMING THRESHOLDS - HEDGE FUND GRADE CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════════════════
+# Ces seuils définissent la classification des profils de timing.
+# Ajuster avec prudence - impacte tous les calculs FGS/LGS.
+#
+# EARLY_BIRD (55%): Seuil optimisé pour capturer plus de joueurs "matinaux"
+#                   (loader_v5 utilisait 60%, loader_v5_optimized 55%)
+# DIESEL (60%): Joueurs qui marquent majoritairement en 2ème mi-temps
+# CLUTCH (25%): Joueurs décisifs en fin de match (76-90+)
+# EARLY_KILLER (20%): Joueurs qui ouvrent le score rapidement (0-15 min)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+TIMING_THRESHOLDS = {
+    "DIESEL_MIN_2H_PCT": 60,        # 60%+ buts en 2H → DIESEL
+    "EARLY_BIRD_MIN_1H_PCT": 55,    # 55%+ buts en 1H → EARLY_BIRD
+    "CLUTCH_MIN_LATE_PCT": 25,      # 25%+ après 75' → CLUTCH
+    "EARLY_KILLER_MIN_PCT": 20,     # 20%+ dans 0-15 min → EARLY_KILLER
+}
 
 
 def safe_int(v):
@@ -127,7 +147,7 @@ class PlayerFullProfile2025:
     pct_2h: float = 0.0
     pct_clutch: float = 0.0  # 76-90 + 90+
     pct_early: float = 0.0   # 0-15
-    timing_profile: str = ""  # DIESEL, FAST_STARTER, CLUTCH, BALANCED
+    timing_profile: str = ""  # DIESEL, EARLY_BIRD, CLUTCH, EARLY_KILLER, BALANCED
     
     # ═══════════════════════════════════════════════════════════════════════════
     # STYLE DNA (from all_goals_2025.json)
@@ -270,13 +290,14 @@ class PlayerFullProfile2025:
             self.pct_clutch = ((self.goals_76_90 + self.goals_90_plus) / total) * 100
             self.pct_early = (self.goals_0_15 / total) * 100
             
-            if self.pct_2h >= 65:
+            # Timing profile - utilise les constantes TIMING_THRESHOLDS
+            if self.pct_2h >= TIMING_THRESHOLDS["DIESEL_MIN_2H_PCT"]:
                 self.timing_profile = "DIESEL"
-            elif self.pct_1h >= 60:
-                self.timing_profile = "FAST_STARTER"
-            elif self.pct_clutch >= 30:
+            elif self.pct_1h >= TIMING_THRESHOLDS["EARLY_BIRD_MIN_1H_PCT"]:
+                self.timing_profile = "EARLY_BIRD"
+            elif self.pct_clutch >= TIMING_THRESHOLDS["CLUTCH_MIN_LATE_PCT"]:
                 self.timing_profile = "CLUTCH"
-            elif self.pct_early >= 25:
+            elif self.pct_early >= TIMING_THRESHOLDS["EARLY_KILLER_MIN_PCT"]:
                 self.timing_profile = "EARLY_KILLER"
             else:
                 self.timing_profile = "BALANCED"
@@ -679,8 +700,8 @@ class AttackDataLoaderV6:
             if p.goals >= 3:
                 if p.timing_profile == "DIESEL":
                     insights['diesel'].append(p)
-                elif p.timing_profile == "FAST_STARTER":
-                    insights['fast_starter'].append(p)
+                elif p.timing_profile == "EARLY_BIRD":
+                    insights['early_bird'].append(p)
                 if p.pct_clutch >= 25:
                     insights['clutch'].append(p)
                 if p.shot_quality == "ELITE_FINISHER":
@@ -699,7 +720,7 @@ class AttackDataLoaderV6:
         # Afficher insights
         print(f"\n   📊 INSIGHTS 2025/2026:")
         print(f"      • {len(insights['diesel'])} DIESEL (2H specialists)")
-        print(f"      • {len(insights['fast_starter'])} FAST_STARTER (1H specialists)")
+        print(f"      • {len(insights['early_bird'])} EARLY_BIRD (55%+ 1H)")
         print(f"      • {len(insights['clutch'])} CLUTCH (25%+ après 75')")
         print(f"      • {len(insights['elite'])} ELITE_FINISHER")
         print(f"      • {len(insights['super_sub'])} SUPER_SUB")
@@ -737,10 +758,13 @@ class AttackDataLoaderV6:
         )
         
     def get_fast_starters(self, min_goals: int = 3) -> List[PlayerFullProfile2025]:
-        return sorted(
-            [p for p in self.players.values() if p.timing_profile == "FAST_STARTER" and p.goals >= min_goals],
-            key=lambda x: -x.pct_1h
-        )
+        """
+        ALIAS pour rétrocompatibilité → utilise get_early_birds()
+
+        DEPRECATED: Préférez get_early_birds() pour le nouveau code.
+        Les deux méthodes retournent les mêmes joueurs (timing_profile == "EARLY_BIRD").
+        """
+        return self.get_early_birds(min_goals)
         
     def get_clutch_scorers(self, min_goals: int = 3) -> List[PlayerFullProfile2025]:
         return sorted(
