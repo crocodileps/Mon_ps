@@ -28,6 +28,7 @@ import json
 
 # Migration SQL - Phase 4.2
 from services.goals.data_provider import GoalsDataProvider
+from services.data.normalizer import DataNormalizer
 
 DATA_DIR = Path('/home/Mon_ps/data')
 
@@ -361,14 +362,18 @@ class AttackDataLoaderV5:
         
         path = DATA_DIR / 'quantum_v2/players_impact_dna.json'
         with open(path) as f:
-            data = json.load(f)
-            
+            raw_data = json.load(f)
+
+        # Normalisation robuste - cle composite pour gerer les transferts
+        # (31 joueurs ont le meme ID mais des equipes differentes)
+        data = DataNormalizer.to_dict(raw_data, key_fields=["id", "team"])
+
         for pid, player in data.items():
             if not isinstance(player, dict):
                 continue
                 
             name = player.get('player_name', '')
-            team = player.get('team_title', '')
+            team = player.get('team', '')
             if not name or not team:
                 continue
                 
