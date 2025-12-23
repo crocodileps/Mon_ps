@@ -111,7 +111,7 @@ crontab_backup*.txt
 # Cache data (auto-generated)
 cache/
 
-# Data files (auto-generated)
-data/
+# Data files (auto-generated) - seulement le dossier racine
+/data/
 
 # EXCEPTION: MicroStrategy DNA - ON VEUT L'HISTORIQUE
