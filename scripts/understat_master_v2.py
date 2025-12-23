@@ -369,14 +369,15 @@ def main():
     players_dna = build_players_impact_dna(all_data)
     gamestate_insights = build_gamestate_insights(teams_dna)
     exploit_profiles = build_team_exploit_profiles(teams_dna)
-    all_goals = build_all_goals(all_data)
+    # [DÉSACTIVÉ 2025-12-23] Remplacé par GoalsIngestionService
+    #     all_goals = build_all_goals(all_data)
+    all_goals = []  # Placeholder - géré par GoalsIngestionService
     
     print(f"   ✅ Teams DNA: {len(teams_dna)} équipes")
     print(f"   ✅ Players DNA: {len(players_dna)} joueurs")
     print(f"   ✅ Gamestate Insights: {len(gamestate_insights)} équipes")
     print(f"   ✅ Exploit Profiles: {len(exploit_profiles)} équipes")
-    print(f"   ✅ All Goals: {len(all_goals)} buts")
-    
+    # [DÉSACTIVÉ] print(f"   ✅ All Goals: {len(all_goals)} buts")
     # 3. Nettoyer raw_history avant sauvegarde (trop volumineux)
     teams_dna_clean = {}
     for team, data in teams_dna.items():
@@ -392,7 +393,7 @@ def main():
         (QUANTUM_DIR / 'gamestate_insights.json', gamestate_insights),
         (QUANTUM_DIR / 'team_exploit_profiles.json', exploit_profiles),
         (QUANTUM_DIR / 'understat_raw_api.json', all_data),
-        (GOAL_DIR / 'all_goals_2025.json', all_goals),
+        # [DÉSACTIVÉ] (GOAL_DIR / 'all_goals_2025.json', all_goals),  # Géré par GoalsIngestionService
     ]
     
     for filepath, data in files_to_save:
