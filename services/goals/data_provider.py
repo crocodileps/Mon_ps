@@ -27,6 +27,7 @@ Date: 2025-12-23
 """
 
 import logging
+from decimal import Decimal
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from typing import List, Dict, Optional
@@ -61,10 +62,22 @@ class GoalsDataProvider:
             conn = self._get_connection()
             with conn.cursor(cursor_factory=RealDictCursor) as cursor:
                 cursor.execute(query, params)
-                return [dict(row) for row in cursor.fetchall()]
+                results = [dict(row) for row in cursor.fetchall()]
+                return self._convert_decimals(results)
         except Exception as e:
             logger.error(f"Erreur SQL: {e}")
             return []
+
+    @staticmethod
+    def _convert_decimals(data):
+        """Convertit les Decimal PostgreSQL en float."""
+        if isinstance(data, list):
+            return [GoalsDataProvider._convert_decimals(item) for item in data]
+        elif isinstance(data, dict):
+            return {k: GoalsDataProvider._convert_decimals(v) for k, v in data.items()}
+        elif isinstance(data, Decimal):
+            return float(data)
+        return data
 
     # ═══════════════════════════════════════════════════════════════════════════
     # METHODES PRINCIPALES
