@@ -10,16 +10,18 @@ Composants:
 - MatchRestComparison: Comparaison entre 2 équipes
 - MatchContextCalculator: Calcul EffectiveRestIndex
 - MatchContextService: Orchestration et update DB
+- MatchContextPopulator: Alimentation depuis odds_history (V4.1)
 
 Auteur: Mon_PS Team
 Date: 2025-12-24
-Version: 2.0.0
+Version: 4.1.0
 ═══════════════════════════════════════════════════════════════════════════
 """
 from .config import MatchContextConfig, DEFAULT_CONFIG
 from .models import RestAnalysis, MatchRestComparison
 from .calculator import MatchContextCalculator
 from .service import MatchContextService
+from .populator import MatchContextPopulator
 
 __all__ = [
     'MatchContextConfig',
@@ -27,5 +29,6 @@ __all__ = [
     'RestAnalysis',
     'MatchRestComparison',
     'MatchContextCalculator',
-    'MatchContextService'
+    'MatchContextService',
+    'MatchContextPopulator'
 ]

@@ -15,10 +15,12 @@ from .config import MatchContextConfig, DEFAULT_CONFIG
 from .models import MatchRestComparison
 from .calculator import MatchContextCalculator
 from .queries import (
-    GET_UPCOMING_MATCHES,
+    GET_MATCHES_TO_CALCULATE,
     UPDATE_MATCH_CONTEXT,
     CHECK_COLUMNS_EXIST,
-    ADD_MISSING_COLUMNS
+    ADD_MISSING_COLUMNS,
+    MARK_MATCH_CALCULATED,
+    MARK_MATCH_ERROR
 )
 
 logger = logging.getLogger("MatchContextService")
@@ -192,9 +194,9 @@ class MatchContextService:
         updated_count = 0
 
         try:
-            # 2. Récupérer les matchs à venir sans calcul de repos
+            # 2. Récupérer les matchs à calculer (PENDING ou stale)
             with conn.cursor(cursor_factory=RealDictCursor) as cur:
-                cur.execute(GET_UPCOMING_MATCHES)
+                cur.execute(GET_MATCHES_TO_CALCULATE)
                 matches = cur.fetchall()
 
             logger.info(f"{len(matches)} matchs a traiter")
@@ -202,6 +204,7 @@ class MatchContextService:
             # 3. Calculer et mettre à jour chaque match
             for match in matches:
                 match_id = match['match_id']
+                match_db_id = match['id']  # ID pour marquer le statut
                 home_team = match['home_team']
                 away_team = match['away_team']
                 match_date = match['commence_time']
@@ -215,13 +218,17 @@ class MatchContextService:
                 )
 
                 if comparison:
-                    # Mettre à jour
+                    # Mettre à jour les données de repos
                     if self.update_match_in_db(comparison):
                         updated_count += 1
+                        # Marquer comme calculé
+                        self._mark_match_calculated(match_db_id)
                         logger.debug(f"  {home_team} vs {away_team}")
                     else:
+                        self._mark_match_error(match_db_id)
                         logger.warning(f"  Echec update: {home_team} vs {away_team}")
                 else:
+                    self._mark_match_error(match_db_id)
                     logger.warning(f"  Pas de donnees: {home_team} vs {away_team}")
 
             logger.info(f"{updated_count}/{len(matches)} matchs mis a jour")
@@ -278,6 +285,30 @@ class MatchContextService:
             'advantage': comparison.advantage,
             'significance': comparison.significance
         }
+
+    def _mark_match_calculated(self, match_id: int) -> bool:
+        """Marque un match comme calculé (DONE)."""
+        conn = self._get_connection()
+        try:
+            with conn.cursor() as cur:
+                cur.execute(MARK_MATCH_CALCULATED, {'id': match_id})
+                conn.commit()
+                return True
+        except psycopg2.Error as e:
+            logger.error(f"Erreur mark calculated: {e}")
+            return False
+
+    def _mark_match_error(self, match_id: int) -> bool:
+        """Marque un match en erreur."""
+        conn = self._get_connection()
+        try:
+            with conn.cursor() as cur:
+                cur.execute(MARK_MATCH_ERROR, {'id': match_id})
+                conn.commit()
+                return True
+        except psycopg2.Error as e:
+            logger.error(f"Erreur mark error: {e}")
+            return False
 
     def close(self):
         """Ferme les connexions."""

@@ -25,6 +25,8 @@ from psycopg2.extras import RealDictCursor
 from .config import MatchContextConfig, DEFAULT_CONFIG
 from .models import RestAnalysis, MatchRestComparison
 from .queries import GET_LAST_MATCH_FOR_TEAM
+from services.team_resolver import TeamNameResolver
+from services.team_resolver.resolver import make_naive, safe_date_diff
 
 logger = logging.getLogger("MatchContextCalculator")
 
@@ -55,6 +57,7 @@ class MatchContextCalculator:
     def __init__(self, config: MatchContextConfig = None):
         self.config = config or DEFAULT_CONFIG
         self._conn = None
+        self._resolver = TeamNameResolver()
 
     def _get_connection(self):
         """Obtient une connexion PostgreSQL."""
@@ -82,8 +85,14 @@ class MatchContextCalculator:
         """
         conn = self._get_connection()
 
+        # Convertir le nom vers le format API-Football (match_results)
+        api_football_name = self._resolver.to_api_football(team)
+
+        # Convertir la date en naive pour comparaison avec match_results
+        naive_before_date = make_naive(before_date)
+
         with conn.cursor(cursor_factory=RealDictCursor) as cur:
-            cur.execute(GET_LAST_MATCH_FOR_TEAM, (team, before_date))
+            cur.execute(GET_LAST_MATCH_FOR_TEAM, (api_football_name, naive_before_date))
             result = cur.fetchone()
 
         return dict(result) if result else None
@@ -167,12 +176,12 @@ class MatchContextCalculator:
             logger.warning(f"Aucun match précédent trouvé pour {team}")
             return None
 
-        # 2. Calculer le repos brut
+        # 2. Calculer le repos brut (safe_date_diff gère les timezones)
         last_date = last_match['last_match_date']
         if isinstance(last_date, str):
             last_date = datetime.fromisoformat(last_date)
 
-        raw_days = (target_date - last_date).days
+        raw_days = safe_date_diff(target_date, last_date)
 
         # 3. Calculer les ajustements
         prev_venue = last_match['last_venue']
@@ -255,9 +264,11 @@ class MatchContextCalculator:
         )
 
     def close(self):
-        """Ferme la connexion DB."""
+        """Ferme les connexions."""
         if self._conn and not self._conn.closed:
             self._conn.close()
+        if hasattr(self, '_resolver'):
+            self._resolver.close()
 
 
 # ═══════════════════════════════════════════════════════════════════════════

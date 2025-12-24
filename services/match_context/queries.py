@@ -172,3 +172,101 @@ ADD COLUMN IF NOT EXISTS away_returning_from VARCHAR(20),
 ADD COLUMN IF NOT EXISTS home_rest_status VARCHAR(10),
 ADD COLUMN IF NOT EXISTS away_rest_status VARCHAR(10);
 """
+
+# ═══════════════════════════════════════════════════════════════════════════
+# QUERIES POPULATOR V4.1 - Alimentation match_context depuis odds_history
+# ═══════════════════════════════════════════════════════════════════════════
+
+# Query pour récupérer les matchs futurs (7 jours) depuis odds_history
+GET_UPCOMING_FROM_ODDS_HISTORY = """
+SELECT DISTINCT ON (home_team, away_team)
+    match_id as source_id,
+    home_team,
+    away_team,
+    commence_time,
+    sport as league
+FROM odds_history
+WHERE commence_time > NOW()
+  AND commence_time < NOW() + INTERVAL '7 days'
+ORDER BY home_team, away_team, commence_time ASC;
+"""
+
+# Query pour vérifier si un match existe déjà (fenêtre ±3 jours)
+CHECK_MATCH_EXISTS = """
+SELECT id, match_id, source_id, commence_time, calculation_status
+FROM match_context
+WHERE home_team = %(home_team)s
+  AND away_team = %(away_team)s
+  AND commence_time BETWEEN %(commence_time)s - INTERVAL '3 days'
+                        AND %(commence_time)s + INTERVAL '3 days'
+LIMIT 1;
+"""
+
+# Query pour INSERT nouveau match
+INSERT_MATCH_CONTEXT = """
+INSERT INTO match_context (
+    match_id,
+    source_id,
+    home_team,
+    away_team,
+    commence_time,
+    calculation_status,
+    created_at,
+    updated_at
+) VALUES (
+    %(match_id)s,
+    %(source_id)s,
+    %(home_team)s,
+    %(away_team)s,
+    %(commence_time)s,
+    'PENDING',
+    NOW(),
+    NOW()
+)
+ON CONFLICT (match_id) DO UPDATE SET
+    commence_time = EXCLUDED.commence_time,
+    source_id = EXCLUDED.source_id,
+    updated_at = NOW()
+RETURNING id;
+"""
+
+# Query pour UPDATE match existant (report de date)
+UPDATE_MATCH_COMMENCE_TIME = """
+UPDATE match_context
+SET commence_time = %(commence_time)s,
+    source_id = %(source_id)s,
+    updated_at = NOW()
+WHERE id = %(id)s;
+"""
+
+# Query pour récupérer matchs à calculer (PENDING ou stale)
+GET_MATCHES_TO_CALCULATE = """
+SELECT
+    id, match_id, home_team, away_team, commence_time,
+    calculation_status, last_calculated_at
+FROM match_context
+WHERE commence_time > NOW()
+  AND (
+    calculation_status = 'PENDING'
+    OR calculation_status IS NULL
+    OR (calculation_status = 'DONE' AND last_calculated_at < NOW() - INTERVAL '24 hours')
+  )
+ORDER BY commence_time ASC;
+"""
+
+# Query pour marquer un match comme calculé
+MARK_MATCH_CALCULATED = """
+UPDATE match_context
+SET calculation_status = 'DONE',
+    last_calculated_at = NOW(),
+    updated_at = NOW()
+WHERE id = %(id)s;
+"""
+
+# Query pour marquer un match en erreur
+MARK_MATCH_ERROR = """
+UPDATE match_context
+SET calculation_status = 'ERROR',
+    updated_at = NOW()
+WHERE id = %(id)s;
+"""
