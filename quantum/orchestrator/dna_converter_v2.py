@@ -127,7 +127,7 @@ class DNAConverterV2:
     def _convert_market_dna(self, merged: Dict) -> MarketDNA:
         """Convertit les données trading vers MarketDNA."""
         bp = merged.get('betting_performance', {})
-        market_db = self._safe_parse_json(merged.get('market_dna_db'))
+        market_db = self._safe_parse_json(merged.get('market_dna'))
         empirical = self._safe_dict(market_db.get('empirical_profile'))
         
         exploit_markets = self._safe_list(merged.get('exploit_markets', []))
@@ -171,7 +171,7 @@ class DNAConverterV2:
     
     def _convert_context_dna(self, merged: Dict) -> ContextDNA:
         """Convertit le contexte vers ContextDNA."""
-        ctx_db = self._safe_parse_json(merged.get('context_dna_db'))
+        ctx_db = self._safe_parse_json(merged.get('context_dna'))
         xg_profile = self._safe_dict(ctx_db.get('xg_profile'))
         defense = merged.get('defense', {})
         ctx_json = merged.get('context_json', {})
@@ -212,9 +212,9 @@ class DNAConverterV2:
     
     def _convert_risk_dna(self, merged: Dict) -> RiskDNA:
         """Convertit les données de risque vers RiskDNA."""
-        luck_db = self._safe_parse_json(merged.get('luck_dna_db'))
-        psyche_db = self._safe_parse_json(merged.get('psyche_dna_db'))
-        market_db = self._safe_parse_json(merged.get('market_dna_db'))
+        luck_db = self._safe_parse_json(merged.get('luck_dna'))
+        psyche_db = self._safe_parse_json(merged.get('psyche_dna'))
+        market_db = self._safe_parse_json(merged.get('market_dna'))
         empirical = self._safe_dict(market_db.get('empirical_profile'))
         ctx_json = merged.get('context_json', {})
         variance = ctx_json.get('variance', {})
@@ -245,7 +245,7 @@ class DNAConverterV2:
     
     def _convert_temporal_dna(self, merged: Dict) -> TemporalDNA:
         """Convertit les données temporelles vers TemporalDNA."""
-        temporal_db = self._safe_parse_json(merged.get('temporal_dna_db'))
+        temporal_db = self._safe_parse_json(merged.get('temporal_dna'))
         v8_enriched = self._safe_dict(temporal_db.get('v8_enriched'))
         periods = self._safe_dict(temporal_db.get('periods'))
         defense = merged.get('defense', {})
@@ -275,7 +275,7 @@ class DNAConverterV2:
     
     def _convert_nemesis_dna(self, merged: Dict) -> NemesisDNA:
         """Convertit les données de style vers NemesisDNA."""
-        nemesis_db = self._safe_parse_json(merged.get('nemesis_dna_db'))
+        nemesis_db = self._safe_parse_json(merged.get('nemesis_dna'))
         defense = merged.get('defense', {})
         tactical = merged.get('tactical', {})
         
@@ -316,18 +316,36 @@ class DNAConverterV2:
     
     def _convert_psyche_dna(self, merged: Dict) -> PsycheDNA:
         """Convertit les données psychologiques vers PsycheDNA."""
-        psyche_db = self._safe_parse_json(merged.get('psyche_dna_db'))
+        psyche_db = self._safe_parse_json(merged.get('psyche_dna'))
         clutch_dna = merged.get('clutch_dna', {})
         if isinstance(clutch_dna, str):
             clutch_dna = self._safe_parse_json(clutch_dna)
         defense = merged.get('defense', {})
-        
+
+        # ═══════════════════════════════════════════════════════════════
+        # ENRICHISSEMENT mentality (compatibilité V1 - 24 Déc 2025)
+        # Logique métier centralisée - pas de magic numbers cachés
+        # Source de vérité unique pour la conversion float → str
+        # ═══════════════════════════════════════════════════════════════
+        THRESHOLD_AGGRESSIVE = 1.2
+        THRESHOLD_CONSERVATIVE = 0.8
+
+        comeback_val = self._safe_float(psyche_db.get('comeback_mentality'), 1.0)
+
+        if comeback_val >= THRESHOLD_AGGRESSIVE:
+            mentality = "AGGRESSIVE"
+        elif comeback_val <= THRESHOLD_CONSERVATIVE:
+            mentality = "CONSERVATIVE"
+        else:
+            mentality = "BALANCED"
+
         return PsycheDNA(
             panic_factor=self._safe_float(psyche_db.get('panic_factor'), 2.0),
             killer_instinct=self._safe_float(psyche_db.get('killer_instinct'), 1.0),
             lead_protection=self._safe_float(psyche_db.get('lead_protection'), 0.5),
-            comeback_mentality=self._safe_float(psyche_db.get('comeback_mentality'), 1.0),
+            comeback_mentality=comeback_val,
             drawing_performance=self._safe_float(psyche_db.get('drawing_performance'), 1.0),
+            mentality=mentality,
             ht_dominance=self._safe_float(clutch_dna.get('ht_dominance'), 50.0),
             collapse_rate=self._safe_float(clutch_dna.get('collapse_rate'), 0.0),
             comeback_rate=self._safe_float(clutch_dna.get('comeback_rate'), 0.0),
@@ -346,9 +364,9 @@ class DNAConverterV2:
     
     def _convert_sentiment_dna(self, merged: Dict) -> SentimentDNA:
         """Convertit les données de sentiment vers SentimentDNA."""
-        market_db = self._safe_parse_json(merged.get('market_dna_db'))
+        market_db = self._safe_parse_json(merged.get('market_dna'))
         empirical = self._safe_dict(market_db.get('empirical_profile'))
-        ctx_db = self._safe_parse_json(merged.get('context_dna_db'))
+        ctx_db = self._safe_parse_json(merged.get('context_dna'))
         betting_json = merged.get('betting_json', {})
         
         tier_rank = self._safe_int(merged.get('tier_rank'), 50)
@@ -378,8 +396,8 @@ class DNAConverterV2:
     
     def _convert_roster_dna(self, merged: Dict) -> RosterDNA:
         """Convertit les données d'effectif vers RosterDNA."""
-        roster_db = self._safe_parse_json(merged.get('roster_dna_db'))
-        nemesis_db = self._safe_parse_json(merged.get('nemesis_dna_db'))
+        roster_db = self._safe_parse_json(merged.get('roster_dna'))
+        nemesis_db = self._safe_parse_json(merged.get('nemesis_dna'))
         defensive_line = merged.get('defensive_line', {})
         goalkeeper = defensive_line.get('goalkeeper', {})
         
@@ -407,7 +425,7 @@ class DNAConverterV2:
     
     def _convert_physical_dna(self, merged: Dict) -> PhysicalDNA:
         """Convertit les données physiques vers PhysicalDNA."""
-        physical_db = self._safe_parse_json(merged.get('physical_dna_db'))
+        physical_db = self._safe_parse_json(merged.get('physical_dna'))
         fbref = merged.get('fbref', {})
         defense = merged.get('defense', {})
         
@@ -435,7 +453,7 @@ class DNAConverterV2:
     
     def _convert_luck_dna(self, merged: Dict) -> LuckDNA:
         """Convertit les données de chance vers LuckDNA."""
-        luck_db = self._safe_parse_json(merged.get('luck_dna_db'))
+        luck_db = self._safe_parse_json(merged.get('luck_dna'))
         ctx_json = merged.get('context_json', {})
         variance = ctx_json.get('variance', {})
         record = ctx_json.get('record', {})
@@ -471,11 +489,11 @@ class DNAConverterV2:
     
     def _convert_chameleon_dna(self, merged: Dict) -> ChameleonDNA:
         """Convertit les données d'adaptabilité vers ChameleonDNA."""
-        chameleon_db = self._safe_parse_json(merged.get('chameleon_dna_db'))
-        tactical_db = self._safe_parse_json(merged.get('tactical_dna_db'))
-        shooting_db = self._safe_parse_json(merged.get('shooting_dna_db'))
+        chameleon_db = self._safe_parse_json(merged.get('chameleon_dna'))
+        tactical_db = self._safe_parse_json(merged.get('tactical_dna'))
+        shooting_db = self._safe_parse_json(merged.get('shooting_dna'))
         
-        # Si shooting_dna_db n'existe pas, chercher dans merged directement
+        # Si shooting_dna n'existe pas, chercher dans merged directement
         if not shooting_db:
             shooting_db = merged.get('shooting_dna', {})
             if isinstance(shooting_db, str):
