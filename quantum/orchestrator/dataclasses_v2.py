@@ -223,6 +223,9 @@ class NemesisDNA:
     percentile_home: int
     percentile_away: int
 
+    # Compatibilité V1 - Liste des équipes "nemesis"
+    nemesis_teams: List[str] = field(default_factory=list)
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # VECTEUR 6: PsycheDNA - 100% mesures (+15% ROI)
@@ -243,7 +246,7 @@ class PsycheDNA:
     lead_protection: float
     comeback_mentality: float
     drawing_performance: float
-    
+
     # Depuis clutch_dna
     ht_dominance: float
     collapse_rate: float
@@ -257,6 +260,9 @@ class PsycheDNA:
     ga_level: int
     ga_losing_1: int
     ga_losing_2plus: int
+
+    # Champ calculé pour compatibilité V1 (enrichi par DNAConverterV2)
+    mentality: str = "BALANCED"  # CONSERVATIVE, BALANCED, AGGRESSIVE
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -328,6 +334,9 @@ class RosterDNA:
     goalkeeper_name: str
     goalkeeper_save_rate: float
     keeper_overperformance: float
+
+    # Compatibilité V1: LEAKY, SOLID, NORMAL
+    keeper_status: str = "NORMAL"
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

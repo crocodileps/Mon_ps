@@ -1649,28 +1649,59 @@ class MicroStrategyModel(BaseModel):
         self,
         home_team: str,
         away_team: str,
-        market: str,
         home_dna: 'TeamDNA',
         away_dna: 'TeamDNA',
-        odds: Optional[Dict] = None
+        friction: 'FrictionMatrix',
+        odds: Dict[str, float],
+        context: Optional[Dict] = None
     ) -> ModelVote:
         """
-        Génère le signal MicroStrategy pour un marché spécifique.
-        
-        Combine:
-        - Signal HOME de l'équipe domicile pour ce marché
-        - Signal AWAY de l'équipe extérieure pour ce marché
-        - Pondération 60% HOME / 40% AWAY (avantage domicile)
+        Génère le signal MicroStrategy avec signature unifiée.
+
+        SENIOR QUANT LOGIC:
+        1. Extrait le marché depuis context si fourni
+        2. Sinon, utilise exploit_markets du DNA si disponible
+        3. Fallback: scan tous les marchés disponibles dans odds
         """
         if not MICROSTRATEGY_AVAILABLE or not self.loader:
             return ModelVote(
                 model_name=ModelName.MICROSTRATEGY,
                 signal=Signal.SKIP,
                 confidence=0,
-                market=market,
+                market="unknown",
                 reasoning="MicroStrategy Loader non disponible"
             )
-        
+
+        # ═══════════════════════════════════════════════════════════════
+        # DÉTECTION INTELLIGENTE DU MARCHÉ (Senior Quant)
+        # Priorité: context > exploit_markets > premier marché dans odds
+        # ═══════════════════════════════════════════════════════════════
+        target_market = None
+
+        # 1. Marché explicite dans le context
+        if context and context.get("market"):
+            target_market = context["market"]
+
+        # 2. Meilleur marché d'exploitation de l'équipe domicile
+        elif home_dna and home_dna.market and hasattr(home_dna.market, 'exploit_markets'):
+            if home_dna.market.exploit_markets:
+                first_exploit = home_dna.market.exploit_markets[0]
+                # exploit_markets peut être List[str] ou List[Dict] selon la source
+                if isinstance(first_exploit, dict):
+                    target_market = first_exploit.get('market', 'over_25')
+                else:
+                    target_market = first_exploit
+
+        # 3. Fallback: premier marché disponible dans odds
+        if not target_market and odds:
+            available_markets = [k for k in odds.keys() if k not in ('home_win', 'draw', 'away_win')]
+            target_market = available_markets[0] if available_markets else "over_25"
+
+        if not target_market:
+            target_market = "over_25"  # Dernier fallback
+
+        market = target_market  # Variable utilisée par le reste du code
+
         # Récupérer les profils MicroStrategy
         home_micro = self.loader.get_team(home_team)
         away_micro = self.loader.get_team(away_team)
