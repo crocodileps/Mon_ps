@@ -4,12 +4,14 @@ Mon_PS - Protection des données FBRef
 """
 from .ingestion_service import FBRefIngestionService
 from .validator import FBRefValidator
+from .transformer import FBRefTransformer
 from .config import FBRefConfig
 from .stats_smoother import StatsSmoother, LeagueAverages
 
 __all__ = [
     'FBRefIngestionService',
     'FBRefValidator',
+    'FBRefTransformer',
     'FBRefConfig',
     'StatsSmoother',
     'LeagueAverages'

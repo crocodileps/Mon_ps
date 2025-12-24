@@ -16,6 +16,7 @@ from psycopg2.extras import RealDictCursor
 
 from .config import FBRefConfig, DEFAULT_CONFIG
 from .validator import FBRefValidator, ValidationResult
+from .transformer import FBRefTransformer
 
 logger = logging.getLogger("FBRefIngestionService")
 
@@ -35,18 +36,19 @@ class FBRefIngestionService:
     def __init__(self, config: FBRefConfig = None):
         self.config = config or DEFAULT_CONFIG
         self.validator = FBRefValidator(self.config)
+        self.transformer = FBRefTransformer()
 
     def ingest_from_json(self, json_path: Path = None) -> ValidationResult:
         """
         Ingère les données depuis un fichier JSON.
 
         Args:
-            json_path: Chemin du fichier JSON (défaut: config.RAW_JSON_PATH)
+            json_path: Chemin du fichier JSON (défaut: config.CLEAN_JSON_PATH)
 
         Returns:
             ValidationResult
         """
-        json_path = json_path or self.config.RAW_JSON_PATH
+        json_path = json_path or self.config.CLEAN_JSON_PATH
 
         logger.info(f"📂 Loading data from {json_path}")
 
@@ -79,7 +81,14 @@ class FBRefIngestionService:
         elif isinstance(data, dict):
             # Chercher une clé contenant les joueurs
             if "players" in data:
-                players = data["players"]
+                players_data = data["players"]
+                # Si players est un dict {nom: stats}, convertir en liste
+                if isinstance(players_data, dict):
+                    # Utiliser le transformer pour aplatir et normaliser
+                    players = self.transformer.transform_players(players_data)
+                    logger.info(f"📊 Transformed {len(players)} players")
+                else:
+                    players = players_data
             elif "data" in data:
                 players = data["data"]
             else:
