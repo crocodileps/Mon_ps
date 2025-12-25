@@ -492,6 +492,10 @@ class MicroStrategyDNA:
     # (les 126 marchés complets sont dans microstrategy_dna.json)
     has_full_profile: bool = False
 
+    # Marchés exploitables (ajout 25 Déc 2025)
+    # Format: [{'market': 'over_25', 'source': 'specialist', 'confidence': 'HIGH'}]
+    exploit_markets: List[Dict] = field(default_factory=list)
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # STRUCTURE PRINCIPALE: TeamDNA V2

@@ -321,7 +321,22 @@ class HybridDNALoader:
         
         # Fusionner
         merged = self._merge_dna(json_dna, db_dna)
-        
+
+        # ═══════════════════════════════════════════════════════════════
+        # ENRICHISSEMENT: Goalkeeper DNA (25 Déc 2025)
+        # Charge les données GK détaillées et incrémente gk_loaded
+        # ═══════════════════════════════════════════════════════════════
+        gk_dna = self.get_goalkeeper_dna(team_name=team_name)
+        if gk_dna:
+            merged["goalkeeper_dna_enriched"] = {
+                "gk_name": gk_dna.gk_name,
+                "team_name": gk_dna.team_name,
+                "profile": gk_dna.profile,
+                "panic_score": gk_dna.panic_score,
+                "timing_profile": gk_dna.timing_profile,
+                "exploit_paths": gk_dna.exploit_paths
+            }
+
         # Créer TeamDNA
         source = "HYBRID" if db_dna else "JSON"
         if db_dna:

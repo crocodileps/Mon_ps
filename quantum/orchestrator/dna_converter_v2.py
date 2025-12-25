@@ -403,7 +403,44 @@ class DNAConverterV2:
         
         mvp = self._safe_dict(roster_db.get('mvp'))
         playmaker = self._safe_dict(roster_db.get('key_playmaker'))
-        
+
+        # ═══════════════════════════════════════════════════════════════
+        # HARMONISATION SENIOR QUANT: keeper_status (25 Déc 2025)
+        # Réconcilie Volume (gk_overperform) et Taux (per-90)
+        # ═══════════════════════════════════════════════════════════════
+
+        # 1. Extraction données brutes
+        raw_overperform = self._safe_float(goalkeeper.get('gk_overperform'), 0.0)
+
+        # 2. Récupération nombre de matchs (priorité: total_matches > context)
+        matches = merged.get('total_matches', 0)
+        if not matches:
+            context_data = merged.get('context', {})
+            if isinstance(context_data, str):
+                context_data = self._safe_parse_json(context_data)
+            matches = context_data.get('matches_played', 0) if context_data else 0
+
+        # 3. Normalisation Volume → Taux (avec heuristique de sécurité)
+        if matches and matches > 0:
+            # Cas nominal: on divise le volume par les matchs
+            per_90 = raw_overperform / matches
+        else:
+            # Cas dégradé: heuristique de détection
+            if abs(raw_overperform) > 5.0:
+                # Valeur élevée = probablement un total → estimer mi-saison
+                per_90 = raw_overperform / 19.0
+            else:
+                # Valeur faible = probablement déjà un ratio
+                per_90 = raw_overperform
+
+        # 4. Classification V1 compatible
+        if per_90 >= 0.30:
+            keeper_status = "ON_FIRE"
+        elif per_90 >= 0.0:
+            keeper_status = "SOLID"
+        else:
+            keeper_status = "LEAKY"
+
         return RosterDNA(
             mvp_name=mvp.get('name', 'Unknown'),
             mvp_xg_chain=self._safe_float(mvp.get('xg_chain'), 0.0),
@@ -416,7 +453,8 @@ class DNAConverterV2:
             squad_size_analyzed=self._safe_int(roster_db.get('squad_size_analyzed'), 0),
             goalkeeper_name=goalkeeper.get('name', 'Unknown'),
             goalkeeper_save_rate=self._safe_float(goalkeeper.get('save_rate'), 0.0),
-            keeper_overperformance=self._safe_float(nemesis_db.get('keeper_overperformance'), 0.0)
+            keeper_overperformance=self._safe_float(nemesis_db.get('keeper_overperformance'), 0.0),
+            keeper_status=keeper_status
         )
     
     # ═══════════════════════════════════════════════════════════════════════════
