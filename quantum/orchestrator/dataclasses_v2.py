@@ -498,6 +498,103 @@ class MicroStrategyDNA:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# GOALKEEPER PROFILE FBA GRADE V2 - SENIOR QUANT
+# Profilage Multi-Dimensionnel avec Bayesian Smoothing
+# Date: 25 Décembre 2025
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@dataclass
+class GoalkeeperProfileFBA:
+    """
+    Profilage Multi-Dimensionnel Senior Quant - FBA Grade V2
+
+    Features:
+    - Bayesian Smoothing (C variable par période)
+    - Z-Score normalization vs league baseline
+    - Edge pondéré par volume de tirs
+    - Context confidence flag
+    - Sample reliability assessment
+    """
+
+    # ═══════════════════════════════════════════════════════════════
+    # IDENTITÉ
+    # ═══════════════════════════════════════════════════════════════
+    gk_name: str = "Unknown"
+    team_name: str = "Unknown"
+
+    # ═══════════════════════════════════════════════════════════════
+    # SCORES MULTI-DIMENSIONNELS (0-100)
+    # ═══════════════════════════════════════════════════════════════
+    overall_score: float = 50.0
+
+    dimension_scores: Dict[str, float] = field(default_factory=dict)
+    # {
+    #     "xg_performance": 45.0,
+    #     "shot_stopping": 33.0,
+    #     "timing_consistency": 25.0,
+    #     "first_half": 70.0,
+    #     "second_half": 20.0,
+    #     "pressure": 10.0
+    # }
+
+    # ═══════════════════════════════════════════════════════════════
+    # STATUS V1 COMPATIBLE
+    # ═══════════════════════════════════════════════════════════════
+    status: str = "NORMAL"  # ON_FIRE, SOLID, NORMAL, LEAKY
+
+    # ═══════════════════════════════════════════════════════════════
+    # TIMING PROFILE (BAYESIAN SMOOTHED)
+    # ═══════════════════════════════════════════════════════════════
+    timing_pattern: str = "CONSISTENT"
+    # CONSISTENT, EARLY_GAME_VULNERABLE, LATE_GAME_VULNERABLE, INCONSISTENT
+
+    period_ratings: Dict[str, str] = field(default_factory=dict)
+    # {"0-15": "WEAK", "16-30": "STRONG", ...}
+
+    period_details: Dict[str, Dict] = field(default_factory=dict)
+    # {"0-15": {"raw_sr": 33.3, "smoothed_sr": 56.2, "shots": 3, "confidence_factor": 0.3}, ...}
+
+    weak_periods: List[str] = field(default_factory=list)
+    strong_periods: List[str] = field(default_factory=list)
+
+    # ═══════════════════════════════════════════════════════════════
+    # HALF COMPARISON
+    # ═══════════════════════════════════════════════════════════════
+    first_half_percentile: float = 50.0
+    second_half_percentile: float = 50.0
+    half_differential: float = 0.0
+
+    # ═══════════════════════════════════════════════════════════════
+    # EXPLOITS TRADABLES (EDGE PONDÉRÉ)
+    # ═══════════════════════════════════════════════════════════════
+    exploit_markets: List[Dict] = field(default_factory=list)
+    # [{
+    #     "market": "goal_0_15",
+    #     "reason": "Vulnérable en 0-15 (smoothed: 56.2%)",
+    #     "confidence": "MEDIUM",
+    #     "raw_edge": 3.5,
+    #     "adjusted_edge": 1.05,
+    #     "confidence_factor": 0.3,
+    #     "shots_basis": 3
+    # }]
+
+    # ═══════════════════════════════════════════════════════════════
+    # TAGS COMPORTEMENTAUX
+    # ═══════════════════════════════════════════════════════════════
+    behavioral_tags: List[str] = field(default_factory=list)
+
+    # ═══════════════════════════════════════════════════════════════
+    # MÉTA & CONFIANCE
+    # ═══════════════════════════════════════════════════════════════
+    fingerprint: str = ""
+    narrative: str = ""
+    data_quality: float = 1.0
+    context_confidence: str = "MEDIUM"  # HIGH si PSxG/period dispo, MEDIUM sinon
+    total_shots_faced: int = 0
+    sample_reliability: str = "MEDIUM"  # LOW/MEDIUM/HIGH basé sur volume
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # STRUCTURE PRINCIPALE: TeamDNA V2
 # ═══════════════════════════════════════════════════════════════════════════════
 @dataclass

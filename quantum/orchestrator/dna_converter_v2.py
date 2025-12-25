@@ -25,6 +25,9 @@ from quantum.orchestrator.dataclasses_v2 import (
     PhysicalDNA, LuckDNA, ChameleonDNA
 )
 
+# GK Profiler Senior Quant
+from quantum.orchestrator.gk_profiler_senior_quant import calculate_gk_profile_senior_quant
+
 logger = logging.getLogger(__name__)
 
 
@@ -405,41 +408,36 @@ class DNAConverterV2:
         playmaker = self._safe_dict(roster_db.get('key_playmaker'))
 
         # ═══════════════════════════════════════════════════════════════
-        # HARMONISATION SENIOR QUANT: keeper_status (25 Déc 2025)
-        # Réconcilie Volume (gk_overperform) et Taux (per-90)
+        # PROFILING GK SENIOR QUANT FBA GRADE V2 (25 Déc 2025)
+        # Remplace la classification simple par profilage multi-dimensionnel
         # ═══════════════════════════════════════════════════════════════
 
-        # 1. Extraction données brutes
-        raw_overperform = self._safe_float(goalkeeper.get('gk_overperform'), 0.0)
+        # Extraction timing data depuis defensive_line
+        timing_data = goalkeeper.get('timing', {})
 
-        # 2. Récupération nombre de matchs (priorité: total_matches > context)
-        matches = merged.get('total_matches', 0)
-        if not matches:
-            context_data = merged.get('context', {})
-            if isinstance(context_data, str):
-                context_data = self._safe_parse_json(context_data)
-            matches = context_data.get('matches_played', 0) if context_data else 0
+        # Construction enriched_data
+        enriched_data = merged.get('goalkeeper_dna_enriched', {})
+        if not isinstance(enriched_data, dict):
+            enriched_data = {}
+        enriched_data['team_name'] = merged.get('team_name', 'Unknown')
 
-        # 3. Normalisation Volume → Taux (avec heuristique de sécurité)
-        if matches and matches > 0:
-            # Cas nominal: on divise le volume par les matchs
-            per_90 = raw_overperform / matches
-        else:
-            # Cas dégradé: heuristique de détection
-            if abs(raw_overperform) > 5.0:
-                # Valeur élevée = probablement un total → estimer mi-saison
-                per_90 = raw_overperform / 19.0
-            else:
-                # Valeur faible = probablement déjà un ratio
-                per_90 = raw_overperform
+        # Ajout matches si pas dans gk_data
+        gk_data_enriched = dict(goalkeeper)
+        gk_data_enriched['matches'] = merged.get('total_matches', 17)
 
-        # 4. Classification V1 compatible
-        if per_90 >= 0.30:
-            keeper_status = "ON_FIRE"
-        elif per_90 >= 0.0:
-            keeper_status = "SOLID"
-        else:
-            keeper_status = "LEAKY"
+        # Calcul du profil complet
+        try:
+            gk_profile = calculate_gk_profile_senior_quant(
+                gk_data=gk_data_enriched,
+                timing_data=timing_data,
+                enriched_data=enriched_data
+            )
+            keeper_status = gk_profile.status
+            # Stocker le profil complet dans merged pour accès ultérieur
+            merged['_gk_profile_fba'] = gk_profile
+        except Exception as e:
+            logger.warning(f"GK Profiler error: {e}, falling back to NORMAL")
+            keeper_status = "NORMAL"
 
         return RosterDNA(
             mvp_name=mvp.get('name', 'Unknown'),
