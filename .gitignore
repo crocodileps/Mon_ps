@@ -115,3 +115,9 @@ cache/
 /data/
 
 # EXCEPTION: MicroStrategy DNA - ON VEUT L'HISTORIQUE
+
+# ══════════════════════════════════════════════════════════════════
+# EXCEPTION: Schemas SQL versionnés (structure, pas données)
+# ══════════════════════════════════════════════════════════════════
+!quantum_sovereign/schema_v3.8.sql
+!fortress_v38/schema*.sql
