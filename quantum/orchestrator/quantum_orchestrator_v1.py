@@ -46,6 +46,17 @@ except ImportError as e:
     HybridDNALoader = None
     DNAConverterV2 = None
     TeamDNAV2 = None
+
+# Import FrictionIntegration (Friction System Hedge Fund Grade)
+try:
+    from quantum.orchestrator.friction_integration import (
+        FrictionIntegration,
+        create_friction_integration,
+    )
+    FRICTION_INTEGRATION_AVAILABLE = True
+except ImportError:
+    FRICTION_INTEGRATION_AVAILABLE = False
+    FrictionIntegration = None
     print(f"⚠️ HybridDNA not available: {e}")
 
 logger = logging.getLogger("QuantumOrchestrator")
@@ -1940,6 +1951,11 @@ class QuantumOrchestrator:
         
         # Snapshot
         self.snapshot_recorder = SnapshotRecorder(db_pool)
+        # FrictionIntegration (Friction System V1.0)
+        if FRICTION_INTEGRATION_AVAILABLE:
+            self.friction_integration = create_friction_integration(db_pool)
+        else:
+            self.friction_integration = None
         
         logger.info("Quantum Orchestrator V1.0 initialized - Hedge Fund Grade")
     
@@ -2127,21 +2143,27 @@ class QuantumOrchestrator:
     
     async def load_friction(self, home_team: str, away_team: str) -> FrictionMatrix:
         """
-        Charge la friction matrix
-        En production: query quantum.matchup_friction
+        Charge la friction matrix depuis la DB (V3 → V1 → Default)
+        Utilise FrictionIntegration pour fusionner les données V1 + V3
         """
-        return FrictionMatrix(
-            home_team=home_team,
-            away_team=away_team,
-            kinetic_home=55,
-            kinetic_away=48,
-            temporal_clash=52,
-            psyche_dominance=58,
-            physical_edge=54,
-            chaos_potential=62,
-            predicted_goals=2.8,
-            btts_probability=0.58
-        )
+        if self.friction_integration:
+            return await self.friction_integration.load_friction_for_orchestrator(
+                home_team, away_team
+            )
+        else:
+            # Fallback vers l'ancien STUB si FrictionIntegration non disponible
+            return FrictionMatrix(
+                home_team=home_team,
+                away_team=away_team,
+                kinetic_home=55,
+                kinetic_away=48,
+                temporal_clash=52,
+                psyche_dominance=58,
+                physical_edge=54,
+                chaos_potential=62,
+                predicted_goals=2.8,
+                btts_probability=0.58
+            )
     
     async def analyze_match(
         self,
