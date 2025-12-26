@@ -7,7 +7,7 @@
 
 Modèles de prédiction:
 - Model A: TeamStrategy (+1,434.6u) ✅ Phase 2b
-- Model B: QuantumScorer (r=+0.53)
+- Model B: QuantumScorer (r=+0.53) ✅ Phase 2c
 - Model C: MatchupScorer (+10% ROI)
 - Model D: DixonColes (Probabilités)
 - Model E: Scenarios (20 scénarios)
@@ -44,10 +44,15 @@ from .base import (
 from .team_strategy import ModelTeamStrategy
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# MODEL B: QUANTUM SCORER (Phase 2c)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+from .quantum_scorer import ModelQuantumScorer
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # MODÈLES À VENIR
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# Phase 2c: from .quantum_scorer import ModelQuantumScorer
 # Phase 2d: from .matchup_scorer import ModelMatchupScorer
 # Phase 2e: from .dixon_coles import ModelDixonColes
 # Phase 2f: from .scenarios import ModelScenarios
@@ -75,5 +80,6 @@ __all__ = [
     "BASE_MODEL_WEIGHTS",
     "BASE_VERSION",
     # Models
-    "ModelTeamStrategy",  # Phase 2b
+    "ModelTeamStrategy",   # Phase 2b
+    "ModelQuantumScorer",  # Phase 2c
 ]
