@@ -8,7 +8,7 @@
 Modèles de prédiction:
 - Model A: TeamStrategy (+1,434.6u) ✅ Phase 2b
 - Model B: QuantumScorer (r=+0.53) ✅ Phase 2c
-- Model C: MatchupScorer (+10% ROI)
+- Model C: MatchupScorer (+10% ROI) ✅ Phase 2d
 - Model D: DixonColes (Probabilités)
 - Model E: Scenarios (20 scénarios)
 - Model F: DNAFeatures (11 vecteurs)
@@ -50,10 +50,15 @@ from .team_strategy import ModelTeamStrategy
 from .quantum_scorer import ModelQuantumScorer
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# MODEL C: MATCHUP SCORER (Phase 2d)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+from .matchup_scorer import ModelMatchupScorer
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # MODÈLES À VENIR
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# Phase 2d: from .matchup_scorer import ModelMatchupScorer
 # Phase 2e: from .dixon_coles import ModelDixonColes
 # Phase 2f: from .scenarios import ModelScenarios
 # Phase 2g: from .dna_features import ModelDNAFeatures
@@ -82,4 +87,5 @@ __all__ = [
     # Models
     "ModelTeamStrategy",   # Phase 2b
     "ModelQuantumScorer",  # Phase 2c
+    "ModelMatchupScorer",  # Phase 2d
 ]
