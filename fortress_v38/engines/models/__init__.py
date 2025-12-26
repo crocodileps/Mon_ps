@@ -10,7 +10,7 @@ Modèles de prédiction:
 - Model B: QuantumScorer (r=+0.53) ✅ Phase 2c
 - Model C: MatchupScorer (+10% ROI) ✅ Phase 2d
 - Model D: DixonColes (Probabilités) ✅ Phase 2e
-- Model E: Scenarios (20 scénarios)
+- Model E: Scenarios (20 scénarios) ✅ Phase 2f
 - Model F: DNAFeatures (11 vecteurs)
 - Model G: MicroStrategy (126 marchés)
 """
@@ -62,10 +62,14 @@ from .matchup_scorer import ModelMatchupScorer
 from .dixon_coles import ModelDixonColes
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# MODÈLES À VENIR
+# MODEL E: SCENARIOS (Phase 2f)
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# Phase 2f: from .scenarios import ModelScenarios
+from .scenarios import ModelScenarios
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# MODÈLES À VENIR
+# ═══════════════════════════════════════════════════════════════════════════════
 # Phase 2g: from .dna_features import ModelDNAFeatures
 # Phase 2h: from .microstrategy import MicroStrategyModel
 
@@ -94,4 +98,5 @@ __all__ = [
     "ModelQuantumScorer",  # Phase 2c
     "ModelMatchupScorer",  # Phase 2d
     "ModelDixonColes",     # Phase 2e
+    "ModelScenarios",      # Phase 2f
 ]
