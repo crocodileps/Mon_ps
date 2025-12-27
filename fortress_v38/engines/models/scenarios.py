@@ -64,33 +64,200 @@ class ModelScenarios(BaseModel):
         "NEMESIS_TRAP", "PREY_HUNT", "AERIAL_RAID"
     ]
 
-    # Marchés suggérés par scénario (20 scénarios complets)
+    # ═══════════════════════════════════════════════════════════════════════════
+    # SCENARIO_MARKETS V2 - OPTION B+ (RISK-WEIGHTED)
+    # ═══════════════════════════════════════════════════════════════════════════
+    #
+    # Structure:
+    #   - primary: Marchés principaux à parier (haute conviction)
+    #   - secondary: Marchés alternatifs DÉCORRÉLÉS (diversification)
+    #   - avoid: Marchés à NE JAMAIS parier pour ce scénario
+    #   - max_correlation: Seuil max de corrélation entre 2 paris (0.0-1.0)
+    #
+    # Format: UPPERCASE (aligné sur market_registry.py)
+    # Source: quantum/models/market_registry.py (123 marchés, corrélations pré-calculées)
+    # ═══════════════════════════════════════════════════════════════════════════
+
     SCENARIO_MARKETS = {
-        # GROUPE A - TACTIQUES
-        "TOTAL_CHAOS": "over_35",
-        "THE_SIEGE": "under_25",
-        "SNIPER_DUEL": "btts_yes",
-        "ATTRITION_WAR": "under_25",
-        "GLASS_CANNON": "btts_yes",
-        # GROUPE B - TEMPORELS
-        "LATE_PUNISHMENT": "over_25",
-        "EXPLOSIVE_START": "first_half_over_15",
-        "DIESEL_DUEL": "second_half_over_15",
-        "CLUTCH_KILLER": "over_25",
-        # GROUPE C - PHYSIQUES
-        "FATIGUE_COLLAPSE": "over_25",
-        "PRESSING_DEATH": "home_over_15",
-        "PACE_EXPLOITATION": "btts_yes",
-        "BENCH_WARFARE": "second_half_over_15",
-        # GROUPE D - PSYCHOLOGIQUES
-        "CONSERVATIVE_WALL": "under_25",
-        "KILLER_INSTINCT": "home_over_15",
-        "COLLAPSE_ALERT": "over_25",
-        "NOTHING_TO_LOSE": "draw",
-        # GROUPE E - NEMESIS
-        "NEMESIS_TRAP": "away_over_05",
-        "PREY_HUNT": "home_over_15",
-        "AERIAL_RAID": "home_over_05",
+        # ═══════════════════════════════════════════════════════════════════════
+        # GROUPE A - TACTIQUES (5)
+        # ═══════════════════════════════════════════════════════════════════════
+
+        "TOTAL_CHAOS": {
+            # Festival de buts - chaos_potential > 65
+            "primary": ["OVER_35", "BTTS_YES"],
+            "secondary": ["BTTS_BOTH_HALVES_YES", "GOALS_4_5"],
+            "avoid": ["UNDER_25", "HOME_CLEAN_SHEET", "AWAY_CLEAN_SHEET", "GOALS_0_1"],
+            "max_correlation": 0.70,
+        },
+
+        "THE_SIEGE": {
+            # Domination stérile - possession_gap > 18
+            "primary": ["CORNERS_OVER_105", "CORNERS_OVER_95"],
+            "secondary": ["UNDER_25", "HOME_WIN"],
+            "avoid": ["OVER_35", "BTTS_YES", "AWAY_OVER_15"],
+            "max_correlation": 0.60,
+        },
+
+        "SNIPER_DUEL": {
+            # Deux tueurs - killer_instinct élevé des deux côtés
+            "primary": ["BTTS_YES", "OVER_25"],
+            "secondary": ["HOME_OVER_05", "AWAY_OVER_05"],
+            "avoid": ["HOME_CLEAN_SHEET", "AWAY_CLEAN_SHEET", "UNDER_25", "GOALS_0_1"],
+            "max_correlation": 0.65,
+        },
+
+        "ATTRITION_WAR": {
+            # Guerre d'usure - deux conservateurs
+            "primary": ["UNDER_25", "GOALS_0_1"],
+            "secondary": ["DRAW", "UNDER_35"],
+            "avoid": ["OVER_35", "BTTS_YES", "GOALS_4_5"],
+            "max_correlation": 0.60,
+        },
+
+        "GLASS_CANNON": {
+            # Fort attaque, faible défense
+            "primary": ["BTTS_YES", "AWAY_OVER_15"],
+            "secondary": ["OVER_25", "SECOND_HALF_OVER_15"],
+            "avoid": ["HOME_CLEAN_SHEET", "UNDER_25"],
+            "max_correlation": 0.65,
+        },
+
+        # ═══════════════════════════════════════════════════════════════════════
+        # GROUPE B - TEMPORELS (4)
+        # ═══════════════════════════════════════════════════════════════════════
+
+        "LATE_PUNISHMENT": {
+            # Punition tardive - diesel_factor élevé
+            "primary": ["HOME_OVER_15", "SECOND_HALF_OVER_15"],
+            "secondary": ["OVER_25", "HOME_WIN"],
+            "avoid": ["FIRST_HALF_OVER_15", "AWAY_CLEAN_SHEET"],
+            "max_correlation": 0.70,
+        },
+
+        "EXPLOSIVE_START": {
+            # Départ fulgurant - fast_starter élevé des deux
+            "primary": ["FIRST_HALF_OVER_15", "BTTS_YES"],
+            "secondary": ["OVER_25", "HOME_OVER_05"],
+            "avoid": ["SECOND_HALF_OVER_15", "UNDER_25"],
+            "max_correlation": 0.65,
+        },
+
+        "DIESEL_DUEL": {
+            # Deux diesels - diesel_factor > 0.62 des deux
+            "primary": ["SECOND_HALF_OVER_15", "OVER_25"],
+            "secondary": ["BTTS_YES", "HOME_OVER_05"],
+            "avoid": ["FIRST_HALF_OVER_15", "UNDER_25"],
+            "max_correlation": 0.70,
+        },
+
+        "CLUTCH_KILLER": {
+            # Tueur fin de match - late_game_threat + collapse adverse
+            "primary": ["HOME_OVER_15", "SECOND_HALF_OVER_15"],
+            "secondary": ["HOME_WIN", "OVER_25"],
+            "avoid": ["AWAY_CLEAN_SHEET", "DRAW"],
+            "max_correlation": 0.70,
+        },
+
+        # ═══════════════════════════════════════════════════════════════════════
+        # GROUPE C - PHYSIQUES (4)
+        # ═══════════════════════════════════════════════════════════════════════
+
+        "FATIGUE_COLLAPSE": {
+            # Effondrement physique - adversaire fatigué
+            "primary": ["HOME_OVER_15", "SECOND_HALF_OVER_15"],
+            "secondary": ["HOME_WIN", "OVER_25"],
+            "avoid": ["AWAY_OVER_15", "FIRST_HALF_OVER_15"],
+            "max_correlation": 0.70,
+        },
+
+        "PRESSING_DEATH": {
+            # Mort par pressing - pressing_intensity > 75
+            "primary": ["HOME_OVER_15", "HOME_WIN"],
+            "secondary": ["FIRST_HALF_OVER_15", "HOME_OVER_05"],
+            "avoid": ["AWAY_OVER_15", "DRAW"],
+            "max_correlation": 0.65,
+        },
+
+        "PACE_EXPLOITATION": {
+            # Exploitation de la vitesse - tempo_clash > 65
+            "primary": ["BTTS_YES", "OVER_25"],
+            "secondary": ["HOME_OVER_05", "AWAY_OVER_05"],
+            "avoid": ["UNDER_25", "HOME_CLEAN_SHEET", "AWAY_CLEAN_SHEET"],
+            "max_correlation": 0.70,
+        },
+
+        "BENCH_WARFARE": {
+            # Guerre des bancs - top3_dependency différent
+            "primary": ["SECOND_HALF_OVER_15", "HOME_OVER_05"],
+            "secondary": ["OVER_25", "HOME_WIN"],
+            "avoid": ["FIRST_HALF_OVER_15", "UNDER_25"],
+            "max_correlation": 0.65,
+        },
+
+        # ═══════════════════════════════════════════════════════════════════════
+        # GROUPE D - PSYCHOLOGIQUES (4)
+        # ═══════════════════════════════════════════════════════════════════════
+
+        "CONSERVATIVE_WALL": {
+            # Mur conservateur - mentality CONSERVATIVE
+            "primary": ["UNDER_25", "HOME_CLEAN_SHEET"],
+            "secondary": ["GOALS_0_1", "UNDER_35"],
+            "avoid": ["BTTS_YES", "OVER_35", "GOALS_4_5"],
+            "max_correlation": 0.60,
+        },
+
+        "KILLER_INSTINCT": {
+            # Instinct tueur - killer_instinct > 0.75 + collapse adverse
+            "primary": ["HOME_OVER_15", "HOME_WIN"],
+            "secondary": ["SECOND_HALF_OVER_15", "OVER_25"],
+            "avoid": ["AWAY_CLEAN_SHEET", "UNDER_25"],
+            "max_correlation": 0.70,
+        },
+
+        "COLLAPSE_ALERT": {
+            # Alerte effondrement - collapse_rate + panic_factor élevés
+            "primary": ["AWAY_OVER_05", "OVER_25"],
+            "secondary": ["BTTS_YES", "AWAY_WIN"],
+            "avoid": ["HOME_CLEAN_SHEET", "HOME_WIN"],
+            "max_correlation": 0.65,
+        },
+
+        "NOTHING_TO_LOSE": {
+            # Rien à perdre - outsider libéré
+            "primary": ["DRAW", "AWAY_OVER_05"],
+            "secondary": ["BTTS_YES", "DNB_AWAY"],
+            "avoid": ["HOME_WIN", "HOME_OVER_15"],
+            "max_correlation": 0.60,
+        },
+
+        # ═══════════════════════════════════════════════════════════════════════
+        # GROUPE E - NEMESIS (3)
+        # ═══════════════════════════════════════════════════════════════════════
+
+        "NEMESIS_TRAP": {
+            # Piège nemesis - away est le nemesis de home
+            "primary": ["AWAY_OVER_05", "DRAW"],
+            "secondary": ["BTTS_YES", "DNB_AWAY"],
+            "avoid": ["HOME_WIN", "HOME_CLEAN_SHEET"],
+            "max_correlation": 0.60,
+        },
+
+        "PREY_HUNT": {
+            # Chasse à la proie - home domine l'historique
+            "primary": ["HOME_OVER_15", "HOME_WIN"],
+            "secondary": ["OVER_25", "AWAY_CLEAN_SHEET"],
+            "avoid": ["AWAY_WIN", "DRAW", "AWAY_OVER_15"],
+            "max_correlation": 0.70,
+        },
+
+        "AERIAL_RAID": {
+            # Raid aérien - aerial_win_pct > 55
+            "primary": ["HOME_OVER_05", "CORNERS_OVER_105"],
+            "secondary": ["FIRST_HALF_OVER_15", "HOME_WIN"],
+            "avoid": ["AWAY_CLEAN_SHEET"],
+            "max_correlation": 0.60,
+        },
     }
 
     def __init__(self, db_pool=None):
@@ -308,6 +475,29 @@ class ModelScenarios(BaseModel):
 
         return detected
 
+    def get_scenario_markets(self, scenario_name: str) -> dict:
+        """
+        Retourne les marchés pour un scénario donné.
+
+        Args:
+            scenario_name: Nom du scénario (ex: "TOTAL_CHAOS")
+
+        Returns:
+            Dict avec primary, secondary, avoid, max_correlation
+            ou None si scénario non trouvé
+        """
+        return self.SCENARIO_MARKETS.get(scenario_name)
+
+    def get_primary_markets(self, scenario_name: str) -> list:
+        """Retourne uniquement les marchés primaires."""
+        config = self.SCENARIO_MARKETS.get(scenario_name, {})
+        return config.get("primary", [])
+
+    def get_avoid_markets(self, scenario_name: str) -> list:
+        """Retourne les marchés à éviter."""
+        config = self.SCENARIO_MARKETS.get(scenario_name, {})
+        return config.get("avoid", [])
+
     async def generate_signal(
         self,
         home_team: str,
@@ -344,8 +534,10 @@ class ModelScenarios(BaseModel):
         # Meilleur scénario (plus haute confidence)
         best_scenario, best_confidence = max(scenarios, key=lambda x: x[1])
 
-        # Marché suggéré
-        market = self.SCENARIO_MARKETS.get(best_scenario)
+        # Marché suggéré (Option B+: structure avec primary/secondary/avoid)
+        scenario_config = self.SCENARIO_MARKETS.get(best_scenario, {})
+        primary_markets = scenario_config.get("primary", []) if isinstance(scenario_config, dict) else []
+        market = primary_markets[0] if primary_markets else None
 
         # Signal basé sur la confidence
         if best_confidence >= 75:
@@ -363,6 +555,10 @@ class ModelScenarios(BaseModel):
                 "scenarios": scenarios,
                 "best_scenario": best_scenario,
                 "suggested_market": market,
+                "primary_markets": primary_markets,
+                "secondary_markets": scenario_config.get("secondary", []),
+                "avoid_markets": scenario_config.get("avoid", []),
+                "max_correlation": scenario_config.get("max_correlation", 0.70),
                 "requires_mc_filter": True  # Rappel: nécessite MC validation
             }
         )
