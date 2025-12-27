@@ -132,8 +132,8 @@ def get_guardian() -> SystemGuardian:
     """Retourne l'instance unique du SystemGuardian"""
     global _guardian_instance
     if _guardian_instance is None:
-        from ..config import CONFIG
+        from ..settings import SETTINGS
         _guardian_instance = SystemGuardian(
-            daily_budget_usd=CONFIG.CLAUDE_DAILY_BUDGET_USD
+            daily_budget_usd=SETTINGS.claude.daily_budget_usd
         )
     return _guardian_instance
